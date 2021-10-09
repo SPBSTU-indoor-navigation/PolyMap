@@ -38,10 +38,21 @@ class ViewController: UIViewController {
         return $0
     }(UITableView())
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Asset.mainGray.color
         setViews()
+        
+        TimetableProvider.shared.loadTimetable(startDate: nil) { response in
+            guard let response = response else { return }
+            let timetable = TimetableWeek.convert(t: response)
+            self.arr = timetable.days.map { d in d.lessons }
+            DispatchQueue.main.async {
+                self.loadData()
+            }
+//            print(timetable)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

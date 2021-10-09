@@ -17,6 +17,8 @@
 		054F67CC270CDFB400FCC07C /* LessonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F67CB270CDFB400FCC07C /* LessonModel.swift */; };
 		0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A226271036CC00C33317 /* DateTableViewCell.swift */; };
 		0574A2292711FF5F00C33317 /* EmptyLessonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A2282711FF5F00C33317 /* EmptyLessonTableViewCell.swift */; };
+		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
+		97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		0574A226271036CC00C33317 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 		0574A2282711FF5F00C33317 /* EmptyLessonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLessonTableViewCell.swift; sourceTree = "<group>"; };
 		378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
+		97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableProvider.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
 		E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.release.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +142,7 @@
 		054F67A8270CD73A00FCC07C /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				97BBFEC8271226BD0039F3E0 /* Timetable */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -157,6 +162,15 @@
 				378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		97BBFEC8271226BD0039F3E0 /* Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */,
+				97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */,
+			);
+			path = Timetable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,10 +287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */,
 				0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */,
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
 				054F678C270C7B4C00FCC07C /* ViewController.swift in Sources */,
 				054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */,
+				97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */,
 				054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */,
 				054F67AA270CD78D00FCC07C /* LessonCellView.swift in Sources */,
 				054F67CC270CDFB400FCC07C /* LessonModel.swift in Sources */,

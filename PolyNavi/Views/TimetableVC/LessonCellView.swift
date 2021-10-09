@@ -41,11 +41,14 @@ class LessonCellView: UITableViewCell {
     
     private lazy var timeLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.textAlignment = .center
         return $0
     }(UILabel())
     
     private lazy var subjectNameLabel: UILabel = {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
+        $0.font = .systemFont(ofSize: 18, weight: .bold)
+        $0.numberOfLines = 0
+        $0.lineBreakMode = .byWordWrapping
         return $0
     }(UILabel())
     
@@ -94,14 +97,16 @@ extension LessonCellView {
             
             timeLabel.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
             timeLabel.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
+            timeLabel.widthAnchor.constraint(equalToConstant: 100),
             
             divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 2),
             divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -2),
-            divider.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor, constant: 5),
+            divider.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor, constant: 10),
             divider.widthAnchor.constraint(equalToConstant: 2),
             
             labelsStackView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
             labelsStackView.leadingAnchor.constraint(equalTo: divider.trailingAnchor, constant: 5),
+            labelsStackView.trailingAnchor.constraint(equalTo: mainBackView.trailingAnchor, constant: -10),
             
             mainBackView.bottomAnchor.constraint(equalTo: labelsStackView.bottomAnchor, constant: 5),
             self.contentView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
@@ -143,6 +148,8 @@ import SwiftUI
 class LessonCellView_Provide: PreviewProvider {
     static var previews: some View {
         ContainerView()
+            .previewLayout(PreviewLayout.sizeThatFits)
+            .frame(width: 300, height: 100)
     }
     
     struct ContainerView: UIViewRepresentable {
