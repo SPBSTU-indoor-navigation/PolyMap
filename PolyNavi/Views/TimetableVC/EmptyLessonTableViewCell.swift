@@ -21,9 +21,9 @@ class EmptyLessonTableViewCell: UITableViewCell {
     }(UILabel())
     
     private lazy var mainView: UIView = {
-        $0.backgroundColor = .white
+        $0.backgroundColor = .secondarySystemGroupedBackground
         $0.layer.borderWidth = 0.5
-        $0.layer.borderColor = UIColor.gray.withAlphaComponent(0.4).cgColor
+        $0.layer.borderColor = UIColor.separator.cgColor
         return $0
     }(UIView())
     
