@@ -5,7 +5,41 @@
 //  Created by Никита Фролов  on 05.10.2021.
 //
 
+//https://ruz.spbstu.ru/api/v1/ruz/scheduler/33843
+
+
+
 import Foundation
+
+struct TimetableWeek {
+    let days: [TimetableDay]
+    
+    struct TimetableDay {
+        let date: Date
+        let lessons: [LessonModel]
+    }
+
+    
+    static func convert(t: Timetable) -> TimetableWeek {
+        let days = t.days.map { day -> TimetableDay in
+            let lessons = day.lessons.map { lesson -> LessonModel in
+                let aud = lesson.auditories[0]
+                let audName = aud.building.name + ", " + aud.name
+                
+                return LessonModel(subjectName: lesson.subject,
+                                   timeStart: lesson.time_start,
+                                   timeEnd: lesson.time_end,
+                                   type: lesson.typeObj.name,
+                                   place: audName,
+                                   teacher: lesson.teachers?[0].full_name ?? "")
+                }
+            
+            return TimetableDay(date: Date(), lessons: lessons)
+        }
+        
+        return TimetableWeek(days: days)
+    }
+}
 
 struct LessonModel {
     let subjectName: String
