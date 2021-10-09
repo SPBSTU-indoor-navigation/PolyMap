@@ -1,0 +1,20 @@
+PODS:
+  - Alamofire (5.4.3)
+  - SwiftGen (6.4.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - SwiftGen (~> 6.4.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SwiftGen
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
+
+PODFILE CHECKSUM: 4058721121920659728a1e850303f1a8bd818997
+
+COCOAPODS: 1.10.1
