@@ -15,7 +15,6 @@ class TimetableProvider {
     
     func loadTimetable(startDate: Date?, completion: @escaping (Timetable?) -> Void) {
         
-        
         var c = Calendar(identifier: .iso8601)
         c.timeZone = TimeZone(secondsFromGMT: 0)!
         

@@ -1,0 +1,71 @@
+//
+//  DateTableViewCell.swift
+//  PolyNavi
+//
+//  Created by Никита Фролов  on 08.10.2021.
+//
+
+import UIKit
+
+
+class DateTableViewCell: UITableViewCell {
+    
+    public static var identifire: String {
+        return String(describing: self)
+    }
+    
+    private lazy var formmater: DateFormatter = {
+        $0.dateFormat = "dd MMM YYYY"
+        $0.locale = Locale(identifier: "RU")
+        return $0
+    }(DateFormatter())
+    
+    private lazy var mainBackView: UIView = {
+        $0.backgroundColor = .secondarySystemGroupedBackground
+        $0.layer.borderColor = UIColor.separator.cgColor
+        $0.layer.borderWidth = 0.5
+        $0.layer.cornerRadius = 15
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIView())
+    
+    private lazy var dateLabel: UILabel = {
+        $0.text = "07 окт. 2021"
+        $0.font = .systemFont(ofSize: 12, weight: .bold)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UILabel())
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    private func setView() {
+        self.mainBackView.addSubview(dateLabel)
+        self.contentView.addSubview(mainBackView)
+        self.contentView.backgroundColor = .clear
+        self.backgroundColor = .clear
+        
+        NSLayoutConstraint.activate([
+            self.mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15),
+            self.mainBackView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.mainBackView.widthAnchor.constraint(equalToConstant: 150),
+            self.mainBackView.heightAnchor.constraint(equalToConstant: 20),
+            
+            self.dateLabel.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
+            self.dateLabel.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
+            self.contentView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
+        ])
+    }
+    
+    public func configure(withDate date: Date) {
+        self.dateLabel.text = self.formmater.string(from: date)
+    }
+}

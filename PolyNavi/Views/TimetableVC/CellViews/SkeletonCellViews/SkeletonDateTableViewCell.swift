@@ -1,14 +1,14 @@
 //
-//  DateTableViewCell.swift
+//  SkeletonDateTableViewCell.swift
 //  PolyNavi
 //
-//  Created by Никита Фролов  on 08.10.2021.
+//  Created by Никита Фролов  on 10.10.2021.
 //
 
 import UIKit
+import SkeletonView
 
-
-class DateTableViewCell: UITableViewCell {
+class SkeletonDateTableViewCell: UITableViewCell {
     
     public static var identifire: String {
         return String(describing: self)
@@ -24,9 +24,7 @@ class DateTableViewCell: UITableViewCell {
         return $0
     }(UIView())
     
-    private lazy var dateLabel: UILabel = {
-        $0.text = "07 окт. 2021"
-        $0.font = .systemFont(ofSize: 12, weight: .bold)
+    private lazy var dateView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UILabel())
@@ -42,7 +40,13 @@ class DateTableViewCell: UITableViewCell {
     
     
     private func setView() {
-        self.mainBackView.addSubview(dateLabel)
+        self.isSkeletonable = true;
+        self.contentView.isSkeletonable = true
+        self.mainBackView.isSkeletonable = true
+        self.dateView.isSkeletonable = true
+        self.dateView.skeletonCornerRadius = 5
+        
+        self.mainBackView.addSubview(dateView)
         self.contentView.addSubview(mainBackView)
         self.contentView.backgroundColor = .clear
         self.backgroundColor = .clear
@@ -50,11 +54,13 @@ class DateTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             self.mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15),
             self.mainBackView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            self.mainBackView.widthAnchor.constraint(equalToConstant: 130),
+            self.mainBackView.widthAnchor.constraint(equalToConstant: 150),
             self.mainBackView.heightAnchor.constraint(equalToConstant: 20),
             
-            self.dateLabel.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
-            self.dateLabel.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
+            self.dateView.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
+            self.dateView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 5),
+            self.dateView.widthAnchor.constraint(equalToConstant: 75),
+            self.dateView.heightAnchor.constraint(equalToConstant: 5),
             self.contentView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
         ])
     }

@@ -8,23 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    var arr: [[LessonModel]] = [
-        [
-            LessonModel(subjectName: "Выч мат", timeStart:"10:00", timeEnd: "11:30", type: "Лекция", place: "Гидрак", teacher: "Устинов С.М."),
-            LessonModel(subjectName: "Выч мат", timeStart:"14:00", timeEnd: "11:30", type: "Лекция", place: "Гидрак", teacher: "Устинов С.М."),
-            LessonModel(subjectName: "Выч мат", timeStart:"16:00", timeEnd: "11:30", type: "Лекция", place: "Гидрак", teacher: "Устинов С.М."),
-        ],
-        
-        [
-            LessonModel(subjectName: "Выч мат", timeStart:"10:00", timeEnd: "11:30", type: "Лекция", place: "Гидрак", teacher: "Устинов С.М."),
-            LessonModel(subjectName: "Выч мат", timeStart:"12:00", timeEnd: "11:30", type: "Лекция", place: "Гидрак", teacher: "Устинов С.М."),
-        ],
-        
-        [
-            LessonModel(subjectName: "Выч мат", timeStart:"10:00", timeEnd: "11:30", type: "Лекция", place: "Гидрак", teacher: "Устинов С.М."),
-        ],
-    ]
+    private var arrayOfDaysWithLessons: [TimetableWeek.TimetableDay] = []
     
     private lazy var tableView: UITableView = {
         $0.register(LessonCellView.self, forCellReuseIdentifier: LessonCellView.identifire)
@@ -35,6 +19,8 @@ class ViewController: UIViewController {
         $0.backgroundColor = .clear
         $0.dataSource = self
         $0.delegate = self
+        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
+        $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
         return $0
     }(UITableView())
     
@@ -47,26 +33,22 @@ class ViewController: UIViewController {
         TimetableProvider.shared.loadTimetable(startDate: nil) { response in
             guard let response = response else { return }
             let timetable = TimetableWeek.convert(response)
-            self.arr = timetable.days.map { $0.lessons }
+            self.arrayOfDaysWithLessons = timetable.days
             DispatchQueue.main.async {
                 self.loadData()
             }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        loadData()
     }
 }
 
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return arr.count
+        return arrayOfDaysWithLessons.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arr[section].count + 1
+        return arrayOfDaysWithLessons[section].lessons.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,10 +56,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             guard let dateCell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.identifire) as? DateTableViewCell else {
                 return UITableViewCell()
             }
+            dateCell.configure(withDate: arrayOfDaysWithLessons[indexPath.section].date)
             return dateCell
         }
 
-        let element = arr[indexPath.section][indexPath.row - 1]
+        let element = arrayOfDaysWithLessons[indexPath.section].lessons[indexPath.row - 1]
         
         if element.isEmptyLesson() {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyLessonTableViewCell.identifire) as? EmptyLessonTableViewCell else {
@@ -93,11 +76,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.configure(model: element)
-        if arr[indexPath.section].count == 1 {
+        if arrayOfDaysWithLessons[indexPath.section].lessons.count == 1 {
             cell.cornernIfOne()
         } else if indexPath.row == 1 {
             cell.cornernIfFirst()
-        } else if indexPath.row == self.arr[indexPath.section].count {
+        } else if indexPath.row == self.arrayOfDaysWithLessons[indexPath.section].lessons.count {
             cell.cornernIfLast()
         }
         return cell
@@ -121,8 +104,8 @@ extension ViewController {
 
 extension ViewController {
     private func loadData() {
-        for i in 0..<arr.count {
-            arr[i] = LessonModel.createCorrectTimeTable(currentArray: arr[i])
+        for i in 0..<arrayOfDaysWithLessons.count {
+            arrayOfDaysWithLessons[i].lessons = LessonModel.createCorrectTimeTable(currentArray: arrayOfDaysWithLessons[i].lessons)
         }
         self.tableView.reloadData()
     }
