@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Asset.mainGray.color
+        view.backgroundColor = .systemGroupedBackground
         setViews()
     }
     

@@ -15,8 +15,8 @@ class DateTableViewCell: UITableViewCell {
     }
     
     private lazy var mainBackView: UIView = {
-        $0.backgroundColor = .white
-        $0.layer.borderColor = UIColor.gray.withAlphaComponent(0.4).cgColor
+        $0.backgroundColor = .secondarySystemGroupedBackground
+        $0.layer.borderColor = UIColor.separator.cgColor
         $0.layer.borderWidth = 0.5
         $0.layer.cornerRadius = 15
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]

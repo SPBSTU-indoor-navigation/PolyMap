@@ -25,15 +25,15 @@ class LessonCellView: UITableViewCell {
     }(UIStackView())
     
     private lazy var mainBackView: UIView = {
-        $0.backgroundColor = .white
+        $0.backgroundColor = .secondarySystemGroupedBackground
         $0.layer.borderWidth = 0.5
-        $0.layer.borderColor = UIColor.gray.withAlphaComponent(0.4).cgColor
+        $0.layer.borderColor = UIColor.separator.cgColor
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIView())
     
     private lazy var divider: UIView = {
-        $0.backgroundColor = .gray.withAlphaComponent(0.5)
+        $0.backgroundColor = .systemGray3
         $0.layer.cornerRadius = 2
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
