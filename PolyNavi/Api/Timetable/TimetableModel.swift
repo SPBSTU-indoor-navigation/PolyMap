@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import CoreText
-
 
 struct Timetable: Codable {
     let days: [Day]
@@ -33,7 +31,6 @@ struct Timetable: Codable {
             let groups: [Timetable.Group]
             let teachers: [Teacher]?
             let auditories: [Auditorie]
-            
             
             struct TypeObj: Codable {
                 let id: Int             // 35

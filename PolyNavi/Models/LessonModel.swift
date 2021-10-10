@@ -5,9 +5,6 @@
 //  Created by Никита Фролов  on 05.10.2021.
 //
 
-//https://ruz.spbstu.ru/api/v1/ruz/scheduler/33843
-
-
 
 import Foundation
 
@@ -20,7 +17,7 @@ struct TimetableWeek {
     }
 
     
-    static func convert(t: Timetable) -> TimetableWeek {
+    static func convert(_ t: Timetable) -> TimetableWeek {
         let days = t.days.map { day -> TimetableDay in
             let lessons = day.lessons.map { lesson -> LessonModel in
                 let aud = lesson.auditories[0]
