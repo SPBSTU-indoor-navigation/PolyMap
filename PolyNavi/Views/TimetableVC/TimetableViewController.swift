@@ -111,7 +111,7 @@ private extension TimetableViewController {
             self.arrayOfDaysWithLessons = timetable.days.map { pair in
                 return TimetableWeek.TimetableDay(date: pair.date, lessons: LessonModel.createCorrectTimeTable(currentArray: pair.lessons))
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            DispatchQueue.main.async { [weak self] in
                 self?.tableView.stopSkeletonAnimation()
                 self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 self?.tableView.reloadData()
