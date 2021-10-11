@@ -44,7 +44,10 @@ platform :ios do
       in_house: false
     )
     
-    increment_build_number(xcodeproj: "PolyNavi.xcodeproj")
+    increment_build_number({
+      xcodeproj: "PolyNavi.xcodeproj",
+      build_number: latest_testflight_build_number + 1
+    })
     
     cocoapods(
       clean_install: true
@@ -63,7 +66,7 @@ platform :ios do
     gym(
       configuration: "Release",
       workspace: "PolyNavi.xcworkspace",
-      scheme: "your_schema",
+      scheme: "PolyNavi",
       export_method: "app-store",
       export_options: {
         provisioningProfiles: { 
