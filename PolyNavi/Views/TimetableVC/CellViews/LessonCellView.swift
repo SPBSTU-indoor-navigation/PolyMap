@@ -39,7 +39,13 @@ class LessonCellView: UITableViewCell {
         return $0
     }(UIView())
     
-    private lazy var timeLabel: UILabel = {
+    private lazy var timeStart: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.textAlignment = .center
+        return $0
+    }(UILabel())
+    
+    private lazy var timeEnd: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textAlignment = .center
         return $0
@@ -78,7 +84,6 @@ class LessonCellView: UITableViewCell {
 }
 
 
-
 //MARK:- Set views
 extension LessonCellView {
     private func setViews() {
@@ -87,7 +92,8 @@ extension LessonCellView {
         [subjectNameLabel, typeOfLessonLabel, teacherNameLabel, placeLabel].forEach {
             labelsStackView.addArrangedSubview($0)
         }
-        mainBackView.addSubview(timeLabel)
+        mainBackView.addSubview(timeStart)
+        mainBackView.addSubview(timeEnd)
         mainBackView.addSubview(labelsStackView)
         mainBackView.addSubview(divider)
         
@@ -98,33 +104,40 @@ extension LessonCellView {
             mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
             mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
             
-            timeLabel.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
-            timeLabel.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
-            timeLabel.widthAnchor.constraint(equalToConstant: 100),
+            timeStart.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
+            timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
+            timeStart.widthAnchor.constraint(equalToConstant: 50),
+            
+            timeEnd.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -10),
+            timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
+            timeEnd.widthAnchor.constraint(equalToConstant: 50),
             
             divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 2),
             divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -2),
-            divider.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor, constant: 10),
+            divider.leadingAnchor.constraint(equalTo: timeStart.trailingAnchor, constant: 12),
             divider.widthAnchor.constraint(equalToConstant: 2),
             
             labelsStackView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
             labelsStackView.leadingAnchor.constraint(equalTo: divider.trailingAnchor, constant: 5),
             labelsStackView.trailingAnchor.constraint(equalTo: mainBackView.trailingAnchor, constant: -10),
             
-            mainBackView.bottomAnchor.constraint(equalTo: labelsStackView.bottomAnchor, constant: 5),
+            mainBackView.bottomAnchor.constraint(equalTo: labelsStackView.bottomAnchor, constant: 10),
             self.contentView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
         ])
     }
     
     public func configure(model: LessonModel) {
         self.model = model
-        timeLabel.text = model.timeStart + "-" + model.timeEnd
+        timeStart.text = model.timeStart
+        timeEnd.text = model.timeEnd
         subjectNameLabel.text = model.subjectName
         teacherNameLabel.text = model.teacher
         placeLabel.text = model.place
         typeOfLessonLabel.text = model.type
         mainBackView.layer.cornerRadius = 0
         mainBackView.layer.maskedCorners = []
+        
+        divider.backgroundColor = model.isLecture() ? .systemGreen : .systemPink
     }
     
     public func cornernIfFirst() {

@@ -56,6 +56,10 @@ struct LessonModel {
         return subjectName.isEmpty && type.isEmpty && place.isEmpty && teacher.isEmpty
     }
     
+    public func isLecture() -> Bool {
+        type == "Лекции"
+    }
+    
     static func createEmptyLesson(withStartTime: String, andEndTime: String) -> LessonModel {
         return LessonModel(subjectName: "", timeStart: withStartTime, timeEnd: andEndTime, type: "", place: "", teacher: "")
     }
