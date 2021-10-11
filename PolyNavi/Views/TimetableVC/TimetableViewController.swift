@@ -57,6 +57,10 @@ class TimetableViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemGroupedBackground
         layoutViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         loadData()
     }
 }
@@ -96,7 +100,7 @@ private extension TimetableViewController {
 private extension TimetableViewController {
     func loadData() {
         
-        UIView.transition(with: tableView, duration: 0.3, options: .transitionFlipFromRight, animations: { [weak self] in
+        UIView.transition(with: tableView, duration: 0.3, options: .curveLinear, animations: { [weak self] in
             let gradient = SkeletonGradient(baseColor: UIColor.white, secondaryColor: .gray)
             self?.tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
         }, completion: nil)
@@ -107,7 +111,7 @@ private extension TimetableViewController {
             self.arrayOfDaysWithLessons = timetable.days.map { pair in
                 return TimetableWeek.TimetableDay(date: pair.date, lessons: LessonModel.createCorrectTimeTable(currentArray: pair.lessons))
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 25) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
                 self?.tableView.stopSkeletonAnimation()
                 self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 self?.tableView.reloadData()

@@ -12,7 +12,7 @@ struct TimetableWeek {
     let days: [TimetableDay]
     
     struct TimetableDay {
-        let date: Date
+        let date: Date?
         var lessons: [LessonModel]
     }
     
@@ -37,7 +37,7 @@ struct TimetableWeek {
                                    teacher: lesson.teachers?[0].full_name ?? "")
                 }
             
-            return TimetableDay(date: dateFormmater.date(from: day.date) ?? Date(), lessons: lessons)
+            return TimetableDay(date: dateFormmater.date(from: day.date), lessons: lessons)
         }
         
         return TimetableWeek(days: days)

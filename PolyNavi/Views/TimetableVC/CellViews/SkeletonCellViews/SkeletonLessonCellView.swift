@@ -13,17 +13,7 @@ class SkeletonLessonCellView: UITableViewCell {
     public static var identifire: String {
         return String(describing: self)
     }
-    
-    private lazy var labelsStackView: UIStackView = {
-        $0.axis = .vertical
-        $0.alignment = .leading
-        $0.spacing = 4
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.isSkeletonable = true
-        $0.skeletonCornerRadius = 10
-        return $0
-    }(UIStackView())
-    
+
     private lazy var mainBackView: UIView = {
         $0.backgroundColor = .secondarySystemGroupedBackground
         $0.layer.borderWidth = 0.5
@@ -38,37 +28,26 @@ class SkeletonLessonCellView: UITableViewCell {
         $0.backgroundColor = .systemGray3
         $0.layer.cornerRadius = 2
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.isSkeletonable = true
         return $0
     }(UIView())
     
     private lazy var timeLabel: UILabel = {
         $0.text = "Text txt txt"
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.numberOfLines = 0
         $0.textAlignment = .center
         $0.isSkeletonable = true
+        $0.skeletonCornerRadius = 5
         return $0
     }(UILabel())
     
-    private lazy var subjectNameLabel: UILabel = {
-        $0.text = "Text txt txt"
+    private lazy var textView: UITextView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.linesCornerRadius = 5
+        $0.skeletonLineSpacing = 6
+        $0.isSkeletonable = true
         return $0
-    }(UILabel())
-    
-    private lazy var teacherNameLabel: UILabel = {
-        $0.text = "Text txt txt"
-        return $0
-    }(UILabel())
-    
-    private lazy var placeLabel: UILabel = {
-        $0.text = "Text txt txt"
-        return $0
-    }(UILabel())
-    
-    private lazy var typeOfLessonLabel: UILabel = {
-        $0.text = "Text txt txt"
-        return $0
-    }(UILabel())
+    }(UITextView())
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -84,13 +63,9 @@ class SkeletonLessonCellView: UITableViewCell {
         self.backgroundColor = .clear
         self.isSkeletonable = true
         self.contentView.isSkeletonable = true
-        [subjectNameLabel, typeOfLessonLabel, teacherNameLabel, placeLabel].forEach {
-            $0.isSkeletonable = true
-            $0.skeletonCornerRadius = 10
-            labelsStackView.addArrangedSubview($0)
-        }
+    
         mainBackView.addSubview(timeLabel)
-        mainBackView.addSubview(labelsStackView)
+        mainBackView.addSubview(textView)
         mainBackView.addSubview(divider)
         
         self.contentView.addSubview(mainBackView)
@@ -109,11 +84,12 @@ class SkeletonLessonCellView: UITableViewCell {
             divider.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor, constant: 10),
             divider.widthAnchor.constraint(equalToConstant: 2),
             
-            labelsStackView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
-            labelsStackView.leadingAnchor.constraint(equalTo: divider.trailingAnchor, constant: 5),
-            labelsStackView.trailingAnchor.constraint(equalTo: mainBackView.trailingAnchor, constant: -10),
+            textView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
+            textView.leadingAnchor.constraint(equalTo: divider.trailingAnchor, constant: 5),
+            textView.trailingAnchor.constraint(equalTo: mainBackView.trailingAnchor, constant: -5),
+            textView.heightAnchor.constraint(equalToConstant: 100),
             
-            mainBackView.bottomAnchor.constraint(equalTo: labelsStackView.bottomAnchor, constant: 5),
+            mainBackView.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: 5),
             self.contentView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
         ])
     }

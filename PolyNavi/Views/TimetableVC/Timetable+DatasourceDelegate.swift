@@ -22,7 +22,7 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
             guard let dateCell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.identifire) as? DateTableViewCell else {
                 return UITableViewCell()
             }
-            dateCell.configure(withDate: arrayOfDaysWithLessons[indexPath.section].date)
+            dateCell.configure(withDate: self.arrayOfDaysWithLessons[indexPath.section].date)
             return dateCell
         }
 
@@ -53,6 +53,7 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK:-SkeletonView
 extension TimetableViewController: SkeletonTableViewDataSource {
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         if (indexPath.row % 2 == 0) {

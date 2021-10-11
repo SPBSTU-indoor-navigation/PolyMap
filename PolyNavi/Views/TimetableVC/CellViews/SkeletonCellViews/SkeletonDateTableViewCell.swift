@@ -24,8 +24,12 @@ class SkeletonDateTableViewCell: UITableViewCell {
         return $0
     }(UIView())
     
-    private lazy var dateView: UIView = {
+    private lazy var dateLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.numberOfLines = 0
+        $0.isSkeletonable = true
+        $0.skeletonCornerRadius = 3
+        $0.text = "Text txt"
         return $0
     }(UILabel())
     
@@ -40,16 +44,15 @@ class SkeletonDateTableViewCell: UITableViewCell {
     
     
     private func setView() {
+        self.contentView.backgroundColor = .clear
+        self.backgroundColor = .clear
+        
         self.isSkeletonable = true;
         self.contentView.isSkeletonable = true
         self.mainBackView.isSkeletonable = true
-        self.dateView.isSkeletonable = true
-        self.dateView.skeletonCornerRadius = 5
         
-        self.mainBackView.addSubview(dateView)
+        self.mainBackView.addSubview(dateLabel)
         self.contentView.addSubview(mainBackView)
-        self.contentView.backgroundColor = .clear
-        self.backgroundColor = .clear
         
         NSLayoutConstraint.activate([
             self.mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15),
@@ -57,10 +60,10 @@ class SkeletonDateTableViewCell: UITableViewCell {
             self.mainBackView.widthAnchor.constraint(equalToConstant: 150),
             self.mainBackView.heightAnchor.constraint(equalToConstant: 20),
             
-            self.dateView.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
-            self.dateView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 5),
-            self.dateView.widthAnchor.constraint(equalToConstant: 75),
-            self.dateView.heightAnchor.constraint(equalToConstant: 5),
+            self.dateLabel.centerXAnchor.constraint(equalTo: self.mainBackView.centerXAnchor),
+            self.dateLabel.bottomAnchor.constraint(equalTo: self.mainBackView.bottomAnchor, constant: -2),
+            self.dateLabel.heightAnchor.constraint(equalToConstant: 8),
+            
             self.contentView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
         ])
     }
