@@ -31,13 +31,23 @@ class SkeletonLessonCellView: UITableViewCell {
         return $0
     }(UIView())
     
-    private lazy var timeLabel: UILabel = {
+    private lazy var timeStart: UILabel = {
         $0.text = "Text txt txt"
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.numberOfLines = 0
         $0.textAlignment = .center
         $0.isSkeletonable = true
-        $0.skeletonCornerRadius = 5
+        $0.skeletonCornerRadius = 10
+        return $0
+    }(UILabel())
+    
+    private lazy var timeEnd: UILabel = {
+        $0.text = "Text txt txt"
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+        $0.isSkeletonable = true
+        $0.skeletonCornerRadius = 10
         return $0
     }(UILabel())
     
@@ -64,7 +74,8 @@ class SkeletonLessonCellView: UITableViewCell {
         self.isSkeletonable = true
         self.contentView.isSkeletonable = true
     
-        mainBackView.addSubview(timeLabel)
+        mainBackView.addSubview(timeStart)
+        mainBackView.addSubview(timeEnd)
         mainBackView.addSubview(textView)
         mainBackView.addSubview(divider)
         
@@ -75,13 +86,17 @@ class SkeletonLessonCellView: UITableViewCell {
             mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
             mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
             
-            timeLabel.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
-            timeLabel.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
-            timeLabel.widthAnchor.constraint(equalToConstant: 100),
+            timeStart.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
+            timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
+            timeStart.widthAnchor.constraint(equalToConstant: 50),
+            
+            timeEnd.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -10),
+            timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
+            timeEnd.widthAnchor.constraint(equalToConstant: 50),
             
             divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 2),
             divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -2),
-            divider.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor, constant: 10),
+            divider.leadingAnchor.constraint(equalTo: timeStart.trailingAnchor, constant: 12),
             divider.widthAnchor.constraint(equalToConstant: 2),
             
             textView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
@@ -89,7 +104,7 @@ class SkeletonLessonCellView: UITableViewCell {
             textView.trailingAnchor.constraint(equalTo: mainBackView.trailingAnchor, constant: -5),
             textView.heightAnchor.constraint(equalToConstant: 100),
             
-            mainBackView.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: 5),
+            mainBackView.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: 10),
             self.contentView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
         ])
     }
