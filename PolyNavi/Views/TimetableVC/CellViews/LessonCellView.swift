@@ -53,6 +53,9 @@ class LessonCellView: UITableViewCell {
     }(UILabel())
     
     private lazy var teacherNameLabel: UILabel = {
+        $0.font = .systemFont(ofSize: 18, weight: .regular)
+        $0.numberOfLines = 0
+        $0.lineBreakMode = .byWordWrapping
         return $0
     }(UILabel())
     

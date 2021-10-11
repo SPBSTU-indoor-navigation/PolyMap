@@ -14,6 +14,11 @@ class DateTableViewCell: UITableViewCell {
         return String(describing: self)
     }
     
+    private lazy var formmater: DateFormatter = {
+        $0.dateFormat = "dd MMM YYYY"
+        return $0
+    }(DateFormatter())
+    
     private lazy var mainBackView: UIView = {
         $0.backgroundColor = .secondarySystemGroupedBackground
         $0.layer.borderColor = UIColor.separator.cgColor
@@ -31,6 +36,14 @@ class DateTableViewCell: UITableViewCell {
         return $0
     }(UILabel())
     
+    private lazy var emptyDataView: UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 3
+        $0.backgroundColor = UIColor.separator
+        $0.isHidden = true
+        return $0
+    }(UIView())
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setView()
@@ -42,6 +55,7 @@ class DateTableViewCell: UITableViewCell {
     
     
     private func setView() {
+        self.mainBackView.addSubview(emptyDataView)
         self.mainBackView.addSubview(dateLabel)
         self.contentView.addSubview(mainBackView)
         self.contentView.backgroundColor = .clear
@@ -50,12 +64,26 @@ class DateTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             self.mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15),
             self.mainBackView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            self.mainBackView.widthAnchor.constraint(equalToConstant: 130),
+            self.mainBackView.widthAnchor.constraint(equalToConstant: 150),
             self.mainBackView.heightAnchor.constraint(equalToConstant: 20),
             
             self.dateLabel.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
             self.dateLabel.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
+            self.emptyDataView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
+            self.emptyDataView.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
+            self.emptyDataView.heightAnchor.constraint(equalToConstant: 2),
+            self.emptyDataView.widthAnchor.constraint(equalToConstant: 75),
             self.contentView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
         ])
+    }
+    
+    public func configure(withDate date: Date?) {
+        if let wrapDate = date {
+            self.dateLabel.text = self.formmater.string(from: wrapDate)
+            self.emptyDataView.isHidden = true
+        } else {
+            self.dateLabel.isHidden = true
+            self.emptyDataView.isHidden = false
+        }
     }
 }

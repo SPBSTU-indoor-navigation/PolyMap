@@ -12,9 +12,15 @@ struct TimetableWeek {
     let days: [TimetableDay]
     
     struct TimetableDay {
-        let date: Date
-        let lessons: [LessonModel]
+        let date: Date?
+        var lessons: [LessonModel]
     }
+    
+    static var dateFormmater: DateFormatter = {
+        let formmater = DateFormatter()
+        formmater.dateFormat = "yyyy-MM-dd"
+        return formmater
+    }()
 
     
     static func convert(_ t: Timetable) -> TimetableWeek {
@@ -31,7 +37,7 @@ struct TimetableWeek {
                                    teacher: lesson.teachers?[0].full_name ?? "")
                 }
             
-            return TimetableDay(date: Date(), lessons: lessons)
+            return TimetableDay(date: dateFormmater.date(from: day.date), lessons: lessons)
         }
         
         return TimetableWeek(days: days)

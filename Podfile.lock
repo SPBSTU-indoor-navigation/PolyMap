@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (5.4.3)
+  - SkeletonView (1.21.2)
   - SwiftGen (6.4.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - SkeletonView
   - SwiftGen (~> 6.4.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - SkeletonView
     - SwiftGen
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  SkeletonView: a085533443fed0198309f1979780afb6e80eaedd
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
 
-PODFILE CHECKSUM: 4058721121920659728a1e850303f1a8bd818997
+PODFILE CHECKSUM: 977c155fd89fa9dab4c38488d17a35b4c5cb37c2
 
 COCOAPODS: 1.10.1

@@ -7,5 +7,8 @@ target 'PolyNavi' do
 
   # Network
   pod 'Alamofire', '~> 5.2'
+  
+  #Skeleton
+  pod 'SkeletonView' # Shimmer effect for loading
 
 end
