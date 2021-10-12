@@ -105,7 +105,8 @@ private extension TimetableViewController {
             self?.tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
         }, completion: nil)
         
-        TimetableProvider.shared.loadTimetable(startDate: nil) { response in
+        TimetableProvider.shared.loadTimetable(
+            group: Group(id: 33870, name: "", level: 0, type: "", kind: 0, spec: "", year: 0)){ response in
             guard let response = response else { return }
             let timetable = TimetableWeek.convert(response)
             self.arrayOfDaysWithLessons = timetable.days.map { pair in

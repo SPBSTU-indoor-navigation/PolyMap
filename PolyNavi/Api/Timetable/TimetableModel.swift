@@ -82,10 +82,34 @@ struct Timetable: Codable {
     }
     
     struct Week: Codable {
-        let date_end: String  //"2021.10.10"
+        let date_end: String        //"2021.10.10"
         let date_start: String      //"2021.10.04"
         let is_odd: Bool            //false
     }
 }
 
 
+struct Faculty: Codable {
+    let id: Int                  // 117
+    let name: String             // "Университетский политехнический колледж"
+    let abbr: String             // "УПКР"
+}
+
+struct Group: Codable {
+    let id: Int             // 33870,
+    let name: String        // "4931101/10001",
+    let level: Int          // 1,
+    let type: String        // "common",
+    let kind: Int           // 0,
+    let spec: String        // "",
+    let year: Int           // 2021
+}
+
+struct FacultiesList: Codable {
+    let faculties: [Faculty]
+}
+
+struct GroupsList: Codable {
+    let groups: [Group]
+    let faculty: Faculty
+}
