@@ -29,27 +29,9 @@ class TimetableViewController: UIViewController {
         $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
         $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
         $0.showsVerticalScrollIndicator = false
+        $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UITableView())
-    
-    internal lazy var headerView: UIView = {
-        $0.layer.cornerRadius = 12
-        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        $0.backgroundColor = .secondarySystemGroupedBackground
-        return $0
-    }(UIView())
-    
-    internal lazy var saveAreaLayer: UIView = {
-        $0.backgroundColor = .secondarySystemGroupedBackground
-        return $0
-    }(UIView())
-    
-    internal lazy var titleLabel: UILabel = {
-        $0.text = "Расписание"
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
-        return $0
-    }(UILabel())
-    
     
     //MARK:- Life cicle 
     
@@ -57,6 +39,7 @@ class TimetableViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemGroupedBackground
         layoutViews()
+        navigationController?.title = "Расписание"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,25 +52,9 @@ class TimetableViewController: UIViewController {
 //MARK:- LayoutView
 private extension TimetableViewController {
     func layoutViews() {
-        [tableView, headerView, titleLabel, saveAreaLayer].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
-        headerView.addSubview(titleLabel)
-        [saveAreaLayer, tableView, headerView].forEach { self.view.addSubview($0) }
-        
+        self.view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            saveAreaLayer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            saveAreaLayer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            saveAreaLayer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            saveAreaLayer.heightAnchor.constraint(equalToConstant: 100),
-            
-            headerView.topAnchor.constraint(equalTo: saveAreaLayer.bottomAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 50),
-            
-            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 12),
-            titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -12),
-            
-            tableView.topAnchor.constraint(equalTo: headerView.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
