@@ -107,16 +107,16 @@ private extension TimetableViewController {
         
         TimetableProvider.shared.loadTimetable(
             group: Group(id: 33843, kind: 0, level: 0, name: "", spec: "", type: "", year: 0)) { response in
-            guard let response = response else { return }
-            let timetable = TimetableWeek.convert(response)
-            self.arrayOfDaysWithLessons = timetable.days.map { pair in
-                return TimetableWeek.TimetableDay(date: pair.date, lessons: LessonModel.createCorrectTimeTable(currentArray: pair.lessons))
+                guard let response = response.data else { return }
+                let timetable = TimetableWeek.convert(response)
+                self.arrayOfDaysWithLessons = timetable.days.map { pair in
+                    return TimetableWeek.TimetableDay(date: pair.date, lessons: LessonModel.createCorrectTimeTable(currentArray: pair.lessons))
+                }
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.stopSkeletonAnimation()
+                    self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                    self?.tableView.reloadData()
+                }
             }
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.stopSkeletonAnimation()
-                self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-                self?.tableView.reloadData()
-            }
-        }
     }
 }
