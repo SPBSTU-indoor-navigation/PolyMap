@@ -7,85 +7,112 @@
 
 import Foundation
 
+protocol ID {
+    var id: Int { get }
+}
+
 struct Timetable: Codable {
     let days: [Day]
-    let group: Timetable.Group
     let week: Week
+    let group: Timetable.Group?
+    let teacher: Teacher?
     
     struct Day: Codable {
-        let date: String // "2021-10-04"
-        let weekday: Int //1
+        let date: String                    // "2021-10-04"
+        let weekday: Int                    // 1
         let lessons: [Lesson]
         
         struct Lesson: Codable {
-            let additional_info: String    // "Поток"
-            let lms_url: String            // "https://dl.spbstu.ru//course/view.php?id=3104"
-            let subject: String            // "Компьютерная графика"
-            let subject_short: String      // "Компьютерная графика"
-            let webinar_url: String        // ""
-            let time_end: String           // "13:40"
-            let time_start: String         // "12:00"
-            let type: Int                  // 2
-            let parity: Int                // 0
+            let additional_info: String     // "Поток"
+            let lms_url: String             // "https://dl.spbstu.ru//course/view.php?id=3104"
+            let subject: String             // "Компьютерная графика"
+            let subject_short: String       // "Компьютерная графика"
+            let webinar_url: String         // ""
+            let time_end: String            // "13:40"
+            let time_start: String          // "12:00"
+            let type: Int                   // 2
+            let parity: Int                 // 0
             let typeObj: TypeObj
             let groups: [Timetable.Group]
             let teachers: [Teacher]?
             let auditories: [Auditorie]
             
-            struct TypeObj: Codable {
-                let id: Int             // 35
-                let abbr: String        // "Кпр"
-                let name: String        // "Курсовое проектирование"
+            struct TypeObj: Codable, ID {
+                let id: Int                 // 35
+                let abbr: String            // "Кпр"
+                let name: String            // "Курсовое проектирование"
             }
         }
     }
     
-    struct Teacher: Codable {
-        let id: Int                     // 5302
-        let chair: String               // "35/04 Кафедра \"Информационные и управляющие системы\""
-        let first_name: String          // "Леонтьева"
-        let full_name: String           // "Леонтьева Татьяна Владимировна"
-        let grade: String               // ""
-        let last_name: String           // "Владимировна"
-        let middle_name: String         // "Татьяна"
-        let oid: Int                    // 29307
-    }
-    
-    struct Auditorie: Codable {
-        let id: Int              // 892
-        let name: String         // "102"
+    struct Auditorie: Codable, ID {
+        let id: Int                         // 892
+        let name: String                    // "102"
         let building: Building
         
-        struct Building: Codable {
-            let id: Int             // 18
-            let abbr: String        // "3 к."
-            let address: String     // ""
-            let name: String        // "3-й учебный корпус"
+        struct Building: Codable, ID {
+            let id: Int                     // 18
+            let abbr: String                // "3 к."
+            let address: String             // ""
+            let name: String                // "3-й учебный корпус"
         }
     }
     
-    struct Group: Codable {
-        let id:    Int          //   33843
-        let kind:  Int          //   0
-        let level: Int          //   4
-        let name:  String       //   "3530904/80105"
-        let spec:  String       //   "09.03.04 Программная инженерия"
-        let type:  String       //   "common"
-        let year:  Int          //   2021
+    struct Group: Codable, ID {
+        let id: Int                         // 33843
+        let kind: Int                       // 0
+        let level: Int                      // 4
+        let name: String                    // "3530904/80105"
+        let spec: String                    // "09.03.04 Программная инженерия"
+        let type: String                    // "common"
+        let year: Int                       // 2021
         let faculty: Faculty
-        
-        struct Faculty: Codable {
-            let id: Int            //95
-            let abbr: String       //"ИКНТ"
-            let name: String       //"Институт компьютерных наук и технологий"
-        }
     }
     
     struct Week: Codable {
-        let date_end: String  //"2021.10.10"
-        let date_start: String      //"2021.10.04"
-        let is_odd: Bool            //false
+        let date_end: String                //"2021.10.10"
+        let date_start: String              //"2021.10.04"
+        let is_odd: Bool                    //false
     }
 }
 
 
+struct Faculty: Codable, ID {
+    let id: Int                             // 117
+    let name: String                        // "Университетский политехнический колледж"
+    let abbr: String                        // "УПКР"
+}
+
+struct Group: Codable, ID {
+    let id: Int                             // 33870,
+    let kind: Int                           // 0,
+    let level: Int                          // 1,
+    let name: String                        // "4931101/10001",
+    let spec: String                        // "",
+    let type: String                        // "common",
+    let year: Int                           // 2021
+}
+
+struct Teacher: Codable, ID {
+    let id: Int                             // 5302
+    let oid: Int                            // 29307
+    let full_name: String                   // "Леонтьева Татьяна Владимировна"
+    let first_name: String                  // "Леонтьева"
+    let middle_name: String                 // "Татьяна"
+    let last_name: String                   // "Владимировна"
+    let grade: String                       // ""
+    let chair: String                       // "35/04 Кафедра \"Информационные и управляющие системы\""
+}
+
+struct FacultiesList: Codable {
+    let faculties: [Faculty]
+}
+
+struct GroupsList: Codable {
+    let groups: [Group]
+    let faculty: Faculty
+}
+
+struct TeachersList: Codable {
+    let teachers: [Teacher]
+}

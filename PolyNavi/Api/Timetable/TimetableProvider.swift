@@ -8,26 +8,114 @@
 import Foundation
 import Alamofire
 
+let BASE_URL = "https://ruz.spbstu.ru/api/v1/ruz"
+
+enum ApiStatus<T> {
+    case successWith(T)
+    case errorNoInternet
+    case error
+    
+    var data: T? {
+        get {
+            switch self {
+            case .successWith(let t):
+                return t
+            case .errorNoInternet, .error:
+                return nil
+            }
+        }
+    }
+}
+
 class TimetableProvider {
     static let shared = TimetableProvider()
     
     var timetable: Timetable? = nil
+    var faculties: FacultiesList? = nil
+    var teachers: TeachersList? = nil
     
-    func loadTimetable(startDate: Date?, completion: @escaping (Timetable?) -> Void) {
+    func load<T:Codable>(url: String, params: Dictionary<String, String>, completion: @escaping (ApiStatus<T>) -> Void) {
+        AF.request(BASE_URL + url,
+                   method: .get,
+                   parameters: params)
+            .responseDecodable(of: T.self) { response in
+                if let responseCode = response.response?.statusCode {
+                    switch responseCode {
+                    case (200...300):
+                        if let data = response.value {
+                            completion(.successWith(data))
+                        }
+                        else {
+                            completion(.error)
+                        }
+                    default:
+                        completion(.error)
+                    }
+                } else {
+                    if let error = response.error as NSError? {
+                        switch error.code {
+                        case 13:
+                            completion(.errorNoInternet)
+                        default:
+                            completion(.error)
+                        }
+                    }
+                    completion(.error)
+                }
+            }
+    }
+    
+    func loadFaculties(completion: @escaping (ApiStatus<FacultiesList>) -> Void) {
+        let t: (ApiStatus<FacultiesList>) -> Void = { r in
+            self.faculties = r.data
+            completion(r)
+        }
         
-        var c = Calendar(identifier: .iso8601)
-        c.timeZone = TimeZone(secondsFromGMT: 0)!
+        load(url: "/faculties", params: [:], completion: t)
+    }
+    
+    func loadGroups(faculty: Faculty, completion: @escaping (ApiStatus<GroupsList>) -> Void) {
+        load(url: "/faculties/\(faculty.id)/groups", params: [:], completion: completion)
+    }
+    
+    func loadTeachers(completion: @escaping (ApiStatus<TeachersList>) -> Void) {
+        let t: (ApiStatus<TeachersList>) -> Void = { r in
+            self.teachers = r.data
+            completion(r)
+        }
         
-        let date = c.date(from: c.dateComponents([.weekOfYear, .yearForWeekOfYear], from: startDate ?? Date()))!
+        load(url: "/teachers", params: [:], completion: t)
+    }
+    
+    func loadTimetable(group: ID, completion: @escaping (ApiStatus<Timetable>) -> Void, startDate: Date = Date()) {
+        let t: (ApiStatus<Timetable>) -> Void = { r in
+            self.timetable = r.data
+            completion(r)
+        }
         
+        load(url: "/scheduler/\(group.id)", params: [ "date": apiFormatDate(startOfWeek(startDate)) ], completion: t)
+    }
+    
+    func loadTimetable(teacher: ID, completion: @escaping (ApiStatus<Timetable>) -> Void, startDate: Date = Date()) {
+        let t: (ApiStatus<Timetable>) -> Void = { r in
+            self.timetable = r.data
+            completion(r)
+        }
+        
+        load(url: "/teachers/\(teacher.id)/scheduler/", params: [ "date": apiFormatDate(startOfWeek(startDate)) ], completion: t)
+    }
+    
+    //MARK:- Support Functions
+    func startOfWeek(_ date: Date) -> Date {
+        var cal = Calendar(identifier: .iso8601)
+        cal.timeZone = TimeZone(secondsFromGMT: 0)!
+        
+        return cal.date(from: cal.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)) ?? Date()
+    }
+    
+    func apiFormatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        
-        AF.request("https://ruz.spbstu.ru/api/v1/ruz/scheduler/33843", method: .get, parameters: [ "date": formatter.string(from: date) ])
-            .validate(statusCode: 200...200)
-            .responseDecodable(of: Timetable.self) { response in
-                self.timetable = response.value
-                completion(self.timetable)
-        }
+        return formatter.string(from: date)
     }
 }
