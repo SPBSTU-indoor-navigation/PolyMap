@@ -106,7 +106,7 @@ private extension TimetableViewController {
         }, completion: nil)
         
         TimetableProvider.shared.loadTimetable(
-            group: Group(id: 33870, name: "", level: 0, type: "", kind: 0, spec: "", year: 0)){ response in
+            group: Group(id: 33843, kind: 0, level: 0, name: "", spec: "", type: "", year: 0)) { response in
             guard let response = response else { return }
             let timetable = TimetableWeek.convert(response)
             self.arrayOfDaysWithLessons = timetable.days.map { pair in
