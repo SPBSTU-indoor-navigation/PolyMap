@@ -112,16 +112,16 @@ extension LessonCellView {
             mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
             
             timeStart.centerYAnchor.constraint(equalTo: subjectNameLabel.centerYAnchor),
-            timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
-            timeStart.widthAnchor.constraint(equalToConstant: timeStartSize.width + 5),
+            timeStart.trailingAnchor.constraint(equalTo: divider.leadingAnchor, constant: 0),
+            timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0),
             
             timeEnd.centerYAnchor.constraint(equalTo: placeLabel.centerYAnchor),
-            timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
-            timeEnd.widthAnchor.constraint(equalToConstant: timeEndSize.width + 5),
+            timeEnd.trailingAnchor.constraint(equalTo: divider.leadingAnchor, constant: 0),
+            timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0),
             
             divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 2),
             divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -2),
-            divider.leadingAnchor.constraint(equalTo: timeStart.trailingAnchor, constant: 12),
+            divider.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: max(timeEndSize.width, timeStartSize.width) + 20),
             divider.widthAnchor.constraint(equalToConstant: 2),
             
             labelsStackView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
@@ -145,6 +145,14 @@ extension LessonCellView {
         mainBackView.layer.maskedCorners = []
         
         divider.backgroundColor = model.isLecture() ? .systemGreen : .systemPink
+        
+        if (model.teacher.isEmpty && labelsStackView.subviews.contains(teacherNameLabel)) {
+            labelsStackView.removeArrangedSubview(teacherNameLabel)
+        }
+        
+        if (!model.teacher.isEmpty && !labelsStackView.subviews.contains(teacherNameLabel)) {
+            labelsStackView.insertSubview(teacherNameLabel, aboveSubview: typeOfLessonLabel)
+        }
     }
     
     public func cornernIfFirst() {
