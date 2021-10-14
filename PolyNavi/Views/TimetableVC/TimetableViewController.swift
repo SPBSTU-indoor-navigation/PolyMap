@@ -39,12 +39,11 @@ class TimetableViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemGroupedBackground
         layoutViews()
-        navigationController?.title = "Расписание"
+        loadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadData()
     }
 }
 
@@ -52,6 +51,8 @@ class TimetableViewController: UIViewController {
 //MARK:- LayoutView
 private extension TimetableViewController {
     func layoutViews() {
+        self.navigationController?.title = "Расписание" //TODO: Это не работает, и надо добавить кнопку которая будет закрывать презент через dismiss()
+
         self.view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),

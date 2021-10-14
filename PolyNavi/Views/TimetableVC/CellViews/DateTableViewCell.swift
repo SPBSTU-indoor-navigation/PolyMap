@@ -31,7 +31,7 @@ class DateTableViewCell: UITableViewCell {
     
     private lazy var dateLabel: UILabel = {
         $0.text = "07 окт. 2021"
-        $0.font = .systemFont(ofSize: 12, weight: .bold)
+        $0.font = .preferredFont(forTextStyle: .body)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UILabel())
@@ -64,11 +64,12 @@ class DateTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             self.mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15),
             self.mainBackView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            self.mainBackView.widthAnchor.constraint(equalToConstant: 150),
-            self.mainBackView.heightAnchor.constraint(equalToConstant: 20),
+            self.mainBackView.widthAnchor.constraint(greaterThanOrEqualTo: dateLabel.widthAnchor, constant: 50),
+            self.mainBackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 150),
+            self.mainBackView.heightAnchor.constraint(equalTo: dateLabel.heightAnchor, constant: 5),
             
             self.dateLabel.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
-            self.dateLabel.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
+            self.dateLabel.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
             self.emptyDataView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
             self.emptyDataView.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
             self.emptyDataView.heightAnchor.constraint(equalToConstant: 2),
