@@ -25,7 +25,6 @@ class LessonCellView: UITableViewCell {
     }(UIStackView())
     
     private lazy var mainBackView: UIView = {
-        $0.backgroundColor = .secondarySystemGroupedBackground
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIView())
@@ -104,8 +103,8 @@ extension LessonCellView {
         
         NSLayoutConstraint.activate([
             mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
-            mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             
             timeStart.topAnchor.constraint(equalTo: subjectNameLabel.topAnchor),
             timeStart.trailingAnchor.constraint(equalTo: divider.leadingAnchor),
@@ -115,8 +114,8 @@ extension LessonCellView {
             timeEnd.trailingAnchor.constraint(equalTo: divider.leadingAnchor),
             timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor),
             
-            divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 2),
-            divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -2),
+            divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 5),
+            divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
             divider.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: max(timeEndSize.width, timeStartSize.width) + 20),
             divider.widthAnchor.constraint(equalToConstant: 2),
             

@@ -17,11 +17,10 @@ class TimetableViewController: UIViewController {
     internal lazy var tableView: UITableView = {
         $0.register(LessonCellView.self, forCellReuseIdentifier: LessonCellView.identifire)
         $0.register(EmptyLessonTableViewCell.self, forCellReuseIdentifier: EmptyLessonTableViewCell.identifire)
+        $0.register(DateTableViewCell.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
         $0.register(SkeletonDateTableViewCell.self, forCellReuseIdentifier: SkeletonDateTableViewCell.identifire)
         $0.register(SkeletonLessonCellView.self, forCellReuseIdentifier: SkeletonLessonCellView.identifire)
-        $0.separatorStyle = .none
         $0.allowsSelection = false
-        $0.backgroundColor = .clear
         $0.dataSource = self
         $0.delegate = self
         $0.isSkeletonable = true
@@ -36,7 +35,6 @@ class TimetableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGroupedBackground
         layoutViews()
         loadData()
         
@@ -70,7 +68,7 @@ private extension TimetableViewController {
     func loadData() {
         
         UIView.transition(with: tableView, duration: 0.3, options: .curveLinear, animations: { [weak self] in
-            let gradient = SkeletonGradient(baseColor: UIColor.white, secondaryColor: .gray)
+            let gradient = SkeletonGradient(baseColor: .clear, secondaryColor: .systemGray4)
             self?.tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
         }, completion: nil)
         

@@ -15,7 +15,7 @@ class EmptyLessonTableViewCell: UITableViewCell {
     }
     
     private lazy var emptyLabel: UILabel = {
-        $0.text = "Окно"
+        $0.text = L10n.Timetable.lessonsBreak
         $0.font = .preferredFont(forTextStyle: .headline)
         return $0
     }(UILabel())

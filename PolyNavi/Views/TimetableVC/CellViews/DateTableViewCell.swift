@@ -8,7 +8,7 @@
 import UIKit
 
 
-class DateTableViewCell: UIView {
+class DateTableViewCell: UITableViewHeaderFooterView {
     
     private lazy var formmater: DateFormatter = {
         $0.dateFormat = "dd MMM YYYY"
@@ -17,8 +17,6 @@ class DateTableViewCell: UIView {
     
     private lazy var mainBackView: UIView = {
         $0.backgroundColor = .secondarySystemGroupedBackground
-        $0.layer.borderColor = UIColor.separator.cgColor
-        $0.layer.borderWidth = 0.5
         $0.layer.cornerRadius = 15
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +24,7 @@ class DateTableViewCell: UIView {
     }(UIView())
     
     private lazy var dateLabel: UILabel = {
-        $0.text = "07 окт. 2021"
+        $0.text = "-"
         $0.font = .preferredFont(forTextStyle: .body)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -40,8 +38,9 @@ class DateTableViewCell: UIView {
         return $0
     }(UIView())
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setView()
     }
     
@@ -53,7 +52,6 @@ class DateTableViewCell: UIView {
         self.mainBackView.addSubview(emptyDataView)
         self.mainBackView.addSubview(dateLabel)
         self.addSubview(mainBackView)
-        self.backgroundColor = .clear
         
         NSLayoutConstraint.activate([
             self.mainBackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
@@ -64,7 +62,7 @@ class DateTableViewCell: UIView {
             
             self.dateLabel.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
             self.dateLabel.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
-            self.emptyDataView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
+            self.emptyDataView.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
             self.emptyDataView.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
             self.emptyDataView.heightAnchor.constraint(equalToConstant: 2),
             self.emptyDataView.widthAnchor.constraint(equalToConstant: 75),

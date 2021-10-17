@@ -7,3 +7,4 @@
 */
 
 Timetable.title = "Расписание";
+Timetable.lessonsBreak = "Окно";

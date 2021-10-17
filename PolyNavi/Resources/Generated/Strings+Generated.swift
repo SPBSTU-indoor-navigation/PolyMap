@@ -12,6 +12,8 @@ import Foundation
 internal enum L10n {
 
   internal enum Timetable {
+    /// Break
+    internal static let lessonsBreak = L10n.tr("Localizable", "Timetable.lessonsBreak")
     /// Timetable
     internal static let title = L10n.tr("Localizable", "Timetable.title")
   }

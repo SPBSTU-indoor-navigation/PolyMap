@@ -21,9 +21,9 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
         if arrayOfDaysWithLessons.isEmpty {
             return nil
         }
-        let sectionView = DateTableViewCell(frame: .zero)
-        sectionView.configure(withDate: arrayOfDaysWithLessons[section].date)
-        return sectionView
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as! DateTableViewCell
+        view.configure(withDate: arrayOfDaysWithLessons[section].date)
+        return view
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
