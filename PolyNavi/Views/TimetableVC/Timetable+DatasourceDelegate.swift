@@ -14,19 +14,20 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayOfDaysWithLessons[section].lessons.count + 1
+        return arrayOfDaysWithLessons[section].lessons.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if arrayOfDaysWithLessons.isEmpty {
+            return nil
+        }
+        let sectionView = DateTableViewCell(frame: .zero)
+        sectionView.configure(withDate: arrayOfDaysWithLessons[section].date)
+        return sectionView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.row == 0) {
-            guard let dateCell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.identifire) as? DateTableViewCell else {
-                return UITableViewCell()
-            }
-            dateCell.configure(withDate: self.arrayOfDaysWithLessons[indexPath.section].date)
-            return dateCell
-        }
-
-        let element = arrayOfDaysWithLessons[indexPath.section].lessons[indexPath.row - 1]
+        let element = arrayOfDaysWithLessons[indexPath.section].lessons[indexPath.row]
         
         if element.isEmptyLesson() {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyLessonTableViewCell.identifire) as? EmptyLessonTableViewCell else {
@@ -42,13 +43,6 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.configure(model: element)
-        if arrayOfDaysWithLessons[indexPath.section].lessons.count == 1 {
-            cell.cornernIfOne()
-        } else if indexPath.row == 1 {
-            cell.cornernIfFirst()
-        } else if indexPath.row == self.arrayOfDaysWithLessons[indexPath.section].lessons.count {
-            cell.cornernIfLast()
-        }
         return cell
     }
 }

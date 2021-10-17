@@ -16,7 +16,6 @@ class TimetableViewController: UIViewController {
 
     internal lazy var tableView: UITableView = {
         $0.register(LessonCellView.self, forCellReuseIdentifier: LessonCellView.identifire)
-        $0.register(DateTableViewCell.self, forCellReuseIdentifier: DateTableViewCell.identifire)
         $0.register(EmptyLessonTableViewCell.self, forCellReuseIdentifier: EmptyLessonTableViewCell.identifire)
         $0.register(SkeletonDateTableViewCell.self, forCellReuseIdentifier: SkeletonDateTableViewCell.identifire)
         $0.register(SkeletonLessonCellView.self, forCellReuseIdentifier: SkeletonLessonCellView.identifire)
@@ -26,12 +25,12 @@ class TimetableViewController: UIViewController {
         $0.dataSource = self
         $0.delegate = self
         $0.isSkeletonable = true
-        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
-        $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
+        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 5))
+        $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 10))
         $0.showsVerticalScrollIndicator = false
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
-    }(UITableView())
+    }(UITableView(frame: .zero, style: .insetGrouped))
     
     //MARK:- Life cicle 
     

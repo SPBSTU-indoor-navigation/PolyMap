@@ -8,11 +8,7 @@
 import UIKit
 
 
-class DateTableViewCell: UITableViewCell {
-    
-    public static var identifire: String {
-        return String(describing: self)
-    }
+class DateTableViewCell: UIView {
     
     private lazy var formmater: DateFormatter = {
         $0.dateFormat = "dd MMM YYYY"
@@ -44,8 +40,8 @@ class DateTableViewCell: UITableViewCell {
         return $0
     }(UIView())
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setView()
     }
     
@@ -53,17 +49,15 @@ class DateTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private func setView() {
         self.mainBackView.addSubview(emptyDataView)
         self.mainBackView.addSubview(dateLabel)
-        self.contentView.addSubview(mainBackView)
-        self.contentView.backgroundColor = .clear
+        self.addSubview(mainBackView)
         self.backgroundColor = .clear
         
         NSLayoutConstraint.activate([
-            self.mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15),
-            self.mainBackView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.mainBackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
+            self.mainBackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.mainBackView.widthAnchor.constraint(greaterThanOrEqualTo: dateLabel.widthAnchor, constant: 50),
             self.mainBackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 150),
             self.mainBackView.heightAnchor.constraint(equalTo: dateLabel.heightAnchor, constant: 5),
@@ -74,7 +68,7 @@ class DateTableViewCell: UITableViewCell {
             self.emptyDataView.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
             self.emptyDataView.heightAnchor.constraint(equalToConstant: 2),
             self.emptyDataView.widthAnchor.constraint(equalToConstant: 75),
-            self.contentView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
+            self.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
         ])
     }
     
