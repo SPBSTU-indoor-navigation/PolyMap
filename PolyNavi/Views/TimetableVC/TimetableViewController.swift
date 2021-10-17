@@ -100,7 +100,10 @@ private extension TimetableViewController {
     
     @objc
     func editButtonAction(_ sender: UIButton) {
-        //TODO:- create editing of timetable: change group or teacher.
+        let vc = SettingTimetableVC()
+        vc.view.backgroundColor = self.tableView.backgroundColor
+        let navSettingVC = UINavigationController(rootViewController: vc)
+        self.present(navSettingVC, animated: true)
     }
     
 }

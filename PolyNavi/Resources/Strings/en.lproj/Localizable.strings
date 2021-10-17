@@ -8,3 +8,7 @@
 
 Timetable.title = "Timetable";
 Timetable.lessonsBreak = "Break";
+
+
+Settings.titleOfGroupsView = "Groups";
+Settings.titleOfTeachersView = "Teachers";

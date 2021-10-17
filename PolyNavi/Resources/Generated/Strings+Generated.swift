@@ -11,6 +11,13 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
 
+  internal enum Settings {
+    /// Groups
+    internal static let titleOfGroupsView = L10n.tr("Localizable", "Settings.titleOfGroupsView")
+    /// Teachers
+    internal static let titleOfTeachersView = L10n.tr("Localizable", "Settings.titleOfTeachersView")
+  }
+
   internal enum Timetable {
     /// Break
     internal static let lessonsBreak = L10n.tr("Localizable", "Timetable.lessonsBreak")

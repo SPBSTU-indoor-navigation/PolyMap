@@ -52,11 +52,16 @@ class MapViewController: UIViewController {
     
     @objc
     func openTimetable(_ sender: UIButton) {
-        let vc = TimetableViewController()
-        let navController = UINavigationController(rootViewController: vc)
-        vc.modalPresentationStyle = .pageSheet
-        vc.isModalInPresentation = true
-        self.present(navController, animated: true)
+//        let vc = TimetableViewController()
+//        let navController = UINavigationController(rootViewController: vc)
+//        vc.modalPresentationStyle = .pageSheet
+//        vc.isModalInPresentation = true
+//        self.present(navController, animated: true)
+        
+        let vc = SettingTimetableVC()
+//        vc.view.backgroundColor = self.tableView.backgroundColor
+        let navSettingVC = UINavigationController(rootViewController: vc)
+        self.present(navSettingVC, animated: true)
     }
     
     
