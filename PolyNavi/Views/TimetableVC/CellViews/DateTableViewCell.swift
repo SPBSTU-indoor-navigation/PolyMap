@@ -10,6 +10,10 @@ import UIKit
 
 class DateTableViewCell: UITableViewHeaderFooterView {
     
+    public static var identifire: String {
+        return String(describing: self)
+    }
+    
     private lazy var formmater: DateFormatter = {
         $0.dateFormat = "dd MMM YYYY"
         return $0
