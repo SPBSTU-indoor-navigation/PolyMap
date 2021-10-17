@@ -11,7 +11,7 @@ class MapViewController: UIViewController {
     private lazy var button: RoundButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         
-        $0.setTitle("Расписание", for: .normal)
+        $0.setTitle(L10n.Timetable.title, for: .normal)
         $0.setImage(UIImage(systemName: "calendar"), for: .normal)
         
         $0.setTitleColor(.white, for: .normal)
@@ -21,7 +21,7 @@ class MapViewController: UIViewController {
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout)
         $0.backgroundColor = .systemGray3
         
-        $0.addTarget(self, action: #selector(openTimeTable(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(openTimetable(_:)), for: .touchUpInside)
         return $0
     }(RoundButton(type: .system))
     
@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
     }
     
     @objc
-    func openTimeTable(_ sender: UIButton) {
+    func openTimetable(_ sender: UIButton) {
         let vc = TimetableViewController()
         let navController = UINavigationController(rootViewController: vc)
         vc.modalPresentationStyle = .pageSheet

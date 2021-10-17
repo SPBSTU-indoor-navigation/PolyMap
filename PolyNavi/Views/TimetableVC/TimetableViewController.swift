@@ -41,7 +41,7 @@ class TimetableViewController: UIViewController {
         layoutViews()
         loadData()
         
-        self.navigationItem.title = "Расписание"
+        self.navigationItem.title = L10n.Timetable.title
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonAction(_:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
     }

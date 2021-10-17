@@ -4,12 +4,12 @@
 input_dir: PolyNavi/Resources/
 output_dir: PolyNavi/Resources/
 
-#strings:
-#  inputs:
-#    - Strings/en.lproj
-#  outputs:
-#    - templateName: structured-swift5
-#      output: Generated/Strings+Generated.swift
+strings:
+  inputs:
+    - Strings/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: Generated/Strings+Generated.swift
 
 xcassets:
   inputs:
@@ -26,7 +26,7 @@ xcassets:
 #  outputs:
 #    - templateName: swift5
 #      output: Generated/Fonts+Generated.swift
-#
+
 #ib:
 #  inputs:
 #    - ../../.
