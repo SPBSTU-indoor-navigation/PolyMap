@@ -7,3 +7,4 @@
 */
 
 Timetable.title = "Timetable";
+Timetable.lessonsBreak = "Break";

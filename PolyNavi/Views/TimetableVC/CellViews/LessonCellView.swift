@@ -25,9 +25,6 @@ class LessonCellView: UITableViewCell {
     }(UIStackView())
     
     private lazy var mainBackView: UIView = {
-        $0.backgroundColor = .secondarySystemGroupedBackground
-        $0.layer.borderWidth = 0.5
-        $0.layer.borderColor = UIColor.separator.cgColor
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIView())
@@ -91,8 +88,6 @@ class LessonCellView: UITableViewCell {
 //MARK:- Set views
 extension LessonCellView {
     private func setViews() {
-        self.contentView.backgroundColor = .clear
-        self.backgroundColor = .clear
         [subjectNameLabel, typeOfLessonLabel, teacherNameLabel, placeLabel].forEach {
             labelsStackView.addArrangedSubview($0)
         }
@@ -108,19 +103,19 @@ extension LessonCellView {
         
         NSLayoutConstraint.activate([
             mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
-            mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             
             timeStart.topAnchor.constraint(equalTo: subjectNameLabel.topAnchor),
-            timeStart.trailingAnchor.constraint(equalTo: divider.leadingAnchor, constant: 0),
-            timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0),
+            timeStart.trailingAnchor.constraint(equalTo: divider.leadingAnchor),
+            timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor),
             
             timeEnd.bottomAnchor.constraint(equalTo: placeLabel.bottomAnchor),
-            timeEnd.trailingAnchor.constraint(equalTo: divider.leadingAnchor, constant: 0),
-            timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0),
+            timeEnd.trailingAnchor.constraint(equalTo: divider.leadingAnchor),
+            timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor),
             
-            divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 2),
-            divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -2),
+            divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 5),
+            divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
             divider.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: max(timeEndSize.width, timeStartSize.width) + 20),
             divider.widthAnchor.constraint(equalToConstant: 2),
             
@@ -142,9 +137,6 @@ extension LessonCellView {
         teacherNameLabel.text = model.teacher
         placeLabel.text = model.place
         
-        mainBackView.layer.cornerRadius = 0
-        mainBackView.layer.maskedCorners = []
-        
         divider.backgroundColor = model.isLecture() ? .systemGreen : .systemPink
         
         if (model.teacher.isEmpty && labelsStackView.arrangedSubviews.contains(teacherNameLabel)) {
@@ -155,21 +147,6 @@ extension LessonCellView {
             guard let index = labelsStackView.arrangedSubviews.firstIndex(of: placeLabel) else {return}
             labelsStackView.insertArrangedSubview(teacherNameLabel, at: index)
         }
-    }
-    
-    public func cornernIfFirst() {
-        mainBackView.layer.cornerRadius = 15
-        mainBackView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-    }
-    
-    public func cornernIfLast() {
-        mainBackView.layer.cornerRadius = 15
-        mainBackView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-    }
-    
-    public func cornernIfOne() {
-        mainBackView.layer.cornerRadius = 15
-        mainBackView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     }
 }
 

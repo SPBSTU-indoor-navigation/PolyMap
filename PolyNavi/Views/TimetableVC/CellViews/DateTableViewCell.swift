@@ -8,7 +8,7 @@
 import UIKit
 
 
-class DateTableViewCell: UITableViewCell {
+class DateTableViewCell: UITableViewHeaderFooterView {
     
     public static var identifire: String {
         return String(describing: self)
@@ -21,8 +21,6 @@ class DateTableViewCell: UITableViewCell {
     
     private lazy var mainBackView: UIView = {
         $0.backgroundColor = .secondarySystemGroupedBackground
-        $0.layer.borderColor = UIColor.separator.cgColor
-        $0.layer.borderWidth = 0.5
         $0.layer.cornerRadius = 15
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +28,7 @@ class DateTableViewCell: UITableViewCell {
     }(UIView())
     
     private lazy var dateLabel: UILabel = {
-        $0.text = "07 окт. 2021"
+        $0.text = "-"
         $0.font = .preferredFont(forTextStyle: .body)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -44,8 +42,9 @@ class DateTableViewCell: UITableViewCell {
         return $0
     }(UIView())
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setView()
     }
     
@@ -53,28 +52,25 @@ class DateTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private func setView() {
         self.mainBackView.addSubview(emptyDataView)
         self.mainBackView.addSubview(dateLabel)
-        self.contentView.addSubview(mainBackView)
-        self.contentView.backgroundColor = .clear
-        self.backgroundColor = .clear
+        self.addSubview(mainBackView)
         
         NSLayoutConstraint.activate([
-            self.mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15),
-            self.mainBackView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.mainBackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
+            self.mainBackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.mainBackView.widthAnchor.constraint(greaterThanOrEqualTo: dateLabel.widthAnchor, constant: 50),
             self.mainBackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 150),
             self.mainBackView.heightAnchor.constraint(equalTo: dateLabel.heightAnchor, constant: 5),
             
             self.dateLabel.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
             self.dateLabel.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
-            self.emptyDataView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
+            self.emptyDataView.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
             self.emptyDataView.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
             self.emptyDataView.heightAnchor.constraint(equalToConstant: 2),
             self.emptyDataView.widthAnchor.constraint(equalToConstant: 75),
-            self.contentView.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
+            self.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
         ])
     }
     
