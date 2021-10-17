@@ -111,11 +111,11 @@ extension LessonCellView {
             mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
             mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
             
-            timeStart.centerYAnchor.constraint(equalTo: subjectNameLabel.centerYAnchor),
+            timeStart.topAnchor.constraint(equalTo: subjectNameLabel.topAnchor),
             timeStart.trailingAnchor.constraint(equalTo: divider.leadingAnchor, constant: 0),
             timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0),
             
-            timeEnd.centerYAnchor.constraint(equalTo: placeLabel.centerYAnchor),
+            timeEnd.bottomAnchor.constraint(equalTo: placeLabel.bottomAnchor),
             timeEnd.trailingAnchor.constraint(equalTo: divider.leadingAnchor, constant: 0),
             timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0),
             
@@ -138,20 +138,22 @@ extension LessonCellView {
         timeStart.text = model.timeStart
         timeEnd.text = model.timeEnd
         subjectNameLabel.text = model.subjectName
+        typeOfLessonLabel.text = model.type
         teacherNameLabel.text = model.teacher
         placeLabel.text = model.place
-        typeOfLessonLabel.text = model.type
+        
         mainBackView.layer.cornerRadius = 0
         mainBackView.layer.maskedCorners = []
         
         divider.backgroundColor = model.isLecture() ? .systemGreen : .systemPink
         
-        if (model.teacher.isEmpty && labelsStackView.subviews.contains(teacherNameLabel)) {
+        if (model.teacher.isEmpty && labelsStackView.arrangedSubviews.contains(teacherNameLabel)) {
             labelsStackView.removeArrangedSubview(teacherNameLabel)
         }
-        
-        if (!model.teacher.isEmpty && !labelsStackView.subviews.contains(teacherNameLabel)) {
-            labelsStackView.insertSubview(teacherNameLabel, aboveSubview: typeOfLessonLabel)
+
+        if (!model.teacher.isEmpty && !labelsStackView.arrangedSubviews.contains(teacherNameLabel)) {
+            guard let index = labelsStackView.arrangedSubviews.firstIndex(of: placeLabel) else {return}
+            labelsStackView.insertArrangedSubview(teacherNameLabel, at: index)
         }
     }
     

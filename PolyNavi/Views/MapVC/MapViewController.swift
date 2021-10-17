@@ -53,9 +53,10 @@ class MapViewController: UIViewController {
     @objc
     func openTimeTable(_ sender: UIButton) {
         let vc = TimetableViewController()
+        let navController = UINavigationController(rootViewController: vc)
         vc.modalPresentationStyle = .pageSheet
-//        vc.isModalInPresentation = true //TODO: Эта строка выключает возможност закрыть свайпом
-        self.present(vc, animated: true)
+        vc.isModalInPresentation = true
+        self.present(navController, animated: true)
     }
     
     
