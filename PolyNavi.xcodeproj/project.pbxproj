@@ -14,6 +14,8 @@
 		054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F67A3270CD68900FCC07C /* XCAssets+Generated.swift */; };
 		054F67AA270CD78D00FCC07C /* LessonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F67A9270CD78D00FCC07C /* LessonCellView.swift */; };
 		054F67CC270CDFB400FCC07C /* LessonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F67CB270CDFB400FCC07C /* LessonModel.swift */; };
+		056F2D00271C5EB60063015B /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F2CFF271C5EB60063015B /* Strings+Generated.swift */; };
+		056F2D13271C623B0063015B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 056F2D15271C623B0063015B /* Localizable.strings */; };
 		0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A226271036CC00C33317 /* DateTableViewCell.swift */; };
 		0574A2292711FF5F00C33317 /* EmptyLessonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A2282711FF5F00C33317 /* EmptyLessonTableViewCell.swift */; };
 		05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82C27134C5100C22D61 /* TimetableViewController.swift */; };
@@ -37,6 +39,9 @@
 		054F67A3270CD68900FCC07C /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
 		054F67A9270CD78D00FCC07C /* LessonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCellView.swift; sourceTree = "<group>"; };
 		054F67CB270CDFB400FCC07C /* LessonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonModel.swift; sourceTree = "<group>"; };
+		056F2CFF271C5EB60063015B /* Strings+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Generated.swift"; sourceTree = "<group>"; };
+		056F2D14271C623B0063015B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		056F2D1A271C62EC0063015B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0574A226271036CC00C33317 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 		0574A2282711FF5F00C33317 /* EmptyLessonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLessonTableViewCell.swift; sourceTree = "<group>"; };
 		05C4C82C27134C5100C22D61 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +115,7 @@
 		054F679B270C7E4C00FCC07C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				056F2D10271C620A0063015B /* Strings */,
 				054F67A2270CD65C00FCC07C /* Generated */,
 				054F6790270C7B4C00FCC07C /* Assets.xcassets */,
 			);
@@ -120,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				054F67A3270CD68900FCC07C /* XCAssets+Generated.swift */,
+				056F2CFF271C5EB60063015B /* Strings+Generated.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -156,6 +163,14 @@
 				97BBFEC8271226BD0039F3E0 /* Timetable */,
 			);
 			path = Api;
+			sourceTree = "<group>";
+		};
+		056F2D10271C620A0063015B /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				056F2D15271C623B0063015B /* Localizable.strings */,
+			);
+			path = Strings;
 			sourceTree = "<group>";
 		};
 		05C4C82A27134C2600C22D61 /* CellViews */ = {
@@ -263,6 +278,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 054F677B270C7B4B00FCC07C;
 			productRefGroup = 054F6785270C7B4C00FCC07C /* Products */;
@@ -280,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				054F6794270C7B4C00FCC07C /* LaunchScreen.storyboard in Resources */,
+				056F2D13271C623B0063015B /* Localizable.strings in Resources */,
 				054F6791270C7B4C00FCC07C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,6 +357,7 @@
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
 				054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */,
 				97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */,
+				056F2D00271C5EB60063015B /* Strings+Generated.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
 				054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */,
 				054F67AA270CD78D00FCC07C /* LessonCellView.swift in Sources */,
@@ -363,6 +381,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		056F2D15271C623B0063015B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				056F2D14271C623B0063015B /* en */,
+				056F2D1A271C62EC0063015B /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -370,6 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -431,6 +459,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
