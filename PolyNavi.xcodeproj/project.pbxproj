@@ -20,6 +20,8 @@
 		05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */; };
 		05C4C8312713549A00C22D61 /* SkeletonDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C8302713549A00C22D61 /* SkeletonDateTableViewCell.swift */; };
 		05C4C8332713599500C22D61 /* SkeletonLessonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C8322713599500C22D61 /* SkeletonLessonCellView.swift */; };
+		97A484BC2717858700D14997 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BB2717858700D14997 /* MapViewController.swift */; };
+		97A484C02717BAF700D14997 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
 		97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
@@ -42,6 +44,8 @@
 		05C4C8302713549A00C22D61 /* SkeletonDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonDateTableViewCell.swift; sourceTree = "<group>"; };
 		05C4C8322713599500C22D61 /* SkeletonLessonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLessonCellView.swift; sourceTree = "<group>"; };
 		378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		97A484BB2717858700D14997 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		97A484BF2717BAF700D14997 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
 		97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableProvider.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 		054F6786270C7B4C00FCC07C /* PolyNavi */ = {
 			isa = PBXGroup;
 			children = (
+				97A484BE2717BAEA00D14997 /* Components */,
 				054F67A5270CD72700FCC07C /* App */,
 				054F67A8270CD73A00FCC07C /* Api */,
 				054F67A7270CD73500FCC07C /* Models */,
@@ -131,6 +136,7 @@
 		054F67A6270CD73000FCC07C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				97A484BD27179ABE00D14997 /* MapVC */,
 				05192B86270EE395001B2C57 /* TimetableVC */,
 			);
 			path = Views;
@@ -187,6 +193,22 @@
 				378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		97A484BD27179ABE00D14997 /* MapVC */ = {
+			isa = PBXGroup;
+			children = (
+				97A484BB2717858700D14997 /* MapViewController.swift */,
+			);
+			path = MapVC;
+			sourceTree = "<group>";
+		};
+		97A484BE2717BAEA00D14997 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				97A484BF2717BAF700D14997 /* RoundButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		97BBFEC8271226BD0039F3E0 /* Timetable */ = {
@@ -318,6 +340,7 @@
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
 				054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */,
 				97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */,
+				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
 				054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */,
 				054F67AA270CD78D00FCC07C /* LessonCellView.swift in Sources */,
 				05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */,
@@ -325,6 +348,7 @@
 				05C4C8332713599500C22D61 /* SkeletonLessonCellView.swift in Sources */,
 				054F67CC270CDFB400FCC07C /* LessonModel.swift in Sources */,
 				0574A2292711FF5F00C33317 /* EmptyLessonTableViewCell.swift in Sources */,
+				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

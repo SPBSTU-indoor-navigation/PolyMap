@@ -16,7 +16,7 @@ class EmptyLessonTableViewCell: UITableViewCell {
     
     private lazy var emptyLabel: UILabel = {
         $0.text = "Окно"
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .preferredFont(forTextStyle: .headline)
         return $0
     }(UILabel())
     
@@ -28,7 +28,7 @@ class EmptyLessonTableViewCell: UITableViewCell {
     }(UIView())
     
     private lazy var timeLabel: UILabel = {
-        $0.font = .systemFont(ofSize: 15, weight: .medium)
+        $0.font = .preferredFont(forTextStyle: .body)
         return $0
     }(UILabel())
     

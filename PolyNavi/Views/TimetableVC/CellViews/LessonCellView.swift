@@ -42,34 +42,38 @@ class LessonCellView: UITableViewCell {
     private lazy var timeStart: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textAlignment = .center
+        $0.font = .preferredFont(forTextStyle: .body)
         return $0
     }(UILabel())
     
     private lazy var timeEnd: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textAlignment = .center
+        $0.font = .preferredFont(forTextStyle: .body)
         return $0
     }(UILabel())
     
     private lazy var subjectNameLabel: UILabel = {
-        $0.font = .systemFont(ofSize: 18, weight: .bold)
+        $0.font = .preferredFont(forTextStyle: .headline)
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
         return $0
     }(UILabel())
     
     private lazy var teacherNameLabel: UILabel = {
-        $0.font = .systemFont(ofSize: 18, weight: .regular)
+        $0.font = .preferredFont(forTextStyle: .body)
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
         return $0
     }(UILabel())
     
     private lazy var placeLabel: UILabel = {
+        $0.font = .preferredFont(forTextStyle: .body)
         return $0
     }(UILabel())
     
     private lazy var typeOfLessonLabel: UILabel = {
+        $0.font = .preferredFont(forTextStyle: .body)
         return $0
     }(UILabel())
     
@@ -99,22 +103,25 @@ extension LessonCellView {
         
         self.contentView.addSubview(mainBackView)
         
+        let timeStartSize = (timeStart.text ?? "22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
+        let timeEndSize = (timeEnd.text ?? "22:22").size(withAttributes: [NSAttributedString.Key.font: timeEnd.font!])
+        
         NSLayoutConstraint.activate([
             mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
             mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
             
-            timeStart.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
-            timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
-            timeStart.widthAnchor.constraint(equalToConstant: 50),
+            timeStart.topAnchor.constraint(equalTo: subjectNameLabel.topAnchor),
+            timeStart.trailingAnchor.constraint(equalTo: divider.leadingAnchor, constant: 0),
+            timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0),
             
-            timeEnd.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -10),
-            timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 10),
-            timeEnd.widthAnchor.constraint(equalToConstant: 50),
+            timeEnd.bottomAnchor.constraint(equalTo: placeLabel.bottomAnchor),
+            timeEnd.trailingAnchor.constraint(equalTo: divider.leadingAnchor, constant: 0),
+            timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0),
             
             divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 2),
             divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -2),
-            divider.leadingAnchor.constraint(equalTo: timeStart.trailingAnchor, constant: 12),
+            divider.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: max(timeEndSize.width, timeStartSize.width) + 20),
             divider.widthAnchor.constraint(equalToConstant: 2),
             
             labelsStackView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
@@ -131,13 +138,23 @@ extension LessonCellView {
         timeStart.text = model.timeStart
         timeEnd.text = model.timeEnd
         subjectNameLabel.text = model.subjectName
+        typeOfLessonLabel.text = model.type
         teacherNameLabel.text = model.teacher
         placeLabel.text = model.place
-        typeOfLessonLabel.text = model.type
+        
         mainBackView.layer.cornerRadius = 0
         mainBackView.layer.maskedCorners = []
         
         divider.backgroundColor = model.isLecture() ? .systemGreen : .systemPink
+        
+        if (model.teacher.isEmpty && labelsStackView.arrangedSubviews.contains(teacherNameLabel)) {
+            labelsStackView.removeArrangedSubview(teacherNameLabel)
+        }
+
+        if (!model.teacher.isEmpty && !labelsStackView.arrangedSubviews.contains(teacherNameLabel)) {
+            guard let index = labelsStackView.arrangedSubviews.firstIndex(of: placeLabel) else {return}
+            labelsStackView.insertArrangedSubview(teacherNameLabel, at: index)
+        }
     }
     
     public func cornernIfFirst() {

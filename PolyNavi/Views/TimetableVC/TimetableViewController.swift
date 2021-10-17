@@ -26,8 +26,8 @@ class TimetableViewController: UIViewController {
         $0.dataSource = self
         $0.delegate = self
         $0.isSkeletonable = true
-        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
-        $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
+        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
+        $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
         $0.showsVerticalScrollIndicator = false
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -39,12 +39,15 @@ class TimetableViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemGroupedBackground
         layoutViews()
-        navigationController?.title = "Расписание"
+        loadData()
+        
+        self.navigationItem.title = "Расписание"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonAction(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadData()
     }
 }
 
@@ -86,4 +89,21 @@ private extension TimetableViewController {
                 }
             }
     }
+}
+
+
+//MARK: - Selector Bar item functions
+
+private extension TimetableViewController {
+    
+    @objc
+    func closeButtonAction(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc
+    func editButtonAction(_ sender: UIButton) {
+        //TODO:- create editing of timetable: change group or teacher.
+    }
+    
 }
