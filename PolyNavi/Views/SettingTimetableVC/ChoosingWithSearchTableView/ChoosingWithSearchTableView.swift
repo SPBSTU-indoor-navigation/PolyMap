@@ -36,6 +36,15 @@ class ChoosingWithSearchTableView: UIViewController {
         super.viewDidLoad()
         self.navigationItem.searchController = searchController
         definesPresentationContext = true
+        self.view.backgroundColor = .systemGroupedBackground
+        tableView.delegate = self
+        tableView.dataSource = self
+        setViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadData()
     }
 }
 
@@ -48,11 +57,16 @@ extension ChoosingWithSearchTableView: UISearchResultsUpdating, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.currentArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChoosingTableViewCell.identifire, for: indexPath) as? ChoosingTableViewCell else {
+            return UITableViewCell()
+        }
+        let elem = currentArray[indexPath.row]
+        cell.configure(title: elem.title, status: false)
+        return cell
     }
     
 }

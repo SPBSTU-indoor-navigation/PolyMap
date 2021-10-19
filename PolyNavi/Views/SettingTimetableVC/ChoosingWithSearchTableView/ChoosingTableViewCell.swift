@@ -48,8 +48,6 @@ extension ChoosingTableViewCell {
             self.contentView.addSubview($0)
         }
         
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),

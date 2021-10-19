@@ -35,6 +35,8 @@ class SettingTimetableVC: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonAction(_:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
         
+        groupView.delegate = self
+        
         setViews()
     }
     
@@ -56,7 +58,6 @@ private extension SettingTimetableVC {
             segmentControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             segmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             segmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            segmentControl.heightAnchor.constraint(equalToConstant: 50),
             
             groupView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor),
             groupView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

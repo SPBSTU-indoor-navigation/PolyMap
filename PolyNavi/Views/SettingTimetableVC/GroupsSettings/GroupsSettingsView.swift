@@ -18,6 +18,7 @@ class GroupsSettingsView: UIView {
     
     public lazy var tableView: UITableView = {
         $0.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
     
@@ -64,7 +65,8 @@ extension GroupsSettingsView: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         let textLabel = UILabel()
         textLabel.font = .preferredFont(forTextStyle: .headline)
-        textLabel.text = (indexPath.row == 0) ? "\(L10n.Settings.titleOfInstituteCell): \(GroupsAndTeacherStorage.shared.getInstituteStringWithStatus())" : "\(L10n.Settings.titleOfInstituteCell): \(GroupsAndTeacherStorage.shared.getGroupStringWithStatus())"
+        cell.textLabel?.text = (indexPath.row == 0) ? "\(L10n.Settings.titleOfInstituteCell): \(GroupsAndTeacherStorage.shared.getInstituteStringWithStatus())" : "\(L10n.Settings.titleOfInstituteCell): \(GroupsAndTeacherStorage.shared.getGroupStringWithStatus())"
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     
