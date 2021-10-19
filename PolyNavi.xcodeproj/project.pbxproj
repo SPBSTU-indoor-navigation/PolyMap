@@ -22,6 +22,9 @@
 		056F2D26271CB2A80063015B /* TeachersSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F2D25271CB2A80063015B /* TeachersSettingsView.swift */; };
 		0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A226271036CC00C33317 /* DateTableViewCell.swift */; };
 		0574A2292711FF5F00C33317 /* EmptyLessonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A2282711FF5F00C33317 /* EmptyLessonTableViewCell.swift */; };
+		05C32AC3271F06B70033B751 /* ChoosingWithSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C32AC2271F06B70033B751 /* ChoosingWithSearchTableView.swift */; };
+		05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C32AC4271F10BA0033B751 /* ChoosingTableViewCell.swift */; };
+		05C32AC7271F4C3E0033B751 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C32AC6271F4C3E0033B751 /* SettingsModel.swift */; };
 		05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82C27134C5100C22D61 /* TimetableViewController.swift */; };
 		05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */; };
 		05C4C8312713549A00C22D61 /* SkeletonDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C8302713549A00C22D61 /* SkeletonDateTableViewCell.swift */; };
@@ -52,6 +55,9 @@
 		056F2D25271CB2A80063015B /* TeachersSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersSettingsView.swift; sourceTree = "<group>"; };
 		0574A226271036CC00C33317 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 		0574A2282711FF5F00C33317 /* EmptyLessonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLessonTableViewCell.swift; sourceTree = "<group>"; };
+		05C32AC2271F06B70033B751 /* ChoosingWithSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingWithSearchTableView.swift; sourceTree = "<group>"; };
+		05C32AC4271F10BA0033B751 /* ChoosingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingTableViewCell.swift; sourceTree = "<group>"; };
+		05C32AC6271F4C3E0033B751 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		05C4C82C27134C5100C22D61 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timetable+DatasourceDelegate.swift"; sourceTree = "<group>"; };
 		05C4C8302713549A00C22D61 /* SkeletonDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonDateTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				054F67CB270CDFB400FCC07C /* LessonModel.swift */,
+				05C32AC6271F4C3E0033B751 /* SettingsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,6 +192,7 @@
 		056F2D1C271CAEB40063015B /* SettingTimetableVC */ = {
 			isa = PBXGroup;
 			children = (
+				05C32AC1271F06980033B751 /* ChoosingWithSearchTableView */,
 				056F2D24271CB28A0063015B /* TeachersSettings */,
 				056F2D21271CB2400063015B /* GroupsSettings */,
 				056F2D1D271CAED30063015B /* SettingTimetableVC.swift */,
@@ -207,6 +215,15 @@
 				056F2D25271CB2A80063015B /* TeachersSettingsView.swift */,
 			);
 			path = TeachersSettings;
+			sourceTree = "<group>";
+		};
+		05C32AC1271F06980033B751 /* ChoosingWithSearchTableView */ = {
+			isa = PBXGroup;
+			children = (
+				05C32AC2271F06B70033B751 /* ChoosingWithSearchTableView.swift */,
+				05C32AC4271F10BA0033B751 /* ChoosingTableViewCell.swift */,
+			);
+			path = ChoosingWithSearchTableView;
 			sourceTree = "<group>";
 		};
 		05C4C82A27134C2600C22D61 /* CellViews */ = {
@@ -389,12 +406,14 @@
 			files = (
 				056F2D20271CAF400063015B /* GroupsAndTeacherStorage.swift in Sources */,
 				97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */,
+				05C32AC3271F06B70033B751 /* ChoosingWithSearchTableView.swift in Sources */,
 				056F2D23271CB25C0063015B /* GroupsSettingsView.swift in Sources */,
 				0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */,
 				05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */,
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
 				054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */,
 				97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */,
+				05C32AC7271F4C3E0033B751 /* SettingsModel.swift in Sources */,
 				056F2D00271C5EB60063015B /* Strings+Generated.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
 				054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */,
@@ -407,6 +426,7 @@
 				0574A2292711FF5F00C33317 /* EmptyLessonTableViewCell.swift in Sources */,
 				056F2D1E271CAED30063015B /* SettingTimetableVC.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
+				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

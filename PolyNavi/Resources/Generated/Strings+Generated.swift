@@ -11,9 +11,26 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
 
+  internal enum ChoosingSearchController {
+    /// Поиск
+    internal static let searchPlaceholder = L10n.tr("Localizable", "ChoosingSearchController.searchPlaceholder")
+  }
+
   internal enum Settings {
+    /// Settings of group
+    internal static let settingOfGroup = L10n.tr("Localizable", "Settings.settingOfGroup")
+    /// Not chosen
+    internal static let statusOfGroup = L10n.tr("Localizable", "Settings.statusOfGroup")
+    /// Not chosen
+    internal static let statusOfInstitute = L10n.tr("Localizable", "Settings.statusOfInstitute")
+    /// Настройки
+    internal static let title = L10n.tr("Localizable", "Settings.title")
+    /// Group
+    internal static let titleOfGroupCell = L10n.tr("Localizable", "Settings.titleOfGroupCell")
     /// Groups
     internal static let titleOfGroupsView = L10n.tr("Localizable", "Settings.titleOfGroupsView")
+    /// Institute
+    internal static let titleOfInstituteCell = L10n.tr("Localizable", "Settings.titleOfInstituteCell")
     /// Teachers
     internal static let titleOfTeachersView = L10n.tr("Localizable", "Settings.titleOfTeachersView")
   }

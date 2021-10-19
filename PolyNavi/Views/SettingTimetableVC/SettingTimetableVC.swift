@@ -29,7 +29,9 @@ class SettingTimetableVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = L10n.Timetable.title
+        self.view.backgroundColor = .secondarySystemBackground
+        
+        self.navigationItem.title = L10n.Settings.title
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonAction(_:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
         
@@ -51,7 +53,7 @@ private extension SettingTimetableVC {
         teacherView.alpha = 0.0
         
         NSLayoutConstraint.activate([
-            segmentControl.topAnchor.constraint(equalTo: view.topAnchor),
+            segmentControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             segmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             segmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             segmentControl.heightAnchor.constraint(equalToConstant: 50),
@@ -77,6 +79,9 @@ private extension SettingTimetableVC {
         let isFirstChoose = sender.selectedSegmentIndex == 0
         groupView.alpha = isFirstChoose ? 1.0 : 0.0
         teacherView.alpha = isFirstChoose ? 0.0 : 1.0
+        if isFirstChoose {
+            groupView.tableView.reloadData()
+        }
     }
     
     @objc
@@ -85,7 +90,13 @@ private extension SettingTimetableVC {
     }
     
     @objc
-    func doneButtonAction(_ sender: UIButton) {
-        
+    func doneButtonAction(_ sender: UIButton) {}
+}
+
+
+//MARK:- Group Delegate
+extension SettingTimetableVC: NavigationSettingViewDelegate {
+    func pushVC(vc: UIViewController) {
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

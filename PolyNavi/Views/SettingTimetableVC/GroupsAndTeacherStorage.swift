@@ -21,5 +21,11 @@ class GroupsAndTeacherStorage {
     private var teachersName: String? = nil
     private var fillter: TimetableFillter = .groups
     
+    public func getInstituteStringWithStatus() -> String {
+        return institute ?? L10n.Settings.statusOfInstitute
+    }
     
+    public func getGroupStringWithStatus() -> String {
+        return groupNumber ?? L10n.Settings.statusOfGroup
+    }
 }

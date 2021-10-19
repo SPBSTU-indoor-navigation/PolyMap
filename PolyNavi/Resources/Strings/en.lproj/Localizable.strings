@@ -6,9 +6,19 @@
   
 */
 
+//MARK:- Timetable strings
 Timetable.title = "Timetable";
 Timetable.lessonsBreak = "Break";
 
-
+//MARK:- Setting timetable strings
+Settings.title = "Настройки";
 Settings.titleOfGroupsView = "Groups";
+Settings.settingOfGroup = "Settings of group";
+Settings.titleOfInstituteCell = "Institute";
+Settings.titleOfGroupCell = "Group";
+Settings.statusOfInstitute = "Not chosen";
+Settings.statusOfGroup = "Not chosen";
 Settings.titleOfTeachersView = "Teachers";
+
+//MARK:- Choosing search controller strings
+ChoosingSearchController.searchPlaceholder = "Поиск";
