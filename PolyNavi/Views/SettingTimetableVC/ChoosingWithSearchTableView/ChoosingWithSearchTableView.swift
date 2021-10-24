@@ -36,6 +36,7 @@ class ChoosingWithSearchTableView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         self.view.backgroundColor = .systemGroupedBackground
         tableView.delegate = self

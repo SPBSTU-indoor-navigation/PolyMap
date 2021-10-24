@@ -21,11 +21,12 @@ class ChoosingTableViewCell: UITableViewCell {
     }(UILabel())
     
     private lazy var checkBox: M13Checkbox = {
-        $0.secondaryTintColor = .systemGreen
+        $0.secondaryTintColor = .systemBlue
         $0.checkmarkLineWidth = 3
         $0.boxLineWidth = 0
-        $0.tintColor = .systemGreen
-        $0.secondaryCheckmarkTintColor = .systemGreen
+        $0.tintColor = .systemBlue
+        $0.secondaryCheckmarkTintColor = .systemBlue
+        $0.isEnabled = false
         return $0
     }(M13Checkbox())
     
