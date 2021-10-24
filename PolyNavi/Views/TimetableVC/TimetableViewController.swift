@@ -71,9 +71,9 @@ private extension TimetableViewController {
             self?.tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
         }, completion: nil)
         
-        let id = (GroupsAndTeacherStorage.shared.fillter == .groups) ? GroupsAndTeacherStorage.shared.groupNumber?.ID : GroupsAndTeacherStorage.shared.teachersName?.ID
+        let id = (GroupsAndTeacherStorage.shared.currentFilter == .groups) ? GroupsAndTeacherStorage.shared.currentGroupNumber?.ID : GroupsAndTeacherStorage.shared.currentTeachersName?.ID
         
-        TimetableProvider.shared.loadTimetabe(id: id ?? -1, filter: GroupsAndTeacherStorage.shared.fillter) {
+        TimetableProvider.shared.loadTimetabe(id: id ?? -1, filter: GroupsAndTeacherStorage.shared.currentFilter) {
             response in
                 guard let response = response.data else { return }
                 let timetable = TimetableWeek.convert(response)
