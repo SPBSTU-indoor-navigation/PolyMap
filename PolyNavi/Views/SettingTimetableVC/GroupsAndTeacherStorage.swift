@@ -37,4 +37,8 @@ class GroupsAndTeacherStorage {
     public func getTeacherStringWithStatus() -> String {
         return teachersName?.title ?? L10n.Settings.statusOfInstitute
     }
+    
+    public func isReady() -> Bool {
+        return (fillter == .groups && groupNumber != nil && institute != nil) || (fillter == .teachers && teachersName != nil)
+    }
 }

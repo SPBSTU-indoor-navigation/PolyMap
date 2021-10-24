@@ -8,6 +8,7 @@
 
 Timetable.title = "Расписание";
 Timetable.lessonsBreak = "Окно";
+Timetable.editButton = "Настроить";
 
 Settings.title = "Настройки";
 Settings.titleOfGroupsView = "Группы";

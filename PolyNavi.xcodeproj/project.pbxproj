@@ -153,8 +153,8 @@
 		054F67A6270CD73000FCC07C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				056F2D1C271CAEB40063015B /* SettingTimetableVC */,
 				97A484BD27179ABE00D14997 /* MapVC */,
+				056F2D1C271CAEB40063015B /* SettingTimetableVC */,
 				05192B86270EE395001B2C57 /* TimetableVC */,
 			);
 			path = Views;

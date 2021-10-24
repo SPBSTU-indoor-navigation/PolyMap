@@ -93,6 +93,15 @@ class TimetableProvider {
         load(url: "/teachers", params: [:], completion: t)
     }
     
+    func loadTimetabe(id: Int, filter: TimetableFillter, completion: @escaping (ApiStatus<Timetable>) -> Void, startDate: Date = Date()) {
+        let t: (ApiStatus<Timetable>) -> Void = { r in
+            self.timetable = r.data
+            completion(r)
+        }
+        let strURL = (filter == .groups) ? "/scheduler/\(id)" : "/teachers/\(id)/scheduler/"
+        load(url: strURL, params: [ "date": apiFormatDate(startOfWeek(startDate)) ], completion: t)
+    }
+    
     func loadTimetable(group: ID, completion: @escaping (ApiStatus<Timetable>) -> Void, startDate: Date = Date()) {
         let t: (ApiStatus<Timetable>) -> Void = { r in
             self.timetable = r.data

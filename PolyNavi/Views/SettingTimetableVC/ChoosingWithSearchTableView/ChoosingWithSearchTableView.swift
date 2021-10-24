@@ -32,6 +32,13 @@ class ChoosingWithSearchTableView: UIViewController {
         return $0
     }(UITableView())
     
+    private lazy var indicator: UIActivityIndicatorView = {
+        $0.hidesWhenStopped = true
+        $0.style = .large
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIActivityIndicatorView())
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +50,6 @@ class ChoosingWithSearchTableView: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         setViews()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         loadData()
     }
 }
@@ -109,12 +112,16 @@ extension ChoosingWithSearchTableView {
     
     private func setViews() {
         self.view.addSubview(tableView)
+        self.view.addSubview(indicator)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
     
@@ -123,6 +130,7 @@ extension ChoosingWithSearchTableView {
 
 extension ChoosingWithSearchTableView {
     func loadData() {
+        indicator.startAnimating()
         self.loadFunction { [weak self] arr in
             guard let self = self else {return}
             self.currentArray = arr.sorted(by: {
@@ -136,6 +144,7 @@ extension ChoosingWithSearchTableView {
             })
             self.filteredArray = self.currentArray
             DispatchQueue.main.async { [weak self] in
+                self?.indicator.stopAnimating()
                 self?.tableView.reloadData()
             }
         }

@@ -10,6 +10,7 @@ import UIKit
 class SettingTimetableVC: UIViewController {
     
     //MARK:- Values
+    public var finishAction: () -> Void = {}
     private let cellID = "GroupCell"
     private let itemsSegmentStrings: [String] = [L10n.Settings.titleOfGroupsView, L10n.Settings.titleOfTeachersView]
     private let titlesOfSection: [String] = [L10n.Settings.settingOfGroup, L10n.Settings.settingOfTeacher]
@@ -21,7 +22,6 @@ class SettingTimetableVC: UIViewController {
     
     //MARK:- Views
     private lazy var segmentControl: UISegmentedControl = {
-        $0.selectedSegmentIndex = 0
         $0.addTarget(self, action: #selector(segmentChangeValueAction(_:)), for: .valueChanged)
         return $0
     }(UISegmentedControl(items: itemsSegmentStrings))
@@ -36,12 +36,13 @@ class SettingTimetableVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.segmentControl.selectedSegmentIndex = GroupsAndTeacherStorage.shared.fillter == .groups ? 0 : 1
+        self.selectedIndex = GroupsAndTeacherStorage.shared.fillter == .groups ? 0 : 1
         self.view.backgroundColor = .secondarySystemBackground
         
         self.navigationItem.title = L10n.Settings.title
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonAction(_:)))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
+        self.refreshDoneButton()
         
         setViews()
     }
@@ -81,16 +82,20 @@ private extension SettingTimetableVC {
     func segmentChangeValueAction(_ sender: UISegmentedControl) {
         selectedIndex = sender.selectedSegmentIndex
         GroupsAndTeacherStorage.shared.fillter = selectedIndex == 0 ? .groups : .teachers
+        self.refreshDoneButton()
         tableView.reloadData()
     }
     
     @objc
     func closeButtonAction(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true)
     }
     
     @objc
-    func doneButtonAction(_ sender: UIButton) {}
+    func doneButtonAction(_ sender: UIButton) {
+        self.dismiss(animated: true)
+        self.finishAction()
+    }
 }
 
 
@@ -137,39 +142,56 @@ extension SettingTimetableVC: UITableViewDelegate, UITableViewDataSource {
         if (selectedIndex == 0) {
             if (indexPath.row == 0) {
                 vc.loadFunction = { completion in
+                    if let faculties = TimetableProvider.shared.faculties {
+                        completion(faculties.convert())
+                        return
+                    }
                     TimetableProvider.shared.loadFaculties { response in
                         let data = response.data!
                         completion(data.convert())
                     }
                 }
-                vc.choosingFunction = { val in
+                vc.choosingFunction = { [weak self] val in
                     GroupsAndTeacherStorage.shared.institute = val
+                    self?.refreshDoneButton()
                 }
                 vc.selectedID = GroupsAndTeacherStorage.shared.institute?.ID
                 vc.navigationItem.title = L10n.Settings.titleOfInstituteCell
             } else {
                 guard let institute = GroupsAndTeacherStorage.shared.institute else {return}
                 vc.loadFunction = { completion in
+                    if let groups = TimetableProvider.shared.groups {
+                        if groups.faculty.id == GroupsAndTeacherStorage.shared.institute?.ID {
+                            completion(groups.convert())
+                            return
+                        }
+                    }
                     TimetableProvider.shared.loadGroups(faculty: Faculty(id: institute.ID, name: institute.title, abbr: "")) { response in
                         let data = response.data!
                         completion(data.convert())
                     }
                 }
-                vc.choosingFunction = { val in
+                vc.choosingFunction = { [weak self] val in
                     GroupsAndTeacherStorage.shared.groupNumber = val
+                    self?.refreshDoneButton()
                 }
                 vc.selectedID = GroupsAndTeacherStorage.shared.groupNumber?.ID
                 vc.navigationItem.title = L10n.Settings.titleOfGroupCell
             }
         } else {
             vc.loadFunction = { completion in
+                if let teachers = TimetableProvider.shared.teachers {
+                    completion(teachers.convert())
+                    return
+                }
                 TimetableProvider.shared.loadTeachers { response in
                     let data = response.data!
                     completion(data.convert())
                 }
             }
-            vc.choosingFunction = { val in
+            vc.choosingFunction = { [weak self] val in
                 GroupsAndTeacherStorage.shared.teachersName = val
+                self?.refreshDoneButton()
             }
             vc.selectedID = GroupsAndTeacherStorage.shared.teachersName?.ID
             vc.navigationItem.title = L10n.Settings.titleOfTeacherCell
@@ -185,5 +207,9 @@ extension SettingTimetableVC: UITableViewDelegate, UITableViewDataSource {
             str = GroupsAndTeacherStorage.shared.getTeacherStringWithStatus()
         }
         return str
+    }
+    
+    private func refreshDoneButton() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = GroupsAndTeacherStorage.shared.isReady()
     }
 }

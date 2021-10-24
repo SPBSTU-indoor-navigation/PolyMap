@@ -51,8 +51,8 @@ extension ChoosingTableViewCell {
         
         NSLayoutConstraint.activate([
             
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: checkBox.leadingAnchor, constant: -10),
             
             checkBox.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -60,7 +60,7 @@ extension ChoosingTableViewCell {
             checkBox.heightAnchor.constraint(equalToConstant: 35),
             checkBox.widthAnchor.constraint(equalToConstant: 35),
             
-            contentView.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10)
+            contentView.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12)
         ])
     }
     

@@ -9,6 +9,7 @@
 //MARK:- Timetable strings
 Timetable.title = "Timetable";
 Timetable.lessonsBreak = "Break";
+Timetable.editButton = "Настроить";
 
 //MARK:- Setting timetable strings
 Settings.title = "Настройки";
