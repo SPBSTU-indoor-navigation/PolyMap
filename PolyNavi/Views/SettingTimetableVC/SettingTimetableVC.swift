@@ -37,8 +37,9 @@ class SettingTimetableVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.segmentControl.selectedSegmentIndex = GroupsAndTeacherStorage.shared.fillter == .groups ? 0 : 1
-        self.selectedIndex = GroupsAndTeacherStorage.shared.fillter == .groups ? 0 : 1
+        self.selectedIndex = GroupsAndTeacherStorage.shared.currentFilter == .groups ? 0 : 1
+        self.segmentControl.selectedSegmentIndex = self.selectedIndex
+        GroupsAndTeacherStorage.shared.reload()
         self.view.backgroundColor = .systemGroupedBackground
         
         self.navigationItem.title = L10n.Settings.title
@@ -90,6 +91,7 @@ private extension SettingTimetableVC {
     @objc
     func doneButtonAction(_ sender: UIButton) {
         self.dismiss(animated: true)
+        GroupsAndTeacherStorage.shared.doneAction()
         self.finishAction()
     }
 }
