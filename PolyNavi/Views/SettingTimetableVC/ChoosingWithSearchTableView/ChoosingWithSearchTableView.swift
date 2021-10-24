@@ -27,7 +27,7 @@ class ChoosingWithSearchTableView: UIViewController {
         $0.register(ChoosingTableViewCell.self, forCellReuseIdentifier: ChoosingTableViewCell.identifire)
         $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 5))
         $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 10))
-        $0.showsVerticalScrollIndicator = false
+        $0.showsVerticalScrollIndicator = true
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UITableView())
@@ -37,6 +37,7 @@ class ChoosingWithSearchTableView: UIViewController {
         super.viewDidLoad()
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
         self.view.backgroundColor = .systemGroupedBackground
         tableView.delegate = self
@@ -63,7 +64,7 @@ extension ChoosingWithSearchTableView: UISearchResultsUpdating, UITableViewDeleg
         if text.isEmpty {
             filteredArray = currentArray
         } else {
-            filteredArray = filteredArray.filter {
+            filteredArray = currentArray.filter {
                 $0.title.lowercased().contains(text.lowercased())
             }
         }
@@ -124,8 +125,16 @@ extension ChoosingWithSearchTableView {
     func loadData() {
         self.loadFunction { [weak self] arr in
             guard let self = self else {return}
-            self.currentArray = arr
-            self.filteredArray = arr
+            self.currentArray = arr.sorted(by: {
+                if $0.ID == self.selectedID  {
+                    return true
+                }
+                if $1.ID == self.selectedID {
+                    return false
+                }
+                return $0.title < $1.title
+            })
+            self.filteredArray = self.currentArray
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }

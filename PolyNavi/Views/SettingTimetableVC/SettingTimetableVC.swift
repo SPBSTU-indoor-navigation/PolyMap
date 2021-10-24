@@ -63,8 +63,8 @@ private extension SettingTimetableVC {
         
         NSLayoutConstraint.activate([
             segmentControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            segmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            segmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            segmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            segmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             tableView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -115,11 +115,18 @@ extension SettingTimetableVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        let cell = UITableViewCell(style: .value2, reuseIdentifier: cellID)
         let textLabel = UILabel()
         textLabel.font = .preferredFont(forTextStyle: .headline)
         let title = cellTitles[selectedIndex][indexPath.row]
-        cell.textLabel?.text = title + ": " + getStatus(indexRow: indexPath.row)
+        if #available(iOS 14.0, *) {
+            var content = cell.defaultContentConfiguration()
+            content.text = title
+            content.secondaryText = getStatus(indexRow: indexPath.row)
+            cell.contentConfiguration = content
+        } else {
+            cell.textLabel?.text = title + ": " + getStatus(indexRow: indexPath.row)
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -151,6 +158,7 @@ extension SettingTimetableVC: UITableViewDelegate, UITableViewDataSource {
                 vc.choosingFunction = { val in
                     GroupsAndTeacherStorage.shared.groupNumber = val
                 }
+                vc.selectedID = GroupsAndTeacherStorage.shared.groupNumber?.ID
                 vc.navigationItem.title = L10n.Settings.titleOfGroupCell
             }
         } else {
@@ -163,6 +171,7 @@ extension SettingTimetableVC: UITableViewDelegate, UITableViewDataSource {
             vc.choosingFunction = { val in
                 GroupsAndTeacherStorage.shared.teachersName = val
             }
+            vc.selectedID = GroupsAndTeacherStorage.shared.teachersName?.ID
             vc.navigationItem.title = L10n.Settings.titleOfTeacherCell
         }
         self.navigationController?.pushViewController(vc, animated: true)
