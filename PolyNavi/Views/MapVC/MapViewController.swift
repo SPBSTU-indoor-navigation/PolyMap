@@ -21,7 +21,7 @@ class MapViewController: UIViewController {
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout)
         $0.backgroundColor = .systemGray3
         
-        $0.addTarget(self, action: #selector(openTimetableButtonTap(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(openTimetable(_:)), for: .touchUpInside)
         return $0
     }(RoundButton(type: .system))
     
@@ -50,8 +50,9 @@ class MapViewController: UIViewController {
 
     }
     
-    func openTimetable() {
-        
+    
+    @objc
+    func openTimetable(_ sender: UIButton?) {
         var vc: UIViewController
         
         if GroupsAndTeacherStorage.shared.isReady() {
@@ -61,7 +62,7 @@ class MapViewController: UIViewController {
             let settings = SettingTimetableVC()
             settings.finishAction = { [weak self] in
                 if GroupsAndTeacherStorage.shared.isReady() {
-                    self?.openTimetable()
+                    self?.openTimetable(nil)
                 }
             }
             vc = settings
@@ -69,15 +70,6 @@ class MapViewController: UIViewController {
         
         let navSettingVC = UINavigationController(rootViewController: vc)
         self.present(navSettingVC, animated: true)
-        
-        
-
     }
-    
-    @objc
-    func openTimetableButtonTap(_ sender: UIButton) {
-        openTimetable()
-    }
-    
     
 }

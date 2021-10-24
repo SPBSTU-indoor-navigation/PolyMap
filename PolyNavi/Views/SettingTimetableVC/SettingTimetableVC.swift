@@ -11,7 +11,6 @@ class SettingTimetableVC: UIViewController {
     
     //MARK:- Values
     public var finishAction: () -> Void = {}
-    public var animatedDismiss: Bool = true
     private let cellID = "GroupCell"
     private let itemsSegmentStrings: [String] = [L10n.Settings.titleOfGroupsView, L10n.Settings.titleOfTeachersView]
     private let titlesOfSection: [String] = [L10n.Settings.settingOfGroup, L10n.Settings.settingOfTeacher]
@@ -90,7 +89,7 @@ private extension SettingTimetableVC {
     
     @objc
     func doneButtonAction(_ sender: UIButton) {
-        self.dismiss(animated: animatedDismiss)
+        self.dismiss(animated: true)
         self.finishAction()
     }
 }
