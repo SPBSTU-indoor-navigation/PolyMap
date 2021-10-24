@@ -16,16 +16,25 @@ class GroupsAndTeacherStorage {
     
     static let shared = GroupsAndTeacherStorage()
     
-    private var institute: String? = nil
-    private var groupNumber: String? = nil
-    private var teachersName: String? = nil
-    private var fillter: TimetableFillter = .groups
+    public var institute: SettingsModel? {
+        didSet {
+            self.groupNumber = nil
+        }
+    }
+    
+    public var groupNumber: SettingsModel? = nil
+    public var teachersName: SettingsModel? = nil
+    public var fillter: TimetableFillter = .groups
     
     public func getInstituteStringWithStatus() -> String {
-        return institute ?? L10n.Settings.statusOfInstitute
+        return institute?.title ?? L10n.Settings.statusOfInstitute
     }
     
     public func getGroupStringWithStatus() -> String {
-        return groupNumber ?? L10n.Settings.statusOfGroup
+        return groupNumber?.title ?? L10n.Settings.statusOfGroup
+    }
+    
+    public func getTeacherStringWithStatus() -> String {
+        return teachersName?.title ?? L10n.Settings.statusOfInstitute
     }
 }

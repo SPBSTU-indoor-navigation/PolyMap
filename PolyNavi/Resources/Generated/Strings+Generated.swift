@@ -19,6 +19,8 @@ internal enum L10n {
   internal enum Settings {
     /// Settings of group
     internal static let settingOfGroup = L10n.tr("Localizable", "Settings.settingOfGroup")
+    /// Выбор преподавателя
+    internal static let settingOfTeacher = L10n.tr("Localizable", "Settings.settingOfTeacher")
     /// Not chosen
     internal static let statusOfGroup = L10n.tr("Localizable", "Settings.statusOfGroup")
     /// Not chosen
@@ -31,6 +33,8 @@ internal enum L10n {
     internal static let titleOfGroupsView = L10n.tr("Localizable", "Settings.titleOfGroupsView")
     /// Institute
     internal static let titleOfInstituteCell = L10n.tr("Localizable", "Settings.titleOfInstituteCell")
+    /// Преподаватель
+    internal static let titleOfTeacherCell = L10n.tr("Localizable", "Settings.titleOfTeacherCell")
     /// Teachers
     internal static let titleOfTeachersView = L10n.tr("Localizable", "Settings.titleOfTeachersView")
   }

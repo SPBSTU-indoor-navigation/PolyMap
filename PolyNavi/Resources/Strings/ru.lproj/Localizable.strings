@@ -17,5 +17,7 @@ Settings.titleOfGroupCell = "Группа";
 Settings.statusOfInstitute = "Не выбран";
 Settings.statusOfGroup = "Не выбрана";
 Settings.titleOfTeachersView = "Преподаватели";
+Settings.settingOfTeacher = "Выбор преподавателя";
+Settings.titleOfTeacherCell = "Преподаватель";
 
 ChoosingSearchController.searchPlaceholder = "Поиск";

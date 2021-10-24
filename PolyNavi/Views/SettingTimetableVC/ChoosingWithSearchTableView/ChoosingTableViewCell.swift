@@ -22,8 +22,8 @@ class ChoosingTableViewCell: UITableViewCell {
     
     private lazy var checkBox: M13Checkbox = {
         $0.secondaryTintColor = .systemGreen
-        $0.checkmarkLineWidth = 2
-        $0.boxLineWidth = 2
+        $0.checkmarkLineWidth = 3
+        $0.boxLineWidth = 0
         $0.tintColor = .systemGreen
         $0.secondaryCheckmarkTintColor = .systemGreen
         return $0
@@ -52,6 +52,7 @@ extension ChoosingTableViewCell {
             
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: checkBox.leadingAnchor, constant: -10),
             
             checkBox.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             checkBox.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
