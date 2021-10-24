@@ -15,7 +15,7 @@ class DateTableViewCell: UITableViewHeaderFooterView {
     }
     
     private lazy var formmater: DateFormatter = {
-        $0.dateFormat = "dd MMM YYYY"
+        $0.dateFormat = "EE dd MMM"
         return $0
     }(DateFormatter())
     
