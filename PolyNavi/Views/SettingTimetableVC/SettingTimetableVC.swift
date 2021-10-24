@@ -94,6 +94,7 @@ private extension SettingTimetableVC {
     @objc
     func doneButtonAction(_ sender: UIButton) {
         self.dismiss(animated: true)
+        GroupsAndTeacherStorage.shared.doneAction()
         self.finishAction()
     }
 }
