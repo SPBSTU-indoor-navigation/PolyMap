@@ -50,14 +50,26 @@ class MapViewController: UIViewController {
 
     }
     
-    @objc
-    func openTimetable(_ sender: UIButton) {
-        let vc = TimetableViewController()
-        let navController = UINavigationController(rootViewController: vc)
-        vc.modalPresentationStyle = .pageSheet
-        vc.isModalInPresentation = true
-        self.present(navController, animated: true)
-    }
     
+    @objc
+    func openTimetable(_ sender: UIButton?) {
+        var vc: UIViewController
+        
+        if GroupsAndTeacherStorage.shared.isReady() {
+            vc = TimetableViewController()
+            vc.isModalInPresentation = true
+        } else {
+            let settings = SettingTimetableVC()
+            settings.finishAction = { [weak self] in
+                if GroupsAndTeacherStorage.shared.isReady() {
+                    self?.openTimetable(nil)
+                }
+            }
+            vc = settings
+        }
+        
+        let navSettingVC = UINavigationController(rootViewController: vc)
+        self.present(navSettingVC, animated: true)
+    }
     
 }

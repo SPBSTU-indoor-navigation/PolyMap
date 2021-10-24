@@ -29,7 +29,8 @@ class SettingTimetableVC: UIViewController {
     private lazy var tableView: UITableView = {
         $0.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         $0.delegate = self
-        $0.dataSource = self 
+        $0.dataSource = self
+        $0.bounces = false
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
     
@@ -39,7 +40,7 @@ class SettingTimetableVC: UIViewController {
         self.selectedIndex = GroupsAndTeacherStorage.shared.currentFilter == .groups ? 0 : 1
         self.segmentControl.selectedSegmentIndex = self.selectedIndex
         GroupsAndTeacherStorage.shared.reload()
-        self.view.backgroundColor = .secondarySystemBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.navigationItem.title = L10n.Settings.title
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonAction(_:)))
@@ -85,11 +86,6 @@ private extension SettingTimetableVC {
         GroupsAndTeacherStorage.shared.fillter = selectedIndex == 0 ? .groups : .teachers
         self.refreshDoneButton()
         tableView.reloadData()
-    }
-    
-    @objc
-    func closeButtonAction(_ sender: UIButton) {
-        self.dismiss(animated: true)
     }
     
     @objc

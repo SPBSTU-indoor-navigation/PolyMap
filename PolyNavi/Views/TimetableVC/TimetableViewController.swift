@@ -105,7 +105,6 @@ private extension TimetableViewController {
         vc.finishAction = { [weak self] in
             self?.loadData()
         }
-        vc.view.backgroundColor = self.tableView.backgroundColor
         let navSettingVC = UINavigationController(rootViewController: vc)
         self.present(navSettingVC, animated: true)
     }

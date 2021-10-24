@@ -29,6 +29,7 @@ class ChoosingWithSearchTableView: UIViewController {
         $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 10))
         $0.showsVerticalScrollIndicator = true
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.keyboardDismissMode = .interactive
         return $0
     }(UITableView())
     
