@@ -21,9 +21,6 @@ class EmptyLessonTableViewCell: UITableViewCell {
     }(UILabel())
     
     private lazy var mainView: UIView = {
-        $0.backgroundColor = .secondarySystemGroupedBackground
-        $0.layer.borderWidth = 0.5
-        $0.layer.borderColor = UIColor.separator.cgColor
         return $0
     }(UIView())
     
@@ -42,8 +39,6 @@ class EmptyLessonTableViewCell: UITableViewCell {
     }
     
     private func setView() {
-        self.contentView.backgroundColor = .clear
-        self.backgroundColor = .clear
         [mainView, timeLabel, emptyLabel].forEach {$0.translatesAutoresizingMaskIntoConstraints = false}
         mainView.addSubview(emptyLabel)
         mainView.addSubview(timeLabel)
@@ -51,8 +46,8 @@ class EmptyLessonTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             emptyLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 10),
             emptyLabel.centerXAnchor.constraint(equalTo: mainView.centerXAnchor),

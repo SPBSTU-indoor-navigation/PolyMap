@@ -11,6 +11,10 @@ protocol ID {
     var id: Int { get }
 }
 
+protocol SettingsModelProtocol {
+    func convert() -> [SettingsModel]
+}
+
 struct Timetable: Codable {
     let days: [Day]
     let week: Week
@@ -104,15 +108,27 @@ struct Teacher: Codable, ID {
     let chair: String                       // "35/04 Кафедра \"Информационные и управляющие системы\""
 }
 
-struct FacultiesList: Codable {
+struct FacultiesList: Codable, SettingsModelProtocol {
     let faculties: [Faculty]
+    
+    public func convert() -> [SettingsModel] {
+        return self.faculties.map { SettingsModel(ID: $0.id, title: $0.name) }
+    }
 }
 
-struct GroupsList: Codable {
+struct GroupsList: Codable, SettingsModelProtocol {
     let groups: [Group]
     let faculty: Faculty
+    
+    public func convert() -> [SettingsModel] {
+        return self.groups.map { SettingsModel(ID: $0.id, title: $0.name) }
+    }
 }
 
-struct TeachersList: Codable {
+struct TeachersList: Codable, SettingsModelProtocol {
     let teachers: [Teacher]
+    
+    public func convert() -> [SettingsModel] {
+        return self.teachers.map { SettingsModel(ID: $0.id, title: $0.full_name) }
+    }
 }

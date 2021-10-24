@@ -8,3 +8,17 @@
 
 Timetable.title = "Расписание";
 Timetable.lessonsBreak = "Окно";
+Timetable.editButton = "Настроить";
+
+Settings.title = "Настройки";
+Settings.titleOfGroupsView = "Группы";
+Settings.settingOfGroup = "Настройки группы";
+Settings.titleOfInstituteCell = "Институт";
+Settings.titleOfGroupCell = "Группа";
+Settings.statusOfInstitute = "Не выбран";
+Settings.statusOfGroup = "Не выбрана";
+Settings.titleOfTeachersView = "Преподаватели";
+Settings.settingOfTeacher = "Выбор преподавателя";
+Settings.titleOfTeacherCell = "Преподаватель";
+
+ChoosingSearchController.searchPlaceholder = "Поиск";

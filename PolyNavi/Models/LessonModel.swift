@@ -78,7 +78,7 @@ struct LessonModel {
             let intTimePrev = Int(timePrev[timePrev.startIndex..<indexTwoDotPrev!])
             let intTimeNext = Int(timeNext[timeNext.startIndex..<indexTwoDotNext!])
             if intTimeNext! - intTimePrev! > 2 {
-                correctArray.append(createEmptyLesson(withStartTime: currentArray[i - 1].timeStart, andEndTime: currentArray[i].timeStart))
+                correctArray.append(createEmptyLesson(withStartTime: currentArray[i - 1].timeEnd, andEndTime: currentArray[i].timeStart))
             }
             correctArray.append(currentArray[i])
         }

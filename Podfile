@@ -10,5 +10,6 @@ target 'PolyNavi' do
   
   #Skeleton
   pod 'SkeletonView' # Shimmer effect for loading
+  pod 'M13Checkbox'
 
 end

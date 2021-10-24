@@ -35,12 +35,11 @@ class TimetableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = L10n.Timetable.title
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Timetable.editButton, style: .plain, target: self, action: #selector(editButtonAction(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
         layoutViews()
         loadData()
-        
-        self.navigationItem.title = L10n.Timetable.title
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonAction(_:)))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,8 +71,10 @@ private extension TimetableViewController {
             self?.tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
         }, completion: nil)
         
-        TimetableProvider.shared.loadTimetable(
-            group: Group(id: 33843, kind: 0, level: 0, name: "", spec: "", type: "", year: 0)) { response in
+        let id = (GroupsAndTeacherStorage.shared.fillter == .groups) ? GroupsAndTeacherStorage.shared.groupNumber?.ID : GroupsAndTeacherStorage.shared.teachersName?.ID
+        
+        TimetableProvider.shared.loadTimetabe(id: id ?? -1, filter: GroupsAndTeacherStorage.shared.fillter) {
+            response in
                 guard let response = response.data else { return }
                 let timetable = TimetableWeek.convert(response)
                 self.arrayOfDaysWithLessons = timetable.days.map { pair in
@@ -84,7 +85,7 @@ private extension TimetableViewController {
                     self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                     self?.tableView.reloadData()
                 }
-            }
+        }
     }
 }
 
@@ -100,7 +101,13 @@ private extension TimetableViewController {
     
     @objc
     func editButtonAction(_ sender: UIButton) {
-        //TODO:- create editing of timetable: change group or teacher.
+        let vc = SettingTimetableVC()
+        vc.finishAction = { [weak self] in
+            self?.loadData()
+        }
+        vc.view.backgroundColor = self.tableView.backgroundColor
+        let navSettingVC = UINavigationController(rootViewController: vc)
+        self.present(navSettingVC, animated: true)
     }
     
 }
