@@ -11,6 +11,7 @@ class SettingTimetableVC: UIViewController {
     
     //MARK:- Values
     public var finishAction: () -> Void = {}
+    public var animatedDismiss: Bool = true
     private let cellID = "GroupCell"
     private let itemsSegmentStrings: [String] = [L10n.Settings.titleOfGroupsView, L10n.Settings.titleOfTeachersView]
     private let titlesOfSection: [String] = [L10n.Settings.settingOfGroup, L10n.Settings.settingOfTeacher]
@@ -29,7 +30,8 @@ class SettingTimetableVC: UIViewController {
     private lazy var tableView: UITableView = {
         $0.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         $0.delegate = self
-        $0.dataSource = self 
+        $0.dataSource = self
+        $0.bounces = false
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
     
@@ -38,7 +40,7 @@ class SettingTimetableVC: UIViewController {
         super.viewDidLoad()
         self.segmentControl.selectedSegmentIndex = GroupsAndTeacherStorage.shared.fillter == .groups ? 0 : 1
         self.selectedIndex = GroupsAndTeacherStorage.shared.fillter == .groups ? 0 : 1
-        self.view.backgroundColor = .secondarySystemBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.navigationItem.title = L10n.Settings.title
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonAction(_:)))
@@ -87,13 +89,8 @@ private extension SettingTimetableVC {
     }
     
     @objc
-    func closeButtonAction(_ sender: UIButton) {
-        self.dismiss(animated: true)
-    }
-    
-    @objc
     func doneButtonAction(_ sender: UIButton) {
-        self.dismiss(animated: true)
+        self.dismiss(animated: animatedDismiss)
         self.finishAction()
     }
 }
