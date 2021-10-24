@@ -122,8 +122,7 @@ class TimetableProvider {
     
     //MARK:- Support Functions
     func startOfWeek(_ date: Date) -> Date {
-        var cal = Calendar(identifier: .iso8601)
-        cal.timeZone = TimeZone(secondsFromGMT: 0)!
+        let cal = Calendar(identifier: .iso8601)
         
         return cal.date(from: cal.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)) ?? Date()
     }
