@@ -33,6 +33,7 @@ class TimetableProvider {
     var timetable: Timetable? = nil
     var faculties: FacultiesList? = nil
     var teachers: TeachersList? = nil
+    var groups: GroupsList? = nil
     
     func load<T:Codable>(url: String, params: Dictionary<String, String>, completion: @escaping (ApiStatus<T>) -> Void) {
         AF.request(BASE_URL + url,
@@ -75,7 +76,12 @@ class TimetableProvider {
     }
     
     func loadGroups(faculty: Faculty, completion: @escaping (ApiStatus<GroupsList>) -> Void) {
-        load(url: "/faculties/\(faculty.id)/groups", params: [:], completion: completion)
+        let t: (ApiStatus<GroupsList>) -> Void = { r in
+            self.groups = r.data
+            completion(r)
+        }
+        
+        load(url: "/faculties/\(faculty.id)/groups", params: [:], completion: t)
     }
     
     func loadTeachers(completion: @escaping (ApiStatus<TeachersList>) -> Void) {
