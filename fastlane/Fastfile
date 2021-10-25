@@ -1,6 +1,6 @@
 default_platform(:ios)
 
-xcversion(version: "~> 12.0")
+xcversion(version: "~> 13.0")
 
 DEVELOPER_APP_ID = ENV["DEVELOPER_APP_ID"]
 DEVELOPER_APP_IDENTIFIER = ENV["DEVELOPER_APP_IDENTIFIER"]
