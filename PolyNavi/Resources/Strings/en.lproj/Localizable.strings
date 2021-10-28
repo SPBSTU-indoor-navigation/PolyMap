@@ -9,19 +9,19 @@
 //MARK:- Timetable strings
 Timetable.title = "Timetable";
 Timetable.lessonsBreak = "Break";
-Timetable.editButton = "Настроить";
+Timetable.editButton = "Settings";
 
 //MARK:- Setting timetable strings
-Settings.title = "Настройки";
+Settings.title = "Settings";
 Settings.titleOfGroupsView = "Groups";
 Settings.settingOfGroup = "Settings of group";
 Settings.titleOfInstituteCell = "Institute";
 Settings.titleOfGroupCell = "Group";
-Settings.statusOfInstitute = "Not chosen";
-Settings.statusOfGroup = "Not chosen";
+Settings.statusOfInstitute = "None";
+Settings.statusOfGroup = "None";
 Settings.titleOfTeachersView = "Teachers";
-Settings.settingOfTeacher = "Выбор преподавателя";
-Settings.titleOfTeacherCell = "Преподаватель";
+Settings.settingOfTeacher = "Select teacher";
+Settings.titleOfTeacherCell = "Teacher";
 
 //MARK:- Choosing search controller strings
-ChoosingSearchController.searchPlaceholder = "Поиск";
+ChoosingSearchController.searchPlaceholder = "Search";
