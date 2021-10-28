@@ -12,7 +12,7 @@ Timetable.lessonsBreak = "Break";
 Timetable.editButton = "Настроить";
 
 //MARK:- Setting timetable strings
-Settings.title = "Настройки";
+Settings.title = "Settings";
 Settings.titleOfGroupsView = "Groups";
 Settings.settingOfGroup = "Settings of group";
 Settings.titleOfInstituteCell = "Institute";
