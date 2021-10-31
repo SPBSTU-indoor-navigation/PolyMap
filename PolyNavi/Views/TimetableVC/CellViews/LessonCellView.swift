@@ -10,6 +10,8 @@ import UIKit
 
 class LessonCellView: UITableViewCell {
     
+    let circleRadius = 12.0
+    
     public static var identifire: String {
         return String(describing: self)
     }
@@ -32,6 +34,16 @@ class LessonCellView: UITableViewCell {
     private lazy var divider: UIView = {
         $0.backgroundColor = .systemGray3
         $0.layer.cornerRadius = 2
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIView())
+    
+    private lazy var circle: UIView = {
+        $0.backgroundColor = .systemRed
+        $0.layer.cornerRadius = circleRadius/2
+        $0.frame = .init(x: 0, y: 0, width: circleRadius, height: circleRadius)
+        $0.bezierPathBorder(UIColor.secondarySystemGroupedBackground, width: 3)
+        
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIView())
@@ -95,6 +107,7 @@ extension LessonCellView {
         mainBackView.addSubview(timeEnd)
         mainBackView.addSubview(labelsStackView)
         mainBackView.addSubview(divider)
+        divider.addSubview(circle)
         
         self.contentView.addSubview(mainBackView)
         
@@ -118,6 +131,13 @@ extension LessonCellView {
             divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
             divider.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: max(timeEndSize.width, timeStartSize.width) + 20),
             divider.widthAnchor.constraint(equalToConstant: 2),
+            
+            circle.widthAnchor.constraint(equalToConstant: circleRadius),
+            circle.heightAnchor.constraint(equalToConstant: circleRadius),
+            circle.centerXAnchor.constraint(equalTo: divider.centerXAnchor),
+            
+            //TODO: Не работает тк в этотм момент divider.bounds.height = 0, тк он ещё не посчитался. Наверное надо будет делать всё равно функцию SetTimeCirclePosition, вызывать её в нотифае раз в минуту, и вот там уже будет извнстна высота
+            circle.centerYAnchor.constraint(equalTo: divider.topAnchor, constant: divider.bounds.height / 2),
             
             labelsStackView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
             labelsStackView.leadingAnchor.constraint(equalTo: divider.trailingAnchor, constant: 5),
