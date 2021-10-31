@@ -194,6 +194,7 @@ extension SettingTimetableVC: UITableViewDelegate, UITableViewDataSource {
             vc.selectedID = GroupsAndTeacherStorage.shared.teachersName?.ID
             vc.navigationItem.title = L10n.Settings.titleOfTeacherCell
         }
+        vc.navigationItem.rightBarButtonItem = navigationItem.rightBarButtonItem
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
