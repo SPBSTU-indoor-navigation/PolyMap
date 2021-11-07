@@ -36,8 +36,9 @@ class MapViewController: UIViewController {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
 
-        self.view.addSubview(container)
+        view.addSubview(container)
         container.addSubview(button)
+//        view.addSubview(MapView())
         
         
         NSLayoutConstraint.activate([
