@@ -10,7 +10,8 @@ import UIKit
 
 class LessonCellView: UITableViewCell {
     
-    let circleRadius = 12.0
+    let timeCursorRadius = 8.0
+    let timeCursorBorder = 5.0
     var currentTimeAnchor: NSLayoutConstraint?
     var dividerAnchor: NSLayoutConstraint?
     
@@ -40,13 +41,26 @@ class LessonCellView: UITableViewCell {
         return $0
     }(UIView())
     
-    private lazy var circle: UIView = {
-        $0.backgroundColor = .systemRed
-        $0.layer.cornerRadius = circleRadius/2
-        $0.frame = .init(x: 0, y: 0, width: circleRadius, height: circleRadius)
-        $0.bezierPathBorder(UIColor.secondarySystemGroupedBackground, width: 3)
+    private lazy var timeCursor: UIView = {
+        let center: UIView = {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.backgroundColor = .systemRed
+            $0.layer.cornerRadius = timeCursorRadius/2
+            return $0
+        }(UIView())
         
+        $0.backgroundColor = .secondarySystemGroupedBackground
+        $0.layer.cornerRadius = timeCursorRadius/2
+       
         $0.translatesAutoresizingMaskIntoConstraints = false
+        
+        $0.addSubview(center)
+        NSLayoutConstraint.activate([
+            center.centerYAnchor.constraint(equalTo: $0.centerYAnchor),
+            center.centerXAnchor.constraint(equalTo: $0.centerXAnchor),
+            center.widthAnchor.constraint(equalToConstant: timeCursorRadius),
+            center.heightAnchor.constraint(equalToConstant: timeCursorRadius)
+        ])
         return $0
     }(UIView())
     
@@ -92,7 +106,7 @@ class LessonCellView: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setViews()
         Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
-            self.setTimeCircle()
+            self.setTimeCursor()
         }
     }
     
@@ -101,7 +115,7 @@ class LessonCellView: UITableViewCell {
     }
     
     override func draw(_ rect: CGRect) {
-        setTimeCircle()
+        setTimeCursor()
     }
 }
     
@@ -116,12 +130,12 @@ extension LessonCellView {
         mainBackView.addSubview(timeEnd)
         mainBackView.addSubview(labelsStackView)
         mainBackView.addSubview(divider)
-        divider.addSubview(circle)
+        divider.addSubview(timeCursor)
         
         self.contentView.addSubview(mainBackView)
     
         
-        currentTimeAnchor = circle.centerYAnchor.constraint(equalTo: divider.topAnchor, constant: 0)
+        currentTimeAnchor = timeCursor.centerYAnchor.constraint(equalTo: divider.topAnchor, constant: 20)
         dividerAnchor = divider.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0)
         NSLayoutConstraint.activate([
             mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
@@ -141,9 +155,9 @@ extension LessonCellView {
             divider.widthAnchor.constraint(equalToConstant: 2),
             dividerAnchor!,
             
-            circle.widthAnchor.constraint(equalToConstant: circleRadius),
-            circle.heightAnchor.constraint(equalToConstant: circleRadius),
-            circle.centerXAnchor.constraint(equalTo: divider.centerXAnchor),
+            timeCursor.widthAnchor.constraint(equalToConstant: timeCursorRadius + timeCursorBorder),
+            timeCursor.heightAnchor.constraint(equalToConstant: timeCursorRadius + timeCursorBorder),
+            timeCursor.centerXAnchor.constraint(equalTo: divider.centerXAnchor),
             currentTimeAnchor!,
 
             labelsStackView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
@@ -155,36 +169,44 @@ extension LessonCellView {
         ])
     }
     
-    public func setTimeCircle() {
+    public func setTimeCursor() {
         
         guard let start = model?.timeStart else { return }
         guard let end = model?.timeEnd else { return }
-        
+
         let progress = start.distance(to: Date()) / start.distance(to: end)
-        
+
         if (0...1 ~= progress) {
-            circle.isHidden = false
-            currentTimeAnchor?.constant = divider.frame.height * progress
+            let cursorHeigth = timeCursorBorder + timeCursorRadius
+            timeCursor.isHidden = false
+            currentTimeAnchor?.constant = cursorHeigth / 2 + (divider.frame.height - cursorHeigth) * progress
         } else {
-            circle.isHidden = true
+            timeCursor.isHidden = true
         }
     }
     
     public func configure(model: LessonModel) {
-        let formatter1: DateFormatter = {
+        let timeFormatter: DateFormatter = {
             $0.timeStyle = .short
             return $0
         }(DateFormatter())
         
         self.model = model
-        timeEnd.text = formatter1.string(from: model.timeEnd)
-        timeStart.text = formatter1.string(from: model.timeStart)
+        timeEnd.text = timeFormatter.string(from: model.timeEnd)
+        timeStart.text = timeFormatter.string(from: model.timeStart)
         subjectNameLabel.text = model.subjectName
-        typeOfLessonLabel.text = model.type
+        typeOfLessonLabel.text = model.typeName
         teacherNameLabel.text = model.teacher
         placeLabel.text = model.place
         
-        divider.backgroundColor = model.isLecture() ? .systemGreen : .systemPink
+        switch model.type {
+        case .Lecture:
+            divider.backgroundColor = .systemGreen
+        case .Practice:
+            divider.backgroundColor = .systemPink
+        default:
+            divider.backgroundColor = .systemPink
+        }
         
         if (model.teacher.isEmpty && labelsStackView.arrangedSubviews.contains(teacherNameLabel)) {
             labelsStackView.removeArrangedSubview(teacherNameLabel)
@@ -200,7 +222,7 @@ extension LessonCellView {
         let maxTime = ("22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
         dividerAnchor?.constant = max(max(timeEndSize.width, timeStartSize.width) + 10 , maxTime.width + 20)
         
-        setTimeCircle()
+        setTimeCursor()
         
     }
 }

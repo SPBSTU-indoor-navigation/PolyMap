@@ -14,7 +14,7 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayOfDaysWithLessons[section].lessons.count
+        return arrayOfDaysWithLessons[section].timetableCell.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -27,10 +27,10 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let element = arrayOfDaysWithLessons[indexPath.section].lessons[indexPath.row]
+        let element = arrayOfDaysWithLessons[indexPath.section].timetableCell[indexPath.row]
         
         if let lessonBreak = element as? BreakModel {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyLessonTableViewCell.identifire) as? EmptyLessonTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableBreakTableViewCell.identifire) as? TimetableBreakTableViewCell else {
                 return UITableViewCell()
             }
             

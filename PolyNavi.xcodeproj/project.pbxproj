@@ -19,7 +19,7 @@
 		056F2D1E271CAED30063015B /* SettingTimetableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F2D1D271CAED30063015B /* SettingTimetableVC.swift */; };
 		056F2D20271CAF400063015B /* GroupsAndTeacherStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F2D1F271CAF400063015B /* GroupsAndTeacherStorage.swift */; };
 		0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A226271036CC00C33317 /* DateTableViewCell.swift */; };
-		0574A2292711FF5F00C33317 /* EmptyLessonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A2282711FF5F00C33317 /* EmptyLessonTableViewCell.swift */; };
+		0574A2292711FF5F00C33317 /* TimetableBreakTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A2282711FF5F00C33317 /* TimetableBreakTableViewCell.swift */; };
 		05C32AC3271F06B70033B751 /* ChoosingWithSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C32AC2271F06B70033B751 /* ChoosingWithSearchTableView.swift */; };
 		05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C32AC4271F10BA0033B751 /* ChoosingTableViewCell.swift */; };
 		05C32AC7271F4C3E0033B751 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C32AC6271F4C3E0033B751 /* SettingsModel.swift */; };
@@ -27,7 +27,6 @@
 		05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */; };
 		05C4C8312713549A00C22D61 /* SkeletonDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C8302713549A00C22D61 /* SkeletonDateTableViewCell.swift */; };
 		05C4C8332713599500C22D61 /* SkeletonLessonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C8322713599500C22D61 /* SkeletonLessonCellView.swift */; };
-		9735B679272E2D2C0017B41B /* bezierPathBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735B678272E2D2C0017B41B /* bezierPathBorder.swift */; };
 		97A484BC2717858700D14997 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BB2717858700D14997 /* MapViewController.swift */; };
 		97A484C02717BAF700D14997 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
@@ -51,7 +50,7 @@
 		056F2D1D271CAED30063015B /* SettingTimetableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTimetableVC.swift; sourceTree = "<group>"; };
 		056F2D1F271CAF400063015B /* GroupsAndTeacherStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsAndTeacherStorage.swift; sourceTree = "<group>"; };
 		0574A226271036CC00C33317 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
-		0574A2282711FF5F00C33317 /* EmptyLessonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLessonTableViewCell.swift; sourceTree = "<group>"; };
+		0574A2282711FF5F00C33317 /* TimetableBreakTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableBreakTableViewCell.swift; sourceTree = "<group>"; };
 		05C32AC2271F06B70033B751 /* ChoosingWithSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingWithSearchTableView.swift; sourceTree = "<group>"; };
 		05C32AC4271F10BA0033B751 /* ChoosingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingTableViewCell.swift; sourceTree = "<group>"; };
 		05C32AC6271F4C3E0033B751 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
@@ -60,7 +59,6 @@
 		05C4C8302713549A00C22D61 /* SkeletonDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonDateTableViewCell.swift; sourceTree = "<group>"; };
 		05C4C8322713599500C22D61 /* SkeletonLessonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLessonCellView.swift; sourceTree = "<group>"; };
 		378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9735B678272E2D2C0017B41B /* bezierPathBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bezierPathBorder.swift; sourceTree = "<group>"; };
 		97A484BB2717858700D14997 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		97A484BF2717BAF700D14997 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
@@ -211,7 +209,7 @@
 			children = (
 				054F67A9270CD78D00FCC07C /* LessonCellView.swift */,
 				0574A226271036CC00C33317 /* DateTableViewCell.swift */,
-				0574A2282711FF5F00C33317 /* EmptyLessonTableViewCell.swift */,
+				0574A2282711FF5F00C33317 /* TimetableBreakTableViewCell.swift */,
 				05C4C834271359A500C22D61 /* SkeletonCellViews */,
 			);
 			path = CellViews;
@@ -255,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				97A484BF2717BAF700D14997 /* RoundButton.swift */,
-				9735B678272E2D2C0017B41B /* bezierPathBorder.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -402,8 +399,7 @@
 				05C4C8312713549A00C22D61 /* SkeletonDateTableViewCell.swift in Sources */,
 				05C4C8332713599500C22D61 /* SkeletonLessonCellView.swift in Sources */,
 				054F67CC270CDFB400FCC07C /* LessonModel.swift in Sources */,
-				9735B679272E2D2C0017B41B /* bezierPathBorder.swift in Sources */,
-				0574A2292711FF5F00C33317 /* EmptyLessonTableViewCell.swift in Sources */,
+				0574A2292711FF5F00C33317 /* TimetableBreakTableViewCell.swift in Sources */,
 				056F2D1E271CAED30063015B /* SettingTimetableVC.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,

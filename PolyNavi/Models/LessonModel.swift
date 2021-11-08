@@ -13,20 +13,19 @@ struct TimetableWeek {
     
     struct TimetableDay {
         let date: Date?
-        var lessons: [Base]
+        var timetableCell: [TimetableCellModel]
     }
     
-    static var dateFormmater: DateFormatter = {
-        let formmater = DateFormatter()
-        formmater.dateFormat = "yyyy-MM-dd"
-        return formmater
-    }()
+    static var dateParser: DateFormatter = {
+        $0.dateFormat = "yyyy-MM-dd"
+        return $0
+    }(DateFormatter())
     
     static var dateTimeParser: DateFormatter = {
-        let formmater = DateFormatter()
-        formmater.dateFormat = "yyyy-MM-dd HH:mm"
-        return formmater
-    }()
+        $0.locale = Locale(identifier: "ru_RU")
+        $0.dateFormat = "yyyy-MM-dd HH:mm"
+        return $0
+    }(DateFormatter())
 
     
     static func convert(_ t: Timetable) -> TimetableWeek {
@@ -38,51 +37,60 @@ struct TimetableWeek {
                 return LessonModel(subjectName: lesson.subject,
                                    timeStart: dateTimeParser.date(from: day.date + " " + lesson.time_start)!,
                                    timeEnd: dateTimeParser.date(from: day.date + " " + lesson.time_end)!,
-                                   type: lesson.typeObj.name,
+                                   type: LessonModel.LessonType.parse(lesson.typeObj.name),
+                                   typeName: lesson.typeObj.name,
                                    place: audName,
                                    teacher: lesson.teachers?[0].full_name ?? "")
                 }
             
-            return TimetableDay(date: dateFormmater.date(from: day.date), lessons: lessons)
+            return TimetableDay(date: dateParser.date(from: day.date), timetableCell: lessons)
         }
         
         return TimetableWeek(days: days)
     }
 }
 
-protocol Base { }
+protocol TimetableCellModel { }
 
-struct BreakModel: Base {
+struct BreakModel: TimetableCellModel {
     let timeStart: Date
     let timeEnd: Date
 }
 
-struct LessonModel: Base {
+struct LessonModel: TimetableCellModel {
     let subjectName: String
     let timeStart: Date
     let timeEnd: Date
-    let type: String
+    let type: LessonType
+    let typeName: String
     let place: String
     let teacher: String
     
-    public func isEmptyLesson() -> Bool {
-        return subjectName.isEmpty && type.isEmpty && place.isEmpty && teacher.isEmpty
-    }
-    
-    public func isLecture() -> Bool {
-        type == "Лекции"
-    }
-    
-    static func createCorrectTimeTable(currentArray: [Base]) -> [Base] {
-        var correctArray: [Base] = []
-        correctArray.append(currentArray[0])
-        if (currentArray.count == 1) {
-            return correctArray
+    enum LessonType {
+        case Lecture
+        case Practice
+        case Other
+        
+        static func parse(_ name: String) -> LessonType {
+            switch name {
+            case "Лекции":
+                return .Lecture
+            case "Практика":
+                return .Practice
+            default:
+                return .Other
+            }
         }
+    }
+    
+    static func createCorrectTimeTable(currentArray: [TimetableCellModel]) -> [TimetableCellModel] {
+        var correctArray: [TimetableCellModel] = []
+        correctArray.append(currentArray[0])
+        
         for i in 1..<currentArray.count {
             if let currentLesson = currentArray[i] as? LessonModel {
                 if let lastLesson = currentArray[i - 1] as? LessonModel {
-                    if lastLesson.timeEnd.distance(to: currentLesson.timeStart) >= 0 * 2 * 60 * 60 {
+                    if lastLesson.timeEnd.distance(to: currentLesson.timeStart) >= 1 * 60 * 60 {
                         correctArray.append(BreakModel(timeStart: lastLesson.timeEnd, timeEnd: currentLesson.timeStart))
                     }
                 }

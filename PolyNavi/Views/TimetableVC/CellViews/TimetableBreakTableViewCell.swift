@@ -8,7 +8,7 @@
 import UIKit
 
 
-class EmptyLessonTableViewCell: UITableViewCell {
+class TimetableBreakTableViewCell: UITableViewCell {
     
     public static var identifire: String {
         return String(describing: self)
