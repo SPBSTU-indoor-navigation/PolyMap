@@ -12,20 +12,20 @@ import Foundation
 internal enum L10n {
 
   internal enum ChoosingSearchController {
-    /// Поиск
+    /// Search
     internal static let searchPlaceholder = L10n.tr("Localizable", "ChoosingSearchController.searchPlaceholder")
   }
 
   internal enum Settings {
     /// Settings of group
     internal static let settingOfGroup = L10n.tr("Localizable", "Settings.settingOfGroup")
-    /// Выбор преподавателя
+    /// Select teacher
     internal static let settingOfTeacher = L10n.tr("Localizable", "Settings.settingOfTeacher")
-    /// Not chosen
+    /// None
     internal static let statusOfGroup = L10n.tr("Localizable", "Settings.statusOfGroup")
-    /// Not chosen
+    /// None
     internal static let statusOfInstitute = L10n.tr("Localizable", "Settings.statusOfInstitute")
-    /// Настройки
+    /// Settings
     internal static let title = L10n.tr("Localizable", "Settings.title")
     /// Group
     internal static let titleOfGroupCell = L10n.tr("Localizable", "Settings.titleOfGroupCell")
@@ -33,14 +33,14 @@ internal enum L10n {
     internal static let titleOfGroupsView = L10n.tr("Localizable", "Settings.titleOfGroupsView")
     /// Institute
     internal static let titleOfInstituteCell = L10n.tr("Localizable", "Settings.titleOfInstituteCell")
-    /// Преподаватель
+    /// Teacher
     internal static let titleOfTeacherCell = L10n.tr("Localizable", "Settings.titleOfTeacherCell")
     /// Teachers
     internal static let titleOfTeachersView = L10n.tr("Localizable", "Settings.titleOfTeachersView")
   }
 
   internal enum Timetable {
-    /// Настроить
+    /// Settings
     internal static let editButton = L10n.tr("Localizable", "Timetable.editButton")
     /// Break
     internal static let lessonsBreak = L10n.tr("Localizable", "Timetable.lessonsBreak")
