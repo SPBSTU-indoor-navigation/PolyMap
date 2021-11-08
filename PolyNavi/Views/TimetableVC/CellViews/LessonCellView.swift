@@ -11,12 +11,14 @@ import UIKit
 class LessonCellView: UITableViewCell {
     
     let circleRadius = 12.0
+    var currentTimeAnchor: NSLayoutConstraint?
+    var dividerAnchor: NSLayoutConstraint?
     
     public static var identifire: String {
         return String(describing: self)
     }
     
-    private var model = LessonModel(subjectName: "", timeStart: "", timeEnd: "", type: "", place: "", teacher: "")
+    private var model: LessonModel?
     
     private lazy var labelsStackView: UIStackView = {
         $0.axis = .vertical
@@ -89,13 +91,20 @@ class LessonCellView: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setViews()
+        Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
+            self.setTimeCircle()
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func draw(_ rect: CGRect) {
+        setTimeCircle()
+    }
 }
-
+    
 
 //MARK:- Set views
 extension LessonCellView {
@@ -110,10 +119,10 @@ extension LessonCellView {
         divider.addSubview(circle)
         
         self.contentView.addSubview(mainBackView)
+    
         
-        let timeStartSize = (timeStart.text ?? "22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
-        let timeEndSize = (timeEnd.text ?? "22:22").size(withAttributes: [NSAttributedString.Key.font: timeEnd.font!])
-        
+        currentTimeAnchor = circle.centerYAnchor.constraint(equalTo: divider.topAnchor, constant: 0)
+        dividerAnchor = divider.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0)
         NSLayoutConstraint.activate([
             mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
@@ -129,16 +138,14 @@ extension LessonCellView {
             
             divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 5),
             divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
-            divider.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: max(timeEndSize.width, timeStartSize.width) + 20),
             divider.widthAnchor.constraint(equalToConstant: 2),
+            dividerAnchor!,
             
             circle.widthAnchor.constraint(equalToConstant: circleRadius),
             circle.heightAnchor.constraint(equalToConstant: circleRadius),
             circle.centerXAnchor.constraint(equalTo: divider.centerXAnchor),
-            
-            //TODO: Не работает тк в этотм момент divider.bounds.height = 0, тк он ещё не посчитался. Наверное надо будет делать всё равно функцию SetTimeCirclePosition, вызывать её в нотифае раз в минуту, и вот там уже будет извнстна высота
-            circle.centerYAnchor.constraint(equalTo: divider.topAnchor, constant: divider.bounds.height / 2),
-            
+            currentTimeAnchor!,
+
             labelsStackView.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 10),
             labelsStackView.leadingAnchor.constraint(equalTo: divider.trailingAnchor, constant: 5),
             labelsStackView.trailingAnchor.constraint(equalTo: mainBackView.trailingAnchor, constant: -10),
@@ -148,10 +155,30 @@ extension LessonCellView {
         ])
     }
     
+    public func setTimeCircle() {
+        
+        guard let start = model?.timeStart else { return }
+        guard let end = model?.timeEnd else { return }
+        
+        let progress = start.distance(to: Date()) / start.distance(to: end)
+        
+        if (0...1 ~= progress) {
+            circle.isHidden = false
+            currentTimeAnchor?.constant = divider.frame.height * progress
+        } else {
+            circle.isHidden = true
+        }
+    }
+    
     public func configure(model: LessonModel) {
+        let formatter1: DateFormatter = {
+            $0.timeStyle = .short
+            return $0
+        }(DateFormatter())
+        
         self.model = model
-        timeStart.text = model.timeStart
-        timeEnd.text = model.timeEnd
+        timeEnd.text = formatter1.string(from: model.timeEnd)
+        timeStart.text = formatter1.string(from: model.timeStart)
         subjectNameLabel.text = model.subjectName
         typeOfLessonLabel.text = model.type
         teacherNameLabel.text = model.teacher
@@ -167,31 +194,14 @@ extension LessonCellView {
             guard let index = labelsStackView.arrangedSubviews.firstIndex(of: placeLabel) else {return}
             labelsStackView.insertArrangedSubview(teacherNameLabel, at: index)
         }
+        
+        let timeStartSize = (timeStart.text ?? "22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
+        let timeEndSize = (timeEnd.text ?? "22:22").size(withAttributes: [NSAttributedString.Key.font: timeEnd.font!])
+        let maxTime = ("22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
+        dividerAnchor?.constant = max(max(timeEndSize.width, timeStartSize.width) + 10 , maxTime.width + 20)
+        
+        setTimeCircle()
+        
     }
 }
 
-
-
-//MARK:-SwiftUI Canvas
-import SwiftUI
-
-class LessonCellView_Provide: PreviewProvider {
-    static var previews: some View {
-        ContainerView()
-            .previewLayout(PreviewLayout.sizeThatFits)
-            .frame(width: 300, height: 100)
-    }
-    
-    struct ContainerView: UIViewRepresentable {
-        
-        func makeUIView(context: UIViewRepresentableContext<LessonCellView_Provide.ContainerView>) -> some UIView {
-            let vc = LessonCellView()
-            vc.configure(model: LessonModel(subjectName: "Выч мат", timeStart:"10:00", timeEnd: "11:30", type: "Лекция", place: "Гидрак", teacher: "Устинов С.М."))
-            return vc
-        }
-        
-        func updateUIView(_ uiView: LessonCellView_Provide.ContainerView.UIViewType, context: UIViewRepresentableContext<LessonCellView_Provide.ContainerView>) {
-            
-        }
-    }
-}

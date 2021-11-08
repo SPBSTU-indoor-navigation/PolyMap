@@ -29,21 +29,23 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let element = arrayOfDaysWithLessons[indexPath.section].lessons[indexPath.row]
         
-        if element.isEmptyLesson() {
+        if let lessonBreak = element as? BreakModel {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyLessonTableViewCell.identifire) as? EmptyLessonTableViewCell else {
                 return UITableViewCell()
             }
             
-            cell.configure(time: element.timeStart + "-" + element.timeEnd)
+            cell.configure(model: lessonBreak)
+            return cell
+        } else if let lesson = element as? LessonModel {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LessonCellView.identifire) as? LessonCellView else {
+                return UITableViewCell()
+            }
+            
+            cell.configure(model: lesson)
             return cell
         }
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LessonCellView.identifire) as? LessonCellView else {
-            return UITableViewCell()
-        }
-        
-        cell.configure(model: element)
-        return cell
+        return UITableViewCell()
     }
 }
 

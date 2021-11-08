@@ -60,7 +60,12 @@ class EmptyLessonTableViewCell: UITableViewCell {
         ])
     }
     
-    public func configure(time: String) {
-        timeLabel.text = time
+    public func configure(model: BreakModel) {
+        let formatter: DateFormatter = {
+            $0.timeStyle = .short
+            return $0
+        }(DateFormatter())
+        
+        timeLabel.text = formatter.string(from: model.timeStart) + " - " + formatter.string(from: model.timeEnd)
     }
 }
