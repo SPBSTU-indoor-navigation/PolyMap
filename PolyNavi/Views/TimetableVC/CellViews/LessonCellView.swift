@@ -202,9 +202,7 @@ extension LessonCellView {
         switch model.type {
         case .Lecture:
             divider.backgroundColor = .systemGreen
-        case .Practice:
-            divider.backgroundColor = .systemPink
-        default:
+        case .Practice, .Other:
             divider.backgroundColor = .systemPink
         }
         
