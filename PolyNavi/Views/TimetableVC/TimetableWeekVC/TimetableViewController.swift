@@ -10,17 +10,16 @@ import SkeletonView
 
 class TimetableViewController: UIViewController {
     
-    var loading = false
+    var date = Date()
     
     init(date: Date) {
         super.init(nibName: nil, bundle: nil)
-        print(date)
+        self.date = date
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     //MARK:-Properties
     
@@ -30,8 +29,6 @@ class TimetableViewController: UIViewController {
         $0.register(LessonCellView.self, forCellReuseIdentifier: LessonCellView.identifire)
         $0.register(TimetableBreakTableViewCell.self, forCellReuseIdentifier: TimetableBreakTableViewCell.identifire)
         $0.register(DateTableViewCell.self, forHeaderFooterViewReuseIdentifier: DateTableViewCell.identifire)
-        $0.register(SkeletonDateTableViewCell.self, forCellReuseIdentifier: SkeletonDateTableViewCell.identifire)
-        $0.register(SkeletonLessonCellView.self, forCellReuseIdentifier: SkeletonLessonCellView.identifire)
         $0.allowsSelection = false
         $0.dataSource = self
         $0.delegate = self
@@ -39,30 +36,28 @@ class TimetableViewController: UIViewController {
         $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 10))
         $0.showsVerticalScrollIndicator = false
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .clear
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
+    
+    internal lazy var loader: UIActivityIndicatorView = {
+        $0.style = .large
+        $0.isHidden = true
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIActivityIndicatorView())
     
     //MARK:- Life cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = L10n.Timetable.title
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Timetable.editButton, style: .plain, target: self, action: #selector(editButtonAction(_:)))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
+        view.backgroundColor = .systemGroupedBackground
         layoutViews()
         loadData()
-        loading = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            if self.loading {
-                
-                self.tableView.isSkeletonable = true
-                self.tableView.showSkeleton()
-            }
-        })
     }
 }
 
@@ -70,66 +65,42 @@ class TimetableViewController: UIViewController {
 //MARK:- LayoutView
 private extension TimetableViewController {
     func layoutViews() {
-        self.view.addSubview(tableView)
+        view.addSubview(loader)
+        view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            loader.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loader.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }
 
 
 //MARK:- Api
-private extension TimetableViewController {
-    func loadData() {
+extension TimetableViewController {
+    public func loadData() {
+        self.arrayOfDaysWithLessons = []
+        self.tableView.reloadData()
         
-        //        UIView.transition(with: tableView, duration: 0.3, options: .curveLinear, animations: { [weak self] in
-        //            let gradient = SkeletonGradient(baseColor: .clear, secondaryColor: .systemGray4)
-        //            self?.tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
-        //        }, completion: nil)
-        //        self.tableView.showSkeleton()
+        loader.startAnimating()
         
         let id = (GroupsAndTeacherStorage.shared.currentFilter == .groups) ? GroupsAndTeacherStorage.shared.currentGroupNumber?.ID : GroupsAndTeacherStorage.shared.currentTeachersName?.ID
         
-        TimetableProvider.shared.loadTimetabe(id: id ?? -1, filter: GroupsAndTeacherStorage.shared.currentFilter) {
+        TimetableProvider.shared.loadTimetabe(id: id ?? -1, filter: GroupsAndTeacherStorage.shared.currentFilter, startDate: date, fromCache: true) {
             response in
             guard let response = response.data else { return }
             let timetable = TimetableWeek.convert(response)
-            self.arrayOfDaysWithLessons = timetable.days.map { pair in
-                return TimetableWeek.TimetableDay(date: pair.date, timetableCell: LessonModel.createCorrectTimeTable(currentArray: pair.timetableCell))
-            }
-            DispatchQueue.main.async { [weak self] in
-                //                    self?.tableView.stopSkeletonAnimation()
-                //                    self?.view.hideSkeleton(transition: .crossDissolve(0.25))
-                //                    self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0) { [weak self] in
+                self?.arrayOfDaysWithLessons = timetable.days.map { pair in
+                    return TimetableWeek.TimetableDay(date: pair.date, timetableCell: LessonModel.createCorrectTimeTable(currentArray: pair.timetableCell))
+                }
                 self?.tableView.reloadData()
-                self?.tableView.hideSkeleton(transition: .crossDissolve(0.25))
-                self?.loading = false
+                self?.loader.stopAnimating()
             }
         }
     }
-}
-
-
-//MARK: - Selector Bar item functions
-
-private extension TimetableViewController {
-    
-    @objc
-    func closeButtonAction(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc
-    func editButtonAction(_ sender: UIButton) {
-        let vc = SettingTimetableVC()
-        vc.finishAction = { [weak self] in
-            self?.loadData()
-        }
-        let navSettingVC = UINavigationController(rootViewController: vc)
-        self.present(navSettingVC, animated: true)
-    }
-    
 }

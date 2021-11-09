@@ -26,13 +26,11 @@ class LessonCellView: UITableViewCell {
         $0.alignment = .leading
         $0.spacing = 4
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.isSkeletonable = true
         return $0
     }(UIStackView())
     
     private lazy var mainBackView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.isSkeletonable = true
         return $0
     }(UIView())
     
@@ -70,7 +68,6 @@ class LessonCellView: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textAlignment = .center
         $0.font = .preferredFont(forTextStyle: .body)
-        $0.isSkeletonable = true
         return $0
     }(UILabel())
     
@@ -78,7 +75,6 @@ class LessonCellView: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textAlignment = .center
         $0.font = .preferredFont(forTextStyle: .body)
-        $0.isSkeletonable = true
         return $0
     }(UILabel())
     
@@ -86,7 +82,6 @@ class LessonCellView: UITableViewCell {
         $0.font = .preferredFont(forTextStyle: .headline)
         $0.lineBreakMode = .byWordWrapping
         $0.numberOfLines = 0
-        $0.isSkeletonable = true
         return $0
     }(UILabel())
     
@@ -94,7 +89,6 @@ class LessonCellView: UITableViewCell {
         $0.font = .preferredFont(forTextStyle: .body)
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
-        $0.isSkeletonable = true
         return $0
     }(UILabel())
     
@@ -102,7 +96,6 @@ class LessonCellView: UITableViewCell {
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
         $0.font = .preferredFont(forTextStyle: .body)
-        $0.isSkeletonable = true
         return $0
     }(UILabel())
     
@@ -110,7 +103,6 @@ class LessonCellView: UITableViewCell {
         $0.font = .preferredFont(forTextStyle: .body)
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
-        $0.isSkeletonable = true
         return $0
     }(UILabel())
     
@@ -149,9 +141,6 @@ extension LessonCellView {
         divider.addSubview(timeCursor)
         
         self.contentView.addSubview(mainBackView)
-        
-        self.isSkeletonable = true;
-        self.contentView.isSkeletonable = true
     
         
         currentTimeAnchor = timeCursor.centerYAnchor.constraint(equalTo: divider.topAnchor, constant: 20)
