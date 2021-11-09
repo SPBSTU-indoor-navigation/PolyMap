@@ -31,6 +31,7 @@
 		97A484C02717BAF700D14997 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
 		97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */; };
+		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		97A484BF2717BAF700D14997 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
 		97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableProvider.swift; sourceTree = "<group>"; };
+		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
 		E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.release.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,14 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05192B86270EE395001B2C57 /* TimetableVC */ = {
+		05192B86270EE395001B2C57 /* TimetableWeekVC */ = {
 			isa = PBXGroup;
 			children = (
 				05C4C82A27134C2600C22D61 /* CellViews */,
 				05C4C82C27134C5100C22D61 /* TimetableViewController.swift */,
 				05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */,
 			);
-			path = TimetableVC;
+			path = TimetableWeekVC;
 			sourceTree = "<group>";
 		};
 		054F677B270C7B4B00FCC07C = {
@@ -153,9 +155,9 @@
 		054F67A6270CD73000FCC07C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				97D551D62739D5FD002A5BBD /* TimeTableVC */,
 				97A484BD27179ABE00D14997 /* MapVC */,
 				056F2D1C271CAEB40063015B /* SettingTimetableVC */,
-				05192B86270EE395001B2C57 /* TimetableVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +266,15 @@
 				97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */,
 			);
 			path = Timetable;
+			sourceTree = "<group>";
+		};
+		97D551D62739D5FD002A5BBD /* TimeTableVC */ = {
+			isa = PBXGroup;
+			children = (
+				05192B86270EE395001B2C57 /* TimetableWeekVC */,
+				97D551D72739D63A002A5BBD /* TimetablePageVC.swift */,
+			);
+			path = TimeTableVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,6 +414,7 @@
 				056F2D1E271CAED30063015B /* SettingTimetableVC.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
+				97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

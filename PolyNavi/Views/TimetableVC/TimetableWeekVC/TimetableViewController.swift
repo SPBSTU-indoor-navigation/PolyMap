@@ -10,10 +10,22 @@ import SkeletonView
 
 class TimetableViewController: UIViewController {
     
+    var loading = false
+    
+    init(date: Date) {
+        super.init(nibName: nil, bundle: nil)
+        print(date)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     //MARK:-Properties
     
     internal var arrayOfDaysWithLessons: [TimetableWeek.TimetableDay] = []
-
+    
     internal lazy var tableView: UITableView = {
         $0.register(LessonCellView.self, forCellReuseIdentifier: LessonCellView.identifire)
         $0.register(TimetableBreakTableViewCell.self, forCellReuseIdentifier: TimetableBreakTableViewCell.identifire)
@@ -23,7 +35,6 @@ class TimetableViewController: UIViewController {
         $0.allowsSelection = false
         $0.dataSource = self
         $0.delegate = self
-        $0.isSkeletonable = true
         $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 5))
         $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 10))
         $0.showsVerticalScrollIndicator = false
@@ -31,7 +42,7 @@ class TimetableViewController: UIViewController {
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
     
-    //MARK:- Life cicle 
+    //MARK:- Life cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +51,18 @@ class TimetableViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
         layoutViews()
         loadData()
+        loading = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            if self.loading {
+                
+                self.tableView.isSkeletonable = true
+                self.tableView.showSkeleton()
+            }
+        })
     }
 }
 
@@ -66,25 +85,29 @@ private extension TimetableViewController {
 private extension TimetableViewController {
     func loadData() {
         
-        UIView.transition(with: tableView, duration: 0.3, options: .curveLinear, animations: { [weak self] in
-            let gradient = SkeletonGradient(baseColor: .clear, secondaryColor: .systemGray4)
-            self?.tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
-        }, completion: nil)
+        //        UIView.transition(with: tableView, duration: 0.3, options: .curveLinear, animations: { [weak self] in
+        //            let gradient = SkeletonGradient(baseColor: .clear, secondaryColor: .systemGray4)
+        //            self?.tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: nil, transition: .crossDissolve(0.25))
+        //        }, completion: nil)
+        //        self.tableView.showSkeleton()
         
         let id = (GroupsAndTeacherStorage.shared.currentFilter == .groups) ? GroupsAndTeacherStorage.shared.currentGroupNumber?.ID : GroupsAndTeacherStorage.shared.currentTeachersName?.ID
         
         TimetableProvider.shared.loadTimetabe(id: id ?? -1, filter: GroupsAndTeacherStorage.shared.currentFilter) {
             response in
-                guard let response = response.data else { return }
-                let timetable = TimetableWeek.convert(response)
-                self.arrayOfDaysWithLessons = timetable.days.map { pair in
-                    return TimetableWeek.TimetableDay(date: pair.date, timetableCell: LessonModel.createCorrectTimeTable(currentArray: pair.timetableCell))
-                }
-                DispatchQueue.main.async { [weak self] in
-                    self?.tableView.stopSkeletonAnimation()
-                    self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-                    self?.tableView.reloadData()
-                }
+            guard let response = response.data else { return }
+            let timetable = TimetableWeek.convert(response)
+            self.arrayOfDaysWithLessons = timetable.days.map { pair in
+                return TimetableWeek.TimetableDay(date: pair.date, timetableCell: LessonModel.createCorrectTimeTable(currentArray: pair.timetableCell))
+            }
+            DispatchQueue.main.async { [weak self] in
+                //                    self?.tableView.stopSkeletonAnimation()
+                //                    self?.view.hideSkeleton(transition: .crossDissolve(0.25))
+                //                    self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                self?.tableView.reloadData()
+                self?.tableView.hideSkeleton(transition: .crossDissolve(0.25))
+                self?.loading = false
+            }
         }
     }
 }
