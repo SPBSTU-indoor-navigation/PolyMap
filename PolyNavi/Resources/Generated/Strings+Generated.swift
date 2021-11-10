@@ -42,6 +42,8 @@ internal enum L10n {
   internal enum Timetable {
     /// Settings
     internal static let editButton = L10n.tr("Localizable", "Timetable.editButton")
+    /// На этой неделе занятий нет. Можно отдыхать!
+    internal static let emptyWeek = L10n.tr("Localizable", "Timetable.emptyWeek")
     /// Break
     internal static let lessonsBreak = L10n.tr("Localizable", "Timetable.lessonsBreak")
     /// Timetable

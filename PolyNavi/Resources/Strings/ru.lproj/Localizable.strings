@@ -9,6 +9,7 @@
 Timetable.title = "Расписание";
 Timetable.lessonsBreak = "Окно";
 Timetable.editButton = "Настройки";
+Timetable.emptyWeek = "На этой неделе занятий нет. Можно отдыхать!";
 
 Settings.title = "Настройки";
 Settings.titleOfGroupsView = "Группы";
