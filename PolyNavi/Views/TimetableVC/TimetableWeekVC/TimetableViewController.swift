@@ -12,6 +12,8 @@ class TimetableViewController: UIViewController {
     
     var date = Date()
     
+    public var updateContentOffsetBlock: ((CGFloat) -> Void)?
+    
     init(date: Date) {
         super.init(nibName: nil, bundle: nil)
         self.date = date
@@ -79,6 +81,11 @@ class TimetableViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        self.updateContentOffsetBlock?(tableView.contentOffset.y)
     }
     
     @objc

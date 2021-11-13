@@ -9,6 +9,7 @@ import UIKit
 
 class TimetablePageVC: UIPageViewController  {
     
+    
     init() {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
     }
@@ -30,12 +31,20 @@ class TimetablePageVC: UIPageViewController  {
         self.delegate = self
         self.dataSource = self
         
-        self.setViewControllers([TimetableViewController(date: Date())], direction: .forward, animated: true, completion: nil)
+        //        t.tableView.scroll
+        
+        self.setViewControllers([createTimetableVS(Date())], direction: .forward, animated: true, completion: nil)
+        let scrollView = self.view.subviews.filter { $0 is UIScrollView }.first as! UIScrollView
+        scrollView.delegate = self
         setViews()
     }
     
+    
+    var appeared = false
+    
     override func viewDidAppear(_ animated: Bool) {
-        timetableNavbar.blurAnimator.startAnimation()
+        //        timetableNavbar.blurAnimator.startAnimation()
+        appeared = true
     }
     
     var currentPageDate: Date = Date()
@@ -43,12 +52,12 @@ class TimetablePageVC: UIPageViewController  {
     func setViews() {
         view.backgroundColor = .systemBackground
         
-    
+        
         navigationItem.title = L10n.Timetable.title
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Timetable.editButton, style: .plain, target: self, action: #selector(editButtonAction(_:)))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
         
-
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         
@@ -72,14 +81,19 @@ class TimetablePageVC: UIPageViewController  {
 
 //MARK:- PageViewController
 extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    
+    func createTimetableVS(_ date: Date) -> TimetableViewController {
+        let vc = TimetableViewController(date: date)
+        vc.updateContentOffsetBlock = onScroll
+        return vc
+    }
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let t = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: currentPageDate)!
-        return TimetableViewController(date: t)
+        return createTimetableVS(Calendar.current.date(byAdding: .weekOfYear, value: -1, to: currentPageDate)!)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let t = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: currentPageDate)!
-        return TimetableViewController(date: t)
+        return createTimetableVS(Calendar.current.date(byAdding: .weekOfYear, value: 1, to: currentPageDate)!)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -87,8 +101,15 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
             guard let pageVC = viewControllers?.first as? TimetableViewController else { return }
             currentPageDate = pageVC.date
             if #available(iOS 15.0, *) {
-                navigationItem.title = L10n.Timetable.title + " " + currentPageDate.ISO8601Format()
+                navigationItem.title = ""
             }
+        }
+    }
+    
+    func onScroll(pos: CGFloat) {
+        if appeared {
+            print(pos)
+            timetableNavbar.blurAnimator.fractionComplete = pos / 10 + 5
         }
     }
 }
@@ -119,4 +140,10 @@ extension TimetablePageVC {
         self.present(navSettingVC, animated: true)
     }
     
+}
+
+extension TimetablePageVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //        print(scrollView.contentOffset.x)
+    }
 }
