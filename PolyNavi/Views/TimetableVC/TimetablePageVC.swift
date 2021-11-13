@@ -17,21 +17,56 @@ class TimetablePageVC: UIPageViewController  {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    private lazy var timetableNavbar: TimetableNavbar = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.rightButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
+        $0.leftButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+        return $0
+    }(TimetableNavbar())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
-    
-        self.navigationItem.title = L10n.Timetable.title
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Timetable.editButton, style: .plain, target: self, action: #selector(editButtonAction(_:)))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
-        
         self.delegate = self
         self.dataSource = self
-        self.setViewControllers([TimetableViewController(date: Date())], direction: .forward, animated: true, completion: nil)
         
+        self.setViewControllers([TimetableViewController(date: Date())], direction: .forward, animated: true, completion: nil)
+        setViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        timetableNavbar.blurAnimator.startAnimation()
     }
     
     var currentPageDate: Date = Date()
+    
+    func setViews() {
+        view.backgroundColor = .systemBackground
+        
+    
+        navigationItem.title = L10n.Timetable.title
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Timetable.editButton, style: .plain, target: self, action: #selector(editButtonAction(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonAction(_:)))
+        
+
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        
+        var newSafeArea = UIEdgeInsets()
+        newSafeArea.top += 50
+        self.additionalSafeAreaInsets = newSafeArea
+        
+        view.addSubview(timetableNavbar)
+        NSLayoutConstraint.activate([
+            timetableNavbar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            timetableNavbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            timetableNavbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            timetableNavbar.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        
+        
+    }
     
 }
 
@@ -43,7 +78,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-            let t = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: currentPageDate)!
+        let t = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: currentPageDate)!
         return TimetableViewController(date: t)
     }
     
