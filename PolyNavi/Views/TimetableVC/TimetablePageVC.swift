@@ -31,8 +31,8 @@ class TimetablePageVC: UIPageViewController  {
         self.dataSource = self
         
         //        t.tableView.scroll
-        
-        self.setViewControllers([createTimetableVS(Date())], direction: .forward, animated: true, completion: nil)
+        fromPage = createTimetableVS(Date())
+        self.setViewControllers([fromPage!], direction: .forward, animated: true, completion: nil)
         let scrollView = self.view.subviews.filter { $0 is UIScrollView }.first as! UIScrollView
         scrollView.delegate = self
         setViews()
@@ -42,7 +42,6 @@ class TimetablePageVC: UIPageViewController  {
     var appeared = false
     
     override func viewDidAppear(_ animated: Bool) {
-        //        timetableNavbar.blurAnimator.startAnimation()
         appeared = true
     }
     
@@ -118,7 +117,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
     
     func onScroll(pos: CGFloat) {
         if appeared {
-            timetableNavbar.blurAnimator.fractionComplete = pos / 10 + 5
+            timetableNavbar.blurAnimator.fractionComplete = calculateBlurByScroll(pos)
         }
     }
 }
@@ -153,8 +152,13 @@ extension TimetablePageVC {
 
 extension TimetablePageVC: UIScrollViewDelegate {
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        print("scrollViewWillEndDragging")
+    func calculateBlurByScroll(_ offset: CGFloat) -> CGFloat {
+        return min(1, max(0, (offset + 50) / 20))
+    }
+    
+    // Возвращает значение между from и to пропорционально progress. Т.е. когда progress == 0 вернётся from, а когда progress == 1 вернётся to
+    func lerp(_ from: CGFloat, _ to: CGFloat, _ progress: CGFloat) -> CGFloat {
+        return from + (progress * (to - from))
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -162,11 +166,11 @@ extension TimetablePageVC: UIScrollViewDelegate {
         
         if appeared && t != 0 && t != 1 {
             print("\(fromPage?.tableView.contentOffset.y)  \(nextPage?.tableView.contentOffset.y)")
-            let from = min(1, ((fromPage?.tableView.contentOffset.y) ?? -50) / 10 + 5)
-            let to = min(1, ((nextPage?.tableView.contentOffset.y) ?? -50) / 10 + 5)
+            let from = calculateBlurByScroll((fromPage?.tableView.contentOffset.y) ?? -50)
+            let to = calculateBlurByScroll((nextPage?.tableView.contentOffset.y) ?? -50)
             
             
-            timetableNavbar.blurAnimator.fractionComplete = from + (t * (to - from))
+            timetableNavbar.blurAnimator.fractionComplete = lerp(from, to, t)
 //            print(t)
         }
     }
