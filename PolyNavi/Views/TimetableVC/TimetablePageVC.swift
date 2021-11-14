@@ -9,7 +9,6 @@ import UIKit
 
 class TimetablePageVC: UIPageViewController  {
     
-    
     init() {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
     }
@@ -48,6 +47,8 @@ class TimetablePageVC: UIPageViewController  {
     }
     
     var currentPageDate: Date = Date()
+    var nextPage: TimetableViewController?
+    var fromPage: TimetableViewController?
     
     func setViews() {
         view.backgroundColor = .systemBackground
@@ -72,9 +73,6 @@ class TimetablePageVC: UIPageViewController  {
             timetableNavbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             timetableNavbar.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
-        
-        
     }
     
 }
@@ -82,10 +80,24 @@ class TimetablePageVC: UIPageViewController  {
 //MARK:- PageViewController
 extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
+    
     func createTimetableVS(_ date: Date) -> TimetableViewController {
         let vc = TimetableViewController(date: date)
         vc.updateContentOffsetBlock = onScroll
+        vc.willAppear = toPage
+        vc.willDisappear = fromPage
         return vc
+    }
+
+    func toPage(_ page: TimetableViewController) {
+        currentPageDate = page.date
+        nextPage = page
+    }
+    
+    func fromPage(_ page: TimetableViewController) {
+        if nextPage != fromPage {
+            fromPage = page
+        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -100,15 +112,12 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         if finished {
             guard let pageVC = viewControllers?.first as? TimetableViewController else { return }
             currentPageDate = pageVC.date
-            if #available(iOS 15.0, *) {
-                navigationItem.title = ""
-            }
+            fromPage = pageVC
         }
     }
     
     func onScroll(pos: CGFloat) {
         if appeared {
-            print(pos)
             timetableNavbar.blurAnimator.fractionComplete = pos / 10 + 5
         }
     }
@@ -143,7 +152,22 @@ extension TimetablePageVC {
 }
 
 extension TimetablePageVC: UIScrollViewDelegate {
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//        print("scrollViewWillEndDragging")
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //        print(scrollView.contentOffset.x)
+        let t = abs(scrollView.contentOffset.x / view.bounds.width - 1)
+        
+        if appeared && t != 0 && t != 1 {
+            print("\(fromPage?.tableView.contentOffset.y)  \(nextPage?.tableView.contentOffset.y)")
+            let from = min(1, ((fromPage?.tableView.contentOffset.y) ?? -50) / 10 + 5)
+            let to = min(1, ((nextPage?.tableView.contentOffset.y) ?? -50) / 10 + 5)
+            
+            
+            timetableNavbar.blurAnimator.fractionComplete = from + (t * (to - from))
+//            print(t)
+        }
     }
 }
