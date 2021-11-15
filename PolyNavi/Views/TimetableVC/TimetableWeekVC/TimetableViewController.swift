@@ -11,12 +11,9 @@ import SkeletonView
 class TimetableViewController: UIViewController {
     
     var date = Date()
-    
-    public var updateContentOffsetBlock: ((CGFloat) -> Void)?
-    
-    public var willAppear: ((TimetableViewController) -> Void)?
-    
-    public var willDisappear: ((TimetableViewController) -> Void)?
+    var willAppear: ((TimetableViewController) -> Void)?
+    var updateContentOffsetBlock: ((TimetableViewController, CGFloat) -> Void)?
+    var appeared = false
     
     init(date: Date) {
         super.init(nibName: nil, bundle: nil)
@@ -25,6 +22,35 @@ class TimetableViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemGroupedBackground
+        layoutViews()
+        loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        willAppear?(self)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateContentOffsetBlock?(self, tableView.contentOffset.y)
+        appeared = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        appeared = false
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if appeared {
+            self.updateContentOffsetBlock?(self, scrollView.contentOffset.y)
+        }
     }
     
     //MARK:-Properties
@@ -73,31 +99,6 @@ class TimetableViewController: UIViewController {
         return $0
     }(UILabel())
     
-    
-    //MARK:- Life cicle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemGroupedBackground
-        layoutViews()
-        loadData()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("viewWillAppear \(date)")
-        willAppear?(self)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("viewWillDisappear \(date)")
-        willDisappear?(self)
-    }
 
     @objc
     func handleRefreshControl() {

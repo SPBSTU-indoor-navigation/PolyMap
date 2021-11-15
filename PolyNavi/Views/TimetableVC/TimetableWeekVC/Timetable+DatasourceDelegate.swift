@@ -48,9 +48,5 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
 
         return UITableViewCell()
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.updateContentOffsetBlock?(scrollView.contentOffset.y)
-    }
 
 }

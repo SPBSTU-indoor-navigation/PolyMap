@@ -9,10 +9,12 @@ import UIKit
 
 class TimetablePageVC: UIPageViewController  {
     
-    var currentPage: PagePlaceholder?
-    var targetPage: PagePlaceholder?
-    var animatedPage: PagePlaceholder?
-    var scrollT = 0.0
+    var targetPage: TimetableViewController?
+    var appeared = false
+    
+    var dictOffsets: [Date:CGFloat] = [:]
+    
+    var scrollVar = 0.0
     
     init() {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
@@ -20,6 +22,11 @@ class TimetablePageVC: UIPageViewController  {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        appeared = true
     }
     
     private lazy var timetableNavbar: TimetableNavbar = {
@@ -33,6 +40,7 @@ class TimetablePageVC: UIPageViewController  {
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
         $0.font = .boldSystemFont(ofSize: 20)
+        $0.backgroundColor = .systemBackground
         $0.text = ""
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -50,7 +58,6 @@ class TimetablePageVC: UIPageViewController  {
     
     func setViews() {
         view.backgroundColor = .systemBackground
-        
         
         navigationItem.title = L10n.Timetable.title
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Timetable.editButton, style: .plain, target: self, action: #selector(editButtonAction(_:)))
@@ -76,63 +83,50 @@ class TimetablePageVC: UIPageViewController  {
             debug.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        currentPage = createTimetableVS(0)
-        animatedPage = currentPage
-        setViewControllers([currentPage!], direction: .forward, animated: true, completion: nil)
+        targetPage = createTimetableVS(Date())
+        setViewControllers([targetPage!], direction: .forward, animated: true, completion: nil)
     }
 }
 
 //MARK:- PageViewController
 extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
-    func createTimetableVS(_ num: Int) -> PagePlaceholder {
-        let vc = PagePlaceholder(num: num)
-        vc.didApear = didApear
-        vc.willApear = willApear
-        vc.willDisapear = willDisappear(page:)
+    func addWeak(date: Date, count: Int) -> Date {
+        return Calendar.current.date(byAdding: .weekOfYear, value: count, to: date)!
+    }
+    
+    func createTimetableVS(_ date: Date) -> TimetableViewController {
+        let vc = TimetableViewController(date: date)
+        vc.willAppear = willAppear
+        vc.updateContentOffsetBlock = updateContentOffsetBlock
+        dictOffsets[date] = -50
         return vc
     }
     
-    func didApear(page: PagePlaceholder) {
-//        print("didApear \(page.number)")
+    func updateContentOffsetBlock(vc: TimetableViewController, offset: CGFloat) -> Void {
+        dictOffsets[vc.date] = offset
+        if appeared {
+            timetableNavbar.blurAnimator.fractionComplete = calculateBlurByScroll(offset)
+        }
     }
     
-    func willApear(page: PagePlaceholder) {
-        print("willApear \(page.number)")
+    func willAppear(page: TimetableViewController) {
         targetPage = page
-        if currentPage != page {
-            currentPage = page
-            print("Page: \(currentPage!.number)")
-//            debug.text = "-> \(currentPage!.number)\ta: \(animatedPage!.number)"
-        }
-    }
-    
-    func willDisappear(page: PagePlaceholder) {
-        print("willDisappear \(page.number)")
-        if targetPage == page {
-            targetPage = nil
-        }
+        print(page.date)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        return createTimetableVS(currentPage!.number - 1)
+        return createTimetableVS(addWeak(date: targetPage!.date, count: -1))
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        return createTimetableVS(currentPage!.number + 1)
+        return createTimetableVS(addWeak(date: targetPage!.date, count: +1))
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if finished && completed {
-            guard let pageVC = viewControllers?.first as? PagePlaceholder else { return }
-            
-            animatedPage = pageVC
-            if currentPage != pageVC {
-                currentPage = pageVC
-                print("Page: \(currentPage!.number)")
-            }
-            
-//            debug.text = "-> \(currentPage!.number)\ta: \(animatedPage!.number)"
+            guard let pageVC = viewControllers?.first as? TimetableViewController else { return }
+            targetPage = pageVC
         }
     }
     
@@ -152,20 +146,24 @@ extension TimetablePageVC: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let t = scrollView.contentOffset.x / view.bounds.width - 1
-        process(t)
-
-    }
-    
-    func process(_ t: CGFloat) {
-        scrollT = abs(t)
+        if(abs(scrollVar - t) > 0.95) {
+            print("CHANGE")
+        }
+        scrollVar = t
         if t != 0 && t != 1 && abs(t) > 0.05 {
-            let from = currentPage!.number - (t == 0 ? 0: t < 0 ? -1 : 1)
-            let to = currentPage!.number
-            DispatchQueue.main.async {
-                
-                self.debug.text = "\(from) \t-> \(to)\tp: \(NSString(format: "%.2f", t))\tPage: \(round(self.lerp(CGFloat(from), CGFloat(to), abs(t)) * 1000)/1000)"
+            
+            let fromDate = addWeak(date: targetPage!.date, count: -(t == 0 ? 0: t < 0 ? -1 : 1))
+            
+            let from = dictOffsets[fromDate] ?? -50
+            let to = dictOffsets[targetPage!.date] ?? -50
+            
+            timetableNavbar.blurAnimator.fractionComplete = lerp(calculateBlurByScroll(from), calculateBlurByScroll(to), abs(t))
+            
+            DispatchQueue.main.async { [self] in
+                self.debug.text = "\(from) \t-> \(to)\t\(fromDate)\t\(self.targetPage!.date)\tp: \(NSString(format: "%.2f", t))"
             }
         }
+
     }
 }
 
@@ -194,78 +192,6 @@ extension TimetablePageVC {
         }
         let navSettingVC = UINavigationController(rootViewController: vc)
         self.present(navSettingVC, animated: true)
-    }
-    
-}
-
-
-
-class PagePlaceholder: UIViewController {
-    
-    var number = 0
-    var offset: Int {
-        get {
-            return number == 0 ? 100: -50
-        }
-    }
-    
-    var didApear: ((PagePlaceholder) -> Void)?
-    var willApear: ((PagePlaceholder) -> Void)?
-    var didDisapear: ((PagePlaceholder) -> Void)?
-    var willDisapear: ((PagePlaceholder) -> Void)?
-    
-    init(num: Int) {
-        super.init(nibName: nil, bundle: nil)
-        number = num
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private lazy var text: UILabel = {
-        $0.numberOfLines = 0
-        $0.lineBreakMode = .byWordWrapping
-        $0.font = .boldSystemFont(ofSize: 50)
-        $0.textAlignment = .center
-        $0.text = "\(number)"
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        return $0
-    }(UILabel())
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        layoutViews()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        didApear?(self)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        willApear?(self)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        didDisapear?(self)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        willDisapear?(self)
-    }
-    
-    func layoutViews() {
-        view.addSubview(text)
-        
-        NSLayoutConstraint.activate([
-            text.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            text.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            text.topAnchor.constraint(equalTo: view.topAnchor, constant: 200)
-        ])
     }
     
 }
