@@ -99,12 +99,29 @@ class TimetableViewController: UIViewController {
         return $0
     }(UILabel())
     
+    internal lazy var refreshButton: UIButton = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setTitle("Refresh", for: .normal)
+        $0.addTarget(self, action: #selector(refreshPage(_:)), for: .touchUpInside)
+        return $0
+    }(UIButton(type: .system))
+    
 
     @objc
     func handleRefreshControl() {
         refreshDate() {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
                 self?.tableView.refreshControl?.endRefreshing()
+            }
+        }
+    }
+    
+    @objc
+    func refreshPage(_ sender: UIButton?) {
+//      TODO: sender.IS_DISABLE = TURE
+        refreshDate() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//                TODO: sender.IS_DISABLE = FALSE
             }
         }
     }
@@ -120,6 +137,7 @@ private extension TimetableViewController {
         view.addSubview(emptyWeek)
         
         emptyWeek.addSubview(emptyWeekDscription)
+        emptyWeek.addSubview(refreshButton)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -132,6 +150,8 @@ private extension TimetableViewController {
             
             emptyWeek.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             emptyWeek.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            refreshButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            refreshButton.centerXAnchor.constraint(equalTo: emptyWeek.centerXAnchor),
             
             emptyWeekDscription.centerXAnchor.constraint(equalTo: emptyWeek.centerXAnchor),
             emptyWeekDscription.topAnchor.constraint(equalTo: emptyWeek.bottomAnchor, constant: 10),
@@ -167,6 +187,7 @@ extension TimetableViewController {
                 self.loader.stopAnimating()
                 self.tableView.refreshControl = self.refreshControl
                 self.emptyWeek.isHidden = !self.arrayOfDaysWithLessons.isEmpty
+                self.tableView.isHidden = self.arrayOfDaysWithLessons.isEmpty
 
             }
         }
@@ -184,8 +205,9 @@ extension TimetableViewController {
             
             DispatchQueue.main.async() { [weak self] in
                 guard let self = self else { return }
-                self.tableView.reloadData()
                 self.emptyWeek.isHidden = !self.arrayOfDaysWithLessons.isEmpty
+                self.tableView.isHidden = self.arrayOfDaysWithLessons.isEmpty
+                self.tableView.reloadData()
                 completion()
             }
         }

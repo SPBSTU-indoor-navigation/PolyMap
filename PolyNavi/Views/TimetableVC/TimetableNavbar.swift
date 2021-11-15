@@ -58,13 +58,13 @@ class TimetableNavbar: UIView  {
         addSubview(text)
         addSubview(rightButton)
         addSubview(leftButton)
-        backgroundColor = .blue
         
         blurAnimator.addAnimations {
-//            self.blurBackground.effect = UIBlurEffect(style: .systemMaterial)
-            self.backgroundColor = .red
+            self.blurBackground.effect = UIBlurEffect(style: .systemMaterial)
             self.bottomLine.backgroundColor = .systemGray4.withAlphaComponent(0.4)
         }
+        
+        blurAnimator.pausesOnCompletion = true
         
         
         //TODO: разные констрейнты для разных экранов

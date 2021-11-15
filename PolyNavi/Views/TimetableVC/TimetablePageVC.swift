@@ -10,11 +10,11 @@ import UIKit
 class TimetablePageVC: UIPageViewController  {
     
     var targetPage: TimetableViewController?
+    var skipNextAppear: Date?
     var appeared = false
     
     var dictOffsets: [Date:CGFloat] = [:]
     
-    var scrollVar = 0.0
     
     init() {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
@@ -29,22 +29,18 @@ class TimetablePageVC: UIPageViewController  {
         appeared = true
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        appeared = false
+    }
+    
     private lazy var timetableNavbar: TimetableNavbar = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.rightButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         $0.leftButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
         return $0
     }(TimetableNavbar())
-    
-    private lazy var debug: UILabel = {
-        $0.numberOfLines = 0
-        $0.lineBreakMode = .byWordWrapping
-        $0.font = .boldSystemFont(ofSize: 20)
-        $0.backgroundColor = .systemBackground
-        $0.text = ""
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        return $0
-    }(UILabel())
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +49,12 @@ class TimetablePageVC: UIPageViewController  {
         (view.subviews.filter { $0 is UIScrollView }.first as! UIScrollView).delegate = self
         
         setViews()
+    }
+    
+    func updateBlurEffect(_ val: CGFloat) {
+        if appeared {
+            timetableNavbar.blurAnimator.fractionComplete = val
+        }
     }
     
     
@@ -72,20 +74,31 @@ class TimetablePageVC: UIPageViewController  {
         self.additionalSafeAreaInsets = newSafeArea
         
         view.addSubview(timetableNavbar)
-        view.addSubview(debug)
+//        view.addSubview(debug)
         NSLayoutConstraint.activate([
             timetableNavbar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             timetableNavbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             timetableNavbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             timetableNavbar.heightAnchor.constraint(equalToConstant: 50),
-            debug.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            debug.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            debug.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//            debug.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+//            debug.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+//            debug.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         targetPage = createTimetableVS(Date())
         setViewControllers([targetPage!], direction: .forward, animated: true, completion: nil)
     }
+    
+    //    Нужно будет для дебага
+    //    private lazy var debug: UILabel = {
+    //        $0.numberOfLines = 0
+    //        $0.lineBreakMode = .byWordWrapping
+    //        $0.font = .boldSystemFont(ofSize: 20)
+    //        $0.backgroundColor = .systemBackground
+    //        $0.text = ""
+    //        $0.translatesAutoresizingMaskIntoConstraints = false
+    //        return $0
+    //    }(UILabel())
 }
 
 //MARK:- PageViewController
@@ -105,14 +118,14 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
     
     func updateContentOffsetBlock(vc: TimetableViewController, offset: CGFloat) -> Void {
         dictOffsets[vc.date] = offset
-        if appeared {
-            timetableNavbar.blurAnimator.fractionComplete = calculateBlurByScroll(offset)
-        }
+        updateBlurEffect(calculateBlurByScroll(offset))
     }
     
     func willAppear(page: TimetableViewController) {
-        targetPage = page
-        print(page.date)
+        if (skipNextAppear != page.date) {
+            targetPage = page
+        }
+        skipNextAppear = nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -136,7 +149,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
 extension TimetablePageVC: UIScrollViewDelegate {
     
     func calculateBlurByScroll(_ offset: CGFloat) -> CGFloat {
-        return min(1, max(0, (offset + 50) / 20))
+        return min(1, max(0, (offset + 50) / 5))
     }
     
     // Возвращает значение между from и to пропорционально progress. Т.е. когда progress == 0 вернётся from, а когда progress == 1 вернётся to
@@ -146,10 +159,7 @@ extension TimetablePageVC: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let t = scrollView.contentOffset.x / view.bounds.width - 1
-        if(abs(scrollVar - t) > 0.95) {
-            print("CHANGE")
-        }
-        scrollVar = t
+ 
         if t != 0 && t != 1 && abs(t) > 0.05 {
             
             let fromDate = addWeak(date: targetPage!.date, count: -(t == 0 ? 0: t < 0 ? -1 : 1))
@@ -157,13 +167,21 @@ extension TimetablePageVC: UIScrollViewDelegate {
             let from = dictOffsets[fromDate] ?? -50
             let to = dictOffsets[targetPage!.date] ?? -50
             
-            timetableNavbar.blurAnimator.fractionComplete = lerp(calculateBlurByScroll(from), calculateBlurByScroll(to), abs(t))
+            updateBlurEffect(lerp(calculateBlurByScroll(from), calculateBlurByScroll(to), abs(t)))
             
-            DispatchQueue.main.async { [self] in
-                self.debug.text = "\(from) \t-> \(to)\t\(fromDate)\t\(self.targetPage!.date)\tp: \(NSString(format: "%.2f", t))"
-            }
+//            Для дебага при нахождение багов
+//            DispatchQueue.main.async { [self] in
+//                self.debug.text = "\(from) \t-> \(to)\t\(fromDate)\t\(self.targetPage!.date)\tp: \(NSString(format: "%.2f", t))"
+//            }
         }
 
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let t = scrollView.contentOffset.x / view.bounds.width - 1
+        if (targetContentOffset.pointee.x == view.bounds.width) {
+            skipNextAppear = addWeak(date: targetPage!.date, count: -(t == 0 ? 0: t < 0 ? -1 : 1))
+        }
     }
 }
 
