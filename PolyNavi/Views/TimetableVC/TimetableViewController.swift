@@ -16,7 +16,7 @@ class TimetableViewController: UIViewController {
 
     internal lazy var tableView: UITableView = {
         $0.register(LessonCellView.self, forCellReuseIdentifier: LessonCellView.identifire)
-        $0.register(EmptyLessonTableViewCell.self, forCellReuseIdentifier: EmptyLessonTableViewCell.identifire)
+        $0.register(TimetableBreakTableViewCell.self, forCellReuseIdentifier: TimetableBreakTableViewCell.identifire)
         $0.register(DateTableViewCell.self, forHeaderFooterViewReuseIdentifier: DateTableViewCell.identifire)
         $0.register(SkeletonDateTableViewCell.self, forCellReuseIdentifier: SkeletonDateTableViewCell.identifire)
         $0.register(SkeletonLessonCellView.self, forCellReuseIdentifier: SkeletonLessonCellView.identifire)
@@ -78,7 +78,7 @@ private extension TimetableViewController {
                 guard let response = response.data else { return }
                 let timetable = TimetableWeek.convert(response)
                 self.arrayOfDaysWithLessons = timetable.days.map { pair in
-                    return TimetableWeek.TimetableDay(date: pair.date, lessons: LessonModel.createCorrectTimeTable(currentArray: pair.lessons))
+                    return TimetableWeek.TimetableDay(date: pair.date, timetableCell: LessonModel.createCorrectTimeTable(currentArray: pair.timetableCell))
                 }
                 DispatchQueue.main.async { [weak self] in
                     self?.tableView.stopSkeletonAnimation()

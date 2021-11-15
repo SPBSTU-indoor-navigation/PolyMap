@@ -13,14 +13,19 @@ struct TimetableWeek {
     
     struct TimetableDay {
         let date: Date?
-        var lessons: [LessonModel]
+        var timetableCell: [TimetableCellModel]
     }
     
-    static var dateFormmater: DateFormatter = {
-        let formmater = DateFormatter()
-        formmater.dateFormat = "yyyy-MM-dd"
-        return formmater
-    }()
+    static var dateParser: DateFormatter = {
+        $0.dateFormat = "yyyy-MM-dd"
+        return $0
+    }(DateFormatter())
+    
+    static var dateTimeParser: DateFormatter = {
+        $0.locale = Locale(identifier: "ru_RU")
+        $0.dateFormat = "yyyy-MM-dd HH:mm"
+        return $0
+    }(DateFormatter())
 
     
     static func convert(_ t: Timetable) -> TimetableWeek {
@@ -30,55 +35,65 @@ struct TimetableWeek {
                 let audName = aud.building.name + ", " + aud.name
                 
                 return LessonModel(subjectName: lesson.subject,
-                                   timeStart: lesson.time_start,
-                                   timeEnd: lesson.time_end,
-                                   type: lesson.typeObj.name,
+                                   timeStart: dateTimeParser.date(from: day.date + " " + lesson.time_start)!,
+                                   timeEnd: dateTimeParser.date(from: day.date + " " + lesson.time_end)!,
+                                   type: LessonModel.LessonType.parse(lesson.typeObj.name),
+                                   typeName: lesson.typeObj.name,
                                    place: audName,
                                    teacher: lesson.teachers?[0].full_name ?? "")
                 }
             
-            return TimetableDay(date: dateFormmater.date(from: day.date), lessons: lessons)
+            return TimetableDay(date: dateParser.date(from: day.date), timetableCell: lessons)
         }
         
         return TimetableWeek(days: days)
     }
 }
 
-struct LessonModel {
+protocol TimetableCellModel { }
+
+struct BreakModel: TimetableCellModel {
+    let timeStart: Date
+    let timeEnd: Date
+}
+
+struct LessonModel: TimetableCellModel {
     let subjectName: String
-    let timeStart: String
-    let timeEnd: String
-    let type: String
+    let timeStart: Date
+    let timeEnd: Date
+    let type: LessonType
+    let typeName: String
     let place: String
     let teacher: String
     
-    public func isEmptyLesson() -> Bool {
-        return subjectName.isEmpty && type.isEmpty && place.isEmpty && teacher.isEmpty
-    }
-    
-    public func isLecture() -> Bool {
-        type == "Лекции"
-    }
-    
-    static func createEmptyLesson(withStartTime: String, andEndTime: String) -> LessonModel {
-        return LessonModel(subjectName: "", timeStart: withStartTime, timeEnd: andEndTime, type: "", place: "", teacher: "")
-    }
-    
-    static func createCorrectTimeTable(currentArray: [LessonModel]) -> [LessonModel] {
-        var correctArray: [LessonModel] = []
-        correctArray.append(currentArray[0])
-        if (currentArray.count == 1) {
-            return correctArray
+    enum LessonType {
+        case Lecture
+        case Practice
+        case Other
+        
+        static func parse(_ name: String) -> LessonType {
+            switch name {
+            case "Лекции":
+                return .Lecture
+            case "Практика":
+                return .Practice
+            default:
+                return .Other
+            }
         }
+    }
+    
+    static func createCorrectTimeTable(currentArray: [TimetableCellModel]) -> [TimetableCellModel] {
+        var correctArray: [TimetableCellModel] = []
+        correctArray.append(currentArray[0])
+        
         for i in 1..<currentArray.count {
-            let indexTwoDotPrev = currentArray[i - 1].timeStart.firstIndex(where: {$0 == ":"})
-            let indexTwoDotNext = currentArray[i].timeStart.firstIndex(where: {$0 == ":"})
-            let timePrev = currentArray[i - 1].timeStart
-            let timeNext = currentArray[i].timeStart
-            let intTimePrev = Int(timePrev[timePrev.startIndex..<indexTwoDotPrev!])
-            let intTimeNext = Int(timeNext[timeNext.startIndex..<indexTwoDotNext!])
-            if intTimeNext! - intTimePrev! > 2 {
-                correctArray.append(createEmptyLesson(withStartTime: currentArray[i - 1].timeEnd, andEndTime: currentArray[i].timeStart))
+            if let currentLesson = currentArray[i] as? LessonModel {
+                if let lastLesson = currentArray[i - 1] as? LessonModel {
+                    if lastLesson.timeEnd.distance(to: currentLesson.timeStart) >= 1 * 60 * 60 {
+                        correctArray.append(BreakModel(timeStart: lastLesson.timeEnd, timeEnd: currentLesson.timeStart))
+                    }
+                }
             }
             correctArray.append(currentArray[i])
         }

@@ -34,6 +34,13 @@ class DateTableViewCell: UITableViewHeaderFooterView {
         return $0
     }(UILabel())
     
+    private lazy var circle: UIView = {
+        $0.backgroundColor = .systemBlue
+        $0.layer.cornerRadius = 5
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIView())
+    
     private lazy var emptyDataView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 3
@@ -53,34 +60,43 @@ class DateTableViewCell: UITableViewHeaderFooterView {
     }
     
     private func setView() {
-        self.mainBackView.addSubview(emptyDataView)
-        self.mainBackView.addSubview(dateLabel)
-        self.addSubview(mainBackView)
+        mainBackView.addSubview(emptyDataView)
+        mainBackView.addSubview(dateLabel)
+        mainBackView.addSubview(circle)
+
+        addSubview(mainBackView)
+        
         
         NSLayoutConstraint.activate([
-            self.mainBackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
-            self.mainBackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.mainBackView.widthAnchor.constraint(greaterThanOrEqualTo: dateLabel.widthAnchor, constant: 50),
-            self.mainBackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 150),
-            self.mainBackView.heightAnchor.constraint(equalTo: dateLabel.heightAnchor, constant: 5),
+            mainBackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
+            mainBackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            mainBackView.widthAnchor.constraint(greaterThanOrEqualTo: dateLabel.widthAnchor, constant: 50),
+            mainBackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 150),
+            mainBackView.heightAnchor.constraint(equalTo: dateLabel.heightAnchor, constant: 5),
             
-            self.dateLabel.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
-            self.dateLabel.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
-            self.emptyDataView.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
-            self.emptyDataView.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
-            self.emptyDataView.heightAnchor.constraint(equalToConstant: 2),
-            self.emptyDataView.widthAnchor.constraint(equalToConstant: 75),
-            self.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
+            circle.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
+            circle.centerXAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -10),
+            circle.widthAnchor.constraint(equalToConstant: 10),
+            circle.heightAnchor.constraint(equalToConstant: 10),
+            
+            dateLabel.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
+            dateLabel.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
+            emptyDataView.centerYAnchor.constraint(equalTo: mainBackView.centerYAnchor),
+            emptyDataView.centerXAnchor.constraint(equalTo: mainBackView.centerXAnchor),
+            emptyDataView.heightAnchor.constraint(equalToConstant: 2),
+            emptyDataView.widthAnchor.constraint(equalToConstant: 75),
+            bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor),
         ])
     }
     
     public func configure(withDate date: Date?) {
         if let wrapDate = date {
-            self.dateLabel.text = self.formmater.string(from: wrapDate)
-            self.emptyDataView.isHidden = true
+            dateLabel.text = formmater.string(from: wrapDate)
+            emptyDataView.isHidden = true
+            circle.isHidden = !Calendar.current.isDate(Date(), inSameDayAs: date!)
         } else {
-            self.dateLabel.isHidden = true
-            self.emptyDataView.isHidden = false
+            dateLabel.isHidden = true
+            emptyDataView.isHidden = false
         }
     }
 }

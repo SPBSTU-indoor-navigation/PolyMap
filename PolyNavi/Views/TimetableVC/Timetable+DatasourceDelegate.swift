@@ -14,7 +14,7 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayOfDaysWithLessons[section].lessons.count
+        return arrayOfDaysWithLessons[section].timetableCell.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -27,23 +27,25 @@ extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let element = arrayOfDaysWithLessons[indexPath.section].lessons[indexPath.row]
+        let element = arrayOfDaysWithLessons[indexPath.section].timetableCell[indexPath.row]
         
-        if element.isEmptyLesson() {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyLessonTableViewCell.identifire) as? EmptyLessonTableViewCell else {
+        if let lessonBreak = element as? BreakModel {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableBreakTableViewCell.identifire) as? TimetableBreakTableViewCell else {
                 return UITableViewCell()
             }
             
-            cell.configure(time: element.timeStart + "-" + element.timeEnd)
+            cell.configure(model: lessonBreak)
+            return cell
+        } else if let lesson = element as? LessonModel {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LessonCellView.identifire) as? LessonCellView else {
+                return UITableViewCell()
+            }
+            
+            cell.configure(model: lesson)
             return cell
         }
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LessonCellView.identifire) as? LessonCellView else {
-            return UITableViewCell()
-        }
-        
-        cell.configure(model: element)
-        return cell
+        return UITableViewCell()
     }
 }
 
