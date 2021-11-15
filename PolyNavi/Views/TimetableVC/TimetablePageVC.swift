@@ -70,7 +70,7 @@ class TimetablePageVC: UIPageViewController  {
         
         
         var newSafeArea = UIEdgeInsets()
-        newSafeArea.top += 50
+        newSafeArea.top += timetableNavbar.height
         self.additionalSafeAreaInsets = newSafeArea
         
         view.addSubview(timetableNavbar)
@@ -79,7 +79,7 @@ class TimetablePageVC: UIPageViewController  {
             timetableNavbar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             timetableNavbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             timetableNavbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            timetableNavbar.heightAnchor.constraint(equalToConstant: 50),
+            timetableNavbar.heightAnchor.constraint(equalToConstant: timetableNavbar.height),
 //            debug.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
 //            debug.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
 //            debug.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -112,7 +112,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         let vc = TimetableViewController(date: date)
         vc.willAppear = willAppear
         vc.updateContentOffsetBlock = updateContentOffsetBlock
-        dictOffsets[date] = -50
+        dictOffsets[date] = -timetableNavbar.height
         return vc
     }
     
@@ -149,7 +149,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
 extension TimetablePageVC: UIScrollViewDelegate {
     
     func calculateBlurByScroll(_ offset: CGFloat) -> CGFloat {
-        return min(1, max(0, (offset + 50) / 5))
+        return min(1, max(0, (offset + timetableNavbar.height) / 5))
     }
     
     // Возвращает значение между from и to пропорционально progress. Т.е. когда progress == 0 вернётся from, а когда progress == 1 вернётся to
@@ -164,8 +164,8 @@ extension TimetablePageVC: UIScrollViewDelegate {
             
             let fromDate = addWeak(date: targetPage!.date, count: -(t == 0 ? 0: t < 0 ? -1 : 1))
             
-            let from = dictOffsets[fromDate] ?? -50
-            let to = dictOffsets[targetPage!.date] ?? -50
+            let from = dictOffsets[fromDate] ?? -timetableNavbar.height
+            let to = dictOffsets[targetPage!.date] ?? -timetableNavbar.height
             
             updateBlurEffect(lerp(calculateBlurByScroll(from), calculateBlurByScroll(to), abs(t)))
             

@@ -9,6 +9,8 @@ import UIKit
 
 class TimetableNavbar: UIView  {
     
+    let height: CGFloat = 50.0
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setViews()
