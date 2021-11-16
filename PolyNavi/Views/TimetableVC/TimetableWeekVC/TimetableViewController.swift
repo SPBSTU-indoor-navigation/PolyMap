@@ -13,7 +13,9 @@ class TimetableViewController: UIViewController {
     var date = Date()
     var willAppear: ((TimetableViewController) -> Void)?
     var updateContentOffsetBlock: ((TimetableViewController, CGFloat) -> Void)?
+    var updateButtonTitle: ((Bool, Bool) -> Void)?
     var appeared = false
+    var checkCurrentDateAfterLoading: Bool = false
     
     init(date: Date) {
         super.init(nibName: nil, bundle: nil)
@@ -33,12 +35,17 @@ class TimetableViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if Calendar.current.isDate(date, inSameDayAs: Date()) {
+            self.checkCurrentDateAfterLoading = true
+        }
         willAppear?(self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateContentOffsetBlock?(self, tableView.contentOffset.y)
+        let currentDate = Calendar.current.isDate(date, inSameDayAs: Date())
+        updateButtonTitle?(currentDate, arrayOfDaysWithLessons.count == 0)
         appeared = true
     }
     
@@ -126,6 +133,15 @@ class TimetableViewController: UIViewController {
         }
     }
     
+    public func scrollToCurrentDate(date: Date) {
+        guard let currentIndex = arrayOfDaysWithLessons.firstIndex(where: { Calendar.current.isDate($0.date!, inSameDayAs: date) })  else {
+            return
+        }
+        
+        let indexPath = IndexPath(row: 0, section: currentIndex)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
 }
 
 
@@ -188,7 +204,10 @@ extension TimetableViewController {
                 self.tableView.refreshControl = self.refreshControl
                 self.emptyWeek.isHidden = !self.arrayOfDaysWithLessons.isEmpty
                 self.tableView.isHidden = self.arrayOfDaysWithLessons.isEmpty
-
+                if self.checkCurrentDateAfterLoading {
+                    let indexCurrent = self.arrayOfDaysWithLessons.firstIndex(where: {Calendar.current.isDate($0.date!, inSameDayAs: Date())})
+                    self.updateButtonTitle?(true, indexCurrent == nil)
+                }
             }
         }
     }

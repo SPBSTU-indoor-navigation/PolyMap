@@ -11,6 +11,9 @@ Timetable.title = "Timetable";
 Timetable.lessonsBreak = "Break";
 Timetable.editButton = "Settings";
 Timetable.emptyWeek = "На этой неделе занятий нет. Можно отдыхать!"; //TODO: translate
+Timetable.toTodayTimetable = "Сегодня";
+Timetable.notHaveCurrentDay = "Нет пар на сегодня";
+Timetable.toCurrentWeek = "К текущей неделe";
 
 //MARK:- Setting timetable strings
 Settings.title = "Settings";

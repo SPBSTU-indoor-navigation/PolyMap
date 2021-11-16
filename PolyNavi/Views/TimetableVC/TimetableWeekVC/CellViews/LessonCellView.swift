@@ -144,24 +144,23 @@ extension LessonCellView {
     
         
         currentTimeAnchor = timeCursor.centerYAnchor.constraint(equalTo: divider.topAnchor, constant: 20)
-        dividerAnchor = divider.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0)
         NSLayoutConstraint.activate([
             mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             
             timeStart.topAnchor.constraint(equalTo: subjectNameLabel.topAnchor),
-            timeStart.trailingAnchor.constraint(equalTo: divider.leadingAnchor),
             timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor),
+            timeStart.widthAnchor.constraint(equalToConstant: 80),
             
             timeEnd.bottomAnchor.constraint(equalTo: placeLabel.bottomAnchor),
-            timeEnd.trailingAnchor.constraint(equalTo: divider.leadingAnchor),
             timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor),
+            timeEnd.widthAnchor.constraint(equalTo: timeStart.widthAnchor),
             
             divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 5),
+            divider.leadingAnchor.constraint(equalTo: timeStart.trailingAnchor, constant: 2),
             divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
             divider.widthAnchor.constraint(equalToConstant: 2),
-            dividerAnchor!,
             
             timeCursor.widthAnchor.constraint(equalToConstant: timeCursorRadius + timeCursorBorder),
             timeCursor.heightAnchor.constraint(equalToConstant: timeCursorRadius + timeCursorBorder),
@@ -200,8 +199,12 @@ extension LessonCellView {
         }(DateFormatter())
         
         self.model = model
-        timeEnd.text = timeFormatter.string(from: model.timeEnd)
-        timeStart.text = timeFormatter.string(from: model.timeStart)
+        var timeStartStr = timeFormatter.string(from: model.timeStart)
+        var timeEndStr = timeFormatter.string(from: model.timeEnd)
+        timeStartStr = (timeStartStr.count == 7 ? "0" : "") + timeStartStr
+        timeEndStr = (timeEndStr.count == 7 ? "0" : "") + timeEndStr
+        timeEnd.text = timeEndStr
+        timeStart.text = timeStartStr
         subjectNameLabel.text = model.subjectName
         typeOfLessonLabel.text = model.typeName
         teacherNameLabel.text = model.teacher

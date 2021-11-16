@@ -14,6 +14,7 @@ class TimetablePageVC: UIPageViewController  {
     var appeared = false
     
     var dictOffsets: [Date:CGFloat] = [:]
+    var currentVC: TimetableViewController?
     
     
     init() {
@@ -38,6 +39,9 @@ class TimetablePageVC: UIPageViewController  {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.rightButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         $0.leftButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+        $0.toCorrectPositionButton.addTarget(self, action: #selector(scrollToCurrentPageOrRow), for: .touchUpInside)
+        $0.forwardPage.addTarget(self, action: #selector(forwardPageAction), for: .touchUpInside)
+        $0.reversePage.addTarget(self, action: #selector(reversePageAction), for: .touchUpInside)
         return $0
     }(TimetableNavbar())
 
@@ -74,31 +78,17 @@ class TimetablePageVC: UIPageViewController  {
         self.additionalSafeAreaInsets = newSafeArea
         
         view.addSubview(timetableNavbar)
-//        view.addSubview(debug)
         NSLayoutConstraint.activate([
             timetableNavbar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             timetableNavbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             timetableNavbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             timetableNavbar.heightAnchor.constraint(equalToConstant: timetableNavbar.height),
-//            debug.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-//            debug.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-//            debug.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         targetPage = createTimetableVS(Date())
+        currentVC = targetPage
         setViewControllers([targetPage!], direction: .forward, animated: true, completion: nil)
     }
-    
-    //    Нужно будет для дебага
-    //    private lazy var debug: UILabel = {
-    //        $0.numberOfLines = 0
-    //        $0.lineBreakMode = .byWordWrapping
-    //        $0.font = .boldSystemFont(ofSize: 20)
-    //        $0.backgroundColor = .systemBackground
-    //        $0.text = ""
-    //        $0.translatesAutoresizingMaskIntoConstraints = false
-    //        return $0
-    //    }(UILabel())
 }
 
 //MARK:- PageViewController
@@ -112,6 +102,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         let vc = TimetableViewController(date: date)
         vc.willAppear = willAppear
         vc.updateContentOffsetBlock = updateContentOffsetBlock
+        vc.updateButtonTitle = updateButtonTitle
         dictOffsets[date] = -timetableNavbar.height
         return vc
     }
@@ -119,6 +110,21 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
     func updateContentOffsetBlock(vc: TimetableViewController, offset: CGFloat) -> Void {
         dictOffsets[vc.date] = offset
         updateBlurEffect(calculateBlurByScroll(offset))
+        currentVC = vc
+    }
+    
+    func updateButtonTitle(isCurrentVC: Bool, withoutCurrentDate: Bool) {
+        timetableNavbar.toCorrectPositionButton.isEnabled = true
+        if isCurrentVC {
+            if withoutCurrentDate {
+                timetableNavbar.toCorrectPositionButton.setTitle(L10n.Timetable.notHaveCurrentDay, for: .normal)
+                timetableNavbar.toCorrectPositionButton.isEnabled = false
+            } else {
+                timetableNavbar.toCorrectPositionButton.setTitle(L10n.Timetable.toTodayTimetable, for: .normal)
+            }
+        } else {
+            timetableNavbar.toCorrectPositionButton.setTitle(L10n.Timetable.toCurrentWeek, for: .normal)
+        }
     }
     
     func willAppear(page: TimetableViewController) {
@@ -152,7 +158,6 @@ extension TimetablePageVC: UIScrollViewDelegate {
         return min(1, max(0, (offset + timetableNavbar.height) / 5))
     }
     
-    // Возвращает значение между from и to пропорционально progress. Т.е. когда progress == 0 вернётся from, а когда progress == 1 вернётся to
     func lerp(_ from: CGFloat, _ to: CGFloat, _ progress: CGFloat) -> CGFloat {
         return from + (progress * (to - from))
     }
@@ -168,11 +173,6 @@ extension TimetablePageVC: UIScrollViewDelegate {
             let to = dictOffsets[targetPage!.date] ?? -timetableNavbar.height
             
             updateBlurEffect(lerp(calculateBlurByScroll(from), calculateBlurByScroll(to), abs(t)))
-            
-//            Для дебага при нахождение багов
-//            DispatchQueue.main.async { [self] in
-//                self.debug.text = "\(from) \t-> \(to)\t\(fromDate)\t\(self.targetPage!.date)\tp: \(NSString(format: "%.2f", t))"
-//            }
         }
 
     }
@@ -212,4 +212,36 @@ extension TimetablePageVC {
         self.present(navSettingVC, animated: true)
     }
     
+    @objc
+    func scrollToCurrentPageOrRow(_ sender: UIButton) {
+        guard let currentVC = self.currentVC else {return}
+        if Calendar.current.isDate(currentVC.date, inSameDayAs: Date()) {
+            currentVC.scrollToCurrentDate(date: currentVC.date)
+            return
+        }
+        
+        let direction: UIPageViewController.NavigationDirection = (Date() > currentVC.date) ? .forward : .reverse
+        self.targetPage = createTimetableVS(Date())
+        self.currentVC = targetPage
+        setViewControllers([self.targetPage!], direction: direction, animated: true)
+    }
+    
+    @objc
+    func forwardPageAction(_ sender: UIButton) {
+        scrollToNextPage(direction: .forward)
+    }
+    
+    @objc
+    func reversePageAction(_ sender: UIButton) {
+        scrollToNextPage(direction: .reverse)
+    }
+    
+    func scrollToNextPage(direction: UIPageViewController.NavigationDirection) {
+        guard let current = self.currentVC else {
+            return
+        }
+        self.targetPage = createTimetableVS(addWeak(date: current.date, count: direction == .forward ? +1 : -1))
+        self.currentVC = targetPage
+        setViewControllers([self.targetPage!], direction: direction, animated: true)
+    }
 }

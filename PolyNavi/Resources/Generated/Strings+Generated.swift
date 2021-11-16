@@ -46,8 +46,14 @@ internal enum L10n {
     internal static let emptyWeek = L10n.tr("Localizable", "Timetable.emptyWeek")
     /// Break
     internal static let lessonsBreak = L10n.tr("Localizable", "Timetable.lessonsBreak")
+    /// Нет пар на сегодня
+    internal static let notHaveCurrentDay = L10n.tr("Localizable", "Timetable.notHaveCurrentDay")
     /// Timetable
     internal static let title = L10n.tr("Localizable", "Timetable.title")
+    /// К текущей неделe
+    internal static let toCurrentWeek = L10n.tr("Localizable", "Timetable.toCurrentWeek")
+    /// Сегодня
+    internal static let toTodayTimetable = L10n.tr("Localizable", "Timetable.toTodayTimetable")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
