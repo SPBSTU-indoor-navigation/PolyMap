@@ -48,6 +48,7 @@ class TimetablePageVC: UIPageViewController  {
     private lazy var timetableToolBar: TimetableToolBar = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.toCorrectPositionButton.addTarget(self, action: #selector(scrollToCurrentPageOrRow), for: .touchUpInside)
+        $0.iCal.addTarget(self, action: #selector(getICal), for: .touchUpInside)
         return $0
     }(TimetableToolBar())
 
@@ -242,6 +243,20 @@ extension TimetablePageVC {
         self.targetPage = createTimetableVS(Date())
         self.currentVC = targetPage
         setViewControllers([self.targetPage!], direction: direction, animated: true)
+    }
+    
+    @objc
+    func getICal(_ sender: UIButton) {
+        let provider = TimetableProvider.shared
+        guard
+            let facultyID = GroupsAndTeacherStorage.shared.institute?.ID,
+            let groupID = GroupsAndTeacherStorage.shared.groupNumber?.ID,
+            let date = currentVC?.date,
+            let url = URL(string: "https://ruz.spbstu.ru/faculty/\(facultyID)/groups/\(groupID)/ical?date=\(provider.apiFormatDate(provider.startOfWeek(date)))")
+        else {
+            return
+        }
+        UIApplication.shared.open(url)
     }
     
     @objc
