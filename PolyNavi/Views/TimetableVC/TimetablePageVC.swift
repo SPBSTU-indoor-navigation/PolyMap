@@ -39,11 +39,17 @@ class TimetablePageVC: UIPageViewController  {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.rightButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         $0.leftButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
-        $0.toCorrectPositionButton.addTarget(self, action: #selector(scrollToCurrentPageOrRow), for: .touchUpInside)
+//        $0.toCorrectPositionButton.addTarget(self, action: #selector(scrollToCurrentPageOrRow), for: .touchUpInside)
         $0.forwardPage.addTarget(self, action: #selector(forwardPageAction), for: .touchUpInside)
         $0.reversePage.addTarget(self, action: #selector(reversePageAction), for: .touchUpInside)
         return $0
     }(TimetableNavbar())
+    
+    private lazy var timetableToolBar: TimetableToolBar = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.toCorrectPositionButton.addTarget(self, action: #selector(scrollToCurrentPageOrRow), for: .touchUpInside)
+        return $0
+    }(TimetableToolBar())
 
     
     override func viewDidLoad() {
@@ -75,14 +81,21 @@ class TimetablePageVC: UIPageViewController  {
         
         var newSafeArea = UIEdgeInsets()
         newSafeArea.top += timetableNavbar.height
+        newSafeArea.bottom += timetableToolBar.height
         self.additionalSafeAreaInsets = newSafeArea
         
         view.addSubview(timetableNavbar)
+        view.addSubview(timetableToolBar)
         NSLayoutConstraint.activate([
-            timetableNavbar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            timetableNavbar.topAnchor.constraint(equalTo: view.topAnchor),
             timetableNavbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             timetableNavbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             timetableNavbar.heightAnchor.constraint(equalToConstant: timetableNavbar.height),
+            
+            timetableToolBar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            timetableToolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            timetableToolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            timetableToolBar.heightAnchor.constraint(equalToConstant: timetableToolBar.height),
         ])
         
         targetPage = createTimetableVS(Date())
@@ -103,6 +116,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         vc.willAppear = willAppear
         vc.updateContentOffsetBlock = updateContentOffsetBlock
         vc.updateButtonTitle = updateButtonTitle
+        vc.updateNavBarDate = updateNavBarDate
         dictOffsets[date] = -timetableNavbar.height
         return vc
     }
@@ -114,17 +128,21 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
     }
     
     func updateButtonTitle(isCurrentVC: Bool, withoutCurrentDate: Bool) {
-        timetableNavbar.toCorrectPositionButton.isEnabled = true
-        if isCurrentVC {
-            if withoutCurrentDate {
-                timetableNavbar.toCorrectPositionButton.setTitle(L10n.Timetable.notHaveCurrentDay, for: .normal)
-                timetableNavbar.toCorrectPositionButton.isEnabled = false
-            } else {
-                timetableNavbar.toCorrectPositionButton.setTitle(L10n.Timetable.toTodayTimetable, for: .normal)
-            }
+        timetableToolBar.toCorrectPositionButton.isEnabled = true
+        if withoutCurrentDate {
+            timetableToolBar.toCorrectPositionButton.setTitle(L10n.Timetable.notHaveCurrentDay, for: .normal)
+            timetableToolBar.toCorrectPositionButton.isEnabled = false
         } else {
-            timetableNavbar.toCorrectPositionButton.setTitle(L10n.Timetable.toCurrentWeek, for: .normal)
+            timetableToolBar.toCorrectPositionButton.setTitle(L10n.Timetable.toTodayTimetable, for: .normal)
         }
+    }
+    
+    func updateNavBarDate(date: Date, week: Timetable.Week?) {
+        if let weekDateWrap = week {
+            self.timetableNavbar.setDateLabel(with: weekDateWrap)
+            return
+        }
+        self.timetableNavbar.setDateLabel(with: date)
     }
     
     func willAppear(page: TimetableViewController) {

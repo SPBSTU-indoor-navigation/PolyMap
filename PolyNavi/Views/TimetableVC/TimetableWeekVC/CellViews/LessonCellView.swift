@@ -51,7 +51,7 @@ class LessonCellView: UITableViewCell {
         
         $0.backgroundColor = .secondarySystemGroupedBackground
         $0.layer.cornerRadius = timeCursorRadius/2
-       
+        
         $0.translatesAutoresizingMaskIntoConstraints = false
         
         $0.addSubview(center)
@@ -144,21 +144,22 @@ extension LessonCellView {
     
         
         currentTimeAnchor = timeCursor.centerYAnchor.constraint(equalTo: divider.topAnchor, constant: 20)
+        dividerAnchor = divider.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
         NSLayoutConstraint.activate([
             mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             
             timeStart.topAnchor.constraint(equalTo: subjectNameLabel.topAnchor),
-            timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor),
-            timeStart.widthAnchor.constraint(equalToConstant: 80),
+            timeStart.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            timeStart.trailingAnchor.constraint(equalTo: divider.leadingAnchor),
             
             timeEnd.bottomAnchor.constraint(equalTo: placeLabel.bottomAnchor),
-            timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor),
-            timeEnd.widthAnchor.constraint(equalTo: timeStart.widthAnchor),
+            timeEnd.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            timeEnd.trailingAnchor.constraint(equalTo: divider.leadingAnchor),
             
             divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 5),
-            divider.leadingAnchor.constraint(equalTo: timeStart.trailingAnchor, constant: 2),
+            dividerAnchor!,
             divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
             divider.widthAnchor.constraint(equalToConstant: 2),
             
@@ -228,7 +229,7 @@ extension LessonCellView {
         
         let timeStartSize = (timeStart.text ?? "22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
         let timeEndSize = (timeEnd.text ?? "22:22").size(withAttributes: [NSAttributedString.Key.font: timeEnd.font!])
-        let maxTime = ("22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
+        let maxTime = ((timeStart.text!.count > 5) ? "22:22 AM" : "22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
         dividerAnchor?.constant = max(max(timeEndSize.width, timeStartSize.width) + 10 , maxTime.width + 20)
         
         setTimeCursor()

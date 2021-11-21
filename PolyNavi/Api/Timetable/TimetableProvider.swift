@@ -138,6 +138,16 @@ class TimetableProvider {
         load(url: "/teachers/\(teacher.id)/scheduler/", params: [ "date": apiFormatDate(startOfWeek(startDate)) ], completion: t)
     }
     
+    func loadICal(faculty: Faculty, group: Group, date: Date) {
+        let params = ["date": apiFormatDate(startOfWeek(date))]
+        let url = "/faculty/\(faculty.id)/groups/\(group.id)/ical"
+        
+        AF.download(BASE_URL + url, method: .get, parameters: params)
+            .responseData() { response in
+                print(response)
+            }
+    }
+    
     //MARK:- Support Functions
     func startOfWeek(_ date: Date) -> Date {
         let cal = Calendar(identifier: .iso8601)

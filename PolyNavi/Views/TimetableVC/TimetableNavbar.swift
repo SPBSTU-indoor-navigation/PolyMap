@@ -11,13 +11,18 @@ class TimetableNavbar: UIView  {
     
     let height: CGFloat = 100.0
     
+    private lazy var stringDateFormatter: DateFormatter = {
+        $0.dateFormat = "dd.MM"
+        return $0
+    }(DateFormatter())
+    
+    private lazy var dateFormatter: DateFormatter = {
+        $0.dateFormat = "yyyy.MM.dd"
+        return $0
+    }(DateFormatter())
+    
     public lazy var bottomLine: UIView = {
         $0.backgroundColor = .clear
-        return $0
-    }(UIView())
-    
-    private lazy var dividerLine: UIView = {
-        $0.backgroundColor = .systemGray3
         return $0
     }(UIView())
     
@@ -39,13 +44,34 @@ class TimetableNavbar: UIView  {
     
     public lazy var toCorrectPositionButton: UIButton = {
         $0.setTitle(L10n.Timetable.toCurrentWeek, for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 15)
+        $0.titleLabel?.font = .systemFont(ofSize: 18)
         return $0
     }(UIButton(type: .system))
     
     public lazy var leftButton: UIButton = {
         return $0
     }(UIButton(type: .close))
+    
+    private lazy var dateLabel: UILabel = {
+        $0.font = .preferredFont(forTextStyle: .callout)
+        $0.lineBreakMode = .byWordWrapping
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UILabel())
+    
+    private lazy var oddLabel: UILabel = {
+        $0.font = .preferredFont(forTextStyle: .caption1)
+        $0.lineBreakMode = .byWordWrapping
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UILabel())
+    
+    private lazy var dateStackView: UIStackView = {
+        $0.spacing = 2
+        $0.alignment = .center
+        $0.axis = .vertical
+        return $0
+    }(UIStackView())
     
     private lazy var text: UILabel = {
         $0.numberOfLines = 0
@@ -71,7 +97,9 @@ class TimetableNavbar: UIView  {
     }
     
     func setViews() {
-        [blurBackground, bottomLine, text, rightButton, leftButton, toCorrectPositionButton, reversePage, forwardPage, dividerLine].forEach {
+        dateStackView.addArrangedSubview(dateLabel)
+        dateStackView.addArrangedSubview(oddLabel)
+        [blurBackground, bottomLine, text, rightButton, leftButton, reversePage, forwardPage, dateStackView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
         }
@@ -105,19 +133,32 @@ class TimetableNavbar: UIView  {
             leftButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             leftButton.centerYAnchor.constraint(equalTo: text.centerYAnchor),
             
-            toCorrectPositionButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            toCorrectPositionButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -0.5),
+//            toCorrectPositionButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            toCorrectPositionButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -0.5),
+            
+            dateStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            dateStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             
             reversePage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            reversePage.centerYAnchor.constraint(equalTo: toCorrectPositionButton.centerYAnchor),
+            reversePage.centerYAnchor.constraint(equalTo: dateStackView.centerYAnchor),
             
             forwardPage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
-            forwardPage.centerYAnchor.constraint(equalTo: toCorrectPositionButton.centerYAnchor),
-            
-            dividerLine.bottomAnchor.constraint(equalTo: forwardPage.topAnchor, constant: -10),
-            dividerLine.leadingAnchor.constraint(equalTo: leadingAnchor),
-            dividerLine.trailingAnchor.constraint(equalTo: trailingAnchor),
-            dividerLine.heightAnchor.constraint(equalToConstant: 2),
+            forwardPage.centerYAnchor.constraint(equalTo: dateStackView.centerYAnchor),
         ])
+    }
+    
+    public func setDateLabel(with week: Timetable.Week) {
+        let firstDay = dateFormatter.date(from: week.date_start)!
+        let lastDay = dateFormatter.date(from: week.date_end)!
+        dateLabel.text = "\(stringDateFormatter.string(from: firstDay)) - \(stringDateFormatter.string(from: lastDay))"
+        oddLabel.text = "\(week.is_odd ? "Четная" : "Нечетная")"
+        oddLabel.isHidden = false
+    }
+    
+    public func setDateLabel(with date: Date) {
+        let firstDay = TimetableProvider.shared.startOfWeek(date)
+        let lastDay = Calendar.current.date(byAdding: .day, value: 7, to: firstDay)!
+        dateLabel.text = "\(stringDateFormatter.string(from: firstDay)) - \(stringDateFormatter.string(from: lastDay))"
+        oddLabel.isHidden = true
     }
 }
