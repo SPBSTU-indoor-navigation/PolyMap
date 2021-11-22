@@ -12,7 +12,7 @@ class TimetableNavbar: UIView  {
     let height: CGFloat = 100.0
     
     private lazy var stringDateFormatter: DateFormatter = {
-        $0.dateFormat = "dd.MM"
+        $0.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMdd", options: 0, locale: Locale.current)!
         return $0
     }(DateFormatter())
     
