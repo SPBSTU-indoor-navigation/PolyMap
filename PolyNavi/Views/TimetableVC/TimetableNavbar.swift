@@ -16,6 +16,11 @@ class TimetableNavbar: UIView  {
         return $0
     }(DateFormatter())
     
+    private lazy var containerViewWithDate: UIView = {
+        $0.backgroundColor = .clear
+        return $0
+    }(UIView())
+    
     private lazy var dateFormatter: DateFormatter = {
         $0.dateFormat = "yyyy.MM.dd"
         return $0
@@ -99,7 +104,12 @@ class TimetableNavbar: UIView  {
     func setViews() {
         dateStackView.addArrangedSubview(dateLabel)
         dateStackView.addArrangedSubview(oddLabel)
-        [blurBackground, bottomLine, text, rightButton, leftButton, reversePage, forwardPage, dateStackView].forEach {
+        [reversePage, dateStackView, forwardPage].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.containerViewWithDate.addSubview($0)
+        }
+        
+        [blurBackground, bottomLine, text, rightButton, leftButton, containerViewWithDate].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
         }
@@ -133,17 +143,19 @@ class TimetableNavbar: UIView  {
             leftButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             leftButton.centerYAnchor.constraint(equalTo: text.centerYAnchor),
             
-//            toCorrectPositionButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            toCorrectPositionButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -0.5),
+            containerViewWithDate.topAnchor.constraint(equalTo: leftButton.bottomAnchor, constant: 5),
+            containerViewWithDate.bottomAnchor.constraint(equalTo: bottomAnchor),
+            containerViewWithDate.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerViewWithDate.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            dateStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            dateStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            dateStackView.centerXAnchor.constraint(equalTo: containerViewWithDate.centerXAnchor),
+            dateStackView.centerYAnchor.constraint(equalTo: containerViewWithDate.centerYAnchor),
             
             reversePage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            reversePage.centerYAnchor.constraint(equalTo: dateStackView.centerYAnchor),
+            reversePage.centerYAnchor.constraint(equalTo: containerViewWithDate.centerYAnchor),
             
             forwardPage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
-            forwardPage.centerYAnchor.constraint(equalTo: dateStackView.centerYAnchor),
+            forwardPage.centerYAnchor.constraint(equalTo: containerViewWithDate.centerYAnchor),
         ])
     }
     
@@ -151,8 +163,10 @@ class TimetableNavbar: UIView  {
         let firstDay = dateFormatter.date(from: week.date_start)!
         let lastDay = dateFormatter.date(from: week.date_end)!
         dateLabel.text = "\(stringDateFormatter.string(from: firstDay)) - \(stringDateFormatter.string(from: lastDay))"
-        oddLabel.text = "\(week.is_odd ? "Четная" : "Нечетная")"
-        oddLabel.isHidden = false
+        oddLabel.text = "\(week.is_odd ? L10n.Timetable.dataOddWeek : L10n.Timetable.dateEvenWeek)"
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.oddLabel.isHidden = false
+        }
     }
     
     public func setDateLabel(with date: Date) {

@@ -165,6 +165,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         if finished && completed {
             guard let pageVC = viewControllers?.first as? TimetableViewController else { return }
             targetPage = pageVC
+            updateNavBarDate(date: pageVC.date, week: targetPage?.weekData)
         }
     }
     

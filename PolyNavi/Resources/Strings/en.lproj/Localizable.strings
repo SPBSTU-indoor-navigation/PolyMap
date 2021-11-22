@@ -14,6 +14,9 @@ Timetable.emptyWeek = "На этой неделе занятий нет. Мож�
 Timetable.toTodayTimetable = "Сегодня";
 Timetable.notHaveCurrentDay = "Нет пар на сегодня";
 Timetable.toCurrentWeek = "К текущей неделe";
+Timetable.emptyViewRefreshButton = "Refresh";
+Timetable.dataOddWeek = "Нечетная";
+Timetable.dateEvenWeek = "Четная";
 
 //MARK:- Setting timetable strings
 Settings.title = "Settings";

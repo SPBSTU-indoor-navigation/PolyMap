@@ -40,8 +40,14 @@ internal enum L10n {
   }
 
   internal enum Timetable {
+    /// Нечетная
+    internal static let dataOddWeek = L10n.tr("Localizable", "Timetable.dataOddWeek")
+    /// Четная
+    internal static let dateEvenWeek = L10n.tr("Localizable", "Timetable.dateEvenWeek")
     /// Settings
     internal static let editButton = L10n.tr("Localizable", "Timetable.editButton")
+    /// Refresh
+    internal static let emptyViewRefreshButton = L10n.tr("Localizable", "Timetable.emptyViewRefreshButton")
     /// На этой неделе занятий нет. Можно отдыхать!
     internal static let emptyWeek = L10n.tr("Localizable", "Timetable.emptyWeek")
     /// Break

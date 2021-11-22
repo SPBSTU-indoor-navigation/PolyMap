@@ -8,7 +8,7 @@
 import UIKit
 
 class TimetableToolBar: UIView {
-    let height: CGFloat = 70.0
+    let height: CGFloat = 65.0
     
     public lazy var topLine: UIView = {
         $0.backgroundColor = .clear
@@ -70,10 +70,10 @@ class TimetableToolBar: UIView {
             topLine.heightAnchor.constraint(equalToConstant: 1),
             
             toCorrectPositionButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
-            toCorrectPositionButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -5),
+            toCorrectPositionButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
             
             iCal.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            iCal.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -5),
+            iCal.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
         ])
     }
 }

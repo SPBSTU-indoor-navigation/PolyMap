@@ -24,7 +24,7 @@ class TimetableEmptyView: UIView {
     }(UILabel())
     
     internal lazy var refreshButton: UIButton = {
-        $0.setTitle("Refresh", for: .normal)
+        $0.setTitle(L10n.Timetable.emptyViewRefreshButton, for: .normal)
         return $0
     }(UIButton(type: .system))
     
