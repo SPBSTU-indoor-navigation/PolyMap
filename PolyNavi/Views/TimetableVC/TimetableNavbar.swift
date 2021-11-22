@@ -47,12 +47,6 @@ class TimetableNavbar: UIView  {
         return $0
     }(UIButton(type: .system))
     
-    public lazy var toCorrectPositionButton: UIButton = {
-        $0.setTitle(L10n.Timetable.toCurrentWeek, for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 18)
-        return $0
-    }(UIButton(type: .system))
-    
     public lazy var leftButton: UIButton = {
         return $0
     }(UIButton(type: .close))

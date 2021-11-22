@@ -31,11 +31,6 @@ class TimetableViewController: UIViewController {
         return $0
     }(UIRefreshControl())
     
-    internal lazy var tableHeaderView: TimetableHeader = {
-        $0.backgroundColor = .clear
-        return $0
-    }(TimetableHeader(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 70)))
-    
     internal lazy var tableView: UITableView = {
         $0.register(LessonCellView.self, forCellReuseIdentifier: LessonCellView.identifire)
         $0.register(TimetableBreakTableViewCell.self, forCellReuseIdentifier: TimetableBreakTableViewCell.identifire)
@@ -235,13 +230,5 @@ internal extension TimetableViewController {
                 completion()
             }
         }
-    }
-    
-    func reloadWeekLabel() {
-        if let weekDateWrap = self.weekData {
-            self.tableHeaderView.setDateLabel(with: weekDateWrap)
-            return
-        }
-        self.tableHeaderView.setDateLabel(with: self.date)
     }
 }

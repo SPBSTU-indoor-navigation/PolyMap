@@ -57,7 +57,6 @@ class TimetableToolBar: UIView {
         
         blurAnimator.fractionComplete = 1
         
-        //TODO: разные констрейнты для разных экранов
         NSLayoutConstraint.activate([
             blurBackground.leadingAnchor.constraint(equalTo: leadingAnchor),
             blurBackground.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -66,7 +65,7 @@ class TimetableToolBar: UIView {
             
             topLine.trailingAnchor.constraint(equalTo: trailingAnchor),
             topLine.leadingAnchor.constraint(equalTo: leadingAnchor),
-            topLine.bottomAnchor.constraint(equalTo: topAnchor),
+            topLine.topAnchor.constraint(equalTo: topAnchor),
             topLine.heightAnchor.constraint(equalToConstant: 1),
             
             toCorrectPositionButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),

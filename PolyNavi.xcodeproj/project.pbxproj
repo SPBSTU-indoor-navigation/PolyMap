@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0530A99A27494B5200302C5F /* TimetableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530A99927494B5200302C5F /* TimetableHeader.swift */; };
 		0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530A99B274969C700302C5F /* TimetableToolBar.swift */; };
 		054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F6787270C7B4C00FCC07C /* AppDelegate.swift */; };
 		054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F6789270C7B4C00FCC07C /* SceneDelegate.swift */; };
@@ -38,7 +37,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0530A99927494B5200302C5F /* TimetableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimetableHeader.swift; path = PolyNavi/Views/TimetableVC/TimetableWeekVC/TimetableHeaderWithDate/TimetableHeader.swift; sourceTree = SOURCE_ROOT; };
 		0530A99B274969C700302C5F /* TimetableToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimetableToolBar.swift; path = PolyNavi/Views/TimetableVC/TimetableToolBar.swift; sourceTree = SOURCE_ROOT; };
 		054F6784270C7B4C00FCC07C /* PolyNavi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNavi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		054F6787270C7B4C00FCC07C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,21 +86,12 @@
 		05192B86270EE395001B2C57 /* TimetableWeekVC */ = {
 			isa = PBXGroup;
 			children = (
-				0530A99827494B3B00302C5F /* TimetableHeaderWithDate */,
 				05C4C82A27134C2600C22D61 /* CellViews */,
 				05C4C82C27134C5100C22D61 /* TimetableViewController.swift */,
 				05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */,
 				05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */,
 			);
 			path = TimetableWeekVC;
-			sourceTree = "<group>";
-		};
-		0530A99827494B3B00302C5F /* TimetableHeaderWithDate */ = {
-			isa = PBXGroup;
-			children = (
-				0530A99927494B5200302C5F /* TimetableHeader.swift */,
-			);
-			path = TimetableHeaderWithDate;
 			sourceTree = "<group>";
 		};
 		054F677B270C7B4B00FCC07C = {
@@ -412,7 +401,6 @@
 				05C32AC7271F4C3E0033B751 /* SettingsModel.swift in Sources */,
 				056F2D00271C5EB60063015B /* Strings+Generated.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
-				0530A99A27494B5200302C5F /* TimetableHeader.swift in Sources */,
 				054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */,
 				054F67AA270CD78D00FCC07C /* LessonCellView.swift in Sources */,
 				05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */,

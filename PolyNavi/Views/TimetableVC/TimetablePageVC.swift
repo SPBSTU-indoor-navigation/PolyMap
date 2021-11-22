@@ -39,7 +39,6 @@ class TimetablePageVC: UIPageViewController  {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.rightButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         $0.leftButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
-//        $0.toCorrectPositionButton.addTarget(self, action: #selector(scrollToCurrentPageOrRow), for: .touchUpInside)
         $0.forwardPage.addTarget(self, action: #selector(forwardPageAction), for: .touchUpInside)
         $0.reversePage.addTarget(self, action: #selector(reversePageAction), for: .touchUpInside)
         return $0
@@ -82,7 +81,7 @@ class TimetablePageVC: UIPageViewController  {
         
         var newSafeArea = UIEdgeInsets()
         newSafeArea.top += timetableNavbar.height
-        newSafeArea.bottom += timetableToolBar.height
+        newSafeArea.bottom += timetableToolBar.height + view.safeAreaInsets.bottom
         self.additionalSafeAreaInsets = newSafeArea
         
         view.addSubview(timetableNavbar)
@@ -96,7 +95,7 @@ class TimetablePageVC: UIPageViewController  {
             timetableToolBar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             timetableToolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             timetableToolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            timetableToolBar.heightAnchor.constraint(equalToConstant: timetableToolBar.height),
+            timetableToolBar.heightAnchor.constraint(equalToConstant: timetableToolBar.height + view.safeAreaInsets.bottom),
         ])
         
         targetPage = createTimetableVS(Date())
