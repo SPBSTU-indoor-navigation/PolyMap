@@ -16,6 +16,7 @@ Timetable.toCurrentWeek = "К текущей неделe";
 Timetable.emptyViewRefreshButton = "Refresh";
 Timetable.dataOddWeek = "Нечетная";
 Timetable.dateEvenWeek = "Четная";
+Timetable.iCal = "iCal";
 
 Settings.title = "Настройки";
 Settings.titleOfGroupsView = "Группы";

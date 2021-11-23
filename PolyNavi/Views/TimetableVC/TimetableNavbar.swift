@@ -16,6 +16,11 @@ class TimetableNavbar: UIView  {
         return $0
     }(DateFormatter())
     
+    private lazy var  containerForNavBarElement: UIView = {
+        $0.backgroundColor = .clear
+        return $0
+    }(UIView())
+    
     private lazy var containerViewWithDate: UIView = {
         $0.backgroundColor = .clear
         return $0
@@ -103,7 +108,12 @@ class TimetableNavbar: UIView  {
             self.containerViewWithDate.addSubview($0)
         }
         
-        [blurBackground, bottomLine, text, rightButton, leftButton, containerViewWithDate].forEach {
+        [text, rightButton, leftButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.containerForNavBarElement.addSubview($0)
+        }
+        
+        [blurBackground, bottomLine, containerForNavBarElement, containerViewWithDate].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
         }
@@ -128,13 +138,19 @@ class TimetableNavbar: UIView  {
             bottomLine.bottomAnchor.constraint(equalTo: bottomAnchor),
             bottomLine.heightAnchor.constraint(equalToConstant: 1),
             
-            text.centerXAnchor.constraint(equalTo: centerXAnchor),
-            text.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -20),
+            containerForNavBarElement.topAnchor.constraint(equalTo: topAnchor),
+            containerForNavBarElement.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerForNavBarElement.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerForNavBarElement.bottomAnchor.constraint(equalTo: centerYAnchor),
             
-            rightButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
+            text.centerXAnchor.constraint(equalTo: containerForNavBarElement.centerXAnchor),
+            text.centerYAnchor.constraint(equalTo: containerForNavBarElement.centerYAnchor),
+            
+            rightButton.trailingAnchor.constraint(equalTo: containerForNavBarElement.trailingAnchor, constant: -20),
             rightButton.centerYAnchor.constraint(equalTo: text.centerYAnchor),
             
-            leftButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
+            leftButton.leadingAnchor.constraint(equalTo: containerForNavBarElement.leadingAnchor, constant: 18),
             leftButton.centerYAnchor.constraint(equalTo: text.centerYAnchor),
             
             containerViewWithDate.topAnchor.constraint(equalTo: leftButton.bottomAnchor, constant: 5),
@@ -158,15 +174,12 @@ class TimetableNavbar: UIView  {
         let lastDay = dateFormatter.date(from: week.date_end)!
         dateLabel.text = "\(stringDateFormatter.string(from: firstDay)) - \(stringDateFormatter.string(from: lastDay))"
         oddLabel.text = "\(week.is_odd ? L10n.Timetable.dataOddWeek : L10n.Timetable.dateEvenWeek)"
-        UIView.animate(withDuration: 0.2) { [weak self] in
-            self?.oddLabel.isHidden = false
-        }
     }
     
     public func setDateLabel(with date: Date) {
         let firstDay = TimetableProvider.shared.startOfWeek(date)
         let lastDay = Calendar.current.date(byAdding: .day, value: 7, to: firstDay)!
         dateLabel.text = "\(stringDateFormatter.string(from: firstDay)) - \(stringDateFormatter.string(from: lastDay))"
-        oddLabel.isHidden = true
+        oddLabel.text = ""
     }
 }

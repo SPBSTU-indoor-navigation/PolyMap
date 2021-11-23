@@ -8,7 +8,12 @@
 import UIKit
 
 class TimetableToolBar: UIView {
-    let height: CGFloat = 65.0
+    let height: CGFloat = 40.0
+    
+    private lazy var containerViewForButton: UIView = {
+        $0.backgroundColor = .clear
+        return $0
+    }(UIView())
     
     public lazy var topLine: UIView = {
         $0.backgroundColor = .clear
@@ -22,7 +27,7 @@ class TimetableToolBar: UIView {
     }(UIButton(type: .system))
     
     public lazy var iCal: UIButton = {
-        $0.setTitle("iCal", for: .normal)
+        $0.setTitle(L10n.Timetable.iCal, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 18)
         return $0
     }(UIButton(type: .system))
@@ -43,7 +48,12 @@ class TimetableToolBar: UIView {
     }
     
     func setViews() {
-        [blurBackground, topLine, toCorrectPositionButton, iCal].forEach {
+        [topLine, toCorrectPositionButton, iCal].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.containerViewForButton.addSubview($0)
+        }
+        
+        [blurBackground, containerViewForButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
         }
@@ -58,21 +68,26 @@ class TimetableToolBar: UIView {
         blurAnimator.fractionComplete = 1
         
         NSLayoutConstraint.activate([
+            containerViewForButton.topAnchor.constraint(equalTo: topAnchor),
+            containerViewForButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerViewForButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerViewForButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
             blurBackground.leadingAnchor.constraint(equalTo: leadingAnchor),
             blurBackground.trailingAnchor.constraint(equalTo: trailingAnchor),
             blurBackground.topAnchor.constraint(equalTo: topAnchor),
             blurBackground.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            topLine.trailingAnchor.constraint(equalTo: trailingAnchor),
-            topLine.leadingAnchor.constraint(equalTo: leadingAnchor),
-            topLine.topAnchor.constraint(equalTo: topAnchor),
+            topLine.trailingAnchor.constraint(equalTo: containerViewForButton.trailingAnchor),
+            topLine.leadingAnchor.constraint(equalTo: containerViewForButton.leadingAnchor),
+            topLine.topAnchor.constraint(equalTo: containerViewForButton.topAnchor),
             topLine.heightAnchor.constraint(equalToConstant: 1),
             
-            toCorrectPositionButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
-            toCorrectPositionButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
+            toCorrectPositionButton.leadingAnchor.constraint(equalTo: containerViewForButton.leadingAnchor, constant: 20),
+            toCorrectPositionButton.centerYAnchor.constraint(equalTo: containerViewForButton.centerYAnchor),
             
-            iCal.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            iCal.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
+            iCal.trailingAnchor.constraint(equalTo: containerViewForButton.trailingAnchor, constant: -20),
+            iCal.centerYAnchor.constraint(equalTo: containerViewForButton.centerYAnchor),
         ])
     }
 }

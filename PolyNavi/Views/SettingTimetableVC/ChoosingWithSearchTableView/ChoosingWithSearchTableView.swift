@@ -30,6 +30,7 @@ class ChoosingWithSearchTableView: UIViewController {
         $0.showsVerticalScrollIndicator = true
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.keyboardDismissMode = .interactive
+        $0.backgroundColor = .secondarySystemBackground
         return $0
     }(UITableView())
     

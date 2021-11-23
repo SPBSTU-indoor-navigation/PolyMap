@@ -48,6 +48,8 @@ extension ChoosingTableViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.contentView.addSubview($0)
         }
+        self.backgroundColor = .clear
+        self.contentView.backgroundColor = .clear
         
         NSLayoutConstraint.activate([
             

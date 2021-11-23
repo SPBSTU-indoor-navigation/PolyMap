@@ -9,32 +9,21 @@ import UIKit
 
 class TimetablePageVC: UIPageViewController  {
     
+    //MARK:- Properties
     var targetPage: TimetableViewController?
     var skipNextAppear: Date?
     var appeared = false
+    var lastLoadedWeek: Timetable.Week?
+    var newSafeAreaInset: UIEdgeInsets {
+        get {
+            UIEdgeInsets(top: self.timetableNavbar.height, left: 0, bottom: self.timetableToolBar.height, right: 0)
+        }
+    }
     
     var dictOffsets: [Date:CGFloat] = [:]
     var currentVC: TimetableViewController?
     
-    
-    init() {
-        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        appeared = true
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        appeared = false
-    }
-    
+    //MARK:- Views
     private lazy var timetableNavbar: TimetableNavbar = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.rightButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
@@ -50,7 +39,16 @@ class TimetablePageVC: UIPageViewController  {
         $0.iCal.addTarget(self, action: #selector(getICal), for: .touchUpInside)
         return $0
     }(TimetableToolBar())
-
+    
+    
+    //MARK:- Init, Live cycle and layout
+    init() {
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +58,17 @@ class TimetablePageVC: UIPageViewController  {
         
         setViews()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        appeared = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        appeared = false
+    }
+    
     
     func updateBlurEffect(_ val: CGFloat) {
         if appeared {
@@ -78,12 +87,6 @@ class TimetablePageVC: UIPageViewController  {
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         
-        
-        var newSafeArea = UIEdgeInsets()
-        newSafeArea.top += timetableNavbar.height
-        newSafeArea.bottom += timetableToolBar.height + view.safeAreaInsets.bottom
-        self.additionalSafeAreaInsets = newSafeArea
-        
         view.addSubview(timetableNavbar)
         view.addSubview(timetableToolBar)
         NSLayoutConstraint.activate([
@@ -95,7 +98,7 @@ class TimetablePageVC: UIPageViewController  {
             timetableToolBar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             timetableToolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             timetableToolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            timetableToolBar.heightAnchor.constraint(equalToConstant: timetableToolBar.height + view.safeAreaInsets.bottom),
+            timetableToolBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -timetableToolBar.height),
         ])
         
         targetPage = createTimetableVS(Date())
@@ -116,8 +119,8 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         vc.willAppear = willAppear
         vc.updateContentOffsetBlock = updateContentOffsetBlock
         vc.updateButtonTitle = updateButtonTitle
-        vc.updateNavBarDate = updateNavBarDate
-        dictOffsets[date] = -timetableNavbar.height
+        vc.dateLoaded = dateLoaded
+        vc.additionalSafeAreaInsets = newSafeAreaInset
         return vc
     }
     
@@ -152,6 +155,31 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         skipNextAppear = nil
     }
     
+    func dateLoaded(date: Date, week: Timetable.Week?) {
+        if !Calendar.current.isDate(targetPage!.date, inSameDayAs: date) {
+           return
+        }
+        
+        guard let newWeek = week else {
+            if let currentWeek = self.lastLoadedWeek {
+                let dateMondayLast = TimetableWeek.dateParser.date(from: currentWeek.date_start)!
+                let dateMondayCurrent = TimetableProvider.shared.startOfWeek(currentVC!.date)
+                let days = Calendar.current.dateComponents([.day], from: dateMondayCurrent, to: dateMondayLast).day!
+                let weeks = abs(days) / 7
+                var currentOdd = currentWeek.is_odd
+                for _ in 0..<weeks { currentOdd.toggle() }
+                let dateEnd = Calendar.current.date(byAdding: .day, value: 6, to: dateMondayCurrent)!
+                self.lastLoadedWeek = Timetable.Week(date_end: TimetableProvider.shared.apiFormatDate(dateEnd), date_start: TimetableProvider.shared.apiFormatDate(dateMondayLast), is_odd: currentOdd)
+                updateNavBarDate(date: Date(), week: self.lastLoadedWeek)
+            } else {
+                updateNavBarDate(date: currentVC!.date, week: nil)
+            }
+            return
+        }
+        self.lastLoadedWeek = newWeek
+        updateNavBarDate(date: Date(), week: newWeek)
+    }
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         return createTimetableVS(addWeak(date: targetPage!.date, count: -1))
     }
@@ -164,7 +192,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         if finished && completed {
             guard let pageVC = viewControllers?.first as? TimetableViewController else { return }
             targetPage = pageVC
-            updateNavBarDate(date: pageVC.date, week: targetPage?.weekData)
+            dateLoaded(date: pageVC.date, week: pageVC.weekData)
         }
     }
     
@@ -276,5 +304,6 @@ extension TimetablePageVC {
         self.targetPage = createTimetableVS(addWeak(date: current.date, count: direction == .forward ? +1 : -1))
         self.currentVC = targetPage
         setViewControllers([self.targetPage!], direction: direction, animated: true)
+        dateLoaded(date: currentVC!.date, week: currentVC!.weekData)
     }
 }

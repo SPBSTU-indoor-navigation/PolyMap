@@ -50,6 +50,8 @@ internal enum L10n {
     internal static let emptyViewRefreshButton = L10n.tr("Localizable", "Timetable.emptyViewRefreshButton")
     /// На этой неделе занятий нет. Можно отдыхать!
     internal static let emptyWeek = L10n.tr("Localizable", "Timetable.emptyWeek")
+    /// iCal
+    internal static let iCal = L10n.tr("Localizable", "Timetable.iCal")
     /// Break
     internal static let lessonsBreak = L10n.tr("Localizable", "Timetable.lessonsBreak")
     /// Нет пар на сегодня

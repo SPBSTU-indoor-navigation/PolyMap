@@ -23,7 +23,7 @@ class TimetableViewController: UIViewController {
     var willAppear: ((TimetableViewController) -> Void)?
     var updateContentOffsetBlock: ((TimetableViewController, CGFloat) -> Void)?
     var updateButtonTitle: ((Bool, Bool) -> Void)?
-    var updateNavBarDate: ((Date, Timetable.Week?) -> Void)?
+    var dateLoaded: ((Date, Timetable.Week?) -> Void)?
     
     //MARK:-Views
     internal lazy var refreshControl: UIRefreshControl = {
@@ -39,7 +39,7 @@ class TimetableViewController: UIViewController {
         $0.dataSource = self
         $0.delegate = self
         $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 20))
-        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 5))
+        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 15))
         $0.showsVerticalScrollIndicator = false
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .clear
@@ -92,7 +92,6 @@ extension TimetableViewController {
             self.checkCurrentDateAfterLoading = true
         }
         willAppear?(self)
-        updateNavBarDate?(date, weekData)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -193,16 +192,14 @@ internal extension TimetableViewController {
             }
             self.weekData = response.week
             
-            DispatchQueue.main.async() { [weak self] in
+            DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.tableView.reloadData()
                 self.loader.stopAnimating()
                 self.tableView.refreshControl = self.refreshControl
                 self.emptyWeekView.isHidden = !self.arrayOfDaysWithLessons.isEmpty
                 self.tableView.isHidden = self.arrayOfDaysWithLessons.isEmpty
-                if self.appeared {
-                    self.updateNavBarDate?(self.date, self.weekData)
-                }
+                self.dateLoaded?(self.date, self.weekData)
                 if self.checkCurrentDateAfterLoading {
                     let indexCurrent = self.arrayOfDaysWithLessons.firstIndex(where: {Calendar.current.isDate($0.date!, inSameDayAs: Date())})
                     self.thisWeekDontHaveCurrentDay = indexCurrent == nil
