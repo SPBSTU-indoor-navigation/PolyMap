@@ -56,7 +56,7 @@ class MapViewController: UIViewController {
         var vc: UIViewController
         
         if GroupsAndTeacherStorage.shared.isReady() {
-            vc = TimetableViewController()
+            vc = TimetablePageVC()
             vc.isModalInPresentation = true
         } else {
             let settings = SettingTimetableVC()

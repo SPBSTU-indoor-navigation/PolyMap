@@ -51,7 +51,7 @@ class LessonCellView: UITableViewCell {
         
         $0.backgroundColor = .secondarySystemGroupedBackground
         $0.layer.cornerRadius = timeCursorRadius/2
-       
+        
         $0.translatesAutoresizingMaskIntoConstraints = false
         
         $0.addSubview(center)
@@ -80,8 +80,8 @@ class LessonCellView: UITableViewCell {
     
     private lazy var subjectNameLabel: UILabel = {
         $0.font = .preferredFont(forTextStyle: .headline)
-        $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
     
@@ -93,12 +93,16 @@ class LessonCellView: UITableViewCell {
     }(UILabel())
     
     private lazy var placeLabel: UILabel = {
+        $0.numberOfLines = 0
+        $0.lineBreakMode = .byWordWrapping
         $0.font = .preferredFont(forTextStyle: .body)
         return $0
     }(UILabel())
     
     private lazy var typeOfLessonLabel: UILabel = {
         $0.font = .preferredFont(forTextStyle: .body)
+        $0.numberOfLines = 0
+        $0.lineBreakMode = .byWordWrapping
         return $0
     }(UILabel())
     
@@ -125,6 +129,10 @@ extension LessonCellView {
     private func setViews() {
         [subjectNameLabel, typeOfLessonLabel, teacherNameLabel, placeLabel].forEach {
             labelsStackView.addArrangedSubview($0)
+            NSLayoutConstraint.activate([
+                $0.leadingAnchor.constraint(equalTo: labelsStackView.leadingAnchor),
+                $0.trailingAnchor.constraint(equalTo: labelsStackView.trailingAnchor)
+            ])
         }
         mainBackView.addSubview(timeStart)
         mainBackView.addSubview(timeEnd)
@@ -136,24 +144,24 @@ extension LessonCellView {
     
         
         currentTimeAnchor = timeCursor.centerYAnchor.constraint(equalTo: divider.topAnchor, constant: 20)
-        dividerAnchor = divider.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor, constant: 0)
+        dividerAnchor = divider.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
         NSLayoutConstraint.activate([
             mainBackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             mainBackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             mainBackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             
             timeStart.topAnchor.constraint(equalTo: subjectNameLabel.topAnchor),
+            timeStart.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             timeStart.trailingAnchor.constraint(equalTo: divider.leadingAnchor),
-            timeStart.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor),
             
             timeEnd.bottomAnchor.constraint(equalTo: placeLabel.bottomAnchor),
+            timeEnd.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             timeEnd.trailingAnchor.constraint(equalTo: divider.leadingAnchor),
-            timeEnd.leadingAnchor.constraint(equalTo: mainBackView.leadingAnchor),
             
             divider.topAnchor.constraint(equalTo: mainBackView.topAnchor, constant: 5),
+            dividerAnchor!,
             divider.bottomAnchor.constraint(equalTo: mainBackView.bottomAnchor, constant: -5),
             divider.widthAnchor.constraint(equalToConstant: 2),
-            dividerAnchor!,
             
             timeCursor.widthAnchor.constraint(equalToConstant: timeCursorRadius + timeCursorBorder),
             timeCursor.heightAnchor.constraint(equalToConstant: timeCursorRadius + timeCursorBorder),
@@ -192,8 +200,12 @@ extension LessonCellView {
         }(DateFormatter())
         
         self.model = model
-        timeEnd.text = timeFormatter.string(from: model.timeEnd)
-        timeStart.text = timeFormatter.string(from: model.timeStart)
+        var timeStartStr = timeFormatter.string(from: model.timeStart)
+        var timeEndStr = timeFormatter.string(from: model.timeEnd)
+        timeStartStr = (timeStartStr.count == 7 ? "0" : "") + timeStartStr
+        timeEndStr = (timeEndStr.count == 7 ? "0" : "") + timeEndStr
+        timeEnd.text = timeEndStr
+        timeStart.text = timeStartStr
         subjectNameLabel.text = model.subjectName
         typeOfLessonLabel.text = model.typeName
         teacherNameLabel.text = model.teacher
@@ -217,7 +229,7 @@ extension LessonCellView {
         
         let timeStartSize = (timeStart.text ?? "22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
         let timeEndSize = (timeEnd.text ?? "22:22").size(withAttributes: [NSAttributedString.Key.font: timeEnd.font!])
-        let maxTime = ("22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
+        let maxTime = ((timeStart.text!.count > 5) ? "22:22 AM" : "22:22").size(withAttributes: [NSAttributedString.Key.font: timeStart.font!])
         dividerAnchor?.constant = max(max(timeEndSize.width, timeStartSize.width) + 10 , maxTime.width + 20)
         
         setTimeCursor()

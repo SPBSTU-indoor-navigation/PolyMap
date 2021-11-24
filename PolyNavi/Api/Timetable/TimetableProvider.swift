@@ -35,6 +35,8 @@ class TimetableProvider {
     var teachers: TeachersList? = nil
     var groups: GroupsList? = nil
     
+    var timetableCache: [String: Timetable] = [:]
+    
     func load<T:Codable>(url: String, params: Dictionary<String, String>, completion: @escaping (ApiStatus<T>) -> Void) {
         AF.request(BASE_URL + url,
                    method: .get,
@@ -93,13 +95,29 @@ class TimetableProvider {
         load(url: "/teachers", params: [:], completion: t)
     }
     
-    func loadTimetabe(id: Int, filter: TimetableFillter, completion: @escaping (ApiStatus<Timetable>) -> Void, startDate: Date = Date()) {
+    
+    func loadTimetabe(id: Int, filter: TimetableFillter, startDate: Date = Date(), fromCache: Bool = false, completion: @escaping (ApiStatus<Timetable>) -> Void = { _ in }) {
+        let startWeek = apiFormatDate(startOfWeek(startDate))
+        let keyCache = "\(id)-\(filter)-\(startWeek)"
+        
+        if fromCache {
+            if let cached = timetableCache[keyCache] {
+                self.timetable = cached
+                return completion(.successWith(cached))
+            }
+        }
+        
         let t: (ApiStatus<Timetable>) -> Void = { r in
             self.timetable = r.data
+            if fromCache && r.data != nil {
+                self.timetableCache.updateValue(r.data!, forKey: keyCache)
+            }
             completion(r)
         }
+        
         let strURL = (filter == .groups) ? "/scheduler/\(id)" : "/teachers/\(id)/scheduler/"
-        load(url: strURL, params: [ "date": apiFormatDate(startOfWeek(startDate)) ], completion: t)
+        load(url: strURL, params: [ "date": startWeek ], completion: t)
+        
     }
     
     func loadTimetable(group: ID, completion: @escaping (ApiStatus<Timetable>) -> Void, startDate: Date = Date()) {

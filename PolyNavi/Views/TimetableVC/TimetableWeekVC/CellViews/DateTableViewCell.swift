@@ -66,9 +66,8 @@ class DateTableViewCell: UITableViewHeaderFooterView {
 
         addSubview(mainBackView)
         
-        
         NSLayoutConstraint.activate([
-            mainBackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
+            self.heightAnchor.constraint(equalTo: mainBackView.heightAnchor, constant: 10),
             mainBackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             mainBackView.widthAnchor.constraint(greaterThanOrEqualTo: dateLabel.widthAnchor, constant: 50),
             mainBackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 150),

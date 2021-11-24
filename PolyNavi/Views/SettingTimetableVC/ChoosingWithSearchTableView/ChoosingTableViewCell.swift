@@ -17,6 +17,8 @@ class ChoosingTableViewCell: UITableViewCell {
     
     private lazy var titleLabel: UILabel = {
         $0.font = .preferredFont(forTextStyle: .body)
+        $0.numberOfLines = 0
+        $0.lineBreakMode = .byWordWrapping
         return $0
     }(UILabel())
     
@@ -48,6 +50,8 @@ extension ChoosingTableViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.contentView.addSubview($0)
         }
+        self.backgroundColor = .clear
+        self.contentView.backgroundColor = .clear
         
         NSLayoutConstraint.activate([
             

@@ -30,6 +30,7 @@ class ChoosingWithSearchTableView: UIViewController {
         $0.showsVerticalScrollIndicator = true
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.keyboardDismissMode = .interactive
+        $0.backgroundColor = .clear
         return $0
     }(UITableView())
     
@@ -112,8 +113,10 @@ extension ChoosingWithSearchTableView: UISearchResultsUpdating, UITableViewDeleg
 extension ChoosingWithSearchTableView {
     
     private func setViews() {
-        self.view.addSubview(tableView)
-        self.view.addSubview(indicator)
+        view.addSubview(tableView)
+        view.addSubview(indicator)
+        
+        view.backgroundColor = .systemBackground
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
