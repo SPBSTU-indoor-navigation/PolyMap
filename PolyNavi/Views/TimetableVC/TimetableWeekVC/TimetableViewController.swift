@@ -31,32 +31,13 @@ class TimetableViewController: UIViewController {
         return $0
     }(UIRefreshControl())
     
-    internal lazy var sourceUrl: UIView = {
-        
-        var label = UILabel()
-        label.text = "123"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        $0.addSubview(label)
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: $0.leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: $0.trailingAnchor),
-            $0.heightAnchor.constraint(equalTo: label.heightAnchor)
-        ])
-        return $0
-    }(UIView())
-    
     internal lazy var tableView: UITableView = {
-        
         $0.register(LessonCellView.self, forCellReuseIdentifier: LessonCellView.identifire)
         $0.register(TimetableBreakTableViewCell.self, forCellReuseIdentifier: TimetableBreakTableViewCell.identifire)
         $0.register(DateTableViewCell.self, forHeaderFooterViewReuseIdentifier: DateTableViewCell.identifire)
         $0.allowsSelection = false
         $0.dataSource = self
         $0.delegate = self
-        $0.tableFooterView = sourceUrl
         $0.showsVerticalScrollIndicator = false
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .clear
