@@ -55,6 +55,8 @@ class TimetableViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.isHidden = true
         $0.refreshButton.addTarget(self, action: #selector(refreshPage(_:)), for: .touchUpInside)
+        $0.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(refreshPage(_:))))
+        $0.imageView.isUserInteractionEnabled = true
         $0.becomeFirstResponder()
         return $0
     }(TimetableEmptyView(frame: .zero))
@@ -113,10 +115,8 @@ extension TimetableViewController {
     
     @objc
     func handleRefreshControl() {
-        refreshDate() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-                self?.tableView.refreshControl?.endRefreshing()
-            }
+        refreshDate() { [weak self] in
+            self?.tableView.refreshControl?.endRefreshing()
         }
     }
     
@@ -211,13 +211,13 @@ internal extension TimetableViewController {
         let id = (GroupsAndTeacherStorage.shared.currentFilter == .groups) ? GroupsAndTeacherStorage.shared.currentGroupNumber?.ID : GroupsAndTeacherStorage.shared.currentTeachersName?.ID
         TimetableProvider.shared.loadTimetabe(id: id ?? -1, filter: GroupsAndTeacherStorage.shared.currentFilter, startDate: date, fromCache: false) {
             [weak self] response in
-    
+            
             guard let self = self, let response = response.data else { return }
             self.arrayOfDaysWithLessons = TimetableWeek.convert(response).days.map { pair in
                 return TimetableWeek.TimetableDay(date: pair.date, timetableCell: LessonModel.createCorrectTimeTable(currentArray: pair.timetableCell))
             }
             
-            DispatchQueue.main.async() { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
                 guard let self = self else { return }
                 self.emptyWeekView.isHidden = !self.arrayOfDaysWithLessons.isEmpty
                 self.tableView.isHidden = self.arrayOfDaysWithLessons.isEmpty

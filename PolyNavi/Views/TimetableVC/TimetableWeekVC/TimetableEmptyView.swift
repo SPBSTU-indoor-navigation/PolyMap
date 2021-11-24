@@ -10,7 +10,7 @@ import UIKit
 
 class TimetableEmptyView: UIView {
     
-    private lazy var imageView: UIImageView = {
+    internal lazy var imageView: UIImageView = {
         $0.image = UIImage(systemName: "bed.double", withConfiguration: UIImage.SymbolConfiguration(pointSize: 100))
         return $0
     }(UIImageView())
@@ -48,7 +48,7 @@ class TimetableEmptyView: UIView {
         }
         
         NSLayoutConstraint.activate([
-            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            imageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -60),
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             descriptionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
