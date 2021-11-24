@@ -8,7 +8,7 @@
 import UIKit
 
 class TimetableToolBar: UIView {
-    let height: CGFloat = 40.0
+    let height: CGFloat = 45.0
     
     private lazy var containerViewForButton: UIView = {
         $0.backgroundColor = .clear
@@ -72,6 +72,7 @@ class TimetableToolBar: UIView {
             containerViewForButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             containerViewForButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             containerViewForButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            containerViewForButton.heightAnchor.constraint(greaterThanOrEqualToConstant: height),
             
             blurBackground.leadingAnchor.constraint(equalTo: leadingAnchor),
             blurBackground.trailingAnchor.constraint(equalTo: trailingAnchor),

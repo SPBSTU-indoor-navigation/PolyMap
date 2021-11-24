@@ -14,11 +14,10 @@ class TimetablePageVC: UIPageViewController  {
     var skipNextAppear: Date?
     var appeared = false
     var lastLoadedWeek: Timetable.Week?
-    var newSafeAreaInset: UIEdgeInsets {
-        get {
-            UIEdgeInsets(top: self.timetableNavbar.height, left: 0, bottom: self.timetableToolBar.height, right: 0)
-        }
-    }
+    
+    private lazy var safeAreaInset: UIEdgeInsets = {
+        return $0
+    }(UIEdgeInsets(top: timetableNavbar.height, left: 0, bottom: timetableToolBar.height, right: 0))
     
     var dictOffsets: [Date:CGFloat] = [:]
     var currentVC: TimetableViewController?
@@ -69,13 +68,11 @@ class TimetablePageVC: UIPageViewController  {
         appeared = false
     }
     
-    
     func updateBlurEffect(_ val: CGFloat) {
         if appeared {
             timetableNavbar.blurAnimator.fractionComplete = val
         }
     }
-    
     
     func setViews() {
         view.backgroundColor = .systemBackground
@@ -98,11 +95,12 @@ class TimetablePageVC: UIPageViewController  {
             timetableToolBar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             timetableToolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             timetableToolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            timetableToolBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -timetableToolBar.height),
+            timetableToolBar.heightAnchor.constraint(greaterThanOrEqualToConstant: 55)
         ])
         
         targetPage = createTimetableVS(Date())
         currentVC = targetPage
+        updateNavbar(date: targetPage!.date, week: targetPage!.weekData)
         setViewControllers([targetPage!], direction: .forward, animated: true, completion: nil)
     }
 }
@@ -120,7 +118,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         vc.updateContentOffsetBlock = updateContentOffsetBlock
         vc.updateButtonTitle = updateButtonTitle
         vc.dateLoaded = dateLoaded
-        vc.additionalSafeAreaInsets = newSafeAreaInset
+        vc.additionalSafeAreaInsets = safeAreaInset
         return vc
     }
     
@@ -140,14 +138,6 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         }
     }
     
-    func updateNavBarDate(date: Date, week: Timetable.Week?) {
-        if let weekDateWrap = week {
-            self.timetableNavbar.setDateLabel(with: weekDateWrap)
-            return
-        }
-        self.timetableNavbar.setDateLabel(with: date)
-    }
-    
     func willAppear(page: TimetableViewController) {
         if (skipNextAppear != page.date) {
             targetPage = page
@@ -155,30 +145,34 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         skipNextAppear = nil
     }
     
-    func dateLoaded(date: Date, week: Timetable.Week?) {
-        if !Calendar.current.isDate(targetPage!.date, inSameDayAs: date) {
-           return
+    func dateLoaded(week: Timetable.Week?) {
+        lastLoadedWeek = week
+        
+        guard let loadedStartDay = week?.date_start else {return}
+        
+        guard let loadedStartDate = TimetableWeek.dateParser.date(from: loadedStartDay) else {return}
+        guard let currentStartDate = timetableNavbar.currentStartDay else {return}
+        
+        if Calendar.current.isDate(loadedStartDate, inSameDayAs: currentStartDate) {
+            timetableNavbar.setDateLabel(with: loadedStartDate, isOdd: week?.is_odd)
+        }
+    }
+    
+    func updateNavbar(date: Date, week: Timetable.Week?) {
+        if let week = week {
+            return timetableNavbar.setDateLabel(with: date, isOdd: week.is_odd)
         }
         
-        guard let newWeek = week else {
-            if let currentWeek = self.lastLoadedWeek {
-                let dateMondayLast = TimetableWeek.dateParser.date(from: currentWeek.date_start)!
-                let dateMondayCurrent = TimetableProvider.shared.startOfWeek(currentVC!.date)
-                let days = Calendar.current.dateComponents([.day], from: dateMondayCurrent, to: dateMondayLast).day!
-                let weeks = abs(days) / 7
-                var currentOdd = currentWeek.is_odd
-                for _ in 0..<weeks { currentOdd.toggle() }
-                let dateEnd = Calendar.current.date(byAdding: .day, value: 6, to: dateMondayCurrent)!
-                self.lastLoadedWeek = Timetable.Week(date_end: TimetableProvider.shared.apiFormatDate(dateEnd), date_start: TimetableProvider.shared.apiFormatDate(dateMondayLast), is_odd: currentOdd)
-                updateNavBarDate(date: Date(), week: self.lastLoadedWeek)
-            } else {
-                updateNavBarDate(date: currentVC!.date, week: nil)
-            }
-            return
-        }
-        self.lastLoadedWeek = newWeek
-        updateNavBarDate(date: Date(), week: newWeek)
+        guard let lastLoadedWeek = lastLoadedWeek else { return timetableNavbar.setDateLabel(with: date) }
+        
+        let lastLoadedDate = TimetableWeek.dateParser.date(from: lastLoadedWeek.date_start)!
+        let currentDate = TimetableProvider.shared.startOfWeek(date)
+        let delta = abs(Calendar.current.dateComponents([.weekOfYear], from: currentDate, to: lastLoadedDate).weekOfYear!)
+        
+        
+        timetableNavbar.setDateLabel(with: date, isOdd: delta % 2 == 0 ? lastLoadedWeek.is_odd : !lastLoadedWeek.is_odd)
     }
+    
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         return createTimetableVS(addWeak(date: targetPage!.date, count: -1))
@@ -192,7 +186,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         if finished && completed {
             guard let pageVC = viewControllers?.first as? TimetableViewController else { return }
             targetPage = pageVC
-            dateLoaded(date: pageVC.date, week: pageVC.weekData)
+            updateNavbar(date: pageVC.date, week: pageVC.weekData)
         }
     }
     
@@ -271,6 +265,7 @@ extension TimetablePageVC {
         self.targetPage = createTimetableVS(Date())
         self.currentVC = targetPage
         setViewControllers([self.targetPage!], direction: direction, animated: true)
+        updateNavbar(date: targetPage!.date, week: targetPage?.weekData)
     }
     
     @objc
@@ -304,6 +299,6 @@ extension TimetablePageVC {
         self.targetPage = createTimetableVS(addWeak(date: current.date, count: direction == .forward ? +1 : -1))
         self.currentVC = targetPage
         setViewControllers([self.targetPage!], direction: direction, animated: true)
-        dateLoaded(date: currentVC!.date, week: currentVC!.weekData)
+        updateNavbar(date: targetPage!.date, week: targetPage?.weekData)
     }
 }

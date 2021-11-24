@@ -10,6 +10,7 @@ import UIKit
 class TimetableNavbar: UIView  {
     
     let height: CGFloat = 100.0
+    var currentStartDay: Date? = nil
     
     private lazy var stringDateFormatter: DateFormatter = {
         $0.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMdd", options: 0, locale: Locale.current)!
@@ -169,17 +170,12 @@ class TimetableNavbar: UIView  {
         ])
     }
     
-    public func setDateLabel(with week: Timetable.Week) {
-        let firstDay = dateFormatter.date(from: week.date_start)!
-        let lastDay = dateFormatter.date(from: week.date_end)!
-        dateLabel.text = "\(stringDateFormatter.string(from: firstDay)) - \(stringDateFormatter.string(from: lastDay))"
-        oddLabel.text = "\(week.is_odd ? L10n.Timetable.dataOddWeek : L10n.Timetable.dateEvenWeek)"
-    }
-    
-    public func setDateLabel(with date: Date) {
-        let firstDay = TimetableProvider.shared.startOfWeek(date)
-        let lastDay = Calendar.current.date(byAdding: .day, value: 7, to: firstDay)!
-        dateLabel.text = "\(stringDateFormatter.string(from: firstDay)) - \(stringDateFormatter.string(from: lastDay))"
-        oddLabel.text = ""
+    public func setDateLabel(with date: Date, isOdd: Bool? = nil) {
+        currentStartDay = TimetableProvider.shared.startOfWeek(date)
+        let lastDay = Calendar.current.date(byAdding: .day, value: 7, to: currentStartDay!)!
+        dateLabel.text = "\(stringDateFormatter.string(from: currentStartDay!)) - \(stringDateFormatter.string(from: lastDay))"
+        
+        guard let odd = isOdd else { return oddLabel.text = "" }
+        oddLabel.text =  "\(odd ? L10n.Timetable.dataOddWeek : L10n.Timetable.dateEvenWeek)"
     }
 }

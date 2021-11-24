@@ -23,7 +23,7 @@ class TimetableViewController: UIViewController {
     var willAppear: ((TimetableViewController) -> Void)?
     var updateContentOffsetBlock: ((TimetableViewController, CGFloat) -> Void)?
     var updateButtonTitle: ((Bool, Bool) -> Void)?
-    var dateLoaded: ((Date, Timetable.Week?) -> Void)?
+    var dateLoaded: ((Timetable.Week?) -> Void)?
     
     //MARK:-Views
     internal lazy var refreshControl: UIRefreshControl = {
@@ -31,15 +31,32 @@ class TimetableViewController: UIViewController {
         return $0
     }(UIRefreshControl())
     
+    internal lazy var sourceUrl: UIView = {
+        
+        var label = UILabel()
+        label.text = "123"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        $0.addSubview(label)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: $0.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: $0.trailingAnchor),
+            $0.heightAnchor.constraint(equalTo: label.heightAnchor)
+        ])
+        return $0
+    }(UIView())
+    
     internal lazy var tableView: UITableView = {
+        
         $0.register(LessonCellView.self, forCellReuseIdentifier: LessonCellView.identifire)
         $0.register(TimetableBreakTableViewCell.self, forCellReuseIdentifier: TimetableBreakTableViewCell.identifire)
         $0.register(DateTableViewCell.self, forHeaderFooterViewReuseIdentifier: DateTableViewCell.identifire)
         $0.allowsSelection = false
         $0.dataSource = self
         $0.delegate = self
-        $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 20))
-        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 15))
+        $0.tableFooterView = sourceUrl
         $0.showsVerticalScrollIndicator = false
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .clear
@@ -199,7 +216,7 @@ internal extension TimetableViewController {
                 self.tableView.refreshControl = self.refreshControl
                 self.emptyWeekView.isHidden = !self.arrayOfDaysWithLessons.isEmpty
                 self.tableView.isHidden = self.arrayOfDaysWithLessons.isEmpty
-                self.dateLoaded?(self.date, self.weekData)
+                self.dateLoaded?(self.weekData)
                 if self.checkCurrentDateAfterLoading {
                     let indexCurrent = self.arrayOfDaysWithLessons.firstIndex(where: {Calendar.current.isDate($0.date!, inSameDayAs: Date())})
                     self.thisWeekDontHaveCurrentDay = indexCurrent == nil
