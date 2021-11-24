@@ -10,19 +10,18 @@
 Timetable.title = "Timetable";
 Timetable.lessonsBreak = "Break";
 Timetable.editButton = "Settings";
-Timetable.emptyWeek = "На этой неделе занятий нет. Можно отдыхать!"; //TODO: translate
-Timetable.toTodayTimetable = "Сегодня";
-Timetable.notHaveCurrentDay = "Нет пар на сегодня";
-Timetable.toCurrentWeek = "К текущей неделe";
+Timetable.emptyWeek = "No classes this week. You can chill out!";
+Timetable.toTodayTimetable = "Today";
+Timetable.notHaveCurrentDay = "No classes";
 Timetable.emptyViewRefreshButton = "Refresh";
-Timetable.dataOddWeek = "Нечетная";
-Timetable.dateEvenWeek = "Четная";
+Timetable.dataOddWeek = "Odd";
+Timetable.dateEvenWeek = "Even";
 Timetable.iCal = "iCal";
 
 //MARK:- Setting timetable strings
 Settings.title = "Settings";
 Settings.titleOfGroupsView = "Groups";
-Settings.settingOfGroup = "Settings of group";
+Settings.settingOfGroup = "Select group";
 Settings.titleOfInstituteCell = "Institute";
 Settings.titleOfGroupCell = "Group";
 Settings.statusOfInstitute = "None";
