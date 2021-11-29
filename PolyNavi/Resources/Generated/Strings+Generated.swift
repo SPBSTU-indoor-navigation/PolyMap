@@ -17,7 +17,7 @@ internal enum L10n {
   }
 
   internal enum Settings {
-    /// Settings of group
+    /// Select group
     internal static let settingOfGroup = L10n.tr("Localizable", "Settings.settingOfGroup")
     /// Select teacher
     internal static let settingOfTeacher = L10n.tr("Localizable", "Settings.settingOfTeacher")
@@ -40,27 +40,25 @@ internal enum L10n {
   }
 
   internal enum Timetable {
-    /// Нечетная
+    /// Odd
     internal static let dataOddWeek = L10n.tr("Localizable", "Timetable.dataOddWeek")
-    /// Четная
+    /// Even
     internal static let dateEvenWeek = L10n.tr("Localizable", "Timetable.dateEvenWeek")
     /// Settings
     internal static let editButton = L10n.tr("Localizable", "Timetable.editButton")
     /// Refresh
     internal static let emptyViewRefreshButton = L10n.tr("Localizable", "Timetable.emptyViewRefreshButton")
-    /// На этой неделе занятий нет. Можно отдыхать!
+    /// No classes this week. You can chill out!
     internal static let emptyWeek = L10n.tr("Localizable", "Timetable.emptyWeek")
     /// iCal
     internal static let iCal = L10n.tr("Localizable", "Timetable.iCal")
     /// Break
     internal static let lessonsBreak = L10n.tr("Localizable", "Timetable.lessonsBreak")
-    /// Нет пар на сегодня
+    /// No classes
     internal static let notHaveCurrentDay = L10n.tr("Localizable", "Timetable.notHaveCurrentDay")
     /// Timetable
     internal static let title = L10n.tr("Localizable", "Timetable.title")
-    /// К текущей неделe
-    internal static let toCurrentWeek = L10n.tr("Localizable", "Timetable.toCurrentWeek")
-    /// Сегодня
+    /// Today
     internal static let toTodayTimetable = L10n.tr("Localizable", "Timetable.toTodayTimetable")
   }
 }
