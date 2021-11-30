@@ -16,7 +16,7 @@ Timetable.notHaveCurrentDay = "No classes";
 Timetable.emptyViewRefreshButton = "Refresh";
 Timetable.dataOddWeek = "Odd";
 Timetable.dateEvenWeek = "Even";
-Timetable.iCal = "iCal";
+Timetable.iCal = "Download";
 
 //MARK:- Setting timetable strings
 Settings.title = "Settings";

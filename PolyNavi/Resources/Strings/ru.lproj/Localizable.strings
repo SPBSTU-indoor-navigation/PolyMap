@@ -16,7 +16,7 @@ Timetable.notHaveCurrentDay = "Нет пар";
 Timetable.emptyViewRefreshButton = "Refresh";
 Timetable.dataOddWeek = "Нечетная";
 Timetable.dateEvenWeek = "Четная";
-Timetable.iCal = "iCal";
+Timetable.iCal = "Скачать";
 
 //MARK:- Setting timetable strings
 Settings.title = "Настройки";
