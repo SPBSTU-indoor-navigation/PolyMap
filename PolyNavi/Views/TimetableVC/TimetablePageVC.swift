@@ -119,6 +119,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         vc.updateButtonTitle = updateButtonTitle
         vc.dateLoaded = dateLoaded
         vc.additionalSafeAreaInsets = safeAreaInset
+        dictOffsets[vc.date] = -timetableNavbar.height
         return vc
     }
     
