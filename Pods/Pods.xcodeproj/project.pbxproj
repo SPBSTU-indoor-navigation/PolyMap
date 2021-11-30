@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = SwiftGen;
+			productName = SwiftGen;
 		};
 /* End PBXAggregateTarget section */
 
@@ -141,8 +142,8 @@
 		591E4E218334D8F9208F4EA8A66C96D6 /* Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Combine.swift; path = Source/Combine.swift; sourceTree = "<group>"; };
 		597CCE2995F27662295EEEF30448AD59 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		5A5868A0913AE7CCF34A656E8F635F77 /* Result+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Result+Alamofire.swift"; path = "Source/Result+Alamofire.swift"; sourceTree = "<group>"; };
-		5CE79C5BF20743404E59BEFD080A364D /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libM13Checkbox.a; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D797E9A5C5782CE845840781FA1CC81 /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAlamofire.a; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CE79C5BF20743404E59BEFD080A364D /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D797E9A5C5782CE845840781FA1CC81 /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		68D031E1CC818B30547D51F8879082FC /* M13CheckboxFadeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxFadeController.swift; path = Sources/Managers/M13CheckboxFadeController.swift; sourceTree = "<group>"; };
 		6A302914E8D92ED67EC03496D2B57C3F /* M13CheckboxSpiralController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxSpiralController.swift; path = Sources/Managers/M13CheckboxSpiralController.swift; sourceTree = "<group>"; };
 		6CDBA7C86D68BDC12929B32B7A9BA94E /* RetryPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RetryPolicy.swift; path = Source/RetryPolicy.swift; sourceTree = "<group>"; };
@@ -153,7 +154,7 @@
 		7AC6922BA400B61A508C7ED07AAF0DB0 /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		7C4994A7AF16631FB5F51D62D6F24BF8 /* M13Checkbox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13Checkbox.swift; path = Sources/M13Checkbox.swift; sourceTree = "<group>"; };
 		7EEB169000E35AD313548998B1BC5C62 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		80092B98DEC0EC566D42E63EA403A9A4 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-PolyNavi.a"; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80092B98DEC0EC566D42E63EA403A9A4 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CD97A97BF3752741C08EA2BFDA140E /* CachedResponseHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CachedResponseHandler.swift; path = Source/CachedResponseHandler.swift; sourceTree = "<group>"; };
 		85E64E12022DB965E0C1878A763E0278 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		860EBB0F11DE7D02AB2BE1E4775A56E7 /* M13Checkbox-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "M13Checkbox-dummy.m"; sourceTree = "<group>"; };
@@ -166,7 +167,7 @@
 		92D4219E89721F3391D5BE05DAFAA2B3 /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
 		9986AE97F2681B20D276B1D7303DC80E /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		9C1CF42D29E2F00A85E250268073694C /* M13CheckboxExpandController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxExpandController.swift; path = Sources/Managers/M13CheckboxExpandController.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A14949C025B1B2CF362095F0C014192B /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		A1ACF7BCEDB024B6109357A431EDB0F1 /* M13CheckboxRadioPathGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxRadioPathGenerator.swift; path = Sources/Paths/M13CheckboxRadioPathGenerator.swift; sourceTree = "<group>"; };
 		A44AE94D8BE4EF7A70213349E11C466D /* RequestInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestInterceptor.swift; path = Source/RequestInterceptor.swift; sourceTree = "<group>"; };
@@ -227,7 +228,6 @@
 			children = (
 				31310A8D43EAFE2DD159533BF73C4C68 /* Support Files */,
 			);
-			name = SwiftGen;
 			path = SwiftGen;
 			sourceTree = "<group>";
 		};
@@ -255,7 +255,6 @@
 				2B21878D920BF24F4840BA0D1AC3D573 /* M13CheckboxStrokeController.swift */,
 				FEF3F6321E41ACE4D822286A2C310C46 /* Support Files */,
 			);
-			name = M13Checkbox;
 			path = M13Checkbox;
 			sourceTree = "<group>";
 		};
@@ -356,7 +355,6 @@
 				AD79E42631D4740EF34A7D0EC386C93A /* Validation.swift */,
 				A9CBE6BDB5EE9A8F17F17DDB0A6E2D60 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -670,7 +668,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/M13Checkbox/M13Checkbox-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULEMAP_FILE = Headers/Public/M13Checkbox/M13Checkbox.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -917,7 +915,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -935,7 +933,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -953,7 +951,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/M13Checkbox/M13Checkbox-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULEMAP_FILE = Headers/Public/M13Checkbox/M13Checkbox.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
