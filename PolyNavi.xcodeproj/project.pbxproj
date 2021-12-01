@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530A99B274969C700302C5F /* TimetableToolBar.swift */; };
 		054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F6787270C7B4C00FCC07C /* AppDelegate.swift */; };
 		054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F6789270C7B4C00FCC07C /* SceneDelegate.swift */; };
 		054F6791270C7B4C00FCC07C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054F6790270C7B4C00FCC07C /* Assets.xcassets */; };
@@ -41,14 +42,18 @@
 		9717E4592744773100332D29 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4582744773100332D29 /* MapViewDelegate.swift */; };
 		9717E46027447A7D00332D29 /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		9717E46227447B8F00332D29 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E46127447B8F00332D29 /* Styles.swift */; };
+		05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */; };
+		978D9DC8273F56E300293A6C /* TimetableNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D9DC7273F56E300293A6C /* TimetableNavbar.swift */; };
 		97A484BC2717858700D14997 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BB2717858700D14997 /* MapViewController.swift */; };
 		97A484C02717BAF700D14997 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
 		97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */; };
+		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0530A99B274969C700302C5F /* TimetableToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimetableToolBar.swift; path = PolyNavi/Views/TimetableVC/TimetableToolBar.swift; sourceTree = SOURCE_ROOT; };
 		054F6784270C7B4C00FCC07C /* PolyNavi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNavi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		054F6787270C7B4C00FCC07C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		054F6789270C7B4C00FCC07C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,8 +75,7 @@
 		05C32AC6271F4C3E0033B751 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		05C4C82C27134C5100C22D61 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timetable+DatasourceDelegate.swift"; sourceTree = "<group>"; };
-		05C4C8302713549A00C22D61 /* SkeletonDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonDateTableViewCell.swift; sourceTree = "<group>"; };
-		05C4C8322713599500C22D61 /* SkeletonLessonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLessonCellView.swift; sourceTree = "<group>"; };
+		05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimetableEmptyView.swift; path = PolyNavi/Views/TimetableVC/TimetableWeekVC/TimetableEmptyView.swift; sourceTree = SOURCE_ROOT; };
 		378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9717E42A2744746200332D29 /* Feature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
@@ -87,10 +91,12 @@
 		9717E4582744773100332D29 /* MapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		9717E46127447B8F00332D29 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		978D9DC7273F56E300293A6C /* TimetableNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavbar.swift; sourceTree = "<group>"; };
 		97A484BB2717858700D14997 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		97A484BF2717BAF700D14997 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
 		97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableProvider.swift; sourceTree = "<group>"; };
+		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
 		E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.release.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,14 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05192B86270EE395001B2C57 /* TimetableVC */ = {
+		05192B86270EE395001B2C57 /* TimetableWeekVC */ = {
 			isa = PBXGroup;
 			children = (
 				05C4C82A27134C2600C22D61 /* CellViews */,
 				05C4C82C27134C5100C22D61 /* TimetableViewController.swift */,
 				05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */,
+				05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */,
 			);
-			path = TimetableVC;
+			path = TimetableWeekVC;
 			sourceTree = "<group>";
 		};
 		054F677B270C7B4B00FCC07C = {
@@ -183,9 +190,9 @@
 		054F67A6270CD73000FCC07C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				97D551D62739D5FD002A5BBD /* TimeTableVC */,
 				97A484BD27179ABE00D14997 /* MapVC */,
 				056F2D1C271CAEB40063015B /* SettingTimetableVC */,
-				05192B86270EE395001B2C57 /* TimetableVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,18 +247,8 @@
 				054F67A9270CD78D00FCC07C /* LessonCellView.swift */,
 				0574A226271036CC00C33317 /* DateTableViewCell.swift */,
 				0574A2282711FF5F00C33317 /* TimetableBreakTableViewCell.swift */,
-				05C4C834271359A500C22D61 /* SkeletonCellViews */,
 			);
 			path = CellViews;
-			sourceTree = "<group>";
-		};
-		05C4C834271359A500C22D61 /* SkeletonCellViews */ = {
-			isa = PBXGroup;
-			children = (
-				05C4C8302713549A00C22D61 /* SkeletonDateTableViewCell.swift */,
-				05C4C8322713599500C22D61 /* SkeletonLessonCellView.swift */,
-			);
-			path = SkeletonCellViews;
 			sourceTree = "<group>";
 		};
 		46370B1FDDF5AC7D9755CB89 /* Pods */ = {
@@ -322,6 +319,17 @@
 				97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */,
 			);
 			path = Timetable;
+			sourceTree = "<group>";
+		};
+		97D551D62739D5FD002A5BBD /* TimeTableVC */ = {
+			isa = PBXGroup;
+			children = (
+				05192B86270EE395001B2C57 /* TimetableWeekVC */,
+				97D551D72739D63A002A5BBD /* TimetablePageVC.swift */,
+				978D9DC7273F56E300293A6C /* TimetableNavbar.swift */,
+				0530A99B274969C700302C5F /* TimetableToolBar.swift */,
+			);
+			path = TimeTableVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,12 +452,14 @@
 				056F2D20271CAF400063015B /* GroupsAndTeacherStorage.swift in Sources */,
 				97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */,
 				9717E457274474FC00332D29 /* IMDFDecoder.swift in Sources */,
+				978D9DC8273F56E300293A6C /* TimetableNavbar.swift in Sources */,
 				05C32AC3271F06B70033B751 /* ChoosingWithSearchTableView.swift in Sources */,
 				9717E4272742991F00332D29 /* MapView.swift in Sources */,
 				0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */,
 				05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */,
 				9717E4382744746200332D29 /* Occupant.swift in Sources */,
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
+				0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */,
 				054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */,
 				9717E4332744746200332D29 /* Feature.swift in Sources */,
 				97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */,
@@ -473,8 +483,10 @@
 				9717E46227447B8F00332D29 /* Styles.swift in Sources */,
 				0574A2292711FF5F00C33317 /* TimetableBreakTableViewCell.swift in Sources */,
 				056F2D1E271CAED30063015B /* SettingTimetableVC.swift in Sources */,
+				05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
+				97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,13 +6,22 @@
   
 */
 
+//MARK:- Timetable strings
 Timetable.title = "Расписание";
 Timetable.lessonsBreak = "Окно";
 Timetable.editButton = "Настройки";
+Timetable.emptyWeek = "На этой неделе занятий нет. Можно отдыхать!";
+Timetable.toTodayTimetable = "Сегодня";
+Timetable.notHaveCurrentDay = "Нет пар";
+Timetable.emptyViewRefreshButton = "Refresh";
+Timetable.dataOddWeek = "Нечетная";
+Timetable.dateEvenWeek = "Четная";
+Timetable.iCal = "iCal";
 
+//MARK:- Setting timetable strings
 Settings.title = "Настройки";
 Settings.titleOfGroupsView = "Группы";
-Settings.settingOfGroup = "Настройки группы";
+Settings.settingOfGroup = "Выбор группы";
 Settings.titleOfInstituteCell = "Институт";
 Settings.titleOfGroupCell = "Группа";
 Settings.statusOfInstitute = "Нет";
@@ -21,4 +30,5 @@ Settings.titleOfTeachersView = "Преподаватели";
 Settings.settingOfTeacher = "Выбор преподавателя";
 Settings.titleOfTeacherCell = "Преподаватель";
 
+//MARK:- Choosing search controller strings
 ChoosingSearchController.searchPlaceholder = "Поиск";

@@ -10,6 +10,7 @@ import Foundation
 
 struct TimetableWeek {
     let days: [TimetableDay]
+    let week: Timetable.Week
     
     struct TimetableDay {
         let date: Date?
@@ -46,7 +47,7 @@ struct TimetableWeek {
             return TimetableDay(date: dateParser.date(from: day.date), timetableCell: lessons)
         }
         
-        return TimetableWeek(days: days)
+        return TimetableWeek(days: days, week: t.week)
     }
 }
 

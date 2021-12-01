@@ -10,11 +10,18 @@
 Timetable.title = "Timetable";
 Timetable.lessonsBreak = "Break";
 Timetable.editButton = "Settings";
+Timetable.emptyWeek = "No classes this week. You can chill out!";
+Timetable.toTodayTimetable = "Today";
+Timetable.notHaveCurrentDay = "No classes";
+Timetable.emptyViewRefreshButton = "Refresh";
+Timetable.dataOddWeek = "Odd";
+Timetable.dateEvenWeek = "Even";
+Timetable.iCal = "iCal";
 
 //MARK:- Setting timetable strings
 Settings.title = "Settings";
 Settings.titleOfGroupsView = "Groups";
-Settings.settingOfGroup = "Settings of group";
+Settings.settingOfGroup = "Select group";
 Settings.titleOfInstituteCell = "Institute";
 Settings.titleOfGroupCell = "Group";
 Settings.statusOfInstitute = "None";
