@@ -94,6 +94,8 @@ extension MapView: MKMapViewDelegate {
         default:
             return MKOverlayRenderer(overlay: overlay)
         }
+        
+        renderer.shouldRasterize = true
 
         // Configure the overlay renderer's display properties in feature-specific ways.
         feature.configure(overlayRenderer: renderer)
