@@ -20,6 +20,18 @@ internal typealias AssetColorTypeAlias = ColorAsset.Color
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
+
+  internal enum OverlayColors {
+    internal static let defaultUnitFill = ColorAsset(name: "DefaultUnitFill")
+    internal static let elevatorFill = ColorAsset(name: "ElevatorFill")
+    internal static let levelFill = ColorAsset(name: "LevelFill")
+    internal static let levelStroke = ColorAsset(name: "LevelStroke")
+    internal static let nonPublicFill = ColorAsset(name: "NonPublicFill")
+    internal static let restroomFill = ColorAsset(name: "RestroomFill")
+    internal static let roomFill = ColorAsset(name: "RoomFill")
+    internal static let unitStroke = ColorAsset(name: "UnitStroke")
+    internal static let walkwayFill = ColorAsset(name: "WalkwayFill")
+  }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
