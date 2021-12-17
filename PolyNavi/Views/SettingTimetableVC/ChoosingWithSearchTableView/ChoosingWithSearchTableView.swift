@@ -16,6 +16,8 @@ class ChoosingWithSearchTableView: UIViewController {
     public var loadFunction: (@escaping ([SettingsModel]) -> Void) -> Void = { _ in  }
     public var selectedID: Int? = nil
     
+    private var tableViewBottomConstraint: NSLayoutConstraint!
+    
     private lazy var searchController: UISearchController = {
         $0.searchResultsUpdater = self
         $0.obscuresBackgroundDuringPresentation = false
@@ -53,6 +55,9 @@ class ChoosingWithSearchTableView: UIViewController {
         tableView.dataSource = self
         setViews()
         loadData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
 
@@ -117,10 +122,10 @@ extension ChoosingWithSearchTableView {
         view.addSubview(indicator)
         
         view.backgroundColor = .systemBackground
-        
+        tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableViewBottomConstraint,
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
@@ -153,4 +158,28 @@ extension ChoosingWithSearchTableView {
             }
         }
     }
+}
+
+extension ChoosingWithSearchTableView {
+    
+    @objc
+    func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardHeight = keyboardFrame.cgRectValue.height
+            
+            self.tableViewBottomConstraint.constant = -keyboardHeight
+            UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    @objc
+    func keyboardWillHide(_ notification: Notification) {
+        self.tableViewBottomConstraint.constant = .zero
+        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
 }
