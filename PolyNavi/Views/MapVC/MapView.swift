@@ -16,6 +16,8 @@ class MapView: UIView {
     var currentLevelFeatures = [StylableFeature]()
     var currentLevelOverlays = [MKOverlay]()
     var currentLevelAnnotations = [MKAnnotation]()
+    let pointAnnotationViewIdentifier = "PointAnnotationView"
+    let labelAnnotationViewIdentifier = "LabelAnnotationView"
     
     
     override init(frame: CGRect) {
@@ -40,6 +42,8 @@ class MapView: UIView {
 //
 //        $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 5000), animated: false)
 //        $0.setCenter(centerPosition, animated: true)
+        $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: pointAnnotationViewIdentifier)
+        $0.register(LabelAnnotationView.self, forAnnotationViewWithReuseIdentifier: labelAnnotationViewIdentifier)
         $0.pointOfInterestFilter = .excludingAll
         
         return $0
