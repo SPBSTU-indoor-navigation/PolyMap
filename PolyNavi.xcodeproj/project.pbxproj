@@ -39,6 +39,7 @@
 		97CD6AE9276CFB3A00AA7CC2 /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CD6AE6276CFB3900AA7CC2 /* PointAnnotationView.swift */; };
 		97CD6AEB276CFB3A00AA7CC2 /* LabelAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CD6AE8276CFB3900AA7CC2 /* LabelAnnotationView.swift */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
+		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		97CD6AE6276CFB3900AA7CC2 /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
 		97CD6AE8276CFB3900AA7CC2 /* LabelAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAnnotationView.swift; sourceTree = "<group>"; };
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
+		97DD22D82772BBCF0083561B /* LevelSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSwitcher.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
 		E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.release.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -269,6 +271,7 @@
 				97CD6AE5276CFB3900AA7CC2 /* Views */,
 				97A484BB2717858700D14997 /* MapViewController.swift */,
 				9717E4262742991F00332D29 /* MapView.swift */,
+				97DD22D82772BBCF0083561B /* LevelSwitcher.swift */,
 			);
 			path = MapVC;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 			files = (
 				056F2D20271CAF400063015B /* GroupsAndTeacherStorage.swift in Sources */,
 				97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */,
+				97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */,
 				978D9DC8273F56E300293A6C /* TimetableNavbar.swift in Sources */,
 				05C32AC3271F06B70033B751 /* ChoosingWithSearchTableView.swift in Sources */,
 				9717E4272742991F00332D29 /* MapView.swift in Sources */,

@@ -1,0 +1,98 @@
+{
+    "type": "FeatureCollection",
+    "name": "building",
+    "features": [
+        {
+            "id": "f65b3ad3-c870-41d1-82a9-abf363ef207e",
+            "type": "Feature",
+            "feature_type": "building",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            30.3715454324304,
+                            60.0019856911307
+                        ],
+                        [
+                            30.371725289201112,
+                            60.002345419763223
+                        ],
+                        [
+                            30.372264927006228,
+                            60.002345419763223
+                        ],
+                        [
+                            30.37208506730104,
+                            60.0019856911307
+                        ],
+                        [
+                            30.3715454324304,
+                            60.0019856911307
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "name": null,
+                "alt_name": null,
+                "category": "unspecified",
+                "restriction": null,
+                "display_point": {
+                    "type": "Point",
+                    "coordinates": [
+                        30.372393568698396,
+                        60.001779746406243
+                    ]
+                },
+                "address_id": null
+            }
+        },
+        {
+            "id": "e029ca5e-a6ca-4922-bcd6-a127a3424453",
+            "type": "Feature",
+            "feature_type": "building",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            30.370646020438027,
+                            60.00225548760509
+                        ],
+                        [
+                            30.370646006743716,
+                            60.002435351921349
+                        ],
+                        [
+                            30.370825886256629,
+                            60.002435351921349
+                        ],
+                        [
+                            30.37082589946186,
+                            60.00225548760509
+                        ],
+                        [
+                            30.370646020438027,
+                            60.00225548760509
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "name": null,
+                "alt_name": null,
+                "category": "unspecified",
+                "restriction": null,
+                "display_point": {
+                    "type": "Point",
+                    "coordinates": [
+                        30.371146100584159,
+                        60.002016268009569
+                    ]
+                },
+                "address_id": null
+            }
+        }
+    ]
+}

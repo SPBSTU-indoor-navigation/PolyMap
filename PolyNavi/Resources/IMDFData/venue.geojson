@@ -1,0 +1,48 @@
+{
+    "type": "FeatureCollection",
+    "name": "venue",
+    "features": [
+        {
+            "id": "b6d4292c-c507-436e-a336-3d629ec26e50",
+            "type": "Feature",
+            "feature_type": "venue",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            30.370466176872295,
+                            60.001805826814433
+                        ],
+                        [
+                            30.370466120139067,
+                            60.002525284079482
+                        ],
+                        [
+                            30.372444797471083,
+                            60.002525284079482
+                        ],
+                        [
+                            30.372444832684813,
+                            60.001805826814433
+                        ],
+                        [
+                            30.370466176872295,
+                            60.001805826814433
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "name": null,
+                "alt_name": null,
+                "category": "university",
+                "restriction": null,
+                "hours": "",
+                "phone": "",
+                "website": "",
+                "address_id": "6f06cdc0-3f49-4ff0-8fc8-95fda20b004a"
+            }
+        }
+    ]
+}

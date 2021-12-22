@@ -42,6 +42,34 @@ class MapView: UIView {
         
         addSubview(mapView)
         
+//        [
+//            30.370466176872295,
+//            60.001805826814433
+//        ],
+//        [
+//            30.370466120139067,
+//            60.002525284079482
+//        ],
+//        [
+//            30.372444797471083,
+//            60.002525284079482
+//        ],
+//        [
+//            30.372444832684813,
+//            60.001805826814433
+//        ],
+//        [
+//            30.370466176872295,
+//            60.001805826814433
+//        ]
+        
+        var points = [CLLocationCoordinate2DMake(60.001805826814433, 30.370466176872295),
+                      CLLocationCoordinate2DMake(60.002525284079482, 30.370466120139067),
+                      CLLocationCoordinate2DMake(60.002525284079482, 30.372444797471083),
+                      CLLocationCoordinate2DMake(60.001805826814433, 30.372444832684813)]
+        
+//        mapView.addOverlay(Venue(coordinates: &points, count: points.count))
+        
         NSLayoutConstraint.activate([
             mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -51,7 +79,42 @@ class MapView: UIView {
     }
 }
 
+class Venue: MKPolygon {
+    class Renderer: MKPolygonRenderer {
+        override init(overlay: MKOverlay) {
+            super.init(overlay: overlay)
+
+            strokeColor = .magenta
+            lineWidth = 5
+            fillColor = .systemBlue
+        }
+
+//        override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
+//            super.draw(mapRect, zoomScale: zoomScale, in: context)
+//        }
+
+
+        override func canDraw(_ mapRect: MKMapRect, zoomScale: MKZoomScale) -> Bool {
+            return zoomScale > 0.1 ? true : false
+        }
+
+    }
+
+    func getOverlay() -> MKOverlayRenderer {
+        return Renderer(overlay: self)
+    }
+}
+
+
+
 extension MapView: MKMapViewDelegate {
-    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is Venue {
+            return (overlay as! Venue).getOverlay()
+        }
+        return MKPolygonRenderer(overlay: overlay)
+
+    }
+
 }
 
