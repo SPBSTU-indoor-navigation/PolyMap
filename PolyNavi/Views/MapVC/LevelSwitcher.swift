@@ -35,6 +35,7 @@ class LevelSwitcher: UIView {
         return $0
     }(UIStackView())
     
+
     func createLevelButton(index: Int) -> UIButton {
         return {
             $0.setTitle(levels[index], for: .normal)
@@ -43,6 +44,8 @@ class LevelSwitcher: UIView {
             
             $0.addTarget(self, action: #selector(onLevelTap(_:)), for: .touchUpInside)
             $0.translatesAutoresizingMaskIntoConstraints = false
+            
+            $0.becomeFirstResponder()
             return $0
         }(UIButton())
     }
@@ -59,6 +62,7 @@ class LevelSwitcher: UIView {
         NSLayoutConstraint.activate([
             background.widthAnchor.constraint(equalTo: widthAnchor),
             widthAnchor.constraint(equalToConstant: 40),
+            heightAnchor.constraint(equalTo: background.heightAnchor)
         ])
         
     }
@@ -76,14 +80,14 @@ class LevelSwitcher: UIView {
             background.addArrangedSubview(button)
             
             NSLayoutConstraint.activate([
-                button.widthAnchor.constraint(equalTo: background.widthAnchor),
+//                button.widthAnchor.constraint(equalTo: background.widthAnchor),
                 button.heightAnchor.constraint(equalToConstant: 40)
             ])
         }
     }
     
     @objc
-    func onLevelTap(_ sender: UIButton?) {
-        print(sender?.tag)
+    func onLevelTap(_ sender: UIButton) {
+        onChange?(sender.tag)
     }
 }

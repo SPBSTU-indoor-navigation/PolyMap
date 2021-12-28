@@ -27,7 +27,9 @@ class MapViewController: UIViewController {
     }(MapView())
     
     private lazy var levelSwitcher: LevelSwitcher = {
+        $0.isUserInteractionEnabled = true
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.onChange = mapView.onLevelChange
         return $0
     }(LevelSwitcher())
     
@@ -35,6 +37,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
     }
+    
     
     func setupViews() {
         self.view.backgroundColor = .secondarySystemBackground
@@ -50,7 +53,6 @@ class MapViewController: UIViewController {
         
         view.addSubview(levelSwitcher)
         
-        
         NSLayoutConstraint.activate([
             container.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
             container.widthAnchor.constraint(equalTo: button.widthAnchor),
@@ -64,7 +66,9 @@ class MapViewController: UIViewController {
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             levelSwitcher.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            levelSwitcher.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            levelSwitcher.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            
+
         ])
 
     }

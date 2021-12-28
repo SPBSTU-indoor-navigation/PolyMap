@@ -11,6 +11,7 @@ import MapKit
 class MapView: UIView {
     
     let centerPosition = CLLocationCoordinate2D(latitude: 60.00385, longitude: 30.37539)
+    var ordinal = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,6 +19,13 @@ class MapView: UIView {
         loadIMDF()
         
         layoutViews()
+    }
+    
+    func onLevelChange(ordinal: Int) {
+        self.ordinal = ordinal
+//        mapView.overlays.forEach { t in
+//            (t as! Venue).changeOrdinal(ordinal: ordinal)
+//        }
     }
     
     required init?(coder: NSCoder) {
@@ -68,7 +76,7 @@ class MapView: UIView {
                       CLLocationCoordinate2DMake(60.002525284079482, 30.372444797471083),
                       CLLocationCoordinate2DMake(60.001805826814433, 30.372444832684813)]
         
-//        mapView.addOverlay(Venue(coordinates: &points, count: points.count))
+        mapView.addOverlay(Venue(coordinates: &points, count: points.count))
         
         NSLayoutConstraint.activate([
             mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -95,14 +103,31 @@ class Venue: MKPolygon {
 
 
         override func canDraw(_ mapRect: MKMapRect, zoomScale: MKZoomScale) -> Bool {
+            fillColor = UIColor(red: zoomScale, green: zoomScale, blue: zoomScale, alpha: 1)
             return zoomScale > 0.1 ? true : false
         }
 
     }
+    
+    var redneder: Renderer?
+    
+    
+    override init() {
+        super.init()
+        redneder = Renderer(overlay: self)
+    }
 
     func getOverlay() -> MKOverlayRenderer {
-        return Renderer(overlay: self)
+        return redneder!
     }
+    
+//    func shoudRerender(ordinal: Int) -> Bool {
+//
+//    }
+    
+//    func changeOrdinal(ordinal: Int) {
+//        redneder!.setNeedsDisplay()
+//    }
 }
 
 
@@ -114,6 +139,10 @@ extension MapView: MKMapViewDelegate {
         }
         return MKPolygonRenderer(overlay: overlay)
 
+    }
+    
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        print(1)
     }
 
 }
