@@ -27,6 +27,17 @@ internal enum Asset {
     internal static let restaurantFill = ColorAsset(name: "RestaurantFill")
     internal static let shoppingFill = ColorAsset(name: "ShoppingFill")
   }
+  internal enum IMDFColors {
+    internal static let buildingFill = ColorAsset(name: "BuildingFill")
+    internal static let buildingLine = ColorAsset(name: "BuildingLine")
+    internal static let buildingUnderLevel = ColorAsset(name: "BuildingUnderLevel")
+    internal static let levelLine = ColorAsset(name: "LevelLine")
+    internal enum Units {
+      internal static let `default` = ColorAsset(name: "Default")
+      internal static let defaultLine = ColorAsset(name: "DefaultLine")
+    }
+    internal static let venueFill = ColorAsset(name: "VenueFill")
+  }
   internal enum OverlayColors {
     internal static let defaultUnitFill = ColorAsset(name: "DefaultUnitFill")
     internal static let elevatorFill = ColorAsset(name: "ElevatorFill")
