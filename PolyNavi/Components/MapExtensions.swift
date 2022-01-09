@@ -17,3 +17,11 @@ extension CLLocationCoordinate2D {
         return from.distance(from: to)
     }
 }
+
+extension UIView {
+    func addShadow() {
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowOffset = .zero
+        self.layer.shadowRadius = 5
+    }
+}

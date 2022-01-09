@@ -43,13 +43,14 @@ class Level: MKMultiPolygon, Styleble, MapRenderer {
     var units: [Unit] = []
     var openings: [Opening] = []
     var ordinal: Int = 0
+    var shortName: LocalizedName?
     
-    init(_ polygons: [MKPolygon], ordinal: Int, units: [Unit], openings: [Opening]) {
+    init(_ polygons: [MKPolygon], ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?) {
         super.init(polygons)
         self.ordinal = ordinal
         self.units = units
         self.openings = openings
-        print(openings.count)
+        self.shortName = shortName
     }
     
     func show(_ mapView: MKMapView) {
@@ -82,7 +83,7 @@ class Building: MKMultiPolygon, Styleble, MapRenderer {
     var levels: [Level] = []
 
     
-    private var ordinal = -1
+    var ordinal = -1
     private var isShow = false
     
     init(_ polygons: [MKPolygon], levels: [Level]) {

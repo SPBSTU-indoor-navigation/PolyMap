@@ -75,9 +75,8 @@ class IMDFDecoder {
                         .filter({ $0.properties.level_id == level.identifier })
                         .map({ opening in
                             let t = opening.geometry.first as! MKPolyline
-                            return Opening(points: t.points(), count: t.pointCount)
-                }))
-                
+                            return Opening(points: t.points(), count: t.pointCount) }),
+                      shortName: level.properties.short_name)
             }))
         })
         

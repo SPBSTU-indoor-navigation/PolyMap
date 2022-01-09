@@ -16,7 +16,7 @@ class MapViewController: UIViewController {
         
         $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout)
-        
+        $0.addShadow()
         $0.addTarget(self, action: #selector(openTimetable(_:)), for: .touchUpInside)
         return $0
     }(RoundButton(type: .system))
@@ -26,12 +26,12 @@ class MapViewController: UIViewController {
         return $0
     }(MapView())
     
-    private lazy var levelSwitcher: LevelSwitcher = {
-        $0.isUserInteractionEnabled = true
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.onChange = mapView.onLevelChange
-        return $0
-    }(LevelSwitcher())
+//    private lazy var levelSwitcher: LevelSwitcher = {
+//        $0.isUserInteractionEnabled = true
+//        $0.translatesAutoresizingMaskIntoConstraints = false
+//        $0.onChange = mapView.onLevelChange
+//        return $0
+//    }(LevelSwitcher())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +50,7 @@ class MapViewController: UIViewController {
         
         view.addSubview(mapView)
         view.addSubview(container)
-        
-        view.addSubview(levelSwitcher)
+    
         
         NSLayoutConstraint.activate([
             container.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
@@ -63,12 +62,7 @@ class MapViewController: UIViewController {
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            levelSwitcher.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            levelSwitcher.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            
-
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
     }

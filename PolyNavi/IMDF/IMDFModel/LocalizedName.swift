@@ -28,6 +28,6 @@ struct LocalizedName: Codable {
         }
         
         // Fall back to English if no better match was found.
-        return localizations["en"]
+        return localizations["ru"]
     }
 }

@@ -14,31 +14,13 @@ class MapView: UIView {
     
     private var mapContainerView : UIView?
     var lastZoom : Float = -1.0
-    
     let centerPosition = CLLocationCoordinate2D(latitude: 60.00385, longitude: 30.37539)
-    
-    
     var currentBuilding: Building?
     
-    
-    let points = [CLLocationCoordinate2DMake(60.001805826814433, 30.370466176872295),
-                  CLLocationCoordinate2DMake(60.002525284079482, 30.370466120139067),
-                  CLLocationCoordinate2DMake(60.002525284079482, 30.372444797471083),
-                  CLLocationCoordinate2DMake(60.001805826814433, 30.372444832684813)]
-    
-    let points1 = [CLLocationCoordinate2DMake(60.003805826814433, 30.370466176872295),
-                  CLLocationCoordinate2DMake(60.002625284079482, 30.370466120139067),
-                  CLLocationCoordinate2DMake(60.002625284079482, 30.372444797471083),
-                  CLLocationCoordinate2DMake(60.003805826814433, 30.372444832684813)]
-    
-    let points2 = [CLLocationCoordinate2DMake(60.000805826814433, 30.365466176872295),
-                   CLLocationCoordinate2DMake(60.004625284079482, 30.365466120139067),
-                   CLLocationCoordinate2DMake(60.004625284079482, 30.374444797471083),
-                   CLLocationCoordinate2DMake(60.000805826814433, 30.374444832684813)]
-        
-    
-    var ordinal = 0
     var venue: Venue?
+    
+    
+    var levelSwitcherConstraint: NSLayoutConstraint?
 
     
     override init(frame: CGRect) {
@@ -60,9 +42,22 @@ class MapView: UIView {
         $0.setCenter(centerPosition, animated: true)
         $0.isPitchEnabled = false
         $0.pointOfInterestFilter = .excludingAll
+        $0.showsCompass = false
         
         return $0
     }(MKMapView())
+    
+    lazy var compassButton: MKCompassButton = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.compassVisibility = .adaptive
+        return $0
+    }(MKCompassButton(mapView: mapView))
+    
+    private lazy var levelSwitcher: LevelSwitcher = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.onChange = onLevelChange
+        return $0
+    }(LevelSwitcher())
     
     func layoutViews() {
         mapContainerView = findViewOfType("MKScrollContainerView", inView: mapView)
@@ -75,7 +70,13 @@ class MapView: UIView {
         
         
         addSubview(mapView)
+        addSubview(levelSwitcher)
+        addSubview(compassButton)
+        
         addSubview(center)
+        
+        levelSwitcherConstraint = levelSwitcher.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+        
         NSLayoutConstraint.activate([
             mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -85,21 +86,29 @@ class MapView: UIView {
             center.widthAnchor.constraint(equalToConstant: 10),
             center.heightAnchor.constraint(equalToConstant: 10),
             center.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
-            center.centerYAnchor.constraint(equalTo: mapView.centerYAnchor)
+            center.centerYAnchor.constraint(equalTo: mapView.centerYAnchor),
+            
+            levelSwitcher.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            levelSwitcher.widthAnchor.constraint(equalToConstant: 44),
+            levelSwitcherConstraint!,
+            
+            compassButton.topAnchor.constraint(equalTo: levelSwitcher.topAnchor),
+            compassButton.trailingAnchor.constraint(lessThanOrEqualTo: levelSwitcher.leadingAnchor, constant: -10),
+            compassButton.trailingAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.trailingAnchor, constant: -10)
         ])
+        
     }
     
     
     func loadIMDF() {
         let path = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
         
-        venue =  IMDFDecoder.decode(path)
+        venue = IMDFDecoder.decode(path)
         mapView.addOverlay(venue!)
         mapView.addOverlays(venue!.buildings)
     }
     
     func onLevelChange(ordinal: Int) {
-        self.ordinal = ordinal
         currentBuilding?.changeOrdinal(ordinal, mapView)
     }
     
@@ -147,22 +156,37 @@ class MapView: UIView {
     
         if zoomLevel > MIN_SHOW_ZOOM {
             currentBuilding.show(mapView)
+            showLevelSwitcher()
         } else {
             currentBuilding.hide(mapView)
+            hideLevelSwitcher()
         }
     }
     
     
     func updateMap(nearestBuilding: Building?) {
-        if let currentBuilding = currentBuilding {
-            currentBuilding.hide(mapView)
-        }
         
-        if getZoom() > MIN_SHOW_ZOOM {
-            nearestBuilding?.show(mapView)
+        if currentBuilding != nearestBuilding {
+            if let currentBuilding = currentBuilding {
+                currentBuilding.hide(mapView)
+            }
+            
+            if getZoom() > MIN_SHOW_ZOOM {
+                nearestBuilding?.show(mapView)
+                
+                if let t = nearestBuilding, t.levels.count > 0 {
+                    showLevelSwitcher()
+                }
+            }
+            
+            if nearestBuilding != nil {
+                levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: nearestBuilding!.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
+                                           selected: nearestBuilding!.ordinal)
+                
+            }
+            
+            currentBuilding = nearestBuilding
         }
-        
-        currentBuilding = nearestBuilding
     }
     
     func updateMap(centerPosition: CLLocationCoordinate2D) {
@@ -175,6 +199,22 @@ class MapView: UIView {
 }
 
 
+extension MapView {
+    func showLevelSwitcher() {
+        updateLevelSwitcher(-5)
+    }
+    
+    func hideLevelSwitcher() {
+        updateLevelSwitcher(50)
+    }
+    
+    private func updateLevelSwitcher(_ pos: CGFloat) {
+        levelSwitcherConstraint?.constant = pos
+        UIView.animate(withDuration: 0.15) {
+            self.layoutIfNeeded()
+        }
+    }
+}
 
 
 extension MapView: MKMapViewDelegate {
