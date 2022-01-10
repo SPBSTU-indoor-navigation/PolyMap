@@ -89,6 +89,46 @@ struct IMDF {
         }
     }
     
+    class Amenity: Feature<Amenity.Properties> {
+        
+        enum Category: String, Codable {
+            case atm //Банкомат
+            case copymachine
+            case eatingdrinking
+            case elevator
+            case escalator
+            case entry //вход
+            case faregate //пропускной вход
+            case information
+            case library
+            case restroom
+            case restroomFemale = "restroom.female"
+            case restroomMale = "restroom.male"
+            case seat
+            case security
+            case securityCheckpoint = "security.checkpoint"
+            case smokingarea
+            case studentservices
+            case swimmingpool
+            case vendingmachine
+            case unspecified
+            case stairs
+        }
+        
+        struct Properties: Codable {
+            let name: LocalizedName?
+            let alt_name: LocalizedName?
+            let unit_ids: [UUID]
+            
+            let category: Category
+            
+            let hours: String?
+            let phone: String?
+            let website: String?
+            let address_id: UUID?
+        }
+    }
+    
 }
 
 

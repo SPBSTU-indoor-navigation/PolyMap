@@ -14,11 +14,11 @@ enum Restriction: String, Codable {
 }
 
 struct PointGeometry: Codable {
-    let type: String = "Point"
+//    let type: String = "Point"
     let coordinates: [Double]
     
     func getCoordinates() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: coordinates.first!, longitude: coordinates.last!)
+        return CLLocationCoordinate2D(latitude: coordinates.last!, longitude: coordinates.first!)
     }
 }
 

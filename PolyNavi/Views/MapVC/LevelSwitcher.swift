@@ -84,8 +84,8 @@ class LevelSwitcher: UIView {
         NSLayoutConstraint.activate([
             background.widthAnchor.constraint(equalTo: widthAnchor),
             heightAnchor.constraint(equalTo: background.heightAnchor),
-            current.widthAnchor.constraint(equalTo: widthAnchor, constant: -3),
-            current.heightAnchor.constraint(equalTo: widthAnchor, constant: -3),
+            current.widthAnchor.constraint(equalTo: widthAnchor, constant: -5),
+            current.heightAnchor.constraint(equalTo: widthAnchor, constant: -5),
             current.centerXAnchor.constraint(equalTo: background.centerXAnchor),
             currentConstraint!
         ])
@@ -131,6 +131,7 @@ extension LevelSwitcher {
         currentConstraint?.constant = CGFloat(Array(levels.keys).sorted(by:>).firstIndex(of: selected)!) * 45.0 + 22.5
 //        UIView.animate(withDuration: 0.15) {
 //            self.layoutIfNeeded()
+//            self.background.layoutIfNeeded()
 //        }
     }
     

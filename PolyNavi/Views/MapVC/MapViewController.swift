@@ -26,18 +26,10 @@ class MapViewController: UIViewController {
         return $0
     }(MapView())
     
-//    private lazy var levelSwitcher: LevelSwitcher = {
-//        $0.isUserInteractionEnabled = true
-//        $0.translatesAutoresizingMaskIntoConstraints = false
-//        $0.onChange = mapView.onLevelChange
-//        return $0
-//    }(LevelSwitcher())
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
-    
     
     func setupViews() {
         self.view.backgroundColor = .secondarySystemBackground

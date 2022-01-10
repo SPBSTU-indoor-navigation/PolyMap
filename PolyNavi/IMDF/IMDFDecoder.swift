@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import M13Checkbox
 
 protocol IMDFDecodableFeature {
     init(feature: MKGeoJSONFeature) throws
@@ -57,30 +58,20 @@ class IMDFDecoder {
         let imdfLevels = try! decodeFeatures(IMDF.Level.self, path: File.level.fileURL(path))
         let imdfUnits = try! decodeFeatures(IMDF.Unit.self, path: File.unit.fileURL(path))
         let imdfOpening = try! decodeFeatures(IMDF.Opening.self, path: File.opening.fileURL(path))
+        let amenitys = try! decodeFeatures(IMDF.Amenity.self, path: File.amenity.fileURL(path))
         
         
         guard let venue = venues.first else { return nil }
         
         let buildings = imdfBuildings.map({ building in
-            return Building(geometry(building.geometry),
+            return Building(building.geometry.polygon(),
                             levels: imdfLevels
                                 .filter({ $0.properties.building_ids.contains(building.identifier) })
-                                .map({ level in
-                Level(geometry(level.geometry),
-                      ordinal: level.properties.ordinal,
-                      units: imdfUnits
-                        .filter({ $0.properties.level_id == level.identifier })
-                        .map({ Unit(geometry($0.geometry), $0.properties.category) }),
-                      openings: imdfOpening
-                        .filter({ $0.properties.level_id == level.identifier })
-                        .map({ opening in
-                            let t = opening.geometry.first as! MKPolyline
-                            return Opening(points: t.points(), count: t.pointCount) }),
-                      shortName: level.properties.short_name)
+                                .map({ $0.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys)
             }))
         })
         
-        let result = Venue(geometry: geometry(venue.geometry),
+        let result = Venue(geometry: venue.geometry.polygon(),
                            buildings: buildings,
                            address: addressesByID[venue.properties.address_id])
         return result
@@ -98,12 +89,53 @@ class IMDFDecoder {
         return imdfFeatures
     }
     
-    static func geometry(_ geometry: [MKShape]) -> [MKPolygon] {
-        if let geometry = geometry.first as? MKPolygon {
+}
+
+extension IMDF.Level {
+    func cast(units: [IMDF.Unit], openings: [IMDF.Opening], amenitys: [IMDF.Amenity]) -> Level {
+        let units = units.filter({ $0.properties.level_id == self.identifier })
+        let unitsIds = Set(units.map({ $0.identifier }))
+        let amenitysFiltred = amenitys.filter({ !unitsIds.intersection($0.properties.unit_ids).isEmpty })
+        
+        
+        return Level(self.geometry.polygon(),
+                     ordinal: self.properties.ordinal,
+                     units: units.map{ $0.cast() },
+                     openings: openings.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }),
+                     shortName: self.properties.short_name,
+                     amenitys: amenitysFiltred)
+    }
+}
+
+extension IMDF.Unit {
+    func cast() -> Unit {
+        let properties = self.properties
+        
+        return Unit(self.geometry.polygon(),
+                    id: self.identifier,
+                    displayPoint: properties.display_point?.getCoordinates(),
+                    name: properties.name,
+                    altName: properties.alt_name)
+    }
+}
+
+extension IMDF.Opening {
+    func cast() -> Opening {
+        let t = self.geometry.first as! MKPolyline
+        return Opening(points: t.points(), count: t.pointCount)
+    }
+}
+
+
+
+extension Array where Element == MKShape & MKGeoJSONObject {
+    func polygon() -> [MKPolygon] {
+        if let geometry = self.first as? MKPolygon {
             return [geometry]
-        } else if let geometry = geometry.first as? MKMultiPolygon {
+        } else if let geometry = self.first as? MKMultiPolygon {
             return geometry.polygons
         }
         return []
     }
 }
+

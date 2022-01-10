@@ -26,7 +26,16 @@ class Opening: MKPolyline, Styleble {
 }
 
 class Unit: MKMultiPolygon, Styleble {
-    init(_ polygons: [MKPolygon], _ t: String) {
+    
+    var annotation: UnitAnnotation? = nil
+    var id: UUID
+    
+    init(_ polygons: [MKPolygon], id: UUID, displayPoint: CLLocationCoordinate2D?, name: LocalizedName?, altName: LocalizedName?) {
+        self.id = id
+        if let displayPoint = displayPoint, let altName = altName {
+            annotation = UnitAnnotation(coordinate: displayPoint, title: altName.bestLocalizedValue)
+        }
+        
         super.init(polygons)
     }
     
@@ -42,15 +51,25 @@ class Level: MKMultiPolygon, Styleble, MapRenderer {
     private var isShow = false
     var units: [Unit] = []
     var openings: [Opening] = []
+    var amenitys: [AmenityAnnotation] = []
     var ordinal: Int = 0
     var shortName: LocalizedName?
     
-    init(_ polygons: [MKPolygon], ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?) {
+    init(_ polygons: [MKPolygon], ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity] ) {
         super.init(polygons)
         self.ordinal = ordinal
         self.units = units
         self.openings = openings
         self.shortName = shortName
+        self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category) })
+        
+        let amenityUnits = amenitys.flatMap({ $0.properties.unit_ids })
+        
+        for unit in self.units {
+            if amenityUnits.contains(unit.id) {
+                unit.annotation = nil
+            }
+        }
     }
     
     func show(_ mapView: MKMapView) {
@@ -59,6 +78,8 @@ class Level: MKMultiPolygon, Styleble, MapRenderer {
         mapView.addOverlays(openings)
         mapView.addOverlay(self)
         
+        mapView.addAnnotations(units.compactMap{ $0.annotation })
+        mapView.addAnnotations(amenitys)
         isShow = true
     }
     
@@ -67,6 +88,9 @@ class Level: MKMultiPolygon, Styleble, MapRenderer {
         mapView.removeOverlays(units)
         mapView.removeOverlays(openings)
         mapView.removeOverlay(self)
+        
+        mapView.removeAnnotations(units.compactMap({ $0.annotation }))
+        mapView.removeAnnotations(amenitys)
         
         isShow = false
     }
@@ -162,8 +186,8 @@ class Venue: MKMultiPolygon, Styleble {
     
     func configurate(renderer: MKOverlayRenderer) {
         guard let renderer = renderer as? MKMultiPolygonRenderer else { return }
-        renderer.strokeColor = .red
-        renderer.lineWidth = 5
+//        renderer.strokeColor = .red
+//        renderer.lineWidth = 5
         renderer.fillColor = Asset.IMDFColors.venueFill.color
     }
 }

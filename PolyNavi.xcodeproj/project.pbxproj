@@ -32,8 +32,11 @@
 		9717E4272742991F00332D29 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4262742991F00332D29 /* MapView.swift */; };
 		9717E46027447A7D00332D29 /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		973BEC0D278677D100A66B33 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973BEC0C278677D100A66B33 /* Utils.swift */; };
+		977B2F13278B41B900046114 /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977B2F12278B41B900046114 /* Annotations.swift */; };
 		978D9DC8273F56E300293A6C /* TimetableNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D9DC7273F56E300293A6C /* TimetableNavbar.swift */; };
-		979E2C75278763A9008CFA05 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C74278763A9008CFA05 /* Objects.swift */; };
+		97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941916278BCAF10038CBEF /* PointAnnotationView.swift */; };
+		97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */; };
+		979E2C75278763A9008CFA05 /* Overlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C74278763A9008CFA05 /* Overlays.swift */; };
 		979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C762788A7C7008CFA05 /* MapExtensions.swift */; };
 		979E2C792789D1C6008CFA05 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C782789D1C6008CFA05 /* Feature.swift */; };
 		979E2C7D2789D234008CFA05 /* IMDFDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C7C2789D234008CFA05 /* IMDFDecoder.swift */; };
@@ -43,8 +46,6 @@
 		97A484C02717BAF700D14997 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
 		97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */; };
-		97CD6AE9276CFB3A00AA7CC2 /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CD6AE6276CFB3900AA7CC2 /* PointAnnotationView.swift */; };
-		97CD6AEB276CFB3A00AA7CC2 /* LabelAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CD6AE8276CFB3900AA7CC2 /* LabelAnnotationView.swift */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
@@ -78,8 +79,11 @@
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		973BEC0C278677D100A66B33 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		977B2F12278B41B900046114 /* Annotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
 		978D9DC7273F56E300293A6C /* TimetableNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavbar.swift; sourceTree = "<group>"; };
-		979E2C74278763A9008CFA05 /* Objects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
+		97941916278BCAF10038CBEF /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
+		97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityAnnotationView.swift; sourceTree = "<group>"; };
+		979E2C74278763A9008CFA05 /* Overlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlays.swift; sourceTree = "<group>"; };
 		979E2C762788A7C7008CFA05 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
 		979E2C782789D1C6008CFA05 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		979E2C7C2789D234008CFA05 /* IMDFDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDFDecoder.swift; sourceTree = "<group>"; };
@@ -89,8 +93,6 @@
 		97A484BF2717BAF700D14997 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
 		97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableProvider.swift; sourceTree = "<group>"; };
-		97CD6AE6276CFB3900AA7CC2 /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
-		97CD6AE8276CFB3900AA7CC2 /* LabelAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAnnotationView.swift; sourceTree = "<group>"; };
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		97DD22D82772BBCF0083561B /* LevelSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSwitcher.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
@@ -284,6 +286,15 @@
 			path = IMDFModel;
 			sourceTree = "<group>";
 		};
+		97941915278BCAF10038CBEF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				97941916278BCAF10038CBEF /* PointAnnotationView.swift */,
+				97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		979E2C7227875BF2008CFA05 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,7 +306,9 @@
 		979E2C7327875C02008CFA05 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				979E2C74278763A9008CFA05 /* Objects.swift */,
+				97941915278BCAF10038CBEF /* Views */,
+				979E2C74278763A9008CFA05 /* Overlays.swift */,
+				977B2F12278B41B900046114 /* Annotations.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -304,7 +317,6 @@
 			isa = PBXGroup;
 			children = (
 				979E2C7227875BF2008CFA05 /* Map */,
-				97CD6AE5276CFB3900AA7CC2 /* Views */,
 				97A484BB2717858700D14997 /* MapViewController.swift */,
 				9717E4262742991F00332D29 /* MapView.swift */,
 				97DD22D82772BBCF0083561B /* LevelSwitcher.swift */,
@@ -328,15 +340,6 @@
 				97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */,
 			);
 			path = Timetable;
-			sourceTree = "<group>";
-		};
-		97CD6AE5276CFB3900AA7CC2 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				97CD6AE6276CFB3900AA7CC2 /* PointAnnotationView.swift */,
-				97CD6AE8276CFB3900AA7CC2 /* LabelAnnotationView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		97D551D62739D5FD002A5BBD /* TimeTableVC */ = {
@@ -478,20 +481,20 @@
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
 				0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */,
 				054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */,
+				97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */,
 				97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */,
 				05C32AC7271F4C3E0033B751 /* SettingsModel.swift in Sources */,
-				97CD6AEB276CFB3A00AA7CC2 /* LabelAnnotationView.swift in Sources */,
 				979E2C832789DF39008CFA05 /* LocalizedName.swift in Sources */,
+				977B2F13278B41B900046114 /* Annotations.swift in Sources */,
 				056F2D00271C5EB60063015B /* Strings+Generated.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
 				054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */,
-				979E2C75278763A9008CFA05 /* Objects.swift in Sources */,
+				979E2C75278763A9008CFA05 /* Overlays.swift in Sources */,
 				054F67AA270CD78D00FCC07C /* LessonCellView.swift in Sources */,
 				05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */,
 				05C4C8312713549A00C22D61 /* (null) in Sources */,
 				973BEC0D278677D100A66B33 /* Utils.swift in Sources */,
 				979E2C812789DE95008CFA05 /* Models.swift in Sources */,
-				97CD6AE9276CFB3A00AA7CC2 /* PointAnnotationView.swift in Sources */,
 				05C4C8332713599500C22D61 /* (null) in Sources */,
 				054F67CC270CDFB400FCC07C /* LessonModel.swift in Sources */,
 				0574A2292711FF5F00C33317 /* TimetableBreakTableViewCell.swift in Sources */,
@@ -502,6 +505,7 @@
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
+				97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */,
 				97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
