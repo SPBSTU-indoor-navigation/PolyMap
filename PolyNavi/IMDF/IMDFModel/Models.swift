@@ -47,18 +47,90 @@ struct IMDF {
     }
     
     class Unit: Feature<Unit.Properties> {
+        enum Category: String, Codable {
+            case auditorium
+            case brick
+            case classroom
+            case column
+            case concrete
+            case conferenceroom
+            case drywall
+            case elevator
+            case escalator
+            case fieldofplay
+            case firstaid
+            case fitnessroom
+            case foodservice
+            case footbridge
+            case glass
+            case huddleroom
+            case kitchen
+            case laboratory
+            case library
+            case lobby
+            case lounge
+            case mailroom
+            case mothersroom
+            case movietheater
+            case movingwalkway
+            case nonpublic
+            case office
+            case opentobelow
+            case parking
+            case phoneroom
+            case platform
+            case privatelounge
+            case ramp
+            case recreation
+            case restroom
+            case restroomFamily = "restroom.family"
+            case restroomFemale = "restroom.female"
+            case restroomFemaleWheelchair = "restroom.female.wheelchair"
+            case restroomMale = "restroom.male"
+            case restroomMaleWheelchair = "restroom.male.wheelchair"
+            case restroomTransgender = "restroom.transgender"
+            case restroomTransgenderWheelchair = "restroom.transgender.wheelchair"
+            case restroomUnisex = "restroom.unisex"
+            case restroomUnisexWheelchair = "restroom.unisex.wheelchair"
+            case restroomWheelchair = "restroom.wheelchair"
+            case road
+            case room
+            case serverroom
+            case shower
+            case smokingarea
+            case stairs
+            case steps
+            case storage
+            case structure
+            case terrace
+            case theater
+            case unenclosedarea
+            case unspecified
+            case vegetation
+            case waitingroom
+            case walkway
+            case walkwayIsland = "walkway.island"
+            case wood
+        }
+        
         struct Properties: Codable {
             let name: LocalizedName?
             let alt_name: LocalizedName?
             
             let level_id: UUID
-            let category: String
+            let category: Category
             let restriction: Restriction?
             let display_point: PointGeometry?
         }
     }
     
     class Opening: Feature<Opening.Properties> {
+        public enum OpeningType: String, Codable
+        {
+            case unitDefault = "unit.default"
+            case stairs
+        }
+        
         struct Door: Codable {
             let type: String
             let material: String
@@ -71,6 +143,7 @@ struct IMDF {
             
             let level_id: UUID
             let category: String
+            let type: OpeningType
             let door: Door
             let display_point: PointGeometry?
         }

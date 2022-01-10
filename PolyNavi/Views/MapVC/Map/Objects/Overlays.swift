@@ -18,9 +18,16 @@ protocol MapRenderer {
 }
 
 class Opening: MKPolyline, Styleble {
+    var type: IMDF.Opening.OpeningType = .unitDefault
+    
     func configurate(renderer: MKOverlayRenderer) {
         guard let renderer = renderer as? MKPolylineRenderer else { return }
-        renderer.strokeColor = Asset.IMDFColors.Units.default.color
+        switch type {
+        case .stairs:
+            renderer.strokeColor = Asset.IMDFColors.Units.stairs.color
+            renderer.lineCap = .butt
+        default: renderer.strokeColor = Asset.IMDFColors.Units.default.color
+        }
         renderer.lineWidth = 4
     }
 }
@@ -29,9 +36,18 @@ class Unit: MKMultiPolygon, Styleble {
     
     var annotation: UnitAnnotation? = nil
     var id: UUID
+    var categoty: IMDF.Unit.Category
     
-    init(_ polygons: [MKPolygon], id: UUID, displayPoint: CLLocationCoordinate2D?, name: LocalizedName?, altName: LocalizedName?) {
+    init(_ polygons: [MKPolygon],
+         id: UUID,
+         displayPoint: CLLocationCoordinate2D?,
+         name: LocalizedName?,
+         altName: LocalizedName?,
+         categoty: IMDF.Unit.Category) {
+        
         self.id = id
+        self.categoty = categoty
+        
         if let displayPoint = displayPoint, let altName = altName {
             annotation = UnitAnnotation(coordinate: displayPoint, title: altName.bestLocalizedValue)
         }
@@ -41,9 +57,26 @@ class Unit: MKMultiPolygon, Styleble {
     
     func configurate(renderer: MKOverlayRenderer) {
         guard let renderer = renderer as? MKMultiPolygonRenderer else { return }
-        renderer.fillColor = Asset.IMDFColors.Units.default.color
+        
         renderer.strokeColor = Asset.IMDFColors.Units.defaultLine.color
         renderer.lineWidth = 1
+        
+        
+        switch categoty {
+        case .restroom, .restroomFemale, .restroomMale:
+            renderer.fillColor = Asset.IMDFColors.Units.restroom.color
+        default:
+            renderer.fillColor = UIColor(named: categoty.rawValue) ?? Asset.IMDFColors.Units.default.color
+        }
+        
+        switch categoty {
+//        case .stairs:
+//            renderer.strokeColor = Asset.IMDFColors.Units.defaultLine.color.withAlphaComponent(0.5)
+        default: break
+        }
+        
+        
+        
     }
 }
 

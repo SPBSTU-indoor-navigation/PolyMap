@@ -115,14 +115,17 @@ extension IMDF.Unit {
                     id: self.identifier,
                     displayPoint: properties.display_point?.getCoordinates(),
                     name: properties.name,
-                    altName: properties.alt_name)
+                    altName: properties.alt_name,
+                    categoty: properties.category)
     }
 }
 
 extension IMDF.Opening {
     func cast() -> Opening {
         let t = self.geometry.first as! MKPolyline
-        return Opening(points: t.points(), count: t.pointCount)
+        let res = Opening(points: t.points(), count: t.pointCount)
+        res.type = self.properties.type
+        return res
     }
 }
 

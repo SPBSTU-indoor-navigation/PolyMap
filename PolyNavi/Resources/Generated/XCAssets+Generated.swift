@@ -30,13 +30,6 @@ internal enum Asset {
       internal static let stairs = ImageAsset(name: "stairs")
     }
   }
-  internal enum AnnotationColors {
-    internal static let annotationBorder = ColorAsset(name: "AnnotationBorder")
-    internal static let defaultAmenityFill = ColorAsset(name: "DefaultAmenityFill")
-    internal static let exhibitFill = ColorAsset(name: "ExhibitFill")
-    internal static let restaurantFill = ColorAsset(name: "RestaurantFill")
-    internal static let shoppingFill = ColorAsset(name: "ShoppingFill")
-  }
   internal enum IMDFColors {
     internal static let buildingFill = ColorAsset(name: "BuildingFill")
     internal static let buildingLine = ColorAsset(name: "BuildingLine")
@@ -45,19 +38,11 @@ internal enum Asset {
     internal enum Units {
       internal static let `default` = ColorAsset(name: "Default")
       internal static let defaultLine = ColorAsset(name: "DefaultLine")
+      internal static let restroom = ColorAsset(name: "restroom")
+      internal static let stairs = ColorAsset(name: "stairs")
+      internal static let walkway = ColorAsset(name: "walkway")
     }
     internal static let venueFill = ColorAsset(name: "VenueFill")
-  }
-  internal enum OverlayColors {
-    internal static let defaultUnitFill = ColorAsset(name: "DefaultUnitFill")
-    internal static let elevatorFill = ColorAsset(name: "ElevatorFill")
-    internal static let levelFill = ColorAsset(name: "LevelFill")
-    internal static let levelStroke = ColorAsset(name: "LevelStroke")
-    internal static let nonPublicFill = ColorAsset(name: "NonPublicFill")
-    internal static let restroomFill = ColorAsset(name: "RestroomFill")
-    internal static let roomFill = ColorAsset(name: "RoomFill")
-    internal static let unitStroke = ColorAsset(name: "UnitStroke")
-    internal static let walkwayFill = ColorAsset(name: "WalkwayFill")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
