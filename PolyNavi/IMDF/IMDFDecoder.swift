@@ -36,6 +36,7 @@ enum File {
     case section
     case unit
     case venue
+    case enviroment
     
     var filename: String {
         return "\(self).geojson"
@@ -59,6 +60,7 @@ class IMDFDecoder {
         let imdfUnits = try! decodeFeatures(IMDF.Unit.self, path: File.unit.fileURL(path))
         let imdfOpening = try! decodeFeatures(IMDF.Opening.self, path: File.opening.fileURL(path))
         let amenitys = try! decodeFeatures(IMDF.Amenity.self, path: File.amenity.fileURL(path))
+        let enviroments = try! decodeFeatures(IMDF.EnviromentUnit.self, path: File.enviroment.fileURL(path))
         
         
         guard let venue = venues.first else { return nil }
@@ -73,6 +75,7 @@ class IMDFDecoder {
         
         let result = Venue(geometry: venue.geometry.polygon(),
                            buildings: buildings,
+                           enviroments: enviroments.map({ $0.cast() }),
                            address: addressesByID[venue.properties.address_id])
         return result
     }
@@ -116,7 +119,14 @@ extension IMDF.Unit {
                     displayPoint: properties.display_point?.getCoordinates(),
                     name: properties.name,
                     altName: properties.alt_name,
-                    categoty: properties.category)
+                    categoty: properties.category,
+                    restriction: properties.restriction)
+    }
+}
+
+extension IMDF.EnviromentUnit {
+    func cast() -> EnviromentUnit {
+        return EnviromentUnit(polygons: self.geometry.polygon(), categoty: properties.category)
     }
 }
 
@@ -124,7 +134,7 @@ extension IMDF.Opening {
     func cast() -> Opening {
         let t = self.geometry.first as! MKPolyline
         let res = Opening(points: t.points(), count: t.pointCount)
-        res.type = self.properties.type
+        res.unitCategory = self.properties.unit_categoty
         return res
     }
 }

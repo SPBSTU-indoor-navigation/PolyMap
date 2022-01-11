@@ -34,10 +34,17 @@ internal enum Asset {
     internal static let buildingFill = ColorAsset(name: "BuildingFill")
     internal static let buildingLine = ColorAsset(name: "BuildingLine")
     internal static let buildingUnderLevel = ColorAsset(name: "BuildingUnderLevel")
+    internal enum Enviroment {
+      internal static let `default` = ColorAsset(name: "Default")
+      internal static let grass = ColorAsset(name: "grass")
+      internal static let roadMain = ColorAsset(name: "road.main")
+      internal static let roadPedestrianMain = ColorAsset(name: "road.pedestrian.main")
+    }
     internal static let levelLine = ColorAsset(name: "LevelLine")
     internal enum Units {
       internal static let `default` = ColorAsset(name: "Default")
       internal static let defaultLine = ColorAsset(name: "DefaultLine")
+      internal static let restricted = ColorAsset(name: "restricted")
       internal static let restroom = ColorAsset(name: "restroom")
       internal static let stairs = ColorAsset(name: "stairs")
       internal static let walkway = ColorAsset(name: "walkway")

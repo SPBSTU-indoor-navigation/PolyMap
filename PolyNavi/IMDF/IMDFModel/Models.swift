@@ -125,12 +125,6 @@ struct IMDF {
     }
     
     class Opening: Feature<Opening.Properties> {
-        public enum OpeningType: String, Codable
-        {
-            case unitDefault = "unit.default"
-            case stairs
-        }
-        
         struct Door: Codable {
             let type: String
             let material: String
@@ -143,8 +137,26 @@ struct IMDF {
             
             let level_id: UUID
             let category: String
-            let type: OpeningType
+            let unit_categoty: IMDF.Unit.Category?
             let door: Door
+            let display_point: PointGeometry?
+        }
+    }
+    
+    class EnviromentUnit: Feature<EnviromentUnit.Properties> {
+        enum Category: String, Codable {
+            case roadMain = "road.main"
+            case roadDirt = "road.dirt"
+            case roadPedestrianMain = "road.pedestrian.main"
+            case grass
+            case tree
+            case forest
+        }
+        
+        struct Properties: Codable {
+            let name: LocalizedName?
+            let alt_name: LocalizedName?
+            let category: Category
             let display_point: PointGeometry?
         }
     }

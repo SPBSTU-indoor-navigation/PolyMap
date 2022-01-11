@@ -18,11 +18,11 @@ protocol MapRenderer {
 }
 
 class Opening: MKPolyline, Styleble {
-    var type: IMDF.Opening.OpeningType = .unitDefault
+    var unitCategory: IMDF.Unit.Category?
     
     func configurate(renderer: MKOverlayRenderer) {
         guard let renderer = renderer as? MKPolylineRenderer else { return }
-        switch type {
+        switch unitCategory {
         case .stairs:
             renderer.strokeColor = Asset.IMDFColors.Units.stairs.color
             renderer.lineCap = .butt
@@ -37,16 +37,19 @@ class Unit: MKMultiPolygon, Styleble {
     var annotation: UnitAnnotation? = nil
     var id: UUID
     var categoty: IMDF.Unit.Category
+    var restriction: Restriction?
     
     init(_ polygons: [MKPolygon],
          id: UUID,
          displayPoint: CLLocationCoordinate2D?,
          name: LocalizedName?,
          altName: LocalizedName?,
-         categoty: IMDF.Unit.Category) {
+         categoty: IMDF.Unit.Category,
+         restriction: Restriction?) {
         
         self.id = id
         self.categoty = categoty
+        self.restriction = restriction
         
         if let displayPoint = displayPoint, let altName = altName {
             annotation = UnitAnnotation(coordinate: displayPoint, title: altName.bestLocalizedValue)
@@ -61,18 +64,21 @@ class Unit: MKMultiPolygon, Styleble {
         renderer.strokeColor = Asset.IMDFColors.Units.defaultLine.color
         renderer.lineWidth = 1
         
-        
-        switch categoty {
-        case .restroom, .restroomFemale, .restroomMale:
-            renderer.fillColor = Asset.IMDFColors.Units.restroom.color
-        default:
-            renderer.fillColor = UIColor(named: categoty.rawValue) ?? Asset.IMDFColors.Units.default.color
-        }
-        
-        switch categoty {
-//        case .stairs:
-//            renderer.strokeColor = Asset.IMDFColors.Units.defaultLine.color.withAlphaComponent(0.5)
-        default: break
+        if restriction == .employeesonly || restriction == .restricted {
+            renderer.fillColor = Asset.IMDFColors.Units.restricted.color
+        } else {
+            switch categoty {
+            case .restroom, .restroomFemale, .restroomMale:
+                renderer.fillColor = Asset.IMDFColors.Units.restroom.color
+            default:
+                renderer.fillColor = UIColor(named: categoty.rawValue) ?? Asset.IMDFColors.Units.default.color
+            }
+            
+            switch categoty {
+    //        case .stairs:
+    //            renderer.strokeColor = Asset.IMDFColors.Units.defaultLine.color.withAlphaComponent(0.5)
+            default: break
+            }
         }
         
         
@@ -173,8 +179,6 @@ class Building: MKMultiPolygon, Styleble, MapRenderer {
     func show(_ mapView: MKMapView) {
         if isShow { return }
         isShow = true
-        mapView.removeOverlay(self)
-        mapView.addOverlay(self)
         
         if let level = level(byOrdinal: ordinal) {
             level.show(mapView)
@@ -185,9 +189,6 @@ class Building: MKMultiPolygon, Styleble, MapRenderer {
     func hide(_ mapView: MKMapView) {
         if !isShow { return }
         isShow = false
-        
-        mapView.removeOverlay(self)
-        mapView.addOverlay(self)
         
         if let level = level(byOrdinal: ordinal) {
             level.hide(mapView)
@@ -202,25 +203,59 @@ class Building: MKMultiPolygon, Styleble, MapRenderer {
     
 }
 
+class EnviromentUnit: MKMultiPolygon, Styleble {
+    var categoty: IMDF.EnviromentUnit.Category
+    
+    init(polygons: [MKPolygon], categoty: IMDF.EnviromentUnit.Category) {
+        self.categoty = categoty
+        super.init(polygons)
+    }
+    
+    func configurate(renderer: MKOverlayRenderer) {
+        guard let renderer = renderer as? MKMultiPolygonRenderer else { return }
+        
+        renderer.fillColor = UIColor(named: categoty.rawValue) ?? Asset.IMDFColors.Enviroment.default.color
+        renderer.strokeColor = renderer.fillColor
+        renderer.lineWidth = 1
+
+    }
+    
+}
+
 class Venue: MKMultiPolygon, Styleble {
     
     var buildings: [Building] = []
+    var enviroments: [EnviromentUnit] = []
     var address: IMDF.Address?
     
     override init(_ polygons: [MKPolygon]) {
         super.init(polygons)
     }
     
-    init(geometry: [MKPolygon], buildings: [Building], address: IMDF.Address?) {
+    init(geometry: [MKPolygon], buildings: [Building], enviroments: [EnviromentUnit], address: IMDF.Address?) {
         super.init(geometry)
         self.buildings = buildings
         self.address = address
+        self.enviroments = enviroments
+    }
+    
+    func show(_ mapView: MKMapView) {
+        mapView.addOverlay(self)
+        
+        let enviromentOrder: [IMDF.EnviromentUnit.Category] = [.forest, .grass, .roadDirt, .roadPedestrianMain, .roadMain]
+        
+        for i in enviromentOrder {
+            mapView.addOverlays(enviroments.filter({ $0.categoty == i }))
+        }
+        
+        mapView.addOverlays(enviroments.filter({ !enviromentOrder.contains($0.categoty) }))
+        mapView.addOverlays(buildings)
     }
     
     func configurate(renderer: MKOverlayRenderer) {
         guard let renderer = renderer as? MKMultiPolygonRenderer else { return }
-//        renderer.strokeColor = .red
-//        renderer.lineWidth = 5
+        renderer.strokeColor = Asset.IMDFColors.venueFill.color
+        renderer.lineWidth = 5
         renderer.fillColor = Asset.IMDFColors.venueFill.color
     }
 }

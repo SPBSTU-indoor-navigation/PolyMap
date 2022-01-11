@@ -37,7 +37,6 @@ class MapView: UIView {
     
     lazy var mapView: MKMapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: MKCoordinateRegion(center: centerPosition, latitudinalMeters: 1000, longitudinalMeters: 1000)), animated: false)
         $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 5000), animated: false)
         $0.setCenter(centerPosition, animated: true)
         $0.isPitchEnabled = false
@@ -76,7 +75,7 @@ class MapView: UIView {
         addSubview(levelSwitcher)
         addSubview(compassButton)
         
-        addSubview(center)
+//        addSubview(center)
         
         levelSwitcherConstraint = levelSwitcher.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
         
@@ -86,10 +85,10 @@ class MapView: UIView {
             mapView.topAnchor.constraint(equalTo: topAnchor),
             mapView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            center.widthAnchor.constraint(equalToConstant: 10),
-            center.heightAnchor.constraint(equalToConstant: 10),
-            center.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
-            center.centerYAnchor.constraint(equalTo: mapView.centerYAnchor),
+//            center.widthAnchor.constraint(equalToConstant: 10),
+//            center.heightAnchor.constraint(equalToConstant: 10),
+//            center.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
+//            center.centerYAnchor.constraint(equalTo: mapView.centerYAnchor),
             
             levelSwitcher.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             levelSwitcher.widthAnchor.constraint(equalToConstant: 44),
@@ -107,8 +106,10 @@ class MapView: UIView {
         let path = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
         
         venue = IMDFDecoder.decode(path)
-        mapView.addOverlay(venue!)
-        mapView.addOverlays(venue!.buildings)
+        venue?.show(mapView)
+        
+        
+        mapView.setCameraBoundary(MKMapView.CameraBoundary(mapRect: venue!.boundingMapRect), animated: false)
     }
     
     func onLevelChange(ordinal: Int) {
@@ -120,7 +121,7 @@ class MapView: UIView {
         let centerPoint = MKMapPoint(position)
         let centerRect = MKMapRect(origin: centerPoint, size: MKMapSize(width: 0.001, height: 0.001))
         
-        for builing in venue!.buildings {
+        for builing in venue!.buildings.filter({ $0.levels.count > 0 }) {
             for polygon in builing.polygons {
                 if polygon.intersects(centerRect) {
                     return builing;
@@ -131,7 +132,7 @@ class MapView: UIView {
         var nearestBuilding: Building? = nil
         var nearestDistance: Double = Double.infinity
         
-        for builing in venue!.buildings {
+        for builing in venue!.buildings.filter({ $0.levels.count > 0 }) {
             for polygon in builing.polygons {
                 let points = polygon.points()
                 
@@ -145,6 +146,14 @@ class MapView: UIView {
                     
                 }
             }
+        }
+        
+        
+        let delta = mapView.region.deltaInMeters()
+        let min = [delta.1, delta.1].min()! / 3.0
+        
+        if nearestDistance > min {
+            return nil
         }
         
         return nearestBuilding
@@ -186,6 +195,8 @@ class MapView: UIView {
                 levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: nearestBuilding!.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
                                            selected: nearestBuilding!.ordinal)
                 
+            } else {
+                hideLevelSwitcher()
             }
             
             currentBuilding = nearestBuilding
