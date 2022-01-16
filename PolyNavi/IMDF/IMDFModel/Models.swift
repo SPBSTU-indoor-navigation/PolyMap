@@ -174,6 +174,20 @@ struct IMDF {
         }
     }
     
+    class EnviromentAmenity: Feature<EnviromentAmenity.Properties> {
+        
+        enum Category: String, Codable {
+            case parkingCar = "parking.car"
+            case parkingBicycle = "parking.bicycle"
+        }
+        
+        struct Properties: Codable {
+            let name: LocalizedName?
+            let alt_name: LocalizedName?
+            let category: Category
+        }
+    }
+    
     class Amenity: Feature<Amenity.Properties> {
         
         enum Category: String, Codable {

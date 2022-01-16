@@ -1,1 +1,254 @@
-{"type":"FeatureCollection","name":"amenity","features":[{"id":"897ab244-e50e-4f4b-9d47-3beac5b1f70e","type":"Feature","feature_type":"amenity","geometry":{"type":"Point","coordinates":[30.37140000884056,60.008109365211006]},"properties":{"category":"stairs","name":null,"alt_name":null,"unit_ids":["9c077b2d-320f-497c-af21-f0c1944512f2"],"hours":null,"phone":null,"website":null,"address_id":null}},{"id":"5fb3e6ce-2823-4ed9-82ed-07e56f4a3e5c","type":"Feature","feature_type":"amenity","geometry":{"type":"Point","coordinates":[30.375059487871024,60.007483437335523]},"properties":{"category":"stairs","name":null,"alt_name":null,"unit_ids":["59b03581-4c18-4e7c-8f5e-8348e0e3a4c8"],"hours":null,"phone":null,"website":null,"address_id":null}},{"id":"be09c14f-d9d4-4b8e-9453-fcfc21496c96","type":"Feature","feature_type":"amenity","geometry":{"type":"Point","coordinates":[30.37456450066119,60.006760175902862]},"properties":{"category":"stairs","name":null,"alt_name":null,"unit_ids":["1e254784-e5ee-4775-91ea-953b6a6e9e40"],"hours":null,"phone":null,"website":null,"address_id":null}},{"id":"36543982-d9ec-45e6-993f-2aa50b069ae5","type":"Feature","feature_type":"amenity","geometry":{"type":"Point","coordinates":[30.370909312370749,60.00738537593385]},"properties":{"category":"stairs","name":null,"alt_name":null,"unit_ids":["1498fb4c-27a3-494f-8d51-d48ed47b3e09"],"hours":null,"phone":null,"website":null,"address_id":null}},{"id":"c95c19c4-3680-4c94-b623-f5baa99cf005","type":"Feature","feature_type":"amenity","geometry":{"type":"Point","coordinates":[30.372057214015744,60.007666658189549]},"properties":{"category":"stairs","name":null,"alt_name":null,"unit_ids":["a6d786bc-338f-4638-a017-619b6235cfd4","e10373c8-67c1-46a9-8851-5facabcb455a"],"hours":null,"phone":null,"website":null,"address_id":null}},{"id":"0dfa91ca-d2cd-43f7-92a1-b60517c7d5a4","type":"Feature","feature_type":"amenity","geometry":{"type":"Point","coordinates":[30.374007772117874,60.007349661878052]},"properties":{"category":"stairs","name":null,"alt_name":null,"unit_ids":["718b4d42-82c2-4d2c-a066-0fda22f7e810","c5462677-2ede-4271-ba59-0e1005f07abf"],"hours":null,"phone":null,"website":null,"address_id":null}},{"id":"8038acbb-9f2e-473c-88b8-28c180880c09","type":"Feature","feature_type":"amenity","geometry":{"type":"Point","coordinates":[30.372162029596286,60.0078198192307]},"properties":{"category":"studentservices","name":{"ru":"Кабинет 313"},"alt_name":{"ru":"313"},"unit_ids":["89a7ded9-e371-40a8-b0ed-1974bb5ef066"],"hours":null,"phone":null,"website":null,"address_id":null}},{"id":"e4868b52-b8b3-40b2-8d4f-b0b206cc2357","type":"Feature","feature_type":"amenity","geometry":{"type":"Point","coordinates":[30.371393533509679,60.007617166410753]},"properties":{"category":"restroom.female","name":{"ru":"Туалет женский"},"alt_name":{"ru":"Туалет"},"unit_ids":["582be082-4297-4155-ba56-747e18cccf06"],"hours":null,"phone":null,"website":null,"address_id":null}},{"id":"0f1a65c9-814c-439d-b5f6-2aa6d9d33de7","type":"Feature","feature_type":"amenity","geometry":{"type":"Point","coordinates":[30.374466541717172,60.0070915471431]},"properties":{"category":"restroom.male","name":{"ru":"Туалет мужской"},"alt_name":{"ru":"Туалет"},"unit_ids":["76d79646-151d-4981-9926-a7b1c0e27442"],"hours":null,"phone":null,"website":null,"address_id":null}}]}
+{
+    "type": "FeatureCollection",
+    "name": "amenity",
+    "features": [
+        {
+            "id": "8576a904-f108-4f45-a540-3ee38cdc1bfc",
+            "type": "Feature",
+            "feature_type": "amenity",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37140000884056,
+                    60.008109365211006
+                ]
+            },
+            "properties": {
+                "category": "stairs",
+                "name": null,
+                "alt_name": {
+                    "ru": "Лестница",
+                    "en": "Stairs"
+                },
+                "unit_ids": [
+                    "b14cc3d5-2c28-4023-adfc-20c5b0ea648c"
+                ],
+                "hours": null,
+                "phone": null,
+                "website": null,
+                "address_id": null
+            }
+        },
+        {
+            "id": "a654b657-fca5-49a9-8502-948a34e41259",
+            "type": "Feature",
+            "feature_type": "amenity",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.375059487871024,
+                    60.007483437335523
+                ]
+            },
+            "properties": {
+                "category": "stairs",
+                "name": null,
+                "alt_name": {
+                    "ru": "Лестница",
+                    "en": "Stairs"
+                },
+                "unit_ids": [
+                    "0d40fb41-ebb1-42e9-9cca-0eec1787363f"
+                ],
+                "hours": null,
+                "phone": null,
+                "website": null,
+                "address_id": null
+            }
+        },
+        {
+            "id": "42b0fa93-41c0-4314-acd6-8a6296a5562a",
+            "type": "Feature",
+            "feature_type": "amenity",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37456450066119,
+                    60.006760175902862
+                ]
+            },
+            "properties": {
+                "category": "stairs",
+                "name": null,
+                "alt_name": {
+                    "ru": "Лестница",
+                    "en": "Stairs"
+                },
+                "unit_ids": [
+                    "29287d3e-65b4-4676-859a-16efde70883f"
+                ],
+                "hours": null,
+                "phone": null,
+                "website": null,
+                "address_id": null
+            }
+        },
+        {
+            "id": "a2ee5ac4-7f64-475d-8622-5613836f5271",
+            "type": "Feature",
+            "feature_type": "amenity",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370909312370749,
+                    60.00738537593385
+                ]
+            },
+            "properties": {
+                "category": "stairs",
+                "name": null,
+                "alt_name": {
+                    "ru": "Лестница",
+                    "en": "Stairs"
+                },
+                "unit_ids": [
+                    "621cfd90-c8f3-4818-b140-68a557d65f07"
+                ],
+                "hours": null,
+                "phone": null,
+                "website": null,
+                "address_id": null
+            }
+        },
+        {
+            "id": "c3e951de-3837-4059-8a6f-5d2f56f7ac4a",
+            "type": "Feature",
+            "feature_type": "amenity",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372057214015744,
+                    60.007666658189549
+                ]
+            },
+            "properties": {
+                "category": "stairs",
+                "name": null,
+                "alt_name": {
+                    "ru": "Лестница",
+                    "en": "Stairs"
+                },
+                "unit_ids": [
+                    "9154fe3b-b2aa-4135-b790-0d7f1ee12cfb",
+                    "09d960bc-b4ba-46a5-88ab-b1a640cfe6e5"
+                ],
+                "hours": null,
+                "phone": null,
+                "website": null,
+                "address_id": null
+            }
+        },
+        {
+            "id": "1b03687c-d2b9-4303-a3b6-a9a836dbbefa",
+            "type": "Feature",
+            "feature_type": "amenity",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.374007772117874,
+                    60.007349661878052
+                ]
+            },
+            "properties": {
+                "category": "stairs",
+                "name": null,
+                "alt_name": {
+                    "ru": "Лестница",
+                    "en": "Stairs"
+                },
+                "unit_ids": [
+                    "28bcfd5d-3d5c-419f-a28a-8199a0676845",
+                    "85713a5b-9949-4502-889a-f1f93d52c918"
+                ],
+                "hours": null,
+                "phone": null,
+                "website": null,
+                "address_id": null
+            }
+        },
+        {
+            "id": "a47fb3c4-16eb-4626-af1c-7d7902ec8009",
+            "type": "Feature",
+            "feature_type": "amenity",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372162029596286,
+                    60.0078198192307
+                ]
+            },
+            "properties": {
+                "category": "studentservices",
+                "name": {
+                    "ru": "Кабинет 313"
+                },
+                "alt_name": {
+                    "ru": "313"
+                },
+                "unit_ids": [
+                    "10dba91a-85ef-4dc6-bdd6-7f1b96698d5c"
+                ],
+                "hours": null,
+                "phone": null,
+                "website": null,
+                "address_id": null
+            }
+        },
+        {
+            "id": "79a29c49-a3a0-4f4d-aafc-d8a988b6985b",
+            "type": "Feature",
+            "feature_type": "amenity",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371393533509679,
+                    60.007617166410753
+                ]
+            },
+            "properties": {
+                "category": "restroom.female",
+                "name": {
+                    "ru": "Туалет женский"
+                },
+                "alt_name": {
+                    "ru": "Туалет Ж."
+                },
+                "unit_ids": [
+                    "315bcc38-4699-4f2f-a8a2-c243a553c7a5"
+                ],
+                "hours": null,
+                "phone": null,
+                "website": null,
+                "address_id": null
+            }
+        },
+        {
+            "id": "64103332-ed8c-4207-9bf7-ee9754abf501",
+            "type": "Feature",
+            "feature_type": "amenity",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.374466541717172,
+                    60.0070915471431
+                ]
+            },
+            "properties": {
+                "category": "restroom.male",
+                "name": {
+                    "ru": "Туалет мужской"
+                },
+                "alt_name": {
+                    "ru": "Туалет М."
+                },
+                "unit_ids": [
+                    "867e137e-22e0-4353-b1ef-cc967eda68c1"
+                ],
+                "hours": null,
+                "phone": null,
+                "website": null,
+                "address_id": null
+            }
+        }
+    ]
+}

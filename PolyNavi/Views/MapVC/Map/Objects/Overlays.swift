@@ -100,7 +100,7 @@ class Level: MKMultiPolygon, Styleble, MapRenderer {
         self.units = units
         self.openings = openings
         self.shortName = shortName
-        self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category) })
+        self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name) })
         
         let amenityUnits = amenitys.flatMap({ $0.properties.unit_ids })
         
@@ -226,17 +226,19 @@ class Venue: MKMultiPolygon, Styleble {
     
     var buildings: [Building] = []
     var enviroments: [EnviromentUnit] = []
+    var amenitys: [EnviromentAmenityAnnotation] = []
     var address: IMDF.Address?
     
     override init(_ polygons: [MKPolygon]) {
         super.init(polygons)
     }
     
-    init(geometry: [MKPolygon], buildings: [Building], enviroments: [EnviromentUnit], address: IMDF.Address?) {
+    init(geometry: [MKPolygon], buildings: [Building], enviroments: [EnviromentUnit], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {
         super.init(geometry)
         self.buildings = buildings
         self.address = address
         self.enviroments = enviroments
+        self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category) })
     }
     
     func show(_ mapView: MKMapView) {
@@ -250,6 +252,7 @@ class Venue: MKMultiPolygon, Styleble {
         
         mapView.addOverlays(enviroments.filter({ !enviromentOrder.contains($0.categoty) }))
         mapView.addOverlays(buildings)
+        mapView.addAnnotations(amenitys)
     }
     
     func configurate(renderer: MKOverlayRenderer) {

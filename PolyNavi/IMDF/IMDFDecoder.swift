@@ -37,6 +37,7 @@ enum File {
     case unit
     case venue
     case enviroment
+    case enviromentAmenity
     
     var filename: String {
         return "\(self).geojson"
@@ -61,6 +62,7 @@ class IMDFDecoder {
         let imdfOpening = try! decodeFeatures(IMDF.Opening.self, path: File.opening.fileURL(path))
         let amenitys = try! decodeFeatures(IMDF.Amenity.self, path: File.amenity.fileURL(path))
         let enviroments = try! decodeFeatures(IMDF.EnviromentUnit.self, path: File.enviroment.fileURL(path))
+        let enviromentAmenitys = try! decodeFeatures(IMDF.EnviromentAmenity.self, path: File.enviromentAmenity.fileURL(path))
         
         
         guard let venue = venues.first else { return nil }
@@ -76,7 +78,8 @@ class IMDFDecoder {
         let result = Venue(geometry: venue.geometry.polygon(),
                            buildings: buildings,
                            enviroments: enviroments.map({ $0.cast() }),
-                           address: addressesByID[venue.properties.address_id])
+                           address: addressesByID[venue.properties.address_id],
+                           amenitys: enviromentAmenitys)
         return result
     }
     

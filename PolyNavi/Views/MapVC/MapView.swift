@@ -43,7 +43,7 @@ class MapView: UIView {
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false
         
-        $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(UnitAnnotation.self))
+        $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: UnitAnnotation.reusableIdentifier)
         $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: AmenityAnnotation.reusableIdentifier)
         
         return $0
@@ -63,19 +63,10 @@ class MapView: UIView {
     
     func layoutViews() {
         mapContainerView = findViewOfType("MKScrollContainerView", inView: mapView)
-        let center : UIView = {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.backgroundColor = .systemRed
-            $0.layer.cornerRadius = 5
-            return $0
-        } (UIView())
-        
         
         addSubview(mapView)
         addSubview(levelSwitcher)
         addSubview(compassButton)
-        
-//        addSubview(center)
         
         levelSwitcherConstraint = levelSwitcher.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
         
@@ -84,11 +75,6 @@ class MapView: UIView {
             mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
             mapView.topAnchor.constraint(equalTo: topAnchor),
             mapView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-//            center.widthAnchor.constraint(equalToConstant: 10),
-//            center.heightAnchor.constraint(equalToConstant: 10),
-//            center.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
-//            center.centerYAnchor.constraint(equalTo: mapView.centerYAnchor),
             
             levelSwitcher.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             levelSwitcher.widthAnchor.constraint(equalToConstant: 44),
@@ -173,6 +159,12 @@ class MapView: UIView {
             currentBuilding.hide(mapView)
             hideLevelSwitcher()
         }
+        
+        for annotation in mapView.annotations {
+            if let mapSize = mapView.view(for: annotation) as? AnnotationMapSize {
+                mapSize.update(mapSize: zoomLevel, animate: true)
+            }
+        }
     }
     
     
@@ -256,10 +248,12 @@ extension MapView: MKMapViewDelegate {
         var annotationView: MKAnnotationView?
 
         if let annotation = annotation as? UnitAnnotation {
-            annotationView = setupBridgeAnnotationView(for: annotation, on: mapView)
+            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: UnitAnnotation.reusableIdentifier, for: annotation)
         } else if let annotation = annotation as? AmenityAnnotation {
             annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: AmenityAnnotation.reusableIdentifier, for: annotation)
         }
+        
+        (annotationView as? AnnotationMapSize)?.update(mapSize: lastZoom, animate: false)
         
         return annotationView
     }
@@ -268,15 +262,5 @@ extension MapView: MKMapViewDelegate {
         updateMap(centerPosition: mapView.centerCoordinate)
         updateMap(zoomLevel: getZoom())
     }
-    
 
-    func setupBridgeAnnotationView(for annotation: UnitAnnotation, on mapView: MKMapView) -> MKAnnotationView {
-        let identifier = NSStringFromClass(UnitAnnotation.self)
-        let view = mapView.dequeueReusableAnnotationView(withIdentifier: identifier, for: annotation)
-        if let point = view as? MKMarkerAnnotationView {
-        }
-        
-        return view
-    }
 }
-
