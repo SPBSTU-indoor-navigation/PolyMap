@@ -7,11 +7,21 @@
 
 import MapKit
 
-class AmenityAnnotationView: MKAnnotationView {
+class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
+    enum State {
+        case normal
+        case small
+        case hide
+    }
+    
+    var state: State = .normal
+    var detailLevel: Int = 0
     
     override var annotation: MKAnnotation? {
         didSet {
             if let amenity = annotation as? AmenityAnnotation {
+                imageView.image = UIImage(named: amenity.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+            } else if let amenity = annotation as? EnviromentAmenityAnnotation {
                 imageView.image = UIImage(named: amenity.category.rawValue) ?? Asset.Annotation.Amenity.default.image
             }
             
@@ -19,6 +29,12 @@ class AmenityAnnotationView: MKAnnotationView {
                 label.text = title
             } else {
                 label.text = nil
+            }
+            
+            if let detail = annotation as? DetailLevel {
+                detailLevel = detail.detailLevel()
+            } else {
+                detailLevel = 0
             }
         }
     }
@@ -52,6 +68,9 @@ class AmenityAnnotationView: MKAnnotationView {
     
     lazy var imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.tintColor = .white
+        $0.layer.minificationFilter = .trilinear
+        $0.layer.minificationFilterBias = 0.1
         return $0
     }(UIImageView())
     
@@ -68,8 +87,9 @@ class AmenityAnnotationView: MKAnnotationView {
     lazy var label: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = .label
-        
+
         $0.font = .systemFont(ofSize: 11, weight: .semibold)
+        
         $0.alpha = 0
         $0.isHidden = true
         $0.transform = CGAffineTransform(translationX: 0, y: -10).scaledBy(x: 0.5, y: 0.5)
@@ -87,7 +107,6 @@ class AmenityAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        
         addSubview(miniPoint)
         addSubview(label)
         addSubview(background)
@@ -147,6 +166,13 @@ class AmenityAnnotationView: MKAnnotationView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForDisplay() {
+        super.prepareForDisplay()
+        
+        if #available(iOS 14.0, *) {
+            zPriority = MKAnnotationViewZPriority(rawValue: 900)
+        }
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         
@@ -154,6 +180,49 @@ class AmenityAnnotationView: MKAnnotationView {
             selectAnim.play(animated: animated)
         } else {
             deselectAnim.play(animated: animated)
+        }
+    }
+    
+    func changeState(state: State, animate: Bool) {
+        self.state = state
+        
+        if isSelected { return }
+        
+        if state == .hide || state == .small {
+//            background.alpha = 0
+            self.isHidden = true
+        } else {
+//            background.alpha = 1
+            self.isHidden = false
+        }
+        
+//        let change = { [self] in
+//            label.alpha = textOpacity
+//            point.transform = CGAffineTransform(scaleX: pointSize, y: pointSize)
+//        }
+//
+//        if animate {
+//            UIView.animate(withDuration: 0.1, animations: {
+//                change()
+//            })
+//        } else {
+//            change()
+//        }
+    }
+    
+    func update(mapSize: Float, animate: Bool) {
+        var targetState: State = .normal
+        
+        if detailLevel == 3 {
+            if mapSize < 19 {
+                targetState = .hide
+            } else if mapSize < 21.5 {
+                targetState = .small
+            }
+        }
+        
+        if state != targetState {
+            changeState(state: targetState, animate: animate)
         }
     }
 }

@@ -24,10 +24,16 @@ internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
   internal enum Annotation {
     internal enum Amenity {
+      internal static let classroom = ImageAsset(name: "classroom")
       internal static let `default` = ImageAsset(name: "default")
+      internal static let laboratorium = ImageAsset(name: "laboratorium")
+      internal static let lecture = ImageAsset(name: "lecture")
+      internal static let parkingBicycle = ImageAsset(name: "parking.bicycle")
+      internal static let parkingCar = ImageAsset(name: "parking.car")
       internal static let restroomFemale = ImageAsset(name: "restroom.female")
       internal static let restroomMale = ImageAsset(name: "restroom.male")
       internal static let stairs = ImageAsset(name: "stairs")
+      internal static let vendingmachine = ImageAsset(name: "vendingmachine")
     }
   }
   internal enum IMDFColors {

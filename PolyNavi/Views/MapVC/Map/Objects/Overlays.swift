@@ -26,6 +26,8 @@ class Opening: MKPolyline, Styleble {
         case .stairs:
             renderer.strokeColor = Asset.IMDFColors.Units.stairs.color
             renderer.lineCap = .butt
+        case .restroom, .restroomFemale, .restroomMale:
+            renderer.strokeColor = Asset.IMDFColors.Units.restroom.color
         default: renderer.strokeColor = Asset.IMDFColors.Units.default.color
         }
         renderer.lineWidth = 4
@@ -52,7 +54,7 @@ class Unit: MKMultiPolygon, Styleble {
         self.restriction = restriction
         
         if let displayPoint = displayPoint, let altName = altName {
-            annotation = UnitAnnotation(coordinate: displayPoint, title: altName.bestLocalizedValue)
+            annotation = UnitAnnotation(coordinate: displayPoint, title: altName.bestLocalizedValue, category: self.categoty)
         }
         
         super.init(polygons)
@@ -100,7 +102,7 @@ class Level: MKMultiPolygon, Styleble, MapRenderer {
         self.units = units
         self.openings = openings
         self.shortName = shortName
-        self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name) })
+        self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name, detailLevel: $0.properties.detailLevel) })
         
         let amenityUnits = amenitys.flatMap({ $0.properties.unit_ids })
         
@@ -238,7 +240,7 @@ class Venue: MKMultiPolygon, Styleble {
         self.buildings = buildings
         self.address = address
         self.enviroments = enviroments
-        self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category) })
+        self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, detailLevel: $0.properties.detailLevel) })
     }
     
     func show(_ mapView: MKMapView) {

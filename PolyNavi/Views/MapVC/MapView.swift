@@ -38,13 +38,14 @@ class MapView: UIView {
     lazy var mapView: MKMapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 5000), animated: false)
-        $0.setCenter(centerPosition, animated: true)
+//        $0.setCenter(centerPosition, animated: true)
         $0.isPitchEnabled = false
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false
         
         $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: UnitAnnotation.reusableIdentifier)
         $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: AmenityAnnotation.reusableIdentifier)
+        $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: EnviromentAmenityAnnotation.reusableIdentifier)
         
         return $0
     }(MKMapView())
@@ -94,7 +95,7 @@ class MapView: UIView {
         venue = IMDFDecoder.decode(path)
         venue?.show(mapView)
         
-        
+        mapView.setVisibleMapRect(venue!.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: false)
         mapView.setCameraBoundary(MKMapView.CameraBoundary(mapRect: venue!.boundingMapRect), animated: false)
     }
     
@@ -151,6 +152,8 @@ class MapView: UIView {
         guard let currentBuilding = currentBuilding else { return }
         if abs(lastZoom - zoomLevel) < Float.ulpOfOne { return }
         lastZoom = zoomLevel
+        
+        print(zoomLevel)
     
         if zoomLevel > MIN_SHOW_ZOOM {
             currentBuilding.show(mapView)
@@ -251,6 +254,8 @@ extension MapView: MKMapViewDelegate {
             annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: UnitAnnotation.reusableIdentifier, for: annotation)
         } else if let annotation = annotation as? AmenityAnnotation {
             annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: AmenityAnnotation.reusableIdentifier, for: annotation)
+        } else if let annotation = annotation as? EnviromentAmenityAnnotation {
+            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: EnviromentAmenityAnnotation.reusableIdentifier, for: annotation)
         }
         
         (annotationView as? AnnotationMapSize)?.update(mapSize: lastZoom, animate: false)

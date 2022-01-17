@@ -185,6 +185,7 @@ struct IMDF {
             let name: LocalizedName?
             let alt_name: LocalizedName?
             let category: Category
+            let detailLevel: Int
         }
     }
     
@@ -220,6 +221,7 @@ struct IMDF {
             let unit_ids: [UUID]
             
             let category: Category
+            let detailLevel: Int
             
             let hours: String?
             let phone: String?

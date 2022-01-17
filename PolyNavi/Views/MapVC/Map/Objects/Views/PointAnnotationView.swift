@@ -21,6 +21,19 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     override var annotation: MKAnnotation? {
         didSet {
+            if let unit = annotation as? UnitAnnotation {
+                
+                var imageName = ""
+                switch unit.category {
+                case .classroom: imageName = "classroom"
+                case .laboratory: imageName = "laboratorium"
+                case .auditorium: imageName = "lecture"
+                default: break
+                }
+                
+                imageView.image = UIImage(named: imageName) ?? UIImage(named: unit.category.rawValue)
+            }
+            
             if let title = annotation?.title {
                 label.text = title
                 label.isEnabled = true
@@ -28,6 +41,9 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
                 label.text = nil
                 label.isEnabled = false
             }
+            
+            
+            
         }
     }
     
@@ -74,12 +90,19 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         return $0
     }(UIView())
     
+    lazy var imageView: UIImageView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.alpha = 0
+        return $0
+    }(UIImageView())
+    
     lazy var point: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .systemOrange
         $0.layer.cornerRadius = 5
         
         $0.addSubview(shape)
+        $0.addSubview(imageView)
         return $0
     }(UIView())
     
@@ -109,6 +132,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         addSubview(label)
         miniPoint.isHidden = true
         
+        
         NSLayoutConstraint.activate([
             point.centerXAnchor.constraint(equalTo: centerXAnchor),
             point.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -123,13 +147,18 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
             shape.centerXAnchor.constraint(equalTo: point.centerXAnchor),
             shape.topAnchor.constraint(equalTo: point.bottomAnchor),
             shape.widthAnchor.constraint(equalToConstant: 2),
-            shape.heightAnchor.constraint(equalToConstant: 1)
+            shape.heightAnchor.constraint(equalToConstant: 1),
+            imageView.topAnchor.constraint(equalTo: point.topAnchor, constant: 2),
+            imageView.bottomAnchor.constraint(equalTo: point.bottomAnchor, constant: -2),
+            imageView.trailingAnchor.constraint(equalTo: point.trailingAnchor, constant: -2),
+            imageView.leadingAnchor.constraint(equalTo: point.leadingAnchor, constant: 2),
         ])
         
         selectAnim
             .animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 point.transform = CGAffineTransform(scaleX: 7, y: 7).translatedBy(x: 0, y: -6.8)
                 label.transform = CGAffineTransform(translationX: 0, y: -3.5)
+                imageView.alpha = 1.0
             })
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
@@ -138,7 +167,6 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
             .animate(withDuration: 0.2, delay: 0.05, options: .curveEaseInOut, animations: { [self] in
                 shape.transform = .identity.scaledBy(x: 1, y: 1)
                 label.alpha = 1.0
-
             })
         
         deselectAnim
@@ -150,8 +178,18 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
                 miniPoint.transform = CGAffineTransform(scaleX: 0, y: 0)
                 label.alpha = textOpacity
                 label.transform = .identity
+                imageView.alpha = 0
             }, completion: { _ in self.miniPoint.isHidden = true })
     }
+    
+    override func prepareForDisplay() {
+        super.prepareForDisplay()
+        
+        if #available(iOS 14.0, *) {
+            zPriority = MKAnnotationViewZPriority(rawValue: 500)
+        }
+    }
+    
     
     
     func changeState(state: State, animate: Bool) {
