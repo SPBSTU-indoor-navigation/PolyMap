@@ -33,11 +33,20 @@
 		9717E46027447A7D00332D29 /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		973BEC0D278677D100A66B33 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973BEC0C278677D100A66B33 /* Utils.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
-		977B2F13278B41B900046114 /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977B2F12278B41B900046114 /* Annotations.swift */; };
+		9750153F2795B11500326B09 /* UnitAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* UnitAnnotation.swift */; };
+		975015412795B13200326B09 /* BuildingAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015402795B13200326B09 /* BuildingAnnotation.swift */; };
+		975015432795B14400326B09 /* AmenityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015422795B14400326B09 /* AmenityAnnotation.swift */; };
+		975015452795B16900326B09 /* EnviromentAmenityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015442795B16900326B09 /* EnviromentAmenityAnnotation.swift */; };
+		975015472795B19200326B09 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015462795B19200326B09 /* Shared.swift */; };
+		975015492795B2DF00326B09 /* Opening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015482795B2DF00326B09 /* Opening.swift */; };
+		9750154B2795B2F400326B09 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750154A2795B2F400326B09 /* Unit.swift */; };
+		9750154D2795B30A00326B09 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750154C2795B30A00326B09 /* Level.swift */; };
+		9750154F2795B32100326B09 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750154E2795B32100326B09 /* Building.swift */; };
+		975015512795B33300326B09 /* EnviromentUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015502795B33300326B09 /* EnviromentUnit.swift */; };
 		978D9DC8273F56E300293A6C /* TimetableNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D9DC7273F56E300293A6C /* TimetableNavbar.swift */; };
 		97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941916278BCAF10038CBEF /* PointAnnotationView.swift */; };
 		97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */; };
-		979E2C75278763A9008CFA05 /* Overlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C74278763A9008CFA05 /* Overlays.swift */; };
+		979E2C75278763A9008CFA05 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C74278763A9008CFA05 /* Venue.swift */; };
 		979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C762788A7C7008CFA05 /* MapExtensions.swift */; };
 		979E2C792789D1C6008CFA05 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C782789D1C6008CFA05 /* Feature.swift */; };
 		979E2C7D2789D234008CFA05 /* IMDFDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C7C2789D234008CFA05 /* IMDFDecoder.swift */; };
@@ -81,11 +90,20 @@
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		973BEC0C278677D100A66B33 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
-		977B2F12278B41B900046114 /* Annotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
+		9750153E2795B11500326B09 /* UnitAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitAnnotation.swift; sourceTree = "<group>"; };
+		975015402795B13200326B09 /* BuildingAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingAnnotation.swift; sourceTree = "<group>"; };
+		975015422795B14400326B09 /* AmenityAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityAnnotation.swift; sourceTree = "<group>"; };
+		975015442795B16900326B09 /* EnviromentAmenityAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentAmenityAnnotation.swift; sourceTree = "<group>"; };
+		975015462795B19200326B09 /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
+		975015482795B2DF00326B09 /* Opening.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opening.swift; sourceTree = "<group>"; };
+		9750154A2795B2F400326B09 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
+		9750154C2795B30A00326B09 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		9750154E2795B32100326B09 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
+		975015502795B33300326B09 /* EnviromentUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentUnit.swift; sourceTree = "<group>"; };
 		978D9DC7273F56E300293A6C /* TimetableNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavbar.swift; sourceTree = "<group>"; };
 		97941916278BCAF10038CBEF /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
 		97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityAnnotationView.swift; sourceTree = "<group>"; };
-		979E2C74278763A9008CFA05 /* Overlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlays.swift; sourceTree = "<group>"; };
+		979E2C74278763A9008CFA05 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		979E2C762788A7C7008CFA05 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
 		979E2C782789D1C6008CFA05 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		979E2C7C2789D234008CFA05 /* IMDFDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDFDecoder.swift; sourceTree = "<group>"; };
@@ -288,6 +306,31 @@
 			path = IMDFModel;
 			sourceTree = "<group>";
 		};
+		9750153C2795B0EB00326B09 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				979E2C74278763A9008CFA05 /* Venue.swift */,
+				975015482795B2DF00326B09 /* Opening.swift */,
+				9750154A2795B2F400326B09 /* Unit.swift */,
+				9750154C2795B30A00326B09 /* Level.swift */,
+				9750154E2795B32100326B09 /* Building.swift */,
+				975015502795B33300326B09 /* EnviromentUnit.swift */,
+			);
+			path = Overlays;
+			sourceTree = "<group>";
+		};
+		9750153D2795B10300326B09 /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				97941915278BCAF10038CBEF /* Views */,
+				9750153E2795B11500326B09 /* UnitAnnotation.swift */,
+				975015402795B13200326B09 /* BuildingAnnotation.swift */,
+				975015422795B14400326B09 /* AmenityAnnotation.swift */,
+				975015442795B16900326B09 /* EnviromentAmenityAnnotation.swift */,
+			);
+			path = Annotations;
+			sourceTree = "<group>";
+		};
 		97941915278BCAF10038CBEF /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,19 +343,11 @@
 		979E2C7227875BF2008CFA05 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				979E2C7327875C02008CFA05 /* Objects */,
+				975015462795B19200326B09 /* Shared.swift */,
+				9750153D2795B10300326B09 /* Annotations */,
+				9750153C2795B0EB00326B09 /* Overlays */,
 			);
 			path = Map;
-			sourceTree = "<group>";
-		};
-		979E2C7327875C02008CFA05 /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				97941915278BCAF10038CBEF /* Views */,
-				979E2C74278763A9008CFA05 /* Overlays.swift */,
-				977B2F12278B41B900046114 /* Annotations.swift */,
-			);
-			path = Objects;
 			sourceTree = "<group>";
 		};
 		97A484BD27179ABE00D14997 /* MapVC */ = {
@@ -473,9 +508,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9750153F2795B11500326B09 /* UnitAnnotation.swift in Sources */,
 				056F2D20271CAF400063015B /* GroupsAndTeacherStorage.swift in Sources */,
 				97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */,
+				9750154D2795B30A00326B09 /* Level.swift in Sources */,
 				97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */,
+				9750154F2795B32100326B09 /* Building.swift in Sources */,
 				978D9DC8273F56E300293A6C /* TimetableNavbar.swift in Sources */,
 				05C32AC3271F06B70033B751 /* ChoosingWithSearchTableView.swift in Sources */,
 				9717E4272742991F00332D29 /* MapView.swift in Sources */,
@@ -483,19 +521,24 @@
 				05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */,
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
 				0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */,
+				975015452795B16900326B09 /* EnviromentAmenityAnnotation.swift in Sources */,
+				975015512795B33300326B09 /* EnviromentUnit.swift in Sources */,
 				054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */,
+				975015412795B13200326B09 /* BuildingAnnotation.swift in Sources */,
 				97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */,
 				97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */,
 				05C32AC7271F4C3E0033B751 /* SettingsModel.swift in Sources */,
+				9750154B2795B2F400326B09 /* Unit.swift in Sources */,
 				979E2C832789DF39008CFA05 /* LocalizedName.swift in Sources */,
-				977B2F13278B41B900046114 /* Annotations.swift in Sources */,
 				056F2D00271C5EB60063015B /* Strings+Generated.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
+				975015492795B2DF00326B09 /* Opening.swift in Sources */,
 				054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */,
-				979E2C75278763A9008CFA05 /* Overlays.swift in Sources */,
+				979E2C75278763A9008CFA05 /* Venue.swift in Sources */,
 				054F67AA270CD78D00FCC07C /* LessonCellView.swift in Sources */,
 				05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */,
 				9750153B2793BA1400326B09 /* Animator.swift in Sources */,
+				975015472795B19200326B09 /* Shared.swift in Sources */,
 				05C4C8312713549A00C22D61 /* (null) in Sources */,
 				973BEC0D278677D100A66B33 /* Utils.swift in Sources */,
 				979E2C812789DE95008CFA05 /* Models.swift in Sources */,
@@ -504,6 +547,7 @@
 				0574A2292711FF5F00C33317 /* TimetableBreakTableViewCell.swift in Sources */,
 				979E2C7D2789D234008CFA05 /* IMDFDecoder.swift in Sources */,
 				056F2D1E271CAED30063015B /* SettingTimetableVC.swift in Sources */,
+				975015432795B14400326B09 /* AmenityAnnotation.swift in Sources */,
 				979E2C792789D1C6008CFA05 /* Feature.swift in Sources */,
 				05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */,
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,

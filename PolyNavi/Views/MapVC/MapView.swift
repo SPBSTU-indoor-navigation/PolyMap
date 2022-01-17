@@ -153,7 +153,7 @@ class MapView: UIView {
         if abs(lastZoom - zoomLevel) < Float.ulpOfOne { return }
         lastZoom = zoomLevel
         
-        print(zoomLevel)
+//        print(zoomLevel)
     
         if zoomLevel > MIN_SHOW_ZOOM {
             currentBuilding.show(mapView)

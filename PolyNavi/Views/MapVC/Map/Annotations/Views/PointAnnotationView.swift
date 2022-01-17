@@ -13,12 +13,6 @@ protocol AnnotationMapSize {
 }
 
 class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
-    enum State {
-        case big
-        case small
-        case ultraSmall
-    }
-    
     override var annotation: MKAnnotation? {
         didSet {
             if let unit = annotation as? UnitAnnotation {
@@ -47,20 +41,19 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         }
     }
     
-    var state: State = .small
+    var state: DetailLevelState = .min
     
     var pointSize: CGFloat {
         get {
             switch state {
-            case .big: return 0.8
-            case .small: return 0.8
-            case .ultraSmall: return 0.6
+            case .big, .normal, .min: return 0.8
+            case .hide: return 0.6
             }
         }
     }
     
     var textOpacity: CGFloat {
-        return state == .big ? 1.0 : 0.0
+        return [.normal, .big].contains(state) ? 1.0 : 0.0
     }
     
     var selectAnim = Animator()
@@ -190,9 +183,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         }
     }
     
-    
-    
-    func changeState(state: State, animate: Bool) {
+    func changeState(state: DetailLevelState, animate: Bool) {
         self.state = state
         
         if isSelected { return }
@@ -212,13 +203,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
     }
     
     func update(mapSize: Float, animate: Bool) {
-        var targetState: State = .ultraSmall
-        
-        if mapSize > 20.2 {
-            targetState = .big
-        } else if mapSize > 19 {
-            targetState = .small
-        }
+        let targetState = defaultDetailLevelProcessor.evaluate(forDetailLevel: 1, mapSize: mapSize) ?? .normal
         
         if state != targetState {
             changeState(state: targetState, animate: animate)

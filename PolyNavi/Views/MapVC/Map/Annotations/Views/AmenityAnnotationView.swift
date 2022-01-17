@@ -8,13 +8,8 @@
 import MapKit
 
 class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
-    enum State {
-        case normal
-        case small
-        case hide
-    }
     
-    var state: State = .normal
+    var state: DetailLevelState = .normal
     var detailLevel: Int = 0
     
     override var annotation: MKAnnotation? {
@@ -41,6 +36,9 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     var selectAnim = Animator()
     var deselectAnim = Animator()
+    var min = Animator()
+    var hide = Animator()
+    var normal = Animator()
     
     lazy var shape: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +78,6 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         $0.layer.cornerRadius = 5
         $0.addSubview(imageView)
         $0.addSubview(shape)
-//        $0.addShadow()
         return $0
     }(UIView())
     
@@ -134,9 +131,12 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         
         selectAnim
             .animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
+                isHidden = false
+                imageView.alpha = 1
+                background.layer.cornerRadius = 5
                 background.transform = CGAffineTransform(scaleX: 2.5, y: 2.5).translatedBy(x: 0, y: -15.5)
                 
-                self.label.isHidden = false
+                label.isHidden = false
                 label.alpha = 1
                 label.transform = .identity
             })
@@ -150,7 +150,9 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         
         deselectAnim
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: { [self] in
-                background.transform = .identity
+                isHidden = false
+                background.transform = [.hide, .min].contains(state) ? CGAffineTransform(scaleX: 0.3, y: 0.3) : .identity
+                if state == .hide { alpha = 0 }
             })
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
                 shape.transform = CGAffineTransform(translationX: 0, y: -1).scaledBy(x: 1, y: 0)
@@ -159,7 +161,43 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
             .animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: { [self] in
                 label.alpha = 0
                 label.transform = CGAffineTransform(translationX: 0, y: -10).scaledBy(x: 0.5, y: 0.5)
-            }, completion: { _ in self.label.isHidden = true } )
+                if [.hide, .min].contains(state) {
+                    imageView.alpha = 0
+                    background.layer.cornerRadius = 10
+                }
+            }, completion: { _ in
+                self.label.isHidden = true
+                self.isHidden = self.state == .hide
+                
+            })
+    
+        hide
+            .animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: { [self] in
+                alpha = 0
+                imageView.alpha = 0
+                background.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
+                background.layer.cornerRadius = 10
+            }, completion: { _ in self.isHidden = true})
+        
+        min
+            .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
+                isHidden = false
+                alpha = 1
+                imageView.alpha = 0
+                background.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
+                background.layer.cornerRadius = 10
+            })
+        
+        normal
+            .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
+                isHidden = false
+                alpha = 1
+                imageView.alpha = 1
+                background.transform = .identity
+                background.layer.cornerRadius = 5
+            })
+        
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -183,47 +221,42 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         }
     }
     
-    func changeState(state: State, animate: Bool) {
+    func changeState(state: DetailLevelState, animate: Bool) {
         self.state = state
         
         if isSelected { return }
         
-        if state == .hide || state == .small {
-//            background.alpha = 0
-            self.isHidden = true
-        } else {
-//            background.alpha = 1
-            self.isHidden = false
+        print(state)
+        if state == .normal {
+            normal.play(animated: animate)
+        } else if state == .min {
+            min.play(animated: animate)
+        } else if state == .hide {
+            hide.play(animated: animate)
         }
-        
-//        let change = { [self] in
-//            label.alpha = textOpacity
-//            point.transform = CGAffineTransform(scaleX: pointSize, y: pointSize)
-//        }
-//
-//        if animate {
-//            UIView.animate(withDuration: 0.1, animations: {
-//                change()
-//            })
-//        } else {
-//            change()
-//        }
     }
     
     func update(mapSize: Float, animate: Bool) {
-        var targetState: State = .normal
         
-        if detailLevel == 3 {
-            if mapSize < 19 {
-                targetState = .hide
-            } else if mapSize < 21.5 {
-                targetState = .small
-            }
-        }
+        let targetState = defaultDetailLevelProcessor.evaluate(forDetailLevel: detailLevel, mapSize: mapSize) ?? .normal
         
         if state != targetState {
             changeState(state: targetState, animate: animate)
         }
+        
+//        var targetState: State = .normal
+//
+//        if detailLevel == 3 {
+//            if mapSize < 19 {
+//                targetState = .hide
+//            } else if mapSize < 21.5 {
+//                targetState = .small
+//            }
+//        }
+//
+//        if state != targetState {
+//            changeState(state: targetState, animate: animate)
+//        }
     }
 }
 
