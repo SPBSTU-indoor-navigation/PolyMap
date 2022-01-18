@@ -70,13 +70,16 @@ class DetailLevelProcessor<T> {
         
         if let sizes = sizes[forDetailLevel] {
             var lastSize = sizes.first!
+            
+            if mapSize < lastSize.size { return lastSize.state }
+            
             for size in sizes {
                 if lastSize.size < mapSize && mapSize < size.size {
                     return lastSize.state
                 }
                 lastSize = size
             }
-            return sizes.first!.state
+            return lastSize.state
         }
         
         return nil
@@ -91,21 +94,32 @@ enum DetailLevelState {
 }
 
 let defaultDetailLevelProcessor: DetailLevelProcessor<DetailLevelState> = {
+    
+    $0.builder(for: 0)
+        .add(mapSize: 0, state: .normal)
+        .add(mapSize: 17, state: .big)
+    
     $0.builder(for: 1)
-        .add(mapSize: 17.0, state: .hide)
-        .add(mapSize: 19.0, state: .min)
-        .add(mapSize: 20.2, state: .normal)
-        .add(mapSize: 21.5, state: .big)
+        .add(mapSize: 10, state: .hide)
+        .add(mapSize: 16, state: .min)
+//        .add(mapSize: 18.5, state: .normal)
+        .add(mapSize: 18.5, state: .big)
     
     $0.builder(for: 2)
         .add(mapSize: 0, state: .hide)
         .add(mapSize: 17, state: .min)
-        .add(mapSize: 20, state: .normal)
-        .add(mapSize: 22.3, state: .big)
+        .add(mapSize: 18.5, state: .normal)
+        .add(mapSize: 21, state: .big)
     
     $0.builder(for: 3)
         .add(mapSize: 0, state: .hide)
         .add(mapSize: 19.5, state: .min)
+        .add(mapSize: 21.0, state: .normal)
+        .add(mapSize: 22, state: .big)
+    
+    $0.builder(for: 4)
+        .add(mapSize: 0, state: .hide)
+        .add(mapSize: 20.3, state: .min)
         .add(mapSize: 21.3, state: .normal)
         .add(mapSize: 22.3, state: .big)
     return $0

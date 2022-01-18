@@ -77,9 +77,13 @@ class IMDFDecoder {
                             attractions: attraction.filter({ $0.properties.building_id == building.identifier }))
         })
         
+        let enviromentLines = enviroments.filter({ $0.geometry.first is MKPolyline })
+        let enviromentPolygons = enviroments.filter({ !($0.geometry.first is MKPolyline) })
+        
         let result = Venue(geometry: venue.geometry.polygon(),
                            buildings: buildings,
-                           enviroments: enviroments.map({ $0.cast() }),
+                           enviroments: enviromentPolygons.map({ $0.castPolygon() }),
+                           enviromentLines: enviromentLines.map({ $0.castLine() }),
                            address: addressesByID[venue.properties.address_id],
                            amenitys: enviromentAmenitys)
         return result
@@ -130,8 +134,12 @@ extension IMDF.Unit {
 }
 
 extension IMDF.EnviromentUnit {
-    func cast() -> EnviromentUnit {
-        return EnviromentUnit(polygons: self.geometry.polygon(), categoty: properties.category)
+    func castPolygon() -> EnviromentUnit {
+        return EnviromentUnit(polygons: self.geometry.polygon(), category: properties.category)
+    }
+    
+    func castLine() -> EnviromentUnitLine {
+        return EnviromentUnitLine.create(polyline: self.geometry.first as! MKPolyline, category: properties.category)
     }
 }
 

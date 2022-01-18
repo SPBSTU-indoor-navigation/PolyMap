@@ -61,12 +61,21 @@ class MapView: UIView {
         return $0
     }(LevelSwitcher())
     
+    
+    let debug: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.font = .preferredFont(forTextStyle: .callout)
+        return $0
+    }(UILabel())
+    
     func layoutViews() {
         mapContainerView = findViewOfType("MKScrollContainerView", inView: mapView)
         
         addSubview(mapView)
         addSubview(levelSwitcher)
         addSubview(compassButton)
+        addSubview(debug)
+
         
         levelSwitcherConstraint = levelSwitcher.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
         
@@ -82,7 +91,10 @@ class MapView: UIView {
             
             compassButton.topAnchor.constraint(equalTo: levelSwitcher.topAnchor),
             compassButton.trailingAnchor.constraint(lessThanOrEqualTo: levelSwitcher.leadingAnchor, constant: -10),
-            compassButton.trailingAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.trailingAnchor, constant: -10)
+            compassButton.trailingAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            
+            debug.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            debug.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor)
         ])
         
     }
@@ -147,11 +159,11 @@ class MapView: UIView {
     
     
     func updateMap(zoomLevel: Float) {
-        
+        debug.text = "Zoom: \(roundf(zoomLevel * 100) / 100)"
         if abs(lastZoom - zoomLevel) < Float.ulpOfOne { return }
         lastZoom = zoomLevel
         
-        print(zoomLevel)
+//        print(zoomLevel)
     
         if let currentBuilding = currentBuilding {
             if zoomLevel > MIN_SHOW_ZOOM {

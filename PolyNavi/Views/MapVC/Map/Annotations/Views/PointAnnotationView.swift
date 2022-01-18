@@ -41,6 +41,16 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         }
     }
     
+    let levelProcessor: DetailLevelProcessor<DetailLevelState> = {
+        $0.builder(for: 1)
+            .add(mapSize: 17.0, state: .hide)
+            .add(mapSize: 19.0, state: .min)
+            .add(mapSize: 20.2, state: .normal)
+            .add(mapSize: 21.5, state: .big)
+        
+        return $0
+    }(DetailLevelProcessor<DetailLevelState>())
+    
     var state: DetailLevelState = .min
     
     var pointSize: CGFloat {
@@ -203,7 +213,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
     }
     
     func update(mapSize: Float, animate: Bool) {
-        let targetState = defaultDetailLevelProcessor.evaluate(forDetailLevel: 1, mapSize: mapSize) ?? .normal
+        let targetState = levelProcessor.evaluate(forDetailLevel: 1, mapSize: mapSize) ?? .normal
         
         if state != targetState {
             changeState(state: targetState, animate: animate)

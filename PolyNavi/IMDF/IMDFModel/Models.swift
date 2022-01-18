@@ -151,6 +151,8 @@ struct IMDF {
             case grass
             case tree
             case forest
+            case fenceMain = "fence.main"
+            case fenceSecond = "fence.second"
         }
         
         struct Properties: Codable {

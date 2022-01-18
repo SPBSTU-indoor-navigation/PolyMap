@@ -11,6 +11,7 @@ class Venue: MKMultiPolygon, Styleble {
     
     var buildings: [Building] = []
     var enviroments: [EnviromentUnit] = []
+    var enviromentLines: [EnviromentUnitLine] = []
     var amenitys: [EnviromentAmenityAnnotation] = []
     var address: IMDF.Address?
     
@@ -18,24 +19,27 @@ class Venue: MKMultiPolygon, Styleble {
         super.init(polygons)
     }
     
-    init(geometry: [MKPolygon], buildings: [Building], enviroments: [EnviromentUnit], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {
+    init(geometry: [MKPolygon], buildings: [Building], enviroments: [EnviromentUnit],
+         enviromentLines: [EnviromentUnitLine], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {
         super.init(geometry)
         self.buildings = buildings
         self.address = address
         self.enviroments = enviroments
+        self.enviromentLines = enviromentLines
         self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name, detailLevel: $0.properties.detailLevel) })
     }
     
     func show(_ mapView: MKMapView) {
         mapView.addOverlay(self)
         
-        let enviromentOrder: [IMDF.EnviromentUnit.Category] = [.forest, .grass, .roadDirt, .roadPedestrianMain, .roadMain]
+        let enviromentOrder: [IMDF.EnviromentUnit.Category] = [.forest, .grass, .roadDirt, .roadPedestrianMain, .roadMain, .fenceMain, .fenceSecond]
         
         for i in enviromentOrder {
-            mapView.addOverlays(enviroments.filter({ $0.categoty == i }))
+            mapView.addOverlays(enviroments.filter({ $0.category == i }))
         }
         
-        mapView.addOverlays(enviroments.filter({ !enviromentOrder.contains($0.categoty) }))
+        mapView.addOverlays(enviroments.filter({ !enviromentOrder.contains($0.category)}))
+        mapView.addOverlays(enviromentLines)
         mapView.addOverlays(buildings)
         mapView.addAnnotations(amenitys)
         mapView.addAnnotations(buildings.flatMap({ $0.attractions }))

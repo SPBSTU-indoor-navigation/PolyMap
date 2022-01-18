@@ -41,6 +41,31 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         hide = Animator(),
         normal = Animator()
     
+    var backgroundSize: CGFloat {
+        get {
+            switch state {
+            case .big:
+                return 1.2
+            case .normal:
+                return 0.8
+            case .hide, .min:
+                return 0.3
+            }
+        }
+    }
+    
+    var imageAlpha: CGFloat {
+        get {
+            return [.big, .normal].contains(state) ? 1.0 : 0
+        }
+    }
+    
+    var backgroundCornerRadius: CGFloat {
+        get {
+            return [.big, .normal].contains(state) ? 5 : 10
+        }
+    }
+    
     lazy var shape: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         let t = CAShapeLayer()
@@ -152,16 +177,7 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         deselectAnim
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: { [self] in
                 isHidden = false
-                var size = 1.0
-                switch state {
-                case .big:
-                    size = 1.2
-                case .normal:
-                    size = 1.0
-                case .hide, .min:
-                    size = 0.3
-                }
-                background.transform = CGAffineTransform(scaleX: size, y: size)
+                background.transform = CGAffineTransform(scaleX: backgroundSize, y: backgroundSize)
                 if state == .hide { alpha = 0 }
             })
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
@@ -181,41 +197,6 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
                 
             })
     
-        hide
-            .animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: { [self] in
-                alpha = 0
-                imageView.alpha = 0
-                background.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
-                background.layer.cornerRadius = 10
-            }, completion: { _ in self.isHidden = true})
-        
-        min
-            .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
-                isHidden = false
-                alpha = 1
-                imageView.alpha = 0
-                background.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
-                background.layer.cornerRadius = 10
-            })
-        
-        normal
-            .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
-                isHidden = false
-                alpha = 1
-                imageView.alpha = 1
-                background.transform = .identity
-                background.layer.cornerRadius = 5
-            })
-        
-        big
-            .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
-                isHidden = false
-                alpha = 1
-                imageView.alpha = 1
-                background.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-                background.layer.cornerRadius = 5
-            })
-    
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -226,7 +207,7 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         super.prepareForDisplay()
         
         if #available(iOS 14.0, *) {
-            zPriority = MKAnnotationViewZPriority(rawValue: 900)
+            zPriority = MKAnnotationViewZPriority(rawValue: 700)
         }
     }
     
@@ -244,14 +225,32 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         
         if isSelected { return }
         
-        if state == .big {
-            big.play(animated: animate)
-        } else if state == .normal {
-            normal.play(animated: animate)
-        } else if state == .min {
-            min.play(animated: animate)
-        } else if state == .hide {
-            hide.play(animated: animate)
+        let change = { [self] in
+            background.transform = CGAffineTransform(scaleX: backgroundSize, y: backgroundSize)
+            imageView.alpha = imageAlpha
+            background.layer.cornerRadius = backgroundCornerRadius
+            alpha = state == .hide ? 0 : 1
+            if state != .hide {
+                isHidden = false
+                alpha = 1
+            } else {
+                alpha = 0
+            }
+        }
+        
+        let completion = {
+            if self.state == .hide {
+                self.isHidden = true
+            }
+        }
+        
+        if animate {
+            UIView.animate(withDuration: 0.3, animations: {
+                change()
+            }, completion: { _ in completion() })
+        } else {
+            change()
+            completion()
         }
     }
     

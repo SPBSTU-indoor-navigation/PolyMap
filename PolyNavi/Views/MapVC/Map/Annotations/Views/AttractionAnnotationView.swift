@@ -196,7 +196,7 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
         super.prepareForDisplay()
         
         if #available(iOS 14.0, *) {
-            zPriority = MKAnnotationViewZPriority(rawValue: 1000)
+            zPriority = MKAnnotationViewZPriority(rawValue: 900)
         }
     }
     
@@ -204,7 +204,7 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
         self.state = state
         
         if isSelected { return }
-        print(state)
+        
         let change = { [self] in
             label.alpha = textOpacity
             background.transform = CGAffineTransform(scaleX: pointSize, y: pointSize)
