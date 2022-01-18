@@ -23,7 +23,7 @@ class Venue: MKMultiPolygon, Styleble {
         self.buildings = buildings
         self.address = address
         self.enviroments = enviroments
-        self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, detailLevel: $0.properties.detailLevel) })
+        self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name, detailLevel: $0.properties.detailLevel) })
     }
     
     func show(_ mapView: MKMapView) {
@@ -38,6 +38,7 @@ class Venue: MKMultiPolygon, Styleble {
         mapView.addOverlays(enviroments.filter({ !enviromentOrder.contains($0.categoty) }))
         mapView.addOverlays(buildings)
         mapView.addAnnotations(amenitys)
+        mapView.addAnnotations(buildings.flatMap({ $0.attractions }))
     }
     
     func configurate(renderer: MKOverlayRenderer) {

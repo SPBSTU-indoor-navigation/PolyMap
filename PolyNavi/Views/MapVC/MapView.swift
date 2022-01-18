@@ -10,11 +10,10 @@ import MapKit
 
 class MapView: UIView {
     
-    let MIN_SHOW_ZOOM : Float = 18.0
+    let MIN_SHOW_ZOOM : Float = 18.5
     
     var mapContainerView : UIView?
-    var lastZoom : Float = -1.0
-    let centerPosition = CLLocationCoordinate2D(latitude: 60.00385, longitude: 30.37539)
+    var lastZoom : Float = 16
     var currentBuilding: Building?
     
     var venue: Venue?
@@ -37,8 +36,7 @@ class MapView: UIView {
     
     lazy var mapView: MKMapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0, maxCenterCoordinateDistance: 5000), animated: false)
-//        $0.setCenter(centerPosition, animated: true)
+        $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 25, maxCenterCoordinateDistance: 5000), animated: false)
         $0.isPitchEnabled = false
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false
@@ -46,6 +44,7 @@ class MapView: UIView {
         $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: UnitAnnotation.reusableIdentifier)
         $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: AmenityAnnotation.reusableIdentifier)
         $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: EnviromentAmenityAnnotation.reusableIdentifier)
+        $0.register(AttractionAnnotationView.self, forAnnotationViewWithReuseIdentifier: AttractionAnnotation.reusableIdentifier)
         
         return $0
     }(MKMapView())
@@ -149,18 +148,19 @@ class MapView: UIView {
     
     func updateMap(zoomLevel: Float) {
         
-        guard let currentBuilding = currentBuilding else { return }
         if abs(lastZoom - zoomLevel) < Float.ulpOfOne { return }
         lastZoom = zoomLevel
         
-//        print(zoomLevel)
+        print(zoomLevel)
     
-        if zoomLevel > MIN_SHOW_ZOOM {
-            currentBuilding.show(mapView)
-            showLevelSwitcher()
-        } else {
-            currentBuilding.hide(mapView)
-            hideLevelSwitcher()
+        if let currentBuilding = currentBuilding {
+            if zoomLevel > MIN_SHOW_ZOOM {
+                currentBuilding.show(mapView)
+                showLevelSwitcher()
+            } else {
+                currentBuilding.hide(mapView)
+                hideLevelSwitcher()
+            }
         }
         
         for annotation in mapView.annotations {
@@ -256,6 +256,8 @@ extension MapView: MKMapViewDelegate {
             annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: AmenityAnnotation.reusableIdentifier, for: annotation)
         } else if let annotation = annotation as? EnviromentAmenityAnnotation {
             annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: EnviromentAmenityAnnotation.reusableIdentifier, for: annotation)
+        } else if let annotation = annotation as? AttractionAnnotation {
+            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: AttractionAnnotation.reusableIdentifier, for: annotation)
         }
         
         (annotationView as? AnnotationMapSize)?.update(mapSize: lastZoom, animate: false)

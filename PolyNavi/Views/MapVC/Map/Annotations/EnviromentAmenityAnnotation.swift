@@ -13,15 +13,22 @@ class EnviromentAmenityAnnotation: NSObject, MKAnnotation, DetailLevel {
     }
     
     @objc dynamic var coordinate: CLLocationCoordinate2D
-    var title: String? = ""
-    var subtitle: String? = ""
+    var title: String? {
+        get {
+            return shortName?.bestLocalizedValue
+        }
+    }
+    
     var category: IMDF.EnviromentAmenity.Category
+    
+    var shortName: LocalizedName?
     var detail: Int = 0
     
-    init(coordinate: CLLocationCoordinate2D, category: IMDF.EnviromentAmenity.Category, detailLevel: Int) {
+    init(coordinate: CLLocationCoordinate2D, category: IMDF.EnviromentAmenity.Category, title: LocalizedName?, detailLevel: Int) {
         self.coordinate = coordinate
         self.category = category
         self.detail = detailLevel
+        self.shortName = title
         super.init()
     }
     

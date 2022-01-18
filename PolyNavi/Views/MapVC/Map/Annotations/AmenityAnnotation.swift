@@ -18,7 +18,7 @@ class AmenityAnnotation: NSObject, MKAnnotation, DetailLevel {
             return shortName?.bestLocalizedValue
         }
     }
-    var subtitle: String? = ""
+    
     var category: IMDF.Amenity.Category
     
     var shortName: LocalizedName?

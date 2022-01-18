@@ -34,11 +34,12 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         }
     }
     
-    var selectAnim = Animator()
-    var deselectAnim = Animator()
-    var min = Animator()
-    var hide = Animator()
-    var normal = Animator()
+    var selectAnim = Animator(),
+        deselectAnim = Animator(),
+        min = Animator(),
+        big = Animator(),
+        hide = Animator(),
+        normal = Animator()
     
     lazy var shape: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -151,7 +152,16 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         deselectAnim
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: { [self] in
                 isHidden = false
-                background.transform = [.hide, .min].contains(state) ? CGAffineTransform(scaleX: 0.3, y: 0.3) : .identity
+                var size = 1.0
+                switch state {
+                case .big:
+                    size = 1.2
+                case .normal:
+                    size = 1.0
+                case .hide, .min:
+                    size = 0.3
+                }
+                background.transform = CGAffineTransform(scaleX: size, y: size)
                 if state == .hide { alpha = 0 }
             })
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
@@ -197,6 +207,14 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
                 background.layer.cornerRadius = 5
             })
         
+        big
+            .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
+                isHidden = false
+                alpha = 1
+                imageView.alpha = 1
+                background.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                background.layer.cornerRadius = 5
+            })
     
     }
     
@@ -226,8 +244,9 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         
         if isSelected { return }
         
-        print(state)
-        if state == .normal {
+        if state == .big {
+            big.play(animated: animate)
+        } else if state == .normal {
             normal.play(animated: animate)
         } else if state == .min {
             min.play(animated: animate)
@@ -243,20 +262,6 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         if state != targetState {
             changeState(state: targetState, animate: animate)
         }
-        
-//        var targetState: State = .normal
-//
-//        if detailLevel == 3 {
-//            if mapSize < 19 {
-//                targetState = .hide
-//            } else if mapSize < 21.5 {
-//                targetState = .small
-//            }
-//        }
-//
-//        if state != targetState {
-//            changeState(state: targetState, animate: animate)
-//        }
     }
 }
 

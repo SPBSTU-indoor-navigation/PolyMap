@@ -76,7 +76,7 @@ class DetailLevelProcessor<T> {
                 }
                 lastSize = size
             }
-            return lastSize.state
+            return sizes.first!.state
         }
         
         return nil
@@ -97,10 +97,16 @@ let defaultDetailLevelProcessor: DetailLevelProcessor<DetailLevelState> = {
         .add(mapSize: 20.2, state: .normal)
         .add(mapSize: 21.5, state: .big)
     
+    $0.builder(for: 2)
+        .add(mapSize: 0, state: .hide)
+        .add(mapSize: 17, state: .min)
+        .add(mapSize: 20, state: .normal)
+        .add(mapSize: 22.3, state: .big)
+    
     $0.builder(for: 3)
         .add(mapSize: 0, state: .hide)
         .add(mapSize: 19.5, state: .min)
         .add(mapSize: 21.3, state: .normal)
-        .add(mapSize: 24, state: .big)
+        .add(mapSize: 22.3, state: .big)
     return $0
 }(DetailLevelProcessor<DetailLevelState>())

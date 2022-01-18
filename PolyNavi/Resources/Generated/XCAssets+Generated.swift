@@ -35,6 +35,13 @@ internal enum Asset {
       internal static let stairs = ImageAsset(name: "stairs")
       internal static let vendingmachine = ImageAsset(name: "vendingmachine")
     }
+    internal enum Buildings {
+      internal static let gydro = ImageAsset(name: "Gydro")
+    }
+    internal enum Colors {
+      internal static let attractionBackground = ColorAsset(name: "AttractionBackground")
+      internal static let attractionBorder = ColorAsset(name: "AttractionBorder")
+    }
   }
   internal enum IMDFColors {
     internal static let buildingFill = ColorAsset(name: "BuildingFill")

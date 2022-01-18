@@ -9,14 +9,16 @@ import MapKit
 
 class Building: MKMultiPolygon, Styleble, MapRenderer {
     var levels: [Level] = []
+    var attractions: [AttractionAnnotation] = []
     
     
     var ordinal = -1
     private var isShow = false
     
-    init(_ polygons: [MKPolygon], levels: [Level]) {
+    init(_ polygons: [MKPolygon], levels: [Level], attractions: [IMDF.Attraction] ) {
         super.init(polygons)
         self.levels = levels
+        self.attractions = attractions.map({ AttractionAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, localizedName: $0.properties.alt_name, localizedShort: $0.properties.short_name, image: $0.properties.image) })
         self.ordinal = levels.map({ $0.ordinal }).min() ?? -1
     }
     
@@ -49,6 +51,8 @@ class Building: MKMultiPolygon, Styleble, MapRenderer {
             level.show(mapView)
         }
         
+        mapView.removeAnnotations(attractions)
+        
     }
     
     func hide(_ mapView: MKMapView) {
@@ -58,6 +62,8 @@ class Building: MKMultiPolygon, Styleble, MapRenderer {
         if let level = level(byOrdinal: ordinal) {
             level.hide(mapView)
         }
+        
+        mapView.addAnnotations(attractions)
         
     }
     

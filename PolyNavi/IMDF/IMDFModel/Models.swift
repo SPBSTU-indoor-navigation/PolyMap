@@ -230,6 +230,23 @@ struct IMDF {
         }
     }
     
+    class Attraction: Feature<Attraction.Properties> {
+        
+        enum Category: String, Codable {
+            case building
+        }
+        
+        struct Properties: Codable {
+            let name: LocalizedName?
+            let alt_name: LocalizedName?
+            let short_name: LocalizedName?
+            let building_id: UUID
+            
+            let category: Category
+            let image: String?
+        }
+    }
+    
 }
 
 
