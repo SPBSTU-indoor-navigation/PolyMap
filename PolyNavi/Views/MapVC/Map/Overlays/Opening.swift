@@ -7,8 +7,13 @@
 
 import MapKit
 
-class Opening: MKPolyline, Styleble {
+class Opening: CustomOverlay, Styleble {
     var unitCategory: IMDF.Unit.Category?
+    
+    init(geometry: MKOverlay, unitCategory: IMDF.Unit.Category?) {
+        super.init(geometry)
+        self.unitCategory = unitCategory
+    }
     
     func configurate(renderer: MKOverlayRenderer) {
         guard let renderer = renderer as? MKPolylineRenderer else { return }
@@ -18,7 +23,7 @@ class Opening: MKPolyline, Styleble {
             renderer.lineCap = .butt
         case .restroom, .restroomFemale, .restroomMale:
             renderer.strokeColor = Asset.IMDFColors.Units.restroom.color
-        default: renderer.strokeColor = Asset.IMDFColors.Units.default.color
+        default: renderer.strokeColor = Asset.IMDFColors.default.color
         }
         renderer.lineWidth = 4
     }

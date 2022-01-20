@@ -28,10 +28,6 @@ class MapView: UIView {
     
         layoutViews()
         loadIMDF()
-        
-        
-//        let polygon = MKPolygon(points: venue!.polygons[0].points(), count: venue!.polygons[0].pointCount)
-//        mapView.addOverlay(polygon)
     }
     
     required init?(coder: NSCoder) {
@@ -122,9 +118,13 @@ class MapView: UIView {
         
         let centerPoint = MKMapPoint(position)
         let centerRect = MKMapRect(origin: centerPoint, size: MKMapSize(width: 0.001, height: 0.001))
+
+        let buildings = venue!.buildings.filter({ $0.levels.count > 0 })
         
-        for builing in venue!.buildings.filter({ $0.levels.count > 0 }) {
-            for polygon in builing.polygons {
+        for builing in buildings {
+            guard let polygons = builing.polygons else { continue }
+            
+            for polygon in polygons {
                 if polygon.intersects(centerRect) {
                     return builing;
                 }
@@ -134,8 +134,10 @@ class MapView: UIView {
         var nearestBuilding: Building? = nil
         var nearestDistance: Double = Double.infinity
         
-        for builing in venue!.buildings.filter({ $0.levels.count > 0 }) {
-            for polygon in builing.polygons {
+        for builing in buildings {
+            guard let polygons = builing.polygons else { continue }
+
+            for polygon in polygons {
                 let points = polygon.points()
                 
                 for i in 0..<polygon.pointCount {
@@ -242,19 +244,33 @@ extension MapView {
 
 extension MapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        var renderer: MKOverlayRenderer = MKPolygonRenderer(overlay: overlay)
         
-        if overlay is MKMultiPolygon {
-            renderer = MKMultiPolygonRenderer(overlay: overlay)
-        } else if overlay is MKPolygon {
-            renderer = MKPolygonRenderer(overlay: overlay)
-        } else if overlay is MKPolyline {
-            renderer = MKPolylineRenderer(overlay: overlay)
-        } else if overlay is MKMultiPolyline {
-            renderer = MultiPolylineDetailRenderer(overlay: overlay)
+        guard let overlay = overlay as? CustomOverlay else { return MKOverlayRenderer(overlay: overlay) }
+        
+        if let renderer = overlay.overlayRenderer {
+            (overlay as! Styleble).configurate(renderer: renderer)
+            return renderer
+        }
+        
+        let geometry = overlay.geometry
+        
+        let renderer: MKOverlayPathRenderer
+        
+        switch geometry {
+        case is MKMultiPolygon:
+            renderer = MKMultiPolygonRenderer(overlay: geometry)
+        case is MKPolygon:
+            renderer = MKPolygonRenderer(overlay: geometry)
+        case is MKMultiPolyline:
+            renderer = MKMultiPolylineRenderer(overlay: geometry)
+        case is MKPolyline:
+            renderer = MKPolylineRenderer(overlay: geometry)
+        default:
+            return MKOverlayRenderer(overlay: geometry)
         }
         
         (overlay as! Styleble).configurate(renderer: renderer)
+        
         return renderer
 
     }

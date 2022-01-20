@@ -51,8 +51,8 @@ internal enum Asset {
     internal static let buildingFill = ColorAsset(name: "BuildingFill")
     internal static let buildingLine = ColorAsset(name: "BuildingLine")
     internal static let buildingUnderLevel = ColorAsset(name: "BuildingUnderLevel")
+    internal static let `default` = ColorAsset(name: "Default")
     internal enum Enviroment {
-      internal static let `default` = ColorAsset(name: "Default")
       internal static let crosswalk = ColorAsset(name: "crosswalk")
       internal static let fenceMain = ColorAsset(name: "fence.main")
       internal static let grass = ColorAsset(name: "grass")
@@ -62,7 +62,6 @@ internal enum Asset {
     }
     internal static let levelLine = ColorAsset(name: "LevelLine")
     internal enum Units {
-      internal static let `default` = ColorAsset(name: "Default")
       internal static let defaultLine = ColorAsset(name: "DefaultLine")
       internal static let restricted = ColorAsset(name: "restricted")
       internal static let restroom = ColorAsset(name: "restroom")

@@ -7,7 +7,7 @@
 
 import MapKit
 
-class Building: MKMultiPolygon, Styleble, MapRenderer {
+class Building: CustomOverlay, Styleble, MapRenderer {
     var levels: [Level] = []
     var attractions: [AttractionAnnotation] = []
     
@@ -15,15 +15,17 @@ class Building: MKMultiPolygon, Styleble, MapRenderer {
     var ordinal = -1
     private var isShow = false
     
-    init(_ polygons: [MKPolygon], levels: [Level], attractions: [IMDF.Attraction] ) {
-        super.init(polygons)
+    
+    init(_ geometry: MKOverlay, levels: [Level], attractions: [IMDF.Attraction]) {
+        super.init(geometry)
+        
         self.levels = levels
         self.attractions = attractions.map({ AttractionAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, localizedName: $0.properties.alt_name, localizedShort: $0.properties.short_name, image: $0.properties.image) })
         self.ordinal = levels.map({ $0.ordinal }).min() ?? -1
     }
     
     func configurate(renderer: MKOverlayRenderer) {
-        guard let renderer = renderer as? MKMultiPolygonRenderer else { return }
+        guard let renderer = renderer as? MKOverlayPathRenderer else { return }
         renderer.shouldRasterize = false
         renderer.strokeColor = Asset.IMDFColors.buildingLine.color
         renderer.lineWidth = isShow ? 0.001 : 1
@@ -32,7 +34,6 @@ class Building: MKMultiPolygon, Styleble, MapRenderer {
     
     func changeOrdinal(_ ordinal: Int, _ mapView: MKMapView) {
         if self.ordinal == ordinal { return }
-        
         if isShow {
             hide(mapView)
             self.ordinal = ordinal

@@ -7,7 +7,7 @@
 
 import MapKit
 
-class Venue: MKMultiPolygon, Styleble {
+class Venue: CustomOverlay, Styleble {
     
     var buildings: [Building] = []
     var enviroments: [EnviromentUnit] = []
@@ -15,11 +15,7 @@ class Venue: MKMultiPolygon, Styleble {
     var amenitys: [EnviromentAmenityAnnotation] = []
     var address: IMDF.Address?
     
-    override init(_ polygons: [MKPolygon]) {
-        super.init(polygons)
-    }
-    
-    init(geometry: [MKPolygon], buildings: [Building], enviroments: [EnviromentUnit],
+    init(geometry: MKOverlay, buildings: [Building], enviroments: [EnviromentUnit],
          enviromentDetail: [EnviromentDetail], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {
         super.init(geometry)
         self.buildings = buildings
@@ -46,7 +42,7 @@ class Venue: MKMultiPolygon, Styleble {
     }
     
     func configurate(renderer: MKOverlayRenderer) {
-        guard let renderer = renderer as? MKMultiPolygonRenderer else { return }
+        guard let renderer = renderer as? MKOverlayPathRenderer else { return }
         renderer.strokeColor = Asset.IMDFColors.venueFill.color
         renderer.lineWidth = 5
         renderer.fillColor = Asset.IMDFColors.venueFill.color

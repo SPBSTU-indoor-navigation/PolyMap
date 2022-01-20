@@ -7,14 +7,14 @@
 
 import MapKit
 
-class Unit: MKMultiPolygon, Styleble {
+class Unit: CustomOverlay, Styleble {
     
     var annotation: UnitAnnotation? = nil
     var id: UUID
     var categoty: IMDF.Unit.Category
     var restriction: Restriction?
     
-    init(_ polygons: [MKPolygon],
+    init(_ geometry: MKOverlay,
          id: UUID,
          displayPoint: CLLocationCoordinate2D?,
          name: LocalizedName?,
@@ -30,11 +30,11 @@ class Unit: MKMultiPolygon, Styleble {
             annotation = UnitAnnotation(coordinate: displayPoint, title: altName.bestLocalizedValue, category: self.categoty)
         }
         
-        super.init(polygons)
+        super.init(geometry)
     }
     
     func configurate(renderer: MKOverlayRenderer) {
-        guard let renderer = renderer as? MKMultiPolygonRenderer else { return }
+        guard let renderer = renderer as? MKOverlayPathRenderer else { return }
         
         renderer.strokeColor = Asset.IMDFColors.Units.defaultLine.color
         renderer.lineWidth = 1
@@ -46,7 +46,7 @@ class Unit: MKMultiPolygon, Styleble {
             case .restroom, .restroomFemale, .restroomMale:
                 renderer.fillColor = Asset.IMDFColors.Units.restroom.color
             default:
-                renderer.fillColor = UIColor(named: categoty.rawValue) ?? Asset.IMDFColors.Units.default.color
+                renderer.fillColor = UIColor(named: categoty.rawValue) ?? Asset.IMDFColors.default.color
             }
             
             switch categoty {

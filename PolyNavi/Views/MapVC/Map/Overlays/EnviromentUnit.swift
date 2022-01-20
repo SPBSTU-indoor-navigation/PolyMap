@@ -7,44 +7,49 @@
 
 import MapKit
 
-class EnviromentUnit: MKMultiPolygon, Styleble {
+class EnviromentUnit: CustomOverlay, Styleble {
     var category: IMDF.EnviromentUnit.Category
     
-    init(polygons: [MKPolygon], category: IMDF.EnviromentUnit.Category) {
+    init(_ geometry: MKOverlay, category: IMDF.EnviromentUnit.Category) {
         self.category = category
-        super.init(polygons)
+        super.init(geometry)
     }
     
     func configurate(renderer: MKOverlayRenderer) {
-        guard let renderer = renderer as? MKMultiPolygonRenderer else { return }
         
-        renderer.fillColor = UIColor(named: category.rawValue) ?? Asset.IMDFColors.Enviroment.default.color
-        renderer.strokeColor = renderer.fillColor
-        renderer.lineWidth = 1
+        if let renderer = renderer as? MKPolylineRenderer {
+            renderer.lineWidth = 2
+            renderer.strokeColor = .systemGray4
+        }
+        else if let renderer = renderer as? MKOverlayPathRenderer {
+            renderer.fillColor = UIColor(named: category.rawValue) ?? Asset.IMDFColors.default.color
+            renderer.strokeColor = renderer.fillColor
+            renderer.lineWidth = 1
+        }
+        
+        
     }
 }
 
-class EnviromentUnitLine: MKPolyline, Styleble {
-    var category: IMDF.EnviromentUnit.Category?
+class EnviromentDetail: CustomOverlay, Styleble {
+    var category: IMDF.EnviromentDetail.Category
     
-    func configurate(renderer: MKOverlayRenderer) {
-        guard let renderer = renderer as? MKPolylineRenderer else { return }
-        renderer.lineWidth = 2
-        renderer.strokeColor = .systemGray4
+    override var overlayRenderer: MKOverlayRenderer? {
+        get {
+            return MultiPolylineDetailRenderer(overlay: geometry)
+        }
     }
     
-    static func create(polyline: MKPolyline, category: IMDF.EnviromentUnit.Category) -> EnviromentUnitLine {
-        let res = EnviromentUnitLine(points: polyline.points(), count: polyline.pointCount)
-        res.category = category
-        return res
+    init(geometry: MKOverlay, category: IMDF.EnviromentDetail.Category) throws {
+        if !(geometry is MKMultiPolyline) {
+            throw NSError(domain: "geometry must be MKMultiPolyline", code: 0, userInfo: nil)
+        }
+        self.category = category
+        super.init(geometry)
     }
-}
-
-class EnviromentDetail: MKMultiPolyline, Styleble {
-    var category: IMDF.EnviromentDetail.Category?
     
     func configurate(renderer: MKOverlayRenderer) {
-        guard let renderer = renderer as? MultiPolylineDetailRenderer else { return }
+        guard let renderer = renderer as? MKOverlayPathRenderer else { return }
         
         renderer.strokeColor = Asset.IMDFColors.Enviroment.crosswalk.color
         
@@ -61,15 +66,9 @@ class EnviromentDetail: MKMultiPolyline, Styleble {
             renderer.lineWidth = 3
             renderer.strokeColor = Asset.IMDFColors.Enviroment.fenceMain.color
             renderer.lineDashPattern = [1, 4]
-        default:
-            renderer.strokeColor = UIColor.red
+//        default:
+//            renderer.strokeColor = UIColor.red
         }
         
-    }
-    
-    static func create(polylines: [MKPolyline], category: IMDF.EnviromentDetail.Category) -> EnviromentDetail {
-        let res = EnviromentDetail(polylines)
-        res.category = category
-        return res
     }
 }

@@ -72,18 +72,16 @@ class IMDFDecoder {
         guard let venue = venues.first else { return nil }
         
         let buildings = imdfBuildings.map({ building in
-            return Building(building.geometry.polygon(),
+            return Building(building.geometry.overlay(),
                             levels: imdfLevels
                                 .filter({ $0.properties.building_ids.contains(building.identifier) })
                                 .map({ $0.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys)}),
                             attractions: attraction.filter({ $0.properties.building_id == building.identifier }))
         })
         
-        let enviromentPolygons = enviroments.filter({ !($0.geometry.first is MKPolyline) })
-        
-        let result = Venue(geometry: venue.geometry.polygon(),
+        let result = Venue(geometry: venue.geometry.overlay(),
                            buildings: buildings,
-                           enviroments: enviromentPolygons.map({ $0.castPolygon() }),
+                           enviroments: enviroments.map({ $0.cast() }),
                            enviromentDetail: enviromentDetail.map({ $0.cast() }),
                            address: addressesByID[venue.properties.address_id],
                            amenitys: enviromentAmenitys)
@@ -111,7 +109,7 @@ extension IMDF.Level {
         let amenitysFiltred = amenitys.filter({ !unitsIds.intersection($0.properties.unit_ids).isEmpty })
         
         
-        return Level(self.geometry.polygon(),
+        return Level(self.geometry.overlay(),
                      ordinal: self.properties.ordinal,
                      units: units.map{ $0.cast() },
                      openings: openings.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }),
@@ -124,7 +122,7 @@ extension IMDF.Unit {
     func cast() -> Unit {
         let properties = self.properties
         
-        return Unit(self.geometry.polygon(),
+        return Unit(self.geometry.overlay(),
                     id: self.identifier,
                     displayPoint: properties.display_point?.getCoordinates(),
                     name: properties.name,
@@ -135,41 +133,35 @@ extension IMDF.Unit {
 }
 
 extension IMDF.EnviromentUnit {
-    func castPolygon() -> EnviromentUnit {
-        return EnviromentUnit(polygons: self.geometry.polygon(), category: properties.category)
-    }
-    
-    func castLine() -> EnviromentUnitLine {
-        return EnviromentUnitLine.create(polyline: self.geometry.first as! MKPolyline, category: properties.category)
+    func cast()-> EnviromentUnit {
+        return EnviromentUnit(self.geometry.overlay(), category: properties.category)
     }
 }
 
 extension IMDF.Opening {
     func cast() -> Opening {
-        let t = self.geometry.first as! MKPolyline
-        let res = Opening(points: t.points(), count: t.pointCount)
-        res.unitCategory = self.properties.unit_categoty
-        return res
+        return Opening(geometry: self.geometry.overlay(), unitCategory: self.properties.unit_categoty)
     }
 }
 
 extension IMDF.EnviromentDetail {
     func cast() -> EnviromentDetail {
-        let t = self.geometry.first as! MKMultiPolyline
-        let res = EnviromentDetail(t.polylines)
-        res.category = self.properties.category
-        return res
+        return try! EnviromentDetail(geometry: self.geometry.overlay(), category: self.properties.category)
     }
 }
 
 extension Array where Element == MKShape & MKGeoJSONObject {
-    func polygon() -> [MKPolygon] {
-        if let geometry = self.first as? MKPolygon {
-            return [geometry]
-        } else if let geometry = self.first as? MKMultiPolygon {
-            return geometry.polygons
-        }
-        return []
+//    func polygon() -> [MKPolygon] {
+//        if let geometry = self.first as? MKPolygon {
+//            return [geometry]
+//        } else if let geometry = self.first as? MKMultiPolygon {
+//            return geometry.polygons
+//        }
+//        return []
+//    }
+    
+    func overlay() -> MKOverlay {
+        return self.first as! MKOverlay
     }
 }
 

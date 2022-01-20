@@ -58,7 +58,7 @@ public struct THLabelFadeTruncatingMode : OptionSet {
     public let rawValue: Int
     public init(rawValue:Int) { self.rawValue = rawValue}
     
-    static let none = THLabelFadeTruncatingMode(rawValue: 0)
+    static let none = THLabelFadeTruncatingMode([])
     static let tail = THLabelFadeTruncatingMode(rawValue: 1 << 0)
     static let head = THLabelFadeTruncatingMode(rawValue: 1 << 1)
     static let headAndTail : THLabelFadeTruncatingMode = [.tail, .head]
@@ -151,7 +151,7 @@ class THLabel: UILabel {
             return _textInsets
         }
         set {
-            if !UIEdgeInsetsEqualToEdgeInsets(_textInsets, newValue) {
+            if _textInsets != newValue {
                 _textInsets = newValue
                 self.setNeedsDisplay()
             }
@@ -407,7 +407,7 @@ class THLabel: UILabel {
         let values: [CFTypeRef] = [fontRef, paragraphStyleRef, self.textColor.cgColor, kernRef!]
         
         let attributes = NSDictionary(objects: values, forKeys: keys as [NSCopying])
-        let stringRef = (self.text as! CFString)
+        let stringRef = (self.text! as CFString)
         let attributedStringRef = CFAttributedStringCreate(kCFAllocatorDefault, stringRef, attributes as CFDictionary)
         // Set up frame.
         let framesetterRef = CTFramesetterCreateWithAttributedString(attributedStringRef!)

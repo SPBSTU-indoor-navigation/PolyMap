@@ -7,7 +7,7 @@
 
 import MapKit
 
-class Level: MKMultiPolygon, Styleble, MapRenderer {
+class Level: CustomOverlay, Styleble, MapRenderer {
     private var isShow = false
     var units: [Unit] = []
     var openings: [Opening] = []
@@ -15,8 +15,8 @@ class Level: MKMultiPolygon, Styleble, MapRenderer {
     var ordinal: Int = 0
     var shortName: LocalizedName?
     
-    init(_ polygons: [MKPolygon], ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity] ) {
-        super.init(polygons)
+    init(_ geometry: MKOverlay, ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity] ) {
+        super.init(geometry)
         self.ordinal = ordinal
         self.units = units
         self.openings = openings
@@ -56,7 +56,7 @@ class Level: MKMultiPolygon, Styleble, MapRenderer {
     }
     
     func configurate(renderer: MKOverlayRenderer) {
-        guard let renderer = renderer as? MKMultiPolygonRenderer else { return }
+        guard let renderer = renderer as? MKOverlayPathRenderer else { return }
         renderer.fillColor = .clear
         renderer.lineWidth = 2
         renderer.strokeColor = Asset.IMDFColors.levelLine.color
