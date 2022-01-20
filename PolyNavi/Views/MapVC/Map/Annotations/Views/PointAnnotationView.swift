@@ -117,19 +117,23 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         return $0
     }(UIView())
     
-    lazy var label: UILabel = {
+    lazy var label: THLabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = .label
         
         $0.font = .systemFont(ofSize: 11, weight: .semibold)
+        
+        
+        $0.strokeSize = 0.5
+        $0.strokeColor = Asset.Annotation.Colors.stroke.color
         return $0
-    }(UILabel())
+    }(THLabel())
     
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        self.frame.size = CGSize(width: 8, height: 8)
+        self.frame.size = CGSize(width: 10, height: 10)
         addSubview(miniPoint)
         addSubview(point)
         addSubview(label)

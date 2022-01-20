@@ -107,7 +107,7 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         return $0
     }(UIView())
     
-    lazy var label: UILabel = {
+    lazy var label: THLabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = .label
 
@@ -116,8 +116,11 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         $0.alpha = 0
         $0.isHidden = true
         $0.transform = CGAffineTransform(translationX: 0, y: -10).scaledBy(x: 0.5, y: 0.5)
+        
+        $0.strokeSize = 0.5
+        $0.strokeColor = Asset.Annotation.Colors.stroke.color
         return $0
-    }(UILabel())
+    }(THLabel())
     
     lazy var miniPoint: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -129,7 +132,7 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        self.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        self.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         addSubview(miniPoint)
         addSubview(label)
         addSubview(background)

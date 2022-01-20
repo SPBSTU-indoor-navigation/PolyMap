@@ -28,6 +28,10 @@ class MapView: UIView {
     
         layoutViews()
         loadIMDF()
+        
+        
+//        let polygon = MKPolygon(points: venue!.polygons[0].points(), count: venue!.polygons[0].pointCount)
+//        mapView.addOverlay(polygon)
     }
     
     required init?(coder: NSCoder) {
@@ -162,8 +166,6 @@ class MapView: UIView {
         debug.text = "Zoom: \(roundf(zoomLevel * 100) / 100)"
         if abs(lastZoom - zoomLevel) < Float.ulpOfOne { return }
         lastZoom = zoomLevel
-        
-//        print(zoomLevel)
     
         if let currentBuilding = currentBuilding {
             if zoomLevel > MIN_SHOW_ZOOM {
@@ -248,6 +250,8 @@ extension MapView: MKMapViewDelegate {
             renderer = MKPolygonRenderer(overlay: overlay)
         } else if overlay is MKPolyline {
             renderer = MKPolylineRenderer(overlay: overlay)
+        } else if overlay is MKMultiPolyline {
+            renderer = MultiPolylineDetailRenderer(overlay: overlay)
         }
         
         (overlay as! Styleble).configurate(renderer: renderer)

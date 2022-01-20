@@ -39,6 +39,7 @@ enum File {
     case enviroment
     case enviromentAmenity
     case attraction
+    case enviromentDetail
     
     var filename: String {
         return "\(self).geojson"
@@ -64,6 +65,7 @@ class IMDFDecoder {
         let amenitys = try! decodeFeatures(IMDF.Amenity.self, path: File.amenity.fileURL(path))
         let enviroments = try! decodeFeatures(IMDF.EnviromentUnit.self, path: File.enviroment.fileURL(path))
         let enviromentAmenitys = try! decodeFeatures(IMDF.EnviromentAmenity.self, path: File.enviromentAmenity.fileURL(path))
+        let enviromentDetail = try! decodeFeatures(IMDF.EnviromentDetail.self, path: File.enviromentDetail.fileURL(path))
         let attraction = try! decodeFeatures(IMDF.Attraction.self, path: File.attraction.fileURL(path))
         
         
@@ -77,13 +79,12 @@ class IMDFDecoder {
                             attractions: attraction.filter({ $0.properties.building_id == building.identifier }))
         })
         
-        let enviromentLines = enviroments.filter({ $0.geometry.first is MKPolyline })
         let enviromentPolygons = enviroments.filter({ !($0.geometry.first is MKPolyline) })
         
         let result = Venue(geometry: venue.geometry.polygon(),
                            buildings: buildings,
                            enviroments: enviromentPolygons.map({ $0.castPolygon() }),
-                           enviromentLines: enviromentLines.map({ $0.castLine() }),
+                           enviromentDetail: enviromentDetail.map({ $0.cast() }),
                            address: addressesByID[venue.properties.address_id],
                            amenitys: enviromentAmenitys)
         return result
@@ -152,7 +153,14 @@ extension IMDF.Opening {
     }
 }
 
-
+extension IMDF.EnviromentDetail {
+    func cast() -> EnviromentDetail {
+        let t = self.geometry.first as! MKMultiPolyline
+        let res = EnviromentDetail(t.polylines)
+        res.category = self.properties.category
+        return res
+    }
+}
 
 extension Array where Element == MKShape & MKGeoJSONObject {
     func polygon() -> [MKPolygon] {

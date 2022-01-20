@@ -11,7 +11,7 @@ class Venue: MKMultiPolygon, Styleble {
     
     var buildings: [Building] = []
     var enviroments: [EnviromentUnit] = []
-    var enviromentLines: [EnviromentUnitLine] = []
+    var enviromentDetail: [EnviromentDetail] = []
     var amenitys: [EnviromentAmenityAnnotation] = []
     var address: IMDF.Address?
     
@@ -20,12 +20,12 @@ class Venue: MKMultiPolygon, Styleble {
     }
     
     init(geometry: [MKPolygon], buildings: [Building], enviroments: [EnviromentUnit],
-         enviromentLines: [EnviromentUnitLine], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {
+         enviromentDetail: [EnviromentDetail], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {
         super.init(geometry)
         self.buildings = buildings
         self.address = address
         self.enviroments = enviroments
-        self.enviromentLines = enviromentLines
+        self.enviromentDetail = enviromentDetail
         self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name, detailLevel: $0.properties.detailLevel) })
     }
     
@@ -39,7 +39,7 @@ class Venue: MKMultiPolygon, Styleble {
         }
         
         mapView.addOverlays(enviroments.filter({ !enviromentOrder.contains($0.category)}))
-        mapView.addOverlays(enviromentLines)
+        mapView.addOverlays(enviromentDetail)
         mapView.addOverlays(buildings)
         mapView.addAnnotations(amenitys)
         mapView.addAnnotations(buildings.flatMap({ $0.attractions }))

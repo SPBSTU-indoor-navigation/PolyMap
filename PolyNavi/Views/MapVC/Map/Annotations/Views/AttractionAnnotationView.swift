@@ -27,10 +27,9 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     let stateProcessor: DetailLevelProcessor<DetailLevelState> = {
         $0.builder(for: 0)
-            .add(mapSize: 17.0, state: .hide)
-            .add(mapSize: 17.7, state: .min)
-            .add(mapSize: 18.1, state: .normal)
-            .add(mapSize: 21.5, state: .big)
+            .add(mapSize: 0, state: .hide)
+            .add(mapSize: 17.2, state: .min)
+            .add(mapSize: 18, state: .normal)
         return $0
     }(DetailLevelProcessor<DetailLevelState>())
     
@@ -107,18 +106,20 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
         return $0
     }(UILabel())
     
-    lazy var label: UILabel = {
+    lazy var label: THLabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.textColor = Asset.Annotation.Colors.attractionBorder.color
+        $0.textColor = Asset.Annotation.Colors.attractionTextColor.color
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
         $0.preferredMaxLayoutWidth = 120
+        $0.strokeSize = 0.5
+        $0.strokeColor = Asset.Annotation.Colors.attractionTextStroke.color
         
         $0.textAlignment = .center
         
         $0.font = .systemFont(ofSize: 11, weight: .bold)
         return $0
-    }(UILabel())
+    }(THLabel())
     
     lazy var miniPoint: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -130,7 +131,7 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        self.frame.size = CGSize(width: 20, height: 20)
+        self.frame.size = CGSize(width: 40, height: 40)
         
         addSubview(miniPoint)
         addSubview(background)
@@ -166,6 +167,7 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
             .animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 background.transform = CGAffineTransform(scaleX: 1.5, y: 1.5).translatedBy(x: 0, y: -29)
                 label.transform = CGAffineTransform(translationX: 0, y: -18)
+                label.textColor = .label
             })
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
@@ -180,6 +182,7 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 background.transform = .identity.scaledBy(x: pointSize, y: pointSize)
                 label.transform = CGAffineTransform(translationX: 0, y: (1 - pointSize) * -20)
+                label.textColor = Asset.Annotation.Colors.attractionTextColor.color
             })
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
                 shape.transform = CGAffineTransform(translationX: 0, y: -4).scaledBy(x: 1, y: 0)
@@ -234,6 +237,17 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
             selectAnim.play(animated: animated)
         } else {
             deselectAnim.play(animated: animated)
+        }
+    }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *) {
+            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+                
+                (shape.layer.sublayers?[0] as! CAShapeLayer).fillColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
+                background.layer.borderColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
+            }
         }
     }
     

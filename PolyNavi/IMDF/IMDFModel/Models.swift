@@ -181,6 +181,10 @@ struct IMDF {
         enum Category: String, Codable {
             case parkingCar = "parking.car"
             case parkingBicycle = "parking.bicycle"
+            case banch = "banch"
+            case metro = "metro"
+            case transportBus = "transport.bus"
+            case transportTrum = "transport.trum"
         }
         
         struct Properties: Codable {
@@ -246,6 +250,21 @@ struct IMDF {
             
             let category: Category
             let image: String?
+        }
+    }
+    
+    class EnviromentDetail: Feature<EnviromentDetail.Properties> {
+        
+        enum Category: String, Codable {
+            case crosswalk = "crosswalk"
+            case roadMarkingMain = "road.marking.main"
+            case parkingMarking = "parking.marking"
+            case parkingBig = "parking.big"
+            case fenceMain = "fence.main"
+        }
+        
+        struct Properties: Codable {
+            let category: Category
         }
     }
     

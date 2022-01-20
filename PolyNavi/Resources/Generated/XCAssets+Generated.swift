@@ -24,6 +24,7 @@ internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
   internal enum Annotation {
     internal enum Amenity {
+      internal static let banch = ImageAsset(name: "banch")
       internal static let classroom = ImageAsset(name: "classroom")
       internal static let `default` = ImageAsset(name: "default")
       internal static let laboratorium = ImageAsset(name: "laboratorium")
@@ -41,6 +42,9 @@ internal enum Asset {
     internal enum Colors {
       internal static let attractionBackground = ColorAsset(name: "AttractionBackground")
       internal static let attractionBorder = ColorAsset(name: "AttractionBorder")
+      internal static let attractionTextColor = ColorAsset(name: "AttractionTextColor")
+      internal static let attractionTextStroke = ColorAsset(name: "AttractionTextStroke")
+      internal static let stroke = ColorAsset(name: "Stroke")
     }
   }
   internal enum IMDFColors {
@@ -49,9 +53,12 @@ internal enum Asset {
     internal static let buildingUnderLevel = ColorAsset(name: "BuildingUnderLevel")
     internal enum Enviroment {
       internal static let `default` = ColorAsset(name: "Default")
+      internal static let crosswalk = ColorAsset(name: "crosswalk")
+      internal static let fenceMain = ColorAsset(name: "fence.main")
       internal static let grass = ColorAsset(name: "grass")
       internal static let roadMain = ColorAsset(name: "road.main")
       internal static let roadPedestrianMain = ColorAsset(name: "road.pedestrian.main")
+      internal static let tree = ColorAsset(name: "tree")
     }
     internal static let levelLine = ColorAsset(name: "LevelLine")
     internal enum Units {

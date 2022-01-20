@@ -44,6 +44,8 @@
 		9750154F2795B32100326B09 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750154E2795B32100326B09 /* Building.swift */; };
 		975015512795B33300326B09 /* EnviromentUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015502795B33300326B09 /* EnviromentUnit.swift */; };
 		97501553279631A100326B09 /* AttractionAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97501552279631A100326B09 /* AttractionAnnotationView.swift */; };
+		9750155727976A0A00326B09 /* THLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155627976A0A00326B09 /* THLabel.swift */; };
+		97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */; };
 		978D9DC8273F56E300293A6C /* TimetableNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D9DC7273F56E300293A6C /* TimetableNavbar.swift */; };
 		97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941916278BCAF10038CBEF /* PointAnnotationView.swift */; };
 		97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */; };
@@ -102,6 +104,9 @@
 		9750154E2795B32100326B09 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		975015502795B33300326B09 /* EnviromentUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentUnit.swift; sourceTree = "<group>"; };
 		97501552279631A100326B09 /* AttractionAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionAnnotationView.swift; sourceTree = "<group>"; };
+		9750155527976A0A00326B09 /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLabel.h; sourceTree = "<group>"; };
+		9750155627976A0A00326B09 /* THLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THLabel.swift; sourceTree = "<group>"; };
+		9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPolygonDetailRenderer.swift; sourceTree = "<group>"; };
 		978D9DC7273F56E300293A6C /* TimetableNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavbar.swift; sourceTree = "<group>"; };
 		97941916278BCAF10038CBEF /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
 		97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityAnnotationView.swift; sourceTree = "<group>"; };
@@ -311,6 +316,7 @@
 		9750153C2795B0EB00326B09 /* Overlays */ = {
 			isa = PBXGroup;
 			children = (
+				9750155E2797882500326B09 /* Renderers */,
 				979E2C74278763A9008CFA05 /* Venue.swift */,
 				975015482795B2DF00326B09 /* Opening.swift */,
 				9750154A2795B2F400326B09 /* Unit.swift */,
@@ -331,6 +337,23 @@
 				975015442795B16900326B09 /* EnviromentAmenityAnnotation.swift */,
 			);
 			path = Annotations;
+			sourceTree = "<group>";
+		};
+		97501554279769EF00326B09 /* THLabel */ = {
+			isa = PBXGroup;
+			children = (
+				9750155527976A0A00326B09 /* THLabel.h */,
+				9750155627976A0A00326B09 /* THLabel.swift */,
+			);
+			path = THLabel;
+			sourceTree = "<group>";
+		};
+		9750155E2797882500326B09 /* Renderers */ = {
+			isa = PBXGroup;
+			children = (
+				9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */,
+			);
+			path = Renderers;
 			sourceTree = "<group>";
 		};
 		97941915278BCAF10038CBEF /* Views */ = {
@@ -367,6 +390,7 @@
 		97A484BE2717BAEA00D14997 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				97501554279769EF00326B09 /* THLabel */,
 				97A484BF2717BAF700D14997 /* RoundButton.swift */,
 				979E2C762788A7C7008CFA05 /* MapExtensions.swift */,
 				9750153A2793BA1400326B09 /* Animator.swift */,
@@ -511,6 +535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9750155727976A0A00326B09 /* THLabel.swift in Sources */,
 				9750153F2795B11500326B09 /* UnitAnnotation.swift in Sources */,
 				056F2D20271CAF400063015B /* GroupsAndTeacherStorage.swift in Sources */,
 				97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */,
@@ -552,6 +577,7 @@
 				979E2C7D2789D234008CFA05 /* IMDFDecoder.swift in Sources */,
 				056F2D1E271CAED30063015B /* SettingTimetableVC.swift in Sources */,
 				975015432795B14400326B09 /* AmenityAnnotation.swift in Sources */,
+				97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */,
 				979E2C792789D1C6008CFA05 /* Feature.swift in Sources */,
 				05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */,
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
