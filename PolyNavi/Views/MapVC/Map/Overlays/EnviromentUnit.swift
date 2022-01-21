@@ -66,6 +66,10 @@ class EnviromentDetail: CustomOverlay, Styleble {
             renderer.lineWidth = 3
             renderer.strokeColor = Asset.IMDFColors.Enviroment.fenceMain.color
             renderer.lineDashPattern = [1, 4]
+        case .fenceHeigth:
+            renderer.lineWidth = 2
+            renderer.strokeColor = .white
+            
 //        default:
 //            renderer.strokeColor = UIColor.red
         }

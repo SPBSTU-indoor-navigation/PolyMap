@@ -55,9 +55,12 @@ internal enum Asset {
     internal enum Enviroment {
       internal static let crosswalk = ColorAsset(name: "crosswalk")
       internal static let fenceMain = ColorAsset(name: "fence.main")
+      internal static let forest = ColorAsset(name: "forest")
       internal static let grass = ColorAsset(name: "grass")
+      internal static let roadDirt = ColorAsset(name: "road.dirt")
       internal static let roadMain = ColorAsset(name: "road.main")
       internal static let roadPedestrianMain = ColorAsset(name: "road.pedestrian.main")
+      internal static let roadPedestrianSecond = ColorAsset(name: "road.pedestrian.second")
       internal static let tree = ColorAsset(name: "tree")
     }
     internal static let levelLine = ColorAsset(name: "LevelLine")

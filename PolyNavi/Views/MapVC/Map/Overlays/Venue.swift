@@ -28,7 +28,15 @@ class Venue: CustomOverlay, Styleble {
     func show(_ mapView: MKMapView) {
         mapView.addOverlay(self)
         
-        let enviromentOrder: [IMDF.EnviromentUnit.Category] = [.forest, .grass, .roadDirt, .roadPedestrianMain, .roadMain, .fenceMain, .fenceSecond]
+        let enviromentOrder: [IMDF.EnviromentUnit.Category] = [.grass,
+                                                               .forest,
+                                                               .tree,
+                                                               .roadDirt,
+                                                               .roadPedestrianSecond,
+                                                               .roadPedestrianMain,
+                                                               .roadMain,
+                                                               .fenceMain,
+                                                               .fenceSecond]
         
         for i in enviromentOrder {
             mapView.addOverlays(enviroments.filter({ $0.category == i }))

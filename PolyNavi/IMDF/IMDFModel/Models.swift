@@ -148,6 +148,7 @@ struct IMDF {
             case roadMain = "road.main"
             case roadDirt = "road.dirt"
             case roadPedestrianMain = "road.pedestrian.main"
+            case roadPedestrianSecond = "road.pedestrian.second"
             case grass
             case tree
             case forest
@@ -261,6 +262,7 @@ struct IMDF {
             case parkingMarking = "parking.marking"
             case parkingBig = "parking.big"
             case fenceMain = "fence.main"
+            case fenceHeigth = "fence.heigth"
         }
         
         struct Properties: Codable {

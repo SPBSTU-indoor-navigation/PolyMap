@@ -16,6 +16,19 @@ class CustomOverlay: MKShape, MKOverlay {
         }
     }
     
+    override var coordinate: CLLocationCoordinate2D {
+        get {
+            return geometry.coordinate
+        }
+    }
+    
+    func intersects(_ mapRect: MKMapRect) -> Bool {
+        return true
+    }
+
+    
+    
+    
     var overlayRenderer: MKOverlayRenderer? { get { return nil } }
     
     var polygons: [MKPolygon]? {
