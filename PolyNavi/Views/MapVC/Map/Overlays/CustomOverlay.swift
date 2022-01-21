@@ -7,27 +7,14 @@
 
 import MapKit
 
-class CustomOverlay: MKShape, MKOverlay {
-    var geometry: MKOverlay
+class CustomOverlay: NSObject {
+    var geometry: MKShape & MKOverlay
     
     var boundingMapRect: MKMapRect {
         get {
             return geometry.boundingMapRect
         }
     }
-    
-    override var coordinate: CLLocationCoordinate2D {
-        get {
-            return geometry.coordinate
-        }
-    }
-    
-    func intersects(_ mapRect: MKMapRect) -> Bool {
-        return true
-    }
-
-    
-    
     
     var overlayRenderer: MKOverlayRenderer? { get { return nil } }
     
@@ -41,7 +28,7 @@ class CustomOverlay: MKShape, MKOverlay {
         return nil
     }
     
-    init(_ geometry: MKOverlay) {
+    init(_ geometry: MKShape & MKOverlay) {
         self.geometry = geometry
     }
     

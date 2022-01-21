@@ -7,10 +7,9 @@
 
 import MapKit
 
-class EnviromentAmenityAnnotation: NSObject, MKAnnotation, DetailLevel {
-    public static var reusableIdentifier: String {
-        return String(describing: self)
-    }
+class EnviromentAmenityAnnotation: NSObject, MKAnnotation, DetailLevel, Identifiable {
+    var identifier: String = identifier
+    static var identifier: String = String(describing: EnviromentAmenityAnnotation.self)
     
     @objc dynamic var coordinate: CLLocationCoordinate2D
     var title: String? {

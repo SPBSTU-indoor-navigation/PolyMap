@@ -16,8 +16,12 @@ protocol Styleble {
 }
 
 protocol MapRenderer {
-    func show(_ mapView: MKMapView)
-    func hide(_ mapView: MKMapView)
+    func show(_ mapView: OverlayedMapView)
+    func hide(_ mapView: OverlayedMapView)
+}
+
+protocol Identifiable {
+    var identifier: String { get }
 }
 
 class DetailLevelProcessor<T> {

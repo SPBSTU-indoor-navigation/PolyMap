@@ -14,7 +14,7 @@ class Unit: CustomOverlay, Styleble {
     var categoty: IMDF.Unit.Category
     var restriction: Restriction?
     
-    init(_ geometry: MKOverlay,
+    init(_ geometry: MKShape & MKOverlay,
          id: UUID,
          displayPoint: CLLocationCoordinate2D?,
          name: LocalizedName?,

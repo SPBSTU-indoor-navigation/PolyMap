@@ -10,7 +10,7 @@ import MapKit
 class Opening: CustomOverlay, Styleble {
     var unitCategory: IMDF.Unit.Category?
     
-    init(geometry: MKOverlay, unitCategory: IMDF.Unit.Category?) {
+    init(geometry: MKShape & MKOverlay, unitCategory: IMDF.Unit.Category?) {
         super.init(geometry)
         self.unitCategory = unitCategory
     }

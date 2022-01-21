@@ -16,7 +16,7 @@ class Building: CustomOverlay, Styleble, MapRenderer {
     private var isShow = false
     
     
-    init(_ geometry: MKOverlay, levels: [Level], attractions: [IMDF.Attraction]) {
+    init(_ geometry: MKShape & MKOverlay, levels: [Level], attractions: [IMDF.Attraction]) {
         super.init(geometry)
         
         self.levels = levels
@@ -32,7 +32,7 @@ class Building: CustomOverlay, Styleble, MapRenderer {
         renderer.fillColor = (isShow && level(byOrdinal: ordinal) != nil) ? Asset.IMDFColors.buildingUnderLevel.color : Asset.IMDFColors.buildingFill.color
     }
     
-    func changeOrdinal(_ ordinal: Int, _ mapView: MKMapView) {
+    func changeOrdinal(_ ordinal: Int, _ mapView: OverlayedMapView) {
         if self.ordinal == ordinal { return }
         if isShow {
             hide(mapView)
@@ -44,7 +44,7 @@ class Building: CustomOverlay, Styleble, MapRenderer {
         
     }
     
-    func show(_ mapView: MKMapView) {
+    func show(_ mapView: OverlayedMapView) {
         if isShow { return }
         isShow = true
         
@@ -56,7 +56,7 @@ class Building: CustomOverlay, Styleble, MapRenderer {
         
     }
     
-    func hide(_ mapView: MKMapView) {
+    func hide(_ mapView: OverlayedMapView) {
         if !isShow { return }
         isShow = false
         

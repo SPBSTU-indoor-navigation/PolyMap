@@ -7,10 +7,9 @@
 
 import MapKit
 
-class AttractionAnnotation: NSObject, MKAnnotation {
-    public static var reusableIdentifier: String {
-        return String(describing: self)
-    }
+class AttractionAnnotation: NSObject, MKAnnotation, Identifiable {
+    var identifier: String = identifier
+    static var identifier: String = String(describing: AttractionAnnotation.self)
     
     @objc dynamic var coordinate: CLLocationCoordinate2D
     var title: String? {

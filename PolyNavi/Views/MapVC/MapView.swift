@@ -34,20 +34,20 @@ class MapView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var mapView: MKMapView = {
+    lazy var mapView: OverlayedMapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 25, maxCenterCoordinateDistance: 5000), animated: false)
         $0.isPitchEnabled = false
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false
         
-        $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: UnitAnnotation.reusableIdentifier)
-        $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: AmenityAnnotation.reusableIdentifier)
-        $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: EnviromentAmenityAnnotation.reusableIdentifier)
-        $0.register(AttractionAnnotationView.self, forAnnotationViewWithReuseIdentifier: AttractionAnnotation.reusableIdentifier)
+        $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: UnitAnnotation.identifier)
+        $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: AmenityAnnotation.identifier)
+        $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: EnviromentAmenityAnnotation.identifier)
+        $0.register(AttractionAnnotationView.self, forAnnotationViewWithReuseIdentifier: AttractionAnnotation.identifier)
         
         return $0
-    }(MKMapView())
+    }(OverlayedMapView())
     
     lazy var compassButton: MKCompassButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -245,53 +245,39 @@ extension MapView {
 extension MapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
-        guard let overlay = overlay as? CustomOverlay else { return MKOverlayRenderer(overlay: overlay) }
-        
-        if let renderer = overlay.overlayRenderer {
-            (overlay as! Styleble).configurate(renderer: renderer)
+        guard let customOverlay = self.mapView.customOverlay(for: overlay) else { return MKOverlayRenderer(overlay: overlay) }
+
+        if let renderer = customOverlay.overlayRenderer {
+            (customOverlay as! Styleble).configurate(renderer: renderer)
             return renderer
         }
-        
-        let geometry = overlay.geometry
-        
+
         let renderer: MKOverlayPathRenderer
-        
-        switch geometry {
+
+        switch overlay {
         case is MKMultiPolygon:
-            renderer = MKMultiPolygonRenderer(overlay: geometry)
+            renderer = MKMultiPolygonRenderer(overlay: overlay)
         case is MKPolygon:
-            renderer = MKPolygonRenderer(overlay: geometry)
+            renderer = MKPolygonRenderer(overlay: overlay)
         case is MKMultiPolyline:
-            renderer = MKMultiPolylineRenderer(overlay: geometry)
+            renderer = MKMultiPolylineRenderer(overlay: overlay)
         case is MKPolyline:
-            renderer = MKPolylineRenderer(overlay: geometry)
+            renderer = MKPolylineRenderer(overlay: overlay)
         default:
-            return MKOverlayRenderer(overlay: geometry)
+            return MKOverlayRenderer(overlay: overlay)
         }
-        
-        (overlay as! Styleble).configurate(renderer: renderer)
-        
+
+        (customOverlay as! Styleble).configurate(renderer: renderer)
+
         return renderer
 
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard !annotation.isKind(of: MKUserLocation.self) else {
-            return nil
-        }
-
-        var annotationView: MKAnnotationView?
-
-        if let annotation = annotation as? UnitAnnotation {
-            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: UnitAnnotation.reusableIdentifier, for: annotation)
-        } else if let annotation = annotation as? AmenityAnnotation {
-            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: AmenityAnnotation.reusableIdentifier, for: annotation)
-        } else if let annotation = annotation as? EnviromentAmenityAnnotation {
-            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: EnviromentAmenityAnnotation.reusableIdentifier, for: annotation)
-        } else if let annotation = annotation as? AttractionAnnotation {
-            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: AttractionAnnotation.reusableIdentifier, for: annotation)
-        }
+        guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
+        guard let reusable = annotation as? Identifiable else { return nil }
         
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reusable.identifier, for: annotation)
         (annotationView as? AnnotationMapSize)?.update(mapSize: lastZoom, animate: false)
         
         return annotationView
@@ -303,3 +289,4 @@ extension MapView: MKMapViewDelegate {
     }
 
 }
+

@@ -160,8 +160,8 @@ extension Array where Element == MKShape & MKGeoJSONObject {
 //        return []
 //    }
     
-    func overlay() -> MKOverlay {
-        return self.first as! MKOverlay
+    func overlay() -> MKShape & MKOverlay {
+        return self.first as! MKShape & MKOverlay
     }
 }
 

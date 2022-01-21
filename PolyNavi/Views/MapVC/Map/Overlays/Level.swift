@@ -15,7 +15,7 @@ class Level: CustomOverlay, Styleble, MapRenderer {
     var ordinal: Int = 0
     var shortName: LocalizedName?
     
-    init(_ geometry: MKOverlay, ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity] ) {
+    init(_ geometry: MKShape & MKOverlay, ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity] ) {
         super.init(geometry)
         self.ordinal = ordinal
         self.units = units
@@ -32,7 +32,7 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         }
     }
     
-    func show(_ mapView: MKMapView) {
+    func show(_ mapView: OverlayedMapView) {
         if isShow { return }
         mapView.addOverlays(units)
         mapView.addOverlays(openings)
@@ -43,7 +43,7 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         isShow = true
     }
     
-    func hide(_ mapView: MKMapView) {
+    func hide(_ mapView: OverlayedMapView) {
         if !isShow { return }
         mapView.removeOverlays(units)
         mapView.removeOverlays(openings)

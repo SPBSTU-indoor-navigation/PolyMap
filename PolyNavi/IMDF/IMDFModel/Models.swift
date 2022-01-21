@@ -263,6 +263,7 @@ struct IMDF {
             case parkingBig = "parking.big"
             case fenceMain = "fence.main"
             case fenceHeigth = "fence.heigth"
+            case steps = "steps"
         }
         
         struct Properties: Codable {

@@ -7,10 +7,9 @@
 
 import MapKit
 
-class AmenityAnnotation: NSObject, MKAnnotation, DetailLevel {
-    public static var reusableIdentifier: String {
-        return String(describing: self)
-    }
+class AmenityAnnotation: NSObject, MKAnnotation, DetailLevel, Identifiable {
+    var identifier: String = identifier
+    static var identifier: String = String(describing: AmenityAnnotation.self)
     
     @objc dynamic var coordinate: CLLocationCoordinate2D
     var title: String? {

@@ -15,7 +15,7 @@ class Venue: CustomOverlay, Styleble {
     var amenitys: [EnviromentAmenityAnnotation] = []
     var address: IMDF.Address?
     
-    init(geometry: MKOverlay, buildings: [Building], enviroments: [EnviromentUnit],
+    init(geometry: MKShape & MKOverlay, buildings: [Building], enviroments: [EnviromentUnit],
          enviromentDetail: [EnviromentDetail], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {
         super.init(geometry)
         self.buildings = buildings
@@ -25,11 +25,11 @@ class Venue: CustomOverlay, Styleble {
         self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name, detailLevel: $0.properties.detailLevel) })
     }
     
-    func show(_ mapView: MKMapView) {
+    func show(_ mapView: OverlayedMapView) {
         mapView.addOverlay(self)
         
-        let enviromentOrder: [IMDF.EnviromentUnit.Category] = [.grass,
-                                                               .forest,
+        let enviromentOrder: [IMDF.EnviromentUnit.Category] = [.forest,
+                                                               .grass,
                                                                .tree,
                                                                .roadDirt,
                                                                .roadPedestrianSecond,
