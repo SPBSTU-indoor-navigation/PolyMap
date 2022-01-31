@@ -174,8 +174,9 @@ class RootBottomSheetViewController: UINavigationController {
 
         switch sender.state {
         case .began:
-            startDelta = currentPosition - location.y
             view.layer.removeAllAnimations()
+            currentPosition = view.layer.presentation()!.frame.origin.y
+            startDelta = currentPosition - location.y
         case.changed:
             let minPos = position(for: .min)
             let maxPos = position(for: .max)
@@ -197,7 +198,7 @@ class RootBottomSheetViewController: UINavigationController {
             currentPosition = position(for: state)
             
             let initialSpeed = min(abs(velocity.y / delta / 2), 5)
-            UIView.animate(withDuration: 0.45, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: initialSpeed, options: .curveEaseOut, animations: { [self] in
+            UIView.animate(withDuration: 0.45, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: initialSpeed, options: [.curveEaseIn, .allowUserInteraction], animations: { [self] in
                 viewDidLayoutSubviews()
             })
         default:
