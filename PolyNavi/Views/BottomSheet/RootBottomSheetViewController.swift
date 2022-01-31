@@ -93,11 +93,14 @@ class RootBottomSheetViewController: UINavigationController {
         
         if currentPosition < 0 { currentPosition = position(for: state) }
         
+        let safeArea = view.window!.safeAreaInsets
+        
         view.frame = CGRect(
-            x: currentSize == .big ? 0 : max(view.window!.safeAreaInsets.left, 8),
+            x: currentSize == .big ? 0 : max(safeArea.left, 8),
             y: currentPosition,
             width: width(for: currentSize),
-            height: 1000
+            height: height(for: currentSize)
+
         )
     }
     
@@ -113,15 +116,30 @@ class RootBottomSheetViewController: UINavigationController {
         }
     }
     
+    func height(for size: Size) -> CGFloat {
+        
+        let safeArea = view.window!.safeAreaInsets
+        let window = view.window!.frame
+        
+        switch size {
+        case .big:
+            return window.height - position(for: .max) + safeArea.top
+        case .small, .ultraSmall:
+            return window.height - currentPosition - safeArea.bottom
+        }
+    }
+    
     func position(for state: State) -> CGFloat {
         let safeArea = view.window!.safeAreaInsets
         let height = view.window!.frame.height
         
+        let safeAreaOffset = currentSize == .big ? safeArea.bottom : 0
+        
         switch state {
         case .min:
-            return height - safeArea.bottom - 100
+            return height - 100 - safeAreaOffset
         case .middle:
-            return height - safeArea.bottom - 305
+            return height - 305 - safeAreaOffset
         case .max:
             return safeArea.top + 20
         }
