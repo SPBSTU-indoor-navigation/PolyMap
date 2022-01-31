@@ -1,12 +1,13 @@
 import UIKit
+import UIScreenExtension
 
 func expLimit(_ x: CGFloat, _ maxVal: CGFloat) -> CGFloat {
     return (1 - exp(-x / maxVal)) * maxVal
 }
 
 class RootBottomSheetViewController: UINavigationController {
-    let VELOCITY_LIMIT = 500.0
-    let VELOCITY_SUPER_LIMIT = 2500.0
+    let VELOCITY_LIMIT = 8.0
+    let VELOCITY_SUPER_LIMIT = 40.0
     
     
     enum Size {
@@ -128,14 +129,20 @@ class RootBottomSheetViewController: UINavigationController {
     
     func nextState(velocity: CGFloat) -> State {
         
-        if velocity > VELOCITY_SUPER_LIMIT { return .min}
-        if velocity < -VELOCITY_SUPER_LIMIT { return .max}
+        var realVelocity = velocity / 60
+        
+        if let pointsPerCentimeter = UIScreen.pointsPerCentimeter {
+            realVelocity = velocity / pointsPerCentimeter
+        }
+        
+        if realVelocity > VELOCITY_SUPER_LIMIT { return .min}
+        if realVelocity < -VELOCITY_SUPER_LIMIT { return .max}
         
         var possibleStates: [State] = []
         
-        if velocity < -VELOCITY_LIMIT {
+        if realVelocity < -VELOCITY_LIMIT {
             possibleStates = state.stateBigger
-        } else if velocity > VELOCITY_LIMIT {
+        } else if realVelocity > VELOCITY_LIMIT {
             possibleStates = state.stateSmaller
         } else {
             possibleStates = [.min, .max, .middle]

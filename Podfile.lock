@@ -3,12 +3,14 @@ PODS:
   - M13Checkbox (3.4.0)
   - SkeletonView (1.21.2)
   - SwiftGen (6.4.0)
+  - UIScreenExtension (0.0.10)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - M13Checkbox
   - SkeletonView
   - SwiftGen (~> 6.4.0)
+  - UIScreenExtension (from `https://github.com/marchv/UIScreenExtension`)
 
 SPEC REPOS:
   trunk:
@@ -17,12 +19,22 @@ SPEC REPOS:
     - SkeletonView
     - SwiftGen
 
+EXTERNAL SOURCES:
+  UIScreenExtension:
+    :git: https://github.com/marchv/UIScreenExtension
+
+CHECKOUT OPTIONS:
+  UIScreenExtension:
+    :commit: f0cba4a0a229181705126630cb51551b69e31112
+    :git: https://github.com/marchv/UIScreenExtension
+
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   SkeletonView: a085533443fed0198309f1979780afb6e80eaedd
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
+  UIScreenExtension: 2c6ab239077a11fd930f38b3fcf96307709dc2b0
 
-PODFILE CHECKSUM: ee9aebba650585ede0c92f826ef7757ac99dfe25
+PODFILE CHECKSUM: 1b906afbce35e124e7e95fbc1d96eae7da4abe94
 
 COCOAPODS: 1.10.1

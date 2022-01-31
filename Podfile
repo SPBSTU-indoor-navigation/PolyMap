@@ -12,4 +12,6 @@ target 'PolyNavi' do
   pod 'SkeletonView' # Shimmer effect for loading
   pod 'M13Checkbox'
 
+  pod 'UIScreenExtension', :git => 'https://github.com/marchv/UIScreenExtension'
+
 end
