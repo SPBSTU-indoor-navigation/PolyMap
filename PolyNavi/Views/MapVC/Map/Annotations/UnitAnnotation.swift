@@ -21,16 +21,16 @@ class UnitAnnotation: NSObject, MKAnnotation, Identifiable {
         $0.builder(for: DetailLevel.circleWithoutLabel.rawValue)
             .add(mapSize: 0, state: .min)
             .add(mapSize: 19, state: .normal)
-            .add(mapSize: 21.5, state: .big)
+            .add(mapSize: 21, state: .big)
         
         $0.builder(for: DetailLevel.pointPrimary.rawValue)
-            .add(mapSize: 19.0, state: .min)
+            .add(mapSize: 19.6, state: .min)
             .add(mapSize: 20.2, state: .normal)
             .add(mapSize: 21.5, state: .big)
         
         $0.builder(for: DetailLevel.pointSecondary.rawValue)
             .add(mapSize: 17.0, state: .hide)
-            .add(mapSize: 19.0, state: .min)
+            .add(mapSize: 19.6, state: .min)
             .add(mapSize: 20.2, state: .normal)
             .add(mapSize: 21.5, state: .big)
         return $0
@@ -47,7 +47,9 @@ class UnitAnnotation: NSObject, MKAnnotation, Identifiable {
     
     var detailLevel: DetailLevel {
         switch category {
-        case .restroom, .restroomMale, .restroomFemale: return .circleWithoutLabel
+        case .restroom, .restroomMale, .restroomFemale, .security: return .circleWithoutLabel
+        case .administration, .wardrobe: return .circleWithoutLabel
+        case .shop, .foodservice, .foodserviceСoffee: return .circleWithoutLabel
         case .auditorium, .classroom: return .pointSecondary
         default: return .pointSecondary
         }

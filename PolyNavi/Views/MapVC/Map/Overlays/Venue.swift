@@ -11,12 +11,12 @@ class Venue: CustomOverlay, Styleble {
     
     var buildings: [Building] = []
     var enviroments: [EnviromentUnit] = []
-    var enviromentDetail: [EnviromentDetail] = []
+    var enviromentDetail: [Detail] = []
     var amenitys: [EnviromentAmenityAnnotation] = []
     var address: IMDF.Address?
     
     init(geometry: MKShape & MKOverlay, buildings: [Building], enviroments: [EnviromentUnit],
-         enviromentDetail: [EnviromentDetail], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {
+         enviromentDetail: [Detail], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {
         super.init(geometry)
         self.buildings = buildings
         self.address = address

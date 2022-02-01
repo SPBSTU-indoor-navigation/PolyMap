@@ -24,17 +24,22 @@ internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
   internal enum Annotation {
     internal enum Amenity {
+      internal static let administration = ImageAsset(name: "administration")
       internal static let banch = ImageAsset(name: "banch")
       internal static let classroom = ImageAsset(name: "classroom")
       internal static let `default` = ImageAsset(name: "default")
+      internal static let foodserviceCoffee = ImageAsset(name: "foodservice.coffee")
       internal static let laboratorium = ImageAsset(name: "laboratorium")
       internal static let lecture = ImageAsset(name: "lecture")
       internal static let parkingBicycle = ImageAsset(name: "parking.bicycle")
       internal static let parkingCar = ImageAsset(name: "parking.car")
       internal static let restroomFemale = ImageAsset(name: "restroom.female")
       internal static let restroomMale = ImageAsset(name: "restroom.male")
+      internal static let security = ImageAsset(name: "security")
+      internal static let shop = ImageAsset(name: "shop")
       internal static let stairs = ImageAsset(name: "stairs")
       internal static let vendingmachine = ImageAsset(name: "vendingmachine")
+      internal static let wardrobe = ImageAsset(name: "wardrobe")
     }
     internal enum Buildings {
       internal static let gydro = ImageAsset(name: "Gydro")
@@ -46,7 +51,13 @@ internal enum Asset {
       internal static let attractionTextStroke = ColorAsset(name: "AttractionTextStroke")
       internal static let stroke = ColorAsset(name: "Stroke")
       internal enum Units {
+        internal static let administrationAnnotation = ColorAsset(name: "administration-annotation")
+        internal static let foodserviceAnnotation = ColorAsset(name: "foodservice-annotation")
+        internal static let foodserviceCoffeeAnnotation = ColorAsset(name: "foodservice.coffee-annotation")
         internal static let restroomAnnotation = ColorAsset(name: "restroom-annotation")
+        internal static let securityAnnotation = ColorAsset(name: "security-annotation")
+        internal static let shopAnnotation = ColorAsset(name: "shop-annotation")
+        internal static let wardrobeAnnotation = ColorAsset(name: "wardrobe-annotation")
       }
     }
   }
@@ -71,6 +82,8 @@ internal enum Asset {
     internal static let levelLine = ColorAsset(name: "LevelLine")
     internal enum Units {
       internal static let defaultLine = ColorAsset(name: "DefaultLine")
+      internal static let indoorStairs = ColorAsset(name: "indoor.stairs")
+      internal static let indoorSteps = ColorAsset(name: "indoor.steps")
       internal static let restricted = ColorAsset(name: "restricted")
       internal static let restroom = ColorAsset(name: "restroom")
       internal static let stairs = ColorAsset(name: "stairs")

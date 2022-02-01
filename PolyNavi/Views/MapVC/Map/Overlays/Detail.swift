@@ -7,8 +7,8 @@
 
 import MapKit
 
-class EnviromentDetail: CustomOverlay, Styleble {
-    var category: IMDF.EnviromentDetail.Category
+class Detail: CustomOverlay, Styleble {
+    var category: IMDF.Detail.Category
     
     override var overlayRenderer: MKOverlayRenderer? {
         get {
@@ -16,7 +16,7 @@ class EnviromentDetail: CustomOverlay, Styleble {
         }
     }
     
-    init(geometry: MKShape & MKOverlay, category: IMDF.EnviromentDetail.Category) throws {
+    init(geometry: MKShape & MKOverlay, category: IMDF.Detail.Category) throws {
         if !(geometry is MKMultiPolyline) {
             throw NSError(domain: "geometry must be MKMultiPolyline", code: 0, userInfo: nil)
         }
@@ -44,7 +44,8 @@ class EnviromentDetail: CustomOverlay, Styleble {
             renderer.lineWidth = 2
         case .steps:
             renderer.lineWidth = 1
-
+        case .indoorSteps, .indoorStairs:
+            renderer.lineWidth = 0.5
         }
         
     }

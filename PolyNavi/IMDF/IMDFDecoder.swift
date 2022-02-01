@@ -39,7 +39,6 @@ enum File {
     case enviroment
     case enviromentAmenity
     case attraction
-    case enviromentDetail
     
     var filename: String {
         return "\(self).geojson"
@@ -62,10 +61,10 @@ class IMDFDecoder {
         let imdfLevels = try! decodeFeatures(IMDF.Level.self, path: File.level.fileURL(path))
         let imdfUnits = try! decodeFeatures(IMDF.Unit.self, path: File.unit.fileURL(path))
         let imdfOpening = try! decodeFeatures(IMDF.Opening.self, path: File.opening.fileURL(path))
+        let detail = try! decodeFeatures(IMDF.Detail.self, path: File.detail.fileURL(path))
         let amenitys = try! decodeFeatures(IMDF.Amenity.self, path: File.amenity.fileURL(path))
         let enviroments = try! decodeFeatures(IMDF.EnviromentUnit.self, path: File.enviroment.fileURL(path))
         let enviromentAmenitys = try! decodeFeatures(IMDF.EnviromentAmenity.self, path: File.enviromentAmenity.fileURL(path))
-        let enviromentDetail = try! decodeFeatures(IMDF.EnviromentDetail.self, path: File.enviromentDetail.fileURL(path))
         let attraction = try! decodeFeatures(IMDF.Attraction.self, path: File.attraction.fileURL(path))
         
         
@@ -75,14 +74,14 @@ class IMDFDecoder {
             return Building(building.geometry.overlay(),
                             levels: imdfLevels
                                 .filter({ $0.properties.building_ids.contains(building.identifier) })
-                                .map({ $0.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys)}),
+                                .map({ $0.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys, details: detail)}),
                             attractions: attraction.filter({ $0.properties.building_id == building.identifier }))
         })
         
         let result = Venue(geometry: venue.geometry.overlay(),
                            buildings: buildings,
                            enviroments: enviroments.map({ $0.cast() }),
-                           enviromentDetail: enviromentDetail.map({ $0.cast() }),
+                           enviromentDetail: detail.filter({ $0.properties.level_id == nil }).map({ $0.cast() }),
                            address: addressesByID[venue.properties.address_id],
                            amenitys: enviromentAmenitys)
         return result
@@ -103,7 +102,7 @@ class IMDFDecoder {
 }
 
 extension IMDF.Level {
-    func cast(units: [IMDF.Unit], openings: [IMDF.Opening], amenitys: [IMDF.Amenity]) -> Level {
+    func cast(units: [IMDF.Unit], openings: [IMDF.Opening], amenitys: [IMDF.Amenity], details: [IMDF.Detail]) -> Level {
         let units = units.filter({ $0.properties.level_id == self.identifier })
         let unitsIds = Set(units.map({ $0.identifier }))
         let amenitysFiltred = amenitys.filter({ !unitsIds.intersection($0.properties.unit_ids).isEmpty })
@@ -111,10 +110,11 @@ extension IMDF.Level {
         
         return Level(self.geometry.overlay(),
                      ordinal: self.properties.ordinal,
-                     units: units.map{ $0.cast() },
+                     units: units.map({ $0.cast() }),
                      openings: openings.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }),
                      shortName: self.properties.short_name,
-                     amenitys: amenitysFiltred)
+                     amenitys: amenitysFiltred,
+                     details: details.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }))
     }
 }
 
@@ -144,9 +144,9 @@ extension IMDF.Opening {
     }
 }
 
-extension IMDF.EnviromentDetail {
-    func cast() -> EnviromentDetail {
-        return try! EnviromentDetail(geometry: self.geometry.overlay(), category: self.properties.category)
+extension IMDF.Detail {
+    func cast() -> Detail {
+        return try! Detail(geometry: self.geometry.overlay(), category: self.properties.category)
     }
 }
 

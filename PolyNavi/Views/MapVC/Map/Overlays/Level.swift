@@ -12,16 +12,18 @@ class Level: CustomOverlay, Styleble, MapRenderer {
     var units: [Unit] = []
     var openings: [Opening] = []
     var amenitys: [AmenityAnnotation] = []
+    var details: [Detail] = []
     var ordinal: Int = 0
     var shortName: LocalizedName?
     
-    init(_ geometry: MKShape & MKOverlay, ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity] ) {
+    init(_ geometry: MKShape & MKOverlay, ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity], details: [Detail] ) {
         super.init(geometry)
         self.ordinal = ordinal
         self.units = units
         self.openings = openings
         self.shortName = shortName
         self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name, detailLevel: $0.properties.detailLevel) })
+        self.details = details
         
         let amenityUnits = amenitys.flatMap({ $0.properties.unit_ids })
         
@@ -37,6 +39,7 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         mapView.addOverlays(units.filter({ $0.categoty == .walkway }))
         mapView.addOverlays(units.filter({ $0.categoty != .walkway }))
         mapView.addOverlays(openings)
+        mapView.addOverlays(details)
         mapView.addOverlay(self)
         
         mapView.addAnnotations(units.compactMap{ $0.annotation })
@@ -48,6 +51,7 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         if !isShow { return }
         mapView.removeOverlays(units)
         mapView.removeOverlays(openings)
+        mapView.removeOverlays(details)
         mapView.removeOverlay(self)
         
         mapView.removeAnnotations(units.compactMap({ $0.annotation }))

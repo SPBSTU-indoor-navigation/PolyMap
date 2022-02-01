@@ -49,6 +49,7 @@ struct IMDF {
     class Unit: Feature<Unit.Properties> {
         enum Category: String, Codable {
             case auditorium
+            case administration
             case brick
             case classroom
             case column
@@ -61,6 +62,7 @@ struct IMDF {
             case firstaid
             case fitnessroom
             case foodservice
+            case foodserviceСoffee = "foodservice.coffee"
             case footbridge
             case glass
             case huddleroom
@@ -98,7 +100,9 @@ struct IMDF {
             case serverroom
             case shower
             case smokingarea
+            case security
             case stairs
+            case shop
             case steps
             case storage
             case structure
@@ -108,6 +112,7 @@ struct IMDF {
             case unspecified
             case vegetation
             case waitingroom
+            case wardrobe
             case walkway
             case walkwayIsland = "walkway.island"
             case wood
@@ -254,7 +259,7 @@ struct IMDF {
         }
     }
     
-    class EnviromentDetail: Feature<EnviromentDetail.Properties> {
+    class Detail: Feature<Detail.Properties> {
         
         enum Category: String, Codable {
             case crosswalk = "crosswalk"
@@ -264,10 +269,13 @@ struct IMDF {
             case fenceMain = "fence.main"
             case fenceHeigth = "fence.heigth"
             case steps = "steps"
+            case indoorSteps = "indoor.steps"
+            case indoorStairs = "indoor.stairs"
         }
         
         struct Properties: Codable {
             let category: Category
+            let level_id: UUID?
         }
     }
     

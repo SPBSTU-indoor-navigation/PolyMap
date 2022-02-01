@@ -48,8 +48,9 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
                 label.isEnabled = false
             }
             
-            label.alpha = textOpacity
+            label.alpha = labelOpacity
             point.transform = CGAffineTransform(scaleX: pointSize, y: pointSize)
+            label.transform = labelTransform
         }
     }
     
@@ -59,7 +60,10 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         get {
             
             if [.circleWithoutLabel].contains(annotationDetailState) {
-                return 1.6
+                switch state {
+                case .big: return 2.0
+                default: return 1.6
+                }
             } else {
                 switch state {
                 case .big, .normal, .min: return 0.8
@@ -69,11 +73,18 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         }
     }
     
-    var textOpacity: CGFloat {
+    var labelOpacity: CGFloat {
         if [.circleWithoutLabel].contains(annotationDetailState) {
             return 0.0
         }
         return [.normal, .big].contains(state) ? 1.0 : 0.0
+    }
+    
+    var labelTransform: CGAffineTransform {
+        if [.circleWithoutLabel].contains(annotationDetailState) {
+            return CGAffineTransform(translationX: 0, y: -12).scaledBy(x: 0.5, y: 0.5)
+        }
+        return CGAffineTransform.identity
     }
     
     var imageOpacity: CGFloat {
@@ -121,6 +132,8 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     lazy var imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.minificationFilter = .trilinear
+        $0.layer.minificationFilterBias = 0.1
         $0.alpha = 0
         return $0
     }(UIImageView())
@@ -173,7 +186,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
             point.centerYAnchor.constraint(equalTo: centerYAnchor),
             point.widthAnchor.constraint(equalToConstant: 10),
             point.heightAnchor.constraint(equalToConstant: 10),
-            label.topAnchor.constraint(equalTo: centerYAnchor, constant: 8),
+            label.topAnchor.constraint(equalTo: centerYAnchor, constant: 5),
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
             miniPoint.heightAnchor.constraint(equalToConstant: 6),
             miniPoint.widthAnchor.constraint(equalToConstant: 6),
@@ -192,7 +205,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         selectAnim
             .animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 point.transform = CGAffineTransform(scaleX: 7, y: 7).translatedBy(x: 0, y: -6.8)
-                label.transform = CGAffineTransform(translationX: 0, y: -3.5)
+                label.transform = CGAffineTransform(translationX: 0, y: -0.5)
                 imageView.alpha = 1.0
             })
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
@@ -211,11 +224,15 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 point.transform = .identity.scaledBy(x: pointSize, y: pointSize)
             })
+            .animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: { [self] in
+                label.alpha = labelOpacity
+                label.transform = labelTransform
+            })
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
                 shape.transform = CGAffineTransform(translationX: 0, y: -1).scaledBy(x: 1, y: 0)
                 miniPoint.transform = CGAffineTransform(scaleX: 0, y: 0)
-                label.alpha = textOpacity
-                label.transform = .identity
+                
+
                 imageView.alpha = imageOpacity
                 
                 point.layer.borderColor = UIColor.systemBackground.cgColor
@@ -236,7 +253,8 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         if isSelected { return }
         
         let change = { [self] in
-            label.alpha = textOpacity
+            label.transform = labelTransform
+            label.alpha = labelOpacity
             point.transform = CGAffineTransform(scaleX: pointSize, y: pointSize)
         }
         
