@@ -9,7 +9,7 @@ import MapKit
 
 class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
     
-    var state: DetailLevelState = .normal
+    var state: DetailLevelState = .undefined
     var detailLevel: Int = 0
     
     override var annotation: MKAnnotation? {
@@ -48,7 +48,7 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
                 return 1.2
             case .normal:
                 return 0.8
-            case .hide, .min:
+            case .hide, .min, .undefined:
                 return 0.3
             }
         }
@@ -259,7 +259,7 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     func update(mapSize: Float, animate: Bool) {
         
-        let targetState = defaultDetailLevelProcessor.evaluate(forDetailLevel: detailLevel, mapSize: mapSize) ?? .normal
+        let targetState = AmenityAnnotation.levelProcessor.evaluate(forDetailLevel: detailLevel, mapSize: mapSize) ?? .normal
         
         if state != targetState {
             changeState(state: targetState, animate: animate)

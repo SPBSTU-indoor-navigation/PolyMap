@@ -37,6 +37,7 @@ class Unit: CustomOverlay, Styleble {
         guard let renderer = renderer as? MKOverlayPathRenderer else { return }
         
         renderer.strokeColor = Asset.IMDFColors.Units.defaultLine.color
+        renderer.fillColor = UIColor(named: categoty.rawValue) ?? Asset.IMDFColors.default.color
         renderer.lineWidth = 1
         
         if restriction == .employeesonly || restriction == .restricted {
@@ -45,8 +46,10 @@ class Unit: CustomOverlay, Styleble {
             switch categoty {
             case .restroom, .restroomFemale, .restroomMale:
                 renderer.fillColor = Asset.IMDFColors.Units.restroom.color
-            default:
-                renderer.fillColor = UIColor(named: categoty.rawValue) ?? Asset.IMDFColors.default.color
+            case .walkway:
+                renderer.strokeColor = renderer.fillColor
+                renderer.lineWidth = 0.001
+            default: break
             }
             
             switch categoty {

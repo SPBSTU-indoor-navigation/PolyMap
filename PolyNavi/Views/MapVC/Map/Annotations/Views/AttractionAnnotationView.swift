@@ -39,7 +39,7 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
         get {
             switch state {
             case .big, .normal: return 1
-            case .hide, .min: return 0.8
+            case .hide, .min, .undefined: return 0.8
             }
         }
     }

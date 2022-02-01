@@ -95,6 +95,7 @@ enum DetailLevelState {
     case normal
     case min
     case hide
+    case undefined
 }
 
 let defaultDetailLevelProcessor: DetailLevelProcessor<DetailLevelState> = {
@@ -106,7 +107,6 @@ let defaultDetailLevelProcessor: DetailLevelProcessor<DetailLevelState> = {
     $0.builder(for: 1)
         .add(mapSize: 10, state: .hide)
         .add(mapSize: 16, state: .min)
-//        .add(mapSize: 18.5, state: .normal)
         .add(mapSize: 18.5, state: .big)
     
     $0.builder(for: 2)

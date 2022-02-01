@@ -45,6 +45,9 @@ internal enum Asset {
       internal static let attractionTextColor = ColorAsset(name: "AttractionTextColor")
       internal static let attractionTextStroke = ColorAsset(name: "AttractionTextStroke")
       internal static let stroke = ColorAsset(name: "Stroke")
+      internal enum Units {
+        internal static let restroomAnnotation = ColorAsset(name: "restroom-annotation")
+      }
     }
   }
   internal enum IMDFColors {
