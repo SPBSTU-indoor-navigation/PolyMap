@@ -92,7 +92,7 @@ class RootBottomSheetViewController: UINavigationController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if currentPosition < 0 { currentPosition = position(for: state) }
+        if mooved == false { currentPosition = position(for: state) }
         
         let safeArea = view.window!.safeAreaInsets
         
@@ -183,6 +183,7 @@ class RootBottomSheetViewController: UINavigationController {
     
     
     var startDelta = 0.0
+    var mooved = false
     
     @objc
     private func panAction(_ sender: UIPanGestureRecognizer) {
@@ -193,6 +194,7 @@ class RootBottomSheetViewController: UINavigationController {
 
         switch sender.state {
         case .began:
+            mooved = true
             view.layer.removeAllAnimations()
             currentPosition = view.layer.presentation()!.frame.origin.y
             startDelta = currentPosition - location.y
@@ -205,13 +207,14 @@ class RootBottomSheetViewController: UINavigationController {
                 currentPosition = targetPosition
             } else if targetPosition > smallerPos {
                 let delta = targetPosition - smallerPos
-                currentPosition = smallerPos + expLimit(delta, 50)
+                currentPosition = smallerPos + expLimit(delta, 20)
             } else if targetPosition < biggerPos {
                 let delta = biggerPos - targetPosition
                 currentPosition = biggerPos - expLimit(delta, 20)
             }
             
         case.ended:
+            mooved = false
             state = nextState(velocity: velocity.y)
             let delta = abs(currentPosition - position(for: state))
             currentPosition = position(for: state)
