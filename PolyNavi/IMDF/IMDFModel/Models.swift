@@ -26,6 +26,7 @@ struct IMDF {
             let category: String
             let restriction: Restriction?
             let address_id: UUID?
+            var rotation: CGFloat?
             
             let display_point: PointGeometry?
         }

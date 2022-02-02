@@ -10,18 +10,20 @@ import MapKit
 class Building: CustomOverlay, Styleble, MapRenderer {
     var levels: [Level] = []
     var attractions: [AttractionAnnotation] = []
+    var rotation: CGFloat?
     
     
     var ordinal = -1
     private var isShow = false
     
     
-    init(_ geometry: MKShape & MKOverlay, levels: [Level], attractions: [IMDF.Attraction]) {
+    init(_ geometry: MKShape & MKOverlay, levels: [Level], attractions: [IMDF.Attraction], rotation: CGFloat?) {
         super.init(geometry)
         
         self.levels = levels
         self.attractions = attractions.map({ AttractionAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, localizedName: $0.properties.alt_name, localizedShort: $0.properties.short_name, image: $0.properties.image) })
         self.ordinal = levels.map({ $0.ordinal }).min() ?? -1
+        self.rotation = rotation
     }
     
     func configurate(renderer: MKOverlayRenderer) {

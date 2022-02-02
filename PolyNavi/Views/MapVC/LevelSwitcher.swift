@@ -10,6 +10,7 @@ class LevelSwitcher: UIView {
     
     var levels: [Int:String] = [:]
     var onChange: ((Int)->Void)?
+    var onRotate: (()->Void)?
     var currentConstraint: NSLayoutConstraint?
     
     var levelLabels: [UILabel] = []
@@ -24,6 +25,15 @@ class LevelSwitcher: UIView {
     }
     
     lazy var background: UIStackView = {
+        let blur: UIVisualEffectView = {
+            $0.layer.masksToBounds = true
+            $0.layer.cornerRadius = 8
+            
+            $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            $0.isUserInteractionEnabled = false
+            return $0
+        }(UIVisualEffectView(effect: UIBlurEffect(style: .systemThickMaterial)))
+        
         $0.axis = .vertical
         $0.addSubview(blur)
         $0.spacing = 5
@@ -37,14 +47,27 @@ class LevelSwitcher: UIView {
         return $0
     }(UIStackView())
     
-    lazy var blur: UIVisualEffectView = {
-        $0.layer.masksToBounds = true
-        $0.layer.cornerRadius = 8
+    lazy var rotateToBuilding: UIButton = {
+        let blur: UIVisualEffectView = {
+            $0.layer.masksToBounds = true
+            $0.layer.cornerRadius = 8
+            $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            $0.isUserInteractionEnabled = false
+            return $0
+        }(UIVisualEffectView(effect: UIBlurEffect(style: .systemThickMaterial)))
         
-        $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        $0.isUserInteractionEnabled = false
+        $0.setImage(Asset.Images.rotateBuilding.image.withTintColor(.secondaryLabel), for: .normal)
+        $0.insertSubview(blur, at: 0)
+        $0.bringSubviewToFront($0.imageView!)
+        $0.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        $0.imageView?.layer.minificationFilter = .trilinear
+        
+        $0.addTarget(self, action: #selector(onTapRotate(_:)), for: .touchUpInside)
+        
+        $0.addShadow()
+        $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
-    }(UIVisualEffectView(effect: UIBlurEffect(style: .systemThickMaterial)))
+    }(UIButton())
     
     lazy var current: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -60,10 +83,12 @@ class LevelSwitcher: UIView {
     func createLevelLabel(ordinal: Int) -> UILabel {
         return {
             $0.text = levels[ordinal]
+            $0.font = .monospacedDigitSystemFont(ofSize: 17, weight: .medium)
             $0.textAlignment = .center
             $0.isUserInteractionEnabled = false
             $0.tag = ordinal
             $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.textColor = .secondaryLabel
             return $0
         }(UILabel())
     }
@@ -72,21 +97,30 @@ class LevelSwitcher: UIView {
     func layoutViews() {
         addSubview(background)
         background.addSubview(current)
+        addSubview(rotateToBuilding)
         
         currentConstraint = current.centerYAnchor.constraint(equalTo: background.topAnchor, constant: 40)
         
         NSLayoutConstraint.activate([
+            background.topAnchor.constraint(equalTo: topAnchor),
             background.widthAnchor.constraint(equalTo: widthAnchor),
-            heightAnchor.constraint(equalTo: background.heightAnchor),
             current.widthAnchor.constraint(equalTo: widthAnchor, constant: -5),
             current.heightAnchor.constraint(equalTo: widthAnchor, constant: -5),
             current.centerXAnchor.constraint(equalTo: background.centerXAnchor),
-            currentConstraint!
+            currentConstraint!,
+            rotateToBuilding.topAnchor.constraint(equalTo: background.bottomAnchor, constant: 8),
+            rotateToBuilding.widthAnchor.constraint(equalToConstant: 44),
+            rotateToBuilding.heightAnchor.constraint(equalToConstant: 44),
+            bottomAnchor.constraint(equalTo: rotateToBuilding.bottomAnchor),
+            topAnchor.constraint(equalTo: background.topAnchor)
         ])
         
         changeLevels()
     }
     
+    @objc private func onTapRotate(_ sender: UIButton) {
+        onRotate?()
+    }
     
     var moved = false
     @objc private func didTap(_ sender: UITapGestureRecognizer) {

@@ -58,6 +58,7 @@ class MapView: UIView {
     private lazy var levelSwitcher: LevelSwitcher = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.onChange = onLevelChange
+        $0.onRotate = onRotate
         return $0
     }(LevelSwitcher())
     
@@ -112,6 +113,19 @@ class MapView: UIView {
     
     func onLevelChange(ordinal: Int) {
         currentBuilding?.changeOrdinal(ordinal, mapView)
+    }
+    
+    func onRotate() {
+        if let rotation = currentBuilding?.rotation {
+            if abs(mapView.camera.heading - rotation) > 0.1 {
+                let cam = MKMapCamera(lookingAtCenter: mapView.camera.centerCoordinate,
+                                      fromDistance: mapView.camera.centerCoordinateDistance,
+                                      pitch: mapView.camera.pitch,
+                                      heading: rotation)
+                mapView.setCamera(cam, animated: true)
+            }
+            
+        }
     }
     
     func nearestBuilding(position: CLLocationCoordinate2D) -> Building? {

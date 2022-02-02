@@ -75,7 +75,8 @@ class IMDFDecoder {
                             levels: imdfLevels
                                 .filter({ $0.properties.building_ids.contains(building.identifier) })
                                 .map({ $0.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys, details: detail)}),
-                            attractions: attraction.filter({ $0.properties.building_id == building.identifier }))
+                            attractions: attraction.filter({ $0.properties.building_id == building.identifier }),
+                            rotation: building.properties.rotation)
         })
         
         let result = Venue(geometry: venue.geometry.overlay(),

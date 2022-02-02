@@ -91,6 +91,9 @@ internal enum Asset {
     }
     internal static let venueFill = ColorAsset(name: "VenueFill")
   }
+  internal enum Images {
+    internal static let rotateBuilding = ImageAsset(name: "rotateBuilding")
+  }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
