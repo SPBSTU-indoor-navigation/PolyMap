@@ -11,8 +11,8 @@ class LevelSwitcher: UIView {
     var levels: [Int:String] = [:]
     var onChange: ((Int)->Void)?
     var currentConstraint: NSLayoutConstraint?
-
-    var levelButtons: [UILabel] = []
+    
+    var levelLabels: [UILabel] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,29 +50,24 @@ class LevelSwitcher: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 6.5
         $0.isUserInteractionEnabled = true
-
+        
         $0.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(didPan(_:))))
         
         $0.backgroundColor = .systemGray3
         return $0
     }(UIView())
     
-    func createLevelButton(ordinal: Int) -> UILabel {
+    func createLevelLabel(ordinal: Int) -> UILabel {
         return {
             $0.text = levels[ordinal]
             $0.textAlignment = .center
             $0.isUserInteractionEnabled = false
-//            $0.setTitle(levels[ordinal], for: .normal)
             $0.tag = ordinal
-//            $0.setTitleColor(.label, for: .normal)
-//            $0.setTitleColor(.secondaryLabel, for: .highlighted)
-//
-//            $0.addTarget(self, action: #selector(onLevelTap(_:)), for: .touchUpInside)
             $0.translatesAutoresizingMaskIntoConstraints = false
             return $0
         }(UILabel())
     }
-
+    
     
     func layoutViews() {
         addSubview(background)
@@ -91,20 +86,16 @@ class LevelSwitcher: UIView {
         
         changeLevels()
     }
-
+    
     
     var moved = false
     @objc private func didTap(_ sender: UITapGestureRecognizer) {
-        print(Int(sender.location(in: background).y / 45))
-        onLevelTap_(Int(sender.location(in: background).y / 45))
+        onLevelTap(Int(sender.location(in: background).y / 45))
     }
     
     @objc private func didPan(_ sender: UIPanGestureRecognizer) {
-
-        let position = sender.location(in: current)
         switch sender.state {
         case .began:
-            print([position.y, current.frame.width])
             moved = true
             UIView.animate(withDuration: 0.15) {
                 self.current.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
@@ -113,22 +104,28 @@ class LevelSwitcher: UIView {
             if moved {
                 let pos = sender.location(in: background)
                 let currentPos = currentConstraint!.constant
-
-
                 func move(dir: CGFloat) {
                     UIView.animate(withDuration: 0.15) { [self] in
-                        currentConstraint?.constant = currentPos + 45 * dir
+                        var targetPos = currentPos + 45 * dir
+                        
+                        if targetPos < 22.5 {
+                            targetPos = 22.5
+                        } else if targetPos > 45.0 * CGFloat(levelLabels.count) - 22.5 {
+                            targetPos = 45.0 * CGFloat(levelLabels.count) - 22.5
+                        }
+                        
+                        currentConstraint?.constant = targetPos
                         layoutIfNeeded()
                     }
                 }
-
+                
                 if pos.y > currentPos + 25.0 {
                     move(dir: 1)
                 } else if pos.y < currentPos - 25.0 {
                     move(dir: -1)
                 }
-
-
+                
+                
             }
         case .ended:
             if moved {
@@ -136,7 +133,7 @@ class LevelSwitcher: UIView {
                 UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: { [self] in
                     current.transform = .identity
                 })
-                onLevelTap_(Int(sender.location(in: background).y / 45))
+                onLevelTap(max(0, min(Int(sender.location(in: background).y / 45), levelLabels.count-1)))
             }
         default:
             break
@@ -144,16 +141,16 @@ class LevelSwitcher: UIView {
     }
     
     func changeLevels() {
-        for b in levelButtons {
+        for b in levelLabels {
             b.removeFromSuperview()
         }
         
-        levelButtons = []
-    
+        levelLabels = []
+        
         
         for key in Array(levels.keys).sorted(by:>) {
-            let button = createLevelButton(ordinal: key)
-            levelButtons.append(button)
+            let button = createLevelLabel(ordinal: key)
+            levelLabels.append(button)
             background.addArrangedSubview(button)
             
             NSLayoutConstraint.activate([
@@ -162,34 +159,21 @@ class LevelSwitcher: UIView {
         }
     }
     
-    func onLevelTap_(_ button: Int) {
+    func onLevelTap(_ button: Int) {
         currentConstraint?.constant = CGFloat(button) * 45.0 + 22.5
         UIView.animate(withDuration: 0.15) {
             self.layoutIfNeeded()
         }
-        onChange?(levelButtons[button].tag)
+        onChange?(levelLabels[button].tag)
     }
     
-    @objc
-    func onLevelTap(_ sender: UIButton) {
-        currentConstraint?.constant = sender.layer.position.y
-        UIView.animate(withDuration: 0.15) {
-            self.layoutIfNeeded()
-        }
-        onChange?(sender.tag)
-    }
 }
 
 extension LevelSwitcher {
     
     func updateLevels(levels: [Int:String], selected: Int = 0) {
-        
         self.levels = levels
         changeLevels()
         currentConstraint?.constant = CGFloat(Array(levels.keys).sorted(by:>).firstIndex(of: selected)!) * 45.0 + 22.5
-//        UIView.animate(withDuration: 0.15) {
-//            self.layoutIfNeeded()
-//            self.background.layoutIfNeeded()
-//        }
     }
 }
