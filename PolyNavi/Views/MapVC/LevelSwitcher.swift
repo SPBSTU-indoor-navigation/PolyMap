@@ -12,14 +12,7 @@ class LevelSwitcher: UIView {
     var onChange: ((Int)->Void)?
     var currentConstraint: NSLayoutConstraint?
 
-    var levelButtons: [UIButton] = []
-    
-    
-    //    init(levels: [String], onChange: @escaping (Int)->Void) {
-    //        self.levels = levels
-    //        self.onChange = onChange
-    //    }
-
+    var levelButtons: [UILabel] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +31,9 @@ class LevelSwitcher: UIView {
         $0.isLayoutMarginsRelativeArrangement = true
         $0.addShadow()
         $0.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap(_:))))
         return $0
     }(UIStackView())
     
@@ -53,25 +49,28 @@ class LevelSwitcher: UIView {
     lazy var current: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 6.5
-        $0.layer.masksToBounds = true
+        $0.isUserInteractionEnabled = true
+
+        $0.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(didPan(_:))))
         
         $0.backgroundColor = .systemGray3
         return $0
     }(UIView())
     
-    func createLevelButton(ordinal: Int) -> UIButton {
+    func createLevelButton(ordinal: Int) -> UILabel {
         return {
-            $0.setTitle(levels[ordinal], for: .normal)
+            $0.text = levels[ordinal]
+            $0.textAlignment = .center
+            $0.isUserInteractionEnabled = false
+//            $0.setTitle(levels[ordinal], for: .normal)
             $0.tag = ordinal
-            $0.setTitleColor(.label, for: .normal)
-            $0.setTitleColor(.secondaryLabel, for: .highlighted)
-            
-            $0.addTarget(self, action: #selector(onLevelTap(_:)), for: .touchUpInside)
+//            $0.setTitleColor(.label, for: .normal)
+//            $0.setTitleColor(.secondaryLabel, for: .highlighted)
+//
+//            $0.addTarget(self, action: #selector(onLevelTap(_:)), for: .touchUpInside)
             $0.translatesAutoresizingMaskIntoConstraints = false
-            
-            $0.becomeFirstResponder()
             return $0
-        }(UIButton())
+        }(UILabel())
     }
 
     
@@ -92,6 +91,57 @@ class LevelSwitcher: UIView {
         
         changeLevels()
     }
+
+    
+    var moved = false
+    @objc private func didTap(_ sender: UITapGestureRecognizer) {
+        print(Int(sender.location(in: background).y / 45))
+        onLevelTap_(Int(sender.location(in: background).y / 45))
+    }
+    
+    @objc private func didPan(_ sender: UIPanGestureRecognizer) {
+
+        let position = sender.location(in: current)
+        switch sender.state {
+        case .began:
+            print([position.y, current.frame.width])
+            moved = true
+            UIView.animate(withDuration: 0.15) {
+                self.current.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            }
+        case .changed:
+            if moved {
+                let pos = sender.location(in: background)
+                let currentPos = currentConstraint!.constant
+
+
+                func move(dir: CGFloat) {
+                    UIView.animate(withDuration: 0.15) { [self] in
+                        currentConstraint?.constant = currentPos + 45 * dir
+                        layoutIfNeeded()
+                    }
+                }
+
+                if pos.y > currentPos + 25.0 {
+                    move(dir: 1)
+                } else if pos.y < currentPos - 25.0 {
+                    move(dir: -1)
+                }
+
+
+            }
+        case .ended:
+            if moved {
+                moved = false
+                UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: { [self] in
+                    current.transform = .identity
+                })
+                onLevelTap_(Int(sender.location(in: background).y / 45))
+            }
+        default:
+            break
+        }
+    }
     
     func changeLevels() {
         for b in levelButtons {
@@ -110,6 +160,14 @@ class LevelSwitcher: UIView {
                 button.heightAnchor.constraint(equalToConstant: 40)
             ])
         }
+    }
+    
+    func onLevelTap_(_ button: Int) {
+        currentConstraint?.constant = CGFloat(button) * 45.0 + 22.5
+        UIView.animate(withDuration: 0.15) {
+            self.layoutIfNeeded()
+        }
+        onChange?(levelButtons[button].tag)
     }
     
     @objc
@@ -133,13 +191,5 @@ extension LevelSwitcher {
 //            self.layoutIfNeeded()
 //            self.background.layoutIfNeeded()
 //        }
-    }
-    
-    func hide() {
-        
-    }
-    
-    func show() {
-        
     }
 }
