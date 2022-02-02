@@ -50,6 +50,7 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.modalTransitionStyle = .coverVertical
         navigationController?.pushViewController(FirstVC(), animated: true)
     }
 }

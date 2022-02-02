@@ -1,50 +1,51 @@
 import UIKit
 import UIScreenExtension
 
-func expLimit(_ x: CGFloat, _ maxVal: CGFloat) -> CGFloat {
+fileprivate func expLimit(_ x: CGFloat, _ maxVal: CGFloat) -> CGFloat {
     return (1 - exp(-x / maxVal)) * maxVal
 }
 
 class RootBottomSheetViewController: UINavigationController {
-    let VELOCITY_LIMIT = 8.0
-    let VELOCITY_SUPER_LIMIT = 40.0
+    private enum Constants {
+        static let velocityLimit = 8.0
+        static let velocitySuperLimit = 80.0
+    }
     
-    
-    enum Size {
+    enum HorizontalSize {
         case big
         case small
         case ultraSmall
     }
     
-    enum State {
-        case min
+    enum VerticalSize {
+        case small
         case middle
-        case max
+        case big
         
-        var stateBigger: [State] {
+        var stateBigger: [VerticalSize] {
             switch self {
-            case .min: return [.middle, .max]
-            case .middle, .max: return [.max]
+            case .small: return [.middle, .big]
+            case .middle, .big: return [.big]
             }
         }
         
-        var stateSmaller: [State] {
+        var stateSmaller: [VerticalSize] {
             switch self {
-            case .min, .middle: return [.min]
-            case .max: return [.min, .middle]
+            case .small, .middle: return [.small]
+            case .big: return [.small, .middle]
             }
         }
     }
     
     
-    private var state: State = .min
+    private var state: VerticalSize = .small
     private var currentPosition: CGFloat = -1
     
     private var parentVC: UIViewController!
     private let searchOverlay = HitAcrossView()
     var scrollView: UIScrollView?
     
-    private var currentSize: Size {
+    private var currentSize: HorizontalSize {
         let windowWidth = view.window!.frame.width
         
         if windowWidth > 1000 { return .small }
@@ -105,7 +106,7 @@ class RootBottomSheetViewController: UINavigationController {
     }
     
     
-    func width(for size: Size) -> CGFloat {
+    func width(for size: HorizontalSize) -> CGFloat {
         switch size {
         case .big:
             return view.window!.frame.width
@@ -116,36 +117,36 @@ class RootBottomSheetViewController: UINavigationController {
         }
     }
     
-    func height(for size: Size) -> CGFloat {
+    func height(for size: HorizontalSize) -> CGFloat {
         
         let safeArea = view.window!.safeAreaInsets
         let window = view.window!.frame
         
         switch size {
         case .big:
-            return window.height - position(for: .max) + safeArea.top
+            return window.height - position(for: .big) + safeArea.top
         case .small, .ultraSmall:
             return window.height - currentPosition - safeArea.bottom
         }
     }
     
-    func position(for state: State) -> CGFloat {
+    func position(for state: VerticalSize) -> CGFloat {
         let safeArea = view.window!.safeAreaInsets
         let height = view.window!.frame.height
         
         let safeAreaOffset = currentSize == .big ? safeArea.bottom : 0
         
         switch state {
-        case .min:
-            return height - 100 - safeAreaOffset
+        case .small:
+            return height - safeAreaOffset - 100
         case .middle:
-            return height - 305 - safeAreaOffset
-        case .max:
+            return height - safeAreaOffset - 305
+        case .big:
             return safeArea.top + 20
         }
     }
     
-    func nextState(velocity: CGFloat) -> State {
+    func nextState(velocity: CGFloat) -> VerticalSize {
         
         var realVelocity = velocity / 60
         
@@ -153,21 +154,21 @@ class RootBottomSheetViewController: UINavigationController {
             realVelocity = velocity / pointsPerCentimeter
         }
         
-        if realVelocity > VELOCITY_SUPER_LIMIT { return .min}
-        if realVelocity < -VELOCITY_SUPER_LIMIT { return .max}
+        if realVelocity > Constants.velocitySuperLimit { return .small}
+        if realVelocity < -Constants.velocitySuperLimit { return .big}
         
-        var possibleStates: [State] = []
+        var possibleStates: [VerticalSize] = []
         
-        if realVelocity < -VELOCITY_LIMIT {
+        if realVelocity < -Constants.velocityLimit {
             possibleStates = state.stateBigger
-        } else if realVelocity > VELOCITY_LIMIT {
+        } else if realVelocity > Constants.velocityLimit {
             possibleStates = state.stateSmaller
         } else {
-            possibleStates = [.min, .max, .middle]
+            possibleStates = [.small, .big, .middle]
         }
         
         var nearestDistance = CGFloat.greatestFiniteMagnitude
-        var nearestState = State.min
+        var nearestState = VerticalSize.small
         
         for state in possibleStates {
             let distance = abs(position(for: state) - currentPosition)
@@ -187,7 +188,7 @@ class RootBottomSheetViewController: UINavigationController {
     private func panAction(_ sender: UIPanGestureRecognizer) {
         defer { viewDidLayoutSubviews() }
         
-        let location = sender.location(in: parentVC.view)
+        let location = sender.location(in: view.window!)
         let velocity = sender.velocity(in: view.window!)
 
         switch sender.state {
@@ -196,18 +197,18 @@ class RootBottomSheetViewController: UINavigationController {
             currentPosition = view.layer.presentation()!.frame.origin.y
             startDelta = currentPosition - location.y
         case.changed:
-            let minPos = position(for: .min)
-            let maxPos = position(for: .max)
+            let smallerPos = position(for: .small)
+            let biggerPos = position(for: .big)
             let targetPosition = location.y + startDelta
             
-            if maxPos < targetPosition && targetPosition < minPos {
+            if biggerPos < targetPosition && targetPosition < smallerPos {
                 currentPosition = targetPosition
-            } else if targetPosition > minPos {
-                let delta = targetPosition - minPos
-                currentPosition = minPos + expLimit(delta, 50)
-            } else if targetPosition < maxPos {
-                let delta = maxPos - targetPosition
-                currentPosition = maxPos - expLimit(delta, 20)
+            } else if targetPosition > smallerPos {
+                let delta = targetPosition - smallerPos
+                currentPosition = smallerPos + expLimit(delta, 50)
+            } else if targetPosition < biggerPos {
+                let delta = biggerPos - targetPosition
+                currentPosition = biggerPos - expLimit(delta, 20)
             }
             
         case.ended:
