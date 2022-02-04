@@ -10,11 +10,11 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }(UISearchController(searchResultsController: nil))
     
     private lazy var tableView: UITableView = {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         $0.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
         $0.dataSource = self
         $0.delegate = self
         $0.backgroundColor = .clear
+        $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UITableView())
     
