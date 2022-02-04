@@ -9,9 +9,18 @@ class RootBottomSheetViewController: UINavigationController {
     private enum Constants {
         static let velocityLimit = 8.0
         static let velocitySuperLimit = 80.0
+        
+        static let minWidthForSmallSize = 1000.0
+        static let minWidthForUltraSmallSize = 800.0
+        
+        static let smallWidth = 380.0
+        static let ultraSmallWidth = 320.0
+        
+        static let smallHeight = 100.0
+        static let mediumHeight = 305.0
     }
     
-    enum HorizontalSize {
+    private enum HorizontalSize {
         case big
         case small
         case ultraSmall
@@ -19,20 +28,20 @@ class RootBottomSheetViewController: UINavigationController {
     
     enum VerticalSize {
         case small
-        case middle
+        case medium
         case big
         
         var stateBigger: [VerticalSize] {
             switch self {
-            case .small: return [.middle, .big]
-            case .middle, .big: return [.big]
+            case .small: return [.medium, .big]
+            case .medium, .big: return [.big]
             }
         }
         
         var stateSmaller: [VerticalSize] {
             switch self {
-            case .small, .middle: return [.small]
-            case .big: return [.small, .middle]
+            case .small, .medium: return [.small]
+            case .big: return [.small, .medium]
             }
         }
     }
@@ -41,35 +50,37 @@ class RootBottomSheetViewController: UINavigationController {
     private var state: VerticalSize = .small
     private var currentPosition: CGFloat = -1
     
-    private var parentVC: UIViewController!
-    private let searchOverlay = HitAcrossView()
-    var scrollView: UIScrollView?
+    private var startPosotion = 0.0
+    private var startContentOffset: CGFloat = 0
+    
+    private var mooved = false
+    private var moovedByScroll = false
+    
+    private var containerView: UIView {
+        return view.window!
+    }
     
     private var currentSize: HorizontalSize {
-        let windowWidth = view.window!.frame.width
+        let windowWidth = containerView.frame.width
         
-        if windowWidth > 1000 { return .small }
-        if windowWidth > 800 { return .ultraSmall }
+        if windowWidth > Constants.minWidthForSmallSize { return .small }
+        if windowWidth > Constants.minWidthForUltraSmallSize { return .ultraSmall }
         
         return .big
     }
     
-
-    public init(parentVC: UIViewController, rootViewController: UIViewController) {
-        self.parentVC = parentVC
-        
-        super.init(rootViewController: rootViewController)
     
-        let gr = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
+    
+    public init(parentVC: UIViewController, rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
         
+        let gr = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
         rootViewController.view.subviews.forEach({
             if let scroll = $0 as? UIScrollView {
-                scroll.panGestureRecognizer.require(toFail: gr)
-                scrollView = scroll
+                scroll.delegate = self
                 return
             }
         })
-        
         view.addGestureRecognizer(gr)
     }
     
@@ -86,41 +97,38 @@ class RootBottomSheetViewController: UINavigationController {
         
         view.backgroundColor = .clear
         view.layer.cornerRadius = 10
-        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if mooved == false { currentPosition = position(for: state) }
+        if (mooved || moovedByScroll) == false { currentPosition = position(for: state) }
         
-        let safeArea = view.window!.safeAreaInsets
+        let safeArea = containerView.safeAreaInsets
         
         view.frame = CGRect(
             x: currentSize == .big ? 0 : max(safeArea.left, 8),
             y: currentPosition,
             width: width(for: currentSize),
             height: height(for: currentSize)
-
         )
     }
     
     
-    func width(for size: HorizontalSize) -> CGFloat {
+    private func width(for size: HorizontalSize) -> CGFloat {
         switch size {
         case .big:
-            return view.window!.frame.width
+            return containerView.frame.width
         case .small:
-            return 380
+            return Constants.smallWidth
         case .ultraSmall:
-            return 320
+            return Constants.ultraSmallWidth
         }
     }
     
-    func height(for size: HorizontalSize) -> CGFloat {
-        
-        let safeArea = view.window!.safeAreaInsets
-        let window = view.window!.frame
+    private func height(for size: HorizontalSize) -> CGFloat {
+        let safeArea = containerView.safeAreaInsets
+        let window = containerView.frame
         
         switch size {
         case .big:
@@ -130,24 +138,23 @@ class RootBottomSheetViewController: UINavigationController {
         }
     }
     
-    func position(for state: VerticalSize) -> CGFloat {
-        let safeArea = view.window!.safeAreaInsets
-        let height = view.window!.frame.height
+    private func position(for state: VerticalSize) -> CGFloat {
+        let safeArea = containerView.safeAreaInsets
+        let height = containerView.frame.height
         
         let safeAreaOffset = currentSize == .big ? safeArea.bottom : 0
         
         switch state {
         case .small:
-            return height - safeAreaOffset - 100
-        case .middle:
-            return height - safeAreaOffset - 305
+            return height - safeAreaOffset - Constants.smallHeight
+        case .medium:
+            return height - safeAreaOffset - Constants.mediumHeight
         case .big:
             return safeArea.top + 20
         }
     }
     
-    func nextState(velocity: CGFloat) -> VerticalSize {
-        
+    private func nextState(velocity: CGFloat) -> VerticalSize {
         var realVelocity = velocity / 60
         
         if let pointsPerCentimeter = UIScreen.pointsPerCentimeter {
@@ -164,7 +171,7 @@ class RootBottomSheetViewController: UINavigationController {
         } else if realVelocity > Constants.velocityLimit {
             possibleStates = state.stateSmaller
         } else {
-            possibleStates = [.small, .big, .middle]
+            possibleStates = [.small, .big, .medium]
         }
         
         var nearestDistance = CGFloat.greatestFiniteMagnitude
@@ -182,26 +189,24 @@ class RootBottomSheetViewController: UINavigationController {
     }
     
     
-    var startDelta = 0.0
-    var mooved = false
     
     @objc
     private func panAction(_ sender: UIPanGestureRecognizer) {
         defer { viewDidLayoutSubviews() }
         
-        let location = sender.location(in: view.window!)
-        let velocity = sender.velocity(in: view.window!)
-
+        let velocity = sender.velocity(in: containerView)
+        let translation = sender.translation(in: containerView)
+        
         switch sender.state {
         case .began:
             mooved = true
             view.layer.removeAllAnimations()
             currentPosition = view.layer.presentation()!.frame.origin.y
-            startDelta = currentPosition - location.y
+            startPosotion = currentPosition
         case.changed:
             let smallerPos = position(for: .small)
             let biggerPos = position(for: .big)
-            let targetPosition = location.y + startDelta
+            let targetPosition = translation.y + startPosotion
             
             if biggerPos < targetPosition && targetPosition < smallerPos {
                 currentPosition = targetPosition
@@ -215,16 +220,85 @@ class RootBottomSheetViewController: UINavigationController {
             
         case.ended:
             mooved = false
-            state = nextState(velocity: velocity.y)
-            let delta = abs(currentPosition - position(for: state))
-            currentPosition = position(for: state)
+            endAnimation(-velocity.y)
+        default: break
+        }
+        
+    }
+    
+    private func endAnimation(_ velocity: CGFloat) {
+        state = nextState(velocity: -velocity)
+        
+        let delta = abs(currentPosition - position(for: state))
+        currentPosition = position(for: state)
+        let initialVelocity = abs(velocity / delta) / 1000
+        
+        UIView.animate(withDuration: 0.45, delay: 0, usingSpringWithDamping: initialVelocity > 0.001 ? 0.8 : 1, initialSpringVelocity: initialVelocity, options: [.curveEaseIn, .allowUserInteraction], animations: { [self] in
+            viewDidLayoutSubviews()
             
-            let initialSpeed = min(abs(velocity.y / delta / 2), 5)
-            UIView.animate(withDuration: 0.45, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: initialSpeed, options: [.curveEaseIn, .allowUserInteraction], animations: { [self] in
-                viewDidLayoutSubviews()
-            })
-        default:
-            return
+        })
+    }
+}
+
+extension RootBottomSheetViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        let offset = scrollView.topContentOffset.y
+        if -30 < offset && offset <= 0 {
+            startContentOffset = offset
+            startPosotion = currentPosition
+            moovedByScroll = true
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if moovedByScroll {
+            var translation = scrollView.panGestureRecognizer.translation(in: scrollView)
+            translation.y += min(2 * startContentOffset, 0)
+            
+            let smallerPos = position(for: .small)
+            let biggerPos = position(for: .big)
+            let targetPosition = translation.y + startPosotion
+            
+            if biggerPos < targetPosition && targetPosition < smallerPos {
+                currentPosition = targetPosition
+                scrollView.topContentOffset = CGPoint(x: 0, y: min(0, startContentOffset + 2 * abs(translation.y)))
+            } else if biggerPos > targetPosition {
+                currentPosition = biggerPos
+            } else if targetPosition > smallerPos {
+                currentPosition = smallerPos
+            }
+            
+            viewDidLayoutSubviews()
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if moovedByScroll {
+            moovedByScroll = false
+            endAnimation(velocity.y * 1000)
+            
+            if startPosotion != position(for: .big) && scrollView.topContentOffset.y <= 0  {
+                targetContentOffset.pointee = CGPoint(x: 0, y: -scrollView.topOffset)
+            }
+        }
+    }
+}
+
+
+extension UIScrollView {
+    
+    var topOffset: CGFloat {
+        return safeAreaInsets.top
+    }
+    
+    var topContentOffset: CGPoint {
+        get {
+            return CGPoint(x: contentOffset.x, y: contentOffset.y + topOffset)
+        }
+        
+        set(val) {
+            contentOffset = CGPoint(x: val.x, y: val.y - topOffset)
         }
     }
 }

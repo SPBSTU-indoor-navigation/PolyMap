@@ -2,7 +2,7 @@ import UIKit
 
 
 class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+
     private lazy var searchController: UISearchController = {
         $0.obscuresBackgroundDuringPresentation = false
         $0.searchBar.placeholder = L10n.ChoosingSearchController.searchPlaceholder
@@ -10,6 +10,7 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }(UISearchController(searchResultsController: nil))
     
     private lazy var tableView: UITableView = {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         $0.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
         $0.dataSource = self
         $0.delegate = self
@@ -22,11 +23,8 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-//        navigationItem.title = "Search View"
-        searchController.hidesNavigationBarDuringPresentation = false
         
         view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -39,7 +37,7 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 50
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,7 +48,8 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.modalTransitionStyle = .coverVertical
         navigationController?.pushViewController(FirstVC(), animated: true)
     }
+    
+
 }
