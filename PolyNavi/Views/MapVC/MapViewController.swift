@@ -39,7 +39,6 @@ class MapViewController: UIViewController {
         
         addChild(bottomSheetVC)
         view.addSubview(bottomSheetVC.view)
-        bottomSheetVC.view.frame = view.frame
         bottomSheetVC.didMove(toParent: self)
     }
     

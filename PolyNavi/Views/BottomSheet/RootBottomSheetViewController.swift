@@ -101,6 +101,14 @@ class RootBottomSheetViewController: UINavigationController {
         view.backgroundColor = .clear
         view.layer.cornerRadius = 10
         
+        self.navigationBar.subviews.forEach {
+            $0.clipsToBounds = false
+        }
+        
+        self.view.subviews.forEach {
+            $0.clipsToBounds = false
+        }
+        
         self.delegate = transitionManager
     }
     
@@ -111,9 +119,9 @@ class RootBottomSheetViewController: UINavigationController {
         
         let safeArea = containerView.safeAreaInsets
         
-        guard let childVC = children.last else { return }
+//        guard let childVC = children.last else { return }
         
-        childVC.view.frame = CGRect(
+        view.frame = CGRect(
             x: currentSize == .big ? 0 : max(safeArea.left, 8),
             y: currentPosition,
             width: width(for: currentSize),

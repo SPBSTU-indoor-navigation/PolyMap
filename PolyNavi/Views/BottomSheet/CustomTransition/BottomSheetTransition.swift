@@ -30,6 +30,9 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
         animator.startAnimation()
     }
     
+    func animationEnded(_ transitionCompleted: Bool) {
+        
+    }
 }
 
 
