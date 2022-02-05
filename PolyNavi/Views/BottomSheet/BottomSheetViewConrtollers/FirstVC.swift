@@ -38,6 +38,14 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate, Bot
         ])
         
         tableView.reloadData()
+        
+        view.layer.cornerRadius = 15
+//        view.clipsToBounds = true
+        view.layer.shadowRadius = 50
+        view.layer.shadowOpacity = 1
+        view.backgroundColor = .black
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = .zero
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,6 +61,14 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate, Bot
     
     func didSelectRowAtIndexPath(_ tableView: UITableView, indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        navigationController?.pushViewController(FirstVC(), animated: true)
+        let t = FirstVC()
+        if indexPath.row % 3 == 0 { t.setupColor(color: .red) }
+        if indexPath.row % 3 == 1 { t.setupColor(color: .blue) }
+        if indexPath.row % 3 == 2 { t.setupColor(color: .green) }
+        navigationController?.pushViewController(t, animated: true)
+    }
+    
+    func setupColor(color: UIColor) {
+        view.backgroundColor = color
     }
 }

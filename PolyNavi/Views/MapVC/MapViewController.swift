@@ -28,6 +28,8 @@ class MapViewController: UIViewController {
     }(MapView())
     
     private lazy var bottomSheetVC: RootBottomSheetViewController = {
+        $0.view.clipsToBounds = false
+        $0.view.layer.masksToBounds = false
         return $0
     }(RootBottomSheetViewController(parentVC: self, rootViewController: FirstVC()))
     
@@ -37,6 +39,7 @@ class MapViewController: UIViewController {
         
         addChild(bottomSheetVC)
         view.addSubview(bottomSheetVC.view)
+        bottomSheetVC.view.frame = view.frame
         bottomSheetVC.didMove(toParent: self)
     }
     

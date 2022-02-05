@@ -52,6 +52,7 @@ class RootBottomSheetViewController: UINavigationController {
         }
     }
     
+    private let transitionManager = BottomSheetTransition()
     
     private var state: VerticalSize = .small
     private var currentPosition: CGFloat = -1
@@ -92,12 +93,15 @@ class RootBottomSheetViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemThickMaterial))
-        blurView.frame = view.frame
-        view.insertSubview(blurView, at: 0)
+//        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemThickMaterial))
+//        blurView.frame = view.frame
+//        view.insertSubview(blurView, at: 0)
+        self.view.clipsToBounds = false 
         
         view.backgroundColor = .clear
         view.layer.cornerRadius = 10
+        
+        self.delegate = transitionManager
     }
     
     override func viewDidLayoutSubviews() {
@@ -107,7 +111,9 @@ class RootBottomSheetViewController: UINavigationController {
         
         let safeArea = containerView.safeAreaInsets
         
-        view.frame = CGRect(
+        guard let childVC = children.last else { return }
+        
+        childVC.view.frame = CGRect(
             x: currentSize == .big ? 0 : max(safeArea.left, 8),
             y: currentPosition,
             width: width(for: currentSize),
@@ -295,7 +301,6 @@ extension RootBottomSheetViewController: UITableViewDelegate {
         bottomSheetObj.didSelectRowAtIndexPath(tableView, indexPath: indexPath)
     }
 }
-
 
 extension UIScrollView {
     
