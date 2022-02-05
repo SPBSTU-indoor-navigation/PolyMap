@@ -1,8 +1,12 @@
 import UIKit
 
 
-class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate, BottomSheetChildViewControllerProtocol {
 
+    var scrollView: UIScrollView? {
+        return tableView
+    }
+    
     private lazy var searchController: UISearchController = {
         $0.obscuresBackgroundDuringPresentation = false
         $0.searchBar.placeholder = L10n.ChoosingSearchController.searchPlaceholder
@@ -47,9 +51,8 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func didSelectRowAtIndexPath(_ tableView: UITableView, indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         navigationController?.pushViewController(FirstVC(), animated: true)
     }
-    
-
 }

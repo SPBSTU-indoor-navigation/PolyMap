@@ -5,6 +5,12 @@ fileprivate func expLimit(_ x: CGFloat, _ maxVal: CGFloat) -> CGFloat {
     return (1 - exp(-x / maxVal)) * maxVal
 }
 
+protocol BottomSheetChildViewControllerProtocol {
+    var scrollView: UIScrollView? { get }
+    
+    func didSelectRowAtIndexPath(_ tableView: UITableView, indexPath: IndexPath)
+}
+
 class RootBottomSheetViewController: UINavigationController {
     private enum Constants {
         static let velocityLimit = 8.0
@@ -69,19 +75,14 @@ class RootBottomSheetViewController: UINavigationController {
         return .big
     }
     
-    
-    
     public init(parentVC: UIViewController, rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         
         let gr = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
-        rootViewController.view.subviews.forEach({
-            if let scroll = $0 as? UIScrollView {
-                scroll.delegate = self
-                return
-            }
-        })
         view.addGestureRecognizer(gr)
+        
+        guard let scrollView = rootViewController as? BottomSheetChildViewControllerProtocol else { return }
+        scrollView.scrollView?.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -188,8 +189,6 @@ class RootBottomSheetViewController: UINavigationController {
         return nearestState
     }
     
-    
-    
     @objc
     private func panAction(_ sender: UIPanGestureRecognizer) {
         defer { viewDidLayoutSubviews() }
@@ -238,9 +237,15 @@ class RootBottomSheetViewController: UINavigationController {
             
         })
     }
+    
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        super.pushViewController(viewController, animated: animated)
+        guard let scrollVC = viewController as? BottomSheetChildViewControllerProtocol else { return }
+        scrollVC.scrollView?.delegate = self
+    }
 }
 
-extension RootBottomSheetViewController: UIScrollViewDelegate {
+extension RootBottomSheetViewController: UITableViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         let offset = scrollView.topContentOffset.y
@@ -283,6 +288,12 @@ extension RootBottomSheetViewController: UIScrollViewDelegate {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentVC = children.last
+        guard let bottomSheetObj = currentVC as? BottomSheetChildViewControllerProtocol else { return }
+        bottomSheetObj.didSelectRowAtIndexPath(tableView, indexPath: indexPath)
+    }
 }
 
 
@@ -297,8 +308,8 @@ extension UIScrollView {
             return CGPoint(x: contentOffset.x, y: contentOffset.y + topOffset)
         }
         
-        set(val) {
-            contentOffset = CGPoint(x: val.x, y: val.y - topOffset)
+        set {
+            contentOffset = CGPoint(x: newValue.x, y: newValue.y - topOffset)
         }
     }
 }
