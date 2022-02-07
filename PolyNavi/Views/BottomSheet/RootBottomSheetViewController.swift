@@ -12,7 +12,7 @@ protocol BottomSheetChildViewControllerProtocol {
 }
 
 class RootBottomSheetViewController: UINavigationController {
-    private enum Constants {
+    enum Constants {
         static let velocityLimit = 8.0
         static let velocitySuperLimit = 80.0
         
@@ -26,6 +26,8 @@ class RootBottomSheetViewController: UINavigationController {
         static let mediumHeight = 305.0
         
         static let transitionDuration = 0.3
+        
+        static let shadowOpacity: Float = 0.2
     }
     
     enum HorizontalSize {
@@ -34,10 +36,10 @@ class RootBottomSheetViewController: UINavigationController {
         case ultraSmall
     }
     
-    enum VerticalSize {
-        case small
-        case medium
-        case big
+    enum VerticalSize: Int {
+        case small = 0
+        case medium = 1
+        case big = 2
         
         var stateBigger: [VerticalSize] {
             switch self {
@@ -63,11 +65,14 @@ class RootBottomSheetViewController: UINavigationController {
     private var mooved = false
     private var moovedByScroll = false
     
+    private var stateByViewControllers: [UIViewController:VerticalSize] = [:]
+    
     private var containerView: UIView {
         return view.window!
-        
     }
     
+    
+    private var lastSize: HorizontalSize?
     private var currentSize: HorizontalSize {
         let windowWidth = containerView.frame.width
         
@@ -94,7 +99,7 @@ class RootBottomSheetViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red.withAlphaComponent(0.1)
+        view.backgroundColor = .clear
         isNavigationBarHidden = true
         
         self.view.subviews.forEach {
@@ -107,9 +112,6 @@ class RootBottomSheetViewController: UINavigationController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        
-        
-        
         if (mooved || moovedByScroll) == false { currentPosition = position(for: state) }
         
         let safeArea = containerView.safeAreaInsets
@@ -120,6 +122,15 @@ class RootBottomSheetViewController: UINavigationController {
             width: width(for: currentSize),
             height: height(for: currentSize)
         )
+        
+        view.layoutIfNeeded()
+        
+        if lastSize != currentSize {
+            lastSize = currentSize
+            viewControllers.forEach {
+                $0.view.layer.maskedCorners = lastSize == .big ? [.layerMaxXMinYCorner, .layerMinXMinYCorner] : [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
+            }
+        }
     }
     
     
@@ -241,7 +252,6 @@ class RootBottomSheetViewController: UINavigationController {
         
         UIView.animate(withDuration: 0.45, delay: 0, usingSpringWithDamping: initialVelocity > 0.001 ? 0.8 : 1, initialSpringVelocity: initialVelocity, options: [.curveEaseIn, .allowUserInteraction], animations: { [self] in
             viewDidLayoutSubviews()
-            view.layoutIfNeeded()
         })
     }
     
@@ -249,20 +259,24 @@ class RootBottomSheetViewController: UINavigationController {
         self.state = state
         
         currentPosition = position(for: state)
-        UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut, .allowUserInteraction]) {
-            self.viewDidLayoutSubviews()
-            self.view.layoutIfNeeded()
+        if animated {
+            UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut, .allowUserInteraction]) {
+                self.viewDidLayoutSubviews()
+            }
+        } else {
+            viewDidLayoutSubviews()
         }
     }
     
     var lastState: VerticalSize = .small
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        stateByViewControllers[viewController] = state
+        
         if view.window != nil {
             lastState = state
             if currentSize == .big {
                 changeState(state: .medium)
             } else {
-                
                 changeState(state: .big)
             }
         }
@@ -275,7 +289,35 @@ class RootBottomSheetViewController: UINavigationController {
         guard let scrollVC = viewController as? BottomSheetChildViewControllerProtocol else { return }
         scrollVC.scrollView?.delegate = self
         
-      
+    }
+    
+    override func popViewController(animated: Bool) -> UIViewController? {
+        lastState = state
+        
+        if animated {
+            view.isUserInteractionEnabled = false
+        }
+        
+        guard let targetVC = super.popViewController(animated: animated) else {
+            view.isUserInteractionEnabled = true
+            return nil
+        }
+        
+        if let targetState = stateByViewControllers.removeValue(forKey: targetVC) {
+            if currentSize == .big {
+                if targetState == .small || state == .small {
+                    changeState(state: .small, animated: false)
+                } else {
+                    changeState(state: .medium, animated: false)
+                }
+            } else {
+                if targetState.rawValue < state.rawValue {
+                    changeState(state: targetState, animated: false)
+                }
+            }
+        }
+        
+        return targetVC
     }
 }
 
@@ -336,8 +378,6 @@ extension RootBottomSheetViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return BottomSheetTransition(operation: operation, fromState: lastState, size: currentSize, duration: Constants.transitionDuration, complition: { self.view.isUserInteractionEnabled = true })
     }
-    
-    
 }
 
 
