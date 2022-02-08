@@ -25,7 +25,7 @@ class RootBottomSheetViewController: UINavigationController {
         static let smallHeight = 100.0
         static let mediumHeight = 305.0
         
-        static let transitionDuration = 0.3
+        static let transitionDuration = 5.3
         
         static let shadowOpacity: Float = 0.2
     }

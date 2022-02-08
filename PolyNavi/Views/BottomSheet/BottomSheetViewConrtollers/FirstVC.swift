@@ -21,8 +21,25 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate, Bot
     
     private lazy var navbar: UIView = {
 //        $0.backgroundColor = .systemBlue.withAlphaComponent(0.8)
-//        $0.clipsToBounds = true
         $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIView())
+    
+    private lazy var container: UIView = {
+        $0.frame = view.frame
+        $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        $0.layer.cornerRadius = 11
+        $0.clipsToBounds = true
+        
+        let blur: UIVisualEffectView = {
+            $0.frame = view.bounds
+            $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            return $0
+        }(UIVisualEffectView(effect: UIBlurEffect(style: .systemThickMaterial)))
+        
+        
+        $0.insertSubview(blur, at: 0)
         return $0
     }(UIView())
     
@@ -46,23 +63,25 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate, Bot
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        view.addSubview(tableView)
-        view.addSubview(navbar)
+        view.addSubview(container)
+        
+        container.addSubview(tableView)
+        container.addSubview(navbar)
         navbar.addSubview(closeButton)
         
         
         additionalSafeAreaInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: container.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
             
             navbar.heightAnchor.constraint(equalToConstant: 50),
-            navbar.topAnchor.constraint(equalTo: view.topAnchor),
-            navbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            navbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navbar.topAnchor.constraint(equalTo: container.topAnchor),
+            navbar.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            navbar.trailingAnchor.constraint(equalTo: container.trailingAnchor),
             
             closeButton.centerYAnchor.constraint(equalTo: navbar.centerYAnchor),
             closeButton.trailingAnchor.constraint(equalTo: navbar.trailingAnchor, constant: -20)
@@ -70,18 +89,17 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate, Bot
         
         tableView.reloadData()
         
-        view.layer.cornerRadius = 11
+
         view.layer.shadowRadius = 10
-        view.layer.shadowOpacity = RootBottomSheetViewController.Constants.shadowOpacity
-        
-//        let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemThickMaterial))
-//        blurEffectView.frame = view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        view.insertSubview(blurEffectView, at: 0)
-        
-        view.backgroundColor = .secondarySystemGroupedBackground
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = .zero
+        view.layer.shadowOpacity = RootBottomSheetViewController.Constants.shadowOpacity
+       
+        
+        view.backgroundColor = .clear
+
+        
+//        view.alpha = 0.5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,11 +117,11 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate, Bot
         tableView.deselectRow(at: indexPath, animated: true)
         let t = FirstVC()
         
-//        t.setupColor(color: indexPath.row % 2 == 0 ? .systemBlue : .systemGreen)
+        t.setupColor(color: indexPath.row % 2 == 0 ? .systemBlue : .systemGreen)
         navigationController?.pushViewController(t, animated: true)
     }
     
     func setupColor(color: UIColor) {
-        view.backgroundColor = color
+        view.backgroundColor = .clear
     }
 }
