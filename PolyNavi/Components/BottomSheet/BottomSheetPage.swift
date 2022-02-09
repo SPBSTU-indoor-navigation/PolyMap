@@ -12,6 +12,7 @@ class BottomSheetPage: UIViewController {
     
     func onStateChange(verticalSize: BottomSheetViewController.VerticalSize) { }
     func onStateChange(horizontalSize: BottomSheetViewController.HorizontalSize) { }
+    func onButtomSheetScroll(progress: CGFloat) { }
 }
 
 class BluredBackgroundBottomSheetPage: BottomSheetPage {
@@ -33,6 +34,15 @@ class BluredBackgroundBottomSheetPage: BottomSheetPage {
     
     }(UIView())
     
+    lazy var line: UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 2.5
+        $0.clipsToBounds = true
+        $0.backgroundColor = .systemGray2.withAlphaComponent(0.8)
+        return $0
+        
+    }(UIView())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(background)
@@ -42,6 +52,14 @@ class BluredBackgroundBottomSheetPage: BottomSheetPage {
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = .zero
         view.layer.shadowOpacity = BottomSheetViewController.Constants.shadowOpacity
+        
+        background.addSubview(line)
+        NSLayoutConstraint.activate([
+            line.widthAnchor.constraint(equalToConstant: 35),
+            line.heightAnchor.constraint(equalToConstant: 5),
+            line.centerXAnchor.constraint(equalTo: background.centerXAnchor),
+            line.topAnchor.constraint(equalTo: background.topAnchor, constant: 6)
+        ])
     }
     
     override func onStateChange(horizontalSize: BottomSheetViewController.HorizontalSize) {

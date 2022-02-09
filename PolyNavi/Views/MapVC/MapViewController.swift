@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
         $0.view.clipsToBounds = false
         $0.view.layer.masksToBounds = false
         return $0
-    }(BottomSheetViewController(parentVC: self, rootViewController: FirstVC()))
+    }(BottomSheetViewController(parentVC: self, rootViewController: SearchVC()))
     
     override func viewDidLoad() {
         super.viewDidLoad()

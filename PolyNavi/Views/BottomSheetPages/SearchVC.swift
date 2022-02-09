@@ -1,27 +1,73 @@
 import UIKit
 
-class SearchVC: TableBottomSheetPage {
-    private lazy var searchController: UISearchController = {
-//        $0.obscuresBackgroundDuringPresentation = false
-//        $0.searchBar.placeholder = L10n.ChoosingSearchController.searchPlaceholder
-        $0.view.frame = navbar.frame
-//        $0.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+class SearchVC: NavbarBottomSheetPage {
+    
+    var isSearch = false
+    
+    private lazy var searchBar: UISearchBar = {
+        $0.placeholder = L10n.ChoosingSearchController.searchPlaceholder
+        $0.searchBarStyle = .minimal
+        $0.frame = navbar.frame
+        $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        $0.delegate = self
+        
         return $0
-    }(UISearchController(searchResultsController: nil))
+    }(UISearchBar())
+    
+    lazy var tableView: UITableView = {
+        $0.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
+        $0.delegate = self
+        $0.dataSource = self
+        $0.backgroundColor = .clear
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UITableView())
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        navbar.addSubview(searchController.view)
-        addChild(searchController)
-        tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
         
+        navbar.addSubview(searchBar)
+        background.addSubview(tableView)
+        super.viewDidLoad()
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: background.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
+        ])
         tableView.reloadData()
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         navigationController?.pushViewController(UnitDetailVC(closable: true), animated: true)
+    }
+    
+    func cancelEdit() {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        isSearch = false
+    }
+    
+    override func onStateChange(verticalSize: BottomSheetViewController.VerticalSize) {
+        super.onStateChange(verticalSize: verticalSize)
+        if isSearch && verticalSize != .big {
+            cancelEdit()
+        }
+    }
+    
+    override func onButtomSheetScroll(progress: CGFloat) {
+        super.onButtomSheetScroll(progress: progress)
+        let limit = 0.9
+        if progress > limit {
+            tableView.alpha = 1 - (progress - limit) / (1 - limit)
+        } else if tableView.alpha != 1 {
+            tableView.alpha = 1
+        }
+        
     }
     
 }
@@ -41,4 +87,40 @@ extension SearchVC: UITableViewDataSource {
     func setupColor(color: UIColor) {
         view.backgroundColor = .clear
     }
+}
+
+extension SearchVC: UITableViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        delegate?.scrollViewWillBeginDragging(scrollView)
+        searchBar.endEditing(true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.scrollViewDidScroll(scrollView)
+        update(progress: scrollView.topContentOffset.y / 20)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        delegate?.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+}
+
+
+extension SearchVC: UISearchBarDelegate {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(true, animated: true)
+        delegate?.change(verticalSize: .big, animated: true)
+        isSearch = true
+        return true
+    }
+    
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        cancelEdit()
+        if delegate?.horizontalSize() == .big && delegate?.verticalSize() == .big {
+            delegate?.change(verticalSize: .medium, animated: true)
+        }
+    }
+    
+    
 }

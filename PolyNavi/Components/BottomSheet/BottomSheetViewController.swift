@@ -6,11 +6,15 @@ protocol BottomSheetPageDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
+    func change(verticalSize: BottomSheetViewController.VerticalSize, animated: Bool)
+    
+    func verticalSize() -> BottomSheetViewController.VerticalSize
+    func horizontalSize() -> BottomSheetViewController.HorizontalSize
 }
 
 class BottomSheetViewController: UINavigationController {
     enum Constants {
-        static let velocityLimit = 8.0
+        static let velocityLimit = 10.0
         static let velocitySuperLimit = 80.0
         
         static let minWidthForSmallSize = 1000.0
@@ -19,7 +23,7 @@ class BottomSheetViewController: UINavigationController {
         static let smallWidth = 380.0
         static let ultraSmallWidth = 320.0
         
-        static let smallHeight = 100.0
+        static let smallHeight = 70.0
         static let mediumHeight = 305.0
         
         static let transitionDuration = 0.3
@@ -53,7 +57,13 @@ class BottomSheetViewController: UINavigationController {
         }
     }
     
-    private var state: VerticalSize = .small
+    private var state: VerticalSize = .small {
+        didSet {
+            if let vc = visibleViewController as? BottomSheetPage {
+                vc.onStateChange(verticalSize: state)
+            }
+        }
+    }
     private var currentPosition: CGFloat = -1
     
     private var startPosotion = 0.0
@@ -69,7 +79,19 @@ class BottomSheetViewController: UINavigationController {
     }
     
     
-    private var lastSize: HorizontalSize?
+    private var lastSize: HorizontalSize? {
+        willSet {
+            if lastSize != newValue {
+                if let newValue = newValue,
+                   let vc = visibleViewController as? BottomSheetPage
+                {
+                    vc.onStateChange(horizontalSize: newValue)
+                }
+            }
+            
+        }
+    }
+    
     private var currentSize: HorizontalSize {
         let windowWidth = containerView.frame.width
         
@@ -104,10 +126,17 @@ class BottomSheetViewController: UINavigationController {
     }
     
     func applyBottomSheetPage(vc: UIViewController) {
-        guard let lastSize = lastSize else { return }
-
-        if let t = vc as? BottomSheetPage {
-            t.onStateChange(horizontalSize: lastSize)
+        if let vc = vc as? BottomSheetPage {
+            if let lastSize = lastSize {
+                vc.onStateChange(horizontalSize: lastSize)
+            }
+            vc.onStateChange(verticalSize: state)
+        }
+    }
+    
+    func applyProgress(vc: UIViewController?, from: CGFloat, to: CGFloat, current: CGFloat) {
+        if let vc = vc as? BottomSheetPage {
+            vc.onButtomSheetScroll(progress: (current - to) / (from - to))
         }
     }
     
@@ -118,19 +147,18 @@ class BottomSheetViewController: UINavigationController {
         
         let safeArea = containerView.safeAreaInsets
         
+        let height = height(for: currentSize)
+
         view.frame = CGRect(
             x: currentSize == .big ? 0 : max(safeArea.left, 8),
             y: currentPosition,
             width: width(for: currentSize),
-            height: height(for: currentSize)
+            height: height
         )
         
         view.layoutIfNeeded()
         
-        if lastSize != currentSize {
-            lastSize = currentSize
-            applyBottomSheetPage(vc: viewControllers.last!)
-        }
+        lastSize = currentSize
     }
     
     
@@ -149,11 +177,13 @@ class BottomSheetViewController: UINavigationController {
         let safeArea = containerView.safeAreaInsets
         let window = containerView.frame
         
+        let safeAreaOffset = currentSize == .big ? safeArea.bottom : max(20, safeArea.bottom)
+        
         switch size {
         case .big:
-            return window.height - currentPosition + safeArea.top - safeArea.bottom
+            return window.height - currentPosition + safeArea.top - safeAreaOffset
         case .small, .ultraSmall:
-            return window.height - currentPosition - safeArea.bottom
+            return window.height - currentPosition - safeAreaOffset
         }
     }
     
@@ -161,7 +191,7 @@ class BottomSheetViewController: UINavigationController {
         let safeArea = containerView.safeAreaInsets
         let height = containerView.frame.height
         
-        let safeAreaOffset = currentSize == .big ? safeArea.bottom : 0
+        let safeAreaOffset = currentSize == .big ? safeArea.bottom : max(20, safeArea.bottom)
         
         switch state {
         case .small:
@@ -235,6 +265,8 @@ class BottomSheetViewController: UINavigationController {
                 currentPosition = biggerPos - expLimit(delta, 20)
             }
             
+            applyProgress(vc: visibleViewController, from: smallerPos, to: biggerPos, current: currentPosition)
+            
         case.ended:
             mooved = false
             endAnimation(-velocity.y)
@@ -250,19 +282,32 @@ class BottomSheetViewController: UINavigationController {
         currentPosition = position(for: state)
         let initialVelocity = abs(velocity / delta) / 1000
         
+        let displaylink = CADisplayLink(target: self, selector: #selector(endAnimationStep))
+        displaylink.add(to: .main, forMode: .default)
+        
         UIView.animate(withDuration: 0.45, delay: 0, usingSpringWithDamping: initialVelocity > 0.001 ? 0.8 : 1, initialSpringVelocity: initialVelocity, options: [.curveEaseIn, .allowUserInteraction], animations: { [self] in
             viewDidLayoutSubviews()
+        }, completion: { _ in
+            displaylink.invalidate()
         })
     }
     
-    func changeState(state: VerticalSize, duration: CGFloat = Constants.transitionDuration, animated: Bool = true) {
+    @objc private func endAnimationStep(displaylink: CADisplayLink) {
+        applyProgress(vc: visibleViewController, from: position(for: .small), to: position(for: .big), current: view.layer.presentation()!.frame.origin.y)
+    }
+    
+    func changeState(state: VerticalSize, duration: CGFloat = Constants.transitionDuration, animated: Bool = true, options: UIView.AnimationOptions = .curveEaseOut) {
         self.state = state
         
         currentPosition = position(for: state)
         if animated {
-            UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut, .allowUserInteraction]) {
+            let displaylink = CADisplayLink(target: self, selector: #selector(endAnimationStep))
+            displaylink.add(to: .main, forMode: .default)
+            UIView.animate(withDuration: duration, delay: 0, options: [options, .allowUserInteraction], animations: {
                 self.viewDidLayoutSubviews()
-            }
+            }, completion: { _ in
+                displaylink.invalidate()
+            })
         } else {
             viewDidLayoutSubviews()
         }
@@ -331,6 +376,18 @@ extension BottomSheetViewController: UINavigationControllerDelegate {
 
 
 extension BottomSheetViewController: BottomSheetPageDelegate {
+    func horizontalSize() -> HorizontalSize {
+        return currentSize
+    }
+    
+    func verticalSize() -> VerticalSize {
+        return state
+    }
+    
+    func change(verticalSize: VerticalSize, animated: Bool) {
+        changeState(state: verticalSize, duration: 0.3, animated: animated, options: .curveEaseInOut)
+    }
+    
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         let offset = scrollView.topContentOffset.y
@@ -358,6 +415,8 @@ extension BottomSheetViewController: BottomSheetPageDelegate {
             } else if targetPosition > smallerPos {
                 currentPosition = smallerPos
             }
+            
+            applyProgress(vc: visibleViewController, from: smallerPos, to: biggerPos, current: currentPosition)
             
             viewDidLayoutSubviews()
         }
