@@ -27,11 +27,11 @@ class MapViewController: UIViewController {
         return $0
     }(MapView())
     
-    private lazy var bottomSheetVC: RootBottomSheetViewController = {
+    private lazy var bottomSheetVC: BottomSheetViewController = {
         $0.view.clipsToBounds = false
         $0.view.layer.masksToBounds = false
         return $0
-    }(RootBottomSheetViewController(parentVC: self, rootViewController: FirstVC()))
+    }(BottomSheetViewController(parentVC: self, rootViewController: FirstVC()))
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,17 +1,14 @@
 import UIKit
 import UIScreenExtension
 
-fileprivate func expLimit(_ x: CGFloat, _ maxVal: CGFloat) -> CGFloat {
-    return (1 - exp(-x / maxVal)) * maxVal
+
+protocol BottomSheetPageDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
 }
 
-protocol BottomSheetChildViewControllerProtocol {
-    var scrollView: UIScrollView? { get }
-    
-    func didSelectRowAtIndexPath(_ tableView: UITableView, indexPath: IndexPath)
-}
-
-class RootBottomSheetViewController: UINavigationController {
+class BottomSheetViewController: UINavigationController {
     enum Constants {
         static let velocityLimit = 8.0
         static let velocitySuperLimit = 80.0
@@ -25,7 +22,7 @@ class RootBottomSheetViewController: UINavigationController {
         static let smallHeight = 100.0
         static let mediumHeight = 305.0
         
-        static let transitionDuration = 5.3
+        static let transitionDuration = 0.3
         
         static let shadowOpacity: Float = 0.2
     }
@@ -87,9 +84,6 @@ class RootBottomSheetViewController: UINavigationController {
         
         let gr = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
         view.addGestureRecognizer(gr)
-        
-        guard let scrollView = rootViewController as? BottomSheetChildViewControllerProtocol else { return }
-        scrollView.scrollView?.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -107,6 +101,14 @@ class RootBottomSheetViewController: UINavigationController {
         }
         
         delegate = self
+    }
+    
+    func applyBottomSheetPage(vc: UIViewController) {
+        guard let lastSize = lastSize else { return }
+
+        if let t = vc as? BottomSheetPage {
+            t.onStateChange(horizontalSize: lastSize)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -127,9 +129,7 @@ class RootBottomSheetViewController: UINavigationController {
         
         if lastSize != currentSize {
             lastSize = currentSize
-            viewControllers.forEach {
-                $0.view.layer.maskedCorners = lastSize == .big ? [.layerMaxXMinYCorner, .layerMinXMinYCorner] : [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
-            }
+            applyBottomSheetPage(vc: viewControllers.last!)
         }
     }
     
@@ -286,9 +286,9 @@ class RootBottomSheetViewController: UINavigationController {
         }
         
         super.pushViewController(viewController, animated: animated)
-        guard let scrollVC = viewController as? BottomSheetChildViewControllerProtocol else { return }
-        scrollVC.scrollView?.delegate = self
-        
+        if let bottomSheetPage = viewController as? BottomSheetPage {
+            bottomSheetPage.delegate = self
+        }
     }
     
     override func popViewController(animated: Bool) -> UIViewController? {
@@ -316,12 +316,21 @@ class RootBottomSheetViewController: UINavigationController {
                 }
             }
         }
-        
         return targetVC
     }
 }
 
-extension RootBottomSheetViewController: UITableViewDelegate {
+extension BottomSheetViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        applyBottomSheetPage(vc: toVC)
+        
+        return BottomSheetTransition(operation: operation, fromState: lastState, size: currentSize, duration: Constants.transitionDuration, complition: { self.view.isUserInteractionEnabled = true })
+    }
+}
+
+
+extension BottomSheetViewController: BottomSheetPageDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         let offset = scrollView.topContentOffset.y
@@ -364,36 +373,10 @@ extension RootBottomSheetViewController: UITableViewDelegate {
             }
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentVC = children.last
-        guard let bottomSheetObj = currentVC as? BottomSheetChildViewControllerProtocol else { return }
-        bottomSheetObj.didSelectRowAtIndexPath(tableView, indexPath: indexPath)
-    }
 }
 
 
 
-extension RootBottomSheetViewController: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return BottomSheetTransition(operation: operation, fromState: lastState, size: currentSize, duration: Constants.transitionDuration, complition: { self.view.isUserInteractionEnabled = true })
-    }
-}
-
-
-extension UIScrollView {
-    
-    var topOffset: CGFloat {
-        return safeAreaInsets.top
-    }
-    
-    var topContentOffset: CGPoint {
-        get {
-            return CGPoint(x: contentOffset.x, y: contentOffset.y + topOffset)
-        }
-        
-        set {
-            contentOffset = CGPoint(x: newValue.x, y: newValue.y - topOffset)
-        }
-    }
+fileprivate func expLimit(_ x: CGFloat, _ maxVal: CGFloat) -> CGFloat {
+    return (1 - exp(-x / maxVal)) * maxVal
 }

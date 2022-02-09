@@ -3,12 +3,12 @@ import UIKit
 class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     let operation: UINavigationController.Operation
-    let fromState: RootBottomSheetViewController.VerticalSize
-    let size: RootBottomSheetViewController.HorizontalSize
+    let fromState: BottomSheetViewController.VerticalSize
+    let size: BottomSheetViewController.HorizontalSize
     let duration: CGFloat
     let complition: () -> Void
     
-    init(operation: UINavigationController.Operation, fromState: RootBottomSheetViewController.VerticalSize, size: RootBottomSheetViewController.HorizontalSize, duration: CGFloat, complition: @escaping () -> Void) {
+    init(operation: UINavigationController.Operation, fromState: BottomSheetViewController.VerticalSize, size: BottomSheetViewController.HorizontalSize, duration: CGFloat, complition: @escaping () -> Void) {
         self.operation = operation
         self.fromState = fromState
         self.duration = duration
@@ -146,7 +146,7 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
         
         let anim = UIViewPropertyAnimator(duration: duration, curve: .easeIn) {
             from.view.layer.shadowOpacity = 0
-            to.view.layer.shadowOpacity = RootBottomSheetViewController.Constants.shadowOpacity
+            to.view.layer.shadowOpacity = BottomSheetViewController.Constants.shadowOpacity
             
             to.view.transform = .identity
             from.view.transform = from.view.transform.translatedBy(x: -container.window!.convert(container.frame, from: container).maxX, y: 0)
@@ -171,7 +171,7 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
         
         let anim = UIViewPropertyAnimator(duration: duration, curve: .easeIn) {
             from.view.layer.shadowOpacity = 0
-            to.view.layer.shadowOpacity = RootBottomSheetViewController.Constants.shadowOpacity
+            to.view.layer.shadowOpacity = BottomSheetViewController.Constants.shadowOpacity
             
             from.view.transform = CGAffineTransform(translationX: 0, y: container.frame.height)
         }
