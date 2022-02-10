@@ -32,6 +32,8 @@ class FirstVC: NavbarBottomSheetPage {
         ])
         
         tableView.reloadData()
+        
+//        view.alpha = 0.5
     }
 
 }
@@ -49,7 +51,7 @@ extension FirstVC: UITableViewDataSource {
     }
     
     func setupColor(color: UIColor) {
-        view.backgroundColor = .clear
+//        view.backgroundColor = color
     }
 }
 
@@ -70,14 +72,14 @@ extension FirstVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if (indexPath.row == 0) {
-            navigationController?.pushViewController(UnitDetailVC(closable: true), animated: true)
-        } else {
-            navigationController?.pushViewController(SearchVC(closable: true), animated: true)
-        }
+//        if (indexPath.row == 0) {
+//            navigationController?.pushViewController(UnitDetailVC(closable: true), animated: true)
+//        } else {
+//            navigationController?.pushViewController(SearchVC(closable: true), animated: true)
+//        }
         
-//        let t = FirstVC()
-//        t.setupColor(color: indexPath.row % 2 == 0 ? .systemBlue : .systemGreen)
-//        navigationController?.pushViewController(t, animated: true)
+        let t = FirstVC(closable: true)
+        t.setupColor(color: indexPath.row % 2 == 0 ? .systemBlue : .systemGreen)
+        navigationController?.pushViewController(t, animated: true)
     }
 }

@@ -106,6 +106,10 @@ class BottomSheetViewController: UINavigationController {
         
         let gr = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
         view.addGestureRecognizer(gr)
+        if let vc = rootViewController as? BottomSheetPage {
+            vc.onButtomSheetScroll(progress: 1)
+            vc.onStateChange(verticalSize: state)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -131,6 +135,7 @@ class BottomSheetViewController: UINavigationController {
                 vc.onStateChange(horizontalSize: lastSize)
             }
             vc.onStateChange(verticalSize: state)
+            applyProgress(vc: vc, from: position(for: .small), to: position(for: .big), current: view.frame.origin.y)
         }
     }
     
@@ -259,7 +264,7 @@ class BottomSheetViewController: UINavigationController {
                 currentPosition = targetPosition
             } else if targetPosition > smallerPos {
                 let delta = targetPosition - smallerPos
-                currentPosition = smallerPos + expLimit(delta, 20)
+                currentPosition = smallerPos + expLimit(delta, 10)
             } else if targetPosition < biggerPos {
                 let delta = biggerPos - targetPosition
                 currentPosition = biggerPos - expLimit(delta, 20)

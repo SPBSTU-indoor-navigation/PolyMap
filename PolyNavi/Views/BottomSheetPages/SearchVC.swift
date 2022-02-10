@@ -4,6 +4,8 @@ class SearchVC: NavbarBottomSheetPage {
     
     var isSearch = false
     
+    private var preferredScrollProgress = 0.0
+    
     private lazy var searchBar: UISearchBar = {
         $0.placeholder = L10n.ChoosingSearchController.searchPlaceholder
         $0.searchBarStyle = .minimal
@@ -64,10 +66,11 @@ class SearchVC: NavbarBottomSheetPage {
         let limit = 0.9
         if progress > limit {
             tableView.alpha = 1 - (progress - limit) / (1 - limit)
+            update(progress: preferredScrollProgress * tableView.alpha)
         } else if tableView.alpha != 1 {
             tableView.alpha = 1
+            update(progress: preferredScrollProgress * tableView.alpha)
         }
-        
     }
     
 }
@@ -97,7 +100,8 @@ extension SearchVC: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.scrollViewDidScroll(scrollView)
-        update(progress: scrollView.topContentOffset.y / 20)
+        preferredScrollProgress = scrollView.topContentOffset.y / 20
+        update(progress: preferredScrollProgress)
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -120,6 +124,15 @@ extension SearchVC: UISearchBarDelegate {
         if delegate?.horizontalSize() == .big && delegate?.verticalSize() == .big {
             delegate?.change(verticalSize: .medium, animated: true)
         }
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        DispatchQueue.main.async {
+            if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
+                cancelButton.isEnabled = true
+            }
+        }
+        return true
     }
     
     
