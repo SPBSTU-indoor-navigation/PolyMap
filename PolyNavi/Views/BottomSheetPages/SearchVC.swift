@@ -134,6 +134,4 @@ extension SearchVC: UISearchBarDelegate {
         }
         return true
     }
-    
-    
 }

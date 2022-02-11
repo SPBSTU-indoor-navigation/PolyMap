@@ -8,7 +8,15 @@
 import UIKit
 
 class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
+    var navbarHeight: CGFloat = 70.0 {
+        didSet {
+            navbarHeightConstraint?.constant = navbarHeight
+            additionalSafeAreaInsets = UIEdgeInsets(top: navbarHeight, left: 0, bottom: 0, right: 0)
+        }
+    }
+    
     private var closable: Bool = false
+    private var navbarHeightConstraint: NSLayoutConstraint?
     
     let navbar: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -46,13 +54,14 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
         if closable {
             navbar.addSubview(closeButton)
             NSLayoutConstraint.activate([
-                closeButton.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 10),
-                closeButton.trailingAnchor.constraint(equalTo: navbar.trailingAnchor, constant: -10)
+                closeButton.centerYAnchor.constraint(equalTo: navbar.centerYAnchor),
+                closeButton.trailingAnchor.constraint(equalTo: navbar.trailingAnchor, constant: -15)
             ])
         }
         
+        navbarHeightConstraint = navbar.heightAnchor.constraint(equalToConstant: navbarHeight)
         NSLayoutConstraint.activate([
-            navbar.heightAnchor.constraint(equalToConstant: 70),
+            navbarHeightConstraint!,
             navbar.leadingAnchor.constraint(equalTo: background.leadingAnchor),
             navbar.trailingAnchor.constraint(equalTo: background.trailingAnchor),
             navbar.topAnchor.constraint(equalTo: background.topAnchor),
@@ -63,7 +72,7 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
             navbarSeparator.bottomAnchor.constraint(equalTo: navbar.bottomAnchor),
         ])
         
-        additionalSafeAreaInsets = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
+        additionalSafeAreaInsets = UIEdgeInsets(top: navbarHeight, left: 0, bottom: 0, right: 0)
     }
     
     func update(progress: CGFloat) {

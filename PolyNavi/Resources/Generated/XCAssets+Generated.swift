@@ -31,6 +31,7 @@ internal enum Asset {
       internal static let wardrobe = ImageAsset(name: "wardrobe")
     }
   }
+  internal static let bottonSheetGroupped = ColorAsset(name: "BottonSheetGroupped")
   internal enum OverlayColors {
     internal static let defaultUnitFill = ColorAsset(name: "DefaultUnitFill")
     internal static let elevatorFill = ColorAsset(name: "ElevatorFill")

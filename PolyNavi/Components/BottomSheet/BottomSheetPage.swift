@@ -22,6 +22,7 @@ class BluredBackgroundBottomSheetPage: BottomSheetPage {
         
         $0.layer.cornerRadius = 11
         $0.clipsToBounds = true
+        $0.backgroundColor = .systemGroupedBackground.withAlphaComponent(0.4)
         
         let blur: UIVisualEffectView = {
             $0.frame = view.bounds
