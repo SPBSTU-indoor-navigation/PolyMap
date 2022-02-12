@@ -1,7 +1,6 @@
 import UIKit
 import UIScreenExtension
 
-
 protocol BottomSheetPageDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     func scrollViewDidScroll(_ scrollView: UIScrollView)
@@ -10,6 +9,12 @@ protocol BottomSheetPageDelegate {
     
     func verticalSize() -> BottomSheetViewController.VerticalSize
     func horizontalSize() -> BottomSheetViewController.HorizontalSize
+}
+
+protocol BottomSheetDelegate {
+    func onStateChange(from: BottomSheetViewController.VerticalSize, to: BottomSheetViewController.VerticalSize)
+    func onSizeChange(from: BottomSheetViewController.HorizontalSize?, to: BottomSheetViewController.HorizontalSize)
+    func onProgressChange(progress: CGFloat)
 }
 
 class BottomSheetViewController: UINavigationController {
@@ -57,7 +62,15 @@ class BottomSheetViewController: UINavigationController {
         }
     }
     
+    var bottomSheetDelegate: BottomSheetDelegate?
+    
     private var state: VerticalSize = .small {
+        willSet {
+            if state != newValue {
+                bottomSheetDelegate?.onStateChange(from: state, to: newValue)
+                onStateChange(from: state, to: newValue)
+            }
+        }
         didSet {
             if let vc = visibleViewController as? BottomSheetPage {
                 vc.onStateChange(verticalSize: state)
@@ -82,10 +95,15 @@ class BottomSheetViewController: UINavigationController {
     private var lastSize: HorizontalSize? {
         willSet {
             if lastSize != newValue {
-                if let newValue = newValue,
-                   let vc = visibleViewController as? BottomSheetPage
-                {
-                    vc.onStateChange(horizontalSize: newValue)
+                if let newValue = newValue {
+                    onSizeChange(from: lastSize, to: newValue)
+                    bottomSheetDelegate?.onSizeChange(from: lastSize, to: newValue)
+                    background.horizontalSize = newValue
+                    
+                    if let vc = visibleViewController as? BottomSheetPage
+                    {
+                        vc.onStateChange(horizontalSize: newValue)
+                    }
                 }
             }
             
@@ -101,6 +119,11 @@ class BottomSheetViewController: UINavigationController {
         return .big
     }
     
+    lazy var background: Background = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(Background())
+
     public init(parentVC: UIViewController, rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         
@@ -110,6 +133,15 @@ class BottomSheetViewController: UINavigationController {
             vc.onButtomSheetScroll(progress: 1)
             vc.onStateChange(verticalSize: state)
         }
+        
+        parentVC.view.addSubview(background)
+        
+        NSLayoutConstraint.activate([
+            background.leadingAnchor.constraint(equalTo: parentVC.view.leadingAnchor),
+            background.trailingAnchor.constraint(equalTo: parentVC.view.trailingAnchor),
+            background.topAnchor.constraint(equalTo: parentVC.view.topAnchor),
+            background.bottomAnchor.constraint(equalTo: parentVC.view.bottomAnchor)
+        ])
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -135,13 +167,21 @@ class BottomSheetViewController: UINavigationController {
                 vc.onStateChange(horizontalSize: lastSize)
             }
             vc.onStateChange(verticalSize: state)
-            applyProgress(vc: vc, from: position(for: .small), to: position(for: .big), current: view.frame.origin.y)
+            applyProgress(vc: vc, current: view.frame.origin.y)
         }
     }
     
-    func applyProgress(vc: UIViewController?, from: CGFloat, to: CGFloat, current: CGFloat) {
+    func applyProgress(vc: UIViewController?, current: CGFloat, from: CGFloat? = nil, to: CGFloat? = nil) {
+        
+        let from = from ?? position(for: .small)
+        let to = to ?? position(for: .big)
+        let fullProgress = progress(for: current, from: from, to: to)
+        
+        bottomSheetDelegate?.onProgressChange(progress: fullProgress)
+        background.progress(progress(for: current, from: to, to: position(for: .medium)))
+        
         if let vc = vc as? BottomSheetPage {
-            vc.onButtomSheetScroll(progress: (current - to) / (from - to))
+            vc.onButtomSheetScroll(progress: fullProgress)
         }
     }
     
@@ -188,7 +228,7 @@ class BottomSheetViewController: UINavigationController {
         case .big:
             return window.height - currentPosition + safeArea.top - safeAreaOffset
         case .small, .ultraSmall:
-            return window.height - currentPosition - safeAreaOffset
+            return max(60, window.height - currentPosition - safeAreaOffset)
         }
     }
     
@@ -209,44 +249,48 @@ class BottomSheetViewController: UINavigationController {
     }
     
     private func nextState(velocity: CGFloat) -> VerticalSize {
-        var realVelocity = velocity / 60
-        
-        if let pointsPerCentimeter = UIScreen.pointsPerCentimeter {
-            realVelocity = velocity / pointsPerCentimeter
-        }
-        
-        if realVelocity > Constants.velocitySuperLimit { return .small}
-        if realVelocity < -Constants.velocitySuperLimit { return .big}
-        
-        var possibleStates: [VerticalSize] = []
-        
-        if realVelocity < -Constants.velocityLimit {
-            possibleStates = state.stateBigger
-        } else if realVelocity > Constants.velocityLimit {
-            possibleStates = state.stateSmaller
-        } else {
-            possibleStates = [.small, .big, .medium]
-        }
-        
-        var nearestDistance = CGFloat.greatestFiniteMagnitude
-        var nearestState = VerticalSize.small
-        
-        for state in possibleStates {
-            let distance = abs(position(for: state) - currentPosition)
-            if distance < nearestDistance {
-                nearestState = state
-                nearestDistance = distance
+        func nearestState(pos: CGFloat, possibleStates: [VerticalSize]) -> VerticalSize {
+            var nearestDistance = CGFloat.greatestFiniteMagnitude
+            var nearestState = VerticalSize.small
+            
+            for state in possibleStates {
+                let distance = abs(position(for: state) - pos)
+                if distance < nearestDistance {
+                    nearestState = state
+                    nearestDistance = distance
+                }
             }
+            
+            return nearestState
         }
         
-        return nearestState
+        var singlePosible: [VerticalSize] = []
+        switch state {
+        case .small:
+            singlePosible = [.small, .medium]
+        case .medium:
+            singlePosible = [.small, .big, .medium]
+        case .big:
+            singlePosible = [.big, .medium]
+        }
+        
+        let nearestSingle = nearestState(pos: UIGestureRecognizer.project(velocity, onto: currentPosition, decelerationRate: .init(rawValue: 0.995)),
+                                         possibleStates: singlePosible)
+        
+        let nearestMulty = nearestState(pos: UIGestureRecognizer.project(velocity, onto: currentPosition, decelerationRate: .fast),
+                                        possibleStates: [.small, .big, .medium])
+        
+        if abs(state.rawValue - nearestMulty.rawValue) > 1 {
+            return nearestMulty
+        } else {
+            return nearestSingle
+        }
     }
     
     @objc
     private func panAction(_ sender: UIPanGestureRecognizer) {
         defer { viewDidLayoutSubviews() }
         
-        let velocity = sender.velocity(in: containerView)
         let translation = sender.translation(in: containerView)
         
         switch sender.state {
@@ -264,41 +308,39 @@ class BottomSheetViewController: UINavigationController {
                 currentPosition = targetPosition
             } else if targetPosition > smallerPos {
                 let delta = targetPosition - smallerPos
-                currentPosition = smallerPos + expLimit(delta, 10)
+                currentPosition = smallerPos + expLimit(delta, 20)
             } else if targetPosition < biggerPos {
                 let delta = biggerPos - targetPosition
                 currentPosition = biggerPos - expLimit(delta, 20)
             }
             
-            applyProgress(vc: visibleViewController, from: smallerPos, to: biggerPos, current: currentPosition)
+            applyProgress(vc: visibleViewController, current: currentPosition, from: smallerPos, to: biggerPos)
             
         case.ended:
             mooved = false
-            endAnimation(-velocity.y)
+            endAnimation(sender.velocity(in: view).y)
         default: break
         }
         
     }
     
     private func endAnimation(_ velocity: CGFloat) {
-        state = nextState(velocity: -velocity)
+        state = nextState(velocity: velocity)
         
-        let delta = abs(currentPosition - position(for: state))
-        currentPosition = position(for: state)
-        let initialVelocity = abs(velocity / delta) / 1000
+        let delta = position(for: state) - currentPosition
         
-        let displaylink = CADisplayLink(target: self, selector: #selector(endAnimationStep))
-        displaylink.add(to: .main, forMode: .default)
+        let initialVelocity = velocity / delta
         
-        UIView.animate(withDuration: 0.45, delay: 0, usingSpringWithDamping: initialVelocity > 0.001 ? 0.8 : 1, initialSpringVelocity: initialVelocity, options: [.curveEaseIn, .allowUserInteraction], animations: { [self] in
+        let timing = UISpringTimingParameters(damping: initialVelocity > 0.01 ? 0.8 : 1, response: 0.35, initialVelocity: CGVector(dx: initialVelocity, dy: initialVelocity))
+        let anim = UIViewPropertyAnimator(duration: 0, timingParameters: timing)
+        
+        anim.addAnimations { [self] in
+            currentPosition = position(for: state)
+            applyProgress(vc: visibleViewController, current: currentPosition)
             viewDidLayoutSubviews()
-        }, completion: { _ in
-            displaylink.invalidate()
-        })
-    }
-    
-    @objc private func endAnimationStep(displaylink: CADisplayLink) {
-        applyProgress(vc: visibleViewController, from: position(for: .small), to: position(for: .big), current: view.layer.presentation()!.frame.origin.y)
+        }
+        
+        anim.startAnimation()
     }
     
     func changeState(state: VerticalSize, duration: CGFloat = Constants.transitionDuration, animated: Bool = true, options: UIView.AnimationOptions = .curveEaseOut) {
@@ -306,15 +348,13 @@ class BottomSheetViewController: UINavigationController {
         
         currentPosition = position(for: state)
         if animated {
-            let displaylink = CADisplayLink(target: self, selector: #selector(endAnimationStep))
-            displaylink.add(to: .main, forMode: .default)
-            UIView.animate(withDuration: duration, delay: 0, options: [options, .allowUserInteraction], animations: {
-                self.viewDidLayoutSubviews()
-            }, completion: { _ in
-                displaylink.invalidate()
+            UIView.animate(withDuration: duration, delay: 0, options: [options, .allowUserInteraction], animations: { [self] in
+                viewDidLayoutSubviews()
+                applyProgress(vc: visibleViewController, current: currentPosition)
             })
         } else {
             viewDidLayoutSubviews()
+            applyProgress(vc: visibleViewController, current: currentPosition)
         }
     }
     
@@ -421,8 +461,7 @@ extension BottomSheetViewController: BottomSheetPageDelegate {
                 currentPosition = smallerPos
             }
             
-            applyProgress(vc: visibleViewController, from: smallerPos, to: biggerPos, current: currentPosition)
-            
+            applyProgress(vc: visibleViewController, current: currentPosition, from: smallerPos, to: biggerPos)
             viewDidLayoutSubviews()
         }
     }
@@ -430,7 +469,7 @@ extension BottomSheetViewController: BottomSheetPageDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if moovedByScroll {
             moovedByScroll = false
-            endAnimation(velocity.y * 1000)
+            endAnimation(-velocity.y * 1000)
             
             if startPosotion != position(for: .big) && scrollView.topContentOffset.y <= 0  {
                 targetContentOffset.pointee = CGPoint(x: 0, y: -scrollView.topOffset)
@@ -439,8 +478,47 @@ extension BottomSheetViewController: BottomSheetPageDelegate {
     }
 }
 
+extension BottomSheetViewController {
+    func onStateChange(from: VerticalSize, to: VerticalSize) { }
+    
+    func onSizeChange(from: HorizontalSize?, to: HorizontalSize) { }
+    
+}
 
+class Background: UIView {
+    private var blockIsEnable = false {
+        didSet {
+            isUserInteractionEnabled = horizontalSize == .big ? blockIsEnable : false
+        }
+    }
+    
+    var horizontalSize: BottomSheetViewController.HorizontalSize? {
+        didSet {
+            progress(self.progress)
+        }
+    }
+    
+    private var progress = 0.0 {
+        didSet {
+            blockIsEnable = progress > 0.1
+            
+            if horizontalSize == .big {
+                backgroundColor = .black.withAlphaComponent(max(0, min(1, progress)) * 0.5)
+            } else {
+                backgroundColor = .clear
+            }
+        }
+    }
+    
+    func progress(_ progress: CGFloat) {
+        self.progress = progress
+    }
+}
 
 fileprivate func expLimit(_ x: CGFloat, _ maxVal: CGFloat) -> CGFloat {
     return (1 - exp(-x / maxVal)) * maxVal
+}
+
+fileprivate func progress(for val: CGFloat, from: CGFloat, to: CGFloat) -> CGFloat {
+    return (val - to) / (from - to)
 }

@@ -61,7 +61,7 @@ class RouteInfoCell: UITableViewCell {
             routeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             routeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             contentView.heightAnchor.constraint(equalToConstant: 46),
-        ])
+        ].priority(.defaultHigh))
         
     }
     
@@ -103,7 +103,7 @@ class TitleHeader: UITableViewHeaderFooterView {
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             contentView.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8)
-        ])
+        ].priority(.defaultHigh))
     }
     
     required init?(coder: NSCoder) {
@@ -114,10 +114,18 @@ class TitleHeader: UITableViewHeaderFooterView {
 class UnitDetailVC: NavbarBottomSheetPage {
     let titleTopOffset = 14.0
     
-    private var useTitleTransition = false
-    {
+    private var useTitleTransition = false {
         willSet {
             if useTitleTransition != newValue {
+                tableView.reloadData()
+            }
+        }
+    }
+    
+    private var titleHeight = 0.0 {
+        willSet {
+            if titleHeight != newValue {
+                useTitleTransition = newValue > 40
                 tableView.reloadData()
             }
         }
@@ -148,11 +156,7 @@ class UnitDetailVC: NavbarBottomSheetPage {
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.allowsSelection = false
-        
-        if #available(iOS 15.0, *) {
-            $0.sectionHeaderTopPadding = 0
-            $0.sectionFooterHeight = 0
-        }
+        $0.sectionFooterHeight = 0
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
     
@@ -184,10 +188,9 @@ class UnitDetailVC: NavbarBottomSheetPage {
         configurate(titleText: "Saint Petersburg Saint Petersburg Saint Petersburg")
     }
     
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        useTitleTransition = titleLabel.frame.height > 40
+        titleHeight = titleLabel.frame.height
     }
     
     override func onStateChange(horizontalSize: BottomSheetViewController.HorizontalSize) {
@@ -205,7 +208,7 @@ class UnitDetailVC: NavbarBottomSheetPage {
 
 extension UnitDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 { return 1}
+        if section == 2 || (section == 0 && useTitleTransition) { return 1 }
         return 5
     }
     
@@ -214,25 +217,40 @@ extension UnitDetailVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         if section == 3 {
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "titleHeader")
-            return header
+            var cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "titleHeader")
+            return cell
         }
         
         return nil
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        UIView.animate(withDuration: 0.001) {
+            view.layoutIfNeeded()
+            view.layoutSubviews()
+        }
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 && indexPath.section == 0 && useTitleTransition {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "spacer", for: indexPath) as! Spacer
-            cell.configurate(height: titleLabel.frame.height - navbar.frame.height + titleTopOffset + 3)
-            return cell
+            
+            var cell: UITableViewCell?
+            UIView.performWithoutAnimation {
+                let spacer = tableView.dequeueReusableCell(withIdentifier: "spacer", for: indexPath) as! Spacer
+                spacer.configurate(height: titleLabel.frame.height - navbar.frame.height + titleTopOffset + 3)
+                cell = spacer
+            }
+            
+            return cell!
+            
         }
         
         if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: RouteInfoCell.identifire, for: indexPath) as! RouteInfoCell
-//            cell.configurate(height: titleLabel.frame.height - navbar.frame.height + titleTopOffset + 3)
             return cell
         }
         
@@ -246,6 +264,15 @@ extension UnitDetailVC: UITableViewDataSource {
     func setupColor(color: UIColor) {
         view.backgroundColor = .clear
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 && useTitleTransition {
+            return 0
+        }
+        
+        return UITableView.automaticDimension
+    }
+
 }
 
 extension UnitDetailVC: UITableViewDelegate {
