@@ -42,6 +42,7 @@ class RouteInfoCell: UITableViewCell {
         
         $0.tintColor = .white
         $0.layer.cornerRadius = 10
+        $0.layer.cornerCurve = .continuous  
         
         $0.addTarget(self, action: #selector(routeClick(_:)), for: .touchUpInside)
         return $0

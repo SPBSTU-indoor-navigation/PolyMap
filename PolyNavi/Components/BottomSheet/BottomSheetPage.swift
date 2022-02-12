@@ -21,6 +21,7 @@ class BluredBackgroundBottomSheetPage: BottomSheetPage {
         $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         $0.layer.cornerRadius = 11
+        $0.layer.cornerCurve = .continuous
         $0.clipsToBounds = true
         $0.backgroundColor = .systemGroupedBackground.withAlphaComponent(0.4)
         
