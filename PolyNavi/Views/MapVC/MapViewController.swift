@@ -8,6 +8,7 @@
 import UIKit
 
 class MapViewController: UIViewController {
+    
     private lazy var button: RoundButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         
@@ -26,9 +27,19 @@ class MapViewController: UIViewController {
         return $0
     }(MapView())
     
+    private lazy var bottomSheetVC: BottomSheetViewController = {
+        $0.view.clipsToBounds = false
+        $0.view.layer.masksToBounds = false
+        return $0
+    }(BottomSheetViewController(parentVC: self, rootViewController: SearchVC()))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        
+        addChild(bottomSheetVC)
+        view.addSubview(bottomSheetVC.view)
+        bottomSheetVC.didMove(toParent: self)
     }
     
     func setupViews() {
