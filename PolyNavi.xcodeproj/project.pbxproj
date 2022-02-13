@@ -32,6 +32,7 @@
 		9717E4272742991F00332D29 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4262742991F00332D29 /* MapView.swift */; };
 		9717E46027447A7D00332D29 /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		973BEC0D278677D100A66B33 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973BEC0C278677D100A66B33 /* Utils.swift */; };
+		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* UnitAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* UnitAnnotation.swift */; };
 		975015412795B13200326B09 /* AttractionAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015402795B13200326B09 /* AttractionAnnotation.swift */; };
@@ -51,7 +52,6 @@
 		97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941916278BCAF10038CBEF /* PointAnnotationView.swift */; };
 		97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */; };
 		97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */; };
-		97944DAF279B6D5900FE5787 /* EnviromentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97944DAE279B6D5900FE5787 /* EnviromentDetail.swift */; };
 		979E2C75278763A9008CFA05 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C74278763A9008CFA05 /* Venue.swift */; };
 		979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C762788A7C7008CFA05 /* MapExtensions.swift */; };
 		979E2C792789D1C6008CFA05 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C782789D1C6008CFA05 /* Feature.swift */; };
@@ -95,6 +95,7 @@
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		973BEC0C278677D100A66B33 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		974FA70927B88D51001A4A25 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		9750153E2795B11500326B09 /* UnitAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitAnnotation.swift; sourceTree = "<group>"; };
 		975015402795B13200326B09 /* AttractionAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionAnnotation.swift; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		97941916278BCAF10038CBEF /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
 		97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityAnnotationView.swift; sourceTree = "<group>"; };
 		97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayedMapView.swift; sourceTree = "<group>"; };
-		97944DAE279B6D5900FE5787 /* EnviromentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentDetail.swift; sourceTree = "<group>"; };
 		979E2C74278763A9008CFA05 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		979E2C762788A7C7008CFA05 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
 		979E2C782789D1C6008CFA05 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
@@ -329,8 +329,8 @@
 				9750154C2795B30A00326B09 /* Level.swift */,
 				9750154E2795B32100326B09 /* Building.swift */,
 				975015502795B33300326B09 /* EnviromentUnit.swift */,
+				974FA70927B88D51001A4A25 /* Detail.swift */,
 				975015612799B86F00326B09 /* CustomOverlay.swift */,
-				97944DAE279B6D5900FE5787 /* EnviromentDetail.swift */,
 			);
 			path = Overlays;
 			sourceTree = "<group>";
@@ -557,7 +557,6 @@
 				9717E4272742991F00332D29 /* MapView.swift in Sources */,
 				0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */,
 				05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */,
-				97944DAF279B6D5900FE5787 /* EnviromentDetail.swift in Sources */,
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
 				0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */,
 				975015452795B16900326B09 /* EnviromentAmenityAnnotation.swift in Sources */,
@@ -569,6 +568,7 @@
 				975015622799B86F00326B09 /* CustomOverlay.swift in Sources */,
 				05C32AC7271F4C3E0033B751 /* SettingsModel.swift in Sources */,
 				9750154B2795B2F400326B09 /* Unit.swift in Sources */,
+				974FA70A27B88D51001A4A25 /* Detail.swift in Sources */,
 				979E2C832789DF39008CFA05 /* LocalizedName.swift in Sources */,
 				056F2D00271C5EB60063015B /* Strings+Generated.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
