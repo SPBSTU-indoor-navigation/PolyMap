@@ -119,6 +119,7 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
         vc.updateButtonTitle = updateButtonTitle
         vc.dateLoaded = dateLoaded
         vc.additionalSafeAreaInsets = safeAreaInset
+        dictOffsets[vc.date] = -timetableNavbar.height
         return vc
     }
     
@@ -129,13 +130,14 @@ extension TimetablePageVC: UIPageViewControllerDelegate, UIPageViewControllerDat
     }
     
     func updateButtonTitle(isCurrentVC: Bool, withoutCurrentDate: Bool) {
-        timetableToolBar.toCorrectPositionButton.isEnabled = true
-        if withoutCurrentDate {
-            timetableToolBar.toCorrectPositionButton.setTitle(L10n.Timetable.notHaveCurrentDay, for: .normal)
-            timetableToolBar.toCorrectPositionButton.isEnabled = false
-        } else {
-            timetableToolBar.toCorrectPositionButton.setTitle(L10n.Timetable.toTodayTimetable, for: .normal)
+        let label = withoutCurrentDate ? L10n.Timetable.notHaveCurrentDay : L10n.Timetable.toTodayTimetable
+        
+        UIView.performWithoutAnimation {
+            timetableToolBar.toCorrectPositionButton.setTitle(label, for: .normal)
+            timetableToolBar.toCorrectPositionButton.layoutIfNeeded()
         }
+        
+        timetableToolBar.toCorrectPositionButton.isEnabled = !withoutCurrentDate
     }
     
     func willAppear(page: TimetableViewController) {

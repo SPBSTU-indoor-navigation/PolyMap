@@ -8,8 +8,7 @@ target 'PolyNavi' do
   # Network
   pod 'Alamofire', '~> 5.2'
   
-  #Skeleton
-  pod 'SkeletonView' # Shimmer effect for loading
+  #UI
   pod 'M13Checkbox'
 
   pod 'UIScreenExtension', :git => 'https://github.com/marchv/UIScreenExtension'

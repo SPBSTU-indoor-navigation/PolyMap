@@ -17,7 +17,7 @@ class MapViewController: UIViewController {
         
         $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout)
-        
+        $0.addShadow()
         $0.addTarget(self, action: #selector(openTimetable(_:)), for: .touchUpInside)
         return $0
     }(RoundButton(type: .system))
@@ -53,7 +53,7 @@ class MapViewController: UIViewController {
         
         view.addSubview(mapView)
         view.addSubview(container)
-        
+    
         
         NSLayoutConstraint.activate([
             container.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
@@ -69,7 +69,6 @@ class MapViewController: UIViewController {
         ])
 
     }
-    
     
     @objc
     func openTimetable(_ sender: UIButton?) {

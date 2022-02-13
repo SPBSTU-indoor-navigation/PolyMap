@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SkeletonView
 
 extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {
 

@@ -24,24 +24,76 @@ internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
   internal enum Annotation {
     internal enum Amenity {
+      internal static let administration = ImageAsset(name: "administration")
+      internal static let banch = ImageAsset(name: "banch")
+      internal static let classroom = ImageAsset(name: "classroom")
+      internal static let `default` = ImageAsset(name: "default")
+      internal static let foodserviceCoffee = ImageAsset(name: "foodservice.coffee")
+      internal static let laboratorium = ImageAsset(name: "laboratorium")
+      internal static let lecture = ImageAsset(name: "lecture")
       internal static let parkingBicycle = ImageAsset(name: "parking.bicycle")
       internal static let parkingCar = ImageAsset(name: "parking.car")
+      internal static let restroomFemale = ImageAsset(name: "restroom.female")
+      internal static let restroomMale = ImageAsset(name: "restroom.male")
       internal static let security = ImageAsset(name: "security")
       internal static let shop = ImageAsset(name: "shop")
+      internal static let stairs = ImageAsset(name: "stairs")
+      internal static let vendingmachine = ImageAsset(name: "vendingmachine")
       internal static let wardrobe = ImageAsset(name: "wardrobe")
+    }
+    internal enum Buildings {
+      internal static let gydro = ImageAsset(name: "Gydro")
+    }
+    internal enum Colors {
+      internal static let attractionBackground = ColorAsset(name: "AttractionBackground")
+      internal static let attractionBorder = ColorAsset(name: "AttractionBorder")
+      internal static let attractionTextColor = ColorAsset(name: "AttractionTextColor")
+      internal static let attractionTextStroke = ColorAsset(name: "AttractionTextStroke")
+      internal static let stroke = ColorAsset(name: "Stroke")
+      internal enum Units {
+        internal static let administrationAnnotation = ColorAsset(name: "administration-annotation")
+        internal static let foodserviceAnnotation = ColorAsset(name: "foodservice-annotation")
+        internal static let foodserviceCoffeeAnnotation = ColorAsset(name: "foodservice.coffee-annotation")
+        internal static let restroomAnnotation = ColorAsset(name: "restroom-annotation")
+        internal static let securityAnnotation = ColorAsset(name: "security-annotation")
+        internal static let shopAnnotation = ColorAsset(name: "shop-annotation")
+        internal static let wardrobeAnnotation = ColorAsset(name: "wardrobe-annotation")
+      }
     }
   }
   internal static let bottonSheetGroupped = ColorAsset(name: "BottonSheetGroupped")
-  internal enum OverlayColors {
-    internal static let defaultUnitFill = ColorAsset(name: "DefaultUnitFill")
-    internal static let elevatorFill = ColorAsset(name: "ElevatorFill")
-    internal static let levelFill = ColorAsset(name: "LevelFill")
-    internal static let levelStroke = ColorAsset(name: "LevelStroke")
-    internal static let nonPublicFill = ColorAsset(name: "NonPublicFill")
-    internal static let restroomFill = ColorAsset(name: "RestroomFill")
-    internal static let roomFill = ColorAsset(name: "RoomFill")
-    internal static let unitStroke = ColorAsset(name: "UnitStroke")
-    internal static let walkwayFill = ColorAsset(name: "WalkwayFill")
+  internal enum IMDFColors {
+    internal static let buildingFill = ColorAsset(name: "BuildingFill")
+    internal static let buildingLine = ColorAsset(name: "BuildingLine")
+    internal static let buildingUnderLevel = ColorAsset(name: "BuildingUnderLevel")
+    internal static let `default` = ColorAsset(name: "Default")
+    internal enum Enviroment {
+      internal static let crosswalk = ColorAsset(name: "crosswalk")
+      internal static let fenceHeigth = ColorAsset(name: "fence.heigth")
+      internal static let fenceMain = ColorAsset(name: "fence.main")
+      internal static let forest = ColorAsset(name: "forest")
+      internal static let grass = ColorAsset(name: "grass")
+      internal static let roadDirt = ColorAsset(name: "road.dirt")
+      internal static let roadMain = ColorAsset(name: "road.main")
+      internal static let roadPedestrianMain = ColorAsset(name: "road.pedestrian.main")
+      internal static let roadPedestrianSecond = ColorAsset(name: "road.pedestrian.second")
+      internal static let steps = ColorAsset(name: "steps")
+      internal static let tree = ColorAsset(name: "tree")
+    }
+    internal static let levelLine = ColorAsset(name: "LevelLine")
+    internal enum Units {
+      internal static let defaultLine = ColorAsset(name: "DefaultLine")
+      internal static let indoorStairs = ColorAsset(name: "indoor.stairs")
+      internal static let indoorSteps = ColorAsset(name: "indoor.steps")
+      internal static let restricted = ColorAsset(name: "restricted")
+      internal static let restroom = ColorAsset(name: "restroom")
+      internal static let stairs = ColorAsset(name: "stairs")
+      internal static let walkway = ColorAsset(name: "walkway")
+    }
+    internal static let venueFill = ColorAsset(name: "VenueFill")
+  }
+  internal enum Images {
+    internal static let rotateBuilding = ImageAsset(name: "rotateBuilding")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

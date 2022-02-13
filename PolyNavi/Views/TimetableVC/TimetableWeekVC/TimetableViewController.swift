@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SkeletonView
 
 class TimetableViewController: UIViewController {
     

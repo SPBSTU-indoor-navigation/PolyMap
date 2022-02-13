@@ -172,7 +172,7 @@ class TimetableNavbar: UIView  {
     
     public func setDateLabel(with date: Date, isOdd: Bool? = nil) {
         currentStartDay = TimetableProvider.shared.startOfWeek(date)
-        let lastDay = Calendar.current.date(byAdding: .day, value: 7, to: currentStartDay!)!
+        let lastDay = Calendar.current.date(byAdding: .day, value: 6, to: currentStartDay!)!
         dateLabel.text = "\(stringDateFormatter.string(from: currentStartDay!)) - \(stringDateFormatter.string(from: lastDay))"
         
         guard let odd = isOdd else { return oddLabel.text = "" }

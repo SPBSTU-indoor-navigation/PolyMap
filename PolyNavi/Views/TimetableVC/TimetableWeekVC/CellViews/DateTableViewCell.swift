@@ -35,7 +35,7 @@ class DateTableViewCell: UITableViewHeaderFooterView {
     }(UILabel())
     
     private lazy var circle: UIView = {
-        $0.backgroundColor = .systemBlue
+        $0.backgroundColor = Asset.accentColor.color
         $0.layer.cornerRadius = 5
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
