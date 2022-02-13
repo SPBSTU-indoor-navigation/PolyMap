@@ -9,8 +9,8 @@ import MapKit
 
 class UnitAnnotation: NSObject, MKAnnotation, Identifiable {
     enum DetailLevel: Int {
-//        case circlePrimary = 0
-//        case circleSecondary = 1
+        case circlePrimary = 0
+        case circleSecondary = 1
         case circleWithoutLabel = 2
         case pointPrimary = 3
         case pointSecondary = 4

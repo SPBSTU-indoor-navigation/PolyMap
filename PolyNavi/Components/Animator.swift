@@ -17,7 +17,7 @@ class Animator {
         var withDuration: TimeInterval
         var delay: TimeInterval
         var options: UIView.AnimationOptions
-        var animations: (() -> Void)
+        var animations: () -> Void
         var completion: ((Bool) -> Void)?
         
         init(withDuration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions, animations: @escaping (() -> Void), completion: ((Bool) -> Void)?) {
@@ -44,7 +44,7 @@ class Animator {
         var usingSpringWithDamping: CGFloat
         var initialSpringVelocity: CGFloat
         var options: UIView.AnimationOptions
-        var animations: (() -> Void)
+        var animations: () -> Void
         var completion: ((Bool) -> Void)?
         
         init(withDuration: TimeInterval, delay: TimeInterval, usingSpringWithDamping: CGFloat, initialSpringVelocity: CGFloat, options: UIView.AnimationOptions, animations: @escaping (() -> Void), completion: ((Bool) -> Void)?) {

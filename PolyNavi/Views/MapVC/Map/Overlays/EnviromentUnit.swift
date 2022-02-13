@@ -26,8 +26,6 @@ class EnviromentUnit: CustomOverlay, Styleble {
             renderer.strokeColor = renderer.fillColor
             renderer.lineWidth = 1
         }
-        
-        
     }
 }
 

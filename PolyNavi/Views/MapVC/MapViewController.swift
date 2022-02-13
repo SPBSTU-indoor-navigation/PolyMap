@@ -59,7 +59,6 @@ class MapViewController: UIViewController {
 
     }
     
-    
     @objc
     func openTimetable(_ sender: UIButton?) {
         var vc: UIViewController

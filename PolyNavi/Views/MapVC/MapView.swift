@@ -200,7 +200,6 @@ class MapView: UIView {
         }
     }
     
-    
     func updateMap(nearestBuilding: Building?) {
         
         if currentBuilding != nearestBuilding {

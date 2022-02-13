@@ -19,10 +19,10 @@ extension CLLocationCoordinate2D {
 }
 
 extension UIView {
-    func addShadow() {
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowOffset = .zero
-        self.layer.shadowRadius = 5
+    func addShadow(shadowOpacity: Float = 0.2, shadowOffset: CGSize = .zero, shadowRadius: CGFloat = 5) {
+        self.layer.shadowOpacity = shadowOpacity
+        self.layer.shadowOffset = shadowOffset
+        self.layer.shadowRadius = shadowRadius
     }
 }
 

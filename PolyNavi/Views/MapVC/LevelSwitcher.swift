@@ -93,7 +93,6 @@ class LevelSwitcher: UIView {
         }(UILabel())
     }
     
-    
     func layoutViews() {
         addSubview(background)
         background.addSubview(current)

@@ -46,15 +46,10 @@ class Unit: CustomOverlay, Styleble {
             switch categoty {
             case .restroom, .restroomFemale, .restroomMale:
                 renderer.fillColor = Asset.IMDFColors.Units.restroom.color
-//            case .walkway:
-//                renderer.strokeColor = renderer.fillColor
-//                renderer.lineWidth = 0.001
             default: break
             }
             
             switch categoty {
-                //        case .stairs:
-                //            renderer.strokeColor = Asset.IMDFColors.Units.defaultLine.color.withAlphaComponent(0.5)
             default: break
             }
         }
