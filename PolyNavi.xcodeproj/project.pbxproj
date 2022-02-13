@@ -418,6 +418,7 @@
 		9780D8B827B32DC800DBDBF3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				979E2C762788A7C7008CFA05 /* MapExtensions.swift */,
 				9780D8B927B32DDD00DBDBF3 /* Extensions.swift */,
 			);
 			path = Extensions;
@@ -473,7 +474,6 @@
 				9780D8B327B32C7000DBDBF3 /* BottomSheet */,
 				9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */,
 				97A484BF2717BAF700D14997 /* RoundButton.swift */,
-				979E2C762788A7C7008CFA05 /* MapExtensions.swift */,
 				9750153A2793BA1400326B09 /* Animator.swift */,
 			);
 			path = Components;

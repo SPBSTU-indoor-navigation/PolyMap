@@ -46,6 +46,15 @@ extension Array where Iterator.Element : NSLayoutConstraint {
     }
 }
 
+
+extension UIView {
+    func addShadow(shadowOpacity: Float = 0.2, shadowOffset: CGSize = .zero, shadowRadius: CGFloat = 5) {
+        self.layer.shadowOpacity = shadowOpacity
+        self.layer.shadowOffset = shadowOffset
+        self.layer.shadowRadius = shadowRadius
+    }
+}
+
 extension UISpringTimingParameters {
     
     /// A design-friendly way to create a spring timing curve.
