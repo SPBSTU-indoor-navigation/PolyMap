@@ -1,12 +1,13 @@
-/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-This class decodes GeoJSON-based IMDF data and returns structured types.
-*/
+//
+//  IMDFDecoder.swift
+//  PolyNavi
+//
+//  Created by Andrei Soprachev on 08.01.2022.
+//
 
 import Foundation
 import MapKit
+import M13Checkbox
 
 protocol IMDFDecodableFeature {
     init(feature: MKGeoJSONFeature) throws
@@ -17,155 +18,151 @@ enum IMDFError: Error {
     case invalidData
 }
 
-private struct IMDFArchive {
-    let baseDirectory: URL
-    init(directory: URL) {
-        baseDirectory = directory
+enum File {
+    case address
+    case amenity
+    case anchor
+    case building
+    case detail
+    case fixture
+    case footprint
+    case geofence
+    case kiosk
+    case level
+    case manifest
+    case occupant
+    case opening
+    case relationship
+    case section
+    case unit
+    case venue
+    case enviroment
+    case enviromentAmenity
+    case attraction
+    
+    var filename: String {
+        return "\(self).geojson"
     }
     
-    enum File {
-        case address
-        case amenity
-        case anchor
-        case building
-        case detail
-        case fixture
-        case footprint
-        case geofence
-        case kiosk
-        case level
-        case manifest
-        case occupant
-        case opening
-        case relationship
-        case section
-        case unit
-        case venue
-        
-        var filename: String {
-            return "\(self).geojson"
-        }
-    }
-    
-    func fileURL(for file: File) -> URL {
-        return baseDirectory.appendingPathComponent(file.filename)
+    func fileURL(_ baseDirectory: URL) -> URL {
+        return baseDirectory.appendingPathComponent(self.filename)
     }
 }
 
 class IMDFDecoder {
-    private let geoJSONDecoder = MKGeoJSONDecoder()
-    func decode(_ imdfDirectory: URL) throws -> Venue {
-        let archive = IMDFArchive(directory: imdfDirectory)
+    static func decode(_ path: URL) -> Venue? {
         
-        // Decode all the features that need to be rendered.
-        let venues = try decodeFeatures(Venue.self, from: .venue, in: archive)
-        let levels = try decodeFeatures(Level.self, from: .level, in: archive)
-        let units = try decodeFeatures(Unit.self, from: .unit, in: archive)
-        let openings = try decodeFeatures(Opening.self, from: .opening, in: archive)
-        let amenities = try decodeFeatures(Amenity.self, from: .amenity, in: archive)
+        let addresses = try! decodeFeatures(IMDF.Address.self, path: File.address.fileURL(path))
+        let addressesByID = Dictionary(uniqueKeysWithValues: addresses.map{ ($0.identifier, $0) })
         
-        // Associate levels to venues.
-        guard venues.count == 1 else {
-            throw IMDFError.invalidData
-        }
-        let venue = venues[0]
-        venue.levelsByOrdinal = Dictionary(grouping: levels, by: { $0.properties.ordinal })
         
-        // Associate Units and Opening to levels.
-        let unitsByLevel = Dictionary(grouping: units, by: { $0.properties.levelId })
-        let openingsByLevel = Dictionary(grouping: openings, by: { $0.properties.levelId })
-
-        // Associate each Level with its corresponding Units and Openings.
-        for level in levels {
-            if let unitsInLevel = unitsByLevel[level.identifier] {
-                level.units = unitsInLevel
-            }
-            if let openingsInLevel = openingsByLevel[level.identifier] {
-                level.openings = openingsInLevel
-            }
-        }
+        let venues = try! decodeFeatures(IMDF.Venue.self, path: File.venue.fileURL(path))
+        let imdfBuildings = try! decodeFeatures(IMDF.Building.self, path: File.building.fileURL(path))
+        let imdfLevels = try! decodeFeatures(IMDF.Level.self, path: File.level.fileURL(path))
+        let imdfUnits = try! decodeFeatures(IMDF.Unit.self, path: File.unit.fileURL(path))
+        let imdfOpening = try! decodeFeatures(IMDF.Opening.self, path: File.opening.fileURL(path))
+        let detail = try! decodeFeatures(IMDF.Detail.self, path: File.detail.fileURL(path))
+        let amenitys = try! decodeFeatures(IMDF.Amenity.self, path: File.amenity.fileURL(path))
+        let enviroments = try! decodeFeatures(IMDF.EnviromentUnit.self, path: File.enviroment.fileURL(path))
+        let enviromentAmenitys = try! decodeFeatures(IMDF.EnviromentAmenity.self, path: File.enviromentAmenity.fileURL(path))
+        let attraction = try! decodeFeatures(IMDF.Attraction.self, path: File.attraction.fileURL(path))
         
-        // Associate Amenities to the Unit in which they reside.
-        let unitsById = units.reduce(into: [UUID: Unit]()) {
-            $0[$1.identifier] = $1
-        }
         
-        for amenity in amenities {
-            guard let pointGeometry = amenity.geometry[0] as? MKPointAnnotation else {
-                throw IMDFError.invalidData
-            }
-            
-            if let name = amenity.properties.name?.bestLocalizedValue {
-                amenity.title = name
-                amenity.subtitle = amenity.properties.category.capitalized
-            } else {
-                amenity.title = amenity.properties.category.capitalized
-            }
-            
-            for unitID in amenity.properties.unitIds {
-                let unit = unitsById[unitID]
-                unit?.amenities.append(amenity)
-            }
-            
-            amenity.coordinate = pointGeometry.coordinate
-        }
-
-        // Occupants (and certain other IMDF features) do not directly contain geometry. Instead, they reference a separate `Anchor` which
-        // contains geometry. Occupants should be associated with Units.
-        try decodeOccupants(units: units, in: archive)
+        guard let venue = venues.first else { return nil }
         
-        return venue
+        let buildings = imdfBuildings.map({ building in
+            return Building(building.geometry.overlay(),
+                            levels: imdfLevels
+                                .filter({ $0.properties.building_ids.contains(building.identifier) })
+                                .map({ $0.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys, details: detail)}),
+                            attractions: attraction.filter({ $0.properties.building_id == building.identifier }),
+                            rotation: building.properties.rotation)
+        })
+        
+        let result = Venue(geometry: venue.geometry.overlay(),
+                           buildings: buildings,
+                           enviroments: enviroments.map({ $0.cast() }),
+                           enviromentDetail: detail.filter({ $0.properties.level_id == nil }).map({ $0.cast() }),
+                           address: addressesByID[venue.properties.address_id],
+                           amenitys: enviromentAmenitys)
+        return result
     }
     
-    private func decodeOccupants(units: [Unit], in archive: IMDFArchive) throws {
-        let occupants = try decodeFeatures(Occupant.self, from: .occupant, in: archive)
-        let anchors = try decodeFeatures(Anchor.self, from: .anchor, in: archive)
-        let unitsById = units.reduce(into: [UUID: Unit]()) {
-            $0[$1.identifier] = $1
-        }
-        let anchorsById = anchors.reduce(into: [UUID: Anchor]()) {
-            $0[$1.identifier] = $1
-        }
+    static func decodeFeatures<T: IMDFDecodableFeature>(_ type: T.Type, path: URL) throws -> [T] {
+        let data = try Data(contentsOf: path)
+        let geoJSONFeatures = try MKGeoJSONDecoder().decode(data)
         
-        // Resolve the occupants location based on the referenced Anchor, and associating them
-        // with their corresponding Unit.
-        for occupant in occupants {
-            guard let anchor = anchorsById[occupant.properties.anchorId] else {
-                throw IMDFError.invalidData
-            }
-            
-            guard let pointGeometry = anchor.geometry[0] as? MKPointAnnotation else {
-                throw IMDFError.invalidData
-            }
-            occupant.coordinate = pointGeometry.coordinate
-            
-            if let name = occupant.properties.name.bestLocalizedValue {
-                occupant.title = name
-                occupant.subtitle = occupant.properties.category.capitalized
-            } else {
-                occupant.title = occupant.properties.category.capitalized
-            }
-            
-            guard let unit = unitsById[anchor.properties.unitId] else {
-                continue
-            }
-            
-            // Associate occupants to units.
-            unit.occupants.append(occupant)
-            occupant.unit = unit
-        }
-    }
-    
-    private func decodeFeatures<T: IMDFDecodableFeature>(_ type: T.Type, from file: IMDFArchive.File, in archive: IMDFArchive) throws -> [T] {
-        let fileURL = archive.fileURL(for: file)
-        let data = try Data(contentsOf: fileURL)
-        let geoJSONFeatures = try geoJSONDecoder.decode(data)
         guard let features = geoJSONFeatures as? [MKGeoJSONFeature] else {
             throw IMDFError.invalidType
         }
         
         let imdfFeatures = try features.map { try type.init(feature: $0) }
         return imdfFeatures
+    }
+    
+}
+
+extension IMDF.Level {
+    func cast(units: [IMDF.Unit], openings: [IMDF.Opening], amenitys: [IMDF.Amenity], details: [IMDF.Detail]) -> Level {
+        let units = units.filter({ $0.properties.level_id == self.identifier })
+        let unitsIds = Set(units.map({ $0.identifier }))
+        let amenitysFiltred = amenitys.filter({ !unitsIds.intersection($0.properties.unit_ids).isEmpty })
+        
+        
+        return Level(self.geometry.overlay(),
+                     ordinal: self.properties.ordinal,
+                     units: units.map({ $0.cast() }),
+                     openings: openings.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }),
+                     shortName: self.properties.short_name,
+                     amenitys: amenitysFiltred,
+                     details: details.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }))
+    }
+}
+
+extension IMDF.Unit {
+    func cast() -> Unit {
+        let properties = self.properties
+        
+        return Unit(self.geometry.overlay(),
+                    id: self.identifier,
+                    displayPoint: properties.display_point?.getCoordinates(),
+                    name: properties.name,
+                    altName: properties.alt_name,
+                    categoty: properties.category,
+                    restriction: properties.restriction)
+    }
+}
+
+extension IMDF.EnviromentUnit {
+    func cast()-> EnviromentUnit {
+        return EnviromentUnit(self.geometry.overlay(), category: properties.category)
+    }
+}
+
+extension IMDF.Opening {
+    func cast() -> Opening {
+        return Opening(geometry: self.geometry.overlay(), unitCategory: self.properties.unit_categoty)
+    }
+}
+
+extension IMDF.Detail {
+    func cast() -> Detail {
+        return try! Detail(geometry: self.geometry.overlay(), category: self.properties.category)
+    }
+}
+
+extension Array where Element == MKShape & MKGeoJSONObject {
+//    func polygon() -> [MKPolygon] {
+//        if let geometry = self.first as? MKPolygon {
+//            return [geometry]
+//        } else if let geometry = self.first as? MKMultiPolygon {
+//            return geometry.polygons
+//        }
+//        return []
+//    }
+    
+    func overlay() -> MKShape & MKOverlay {
+        return self.first as! MKShape & MKOverlay
     }
 }
 

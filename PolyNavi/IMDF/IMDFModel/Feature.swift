@@ -1,12 +1,26 @@
-/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-The base class for all IMDF Features.
-*/
+//
+//  Feature.swift
+//  PolyNavi
+//
+//  Created by Andrei Soprachev on 08.01.2022.
+//
 
 import Foundation
 import MapKit
+
+enum Restriction: String, Codable {
+    case employeesonly = "employeesonly"
+    case restricted = "restricted"
+}
+
+struct PointGeometry: Codable {
+//    let type: String = "Point"
+    let coordinates: [Double]
+    
+    func getCoordinates() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: coordinates.last!, longitude: coordinates.first!)
+    }
+}
 
 class Feature<Properties: Decodable>: NSObject, IMDFDecodableFeature {
     let identifier: UUID
@@ -14,27 +28,17 @@ class Feature<Properties: Decodable>: NSObject, IMDFDecodableFeature {
     let geometry: [MKShape & MKGeoJSONObject]
     
     required init(feature: MKGeoJSONFeature) throws {
-        guard let uuidString = feature.identifier else {
-            throw IMDFError.invalidData
-        }
-        
-        if let identifier = UUID(uuidString: uuidString) {
-            self.identifier = identifier
-        } else {
-            throw IMDFError.invalidData
-        }
+        identifier = UUID(uuidString: feature.identifier!)!
+        geometry = feature.geometry
         
         if let propertiesData = feature.properties {
             let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
+//            decoder.keyDecodingStrategy = .convertFromSnakeCase
             properties = try decoder.decode(Properties.self, from: propertiesData)
         } else {
             throw IMDFError.invalidData
         }
         
-        self.geometry = feature.geometry
-        
         super.init()
     }
 }
-
