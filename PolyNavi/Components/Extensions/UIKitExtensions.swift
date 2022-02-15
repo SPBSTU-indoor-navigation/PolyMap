@@ -7,8 +7,34 @@
 
 import UIKit
 
-extension UIScrollView {
+extension UIView {
+    func addShadow(shadowOpacity: Float = 0.2, shadowOffset: CGSize = .zero, shadowRadius: CGFloat = 5) {
+        self.layer.shadowOpacity = shadowOpacity
+        self.layer.shadowOffset = shadowOffset
+        self.layer.shadowRadius = shadowRadius
+    }
     
+    func subviewsByType(_ viewType: String) -> UIView? {
+        // function scans subviews recursively and returns reference to the found one of a type
+        if self.subviews.count > 0 {
+            for v in self.subviews {
+                let valueDescription = v.description
+                let keywords = viewType
+                if valueDescription.range(of: keywords) != nil {
+                    return v
+                }
+                if let inSubviews =  v.subviewsByType(viewType) {
+                    return inSubviews
+                }
+            }
+            return nil
+        } else {
+            return nil
+        }
+    }
+}
+
+extension UIScrollView {
     var topOffset: CGFloat {
         return safeAreaInsets.top
     }
@@ -24,10 +50,9 @@ extension UIScrollView {
     }
 }
 
-
 extension UIButton {
     func setBackgroundColor(color: UIColor, forState: UIControl.State) {
-        self.clipsToBounds = true  // add this to maintain corner radius
+        self.clipsToBounds = true
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
         if let context = UIGraphicsGetCurrentContext() {
             context.setFillColor(color.cgColor)
@@ -37,38 +62,6 @@ extension UIButton {
             self.setBackgroundImage(colorImage, for: forState)
         }
     }
-}
-
-extension Array where Iterator.Element : NSLayoutConstraint {
-    func priority(_ priority: UILayoutPriority) -> Self {
-        self.forEach({ $0.priority = priority })
-        return self
-    }
-}
-
-
-extension UIView {
-    func addShadow(shadowOpacity: Float = 0.2, shadowOffset: CGSize = .zero, shadowRadius: CGFloat = 5) {
-        self.layer.shadowOpacity = shadowOpacity
-        self.layer.shadowOffset = shadowOffset
-        self.layer.shadowRadius = shadowRadius
-    }
-}
-
-extension UISpringTimingParameters {
-    
-    /// A design-friendly way to create a spring timing curve.
-    ///
-    /// - Parameters:
-    ///   - damping: The 'bounciness' of the animation. Value must be between 0 and 1.
-    ///   - response: The 'speed' of the animation.
-    ///   - initialVelocity: The vector describing the starting motion of the property. Optional, default is `.zero`.
-    public convenience init(damping: CGFloat, response: CGFloat, initialVelocity: CGVector = .zero) {
-        let stiffness = pow(2 * .pi / response, 2)
-        let damp = 4 * .pi * damping / response
-        self.init(mass: 1, stiffness: stiffness, damping: damp, initialVelocity: initialVelocity)
-    }
-    
 }
 
 extension UIGestureRecognizer {
@@ -115,5 +108,12 @@ extension UIGestureRecognizer {
         let y = position.y + factor * velocity.dy
         
         return CGPoint(x: x, y: y)
+    }
+}
+
+extension Array where Iterator.Element : NSLayoutConstraint {
+    func priority(_ priority: UILayoutPriority) -> Self {
+        self.forEach({ $0.priority = priority })
+        return self
     }
 }

@@ -256,7 +256,7 @@ extension UnitDetailVC: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
 
-        cell.backgroundColor = Asset.bottonSheetGroupped.color
+        cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
         cell.textLabel?.text = "Unit \(indexPath.row)"
         return cell
     }
