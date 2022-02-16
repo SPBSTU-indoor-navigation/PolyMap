@@ -1,0 +1,6 @@
+module Pods_PolyNaviClip {
+  umbrella header "Pods-PolyNaviClip-umbrella.h"
+
+  export *
+  module * { export * }
+}

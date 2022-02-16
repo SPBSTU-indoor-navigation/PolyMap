@@ -16,7 +16,7 @@ target 'PolyNavi' do
 end
 
 
-target 'PolyMapAppClip' do
+target 'PolyNaviClip' do
   # SwiftGen
   pod 'SwiftGen', '~> 6.4.0'
 

@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_PolyMapAppClipVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_PolyMapAppClipVersionString[];
+FOUNDATION_EXPORT double Pods_PolyNaviClipVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_PolyNaviClipVersionString[];
 

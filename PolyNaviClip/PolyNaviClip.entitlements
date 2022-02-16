@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>appclips:polymap.soprachev</string>
+		<string>appclips:polymap.soprachev.com</string>
 	</array>
 	<key>com.apple.developer.parent-application-identifiers</key>
 	<array>
