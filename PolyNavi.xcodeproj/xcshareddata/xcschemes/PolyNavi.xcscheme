@@ -50,13 +50,6 @@
             ReferencedContainer = "container:PolyNavi.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "_XCAppClipURL"
-            value = "https://polymap.soprachev.com/test"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

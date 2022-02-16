@@ -2,6 +2,7 @@
 # platform :ios, '9.0'
 
 target 'PolyNavi' do
+  platform :ios, '13.0'
   # SwiftGen
   pod 'SwiftGen', '~> 6.4.0'
 
@@ -17,6 +18,7 @@ end
 
 
 target 'PolyNaviClip' do
+  platform :ios, '15.0'
   # SwiftGen
   pod 'SwiftGen', '~> 6.4.0'
 
