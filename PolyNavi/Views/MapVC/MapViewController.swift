@@ -72,6 +72,8 @@ class MapViewController: UIViewController {
     
     @objc
     func openTimetable(_ sender: UIButton?) {
+        
+#if !APPCLIP
         var vc: UIViewController
         
         if GroupsAndTeacherStorage.shared.isReady() {
@@ -89,6 +91,7 @@ class MapViewController: UIViewController {
         
         let navSettingVC = UINavigationController(rootViewController: vc)
         self.present(navSettingVC, animated: true)
+#endif
     }
     
 }

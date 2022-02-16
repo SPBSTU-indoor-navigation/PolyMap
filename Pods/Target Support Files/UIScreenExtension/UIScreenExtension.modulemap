@@ -1,6 +1,0 @@
-module UIScreenExtension {
-  umbrella header "UIScreenExtension-umbrella.h"
-
-  export *
-  module * { export * }
-}

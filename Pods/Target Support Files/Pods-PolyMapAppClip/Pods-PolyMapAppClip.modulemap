@@ -1,0 +1,6 @@
+module Pods_PolyMapAppClip {
+  umbrella header "Pods-PolyMapAppClip-umbrella.h"
+
+  export *
+  module * { export * }
+}

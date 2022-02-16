@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "054F6783270C7B4C00FCC07C"
-               BuildableName = "PolyNavi.app"
-               BlueprintName = "PolyNavi"
+               BlueprintIdentifier = "97C6DA5627BC7D630082AAC7"
+               BuildableName = "PolyMapAppClip.app"
+               BlueprintName = "PolyMapAppClip"
                ReferencedContainer = "container:PolyNavi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "054F6783270C7B4C00FCC07C"
-            BuildableName = "PolyNavi.app"
-            BlueprintName = "PolyNavi"
+            BlueprintIdentifier = "97C6DA5627BC7D630082AAC7"
+            BuildableName = "PolyMapAppClip.app"
+            BlueprintName = "PolyMapAppClip"
             ReferencedContainer = "container:PolyNavi.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -68,9 +68,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "054F6783270C7B4C00FCC07C"
-            BuildableName = "PolyNavi.app"
-            BlueprintName = "PolyNavi"
+            BlueprintIdentifier = "97C6DA5627BC7D630082AAC7"
+            BuildableName = "PolyMapAppClip.app"
+            BlueprintName = "PolyMapAppClip"
             ReferencedContainer = "container:PolyNavi.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

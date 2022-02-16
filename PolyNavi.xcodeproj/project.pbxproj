@@ -27,6 +27,7 @@
 		05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82C27134C5100C22D61 /* TimetableViewController.swift */; };
 		05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */; };
 		05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */; };
+		5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 		9717E4272742991F00332D29 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4262742991F00332D29 /* MapView.swift */; };
 		9717E46027447A7D00332D29 /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		972174DA27B549420055FCF0 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972174D927B549420055FCF0 /* TitleCell.swift */; };
@@ -70,10 +71,87 @@
 		97A484C02717BAF700D14997 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
 		97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */; };
+		97C6DA5A27BC7D630082AAC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C6DA5927BC7D630082AAC7 /* AppDelegate.swift */; };
+		97C6DA5C27BC7D630082AAC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C6DA5B27BC7D630082AAC7 /* SceneDelegate.swift */; };
+		97C6DA6627BC7D640082AAC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C6DA6427BC7D640082AAC7 /* LaunchScreen.storyboard */; };
+		97C6DA6B27BC7D640082AAC7 /* PolyMapAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 97C6DA5727BC7D630082AAC7 /* PolyMapAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
+		97E15D0927BC7F1100E636FC /* IMDFDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C7C2789D234008CFA05 /* IMDFDecoder.swift */; };
+		97E15D0A27BC7F1600E636FC /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C782789D1C6008CFA05 /* Feature.swift */; };
+		97E15D0B27BC7F1600E636FC /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C802789DE95008CFA05 /* Models.swift */; };
+		97E15D0C27BC7F1600E636FC /* LocalizedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C822789DF39008CFA05 /* LocalizedName.swift */; };
+		97E15D1327BC7F9500E636FC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750154C2795B30A00326B09 /* Level.swift */; };
+		97E15D1427BC7F9500E636FC /* EnviromentUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015502795B33300326B09 /* EnviromentUnit.swift */; };
+		97E15D1527BC7F9500E636FC /* CustomOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015612799B86F00326B09 /* CustomOverlay.swift */; };
+		97E15D1627BC7F9500E636FC /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
+		97E15D1727BC7F9500E636FC /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750154E2795B32100326B09 /* Building.swift */; };
+		97E15D1827BC7F9500E636FC /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C74278763A9008CFA05 /* Venue.swift */; };
+		97E15D1927BC7F9500E636FC /* Opening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015482795B2DF00326B09 /* Opening.swift */; };
+		97E15D1A27BC7F9500E636FC /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750154A2795B2F400326B09 /* Unit.swift */; };
+		97E15D1B27BC7F9A00E636FC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BB2717858700D14997 /* MapViewController.swift */; };
+		97E15D1C27BC7F9A00E636FC /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4262742991F00332D29 /* MapView.swift */; };
+		97E15D1D27BC7F9A00E636FC /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
+		97E15D1E27BC7F9E00E636FC /* MultiPolygonDetailRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */; };
+		97E15D1F27BC7FA300E636FC /* AmenityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015422795B14400326B09 /* AmenityAnnotation.swift */; };
+		97E15D2027BC7FA300E636FC /* EnviromentAmenityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015442795B16900326B09 /* EnviromentAmenityAnnotation.swift */; };
+		97E15D2127BC7FA300E636FC /* AmenityAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */; };
+		97E15D2227BC7FA300E636FC /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941916278BCAF10038CBEF /* PointAnnotationView.swift */; };
+		97E15D2327BC7FA300E636FC /* AttractionAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97501552279631A100326B09 /* AttractionAnnotationView.swift */; };
+		97E15D2427BC7FA300E636FC /* UnitAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* UnitAnnotation.swift */; };
+		97E15D2527BC7FA300E636FC /* AttractionAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015402795B13200326B09 /* AttractionAnnotation.swift */; };
+		97E15D2627BC7FA600E636FC /* OverlayedMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */; };
+		97E15D2727BC7FA600E636FC /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015462795B19200326B09 /* Shared.swift */; };
+		97E15D2827BC7FB500E636FC /* HitAcrossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DC047727A6FFDA00675162 /* HitAcrossView.swift */; };
+		97E15D2927BC7FCB00E636FC /* HitAcrossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DC047727A6FFDA00675162 /* HitAcrossView.swift */; };
+		97E15D2A27BC7FCE00E636FC /* THLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155627976A0A00326B09 /* THLabel.swift */; };
+		97E15D2B27BC7FD100E636FC /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C762788A7C7008CFA05 /* MapExtensions.swift */; };
+		97E15D2C27BC7FD100E636FC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B927B32DDD00DBDBF3 /* Extensions.swift */; };
+		97E15D2D27BC7FD400E636FC /* BottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B427B32C7000DBDBF3 /* BottomSheetPage.swift */; };
+		97E15D2E27BC7FD400E636FC /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B527B32C7000DBDBF3 /* BottomSheetViewController.swift */; };
+		97E15D2F27BC7FD400E636FC /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027727B9846800128EE6 /* BottomSheetTransition.swift */; };
+		97E15D3027BC7FD700E636FC /* ChangeableBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */; };
+		97E15D3127BC7FD700E636FC /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
+		97E15D3227BC7FD700E636FC /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
+		97E15D3327BC80E400E636FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054F6790270C7B4C00FCC07C /* Assets.xcassets */; };
+		97E15D3427BC80E900E636FC /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F2CFF271C5EB60063015B /* Strings+Generated.swift */; };
+		97E15D3527BC80E900E636FC /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F67A3270CD68900FCC07C /* XCAssets+Generated.swift */; };
+		97E15D3627BC80ED00E636FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 056F2D15271C623B0063015B /* Localizable.strings */; };
+		97E15D3727BC80F200E636FC /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
+		97E15D3827BC813500E636FC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973BEC0C278677D100A66B33 /* Utils.swift */; };
+		97E15D3927BC816000E636FC /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
+		97E15D3A27BC816000E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
+		97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
+		97E15D3C27BC816A00E636FC /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
+		97E15D3D27BC816A00E636FC /* TableBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */; };
+		97E15D3E27BC816A00E636FC /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972174D927B549420055FCF0 /* TitleCell.swift */; };
+		97E15D3F27BC816A00E636FC /* NavbarBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BB27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		97C6DA6927BC7D640082AAC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054F677C270C7B4B00FCC07C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97C6DA5627BC7D630082AAC7;
+			remoteInfo = PolyMapAppClip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		97C6DA6C27BC7D640082AAC7 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				97C6DA6B27BC7D640082AAC7 /* PolyMapAppClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0530A99B274969C700302C5F /* TimetableToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimetableToolBar.swift; path = PolyNavi/Views/TimetableVC/TimetableToolBar.swift; sourceTree = SOURCE_ROOT; };
@@ -102,6 +180,9 @@
 		05DC047727A6FFDA00675162 /* HitAcrossView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitAcrossView.swift; sourceTree = "<group>"; };
 		05F0D498278B4230009CEBA2 /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
 		378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55528A932DA8C01C2D2D6568 /* Pods-PolyMapAppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyMapAppClip.release.xcconfig"; path = "Target Support Files/Pods-PolyMapAppClip/Pods-PolyMapAppClip.release.xcconfig"; sourceTree = "<group>"; };
+		764E24D0B031857F17BD56B5 /* libPods-PolyMapAppClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyMapAppClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F8CE2653503032042C79524 /* Pods-PolyMapAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyMapAppClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyMapAppClip/Pods-PolyMapAppClip.debug.xcconfig"; sourceTree = "<group>"; };
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		972174D927B549420055FCF0 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
@@ -146,8 +227,20 @@
 		97A484BF2717BAF700D14997 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
 		97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableProvider.swift; sourceTree = "<group>"; };
+		97C6DA5727BC7D630082AAC7 /* PolyMapAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyMapAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97C6DA5927BC7D630082AAC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		97C6DA5B27BC7D630082AAC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		97C6DA6527BC7D640082AAC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		97C6DA6727BC7D640082AAC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97C6DA6827BC7D640082AAC7 /* PolyMapAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyMapAppClip.entitlements; sourceTree = "<group>"; };
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		97DD22D82772BBCF0083561B /* LevelSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSwitcher.swift; sourceTree = "<group>"; };
+		97E15D0127BC7EF200E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97E15D0227BC7EF200E636FC /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97E15D0327BC7EF200E636FC /* libUIScreenExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIScreenExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97E15D0D27BC7F2B00E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97E15D0E27BC7F2B00E636FC /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97E15D0F27BC7F2B00E636FC /* libUIScreenExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIScreenExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
 		E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.release.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +251,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */,
+				5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97C6DA5427BC7D630082AAC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				054F6786270C7B4C00FCC07C /* PolyNavi */,
+				97C6DA5827BC7D630082AAC7 /* PolyMapAppClip */,
 				054F6785270C7B4C00FCC07C /* Products */,
 				46370B1FDDF5AC7D9755CB89 /* Pods */,
 				4B73B799F57DEF02F87D3626 /* Frameworks */,
@@ -189,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				054F6784270C7B4C00FCC07C /* PolyNavi.app */,
+				97C6DA5727BC7D630082AAC7 /* PolyMapAppClip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -320,6 +423,8 @@
 			children = (
 				A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */,
 				E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */,
+				8F8CE2653503032042C79524 /* Pods-PolyMapAppClip.debug.xcconfig */,
+				55528A932DA8C01C2D2D6568 /* Pods-PolyMapAppClip.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -327,7 +432,14 @@
 		4B73B799F57DEF02F87D3626 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97E15D0D27BC7F2B00E636FC /* libAlamofire.a */,
+				97E15D0E27BC7F2B00E636FC /* libM13Checkbox.a */,
+				97E15D0F27BC7F2B00E636FC /* libUIScreenExtension.a */,
+				97E15D0127BC7EF200E636FC /* libAlamofire.a */,
+				97E15D0227BC7EF200E636FC /* libM13Checkbox.a */,
+				97E15D0327BC7EF200E636FC /* libUIScreenExtension.a */,
 				378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */,
+				764E24D0B031857F17BD56B5 /* libPods-PolyMapAppClip.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -468,8 +580,8 @@
 		97A484BE2717BAEA00D14997 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				97501554279769EF00326B09 /* THLabel */,
 				05DC047727A6FFDA00675162 /* HitAcrossView.swift */,
+				97501554279769EF00326B09 /* THLabel */,
 				9780D8B827B32DC800DBDBF3 /* Extensions */,
 				9780D8B327B32C7000DBDBF3 /* BottomSheet */,
 				9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */,
@@ -486,6 +598,18 @@
 				97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */,
 			);
 			path = Timetable;
+			sourceTree = "<group>";
+		};
+		97C6DA5827BC7D630082AAC7 /* PolyMapAppClip */ = {
+			isa = PBXGroup;
+			children = (
+				97C6DA5927BC7D630082AAC7 /* AppDelegate.swift */,
+				97C6DA5B27BC7D630082AAC7 /* SceneDelegate.swift */,
+				97C6DA6427BC7D640082AAC7 /* LaunchScreen.storyboard */,
+				97C6DA6727BC7D640082AAC7 /* Info.plist */,
+				97C6DA6827BC7D640082AAC7 /* PolyMapAppClip.entitlements */,
+			);
+			path = PolyMapAppClip;
 			sourceTree = "<group>";
 		};
 		97D551D62739D5FD002A5BBD /* TimeTableVC */ = {
@@ -511,15 +635,35 @@
 				054F6780270C7B4C00FCC07C /* Sources */,
 				054F6781270C7B4C00FCC07C /* Frameworks */,
 				054F6782270C7B4C00FCC07C /* Resources */,
+				97C6DA6C27BC7D640082AAC7 /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				97C6DA6A27BC7D640082AAC7 /* PBXTargetDependency */,
 			);
 			name = PolyNavi;
 			productName = PolyNavi;
 			productReference = 054F6784270C7B4C00FCC07C /* PolyNavi.app */;
 			productType = "com.apple.product-type.application";
+		};
+		97C6DA5627BC7D630082AAC7 /* PolyMapAppClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97C6DA6F27BC7D640082AAC7 /* Build configuration list for PBXNativeTarget "PolyMapAppClip" */;
+			buildPhases = (
+				A649879C6682663EB71F1148 /* [CP] Check Pods Manifest.lock */,
+				97C6DA5327BC7D630082AAC7 /* Sources */,
+				97C6DA5427BC7D630082AAC7 /* Frameworks */,
+				97C6DA5527BC7D630082AAC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PolyMapAppClip;
+			productName = PolyMapAppClip;
+			productReference = 97C6DA5727BC7D630082AAC7 /* PolyMapAppClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -527,11 +671,14 @@
 		054F677C270C7B4B00FCC07C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					054F6783270C7B4C00FCC07C = {
 						CreatedOnToolsVersion = 12.5;
+					};
+					97C6DA5627BC7D630082AAC7 = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
@@ -550,6 +697,7 @@
 			projectRoot = "";
 			targets = (
 				054F6783270C7B4C00FCC07C /* PolyNavi */,
+				97C6DA5627BC7D630082AAC7 /* PolyMapAppClip */,
 			);
 		};
 /* End PBXProject section */
@@ -563,6 +711,17 @@
 				056F2D13271C623B0063015B /* Localizable.strings in Resources */,
 				9717E46027447A7D00332D29 /* IMDFData in Resources */,
 				054F6791270C7B4C00FCC07C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97C6DA5527BC7D630082AAC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97E15D3627BC80ED00E636FC /* Localizable.strings in Resources */,
+				97C6DA6627BC7D640082AAC7 /* LaunchScreen.storyboard in Resources */,
+				97E15D3327BC80E400E636FC /* Assets.xcassets in Resources */,
+				97E15D3727BC80F200E636FC /* IMDFData in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +745,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT\"/SwiftGen/bin/swiftgen\n";
+		};
+		A649879C6682663EB71F1148 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PolyMapAppClip-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		E6F70D81C67778E7BEE3BC4E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -668,11 +849,13 @@
 				056F2D1E271CAED30063015B /* SettingTimetableVC.swift in Sources */,
 				975015432795B14400326B09 /* AmenityAnnotation.swift in Sources */,
 				97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */,
+				97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */,
 				979E2C792789D1C6008CFA05 /* Feature.swift in Sources */,
 				05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */,
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */,
+				97E15D2827BC7FB500E636FC /* HitAcrossView.swift in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
 				97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */,
@@ -680,7 +863,68 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		97C6DA5327BC7D630082AAC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97E15D3027BC7FD700E636FC /* ChangeableBlurEffectView.swift in Sources */,
+				97E15D1A27BC7F9500E636FC /* Unit.swift in Sources */,
+				97E15D2F27BC7FD400E636FC /* BottomSheetTransition.swift in Sources */,
+				97E15D2527BC7FA300E636FC /* AttractionAnnotation.swift in Sources */,
+				97E15D3D27BC816A00E636FC /* TableBottomSheetPage.swift in Sources */,
+				97E15D0C27BC7F1600E636FC /* LocalizedName.swift in Sources */,
+				97E15D1427BC7F9500E636FC /* EnviromentUnit.swift in Sources */,
+				97E15D3927BC816000E636FC /* SearchVC.swift in Sources */,
+				97E15D2A27BC7FCE00E636FC /* THLabel.swift in Sources */,
+				97E15D2427BC7FA300E636FC /* UnitAnnotation.swift in Sources */,
+				97E15D2127BC7FA300E636FC /* AmenityAnnotationView.swift in Sources */,
+				97C6DA5A27BC7D630082AAC7 /* AppDelegate.swift in Sources */,
+				97E15D0A27BC7F1600E636FC /* Feature.swift in Sources */,
+				97E15D2627BC7FA600E636FC /* OverlayedMapView.swift in Sources */,
+				97E15D2927BC7FCB00E636FC /* HitAcrossView.swift in Sources */,
+				97E15D3E27BC816A00E636FC /* TitleCell.swift in Sources */,
+				97E15D1527BC7F9500E636FC /* CustomOverlay.swift in Sources */,
+				97E15D3827BC813500E636FC /* Utils.swift in Sources */,
+				97E15D3C27BC816A00E636FC /* UnitDetailVC.swift in Sources */,
+				97E15D2327BC7FA300E636FC /* AttractionAnnotationView.swift in Sources */,
+				97E15D2B27BC7FD100E636FC /* MapExtensions.swift in Sources */,
+				97E15D2D27BC7FD400E636FC /* BottomSheetPage.swift in Sources */,
+				97E15D1E27BC7F9E00E636FC /* MultiPolygonDetailRenderer.swift in Sources */,
+				97E15D1F27BC7FA300E636FC /* AmenityAnnotation.swift in Sources */,
+				97E15D2727BC7FA600E636FC /* Shared.swift in Sources */,
+				97E15D1D27BC7F9A00E636FC /* LevelSwitcher.swift in Sources */,
+				97E15D3227BC7FD700E636FC /* Animator.swift in Sources */,
+				97E15D3427BC80E900E636FC /* Strings+Generated.swift in Sources */,
+				97E15D3127BC7FD700E636FC /* RoundButton.swift in Sources */,
+				97E15D3F27BC816A00E636FC /* NavbarBottomSheetPage.swift in Sources */,
+				97E15D0B27BC7F1600E636FC /* Models.swift in Sources */,
+				97E15D2027BC7FA300E636FC /* EnviromentAmenityAnnotation.swift in Sources */,
+				97E15D1727BC7F9500E636FC /* Building.swift in Sources */,
+				97E15D1C27BC7F9A00E636FC /* MapView.swift in Sources */,
+				97E15D1927BC7F9500E636FC /* Opening.swift in Sources */,
+				97E15D0927BC7F1100E636FC /* IMDFDecoder.swift in Sources */,
+				97E15D1327BC7F9500E636FC /* Level.swift in Sources */,
+				97E15D2227BC7FA300E636FC /* PointAnnotationView.swift in Sources */,
+				97E15D2C27BC7FD100E636FC /* Extensions.swift in Sources */,
+				97E15D2E27BC7FD400E636FC /* BottomSheetViewController.swift in Sources */,
+				97E15D3527BC80E900E636FC /* XCAssets+Generated.swift in Sources */,
+				97E15D1627BC7F9500E636FC /* Detail.swift in Sources */,
+				97E15D1827BC7F9500E636FC /* Venue.swift in Sources */,
+				97C6DA5C27BC7D630082AAC7 /* SceneDelegate.swift in Sources */,
+				97E15D1B27BC7F9A00E636FC /* MapViewController.swift in Sources */,
+				97E15D3A27BC816000E636FC /* FirstVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		97C6DA6A27BC7D640082AAC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97C6DA5627BC7D630082AAC7 /* PolyMapAppClip */;
+			targetProxy = 97C6DA6927BC7D640082AAC7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		054F6792270C7B4C00FCC07C /* LaunchScreen.storyboard */ = {
@@ -698,6 +942,14 @@
 				056F2D1A271C62EC0063015B /* ru */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		97C6DA6427BC7D640082AAC7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97C6DA6527BC7D640082AAC7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -890,6 +1142,15 @@
 			buildConfigurations = (
 				054F6799270C7B4C00FCC07C /* Debug */,
 				054F679A270C7B4C00FCC07C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97C6DA6F27BC7D640082AAC7 /* Build configuration list for PBXNativeTarget "PolyMapAppClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97C6DA6D27BC7D640082AAC7 /* Debug */,
+				97C6DA6E27BC7D640082AAC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

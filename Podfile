@@ -14,3 +14,16 @@ target 'PolyNavi' do
   pod 'UIScreenExtension', :git => 'https://github.com/marchv/UIScreenExtension'
 
 end
+
+
+target 'PolyMapAppClip' do
+  # SwiftGen
+  pod 'SwiftGen', '~> 6.4.0'
+
+  # Network
+  pod 'Alamofire', '~> 5.2'
+
+  pod 'UIScreenExtension', :git => 'https://github.com/marchv/UIScreenExtension'
+
+end
+

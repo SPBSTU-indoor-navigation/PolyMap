@@ -7,7 +7,6 @@
 
 import Foundation
 import MapKit
-import M13Checkbox
 
 protocol IMDFDecodableFeature {
     init(feature: MKGeoJSONFeature) throws
