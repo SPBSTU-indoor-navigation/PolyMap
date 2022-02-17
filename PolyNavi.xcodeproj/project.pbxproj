@@ -195,6 +195,7 @@
 		971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNaviClip.entitlements; sourceTree = "<group>"; };
 		972174D927B549420055FCF0 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		973BEC0C278677D100A66B33 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNavi.entitlements; sourceTree = "<group>"; };
 		974FA70927B88D51001A4A25 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		9750153E2795B11500326B09 /* UnitAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitAnnotation.swift; sourceTree = "<group>"; };
@@ -304,6 +305,7 @@
 		054F6786270C7B4C00FCC07C /* PolyNavi */ = {
 			isa = PBXGroup;
 			children = (
+				973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */,
 				9717E4282744744F00332D29 /* IMDF */,
 				97A484BE2717BAEA00D14997 /* Components */,
 				054F67A5270CD72700FCC07C /* App */,
