@@ -119,6 +119,9 @@
 		979E2C812789DE95008CFA05 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C802789DE95008CFA05 /* Models.swift */; };
 		979E2C832789DF39008CFA05 /* LocalizedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C822789DF39008CFA05 /* LocalizedName.swift */; };
 		979E5C8F27BEF42700A48816 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027927BB26F000128EE6 /* AnimationExtensions.swift */; };
+		979E5C9327BF005800A48816 /* TimeTableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E5C9227BF005800A48816 /* TimeTableError.swift */; };
+		979E5C9827BF0B3400A48816 /* SwiftUIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E5C9727BF0B3400A48816 /* SwiftUIExtensions.swift */; };
+		979E5C9927BF0B3400A48816 /* SwiftUIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E5C9727BF0B3400A48816 /* SwiftUIExtensions.swift */; };
 		97A484BC2717858700D14997 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BB2717858700D14997 /* MapViewController.swift */; };
 		97A484C02717BAF700D14997 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
@@ -208,7 +211,6 @@
 		9750154E2795B32100326B09 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		975015502795B33300326B09 /* EnviromentUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentUnit.swift; sourceTree = "<group>"; };
 		97501552279631A100326B09 /* AttractionAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionAnnotationView.swift; sourceTree = "<group>"; };
-		9750155527976A0A00326B09 /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLabel.h; sourceTree = "<group>"; };
 		9750155627976A0A00326B09 /* THLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THLabel.swift; sourceTree = "<group>"; };
 		9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPolygonDetailRenderer.swift; sourceTree = "<group>"; };
 		975015612799B86F00326B09 /* CustomOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlay.swift; sourceTree = "<group>"; };
@@ -232,6 +234,8 @@
 		979E2C7C2789D234008CFA05 /* IMDFDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDFDecoder.swift; sourceTree = "<group>"; };
 		979E2C802789DE95008CFA05 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		979E2C822789DF39008CFA05 /* LocalizedName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedName.swift; sourceTree = "<group>"; };
+		979E5C9227BF005800A48816 /* TimeTableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableError.swift; sourceTree = "<group>"; };
+		979E5C9727BF0B3400A48816 /* SwiftUIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensions.swift; sourceTree = "<group>"; };
 		97A484BB2717858700D14997 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		97A484BF2717BAF700D14997 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
@@ -305,7 +309,6 @@
 		054F6786270C7B4C00FCC07C /* PolyNavi */ = {
 			isa = PBXGroup;
 			children = (
-				973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */,
 				054F67A5270CD72700FCC07C /* App */,
 				97A484BE2717BAEA00D14997 /* Components */,
 				9717E4282744744F00332D29 /* IMDF */,
@@ -314,6 +317,7 @@
 				054F67A6270CD73000FCC07C /* Views */,
 				054F679B270C7E4C00FCC07C /* Resources */,
 				054F6792270C7B4C00FCC07C /* LaunchScreen.storyboard */,
+				973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */,
 				054F6795270C7B4C00FCC07C /* Info.plist */,
 			);
 			path = PolyNavi;
@@ -475,12 +479,12 @@
 		971F8DCF27BD52EE0018F98A /* PolyNaviClip */ = {
 			isa = PBXGroup;
 			children = (
-				971F8DD027BD52EE0018F98A /* AppDelegate.swift */,
-				971F8DD227BD52EE0018F98A /* SceneDelegate.swift */,
+				979E5C9027BEFCAF00A48816 /* App */,
+				979E5C9127BF002700A48816 /* Views */,
 				971F8DD927BD52EF0018F98A /* Assets.xcassets */,
 				971F8DDB27BD52EF0018F98A /* LaunchScreen.storyboard */,
-				971F8DDE27BD52EF0018F98A /* Info.plist */,
 				971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */,
+				971F8DDE27BD52EF0018F98A /* Info.plist */,
 			);
 			path = PolyNaviClip;
 			sourceTree = "<group>";
@@ -525,7 +529,6 @@
 		97501554279769EF00326B09 /* THLabel */ = {
 			isa = PBXGroup;
 			children = (
-				9750155527976A0A00326B09 /* THLabel.h */,
 				9750155627976A0A00326B09 /* THLabel.swift */,
 			);
 			path = THLabel;
@@ -554,6 +557,7 @@
 			children = (
 				979E2C762788A7C7008CFA05 /* MapExtensions.swift */,
 				9780D8B927B32DDD00DBDBF3 /* UIKitExtensions.swift */,
+				979E5C9727BF0B3400A48816 /* SwiftUIExtensions.swift */,
 				976A027927BB26F000128EE6 /* AnimationExtensions.swift */,
 			);
 			path = Extensions;
@@ -587,6 +591,23 @@
 				9750153C2795B0EB00326B09 /* Overlays */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		979E5C9027BEFCAF00A48816 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				971F8DD027BD52EE0018F98A /* AppDelegate.swift */,
+				971F8DD227BD52EE0018F98A /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		979E5C9127BF002700A48816 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				979E5C9227BF005800A48816 /* TimeTableError.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		97A484BD27179ABE00D14997 /* MapVC */ = {
@@ -821,6 +842,7 @@
 				97501553279631A100326B09 /* AttractionAnnotationView.swift in Sources */,
 				9717E4272742991F00332D29 /* MapView.swift in Sources */,
 				0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */,
+				979E5C9827BF0B3400A48816 /* SwiftUIExtensions.swift in Sources */,
 				05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */,
 				9780D8BC27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift in Sources */,
 				9780D8BA27B32DDD00DBDBF3 /* UIKitExtensions.swift in Sources */,
@@ -893,6 +915,7 @@
 				971F8E1627BD55820018F98A /* SearchVC.swift in Sources */,
 				971F8DF327BD55000018F98A /* THLabel.swift in Sources */,
 				971F8E1027BD556B0018F98A /* AmenityAnnotation.swift in Sources */,
+				979E5C9927BF0B3400A48816 /* SwiftUIExtensions.swift in Sources */,
 				971F8E1327BD55820018F98A /* FirstVC.swift in Sources */,
 				971F8E0B27BD556B0018F98A /* EnviromentAmenityAnnotation.swift in Sources */,
 				971F8DF527BD55480018F98A /* XCAssets+Generated.swift in Sources */,
@@ -922,6 +945,7 @@
 				971F8E0F27BD556B0018F98A /* UnitAnnotation.swift in Sources */,
 				971F8DE927BD54F30018F98A /* UIKitExtensions.swift in Sources */,
 				971F8E0027BD55650018F98A /* Shared.swift in Sources */,
+				979E5C9327BF005800A48816 /* TimeTableError.swift in Sources */,
 				971F8DEF27BD54FA0018F98A /* BottomSheetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
