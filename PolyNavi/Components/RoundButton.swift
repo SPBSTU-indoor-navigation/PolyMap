@@ -9,7 +9,6 @@ import UIKit
 
 class RoundButton: UIButton {
     
-    
     private lazy var blur: UIVisualEffectView = {
         $0.layer.masksToBounds = true
         $0.translatesAutoresizingMaskIntoConstraints = false
