@@ -4,7 +4,6 @@ xcversion(version: "~> 13.0")
 
 DEVELOPER_APP_ID = ENV["DEVELOPER_APP_ID"]
 DEVELOPER_APP_IDENTIFIER = ENV["DEVELOPER_APP_IDENTIFIER"]
-PROVISIONING_PROFILE_SPECIFIER = ENV["PROVISIONING_PROFILE_SPECIFIER"]
 TEMP_KEYCHAIN_USER = ENV["TEMP_KEYCHAIN_USER"]
 TEMP_KEYCHAIN_PASSWORD = ENV["TEMP_KEYCHAIN_PASSWORD"]
 APPLE_ISSUER_ID = ENV["APPLE_ISSUER_ID"]
@@ -57,7 +56,7 @@ platform :ios do
 
     match(
       type: 'appstore',
-      app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
+      app_identifier: ["#{DEVELOPER_APP_IDENTIFIER}","#{DEVELOPER_APP_IDENTIFIER}.clip"],
       git_basic_authorization: Base64.strict_encode64(GIT_AUTHORIZATION),
       readonly: true,
       keychain_name: keychain_name,
@@ -72,7 +71,8 @@ platform :ios do
       export_method: "app-store",
       export_options: {
         provisioningProfiles: { 
-            DEVELOPER_APP_ID => PROVISIONING_PROFILE_SPECIFIER
+            DEVELOPER_APP_ID => "match AppStore #{DEVELOPER_APP_ID}",
+            "#{DEVELOPER_APP_ID}.clip" => "match AppStore #{DEVELOPER_APP_ID}.clip"
         }
       }
     )
