@@ -70,7 +70,7 @@ class MapView: UIView {
     }(UILabel())
     
     func layoutViews() {
-        mapContainerView = findViewOfType("MKScrollContainerView", inView: mapView)
+        mapContainerView = mapView.subviewsByType("MKScrollContainerView")
         
         addSubview(mapView)
         addSubview(levelSwitcher)

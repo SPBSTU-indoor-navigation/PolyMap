@@ -38,7 +38,7 @@
 		971F8DE227BD52EF0018F98A /* PolyNaviClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		971F8DE627BD54E00018F98A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BB2717858700D14997 /* MapViewController.swift */; };
 		971F8DE827BD54F30018F98A /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C762788A7C7008CFA05 /* MapExtensions.swift */; };
-		971F8DE927BD54F30018F98A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B927B32DDD00DBDBF3 /* Extensions.swift */; };
+		971F8DE927BD54F30018F98A /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B927B32DDD00DBDBF3 /* UIKitExtensions.swift */; };
 		971F8DEE27BD54FA0018F98A /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027727B9846800128EE6 /* BottomSheetTransition.swift */; };
 		971F8DEF27BD54FA0018F98A /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B527B32C7000DBDBF3 /* BottomSheetViewController.swift */; };
 		971F8DF027BD54FA0018F98A /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
@@ -80,9 +80,8 @@
 		971F8E1427BD55820018F98A /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972174D927B549420055FCF0 /* TitleCell.swift */; };
 		971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		971F8E1627BD55820018F98A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
-		971F8E1727BD558F0018F98A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973BEC0C278677D100A66B33 /* Utils.swift */; };
+		971F8E1727BD558F0018F98A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		972174DA27B549420055FCF0 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972174D927B549420055FCF0 /* TitleCell.swift */; };
-		973BEC0D278677D100A66B33 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973BEC0C278677D100A66B33 /* Utils.swift */; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* UnitAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* UnitAnnotation.swift */; };
@@ -100,10 +99,11 @@
 		97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */; };
 		975015622799B86F00326B09 /* CustomOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015612799B86F00326B09 /* CustomOverlay.swift */; };
 		976A027827B9846800128EE6 /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027727B9846800128EE6 /* BottomSheetTransition.swift */; };
+		976A027A27BB26F000128EE6 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027927BB26F000128EE6 /* AnimationExtensions.swift */; };
 		9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */; };
 		9780D8B627B32C7000DBDBF3 /* BottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B427B32C7000DBDBF3 /* BottomSheetPage.swift */; };
 		9780D8B727B32C7000DBDBF3 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B527B32C7000DBDBF3 /* BottomSheetViewController.swift */; };
-		9780D8BA27B32DDD00DBDBF3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B927B32DDD00DBDBF3 /* Extensions.swift */; };
+		9780D8BA27B32DDD00DBDBF3 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B927B32DDD00DBDBF3 /* UIKitExtensions.swift */; };
 		9780D8BC27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BB27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift */; };
 		9780D8BE27B3404B00DBDBF3 /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		9780D8C027B3412A00DBDBF3 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
@@ -118,13 +118,14 @@
 		979E2C7D2789D234008CFA05 /* IMDFDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C7C2789D234008CFA05 /* IMDFDecoder.swift */; };
 		979E2C812789DE95008CFA05 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C802789DE95008CFA05 /* Models.swift */; };
 		979E2C832789DF39008CFA05 /* LocalizedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C822789DF39008CFA05 /* LocalizedName.swift */; };
+		979E5C8F27BEF42700A48816 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027927BB26F000128EE6 /* AnimationExtensions.swift */; };
 		97A484BC2717858700D14997 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BB2717858700D14997 /* MapViewController.swift */; };
 		97A484C02717BAF700D14997 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
 		97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
-		97E15D2827BC7FB500E636FC /* HitAcrossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DC047727A6FFDA00675162 /* HitAcrossView.swift */; };
+		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
 		97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 /* End PBXBuildFile section */
@@ -177,7 +178,6 @@
 		05C4C82C27134C5100C22D61 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timetable+DatasourceDelegate.swift"; sourceTree = "<group>"; };
 		05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimetableEmptyView.swift; path = PolyNavi/Views/TimetableVC/TimetableWeekVC/TimetableEmptyView.swift; sourceTree = SOURCE_ROOT; };
-		05DC047727A6FFDA00675162 /* HitAcrossView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitAcrossView.swift; sourceTree = "<group>"; };
 		05F0D498278B4230009CEBA2 /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
 		16E50C685E2282BC85B0A7D3 /* Pods-PolyNaviClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip.debug.xcconfig"; sourceTree = "<group>"; };
 		378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,7 +194,6 @@
 		971F8DDE27BD52EF0018F98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNaviClip.entitlements; sourceTree = "<group>"; };
 		972174D927B549420055FCF0 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
-		973BEC0C278677D100A66B33 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNavi.entitlements; sourceTree = "<group>"; };
 		974FA70927B88D51001A4A25 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
@@ -214,10 +213,11 @@
 		9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPolygonDetailRenderer.swift; sourceTree = "<group>"; };
 		975015612799B86F00326B09 /* CustomOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlay.swift; sourceTree = "<group>"; };
 		976A027727B9846800128EE6 /* BottomSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetTransition.swift; sourceTree = "<group>"; };
+		976A027927BB26F000128EE6 /* AnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtensions.swift; sourceTree = "<group>"; };
 		9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeableBlurEffectView.swift; sourceTree = "<group>"; };
 		9780D8B427B32C7000DBDBF3 /* BottomSheetPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetPage.swift; sourceTree = "<group>"; };
 		9780D8B527B32C7000DBDBF3 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
-		9780D8B927B32DDD00DBDBF3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9780D8B927B32DDD00DBDBF3 /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		9780D8BB27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavbarBottomSheetPage.swift; sourceTree = "<group>"; };
 		9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitDetailVC.swift; sourceTree = "<group>"; };
 		9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -306,16 +306,15 @@
 			isa = PBXGroup;
 			children = (
 				973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */,
-				9717E4282744744F00332D29 /* IMDF */,
-				97A484BE2717BAEA00D14997 /* Components */,
 				054F67A5270CD72700FCC07C /* App */,
+				97A484BE2717BAEA00D14997 /* Components */,
+				9717E4282744744F00332D29 /* IMDF */,
 				054F67A8270CD73A00FCC07C /* Api */,
 				054F67A7270CD73500FCC07C /* Models */,
 				054F67A6270CD73000FCC07C /* Views */,
 				054F679B270C7E4C00FCC07C /* Resources */,
 				054F6792270C7B4C00FCC07C /* LaunchScreen.storyboard */,
 				054F6795270C7B4C00FCC07C /* Info.plist */,
-				973BEC0C278677D100A66B33 /* Utils.swift */,
 			);
 			path = PolyNavi;
 			sourceTree = "<group>";
@@ -554,7 +553,8 @@
 			isa = PBXGroup;
 			children = (
 				979E2C762788A7C7008CFA05 /* MapExtensions.swift */,
-				9780D8B927B32DDD00DBDBF3 /* Extensions.swift */,
+				9780D8B927B32DDD00DBDBF3 /* UIKitExtensions.swift */,
+				976A027927BB26F000128EE6 /* AnimationExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -603,13 +603,12 @@
 		97A484BE2717BAEA00D14997 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				05DC047727A6FFDA00675162 /* HitAcrossView.swift */,
-				97501554279769EF00326B09 /* THLabel */,
 				9780D8B827B32DC800DBDBF3 /* Extensions */,
+				97501554279769EF00326B09 /* THLabel */,
 				9780D8B327B32C7000DBDBF3 /* BottomSheet */,
+				9750153A2793BA1400326B09 /* Animator.swift */,
 				9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */,
 				97A484BF2717BAF700D14997 /* RoundButton.swift */,
-				9750153A2793BA1400326B09 /* Animator.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -824,7 +823,7 @@
 				0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */,
 				05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */,
 				9780D8BC27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift in Sources */,
-				9780D8BA27B32DDD00DBDBF3 /* Extensions.swift in Sources */,
+				9780D8BA27B32DDD00DBDBF3 /* UIKitExtensions.swift in Sources */,
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
 				9780D8C227B3421800DBDBF3 /* TableBottomSheetPage.swift in Sources */,
 				0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */,
@@ -845,6 +844,7 @@
 				9780D8C027B3412A00DBDBF3 /* SearchVC.swift in Sources */,
 				972174DA27B549420055FCF0 /* TitleCell.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
+				976A027A27BB26F000128EE6 /* AnimationExtensions.swift in Sources */,
 				975015492795B2DF00326B09 /* Opening.swift in Sources */,
 				054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */,
 				979E2C75278763A9008CFA05 /* Venue.swift in Sources */,
@@ -852,7 +852,6 @@
 				05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */,
 				9750153B2793BA1400326B09 /* Animator.swift in Sources */,
 				975015472795B19200326B09 /* Shared.swift in Sources */,
-				973BEC0D278677D100A66B33 /* Utils.swift in Sources */,
 				979E2C812789DE95008CFA05 /* Models.swift in Sources */,
 				9780D8B727B32C7000DBDBF3 /* BottomSheetViewController.swift in Sources */,
 				054F67CC270CDFB400FCC07C /* LessonModel.swift in Sources */,
@@ -867,7 +866,7 @@
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */,
-				97E15D2827BC7FB500E636FC /* HitAcrossView.swift in Sources */,
+				97E15D2827BC7FB500E636FC /* (null) in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
 				97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */,
@@ -886,6 +885,7 @@
 				971F8E0C27BD556B0018F98A /* PointAnnotationView.swift in Sources */,
 				971F8E0527BD55680018F98A /* Level.swift in Sources */,
 				971F8E0927BD55680018F98A /* Opening.swift in Sources */,
+				979E5C8F27BEF42700A48816 /* AnimationExtensions.swift in Sources */,
 				971F8E0327BD55680018F98A /* EnviromentUnit.swift in Sources */,
 				971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */,
 				971F8DEE27BD54FA0018F98A /* BottomSheetTransition.swift in Sources */,
@@ -898,7 +898,7 @@
 				971F8DF527BD55480018F98A /* XCAssets+Generated.swift in Sources */,
 				971F8DFC27BD555B0018F98A /* Feature.swift in Sources */,
 				971F8DFF27BD55650018F98A /* LevelSwitcher.swift in Sources */,
-				971F8E1727BD558F0018F98A /* Utils.swift in Sources */,
+				971F8E1727BD558F0018F98A /* (null) in Sources */,
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
 				971F8DF927BD555B0018F98A /* IMDFDecoder.swift in Sources */,
 				971F8DF227BD54FA0018F98A /* BottomSheetPage.swift in Sources */,
@@ -920,7 +920,7 @@
 				971F8E1427BD55820018F98A /* TitleCell.swift in Sources */,
 				971F8E0E27BD556B0018F98A /* AttractionAnnotationView.swift in Sources */,
 				971F8E0F27BD556B0018F98A /* UnitAnnotation.swift in Sources */,
-				971F8DE927BD54F30018F98A /* Extensions.swift in Sources */,
+				971F8DE927BD54F30018F98A /* UIKitExtensions.swift in Sources */,
 				971F8E0027BD55650018F98A /* Shared.swift in Sources */,
 				971F8DEF27BD54FA0018F98A /* BottomSheetViewController.swift in Sources */,
 			);
@@ -1091,7 +1091,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = LZP5UN7552;
@@ -1103,7 +1103,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1118,7 +1118,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = LZP5UN7552;
@@ -1130,7 +1130,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1145,7 +1145,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = PolyNaviClip/PolyNaviClip.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = LZP5UN7552;
@@ -1165,7 +1165,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap.clip";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap.clip";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APPCLIP";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1181,7 +1181,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = PolyNaviClip/PolyNaviClip.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = LZP5UN7552;
@@ -1201,7 +1201,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap.clip";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap.clip";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPCLIP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
