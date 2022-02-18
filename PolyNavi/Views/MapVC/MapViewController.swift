@@ -53,7 +53,7 @@ class MapViewController: UIViewController {
         
         view.addSubview(mapView)
         view.addSubview(container)
-    
+        
         
         NSLayoutConstraint.activate([
             container.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
@@ -67,11 +67,13 @@ class MapViewController: UIViewController {
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-
+        
     }
     
     @objc
     func openTimetable(_ sender: UIButton?) {
+        
+#if !APPCLIP
         var vc: UIViewController
         
         if GroupsAndTeacherStorage.shared.isReady() {
@@ -89,6 +91,9 @@ class MapViewController: UIViewController {
         
         let navSettingVC = UINavigationController(rootViewController: vc)
         self.present(navSettingVC, animated: true)
+#else
+        TimeTableError().present(to: self, animated: true)
+#endif
     }
     
 }
