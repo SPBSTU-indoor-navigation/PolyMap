@@ -1,6 +1,18 @@
 import UIKit
 import UIScreenExtension
 
+protocol BottomSheetDelegate {
+    func onStateChange(from: BottomSheetViewController.VerticalSize, to: BottomSheetViewController.VerticalSize)
+    func onSizeChange(from: BottomSheetViewController.HorizontalSize?, to: BottomSheetViewController.HorizontalSize)
+    func onProgressChange(progress: CGFloat)
+}
+
+extension BottomSheetDelegate {
+    func onStateChange(from: BottomSheetViewController.VerticalSize, to: BottomSheetViewController.VerticalSize) { }
+    func onSizeChange(from: BottomSheetViewController.HorizontalSize?, to: BottomSheetViewController.HorizontalSize) { }
+    func onProgressChange(progress: CGFloat) { }
+}
+
 protocol BottomSheetPageDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     func scrollViewDidScroll(_ scrollView: UIScrollView)
@@ -9,12 +21,6 @@ protocol BottomSheetPageDelegate {
     
     func verticalSize() -> BottomSheetViewController.VerticalSize
     func horizontalSize() -> BottomSheetViewController.HorizontalSize
-}
-
-protocol BottomSheetDelegate {
-    func onStateChange(from: BottomSheetViewController.VerticalSize, to: BottomSheetViewController.VerticalSize)
-    func onSizeChange(from: BottomSheetViewController.HorizontalSize?, to: BottomSheetViewController.HorizontalSize)
-    func onProgressChange(progress: CGFloat)
 }
 
 class BottomSheetViewController: UINavigationController {
@@ -123,6 +129,10 @@ class BottomSheetViewController: UINavigationController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(Background())
+    
+    lazy var safeZone: UIView = {
+        return $0
+    }(SafeZone())
 
     public init(parentVC: UIViewController, rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
@@ -135,6 +145,7 @@ class BottomSheetViewController: UINavigationController {
         }
         
         parentVC.view.addSubview(background)
+        parentVC.view.addSubview(safeZone)
         
         NSLayoutConstraint.activate([
             background.leadingAnchor.constraint(equalTo: parentVC.view.leadingAnchor),
@@ -178,7 +189,7 @@ class BottomSheetViewController: UINavigationController {
         let fullProgress = progress(for: current, from: from, to: to)
         
         bottomSheetDelegate?.onProgressChange(progress: fullProgress)
-        background.progress(progress(for: current, from: to, to: position(for: .medium)))
+        background.progress(progress(for: current, from: position(for: .big), to: position(for: .medium)))
         
         if let vc = vc as? BottomSheetPage {
             vc.onButtomSheetScroll(progress: fullProgress)
@@ -201,6 +212,9 @@ class BottomSheetViewController: UINavigationController {
             height: height
         )
         
+        safeZone.frame = CGRect(origin: .zero, size: CGSize(width: containerView.frame.width, height: currentPosition))
+        
+        safeZone.layoutIfNeeded()
         view.layoutIfNeeded()
         
         lastSize = currentSize
@@ -232,7 +246,7 @@ class BottomSheetViewController: UINavigationController {
         }
     }
     
-    private func position(for state: VerticalSize) -> CGFloat {
+    func position(for state: VerticalSize) -> CGFloat {
         let safeArea = containerView.safeAreaInsets
         let height = containerView.frame.height
         
@@ -287,6 +301,8 @@ class BottomSheetViewController: UINavigationController {
         }
     }
     
+    var anim: UIViewPropertyAnimator?
+    
     @objc
     private func panAction(_ sender: UIPanGestureRecognizer) {
         defer { viewDidLayoutSubviews() }
@@ -296,7 +312,7 @@ class BottomSheetViewController: UINavigationController {
         switch sender.state {
         case .began:
             mooved = true
-            view.layer.removeAllAnimations()
+            anim?.tryStopAnimation(true)
             currentPosition = view.layer.presentation()!.frame.origin.y
             startPosotion = currentPosition
         case.changed:
@@ -332,15 +348,16 @@ class BottomSheetViewController: UINavigationController {
         let initialVelocity = velocity / delta
         
         let timing = UISpringTimingParameters(damping: initialVelocity > 0.01 ? 0.8 : 1, response: 0.35, initialVelocity: CGVector(dx: initialVelocity, dy: initialVelocity))
-        let anim = UIViewPropertyAnimator(duration: 0, timingParameters: timing)
+        anim?.tryStopAnimation(true)
+        anim = UIViewPropertyAnimator(duration: 0, timingParameters: timing)
         
-        anim.addAnimations { [self] in
+        anim?.addAnimations { [self] in
             currentPosition = position(for: state)
             applyProgress(vc: visibleViewController, current: currentPosition)
             viewDidLayoutSubviews()
         }
         
-        anim.startAnimation()
+        anim?.startAnimation()
     }
     
     func changeState(state: VerticalSize, duration: CGFloat = Constants.transitionDuration, animated: Bool = true, options: UIView.AnimationOptions = .curveEaseOut) {
@@ -436,10 +453,13 @@ extension BottomSheetViewController: BottomSheetPageDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         let offset = scrollView.topContentOffset.y
-        if -30 < offset && offset <= 0 {
-            startContentOffset = offset
-            startPosotion = currentPosition
+        if -30 < offset && offset <= 3 {
             moovedByScroll = true
+            startContentOffset = offset
+            startPosotion = view.layer.presentation()!.frame.origin.y
+            anim?.tryStopAnimation(true)
+            currentPosition = startPosotion
+            viewDidLayoutSubviews()
         }
     }
     
@@ -483,6 +503,17 @@ extension BottomSheetViewController {
     
     func onSizeChange(from: HorizontalSize?, to: HorizontalSize) { }
     
+}
+
+class SafeZone: UIView {
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let hit = super.hitTest(point, with: event)
+        if hit != self {
+            return hit
+        }
+        
+        return nil
+    }
 }
 
 class Background: UIView {
