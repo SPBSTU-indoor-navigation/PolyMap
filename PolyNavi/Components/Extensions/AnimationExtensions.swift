@@ -22,3 +22,13 @@ extension UISpringTimingParameters {
     }
     
 }
+
+
+extension UIViewPropertyAnimator {
+    func tryStopAnimation(_ withoutFinishing: Bool) {
+        if self.isRunning {
+            self.stopAnimation(withoutFinishing)
+        }
+    }
+
+}

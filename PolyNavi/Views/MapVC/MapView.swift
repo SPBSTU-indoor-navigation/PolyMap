@@ -10,7 +10,11 @@ import MapKit
 
 class MapView: UIView {
     
-    let MIN_SHOW_ZOOM : Float = 18.5
+    enum Constants {
+        static let minShowZoom: Float = 18.5
+        static let horizontalOffset = -7.0
+    }
+    
     
     var mapContainerView : UIView?
     var lastZoom : Float = 16
@@ -78,7 +82,7 @@ class MapView: UIView {
         addSubview(debug)
 
         
-        levelSwitcherConstraint = levelSwitcher.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+        levelSwitcherConstraint = levelSwitcher.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.horizontalOffset)
         
         NSLayoutConstraint.activate([
             mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -184,7 +188,7 @@ class MapView: UIView {
         lastZoom = zoomLevel
     
         if let currentBuilding = currentBuilding {
-            if zoomLevel > MIN_SHOW_ZOOM {
+            if zoomLevel > Constants.minShowZoom {
                 currentBuilding.show(mapView)
                 showLevelSwitcher()
             } else {
@@ -207,7 +211,7 @@ class MapView: UIView {
                 currentBuilding.hide(mapView)
             }
             
-            if getZoom() > MIN_SHOW_ZOOM {
+            if getZoom() > Constants.minShowZoom {
                 nearestBuilding?.show(mapView)
                 
                 if let t = nearestBuilding, t.levels.count > 0 {
@@ -239,7 +243,7 @@ class MapView: UIView {
 
 extension MapView {
     func showLevelSwitcher() {
-        updateLevelSwitcher(-5)
+        updateLevelSwitcher(Constants.horizontalOffset)
     }
     
     func hideLevelSwitcher() {
