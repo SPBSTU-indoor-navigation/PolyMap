@@ -15,6 +15,11 @@ class MapView: UIView {
         static let horizontalOffset = -7.0
     }
     
+    var mapInfoDelegate: MapInfoDelegate? {
+        didSet {
+            mapView.onPan = mapInfoDelegate?.panAction
+        }
+    }
     
     var mapContainerView : UIView?
     var lastZoom : Float = 16
@@ -184,7 +189,8 @@ class MapView: UIView {
     
     func updateMap(zoomLevel: Float) {
         debug.text = "Zoom: \(roundf(zoomLevel * 100) / 100)"
-        if abs(lastZoom - zoomLevel) < Float.ulpOfOne { return }
+        if abs(lastZoom - zoomLevel) < 0.001 { return }
+        mapInfoDelegate?.zoomMap(zoom: zoomLevel)
         lastZoom = zoomLevel
     
         if let currentBuilding = currentBuilding {

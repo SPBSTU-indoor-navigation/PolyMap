@@ -9,7 +9,27 @@ import MapKit
 
 class OverlayedMapView: MKMapView {
     
+    var onPan: ((UIPanGestureRecognizer) -> Void)?
     var currentOverlays: [MKShape:CustomOverlay] = [:]
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        let panGR = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
+        panGR.delegate = self
+        addGestureRecognizer(panGR)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc
+    private func panAction(_ sender: UIPanGestureRecognizer) {
+        onPan?(sender)
+    }
     
     func addOverlays(_ overlays: [CustomOverlay]) {
         for overlay in overlays {
@@ -42,4 +62,10 @@ class OverlayedMapView: MKMapView {
     }
     
     
+}
+
+extension OverlayedMapView: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

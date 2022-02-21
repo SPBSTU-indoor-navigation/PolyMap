@@ -7,6 +7,19 @@
 
 import UIKit
 
-class MapInfo: BottomSheetViewController {
-    //Нужно будет потом
+protocol MapInfoDelegate {
+    func panAction(_ sender: UIPanGestureRecognizer)
+    func zoomMap(zoom: Float)
+}
+
+class MapInfo: BottomSheetViewController, MapInfoDelegate {
+    func panAction(_ sender: UIPanGestureRecognizer) {
+        print("panAction")
+    }
+    
+    func zoomMap(zoom: Float) {
+        print(zoom)
+    }
+    
+    
 }
