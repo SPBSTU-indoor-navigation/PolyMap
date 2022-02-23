@@ -20,17 +20,25 @@ class ScaledImageView: UIImageView {
         renderWithFrame()
     }
     
+    func renderIfNeed() {
+        if alpha > 0 && !isHidden {
+            renderWithFrame()
+        }
+    }
+    
     func renderWithFrame() {
         guard let sourceImage = sourceImage else { return }
-        let size = layer.presentation()?.frame.size ?? frame.size
+        var size = frame.size
+        if let presented = layer.presentation() {
+            size = presented.convert(frame, to: nil).size
+        }
+        
         image = render(image: sourceImage, size: size, tintColor: tintColor)
     }
     
     func render(image: UIImage, size: CGSize, tintColor: UIColor) -> UIImage? {
-        print(size)
         let aspect = image.size.width / image.size.height
-        var size = size.applying(CGAffineTransform(scaleX: UIScreen.main.scale, y: UIScreen.main.scale/aspect))
-        size = CGSize(width: Int(size.width), height: Int(size.height))
+        let size = CGSize(width: Int(size.width * UIScreen.main.scale), height: Int(size.width * UIScreen.main.scale / aspect))
         UIGraphicsBeginImageContext(size)
         guard let ctx = UIGraphicsGetCurrentContext() else { return nil }
         
@@ -51,7 +59,6 @@ class ScaledImageView: UIImageView {
     private var activeAnimationCount = 0
     
     func startAnim() {
-        print("startAnim")
         activeAnimationCount += 1
         if displayLink == nil {
             displayLink = CADisplayLink(target: self, selector: #selector(self.animationStep))

@@ -15,9 +15,9 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
     override var annotation: MKAnnotation? {
         didSet {
             if let amenity = annotation as? AmenityAnnotation {
-                imageView.image = UIImage(named: amenity.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+                imageView.sourceImage = UIImage(named: amenity.category.rawValue) ?? Asset.Annotation.Amenity.default.image
             } else if let amenity = annotation as? EnviromentAmenityAnnotation {
-                imageView.image = UIImage(named: amenity.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+                imageView.sourceImage = UIImage(named: amenity.category.rawValue) ?? Asset.Annotation.Amenity.default.image
             }
             
             if let title = annotation?.title {
@@ -90,13 +90,11 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
         return $0
     }(UIView())
     
-    lazy var imageView: UIImageView = {
+    lazy var imageView: ScaledImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.tintColor = .white
-        $0.layer.minificationFilter = .trilinear
-        $0.layer.minificationFilterBias = 0.1
         return $0
-    }(UIImageView())
+    }(ScaledImageView())
     
     lazy var background: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -168,7 +166,9 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
                 label.isHidden = false
                 label.alpha = 1
                 label.transform = .identity
-            })
+                
+                imageView.startAnim()
+            }, completion: { _ in self.imageView.endAnim()})
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
                 miniPoint.transform = .identity
@@ -182,7 +182,8 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
                 isHidden = false
                 background.transform = CGAffineTransform(scaleX: backgroundSize, y: backgroundSize)
                 if state == .hide { alpha = 0 }
-            })
+                imageView.startAnim()
+            }, completion: { _ in self.imageView.endAnim()})
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
                 shape.transform = CGAffineTransform(translationX: 0, y: -1).scaledBy(x: 1, y: 0)
                 miniPoint.transform = CGAffineTransform(scaleX: 0, y: 0)
@@ -208,6 +209,8 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
+        
+        imageView.renderIfNeed()
         
         if #available(iOS 14.0, *) {
             zPriority = MKAnnotationViewZPriority(rawValue: 700)
@@ -245,6 +248,7 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
             if self.state == .hide {
                 self.isHidden = true
             }
+            self.imageView.renderIfNeed()
         }
         
         if animate {
