@@ -27,7 +27,8 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
                 case .auditorium: imageName = "lecture"
                 default: break
                 }
-                imageView.image = UIImage(named: imageName ?? unit.category.rawValue)
+//                imageView.image = UIImage(named: imageName ?? unit.category.rawValue)
+                imageView.sourceImage = UIImage(systemName: "calendar")
                 imageView.alpha = imageOpacity
                 
                 
@@ -130,13 +131,13 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         return $0
     }(UIView())
     
-    lazy var imageView: UIImageView = {
+    lazy var imageView: ScaledImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.minificationFilter = .trilinear
         $0.layer.minificationFilterBias = 0.1
         $0.alpha = 0
         return $0
-    }(UIImageView())
+    }(ScaledImageView())
     
     lazy var point: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -207,7 +208,8 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
                 point.transform = CGAffineTransform(scaleX: 7, y: 7).translatedBy(x: 0, y: -6.8)
                 label.transform = CGAffineTransform(translationX: 0, y: -0.5)
                 imageView.alpha = 1.0
-            })
+                imageView.startAnim()
+            }, completion: { _ in self.imageView.endAnim()})
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
                 miniPoint.transform = .identity
@@ -223,7 +225,8 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         deselectAnim
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 point.transform = .identity.scaledBy(x: pointSize, y: pointSize)
-            })
+                imageView.startAnim()
+            }, completion: { _ in self.imageView.endAnim()})
             .animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: { [self] in
                 label.alpha = labelOpacity
                 label.transform = labelTransform

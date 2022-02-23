@@ -132,6 +132,8 @@
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
 		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
 		97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
+		97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
+		97FCC17927C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 /* End PBXBuildFile section */
 
@@ -251,6 +253,7 @@
 		97E15D0D27BC7F2B00E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0E27BC7F2B00E636FC /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0F27BC7F2B00E636FC /* libUIScreenExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIScreenExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97FCC17727C6A313009F3C39 /* ScaledImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledImageView.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
 		B18DDFB614B7A61777B8455A /* Pods-PolyNaviClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviClip.release.xcconfig"; path = "Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip.release.xcconfig"; sourceTree = "<group>"; };
 		E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.release.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
@@ -634,6 +637,7 @@
 				9750153A2793BA1400326B09 /* Animator.swift */,
 				9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */,
 				97A484BF2717BAF700D14997 /* RoundButton.swift */,
+				97FCC17727C6A313009F3C39 /* ScaledImageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -871,6 +875,7 @@
 				972174DA27B549420055FCF0 /* TitleCell.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
 				976A027A27BB26F000128EE6 /* AnimationExtensions.swift in Sources */,
+				97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */,
 				975015492795B2DF00326B09 /* Opening.swift in Sources */,
 				054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */,
 				979E2C75278763A9008CFA05 /* Venue.swift in Sources */,
@@ -945,6 +950,7 @@
 				971F8DF427BD55480018F98A /* Strings+Generated.swift in Sources */,
 				971F8DFD27BD55650018F98A /* OverlayedMapView.swift in Sources */,
 				971F8DFE27BD55650018F98A /* MapView.swift in Sources */,
+				97FCC17927C6A313009F3C39 /* ScaledImageView.swift in Sources */,
 				971F8E1127BD55820018F98A /* NavbarBottomSheetPage.swift in Sources */,
 				971F8E1427BD55820018F98A /* TitleCell.swift in Sources */,
 				971F8E0E27BD556B0018F98A /* AttractionAnnotationView.swift in Sources */,
