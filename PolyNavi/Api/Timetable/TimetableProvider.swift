@@ -37,7 +37,7 @@ class TimetableProvider {
     
     var timetableCache: [String: Timetable] = [:]
     
-    func load<T:Codable>(url: String, params: Dictionary<String, String>, completion: @escaping (ApiStatus<T>) -> Void) {
+    private func load<T:Codable>(url: String, params: Dictionary<String, String>, completion: @escaping (ApiStatus<T>) -> Void) {
         AF.request(BASE_URL + url,
                    method: .get,
                    parameters: params)

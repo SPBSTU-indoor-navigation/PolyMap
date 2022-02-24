@@ -1,5 +1,4 @@
 import UIKit
-import UIScreenExtension
 
 protocol BottomSheetDelegate {
     func onStateChange(from: BottomSheetViewController.VerticalSize, to: BottomSheetViewController.VerticalSize)

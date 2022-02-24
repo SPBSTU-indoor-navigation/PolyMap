@@ -1,0 +1,6 @@
+module Pods_PolyNaviTests {
+  umbrella header "Pods-PolyNaviTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

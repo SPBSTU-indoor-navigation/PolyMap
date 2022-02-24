@@ -12,8 +12,6 @@ target 'PolyNavi' do
   #UI
   pod 'M13Checkbox'
 
-  pod 'UIScreenExtension', :git => 'https://github.com/marchv/UIScreenExtension'
-
 end
 
 
@@ -25,7 +23,18 @@ target 'PolyNaviClip' do
   # Network
   pod 'Alamofire', '~> 5.2'
 
-  pod 'UIScreenExtension', :git => 'https://github.com/marchv/UIScreenExtension'
+end
+
+target 'PolyNaviTests' do
+  platform :ios, '13.0'
+  # SwiftGen
+  pod 'SwiftGen', '~> 6.4.0'
+
+  # Network
+  pod 'Alamofire', '~> 5.2'
+
+  #UI
+  pod 'M13Checkbox'
 
 end
 

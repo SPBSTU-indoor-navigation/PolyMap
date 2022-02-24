@@ -10,8 +10,7 @@
 #endif
 #endif
 
-#import "UIScreenExtension.h"
 
-FOUNDATION_EXPORT double UIScreenExtensionVersionNumber;
-FOUNDATION_EXPORT const unsigned char UIScreenExtensionVersionString[];
+FOUNDATION_EXPORT double Pods_PolyNaviTestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_PolyNaviTestsVersionString[];
 
