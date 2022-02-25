@@ -49,6 +49,7 @@ class PolyNaviTests: XCTestCase {
         
         wait(for: [promise, loadGroup], timeout: 5)
     }
+    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

@@ -82,7 +82,7 @@
 		971F8E1427BD55820018F98A /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972174D927B549420055FCF0 /* TitleCell.swift */; };
 		971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		971F8E1627BD55820018F98A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
-		971F8E1727BD558F0018F98A /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		971F8E1727BD558F0018F98A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		972174DA27B549420055FCF0 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972174D927B549420055FCF0 /* TitleCell.swift */; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
@@ -114,6 +114,7 @@
 		97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941916278BCAF10038CBEF /* PointAnnotationView.swift */; };
 		97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */; };
 		97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */; };
+		979784D527C8305F00DE457D /* InitUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979784D427C8305F00DE457D /* InitUI.swift */; };
 		979E2C75278763A9008CFA05 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C74278763A9008CFA05 /* Venue.swift */; };
 		979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C762788A7C7008CFA05 /* MapExtensions.swift */; };
 		979E2C792789D1C6008CFA05 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C782789D1C6008CFA05 /* Feature.swift */; };
@@ -132,7 +133,7 @@
 		97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
-		97E15D2827BC7FB500E636FC /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
 		97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 /* End PBXBuildFile section */
@@ -244,6 +245,7 @@
 		97941916278BCAF10038CBEF /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
 		97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityAnnotationView.swift; sourceTree = "<group>"; };
 		97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayedMapView.swift; sourceTree = "<group>"; };
+		979784D427C8305F00DE457D /* InitUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitUI.swift; sourceTree = "<group>"; };
 		979E2C74278763A9008CFA05 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		979E2C762788A7C7008CFA05 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
 		979E2C782789D1C6008CFA05 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 		054E980727C81DF300173EF1 /* PolyNaviTests */ = {
 			isa = PBXGroup;
 			children = (
+				979784D427C8305F00DE457D /* InitUI.swift */,
 				054E980827C81DF300173EF1 /* PolyNaviTests.swift */,
 			);
 			path = PolyNaviTests;
@@ -922,6 +925,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				054E980927C81DF300173EF1 /* PolyNaviTests.swift in Sources */,
+				979784D527C8305F00DE457D /* InitUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -988,7 +992,7 @@
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */,
-				97E15D2827BC7FB500E636FC /* BuildFile in Sources */,
+				97E15D2827BC7FB500E636FC /* (null) in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
 				97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */,
@@ -1023,7 +1027,7 @@
 				971F8DF527BD55480018F98A /* XCAssets+Generated.swift in Sources */,
 				971F8DFC27BD555B0018F98A /* Feature.swift in Sources */,
 				971F8DFF27BD55650018F98A /* LevelSwitcher.swift in Sources */,
-				971F8E1727BD558F0018F98A /* BuildFile in Sources */,
+				971F8E1727BD558F0018F98A /* (null) in Sources */,
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
 				971F8DF927BD555B0018F98A /* IMDFDecoder.swift in Sources */,
 				971F8DF227BD54FA0018F98A /* BottomSheetPage.swift in Sources */,
@@ -1102,8 +1106,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LZP5UN7552;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1114,6 +1121,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.PolyNaviTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1127,8 +1136,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LZP5UN7552;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1139,6 +1151,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.PolyNaviTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
