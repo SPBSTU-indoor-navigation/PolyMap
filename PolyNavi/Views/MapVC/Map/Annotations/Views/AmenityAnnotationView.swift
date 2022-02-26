@@ -92,6 +92,7 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     lazy var imageView: ScaledImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.contentMode = .scaleAspectFit
         $0.tintColor = .white
         return $0
     }(ScaledImageView())

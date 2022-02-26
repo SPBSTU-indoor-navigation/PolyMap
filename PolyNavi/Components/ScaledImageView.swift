@@ -38,7 +38,7 @@ class ScaledImageView: UIImageView {
     
     func render(image: UIImage, size: CGSize, tintColor: UIColor) -> UIImage? {
         let aspect = image.size.width / image.size.height
-        let size = CGSize(width: Int(size.width * UIScreen.main.scale), height: Int(size.width * UIScreen.main.scale / aspect))
+        let size = CGSize(width: Int(size.width * UIScreen.main.scale * (aspect < 1 ? aspect : 1)), height: Int(size.width * UIScreen.main.scale / (aspect > 1 ? aspect : 1)))
         UIGraphicsBeginImageContext(size)
         guard let ctx = UIGraphicsGetCurrentContext() else { return nil }
         
