@@ -18,6 +18,7 @@ class OverlayedMapView: MKMapView {
         
         let panGR = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
         panGR.delegate = self
+        panGR.maximumNumberOfTouches = 1
         addGestureRecognizer(panGR)
         
     }

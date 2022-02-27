@@ -70,7 +70,7 @@ class BottomSheetViewController: UINavigationController {
     
     var bottomSheetDelegate: BottomSheetDelegate?
     
-    private var state: VerticalSize = .small {
+    internal private(set) var state: VerticalSize = .small {
         willSet {
             if state != newValue {
                 bottomSheetDelegate?.onStateChange(from: state, to: newValue)
@@ -88,8 +88,8 @@ class BottomSheetViewController: UINavigationController {
     private var startPosotion = 0.0
     private var startContentOffset: CGFloat = 0
     
-    private var mooved = false
-    private var moovedByScroll = false
+    internal private(set) var mooved = false
+    internal private(set) var moovedByScroll = false
     
     private var stateByViewControllers: [UIViewController:VerticalSize] = [:]
     
@@ -116,7 +116,7 @@ class BottomSheetViewController: UINavigationController {
         }
     }
     
-    private var currentSize: HorizontalSize {
+    var currentSize: HorizontalSize {
         let windowWidth = containerView.frame.width
         
         if windowWidth > Constants.minWidthForSmallSize { return .small }
