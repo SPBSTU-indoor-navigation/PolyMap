@@ -27,7 +27,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
                 case .auditorium: imageName = "lecture"
                 default: break
                 }
-                imageView.image = UIImage(named: imageName ?? unit.category.rawValue)
+                imageView.sourceImage = UIImage(named: imageName ?? unit.category.rawValue)
                 imageView.alpha = imageOpacity
                 
                 
@@ -130,13 +130,13 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         return $0
     }(UIView())
     
-    lazy var imageView: UIImageView = {
+    lazy var imageView: ScaledImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.layer.minificationFilter = .trilinear
-        $0.layer.minificationFilterBias = 0.1
+        $0.contentMode = .scaleAspectFit
+        $0.tintColor = .white
         $0.alpha = 0
         return $0
-    }(UIImageView())
+    }(ScaledImageView())
     
     lazy var point: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -196,10 +196,11 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
             shape.topAnchor.constraint(equalTo: point.bottomAnchor),
             shape.widthAnchor.constraint(equalToConstant: 2),
             shape.heightAnchor.constraint(equalToConstant: 1),
-            imageView.topAnchor.constraint(equalTo: point.topAnchor, constant: 2),
-            imageView.bottomAnchor.constraint(equalTo: point.bottomAnchor, constant: -2),
-            imageView.trailingAnchor.constraint(equalTo: point.trailingAnchor, constant: -2),
-            imageView.leadingAnchor.constraint(equalTo: point.leadingAnchor, constant: 2),
+            
+            imageView.centerXAnchor.constraint(equalTo: point.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: point.centerYAnchor),
+            imageView.widthAnchor.constraint(equalTo: point.widthAnchor, constant: -4),
+            imageView.heightAnchor.constraint(equalTo: point.heightAnchor, constant: -4),
         ])
         
         selectAnim
@@ -207,7 +208,8 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
                 point.transform = CGAffineTransform(scaleX: 7, y: 7).translatedBy(x: 0, y: -6.8)
                 label.transform = CGAffineTransform(translationX: 0, y: -0.5)
                 imageView.alpha = 1.0
-            })
+                imageView.startAnim()
+            }, completion: { _ in self.imageView.endAnim()})
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
                 miniPoint.transform = .identity
@@ -223,7 +225,8 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         deselectAnim
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 point.transform = .identity.scaledBy(x: pointSize, y: pointSize)
-            })
+                imageView.startAnim()
+            }, completion: { _ in self.imageView.endAnim()})
             .animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: { [self] in
                 label.alpha = labelOpacity
                 label.transform = labelTransform
@@ -241,11 +244,16 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
+        if imageOpacity > 0 {
+            imageView.renderIfNeed()
+        }
         
         if #available(iOS 14.0, *) {
             zPriority = MKAnnotationViewZPriority(rawValue: 500)
         }
     }
+    
+    
     
     func changeState(state: DetailLevelState, animate: Bool) {
         self.state = state
@@ -261,9 +269,10 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         if animate {
             UIView.animate(withDuration: 0.1, animations: {
                 change()
-            })
+            }, completion: { _ in self.imageView.renderIfNeed() })
         } else {
             change()
+            imageView.renderIfNeed()
         }
     }
     
