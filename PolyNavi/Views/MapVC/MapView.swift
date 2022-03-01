@@ -33,7 +33,6 @@ class MapView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        mapView.delegate = self
     
         layoutViews()
         loadIMDF()
@@ -49,6 +48,7 @@ class MapView: UIView {
         $0.isPitchEnabled = false
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false
+        $0.delegate = self
         
         $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: UnitAnnotation.identifier)
         $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: AmenityAnnotation.identifier)
@@ -309,6 +309,14 @@ extension MapView: MKMapViewDelegate {
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
         updateMap(centerPosition: mapView.centerCoordinate)
         updateMap(zoomLevel: getZoom())
+    }
+
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        mapInfoDelegate?.didSelect(view)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        mapInfoDelegate?.didDeselect(view)
     }
 
 }

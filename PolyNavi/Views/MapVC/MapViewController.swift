@@ -87,6 +87,7 @@ class MapViewController: UIViewController {
         view.insertSubview(mapView, at: 0)
         view.addSubview(timeTableButtonContainer)
         mapInfo.safeZone.addSubview(timeTableSmallButton)
+        mapInfo.mapView = mapView.mapView
         
         timeTableSmallOffset = timeTableSmallButton.bottomAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 0)
         NSLayoutConstraint.activate([
