@@ -19,6 +19,7 @@ class MapInfo: BottomSheetViewController {
     enum Page {
         case search
         case annotationInfo
+        case unknown
     }
     
     var pages: [Page] = [.search]
@@ -45,6 +46,17 @@ class MapInfo: BottomSheetViewController {
         }
         pages.removeLast()
         return super.popViewController(animated: animated)
+    }
+    
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        super.pushViewController(viewController, animated: animated)
+        switch viewController {
+        case is UnitDetailVC:
+            pages.append(.annotationInfo)
+            
+        default:
+            pages.append(.unknown)
+        }
     }
 }
 
@@ -80,8 +92,11 @@ extension MapInfo: MapInfoDelegate {
         if pages.last == .annotationInfo {
             
         } else {
-            pages.append(.annotationInfo)
             pushViewController(UnitDetailVC(closable: true), animated: true)
+        }
+        
+        if state != .medium && currentSize == .big {
+            changeState(state: .medium)
         }
     }
     
