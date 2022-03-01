@@ -48,6 +48,11 @@ class BottomSheetViewController: UINavigationController {
         case ultraSmall
     }
     
+    enum PopControllerStrategy {
+        case alwaysMinimaze
+        case mediumIfNeed
+    }
+    
     enum VerticalSize: Int {
         case small = 0
         case medium = 1
@@ -69,6 +74,7 @@ class BottomSheetViewController: UINavigationController {
     }
     
     var bottomSheetDelegate: BottomSheetDelegate?
+    var popControllerStrategy: PopControllerStrategy = .mediumIfNeed
     
     internal private(set) var state: VerticalSize = .small {
         willSet {
@@ -412,11 +418,16 @@ class BottomSheetViewController: UINavigationController {
         
         if let targetState = stateByViewControllers.removeValue(forKey: targetVC) {
             if currentSize == .big {
-                if targetState == .small || state == .small {
-                    changeState(state: .small, animated: false)
-                } else {
-                    changeState(state: .medium, animated: false)
+                var changeTo = VerticalSize.medium
+                
+                switch popControllerStrategy {
+                case .alwaysMinimaze:
+                    if targetState == .small || state == .small { changeTo = .small }
+                case .mediumIfNeed:
+                    if (targetState == .small && state == .big) || state == .small { changeTo = .small }
                 }
+                
+                changeState(state: changeTo, animated: false)
             } else {
                 if targetState.rawValue < state.rawValue {
                     changeState(state: targetState, animated: false)

@@ -11,8 +11,8 @@ import MapKit
 protocol MapInfoDelegate {
     func panAction(_ sender: UIPanGestureRecognizer)
     func zoomMap(zoom: Float)
-    func didSelect(_ view: MKAnnotationView)
-    func didDeselect(_ view: MKAnnotationView)
+    func didSelect(_ annotation: MKAnnotation?)
+    func didDeselect(_ annotation: MKAnnotation?)
 }
 
 class MapInfo: BottomSheetViewController {
@@ -28,21 +28,24 @@ class MapInfo: BottomSheetViewController {
     private var startZoom: Float = 0
     private var lastZoomChange = Date.timeIntervalSinceReferenceDate
     private var zoomHidden = false
-    private var currentSelection: MKAnnotationView?
+    private var currentSelection: MKAnnotation?
     
     private var hidingEnable: Bool {
         return !(mooved || moovedByScroll) && currentSize == .big && state == .medium
     }
     
-    func annotationDeselect(view: MKAnnotationView) {
-        if currentSelection == view && pages.last == .annotationInfo {
+    func annotationDeselect(annotation: MKAnnotation?) {
+        guard let currentSelection = currentSelection,
+              let annotation = annotation else { return }
+        
+        if currentSelection.isEqual(annotation) && pages.last == .annotationInfo {
             popViewController(animated: true)
         }
     }
     
     override func popViewController(animated: Bool) -> UIViewController? {
         if pages.last == .annotationInfo {
-            mapView?.deselectAnnotation(currentSelection?.annotation, animated: true)
+            mapView?.deselectAnnotation(currentSelection, animated: true)
         }
         pages.removeLast()
         return super.popViewController(animated: animated)
@@ -87,8 +90,8 @@ extension MapInfo: MapInfoDelegate {
         }
     }
     
-    func didSelect(_ view: MKAnnotationView) {
-        currentSelection = view
+    func didSelect(_ annotation: MKAnnotation?) {
+        currentSelection = annotation
         if pages.last == .annotationInfo {
             
         } else {
@@ -100,9 +103,9 @@ extension MapInfo: MapInfoDelegate {
         }
     }
     
-    func didDeselect(_ view: MKAnnotationView) {
+    func didDeselect(_ annotation: MKAnnotation?) {
         DispatchQueue.main.async { [weak self] in
-            self?.annotationDeselect(view: view)
+            self?.annotationDeselect(annotation: annotation)
         }
     }
 

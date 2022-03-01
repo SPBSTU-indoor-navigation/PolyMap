@@ -312,11 +312,11 @@ extension MapView: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        mapInfoDelegate?.didSelect(view)
+        mapInfoDelegate?.didSelect(view.annotation)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        mapInfoDelegate?.didDeselect(view)
+        mapInfoDelegate?.didDeselect(view.annotation)
     }
 
 }
