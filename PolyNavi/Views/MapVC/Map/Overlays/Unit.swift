@@ -11,23 +11,18 @@ class Unit: CustomOverlay, Styleble {
     
     var annotation: UnitAnnotation? = nil
     var id: UUID
-    var categoty: IMDF.Unit.Category
-    var restriction: Restriction?
+    var properties: IMDF.Unit.Properties
     
     init(_ geometry: MKShape & MKOverlay,
          id: UUID,
          displayPoint: CLLocationCoordinate2D?,
-         name: LocalizedName?,
-         altName: LocalizedName?,
-         categoty: IMDF.Unit.Category,
-         restriction: Restriction?) {
+         properties: IMDF.Unit.Properties) {
         
         self.id = id
-        self.categoty = categoty
-        self.restriction = restriction
+        self.properties = properties
         
-        if let displayPoint = displayPoint, let altName = altName {
-            annotation = UnitAnnotation(coordinate: displayPoint, title: altName.bestLocalizedValue, category: self.categoty)
+        if let displayPoint = displayPoint, properties.alt_name != nil {
+            annotation = UnitAnnotation(coordinate: displayPoint, properties: properties)
         }
         
         super.init(geometry)
@@ -37,19 +32,19 @@ class Unit: CustomOverlay, Styleble {
         guard let renderer = renderer as? MKOverlayPathRenderer else { return }
         
         renderer.strokeColor = Asset.IMDFColors.Units.defaultLine.color
-        renderer.fillColor = UIColor(named: categoty.rawValue) ?? Asset.IMDFColors.default.color
+        renderer.fillColor = UIColor(named: properties.category.rawValue) ?? Asset.IMDFColors.default.color
         renderer.lineWidth = 1
         
-        if restriction == .employeesonly || restriction == .restricted {
+        if properties.restriction == .employeesonly || properties.restriction == .restricted {
             renderer.fillColor = Asset.IMDFColors.Units.restricted.color
         } else {
-            switch categoty {
+            switch properties.category {
             case .restroom, .restroomFemale, .restroomMale:
                 renderer.fillColor = Asset.IMDFColors.Units.restroom.color
             default: break
             }
             
-            switch categoty {
+            switch properties.category {
             default: break
             }
         }

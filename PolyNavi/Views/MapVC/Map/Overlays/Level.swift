@@ -36,8 +36,8 @@ class Level: CustomOverlay, Styleble, MapRenderer {
     
     func show(_ mapView: OverlayedMapView) {
         if isShow { return }
-        mapView.addOverlays(units.filter({ $0.categoty == .walkway }))
-        mapView.addOverlays(units.filter({ $0.categoty != .walkway }))
+        mapView.addOverlays(units.filter({ $0.properties.category == .walkway }))
+        mapView.addOverlays(units.filter({ $0.properties.category != .walkway }))
         mapView.addOverlays(openings)
         mapView.addOverlays(details)
         mapView.addOverlay(self)

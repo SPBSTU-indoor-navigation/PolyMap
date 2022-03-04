@@ -21,20 +21,20 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
                 
                 
                 var imageName: String? = nil
-                switch unit.category {
+                switch unit.properties.category {
                 case .classroom: imageName = "classroom"
                 case .laboratory: imageName = "laboratorium"
                 case .auditorium: imageName = "lecture"
                 default: break
                 }
-                imageView.sourceImage = UIImage(named: imageName ?? unit.category.rawValue)
+                imageView.sourceImage = UIImage(named: imageName ?? unit.properties.category.rawValue)
                 imageView.alpha = imageOpacity
                 
                 
                 var colorName: String
-                switch unit.category {
+                switch unit.properties.category {
                 case .restroom, .restroomMale, .restroomFemale: colorName = "restroom"
-                default: colorName = unit.category.rawValue
+                default: colorName = unit.properties.category.rawValue
                 }
                 changePointColor(UIColor(named: colorName + "-annotation") ?? .systemOrange)
                 

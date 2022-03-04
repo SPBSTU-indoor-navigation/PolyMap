@@ -108,6 +108,8 @@
 		9780D8BE27B3404B00DBDBF3 /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		9780D8C027B3412A00DBDBF3 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
 		9780D8C227B3421800DBDBF3 /* TableBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */; };
+		978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B792E27D12F8C0003626F /* AnnotationConvert.swift */; };
+		978B793027D12F8C0003626F /* AnnotationConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B792E27D12F8C0003626F /* AnnotationConvert.swift */; };
 		978D9DC8273F56E300293A6C /* TimetableNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D9DC7273F56E300293A6C /* TimetableNavbar.swift */; };
 		97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941916278BCAF10038CBEF /* PointAnnotationView.swift */; };
 		97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */; };
@@ -234,6 +236,7 @@
 		9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitDetailVC.swift; sourceTree = "<group>"; };
 		9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableBottomSheetPage.swift; sourceTree = "<group>"; };
+		978B792E27D12F8C0003626F /* AnnotationConvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationConvert.swift; sourceTree = "<group>"; };
 		978D9DC7273F56E300293A6C /* TimetableNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavbar.swift; sourceTree = "<group>"; };
 		97941916278BCAF10038CBEF /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
 		97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityAnnotationView.swift; sourceTree = "<group>"; };
@@ -509,6 +512,7 @@
 			children = (
 				97B8E18227CEDA4E003D1EF4 /* Cells */,
 				9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */,
+				978B792E27D12F8C0003626F /* AnnotationConvert.swift */,
 			);
 			path = UnitDetail;
 			sourceTree = "<group>";
@@ -923,6 +927,7 @@
 				97E15D2827BC7FB500E636FC /* (null) in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
+				978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */,
 				97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */,
 				97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */,
 				979E5C9B27C0023000A48816 /* MapInfo.swift in Sources */,
@@ -949,6 +954,7 @@
 				971F8E1627BD55820018F98A /* SearchVC.swift in Sources */,
 				971F8DF327BD55000018F98A /* THLabel.swift in Sources */,
 				971F8E1027BD556B0018F98A /* AmenityAnnotation.swift in Sources */,
+				978B793027D12F8C0003626F /* AnnotationConvert.swift in Sources */,
 				979E5C9927BF0B3400A48816 /* SwiftUIExtensions.swift in Sources */,
 				971F8E1327BD55820018F98A /* FirstVC.swift in Sources */,
 				971F8E0B27BD556B0018F98A /* EnviromentAmenityAnnotation.swift in Sources */,

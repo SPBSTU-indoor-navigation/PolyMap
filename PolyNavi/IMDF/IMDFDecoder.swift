@@ -125,10 +125,7 @@ extension IMDF.Unit {
         return Unit(self.geometry.overlay(),
                     id: self.identifier,
                     displayPoint: properties.display_point?.getCoordinates(),
-                    name: properties.name,
-                    altName: properties.alt_name,
-                    categoty: properties.category,
-                    restriction: properties.restriction)
+                    properties: self.properties)
     }
 }
 

@@ -92,10 +92,16 @@ extension MapInfo: MapInfoDelegate {
     
     func didSelect(_ annotation: MKAnnotation?) {
         currentSelection = annotation
+        guard let annotation = annotation as? Castable else { return }
+        
         if pages.last == .annotationInfo {
-            
+            if let unitDetail = viewControllers.last as? UnitDetailVC {
+                unitDetail.configurate(unitInfo: annotation.cast())
+            }
         } else {
-            pushViewController(UnitDetailVC(closable: true), animated: true)
+            let vc = UnitDetailVC(closable: true)
+            vc.configurate(unitInfo: annotation.cast())
+            pushViewController(vc, animated: true)
         }
         
         if state != .medium && currentSize == .big {

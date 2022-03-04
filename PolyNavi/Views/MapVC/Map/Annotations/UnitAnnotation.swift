@@ -41,12 +41,13 @@ class UnitAnnotation: NSObject, MKAnnotation, Identifiable {
     static var identifier: String = String(describing: UnitAnnotation.self)
     
     @objc dynamic var coordinate: CLLocationCoordinate2D
-    var title: String?
-    var subtitle: String?
-    var category: IMDF.Unit.Category
+    var title: String? {
+        return properties.alt_name?.bestLocalizedValue
+    }
+    var properties: IMDF.Unit.Properties
     
     var detailLevel: DetailLevel {
-        switch category {
+        switch properties.category {
         case .restroom, .restroomMale, .restroomFemale, .security: return .circleWithoutLabel
         case .administration, .wardrobe: return .circleWithoutLabel
         case .shop, .foodservice, .foodserviceСoffee: return .circleWithoutLabel
@@ -55,10 +56,9 @@ class UnitAnnotation: NSObject, MKAnnotation, Identifiable {
         }
     }
     
-    init(coordinate: CLLocationCoordinate2D, title: String?, category: IMDF.Unit.Category) {
+    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Unit.Properties) {
         self.coordinate = coordinate
-        self.title = title
-        self.category = category
+        self.properties = properties
         super.init()
     }
 }

@@ -7,8 +7,31 @@
 
 import UIKit
 
+class UnitInfo {
+    var title: String = ""
+    var sections: [Section] = []
+    
+    class Section {
+        var title: String?
+    }
+    
+    class Route: Section { }
+    
+    class Detail: Section {
+        var showRoute = true
+        var showIndoor = true
+        
+        init(showRoute: Bool = true, showIndoor: Bool = true) {
+            self.showRoute = showRoute
+            self.showIndoor = showIndoor
+        }
+    }
+    
+}
+
 class UnitDetailVC: NavbarBottomSheetPage {
     let titleTopOffset = 14.0
+    var unitInfo: UnitInfo?
     
     private var useTitleTransition = false {
         willSet {
@@ -80,26 +103,29 @@ class UnitDetailVC: NavbarBottomSheetPage {
             titleNavbarLabel.trailingAnchor.constraint(equalTo: navbar.trailingAnchor, constant: -45 ),
             titleNavbarLabel.centerYAnchor.constraint(equalTo: navbar.centerYAnchor)
         ])
-        
-        configurate(titleText: "Saint Petersburg Saint Petersburg Saint Petersburg")
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        print(titleLabel.frame.height)
         titleHeight = titleLabel.frame.height
     }
     
     override func onStateChange(horizontalSize: BottomSheetViewController.HorizontalSize) {
         super.onStateChange(horizontalSize: horizontalSize)
-        configurate(titleText: titleLabel.text!)
     }
     
-    func configurate(titleText: String) {
-        titleLabel.text = titleText
-        titleNavbarLabel.text = titleText
-        tableView.reloadData()
+    func configurate(unitInfo: UnitInfo) {
+        self.unitInfo = unitInfo
+        titleLabel.text = unitInfo.title
+        titleNavbarLabel.text = unitInfo.title
+//        self.tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            
+            self.view.layoutSubviews()
+        })
     }
-    
 }
 
 extension UnitDetailVC: UITableViewDataSource {
@@ -109,7 +135,7 @@ extension UnitDetailVC: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return useTitleTransition ? 2 : 1
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -122,14 +148,6 @@ extension UnitDetailVC: UITableViewDataSource {
         return nil
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        UIView.animate(withDuration: 0.001) {
-            view.layoutIfNeeded()
-            view.layoutSubviews()
-        }
-        
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 && indexPath.section == 0 && useTitleTransition {
@@ -138,6 +156,7 @@ extension UnitDetailVC: UITableViewDataSource {
             UIView.performWithoutAnimation {
                 let spacer = tableView.dequeueReusableCell(withIdentifier: "spacer", for: indexPath) as! Spacer
                 spacer.configurate(height: titleLabel.frame.height - navbar.frame.height + titleTopOffset + 3)
+                spacer.backgroundColor = .systemOrange.withAlphaComponent(0.5)
                 cell = spacer
             }
             
@@ -157,12 +176,8 @@ extension UnitDetailVC: UITableViewDataSource {
         return cell
     }
     
-    func setupColor(color: UIColor) {
-        view.backgroundColor = .clear
-    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 && useTitleTransition {
+        if section == 0 {
             return 0
         }
         
@@ -211,4 +226,3 @@ extension UnitDetailVC: UITableViewDelegate {
         delegate?.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
     }
 }
-
