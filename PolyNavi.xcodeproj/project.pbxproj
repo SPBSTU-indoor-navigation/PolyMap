@@ -110,6 +110,8 @@
 		9780D8C227B3421800DBDBF3 /* TableBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */; };
 		978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B792E27D12F8C0003626F /* AnnotationConvert.swift */; };
 		978B793027D12F8C0003626F /* AnnotationConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B792E27D12F8C0003626F /* AnnotationConvert.swift */; };
+		978B793227D2DBA70003626F /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B793127D2DBA70003626F /* DetailCell.swift */; };
+		978B793327D2DBA70003626F /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B793127D2DBA70003626F /* DetailCell.swift */; };
 		978D9DC8273F56E300293A6C /* TimetableNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D9DC7273F56E300293A6C /* TimetableNavbar.swift */; };
 		97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941916278BCAF10038CBEF /* PointAnnotationView.swift */; };
 		97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */; };
@@ -237,6 +239,7 @@
 		9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableBottomSheetPage.swift; sourceTree = "<group>"; };
 		978B792E27D12F8C0003626F /* AnnotationConvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationConvert.swift; sourceTree = "<group>"; };
+		978B793127D2DBA70003626F /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		978D9DC7273F56E300293A6C /* TimetableNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavbar.swift; sourceTree = "<group>"; };
 		97941916278BCAF10038CBEF /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
 		97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityAnnotationView.swift; sourceTree = "<group>"; };
@@ -662,6 +665,7 @@
 				97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */,
 				97B8E18627CEDA80003D1EF4 /* RouteInfoCell.swift */,
 				97B8E18927CEDA8B003D1EF4 /* Spacer.swift */,
+				978B793127D2DBA70003626F /* DetailCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -891,6 +895,7 @@
 				975015622799B86F00326B09 /* CustomOverlay.swift in Sources */,
 				9780D8B627B32C7000DBDBF3 /* BottomSheetPage.swift in Sources */,
 				05C32AC7271F4C3E0033B751 /* SettingsModel.swift in Sources */,
+				978B793227D2DBA70003626F /* DetailCell.swift in Sources */,
 				9750154B2795B2F400326B09 /* Unit.swift in Sources */,
 				974FA70A27B88D51001A4A25 /* Detail.swift in Sources */,
 				979E2C832789DF39008CFA05 /* LocalizedName.swift in Sources */,
@@ -976,6 +981,7 @@
 				971F8DD327BD52EE0018F98A /* SceneDelegate.swift in Sources */,
 				971F8E0127BD55680018F98A /* Unit.swift in Sources */,
 				971F8DFA27BD555B0018F98A /* Models.swift in Sources */,
+				978B793327D2DBA70003626F /* DetailCell.swift in Sources */,
 				971F8DE627BD54E00018F98A /* MapViewController.swift in Sources */,
 				971F8E0D27BD556B0018F98A /* AttractionAnnotation.swift in Sources */,
 				971F8DF427BD55480018F98A /* Strings+Generated.swift in Sources */,

@@ -41,7 +41,7 @@ class RouteInfoCell: UITableViewCell {
         NSLayoutConstraint.activate([
             routeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             routeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            routeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            routeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             routeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             contentView.heightAnchor.constraint(equalToConstant: 46),
         ].priority(.defaultHigh))

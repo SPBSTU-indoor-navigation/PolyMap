@@ -8,6 +8,8 @@
 import UIKit
 
 class TitleHeader: UITableViewHeaderFooterView {
+    static var identifier: String = String(describing: TitleHeader.self)
+    
     private lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -29,5 +31,9 @@ class TitleHeader: UITableViewHeaderFooterView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configurate(text: String) {
+        titleLabel.text = text
     }
 }

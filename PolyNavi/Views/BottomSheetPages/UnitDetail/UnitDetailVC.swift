@@ -12,12 +12,11 @@ class UnitInfo {
     var sections: [Section] = []
     
     class Section {
-        var title: String?
+        var title: String? { return nil }
+        var cellCount: Int { return 1 }
     }
     
-    class Route: Section { }
-    
-    class Detail: Section {
+    class Route: Section {
         var showRoute = true
         var showIndoor = true
         
@@ -25,6 +24,58 @@ class UnitInfo {
             self.showRoute = showRoute
             self.showIndoor = showIndoor
         }
+    }
+    
+    class Detail: Section {
+        var content: [(String, String)] = []
+        
+        override var title: String? { return "Detail" }
+        override var cellCount: Int {
+            return content.count
+        }
+        
+        init(phone: String? = nil, website: String? = nil, address: String? = nil) {
+            if let phone = phone { content.append(("Phone", phone)) }
+            if let website = website { content.append(("website", website)) }
+            if let address = address { content.append(("address", address)) }
+        }
+        
+        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier) as! DetailCell
+            
+            cell.configurate(title: content[indexPath.row].0, content: content[indexPath.row].1)
+            return cell
+        }
+    }
+    
+    class Report: Section {
+        override var cellCount: Int { return 2 }
+        
+        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
+            
+            let image = UIImage(systemName: indexPath.row == 0 ? "star.fill" : "exclamationmark.bubble.fill")
+            let text = indexPath.row == 0 ? "Favorites" : "Report an Issue"
+            
+            if #available(iOS 14.0, *) {
+                var content = cell.defaultContentConfiguration()
+                content.image = image
+                content.text = text
+                cell.contentConfiguration = content
+            } else {
+                cell.textLabel?.text = text
+                cell.imageView?.image = image
+            }
+            
+            cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
+
+            return cell
+        }
+    }
+    
+    func section(for row: Int, title: Bool) -> Section? {
+        return sections[row - title.intValue]
     }
     
 }
@@ -69,7 +120,8 @@ class UnitDetailVC: NavbarBottomSheetPage {
         $0.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
         $0.register(Spacer.self, forCellReuseIdentifier: "spacer")
         $0.register(RouteInfoCell.self, forCellReuseIdentifier: RouteInfoCell.identifire)
-        $0.register(TitleHeader.self, forHeaderFooterViewReuseIdentifier: "titleHeader")
+        $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifier)
+        $0.register(TitleHeader.self, forHeaderFooterViewReuseIdentifier: TitleHeader.identifier)
         $0.delegate = self
         $0.dataSource = self
         $0.backgroundColor = .clear
@@ -120,38 +172,39 @@ class UnitDetailVC: NavbarBottomSheetPage {
         self.unitInfo = unitInfo
         titleLabel.text = unitInfo.title
         titleNavbarLabel.text = unitInfo.title
-//        self.tableView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            
-            self.view.layoutSubviews()
-        })
+        self.tableView.reloadData()
     }
 }
 
 extension UnitDetailVC: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 || (section == 0 && useTitleTransition) { return 1 }
-        return 5
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return useTitleTransition ? 2 : 1
+        guard let unitInfo = unitInfo else { return 0 }
+        
+        return unitInfo.sections.count + useTitleTransition.intValue
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let unitInfo = unitInfo else { return 0 }
+        
+        if useTitleTransition && section == 0 { return 1 }
+        
+        return unitInfo.sections[section - useTitleTransition.intValue].cellCount
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let unitInfo = unitInfo,
+              let section = unitInfo.section(for: section, title: useTitleTransition),
+              let title = section.title else { return nil }
         
-        if section == 3 {
-            var cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "titleHeader")
-            return cell
-        }
-        
-        return nil
+        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleHeader.identifier) as! TitleHeader
+        cell.configurate(text: title)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 && indexPath.section == 0 && useTitleTransition {
-            
+        if useTitleTransition && indexPath.row == 0 && indexPath.section == 0 {
             var cell: UITableViewCell?
             UIView.performWithoutAnimation {
                 let spacer = tableView.dequeueReusableCell(withIdentifier: "spacer", for: indexPath) as! Spacer
@@ -161,16 +214,25 @@ extension UnitDetailVC: UITableViewDataSource {
             }
             
             return cell!
-            
         }
         
-        if indexPath.section == 2 {
+        guard let unitInfo = unitInfo,
+              let section = unitInfo.section(for: indexPath.section, title: useTitleTransition) else {
+                  return tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
+              }
+        
+        if let section = section as? UnitInfo.Route {
             let cell = tableView.dequeueReusableCell(withIdentifier: RouteInfoCell.identifire, for: indexPath) as! RouteInfoCell
             return cell
+        } else if let section = section as? UnitInfo.Report {
+            return section.cellFor(tableView, indexPath)
+        } else if let section = section as? UnitInfo.Detail {
+            return section.cellFor(tableView, indexPath)
         }
         
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-
         cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
         cell.textLabel?.text = "Unit \(indexPath.row)"
         return cell
@@ -184,6 +246,12 @@ extension UnitDetailVC: UITableViewDataSource {
         return UITableView.automaticDimension
     }
 
+}
+
+extension Bool {
+    var intValue: Int {
+        return self ? 1 : 0
+    }
 }
 
 extension UnitDetailVC: UITableViewDelegate {
