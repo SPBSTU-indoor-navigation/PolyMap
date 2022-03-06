@@ -42,21 +42,21 @@ class UnitAnnotation: NSObject, MKAnnotation, Identifiable {
     
     @objc dynamic var coordinate: CLLocationCoordinate2D
     var title: String? {
-        return properties.alt_name?.bestLocalizedValue
+        return properties.shortName?.bestLocalizedValue
     }
-    var properties: IMDF.Unit.Properties
+    var properties: IMDF.Occupant.Properties
     
     var detailLevel: DetailLevel {
         switch properties.category {
         case .restroom, .restroomMale, .restroomFemale, .security: return .circleWithoutLabel
         case .administration, .wardrobe: return .circleWithoutLabel
-        case .shop, .foodservice, .foodserviceСoffee: return .circleWithoutLabel
+        case .souvenirs, .foodserviceСoffee: return .circleWithoutLabel
         case .auditorium, .classroom: return .pointSecondary
         default: return .pointSecondary
         }
     }
     
-    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Unit.Properties) {
+    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Occupant.Properties) {
         self.coordinate = coordinate
         self.properties = properties
         super.init()

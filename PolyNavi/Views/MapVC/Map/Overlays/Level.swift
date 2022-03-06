@@ -12,11 +12,12 @@ class Level: CustomOverlay, Styleble, MapRenderer {
     var units: [Unit] = []
     var openings: [Opening] = []
     var amenitys: [AmenityAnnotation] = []
+    var occupants: [UnitAnnotation] = []
     var details: [Detail] = []
     var ordinal: Int = 0
     var shortName: LocalizedName?
     
-    init(_ geometry: MKShape & MKOverlay, ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity], details: [Detail] ) {
+    init(_ geometry: MKShape & MKOverlay, ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity], details: [Detail], occupants: [(IMDF.Occupant, IMDF.Anchor)] ) {
         super.init(geometry)
         self.ordinal = ordinal
         self.units = units
@@ -24,14 +25,8 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         self.shortName = shortName
         self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name, detailLevel: $0.properties.detailLevel) })
         self.details = details
-        
-        let amenityUnits = amenitys.flatMap({ $0.properties.unit_ids })
-        
-        for unit in self.units {
-            if amenityUnits.contains(unit.id) {
-                unit.annotation = nil
-            }
-        }
+        self.occupants = occupants.map({ UnitAnnotation(coordinate: ($0.1.geometry.first as! MKPointAnnotation).coordinate, properties: $0.0.properties)})
+    
     }
     
     func show(_ mapView: OverlayedMapView) {
@@ -42,7 +37,7 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         mapView.addOverlays(details)
         mapView.addOverlay(self)
         
-        mapView.addAnnotations(units.compactMap{ $0.annotation })
+        mapView.addAnnotations(occupants)
         mapView.addAnnotations(amenitys)
         isShow = true
     }
@@ -54,7 +49,7 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         mapView.removeOverlays(details)
         mapView.removeOverlay(self)
         
-        mapView.removeAnnotations(units.compactMap({ $0.annotation }))
+        mapView.removeAnnotations(occupants)
         mapView.removeAnnotations(amenitys)
         
         isShow = false

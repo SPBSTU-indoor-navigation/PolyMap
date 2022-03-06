@@ -9,7 +9,6 @@ import MapKit
 
 class Unit: CustomOverlay, Styleble {
     
-    var annotation: UnitAnnotation? = nil
     var id: UUID
     var properties: IMDF.Unit.Properties
     
@@ -20,11 +19,6 @@ class Unit: CustomOverlay, Styleble {
         
         self.id = id
         self.properties = properties
-        
-        if let displayPoint = displayPoint, properties.alt_name != nil {
-            annotation = UnitAnnotation(coordinate: displayPoint, properties: properties)
-        }
-        
         super.init(geometry)
     }
     

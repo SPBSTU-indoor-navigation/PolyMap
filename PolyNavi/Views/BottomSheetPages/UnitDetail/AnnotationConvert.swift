@@ -16,7 +16,7 @@ extension UnitAnnotation: Castable {
         res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
         
         res.sections.append(UnitInfo.Route(showRoute: true, showIndoor: true))
-        res.sections.append(UnitInfo.Detail(phone: "7 931 203 27 68", website: "www.soprachev.com", address: "Line1\nLine2"))
+        res.sections.append(UnitInfo.Detail(phone: "7 931 203 27 68", address: "Line1\nLine2"))
         res.sections.append(UnitInfo.Report())
         
         return res

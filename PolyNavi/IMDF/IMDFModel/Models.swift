@@ -280,6 +280,44 @@ struct IMDF {
         }
     }
     
+    class Anchor: Feature<Anchor.Properties> {
+        struct Properties: Codable {
+            let unit_id: UUID
+            let address_id: UUID?
+        }
+    }
+    
+    class Occupant: Feature<Occupant.Properties> {
+        
+        enum Category: String, Codable {
+            case auditorium = "auditorium"
+            case administration = "administration"
+            case classroom = "classroom"
+            case laboratory = "laboratory"
+            case library = "library"
+            case souvenirs = "souvenirs"
+            case foodserviceСoffee = "foodservice.coffee"
+            case security = "security"
+            case wardrobe = "wardrobe"
+            case unspecified = "unspecified"
+            case restroom = "restroom"
+            case restroomFemale = "restroom.female"
+            case restroomMale = "restroom.male"
+        }
+        
+        struct Properties: Codable {
+            let name: LocalizedName?
+            let shortName: LocalizedName?
+            let category: Category
+            let anchor_id: UUID
+            let hours: String?
+            let phone: String?
+            let website: String?
+            
+            let correlation_id: UUID?
+        }
+    }
+    
 }
 
 

@@ -36,7 +36,7 @@ internal enum Asset {
       internal static let restroomFemale = ImageAsset(name: "restroom.female")
       internal static let restroomMale = ImageAsset(name: "restroom.male")
       internal static let security = ImageAsset(name: "security")
-      internal static let shop = ImageAsset(name: "shop")
+      internal static let souvenirs = ImageAsset(name: "souvenirs")
       internal static let stairs = ImageAsset(name: "stairs")
       internal static let vendingmachine = ImageAsset(name: "vendingmachine")
       internal static let wardrobe = ImageAsset(name: "wardrobe")
@@ -56,7 +56,7 @@ internal enum Asset {
         internal static let foodserviceCoffeeAnnotation = ColorAsset(name: "foodservice.coffee-annotation")
         internal static let restroomAnnotation = ColorAsset(name: "restroom-annotation")
         internal static let securityAnnotation = ColorAsset(name: "security-annotation")
-        internal static let shopAnnotation = ColorAsset(name: "shop-annotation")
+        internal static let souvenirsAnnotation = ColorAsset(name: "souvenirs-annotation")
         internal static let wardrobeAnnotation = ColorAsset(name: "wardrobe-annotation")
       }
     }

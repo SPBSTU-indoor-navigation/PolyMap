@@ -61,6 +61,8 @@ class IMDFDecoder {
         let imdfUnits = try! decodeFeatures(IMDF.Unit.self, path: File.unit.fileURL(path))
         let imdfOpening = try! decodeFeatures(IMDF.Opening.self, path: File.opening.fileURL(path))
         let detail = try! decodeFeatures(IMDF.Detail.self, path: File.detail.fileURL(path))
+        let anchor = try! decodeFeatures(IMDF.Anchor.self, path: File.anchor.fileURL(path))
+        let occupant = try! decodeFeatures(IMDF.Occupant.self, path: File.occupant.fileURL(path))
         let amenitys = try! decodeFeatures(IMDF.Amenity.self, path: File.amenity.fileURL(path))
         let enviroments = try! decodeFeatures(IMDF.EnviromentUnit.self, path: File.enviroment.fileURL(path))
         let enviromentAmenitys = try! decodeFeatures(IMDF.EnviromentAmenity.self, path: File.enviromentAmenity.fileURL(path))
@@ -69,11 +71,15 @@ class IMDFDecoder {
         
         guard let venue = venues.first else { return nil }
         
+        let occupantAnchor: [(IMDF.Occupant, IMDF.Anchor)] = occupant.map({ occupant in
+            return (occupant, anchor.first(where: { $0.identifier == occupant.properties.anchor_id })!)
+        })
+        
         let buildings = imdfBuildings.map({ building in
             return Building(building.geometry.overlay(),
                             levels: imdfLevels
                                 .filter({ $0.properties.building_ids.contains(building.identifier) })
-                                .map({ $0.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys, details: detail)}),
+                                .map({ $0.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys, details: detail, occupantAnchor: occupantAnchor)}),
                             attractions: attraction.filter({ $0.properties.building_id == building.identifier }),
                             rotation: building.properties.rotation)
         })
@@ -102,11 +108,11 @@ class IMDFDecoder {
 }
 
 extension IMDF.Level {
-    func cast(units: [IMDF.Unit], openings: [IMDF.Opening], amenitys: [IMDF.Amenity], details: [IMDF.Detail]) -> Level {
+    func cast(units: [IMDF.Unit], openings: [IMDF.Opening], amenitys: [IMDF.Amenity], details: [IMDF.Detail], occupantAnchor: [(IMDF.Occupant, IMDF.Anchor)]) -> Level {
         let units = units.filter({ $0.properties.level_id == self.identifier })
         let unitsIds = Set(units.map({ $0.identifier }))
         let amenitysFiltred = amenitys.filter({ !unitsIds.intersection($0.properties.unit_ids).isEmpty })
-        
+        let occupants = occupantAnchor.filter({ unitsIds.contains($0.1.properties.unit_id)})
         
         return Level(self.geometry.overlay(),
                      ordinal: self.properties.ordinal,
@@ -114,7 +120,8 @@ extension IMDF.Level {
                      openings: openings.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }),
                      shortName: self.properties.short_name,
                      amenitys: amenitysFiltred,
-                     details: details.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }))
+                     details: details.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }),
+                     occupants: occupants)
     }
 }
 
