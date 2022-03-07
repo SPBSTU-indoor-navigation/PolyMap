@@ -13,8 +13,6 @@ class RouteInfoCell: UITableViewCell {
         return String(describing: self)
     }
     
-    var navbarHeightConstraint: NSLayoutConstraint?
-    
     private lazy var routeButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setImage(UIImage(systemName: "figure.walk"), for: .normal)
@@ -31,21 +29,58 @@ class RouteInfoCell: UITableViewCell {
         return $0
     }(UIButton(type: .system))
     
+    private lazy var buildingButton: UIButton = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setImage(UIImage(systemName: "square.split.bottomrightquarter.fill"), for: .normal)
+        $0.setTitle("Plan", for: .normal)
+        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+    
+        $0.setBackgroundColor(color: Asset.Colors.bottomSheetPlan.color, forState: .normal)
+        
+        $0.tintColor = Asset.accentColor.color
+        $0.layer.cornerRadius = 10
+        $0.layer.cornerCurve = .continuous
+        $0.clipsToBounds = true
+        
+        $0.addTarget(self, action: #selector(routeClick(_:)), for: .touchUpInside)
+        return $0
+    }(UIButton(type: .system))
+    
+    var singleRouteConstraint, indoorRouteConstraint: NSLayoutConstraint?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubview(routeButton)
+        contentView.addSubview(buildingButton)
         backgroundColor = .clear
         selectionStyle = .none
+        
+        indoorRouteConstraint = routeButton.trailingAnchor.constraint(equalTo: buildingButton.leadingAnchor, constant: -8)
+        singleRouteConstraint = routeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         
         NSLayoutConstraint.activate([
             routeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             routeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            routeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             routeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            buildingButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            buildingButton.widthAnchor.constraint(equalToConstant: 100),
+            buildingButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            buildingButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            
             contentView.heightAnchor.constraint(equalToConstant: 46),
         ].priority(.defaultHigh))
         
+    }
+    
+    func configutate(showRoute: Bool = true, showIndoor: Bool = true, buildingID: UUID? = nil) {
+        routeButton.isHidden = !showRoute
+        buildingButton.isHidden = !showIndoor
+        
+        singleRouteConstraint?.isActive = !showIndoor
+        indoorRouteConstraint?.isActive = showIndoor
     }
     
     @objc func routeClick(_ sender: UIButton?) {
@@ -56,15 +91,12 @@ class RouteInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configurate(height: CGFloat) {
-        backgroundColor = .clear
-        contentView.autoresizingMask = .flexibleHeight
-        if let navbarHeightConstraint = navbarHeightConstraint {
-            navbarHeightConstraint.constant = height
-        } else {
-            navbarHeightConstraint = contentView.heightAnchor.constraint(equalToConstant: height)
-            navbarHeightConstraint!.priority = .defaultHigh
-            navbarHeightConstraint!.isActive = true
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *) {
+            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+                buildingButton.setBackgroundColor(color: Asset.Colors.bottomSheetPlan.color, forState: .normal)
+                routeButton.setBackgroundColor(color: Asset.accentColor.color, forState: .normal)
+            }
         }
     }
 }

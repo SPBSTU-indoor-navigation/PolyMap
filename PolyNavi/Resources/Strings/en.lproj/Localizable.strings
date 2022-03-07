@@ -38,3 +38,6 @@ MapInfo.Detail.Phone = "Phone";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Website";
 MapInfo.Detail.Address = "Address";
+
+MapInfo.Report.Favorites = "Favorites";
+MapInfo.Report.Issue = "Report an Issue";

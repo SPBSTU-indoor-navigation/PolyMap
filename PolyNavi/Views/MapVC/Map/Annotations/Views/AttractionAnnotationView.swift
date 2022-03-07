@@ -12,12 +12,12 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
         didSet {
             label.text = annotation?.title!
             if let attraction = annotation as? AttractionAnnotation {
-                if let imageName = attraction.image, let image = UIImage(named: imageName) {
+                if let imageName = attraction.properties.image, let image = UIImage(named: imageName) {
                     imageView.image = image
                     imageView.isHidden = false
                     labelShort.isHidden = true
                 } else {
-                    labelShort.text = attraction.localizedShort?.bestLocalizedValue
+                    labelShort.text = attraction.properties.short_name?.bestLocalizedValue ?? "-"
                     labelShort.isHidden = false
                     imageView.isHidden = true
                 }

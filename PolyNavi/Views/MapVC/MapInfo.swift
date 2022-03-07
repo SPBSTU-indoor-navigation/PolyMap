@@ -96,11 +96,11 @@ extension MapInfo: MapInfoDelegate {
         
         if pages.last == .annotationInfo {
             if let unitDetail = viewControllers.last as? UnitDetailVC {
-                unitDetail.configurate(occupantInfo: annotation.cast())
+                unitDetail.configurate(mapDetailInfo: annotation.cast())
             }
         } else {
             let vc = UnitDetailVC(closable: true)
-            vc.configurate(occupantInfo: annotation.cast())
+            vc.configurate(mapDetailInfo: annotation.cast())
             pushViewController(vc, animated: true)
         }
         

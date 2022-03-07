@@ -63,6 +63,7 @@ internal enum Asset {
   }
   internal enum Colors {
     internal static let bottomSheetGroupped = ColorAsset(name: "BottomSheetGroupped")
+    internal static let bottomSheetPlan = ColorAsset(name: "BottomSheetPlan")
   }
   internal enum IMDFColors {
     internal static let buildingFill = ColorAsset(name: "BuildingFill")

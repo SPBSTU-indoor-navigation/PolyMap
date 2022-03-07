@@ -6,18 +6,54 @@
 //
 
 protocol Castable {
-    func cast() -> OccupantInfo
+    func cast() -> MapDetailInfo
 }
 
 extension OccupantAnnotation: Castable {
-    func cast() -> OccupantInfo {
+    func cast() -> MapDetailInfo {
         
-        let res = OccupantInfo()
+        let res = MapDetailInfo()
         res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
         
-        res.sections.append(OccupantInfo.Route(showRoute: true, showIndoor: true))
-        res.sections.append(OccupantInfo.Detail(phone: self.properties.phone, email: self.properties.email, website: self.properties.website, address: self.address?.addressString()))
-        res.sections.append(OccupantInfo.Report())
+        res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: true))
+        res.sections.append(MapDetailInfo.Detail(phone: properties.phone, email: properties.email, website: properties.website, address: address?.addressString()))
+        res.sections.append(MapDetailInfo.Report())
+        
+        return res
+    }
+}
+
+extension AmenityAnnotation: Castable {
+    func cast() -> MapDetailInfo {
+        let res = MapDetailInfo()
+        
+        res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
+        res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false))
+        res.sections.append(MapDetailInfo.Report(favorite: false, report: true))
+        
+        return res
+    }
+}
+
+extension EnviromentAmenityAnnotation: Castable {
+    func cast() -> MapDetailInfo {
+        let res = MapDetailInfo()
+        
+        res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
+        res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false))
+        res.sections.append(MapDetailInfo.Report(favorite: false, report: true))
+        
+        return res
+    }
+}
+
+extension AttractionAnnotation: Castable {
+    func cast() -> MapDetailInfo {
+        let res = MapDetailInfo()
+        
+        res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
+        res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: true).with(buildingID: properties.building_id))
+        res.sections.append(MapDetailInfo.Report(favorite: true, report: true))
         
         return res
     }

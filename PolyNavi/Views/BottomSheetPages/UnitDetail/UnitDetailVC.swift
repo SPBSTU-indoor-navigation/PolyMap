@@ -7,95 +7,9 @@
 
 import UIKit
 
-protocol CellFor {
-    func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell
-}
-
-class OccupantInfo {
-    var title: String = ""
-    var sections: [Section] = []
-    
-
-    class Section {
-        var title: String? { return nil }
-        var cellCount: Int { return 1 }
-    }
-    
-    class Route: Section, CellFor {
-        var showRoute = true
-        var showIndoor = true
-        
-        init(showRoute: Bool = true, showIndoor: Bool = true) {
-            self.showRoute = showRoute
-            self.showIndoor = showIndoor
-        }
-        
-        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: RouteInfoCell.identifire, for: indexPath) as! RouteInfoCell
-            cell.selectionStyle = .none
-            return cell
-        }
-    }
-    
-    class Detail: Section, CellFor  {
-        var content: [(String, String)] = []
-        
-        override var title: String? { return "Detail" }
-        override var cellCount: Int {
-            return content.count
-        }
-        
-        init(phone: String? = nil, email: String? = nil, website: String? = nil, address: String? = nil) {
-            if let phone = phone { content.append((L10n.MapInfo.Detail.phone, phone)) }
-            if let email = email { content.append((L10n.MapInfo.Detail.email, email)) }
-            if let website = website { content.append((L10n.MapInfo.Detail.website, website)) }
-            if let address = address { content.append((L10n.MapInfo.Detail.address, address)) }
-        }
-        
-        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier) as! DetailCell
-            
-            cell.configurate(title: content[indexPath.row].0, content: content[indexPath.row].1)
-            cell.selectionStyle = .none
-            return cell
-        }
-    }
-    
-    class Report: Section, CellFor {
-        override var cellCount: Int { return 2 }
-        
-        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-            
-            let image = UIImage(systemName: indexPath.row == 0 ? "star.fill" : "exclamationmark.bubble.fill")
-            let text = indexPath.row == 0 ? "Favorites" : "Report an Issue"
-            
-            if #available(iOS 14.0, *) {
-                var content = cell.defaultContentConfiguration()
-                content.image = image
-                content.text = text
-                cell.contentConfiguration = content
-            } else {
-                cell.textLabel?.text = text
-                cell.imageView?.image = image
-            }
-            
-            cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
-            cell.selectionStyle = .gray
-            return cell
-        }
-    }
-    
-    func section(for row: Int, title: Bool) -> Section? {
-        return sections[row - title.intValue]
-    }
-    
-}
-
 class UnitDetailVC: NavbarBottomSheetPage {
     let titleTopOffset = 14.0
-    var occupantInfo: OccupantInfo?
+    var mapDetailInfo: MapDetailInfo?
     
     private var useTitleTransition = false
     
@@ -172,10 +86,10 @@ class UnitDetailVC: NavbarBottomSheetPage {
         super.onStateChange(horizontalSize: horizontalSize)
     }
     
-    func configurate(occupantInfo: OccupantInfo) {
-        self.occupantInfo = occupantInfo
-        titleLabel.text = occupantInfo.title
-        titleNavbarLabel.text = occupantInfo.title
+    func configurate(mapDetailInfo: MapDetailInfo) {
+        self.mapDetailInfo = mapDetailInfo
+        titleLabel.text = mapDetailInfo.title
+        titleNavbarLabel.text = mapDetailInfo.title
         
         titleLabel.sizeToFit()
         titleHeight = titleLabel.frame.height
@@ -186,22 +100,22 @@ class UnitDetailVC: NavbarBottomSheetPage {
 extension UnitDetailVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard let occupantInfo = occupantInfo else { return 0 }
+        guard let mapDetailInfo = mapDetailInfo else { return 0 }
         
-        return occupantInfo.sections.count + useTitleTransition.intValue
+        return mapDetailInfo.sections.count + useTitleTransition.intValue
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let occupantInfo = occupantInfo else { return 0 }
+        guard let mapDetailInfo = mapDetailInfo else { return 0 }
         
         if useTitleTransition && section == 0 { return 1 }
         
-        return occupantInfo.sections[section - useTitleTransition.intValue].cellCount
+        return mapDetailInfo.sections[section - useTitleTransition.intValue].cellCount
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let occupantInfo = occupantInfo,
-              let section = occupantInfo.section(for: section, title: useTitleTransition),
+        guard let mapDetailInfo = mapDetailInfo,
+              let section = mapDetailInfo.section(for: section, title: useTitleTransition),
               let title = section.title else { return nil }
         
         let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleHeader.identifier) as! TitleHeader
@@ -223,8 +137,8 @@ extension UnitDetailVC: UITableViewDataSource {
             return cell!
         }
         
-        if let occupantInfo = occupantInfo,
-           let section = occupantInfo.section(for: indexPath.section, title: useTitleTransition),
+        if let mapDetailInfo = mapDetailInfo,
+           let section = mapDetailInfo.section(for: indexPath.section, title: useTitleTransition),
            let cellFor = section as? CellFor {
             return cellFor.cellFor(tableView, indexPath)
         }

@@ -27,6 +27,12 @@ internal enum L10n {
       /// Website
       internal static let website = L10n.tr("Localizable", "MapInfo.Detail.Website")
     }
+    internal enum Report {
+      /// Favorites
+      internal static let favorites = L10n.tr("Localizable", "MapInfo.Report.Favorites")
+      /// Report an Issue
+      internal static let issue = L10n.tr("Localizable", "MapInfo.Report.Issue")
+    }
   }
 
   internal enum Settings {

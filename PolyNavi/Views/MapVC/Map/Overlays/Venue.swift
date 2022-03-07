@@ -22,7 +22,7 @@ class Venue: CustomOverlay, Styleble {
         self.address = address
         self.enviroments = enviroments
         self.enviromentDetail = enviromentDetail
-        self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name, detailLevel: $0.properties.detailLevel) })
+        self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, properties: $0.properties, detailLevel: $0.properties.detailLevel) })
     }
     
     func show(_ mapView: OverlayedMapView) {

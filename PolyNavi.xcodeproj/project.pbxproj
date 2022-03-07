@@ -130,6 +130,8 @@
 		979E5C9C27C0023000A48816 /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E5C9A27C0023000A48816 /* MapInfo.swift */; };
 		97A484BC2717858700D14997 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BB2717858700D14997 /* MapViewController.swift */; };
 		97A484C02717BAF700D14997 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
+		97A566F827D589FA00A064CC /* MapDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A566F727D589FA00A064CC /* MapDetailInfo.swift */; };
+		97A566F927D589FA00A064CC /* MapDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A566F727D589FA00A064CC /* MapDetailInfo.swift */; };
 		97B8E18427CEDA6D003D1EF4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */; };
 		97B8E18527CEDA6D003D1EF4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */; };
 		97B8E18727CEDA80003D1EF4 /* RouteInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18627CEDA80003D1EF4 /* RouteInfoCell.swift */; };
@@ -255,6 +257,7 @@
 		979E5C9A27C0023000A48816 /* MapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
 		97A484BB2717858700D14997 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		97A484BF2717BAF700D14997 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		97A566F727D589FA00A064CC /* MapDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailInfo.swift; sourceTree = "<group>"; };
 		97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
 		97B8E18627CEDA80003D1EF4 /* RouteInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfoCell.swift; sourceTree = "<group>"; };
 		97B8E18927CEDA8B003D1EF4 /* Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
@@ -516,6 +519,7 @@
 				97B8E18227CEDA4E003D1EF4 /* Cells */,
 				9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */,
 				978B792E27D12F8C0003626F /* AnnotationConvert.swift */,
+				97A566F727D589FA00A064CC /* MapDetailInfo.swift */,
 			);
 			path = UnitDetail;
 			sourceTree = "<group>";
@@ -932,6 +936,7 @@
 				97E15D2827BC7FB500E636FC /* (null) in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
+				97A566F827D589FA00A064CC /* MapDetailInfo.swift in Sources */,
 				978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */,
 				97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */,
 				97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */,
@@ -983,6 +988,7 @@
 				971F8DFA27BD555B0018F98A /* Models.swift in Sources */,
 				978B793327D2DBA70003626F /* DetailCell.swift in Sources */,
 				971F8DE627BD54E00018F98A /* MapViewController.swift in Sources */,
+				97A566F927D589FA00A064CC /* MapDetailInfo.swift in Sources */,
 				971F8E0D27BD556B0018F98A /* AttractionAnnotation.swift in Sources */,
 				971F8DF427BD55480018F98A /* Strings+Generated.swift in Sources */,
 				971F8DFD27BD55650018F98A /* OverlayedMapView.swift in Sources */,

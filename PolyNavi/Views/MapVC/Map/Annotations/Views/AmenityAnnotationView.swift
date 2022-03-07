@@ -15,9 +15,9 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
     override var annotation: MKAnnotation? {
         didSet {
             if let amenity = annotation as? AmenityAnnotation {
-                imageView.sourceImage = UIImage(named: amenity.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+                imageView.sourceImage = UIImage(named: amenity.properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
             } else if let amenity = annotation as? EnviromentAmenityAnnotation {
-                imageView.sourceImage = UIImage(named: amenity.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+                imageView.sourceImage = UIImage(named: amenity.properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
             }
             
             if let title = annotation?.title {
