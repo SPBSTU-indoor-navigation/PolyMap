@@ -1,5 +1,5 @@
 //
-//  UnitAnnotation.swift
+//  OccupantAnnotation.swift
 //  PolyNavi
 //
 //  Created by Andrei Soprachev on 17.01.2022.
@@ -7,7 +7,7 @@
 
 import MapKit
 
-class UnitAnnotation: NSObject, MKAnnotation, Identifiable {
+class OccupantAnnotation: NSObject, MKAnnotation, Identifiable {
     enum DetailLevel: Int {
         case circlePrimary = 0
         case circleSecondary = 1
@@ -38,13 +38,14 @@ class UnitAnnotation: NSObject, MKAnnotation, Identifiable {
     
     
     var identifier: String = identifier
-    static var identifier: String = String(describing: UnitAnnotation.self)
+    static var identifier: String = String(describing: OccupantAnnotation.self)
     
     @objc dynamic var coordinate: CLLocationCoordinate2D
     var title: String? {
         return properties.shortName?.bestLocalizedValue
     }
     var properties: IMDF.Occupant.Properties
+    var address: IMDF.Address?
     
     var detailLevel: DetailLevel {
         switch properties.category {
@@ -56,9 +57,10 @@ class UnitAnnotation: NSObject, MKAnnotation, Identifiable {
         }
     }
     
-    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Occupant.Properties) {
+    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Occupant.Properties, address: IMDF.Address?) {
         self.coordinate = coordinate
         self.properties = properties
+        self.address = address
         super.init()
     }
 }

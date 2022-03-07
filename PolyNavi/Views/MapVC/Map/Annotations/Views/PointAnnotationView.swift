@@ -13,10 +13,10 @@ protocol AnnotationMapSize {
 }
 
 class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
-    private var annotationDetailState: UnitAnnotation.DetailLevel = .pointSecondary
+    private var annotationDetailState: OccupantAnnotation.DetailLevel = .pointSecondary
     override var annotation: MKAnnotation? {
         didSet {
-            if let unit = annotation as? UnitAnnotation {
+            if let unit = annotation as? OccupantAnnotation {
                 annotationDetailState = unit.detailLevel
                 
                 
@@ -277,7 +277,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
     }
     
     func update(mapSize: Float, animate: Bool) {
-        let targetState = UnitAnnotation.levelProcessor.evaluate(forDetailLevel: annotationDetailState.rawValue, mapSize: mapSize) ?? .normal
+        let targetState = OccupantAnnotation.levelProcessor.evaluate(forDetailLevel: annotationDetailState.rawValue, mapSize: mapSize) ?? .normal
         
         if state != targetState {
             changeState(state: targetState, animate: animate)

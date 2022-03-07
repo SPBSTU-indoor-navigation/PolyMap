@@ -312,6 +312,7 @@ struct IMDF {
             let anchor_id: UUID
             let hours: String?
             let phone: String?
+            let email: String?
             let website: String?
             
             let correlation_id: UUID?

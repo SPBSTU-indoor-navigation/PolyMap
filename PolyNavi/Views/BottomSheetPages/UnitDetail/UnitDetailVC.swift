@@ -7,16 +7,21 @@
 
 import UIKit
 
-class UnitInfo {
+protocol CellFor {
+    func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell
+}
+
+class OccupantInfo {
     var title: String = ""
     var sections: [Section] = []
     
+
     class Section {
         var title: String? { return nil }
         var cellCount: Int { return 1 }
     }
     
-    class Route: Section {
+    class Route: Section, CellFor {
         var showRoute = true
         var showIndoor = true
         
@@ -24,9 +29,15 @@ class UnitInfo {
             self.showRoute = showRoute
             self.showIndoor = showIndoor
         }
+        
+        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: RouteInfoCell.identifire, for: indexPath) as! RouteInfoCell
+            cell.selectionStyle = .none
+            return cell
+        }
     }
     
-    class Detail: Section {
+    class Detail: Section, CellFor  {
         var content: [(String, String)] = []
         
         override var title: String? { return "Detail" }
@@ -34,21 +45,23 @@ class UnitInfo {
             return content.count
         }
         
-        init(phone: String? = nil, website: String? = nil, address: String? = nil) {
-            if let phone = phone { content.append(("Phone", phone)) }
-            if let website = website { content.append(("website", website)) }
-            if let address = address { content.append(("address", address)) }
+        init(phone: String? = nil, email: String? = nil, website: String? = nil, address: String? = nil) {
+            if let phone = phone { content.append((L10n.MapInfo.Detail.phone, phone)) }
+            if let email = email { content.append((L10n.MapInfo.Detail.email, email)) }
+            if let website = website { content.append((L10n.MapInfo.Detail.website, website)) }
+            if let address = address { content.append((L10n.MapInfo.Detail.address, address)) }
         }
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier) as! DetailCell
             
             cell.configurate(title: content[indexPath.row].0, content: content[indexPath.row].1)
+            cell.selectionStyle = .none
             return cell
         }
     }
     
-    class Report: Section {
+    class Report: Section, CellFor {
         override var cellCount: Int { return 2 }
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
@@ -69,7 +82,7 @@ class UnitInfo {
             }
             
             cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
-
+            cell.selectionStyle = .gray
             return cell
         }
     }
@@ -82,15 +95,9 @@ class UnitInfo {
 
 class UnitDetailVC: NavbarBottomSheetPage {
     let titleTopOffset = 14.0
-    var unitInfo: UnitInfo?
+    var occupantInfo: OccupantInfo?
     
-    private var useTitleTransition = false {
-        willSet {
-            if useTitleTransition != newValue {
-                tableView.reloadData()
-            }
-        }
-    }
+    private var useTitleTransition = false
     
     private var titleHeight = 0.0 {
         willSet {
@@ -126,7 +133,6 @@ class UnitDetailVC: NavbarBottomSheetPage {
         $0.dataSource = self
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.allowsSelection = false
         $0.sectionFooterHeight = 0
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
@@ -159,8 +165,6 @@ class UnitDetailVC: NavbarBottomSheetPage {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        print(titleLabel.frame.height)
         titleHeight = titleLabel.frame.height
     }
     
@@ -168,33 +172,36 @@ class UnitDetailVC: NavbarBottomSheetPage {
         super.onStateChange(horizontalSize: horizontalSize)
     }
     
-    func configurate(unitInfo: UnitInfo) {
-        self.unitInfo = unitInfo
-        titleLabel.text = unitInfo.title
-        titleNavbarLabel.text = unitInfo.title
-        self.tableView.reloadData()
+    func configurate(occupantInfo: OccupantInfo) {
+        self.occupantInfo = occupantInfo
+        titleLabel.text = occupantInfo.title
+        titleNavbarLabel.text = occupantInfo.title
+        
+        titleLabel.sizeToFit()
+        titleHeight = titleLabel.frame.height
+        tableView.reloadData()
     }
 }
 
 extension UnitDetailVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard let unitInfo = unitInfo else { return 0 }
+        guard let occupantInfo = occupantInfo else { return 0 }
         
-        return unitInfo.sections.count + useTitleTransition.intValue
+        return occupantInfo.sections.count + useTitleTransition.intValue
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let unitInfo = unitInfo else { return 0 }
+        guard let occupantInfo = occupantInfo else { return 0 }
         
         if useTitleTransition && section == 0 { return 1 }
         
-        return unitInfo.sections[section - useTitleTransition.intValue].cellCount
+        return occupantInfo.sections[section - useTitleTransition.intValue].cellCount
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let unitInfo = unitInfo,
-              let section = unitInfo.section(for: section, title: useTitleTransition),
+        guard let occupantInfo = occupantInfo,
+              let section = occupantInfo.section(for: section, title: useTitleTransition),
               let title = section.title else { return nil }
         
         let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleHeader.identifier) as! TitleHeader
@@ -209,33 +216,20 @@ extension UnitDetailVC: UITableViewDataSource {
             UIView.performWithoutAnimation {
                 let spacer = tableView.dequeueReusableCell(withIdentifier: "spacer", for: indexPath) as! Spacer
                 spacer.configurate(height: titleLabel.frame.height - navbar.frame.height + titleTopOffset + 3)
-                spacer.backgroundColor = .systemOrange.withAlphaComponent(0.5)
                 cell = spacer
             }
             
+            cell!.selectionStyle = .none
             return cell!
         }
         
-        guard let unitInfo = unitInfo,
-              let section = unitInfo.section(for: indexPath.section, title: useTitleTransition) else {
-                  return tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-              }
-        
-        if let section = section as? UnitInfo.Route {
-            let cell = tableView.dequeueReusableCell(withIdentifier: RouteInfoCell.identifire, for: indexPath) as! RouteInfoCell
-            return cell
-        } else if let section = section as? UnitInfo.Report {
-            return section.cellFor(tableView, indexPath)
-        } else if let section = section as? UnitInfo.Detail {
-            return section.cellFor(tableView, indexPath)
+        if let occupantInfo = occupantInfo,
+           let section = occupantInfo.section(for: indexPath.section, title: useTitleTransition),
+           let cellFor = section as? CellFor {
+            return cellFor.cellFor(tableView, indexPath)
         }
         
-        
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-        cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
-        cell.textLabel?.text = "Unit \(indexPath.row)"
-        return cell
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -244,6 +238,11 @@ extension UnitDetailVC: UITableViewDataSource {
         }
         
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if useTitleTransition && indexPath.row == 0 && indexPath.section == 0 { return nil }
+        return indexPath
     }
 
 }
@@ -257,6 +256,10 @@ extension Bool {
 extension UnitDetailVC: UITableViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         delegate?.scrollViewWillBeginDragging(scrollView)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
