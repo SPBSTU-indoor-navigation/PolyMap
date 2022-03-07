@@ -33,7 +33,6 @@ class MapView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        mapView.delegate = self
     
         layoutViews()
         loadIMDF()
@@ -49,8 +48,9 @@ class MapView: UIView {
         $0.isPitchEnabled = false
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false
+        $0.delegate = self
         
-        $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: UnitAnnotation.identifier)
+        $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: OccupantAnnotation.identifier)
         $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: AmenityAnnotation.identifier)
         $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: EnviromentAmenityAnnotation.identifier)
         $0.register(AttractionAnnotationView.self, forAnnotationViewWithReuseIdentifier: AttractionAnnotation.identifier)
@@ -309,6 +309,53 @@ extension MapView: MKMapViewDelegate {
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
         updateMap(centerPosition: mapView.centerCoordinate)
         updateMap(zoomLevel: getZoom())
+    }
+
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        mapInfoDelegate?.didSelect(view.annotation)
+        
+        let mapSafeZone = mapInfoDelegate!.getSafeZone()
+        let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: self.mapView)
+        
+        let centerCG = mapView.convert(mapView.centerCoordinate, toPointTo: mapView)
+        let annotationCG = mapView.convert(view.annotation!.coordinate, toPointTo: mapView)
+        
+        
+        let boundingBox = (view as? BoundingBox)?.boundingBox() ?? .zero
+        
+        var dx = 0.0
+        var dy = 0.0
+        
+        let offset = UIEdgeInsets(top: -boundingBox.origin.y,
+                                  left: -boundingBox.origin.x,
+                                  bottom: boundingBox.height + boundingBox.origin.y,
+                                  right: boundingBox.width + boundingBox.origin.x)
+        
+        let target = safeZone
+            .inset(by: offset)
+            .inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 50, right: 10))
+        
+        
+            
+        if annotationCG.y < target.minY {
+            dy = annotationCG.y - target.minY
+        } else if annotationCG.y > target.maxY {
+            dy = annotationCG.y - target.maxY
+        }
+        
+        if annotationCG.x < target.minX {
+            dx = annotationCG.x - target.minX
+        } else if annotationCG.x > target.maxX {
+            dx = annotationCG.x - target.maxX
+        }
+        
+        
+        let point = MKMapPoint(mapView.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: mapView))
+        mapView.setCenter(point.coordinate, animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        mapInfoDelegate?.didDeselect(view.annotation)
     }
 
 }

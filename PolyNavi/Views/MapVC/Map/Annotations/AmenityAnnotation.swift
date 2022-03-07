@@ -52,19 +52,17 @@ class AmenityAnnotation: NSObject, MKAnnotation, DetailLevel, Identifiable {
     @objc dynamic var coordinate: CLLocationCoordinate2D
     var title: String? {
         get {
-            return shortName?.bestLocalizedValue
+            return properties.alt_name?.bestLocalizedValue
         }
     }
     
-    var category: IMDF.Amenity.Category
+    var properties: IMDF.Amenity.Properties
     
-    var shortName: LocalizedName?
     var detail: Int = 0
     
-    init(coordinate: CLLocationCoordinate2D, category: IMDF.Amenity.Category, title: LocalizedName?, detailLevel: Int) {
+    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Amenity.Properties, detailLevel: Int) {
         self.coordinate = coordinate
-        self.category = category
-        shortName = title
+        self.properties = properties
         detail = detailLevel
         super.init()
     }

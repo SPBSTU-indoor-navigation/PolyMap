@@ -12,29 +12,33 @@ protocol AnnotationMapSize {
     func update(mapSize: Float, animate: Bool)
 }
 
-class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
-    private var annotationDetailState: UnitAnnotation.DetailLevel = .pointSecondary
+protocol BoundingBox {
+    func boundingBox() -> CGRect
+}
+
+class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
+    private var annotationDetailState: OccupantAnnotation.DetailLevel = .pointSecondary
     override var annotation: MKAnnotation? {
         didSet {
-            if let unit = annotation as? UnitAnnotation {
+            if let unit = annotation as? OccupantAnnotation {
                 annotationDetailState = unit.detailLevel
                 
                 
                 var imageName: String? = nil
-                switch unit.category {
+                switch unit.properties.category {
                 case .classroom: imageName = "classroom"
                 case .laboratory: imageName = "laboratorium"
                 case .auditorium: imageName = "lecture"
                 default: break
                 }
-                imageView.sourceImage = UIImage(named: imageName ?? unit.category.rawValue)
+                imageView.sourceImage = UIImage(named: imageName ?? unit.properties.category.rawValue)
                 imageView.alpha = imageOpacity
                 
                 
                 var colorName: String
-                switch unit.category {
+                switch unit.properties.category {
                 case .restroom, .restroomMale, .restroomFemale: colorName = "restroom"
-                default: colorName = unit.category.rawValue
+                default: colorName = unit.properties.category.rawValue
                 }
                 changePointColor(UIColor(named: colorName + "-annotation") ?? .systemOrange)
                 
@@ -242,6 +246,10 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
             }, completion: { _ in self.miniPoint.isHidden = true })
     }
     
+    func boundingBox() -> CGRect {
+        return point.frame.union(label.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
+    }
+    
     override func prepareForDisplay() {
         super.prepareForDisplay()
         if imageOpacity > 0 {
@@ -277,7 +285,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
     }
     
     func update(mapSize: Float, animate: Bool) {
-        let targetState = UnitAnnotation.levelProcessor.evaluate(forDetailLevel: annotationDetailState.rawValue, mapSize: mapSize) ?? .normal
+        let targetState = OccupantAnnotation.levelProcessor.evaluate(forDetailLevel: annotationDetailState.rawValue, mapSize: mapSize) ?? .normal
         
         if state != targetState {
             changeState(state: targetState, animate: animate)

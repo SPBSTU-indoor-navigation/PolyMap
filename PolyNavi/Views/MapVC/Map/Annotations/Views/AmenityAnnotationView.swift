@@ -7,17 +7,16 @@
 
 import MapKit
 
-class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
-    
+class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
     var state: DetailLevelState = .undefined
     var detailLevel: Int = 0
     
     override var annotation: MKAnnotation? {
         didSet {
             if let amenity = annotation as? AmenityAnnotation {
-                imageView.sourceImage = UIImage(named: amenity.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+                imageView.sourceImage = UIImage(named: amenity.properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
             } else if let amenity = annotation as? EnviromentAmenityAnnotation {
-                imageView.sourceImage = UIImage(named: amenity.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+                imageView.sourceImage = UIImage(named: amenity.properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
             }
             
             if let title = annotation?.title {
@@ -206,6 +205,10 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func boundingBox() -> CGRect {
+        return background.frame.union(label.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
     }
     
     override func prepareForDisplay() {

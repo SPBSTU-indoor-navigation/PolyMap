@@ -32,3 +32,12 @@ Settings.titleOfTeacherCell = "Преподаватель";
 
 //MARK:- Choosing search controller strings
 ChoosingSearchController.searchPlaceholder = "Поиск";
+
+//MARK:- MapInfo
+MapInfo.Detail.Phone = "Телефон";
+MapInfo.Detail.Email = "Email";
+MapInfo.Detail.Website = "Вебсайт";
+MapInfo.Detail.Address = "Адрес";
+
+MapInfo.Report.Favorites = "Закладки";
+MapInfo.Report.Issue = "Сообщить об ошибке";

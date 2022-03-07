@@ -48,6 +48,11 @@ class BottomSheetViewController: UINavigationController {
         case ultraSmall
     }
     
+    enum PopControllerStrategy {
+        case alwaysMinimaze
+        case mediumIfNeed
+    }
+    
     enum VerticalSize: Int {
         case small = 0
         case medium = 1
@@ -69,6 +74,7 @@ class BottomSheetViewController: UINavigationController {
     }
     
     var bottomSheetDelegate: BottomSheetDelegate?
+    var popControllerStrategy: PopControllerStrategy = .mediumIfNeed
     
     internal private(set) var state: VerticalSize = .small {
         willSet {
@@ -201,6 +207,7 @@ class BottomSheetViewController: UINavigationController {
         
         if (mooved || moovedByScroll) == false { currentPosition = position(for: state) }
         
+        let currentSize = currentSize
         let safeArea = containerView.safeAreaInsets
         
         let height = height(for: currentSize)
@@ -212,7 +219,17 @@ class BottomSheetViewController: UINavigationController {
             height: height
         )
         
-        safeZone.frame = CGRect(origin: .zero, size: CGSize(width: containerView.frame.width, height: currentPosition))
+        if currentSize == .big {
+            safeZone.frame = CGRect(origin: .zero, size: CGSize(width: containerView.frame.width, height: currentPosition))
+        } else {
+            let offset = progress(for: currentPosition,
+                                     from: position(for: .medium),
+                                     to: position(for: .small)).clamped(0, 1) * view.frame.maxX
+            
+            safeZone.frame = CGRect(origin: CGPoint(x: offset, y: 0),
+                                    size: CGSize(width: containerView.frame.width - offset, height: containerView.frame.height))
+        }
+        
         
         safeZone.layoutIfNeeded()
         view.layoutIfNeeded()
@@ -412,11 +429,16 @@ class BottomSheetViewController: UINavigationController {
         
         if let targetState = stateByViewControllers.removeValue(forKey: targetVC) {
             if currentSize == .big {
-                if targetState == .small || state == .small {
-                    changeState(state: .small, animated: false)
-                } else {
-                    changeState(state: .medium, animated: false)
+                var changeTo = VerticalSize.medium
+                
+                switch popControllerStrategy {
+                case .alwaysMinimaze:
+                    if targetState == .small || state == .small { changeTo = .small }
+                case .mediumIfNeed:
+                    if (targetState == .small && state == .big) || state == .small { changeTo = .small }
                 }
+                
+                changeState(state: changeTo, animated: false)
             } else {
                 if targetState.rawValue < state.rawValue {
                     changeState(state: targetState, animated: false)

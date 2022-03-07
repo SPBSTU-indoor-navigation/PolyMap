@@ -14,7 +14,6 @@ enum Restriction: String, Codable {
 }
 
 struct PointGeometry: Codable {
-//    let type: String = "Point"
     let coordinates: [Double]
     
     func getCoordinates() -> CLLocationCoordinate2D {
@@ -33,7 +32,6 @@ class Feature<Properties: Decodable>: NSObject, IMDFDecodableFeature {
         
         if let propertiesData = feature.properties {
             let decoder = JSONDecoder()
-//            decoder.keyDecodingStrategy = .convertFromSnakeCase
             properties = try decoder.decode(Properties.self, from: propertiesData)
         } else {
             throw IMDFError.invalidData
