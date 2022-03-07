@@ -7,8 +7,7 @@
 
 import MapKit
 
-class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
-    
+class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
     var state: DetailLevelState = .undefined
     var detailLevel: Int = 0
     
@@ -206,6 +205,10 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func boundingBox() -> CGRect {
+        return background.frame.union(label.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
     }
     
     override func prepareForDisplay() {

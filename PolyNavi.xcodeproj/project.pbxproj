@@ -132,6 +132,8 @@
 		97A484C02717BAF700D14997 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		97A566F827D589FA00A064CC /* MapDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A566F727D589FA00A064CC /* MapDetailInfo.swift */; };
 		97A566F927D589FA00A064CC /* MapDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A566F727D589FA00A064CC /* MapDetailInfo.swift */; };
+		97A566FB27D6920100A064CC /* UtilsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A566FA27D6920100A064CC /* UtilsExtensions.swift */; };
+		97A566FC27D6920100A064CC /* UtilsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A566FA27D6920100A064CC /* UtilsExtensions.swift */; };
 		97B8E18427CEDA6D003D1EF4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */; };
 		97B8E18527CEDA6D003D1EF4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */; };
 		97B8E18727CEDA80003D1EF4 /* RouteInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18627CEDA80003D1EF4 /* RouteInfoCell.swift */; };
@@ -258,6 +260,7 @@
 		97A484BB2717858700D14997 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		97A484BF2717BAF700D14997 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		97A566F727D589FA00A064CC /* MapDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailInfo.swift; sourceTree = "<group>"; };
+		97A566FA27D6920100A064CC /* UtilsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsExtensions.swift; sourceTree = "<group>"; };
 		97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
 		97B8E18627CEDA80003D1EF4 /* RouteInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfoCell.swift; sourceTree = "<group>"; };
 		97B8E18927CEDA8B003D1EF4 /* Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
@@ -585,6 +588,7 @@
 				9780D8B927B32DDD00DBDBF3 /* UIKitExtensions.swift */,
 				979E5C9727BF0B3400A48816 /* SwiftUIExtensions.swift */,
 				976A027927BB26F000128EE6 /* AnimationExtensions.swift */,
+				97A566FA27D6920100A064CC /* UtilsExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -887,6 +891,7 @@
 				05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */,
 				9780D8BC27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift in Sources */,
 				9780D8BA27B32DDD00DBDBF3 /* UIKitExtensions.swift in Sources */,
+				97A566FB27D6920100A064CC /* UtilsExtensions.swift in Sources */,
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
 				9780D8C227B3421800DBDBF3 /* TableBottomSheetPage.swift in Sources */,
 				0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */,
@@ -957,6 +962,7 @@
 				971F8E0927BD55680018F98A /* Opening.swift in Sources */,
 				979E5C8F27BEF42700A48816 /* AnimationExtensions.swift in Sources */,
 				971F8E0327BD55680018F98A /* EnviromentUnit.swift in Sources */,
+				97A566FC27D6920100A064CC /* UtilsExtensions.swift in Sources */,
 				971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */,
 				971F8DEE27BD54FA0018F98A /* BottomSheetTransition.swift in Sources */,
 				97B8E18527CEDA6D003D1EF4 /* TitleHeader.swift in Sources */,

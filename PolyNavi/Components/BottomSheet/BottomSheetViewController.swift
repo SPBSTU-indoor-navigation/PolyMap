@@ -207,6 +207,7 @@ class BottomSheetViewController: UINavigationController {
         
         if (mooved || moovedByScroll) == false { currentPosition = position(for: state) }
         
+        let currentSize = currentSize
         let safeArea = containerView.safeAreaInsets
         
         let height = height(for: currentSize)
@@ -218,7 +219,17 @@ class BottomSheetViewController: UINavigationController {
             height: height
         )
         
-        safeZone.frame = CGRect(origin: .zero, size: CGSize(width: containerView.frame.width, height: currentPosition))
+        if currentSize == .big {
+            safeZone.frame = CGRect(origin: .zero, size: CGSize(width: containerView.frame.width, height: currentPosition))
+        } else {
+            let offset = progress(for: currentPosition,
+                                     from: position(for: .medium),
+                                     to: position(for: .small)).clamped(0, 1) * view.frame.maxX
+            
+            safeZone.frame = CGRect(origin: CGPoint(x: offset, y: 0),
+                                    size: CGSize(width: containerView.frame.width - offset, height: containerView.frame.height))
+        }
+        
         
         safeZone.layoutIfNeeded()
         view.layoutIfNeeded()

@@ -12,7 +12,11 @@ protocol AnnotationMapSize {
     func update(mapSize: Float, animate: Bool)
 }
 
-class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
+protocol BoundingBox {
+    func boundingBox() -> CGRect
+}
+
+class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
     private var annotationDetailState: OccupantAnnotation.DetailLevel = .pointSecondary
     override var annotation: MKAnnotation? {
         didSet {
@@ -240,6 +244,10 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
                 
                 point.layer.borderColor = UIColor.systemBackground.cgColor
             }, completion: { _ in self.miniPoint.isHidden = true })
+    }
+    
+    func boundingBox() -> CGRect {
+        return point.frame.union(label.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
     }
     
     override func prepareForDisplay() {

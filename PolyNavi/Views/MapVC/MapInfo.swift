@@ -13,6 +13,7 @@ protocol MapInfoDelegate {
     func zoomMap(zoom: Float)
     func didSelect(_ annotation: MKAnnotation?)
     func didDeselect(_ annotation: MKAnnotation?)
+    func getSafeZone() -> UIView
 }
 
 class MapInfo: BottomSheetViewController {
@@ -113,6 +114,10 @@ extension MapInfo: MapInfoDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.annotationDeselect(annotation: annotation)
         }
+    }
+    
+    func getSafeZone() -> UIView {
+        return safeZone
     }
 
 }

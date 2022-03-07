@@ -23,7 +23,7 @@ extension UIView {
                 if valueDescription.range(of: keywords) != nil {
                     return v
                 }
-                if let inSubviews =  v.subviewsByType(viewType) {
+                if let inSubviews = v.subviewsByType(viewType) {
                     return inSubviews
                 }
             }

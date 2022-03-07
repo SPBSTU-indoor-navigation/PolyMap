@@ -7,7 +7,7 @@
 
 import MapKit
 
-class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
+class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
     override var annotation: MKAnnotation? {
         didSet {
             label.text = annotation?.title!
@@ -193,6 +193,10 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func boundingBox() -> CGRect {
+        return label.frame.union(background.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
     }
     
     override func prepareForDisplay() {
