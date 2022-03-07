@@ -354,10 +354,6 @@ extension MapView: MKMapViewDelegate {
             let point = MKMapPoint(mapView.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: mapView))
             mapView.setCenter(point.coordinate, animated: true)
         }
-        
-        
-        let point = MKMapPoint(mapView.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: mapView))
-        mapView.setCenter(point.coordinate, animated: true)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
