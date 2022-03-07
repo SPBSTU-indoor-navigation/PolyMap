@@ -337,21 +337,23 @@ extension MapView: MKMapViewDelegate {
         
         
             
-        if annotationCG.y < target.minY {
-            dy = annotationCG.y - target.minY
-        } else if annotationCG.y > target.maxY {
-            dy = annotationCG.y - target.maxY
+        if !target.contains(annotationCG) {
+            if annotationCG.y < target.minY {
+                dy = annotationCG.y - target.minY
+            } else if annotationCG.y > target.maxY {
+                dy = annotationCG.y - target.maxY
+            }
+            
+            if annotationCG.x < target.minX {
+                dx = annotationCG.x - target.minX
+            } else if annotationCG.x > target.maxX {
+                dx = annotationCG.x - target.maxX
+            }
+            
+            
+            let point = MKMapPoint(mapView.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: mapView))
+            mapView.setCenter(point.coordinate, animated: true)
         }
-        
-        if annotationCG.x < target.minX {
-            dx = annotationCG.x - target.minX
-        } else if annotationCG.x > target.maxX {
-            dx = annotationCG.x - target.maxX
-        }
-        
-        
-        let point = MKMapPoint(mapView.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: mapView))
-        mapView.setCenter(point.coordinate, animated: true)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
