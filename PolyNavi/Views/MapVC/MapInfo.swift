@@ -16,12 +16,20 @@ protocol MapInfoDelegate {
     func getSafeZone() -> UIView
 }
 
+protocol RouteDetail {
+    func setFrom()
+    func setTo()
+}
+
 class MapInfo: BottomSheetViewController {
     enum Page {
         case search
         case annotationInfo
+        case route
         case unknown
     }
+    
+    static private(set) var routeDetail: RouteDetail? = nil
     
     var pages: [Page] = [.search]
     var mapView: OverlayedMapView?
@@ -30,6 +38,8 @@ class MapInfo: BottomSheetViewController {
     private var lastZoomChange = Date.timeIntervalSinceReferenceDate
     private var zoomHidden = false
     private var currentSelection: MKAnnotation?
+    
+    var routeDetailVC: RouteDetailVC?
     
     private var hidingEnable: Bool {
         return !(mooved || moovedByScroll) && currentSize == .big && state == .medium
@@ -49,18 +59,39 @@ class MapInfo: BottomSheetViewController {
             mapView?.deselectAnnotation(currentSelection, animated: true)
         }
         pages.removeLast()
-        return super.popViewController(animated: animated)
+        let vc = super.popViewController(animated: animated)
+        
+        switch vc {
+        case is RouteDetailVC:
+            routeDetailVC = nil
+        default: break
+        }
+        
+        return vc
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        super.pushViewController(viewController, animated: animated)
         switch viewController {
         case is UnitDetailVC:
+            viewControllers = viewControllers.filter({ !($0 is UnitDetailVC) })
+            pages = pages.filter({ $0 != .annotationInfo })
             pages.append(.annotationInfo)
-            
+        case is RouteDetailVC:
+            pages.append(.route)
         default:
             pages.append(.unknown)
         }
+        super.pushViewController(viewController, animated: animated)
+    }
+    
+    override init(parentVC: UIViewController, rootViewController: UIViewController) {
+        super.init(parentVC: parentVC, rootViewController: rootViewController)
+        
+        MapInfo.routeDetail = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -120,4 +151,32 @@ extension MapInfo: MapInfoDelegate {
         return safeZone
     }
 
+}
+
+extension MapInfo: RouteDetail {
+    func setFrom() {
+        let vc = getRouteVC()
+    }
+    
+    func setTo() {
+        let vc = getRouteVC()
+    }
+    
+    func getRouteVC() -> RouteDetailVC {
+        if routeDetailVC == nil {
+            let vc = RouteDetailVC(closable: true)
+            routeDetailVC = vc
+            pushViewController(vc, animated: true)
+            return vc
+        }
+        
+        while pages.last != .route {
+            popViewController(animated: true)
+        }
+        
+//        pushViewController(self.routeDetailVC!, animated: true)
+        return self.routeDetailVC!
+    }
+    
+    
 }

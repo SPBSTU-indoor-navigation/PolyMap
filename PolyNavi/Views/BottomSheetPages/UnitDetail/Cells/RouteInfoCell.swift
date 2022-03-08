@@ -85,6 +85,7 @@ class RouteInfoCell: UITableViewCell {
     
     @objc func routeClick(_ sender: UIButton?) {
         print("CLICK")
+        MapInfo.routeDetail?.setTo()
     }
     
     required init?(coder: NSCoder) {
