@@ -7,6 +7,15 @@
 
 import UIKit
 
+fileprivate class TitleLabel: UILabel {
+    var onHeightChange: ((CGFloat) -> ())?
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        onHeightChange?(frame.height)
+    }
+}
+
 class UnitDetailVC: NavbarBottomSheetPage {
     let titleTopOffset = 14.0
     var mapDetailInfo: MapDetailInfo?
@@ -22,13 +31,14 @@ class UnitDetailVC: NavbarBottomSheetPage {
         }
     }
     
-    private lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: TitleLabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 29, weight: .bold)
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
+        $0.onHeightChange = { self.titleHeight = $0 }
         return $0
-    }(UILabel())
+    }(TitleLabel())
     
     private lazy var titleNavbarLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +58,7 @@ class UnitDetailVC: NavbarBottomSheetPage {
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.sectionFooterHeight = 0
+        
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
     
@@ -63,24 +74,22 @@ class UnitDetailVC: NavbarBottomSheetPage {
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: background.topAnchor, constant: titleTopOffset),
-            titleLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -45),
+            titleLabel.leadingAnchor.constraint(equalTo: tableView.wrapperView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -5),
             
             tableView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: background.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
             
-            titleNavbarLabel.leadingAnchor.constraint(equalTo: navbar.leadingAnchor, constant: 16),
-            titleNavbarLabel.trailingAnchor.constraint(equalTo: navbar.trailingAnchor, constant: -45 ),
-            titleNavbarLabel.centerYAnchor.constraint(equalTo: navbar.centerYAnchor)
+            titleNavbarLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            titleNavbarLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            titleNavbarLabel.centerYAnchor.constraint(equalTo: navbar.centerYAnchor),
+            
+            closeButton.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor).withPriority(.defaultHigh)
         ])
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        titleHeight = titleLabel.frame.height
-    }
     
     override func onStateChange(horizontalSize: BottomSheetViewController.HorizontalSize) {
         super.onStateChange(horizontalSize: horizontalSize)
@@ -91,8 +100,6 @@ class UnitDetailVC: NavbarBottomSheetPage {
         titleLabel.text = mapDetailInfo.title
         titleNavbarLabel.text = mapDetailInfo.title
         
-        titleLabel.sizeToFit()
-        titleHeight = titleLabel.frame.height
         tableView.reloadData()
     }
 }

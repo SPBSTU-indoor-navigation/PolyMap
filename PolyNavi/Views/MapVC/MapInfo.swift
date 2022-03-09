@@ -73,8 +73,6 @@ class MapInfo: BottomSheetViewController {
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         switch viewController {
         case is UnitDetailVC:
-            viewControllers = viewControllers.filter({ !($0 is UnitDetailVC) })
-            pages = pages.filter({ $0 != .annotationInfo })
             pages.append(.annotationInfo)
         case is RouteDetailVC:
             pages.append(.route)
@@ -174,7 +172,6 @@ extension MapInfo: RouteDetail {
             popViewController(animated: true)
         }
         
-//        pushViewController(self.routeDetailVC!, animated: true)
         return self.routeDetailVC!
     }
     

@@ -30,7 +30,7 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
         return $0
     }(UIView())
     
-    private lazy var closeButton: UIButton = {
+    lazy var closeButton: UIButton = {
         $0.addTarget(self, action: #selector(close(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -56,6 +56,11 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
             NSLayoutConstraint.activate([
                 closeButton.centerYAnchor.constraint(equalTo: navbar.centerYAnchor),
                 closeButton.trailingAnchor.constraint(equalTo: navbar.trailingAnchor, constant: -15)
+            ].priority(.defaultLow))
+            
+            NSLayoutConstraint.activate([
+                closeButton.widthAnchor.constraint(equalToConstant: 30),
+                closeButton.heightAnchor.constraint(equalToConstant: 30)
             ])
         }
         
@@ -70,7 +75,7 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
             navbarSeparator.trailingAnchor.constraint(equalTo: navbar.trailingAnchor),
             navbarSeparator.leadingAnchor.constraint(equalTo: navbar.leadingAnchor),
             navbarSeparator.bottomAnchor.constraint(equalTo: navbar.bottomAnchor),
-        ])
+        ].priority(.defaultLow))
         
         additionalSafeAreaInsets = UIEdgeInsets(top: navbarHeight, left: 0, bottom: 0, right: 0)
     }

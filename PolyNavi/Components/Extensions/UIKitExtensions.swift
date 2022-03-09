@@ -64,6 +64,14 @@ extension UIButton {
     }
 }
 
+extension UITableView {
+    var wrapperView: UIView {
+        get {
+            return self.subviewsByType("UITableViewWrapperView") ?? self
+        }
+    }
+}
+
 extension UIGestureRecognizer {
     
     /// Calculates the value at which a property settles when intially changing
@@ -114,6 +122,13 @@ extension UIGestureRecognizer {
 extension Array where Iterator.Element : NSLayoutConstraint {
     func priority(_ priority: UILayoutPriority) -> Self {
         self.forEach({ $0.priority = priority })
+        return self
+    }
+}
+
+extension NSLayoutConstraint {
+    func withPriority(_ priority: UILayoutPriority) -> Self {
+        self.priority = priority
         return self
     }
 }
