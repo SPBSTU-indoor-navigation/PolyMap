@@ -10,10 +10,11 @@ import MapKit
 
 protocol MapInfoDelegate {
     func panAction(_ sender: UIPanGestureRecognizer)
-    func zoomMap(zoom: Float)
+    func zoomMap(zoom: Float, animated: Bool)
     func didSelect(_ annotation: MKAnnotation?)
     func didDeselect(_ annotation: MKAnnotation?)
     func getSafeZone() -> UIView
+    func getHorizontalSize() -> BottomSheetViewController.HorizontalSize
 }
 
 protocol RouteDetail {
@@ -94,7 +95,12 @@ class MapInfo: BottomSheetViewController {
 }
 
 extension MapInfo: MapInfoDelegate {
-    func zoomMap(zoom: Float) {
+
+    
+    func zoomMap(zoom: Float, animated: Bool) {
+        
+        if animated { return }
+        
         if Date.timeIntervalSinceReferenceDate - lastZoomChange > 0.3 {
             startZoom = zoom
             zoomHidden = false
@@ -147,6 +153,10 @@ extension MapInfo: MapInfoDelegate {
     
     func getSafeZone() -> UIView {
         return safeZone
+    }
+    
+    func getHorizontalSize() -> BottomSheetViewController.HorizontalSize {
+        return horizontalSize()
     }
 
 }

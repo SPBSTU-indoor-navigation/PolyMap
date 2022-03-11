@@ -29,7 +29,7 @@ class MapView: UIView {
     
     
     var levelSwitcherConstraint: NSLayoutConstraint?
-
+    private var zoomByAnimation = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -75,6 +75,7 @@ class MapView: UIView {
     let debug: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .callout)
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
     
@@ -188,9 +189,9 @@ class MapView: UIView {
     
     
     func updateMap(zoomLevel: Float) {
-        debug.text = "Zoom: \(roundf(zoomLevel * 100) / 100)"
+        debug.text = "Zoom: \(roundf(zoomLevel * 100) / 100)\ndist: \(mapView.camera.centerCoordinateDistance)"
         if abs(lastZoom - zoomLevel) < 0.001 { return }
-        mapInfoDelegate?.zoomMap(zoom: zoomLevel)
+        mapInfoDelegate?.zoomMap(zoom: zoomLevel, animated: zoomByAnimation)
         lastZoom = zoomLevel
     
         if let currentBuilding = currentBuilding {
@@ -310,9 +311,14 @@ extension MapView: MKMapViewDelegate {
         updateMap(centerPosition: mapView.centerCoordinate)
         updateMap(zoomLevel: getZoom())
     }
+    
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         mapInfoDelegate?.didSelect(view.annotation)
+        
+//        focus(on: venue!.buildings[2].levels[0].occupants[12])
+        focus(on: view.annotation!)
+        return
         
         let mapSafeZone = mapInfoDelegate!.getSafeZone()
         let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: self.mapView)
@@ -362,3 +368,47 @@ extension MapView: MKMapViewDelegate {
 
 }
 
+
+extension MapView {
+    func focus(on annotation: MKAnnotation) {
+        
+        var targetZoom = mapView.camera.centerCoordinateDistance
+        
+        switch annotation {
+        case is OccupantAnnotation: targetZoom = 150
+        case is AmenityAnnotation: targetZoom = 200
+        case is AttractionAnnotation:
+            if targetZoom > 1000 || lastZoom > Constants.minShowZoom {
+                targetZoom = 800
+            }
+        case is EnviromentAmenityAnnotation:
+            if 500 < targetZoom || targetZoom < 200 {
+                targetZoom = 400
+            }
+        default: break
+        }
+        
+
+        let shoudUseCam = abs(mapView.camera.centerCoordinateDistance - targetZoom) > 20
+        let targetCam = MKMapCamera(lookingAtCenter: mapView.camera.centerCoordinate, fromDistance: targetZoom, pitch: mapView.camera.pitch, heading: mapView.camera.heading)
+
+        let tempMap = MKMapView(frame: mapView.frame)
+        tempMap.setCamera(shoudUseCam ? targetCam : mapView.camera, animated: false)
+        tempMap.setCenter(annotation.coordinate, animated: false)
+        
+        
+        let safeZone = mapInfoDelegate?.getSafeZone() ?? mapView
+        let targetCenter = tempMap.convert(CGPoint(x: mapView.frame.width - safeZone.center.x,
+                                                   y: mapView.frame.height - safeZone.center.y + (mapInfoDelegate?.getHorizontalSize() != .big ? mapView.frame.height / 20 : 0)), //Сдвиг вверх по правилам дизайна. Человеческий глаз склонен завышать точку центра
+                                           toCoordinateFrom: mapView)
+        
+        MKMapView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            if shoudUseCam { self.mapView.camera = targetCam }
+            self.mapView.centerCoordinate = targetCenter
+            self.zoomByAnimation = true
+        }, completion: { _ in
+            self.zoomByAnimation = false
+        })
+        
+    }
+}
