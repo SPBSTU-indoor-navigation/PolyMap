@@ -33,6 +33,12 @@ internal enum L10n {
       /// Report an Issue
       internal static let issue = L10n.tr("Localizable", "MapInfo.Report.Issue")
     }
+    internal enum Route {
+      /// Plan
+      internal static let plan = L10n.tr("Localizable", "MapInfo.Route.Plan")
+      /// Route
+      internal static let route = L10n.tr("Localizable", "MapInfo.Route.Route")
+    }
   }
 
   internal enum Settings {

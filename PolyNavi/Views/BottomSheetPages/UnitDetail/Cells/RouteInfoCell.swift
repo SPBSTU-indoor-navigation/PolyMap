@@ -16,7 +16,7 @@ class RouteInfoCell: UITableViewCell {
     private lazy var routeButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setImage(UIImage(systemName: "figure.walk"), for: .normal)
-        $0.setTitle("Route", for: .normal)
+        $0.setTitle(L10n.MapInfo.Route.route, for: .normal)
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         
         $0.setBackgroundColor(color: Asset.accentColor.color, forState: .normal)
@@ -32,15 +32,22 @@ class RouteInfoCell: UITableViewCell {
     private lazy var buildingButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setImage(UIImage(systemName: "square.split.bottomrightquarter.fill"), for: .normal)
-        $0.setTitle("Plan", for: .normal)
-        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        $0.setTitle(L10n.MapInfo.Route.plan, for: .normal)
     
-        $0.setBackgroundColor(color: Asset.Colors.bottomSheetPlan.color, forState: .normal)
-        
-        $0.tintColor = Asset.accentColor.color
         $0.layer.cornerRadius = 10
         $0.layer.cornerCurve = .continuous
         $0.clipsToBounds = true
+        
+        if #available(iOS 15.0, *) {
+            $0.configuration = .gray()
+            $0.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        } else {
+            $0.setBackgroundColor(color: Asset.Colors.bottomSheetPlan.color, forState: .normal)
+            $0.tintColor = Asset.accentColor.color
+        }
+        
+        
+
         
         $0.addTarget(self, action: #selector(routeClick(_:)), for: .touchUpInside)
         return $0
