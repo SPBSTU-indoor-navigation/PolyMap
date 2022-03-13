@@ -73,10 +73,17 @@ struct Timetable: Codable {
         let faculty: Faculty
     }
     
-    struct Week: Codable {
+    struct Week: Codable, Equatable {
         let date_end: String                //"2021.10.10"
         let date_start: String              //"2021.10.04"
         let is_odd: Bool                    //false
+        
+        static func == (lhs: Week, rhs: Week) -> Bool {
+            return
+            lhs.date_end == rhs.date_end &&
+            lhs.date_start == rhs.date_start &&
+            lhs.is_odd == rhs.is_odd
+        }
     }
 }
 

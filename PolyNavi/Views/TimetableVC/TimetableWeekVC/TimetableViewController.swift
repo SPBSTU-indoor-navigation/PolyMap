@@ -15,8 +15,8 @@ class TimetableViewController: UIViewController {
     var checkCurrentDateAfterLoading: Bool = false
     var thisWeekDontHaveCurrentDay: Bool = false
     
-    internal var arrayOfDaysWithLessons: [TimetableWeek.TimetableDay] = []
-    internal var weekData: Timetable.Week?
+    var arrayOfDaysWithLessons: [TimetableWeek.TimetableDay] = []
+    var weekData: Timetable.Week?
     
     //Blocks
     var willAppear: ((TimetableViewController) -> Void)?
@@ -25,12 +25,12 @@ class TimetableViewController: UIViewController {
     var dateLoaded: ((Timetable.Week?) -> Void)?
     
     //MARK:-Views
-    internal lazy var refreshControl: UIRefreshControl = {
+    lazy var refreshControl: UIRefreshControl = {
         $0.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
         return $0
     }(UIRefreshControl())
     
-    internal lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         $0.register(LessonCellView.self, forCellReuseIdentifier: LessonCellView.identifire)
         $0.register(TimetableBreakTableViewCell.self, forCellReuseIdentifier: TimetableBreakTableViewCell.identifire)
         $0.register(DateTableViewCell.self, forHeaderFooterViewReuseIdentifier: DateTableViewCell.identifire)
@@ -43,14 +43,14 @@ class TimetableViewController: UIViewController {
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
     
-    internal lazy var loader: UIActivityIndicatorView = {
+    lazy var loader: UIActivityIndicatorView = {
         $0.style = .large
         $0.isHidden = true
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIActivityIndicatorView())
     
-    internal lazy var emptyWeekView: TimetableEmptyView = {
+    lazy var emptyWeekView: TimetableEmptyView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.isHidden = true
         $0.refreshButton.addTarget(self, action: #selector(refreshPage(_:)), for: .touchUpInside)

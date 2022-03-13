@@ -35,7 +35,7 @@ class ChoosingWithSearchTableView: UIViewController {
         return $0
     }(UITableView())
     
-    private lazy var indicator: UIActivityIndicatorView = {
+    lazy var indicator: UIActivityIndicatorView = {
         $0.hidesWhenStopped = true
         $0.style = .large
         $0.translatesAutoresizingMaskIntoConstraints = false
