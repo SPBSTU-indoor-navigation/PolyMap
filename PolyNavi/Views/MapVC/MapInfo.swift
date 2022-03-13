@@ -55,6 +55,7 @@ class MapInfo: BottomSheetViewController {
         }
     }
     
+    @discardableResult
     override func popViewController(animated: Bool) -> UIViewController? {
         if pages.last == .annotationInfo {
             mapView?.deselectAnnotation(currentSelection, animated: true)
