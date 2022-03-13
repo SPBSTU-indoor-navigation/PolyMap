@@ -12,29 +12,33 @@ protocol AnnotationMapSize {
     func update(mapSize: Float, animate: Bool)
 }
 
-class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
-    private var annotationDetailState: UnitAnnotation.DetailLevel = .pointSecondary
+protocol BoundingBox {
+    func boundingBox() -> CGRect
+}
+
+class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
+    private var annotationDetailState: OccupantAnnotation.DetailLevel = .pointSecondary
     override var annotation: MKAnnotation? {
         didSet {
-            if let unit = annotation as? UnitAnnotation {
+            if let unit = annotation as? OccupantAnnotation {
                 annotationDetailState = unit.detailLevel
                 
                 
                 var imageName: String? = nil
-                switch unit.category {
+                switch unit.properties.category {
                 case .classroom: imageName = "classroom"
                 case .laboratory: imageName = "laboratorium"
                 case .auditorium: imageName = "lecture"
                 default: break
                 }
-                imageView.image = UIImage(named: imageName ?? unit.category.rawValue)
+                imageView.sourceImage = UIImage(named: imageName ?? unit.properties.category.rawValue)
                 imageView.alpha = imageOpacity
                 
                 
                 var colorName: String
-                switch unit.category {
+                switch unit.properties.category {
                 case .restroom, .restroomMale, .restroomFemale: colorName = "restroom"
-                default: colorName = unit.category.rawValue
+                default: colorName = unit.properties.category.rawValue
                 }
                 changePointColor(UIColor(named: colorName + "-annotation") ?? .systemOrange)
                 
@@ -130,13 +134,13 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         return $0
     }(UIView())
     
-    lazy var imageView: UIImageView = {
+    lazy var imageView: ScaledImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.layer.minificationFilter = .trilinear
-        $0.layer.minificationFilterBias = 0.1
+        $0.contentMode = .scaleAspectFit
+        $0.tintColor = .white
         $0.alpha = 0
         return $0
-    }(UIImageView())
+    }(ScaledImageView())
     
     lazy var point: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -196,10 +200,11 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
             shape.topAnchor.constraint(equalTo: point.bottomAnchor),
             shape.widthAnchor.constraint(equalToConstant: 2),
             shape.heightAnchor.constraint(equalToConstant: 1),
-            imageView.topAnchor.constraint(equalTo: point.topAnchor, constant: 2),
-            imageView.bottomAnchor.constraint(equalTo: point.bottomAnchor, constant: -2),
-            imageView.trailingAnchor.constraint(equalTo: point.trailingAnchor, constant: -2),
-            imageView.leadingAnchor.constraint(equalTo: point.leadingAnchor, constant: 2),
+            
+            imageView.centerXAnchor.constraint(equalTo: point.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: point.centerYAnchor),
+            imageView.widthAnchor.constraint(equalTo: point.widthAnchor, constant: -4),
+            imageView.heightAnchor.constraint(equalTo: point.heightAnchor, constant: -4),
         ])
         
         selectAnim
@@ -207,7 +212,8 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
                 point.transform = CGAffineTransform(scaleX: 7, y: 7).translatedBy(x: 0, y: -6.8)
                 label.transform = CGAffineTransform(translationX: 0, y: -0.5)
                 imageView.alpha = 1.0
-            })
+                imageView.startAnim()
+            }, completion: { _ in self.imageView.endAnim()})
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
                 miniPoint.transform = .identity
@@ -223,7 +229,8 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         deselectAnim
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 point.transform = .identity.scaledBy(x: pointSize, y: pointSize)
-            })
+                imageView.startAnim()
+            }, completion: { _ in self.imageView.endAnim()})
             .animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: { [self] in
                 label.alpha = labelOpacity
                 label.transform = labelTransform
@@ -239,13 +246,22 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
             }, completion: { _ in self.miniPoint.isHidden = true })
     }
     
+    func boundingBox() -> CGRect {
+        return point.frame.union(label.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
+    }
+    
     override func prepareForDisplay() {
         super.prepareForDisplay()
+        if imageOpacity > 0 {
+            imageView.renderIfNeed()
+        }
         
         if #available(iOS 14.0, *) {
             zPriority = MKAnnotationViewZPriority(rawValue: 500)
         }
     }
+    
+    
     
     func changeState(state: DetailLevelState, animate: Bool) {
         self.state = state
@@ -261,14 +277,15 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize {
         if animate {
             UIView.animate(withDuration: 0.1, animations: {
                 change()
-            })
+            }, completion: { _ in self.imageView.renderIfNeed() })
         } else {
             change()
+            imageView.renderIfNeed()
         }
     }
     
     func update(mapSize: Float, animate: Bool) {
-        let targetState = UnitAnnotation.levelProcessor.evaluate(forDetailLevel: annotationDetailState.rawValue, mapSize: mapSize) ?? .normal
+        let targetState = OccupantAnnotation.levelProcessor.evaluate(forDetailLevel: annotationDetailState.rawValue, mapSize: mapSize) ?? .normal
         
         if state != targetState {
             changeState(state: targetState, animate: animate)

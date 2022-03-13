@@ -10,7 +10,7 @@ import UIKit
 class MapViewController: UIViewController {
     var timeTableSmallOffset: NSLayoutConstraint?
     
-    private lazy var button: RoundButton = {
+    private lazy var timeTableButton: RoundButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         
         $0.setTitle(L10n.Timetable.title, for: .normal)
@@ -22,6 +22,12 @@ class MapViewController: UIViewController {
         $0.addTarget(self, action: #selector(openTimetable(_:)), for: .touchUpInside)
         return $0
     }(RoundButton(type: .system))
+    
+    private lazy var timeTableButtonContainer: UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.addSubview(timeTableButton)
+        return $0
+    }(UIView())
     
     private lazy var timeTableSmallButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +56,7 @@ class MapViewController: UIViewController {
     
     private lazy var mapView: MapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.mapInfoDelegate = mapInfo
         return $0
     }(MapView())
     
@@ -72,27 +79,23 @@ class MapViewController: UIViewController {
     func setupViews() {
         self.view.backgroundColor = .secondarySystemBackground
         
-        let container: UIView = {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.addSubview(button)
-            return $0
-        }(UIView())
-        
-        view.addSubview(mapView)
-        view.addSubview(container)
-        mapInfo.safeZone.addSubview(timeTableSmallButton)
         
         addChild(mapInfo)
         view.addSubview(mapInfo.view)
         mapInfo.didMove(toParent: self)
         
+        view.insertSubview(mapView, at: 0)
+        view.addSubview(timeTableButtonContainer)
+        mapInfo.safeZone.addSubview(timeTableSmallButton)
+        mapInfo.mapView = mapView.mapView
+        
         timeTableSmallOffset = timeTableSmallButton.bottomAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 0)
         NSLayoutConstraint.activate([
-            container.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
-            container.widthAnchor.constraint(equalTo: button.widthAnchor),
-            container.topAnchor.constraint(equalTo: button.topAnchor),
-            button.bottomAnchor.constraint(equalTo: container.safeAreaLayoutGuide.bottomAnchor),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            timeTableButtonContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
+            timeTableButtonContainer.widthAnchor.constraint(equalTo: timeTableButton.widthAnchor),
+            timeTableButtonContainer.topAnchor.constraint(equalTo: timeTableButton.topAnchor),
+            timeTableButton.bottomAnchor.constraint(equalTo: timeTableButtonContainer.safeAreaLayoutGuide.bottomAnchor),
+            timeTableButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -151,5 +154,6 @@ class MapViewController: UIViewController {
 extension MapViewController: BottomSheetDelegate {
     func onSizeChange(from: BottomSheetViewController.HorizontalSize?, to: BottomSheetViewController.HorizontalSize) {
         timeTableSmallButton.isHidden = to != .big
+        timeTableButtonContainer.isHidden = to == .big
     }
 }

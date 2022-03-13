@@ -23,7 +23,7 @@ extension UIView {
                 if valueDescription.range(of: keywords) != nil {
                     return v
                 }
-                if let inSubviews =  v.subviewsByType(viewType) {
+                if let inSubviews = v.subviewsByType(viewType) {
                     return inSubviews
                 }
             }
@@ -60,6 +60,14 @@ extension UIButton {
             let colorImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             self.setBackgroundImage(colorImage, for: forState)
+        }
+    }
+}
+
+extension UITableView {
+    var wrapperView: UIView {
+        get {
+            return self.subviewsByType("UITableViewWrapperView") ?? self
         }
     }
 }
@@ -114,6 +122,13 @@ extension UIGestureRecognizer {
 extension Array where Iterator.Element : NSLayoutConstraint {
     func priority(_ priority: UILayoutPriority) -> Self {
         self.forEach({ $0.priority = priority })
+        return self
+    }
+}
+
+extension NSLayoutConstraint {
+    func withPriority(_ priority: UILayoutPriority) -> Self {
+        self.priority = priority
         return self
     }
 }

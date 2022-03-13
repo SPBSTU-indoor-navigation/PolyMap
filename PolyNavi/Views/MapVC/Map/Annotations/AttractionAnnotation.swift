@@ -13,20 +13,14 @@ class AttractionAnnotation: NSObject, MKAnnotation, Identifiable {
     
     @objc dynamic var coordinate: CLLocationCoordinate2D
     var title: String? {
-        get {
-            return localizedName?.bestLocalizedValue
-        }
+        return properties.name?.bestLocalizedValue
     }
-    var subtitle: String?
-    var image: String?
-    var localizedName: LocalizedName?
-    var localizedShort: LocalizedName?
+
+    var properties: IMDF.Attraction.Properties
     
-    init(coordinate: CLLocationCoordinate2D, localizedName: LocalizedName?, localizedShort: LocalizedName?, image: String?) {
+    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Attraction.Properties) {
         self.coordinate = coordinate
-        self.image = image
-        self.localizedName = localizedName
-        self.localizedShort = localizedShort
+        self.properties = properties
         super.init()
     }
 }

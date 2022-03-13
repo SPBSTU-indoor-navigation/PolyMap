@@ -16,6 +16,31 @@ internal enum L10n {
     internal static let searchPlaceholder = L10n.tr("Localizable", "ChoosingSearchController.searchPlaceholder")
   }
 
+  internal enum MapInfo {
+    internal enum Detail {
+      /// Address
+      internal static let address = L10n.tr("Localizable", "MapInfo.Detail.Address")
+      /// Email
+      internal static let email = L10n.tr("Localizable", "MapInfo.Detail.Email")
+      /// Phone
+      internal static let phone = L10n.tr("Localizable", "MapInfo.Detail.Phone")
+      /// Website
+      internal static let website = L10n.tr("Localizable", "MapInfo.Detail.Website")
+    }
+    internal enum Report {
+      /// Favorites
+      internal static let favorites = L10n.tr("Localizable", "MapInfo.Report.Favorites")
+      /// Report an Issue
+      internal static let issue = L10n.tr("Localizable", "MapInfo.Report.Issue")
+    }
+    internal enum Route {
+      /// Plan
+      internal static let plan = L10n.tr("Localizable", "MapInfo.Route.Plan")
+      /// Route
+      internal static let route = L10n.tr("Localizable", "MapInfo.Route.Route")
+    }
+  }
+
   internal enum Settings {
     /// Select group
     internal static let settingOfGroup = L10n.tr("Localizable", "Settings.settingOfGroup")

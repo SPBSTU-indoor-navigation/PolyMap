@@ -44,7 +44,9 @@ class SearchVC: NavbarBottomSheetPage {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        navigationController?.pushViewController(UnitDetailVC(closable: true), animated: true)
+        let unitDetail = UnitDetailVC(closable: true)
+//        unitDetail.configurate(unitInfo: UnitInfo()
+        navigationController?.pushViewController(unitDetail, animated: true)
     }
     
     func cancelEdit() {

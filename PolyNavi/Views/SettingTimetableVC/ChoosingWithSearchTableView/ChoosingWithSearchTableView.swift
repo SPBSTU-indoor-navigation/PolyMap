@@ -31,6 +31,7 @@ class ChoosingWithSearchTableView: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.keyboardDismissMode = .interactive
         $0.backgroundColor = .clear
+        $0.keyboardDismissMode = .onDrag
         return $0
     }(UITableView())
     
@@ -117,7 +118,6 @@ extension ChoosingWithSearchTableView {
         view.addSubview(indicator)
         
         view.backgroundColor = .systemBackground
-        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

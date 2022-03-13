@@ -32,3 +32,15 @@ Settings.titleOfTeacherCell = "Teacher";
 
 //MARK:- Choosing search controller strings
 ChoosingSearchController.searchPlaceholder = "Search";
+
+//MARK:- MapInfo
+MapInfo.Detail.Phone = "Phone";
+MapInfo.Detail.Email = "Email";
+MapInfo.Detail.Website = "Website";
+MapInfo.Detail.Address = "Address";
+
+MapInfo.Report.Favorites = "Favorites";
+MapInfo.Report.Issue = "Report an Issue";
+
+MapInfo.Route.Route = "Route";
+MapInfo.Route.Plan = "Plan";

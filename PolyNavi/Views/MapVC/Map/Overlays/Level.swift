@@ -12,37 +12,37 @@ class Level: CustomOverlay, Styleble, MapRenderer {
     var units: [Unit] = []
     var openings: [Opening] = []
     var amenitys: [AmenityAnnotation] = []
+    var occupants: [OccupantAnnotation] = []
     var details: [Detail] = []
     var ordinal: Int = 0
     var shortName: LocalizedName?
     
-    init(_ geometry: MKShape & MKOverlay, ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity], details: [Detail] ) {
+    init(_ geometry: MKShape & MKOverlay, ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity], details: [Detail], occupants: [(IMDF.Occupant, IMDF.Anchor)], addresses: [IMDF.Address] ) {
         super.init(geometry)
         self.ordinal = ordinal
         self.units = units
         self.openings = openings
         self.shortName = shortName
-        self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, category: $0.properties.category, title: $0.properties.alt_name, detailLevel: $0.properties.detailLevel) })
+        self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, properties: $0.properties, detailLevel: $0.properties.detailLevel) })
         self.details = details
         
-        let amenityUnits = amenitys.flatMap({ $0.properties.unit_ids })
-        
-        for unit in self.units {
-            if amenityUnits.contains(unit.id) {
-                unit.annotation = nil
-            }
-        }
+        self.occupants = occupants.map({ occupant in
+            OccupantAnnotation(coordinate: (occupant.1.geometry.first as! MKPointAnnotation).coordinate,
+                               properties: occupant.0.properties,
+                               address: addresses.first(where: { $0.identifier == occupant.1.properties.address_id }))
+        })
+    
     }
     
     func show(_ mapView: OverlayedMapView) {
         if isShow { return }
-        mapView.addOverlays(units.filter({ $0.categoty == .walkway }))
-        mapView.addOverlays(units.filter({ $0.categoty != .walkway }))
+        mapView.addOverlays(units.filter({ $0.properties.category == .walkway }))
+        mapView.addOverlays(units.filter({ $0.properties.category != .walkway }))
         mapView.addOverlays(openings)
         mapView.addOverlays(details)
         mapView.addOverlay(self)
         
-        mapView.addAnnotations(units.compactMap{ $0.annotation })
+        mapView.addAnnotations(occupants)
         mapView.addAnnotations(amenitys)
         isShow = true
     }
@@ -54,7 +54,7 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         mapView.removeOverlays(details)
         mapView.removeOverlay(self)
         
-        mapView.removeAnnotations(units.compactMap({ $0.annotation }))
+        mapView.removeAnnotations(occupants)
         mapView.removeAnnotations(amenitys)
         
         isShow = false
