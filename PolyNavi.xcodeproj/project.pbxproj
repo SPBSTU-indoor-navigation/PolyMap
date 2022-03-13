@@ -22,6 +22,7 @@
 		056F2D20271CAF400063015B /* GroupsAndTeacherStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F2D1F271CAF400063015B /* GroupsAndTeacherStorage.swift */; };
 		0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A226271036CC00C33317 /* DateTableViewCell.swift */; };
 		0574A2292711FF5F00C33317 /* TimetableBreakTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574A2282711FF5F00C33317 /* TimetableBreakTableViewCell.swift */; };
+		059A18C527DDEB9200700F61 /* TimetableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059A18C427DDEB9200700F61 /* TimetableTest.swift */; };
 		05C32AC3271F06B70033B751 /* ChoosingWithSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C32AC2271F06B70033B751 /* ChoosingWithSearchTableView.swift */; };
 		05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C32AC4271F10BA0033B751 /* ChoosingTableViewCell.swift */; };
 		05C32AC7271F4C3E0033B751 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C32AC6271F4C3E0033B751 /* SettingsModel.swift */; };
@@ -208,6 +209,7 @@
 		056F2D1F271CAF400063015B /* GroupsAndTeacherStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsAndTeacherStorage.swift; sourceTree = "<group>"; };
 		0574A226271036CC00C33317 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 		0574A2282711FF5F00C33317 /* TimetableBreakTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableBreakTableViewCell.swift; sourceTree = "<group>"; };
+		059A18C427DDEB9200700F61 /* TimetableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTest.swift; sourceTree = "<group>"; };
 		05C32AC2271F06B70033B751 /* ChoosingWithSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingWithSearchTableView.swift; sourceTree = "<group>"; };
 		05C32AC4271F10BA0033B751 /* ChoosingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingTableViewCell.swift; sourceTree = "<group>"; };
 		05C32AC6271F4C3E0033B751 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				979784D427C8305F00DE457D /* InitUI.swift */,
 				054E980827C81DF300173EF1 /* PolyNaviTests.swift */,
 				970B3B9427DD7A5F0048DF61 /* AnnotaionUI.swift */,
+				059A18C427DDEB9200700F61 /* TimetableTest.swift */,
 			);
 			path = PolyNaviTests;
 			sourceTree = "<group>";
@@ -980,6 +983,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				970B3B9527DD7A5F0048DF61 /* AnnotaionUI.swift in Sources */,
+				059A18C527DDEB9200700F61 /* TimetableTest.swift in Sources */,
 				054E980927C81DF300173EF1 /* PolyNaviTests.swift in Sources */,
 				979784D527C8305F00DE457D /* InitUI.swift in Sources */,
 			);
