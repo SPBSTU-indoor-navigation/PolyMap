@@ -46,7 +46,7 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     func animPush(_ context: UIViewControllerContextTransitioning, from: UIViewController, to: UIViewController, container: UIView) {
         let scale = 0.98
-        let presentedContainer = container.layer.presentation()!
+        let presentedContainer = container.layer.presentationOrSelf()
         let delta = container.frame.height - presentedContainer.frame.height
         let xOffset = container.window!.convert(container.frame, from: container).maxX
         
@@ -76,8 +76,8 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func bigSizeAnimPush(_ context: UIViewControllerContextTransitioning, from: UIViewController, to: UIViewController, container: UIView) {
-        to.view.transform = CGAffineTransform(translationX: 0, y: container.layer.presentation()!.frame.height)
-        let delta = container.frame.height - container.layer.presentation()!.frame.height
+        to.view.transform = CGAffineTransform(translationX: 0, y: container.layer.presentationOrSelf().frame.height)
+        let delta = container.frame.height - container.layer.presentationOrSelf().frame.height
         
         let mask = verticalMask(for: from.view, container: container, radius: 12.0, isOpen: true)
         from.view.layer.addSublayer(mask)
@@ -102,14 +102,14 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     func animPop(_ context: UIViewControllerContextTransitioning, from: UIViewController, to: UIViewController, container: UIView) {
         let scale = 0.98
-        let delta = container.frame.height - container.layer.presentation()!.frame.height
+        let delta = container.frame.height - container.layer.presentationOrSelf().frame.height
 
         container.sendSubviewToBack(to.view)
         to.view.transform = .identity
         to.view.frame = container.frame
         to.view.transform = CGAffineTransform(scaleX: scale, y: scale)
         
-        from.view.frame = CGRect(x: 0, y: 0, width: from.view.frame.width, height: from.view.layer.presentation()!.frame.height)
+        from.view.frame = CGRect(x: 0, y: 0, width: from.view.frame.width, height: from.view.layer.presentationOrSelf().frame.height)
         from.view.transform = CGAffineTransform(translationX: 0, y: delta)
         
         let mask = horizontalMask(for: from.view, container: container, radius: 12.0, isOpen: false)
@@ -135,8 +135,8 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
         to.view.transform = .identity
         to.view.frame = container.frame
         
-        let delta = container.frame.height - container.layer.presentation()!.frame.height
-        from.view.frame = CGRect(x: 0, y: 0, width: from.view.frame.width, height: from.view.layer.presentation()!.frame.height)
+        let delta = container.frame.height - container.layer.presentationOrSelf().frame.height
+        from.view.frame = CGRect(x: 0, y: 0, width: from.view.frame.width, height: from.view.layer.presentationOrSelf().frame.height)
         from.view.transform = CGAffineTransform(translationX: 0, y: delta)
         
         let mask = verticalMask(for: from.view, container: container, radius: 12.0, isOpen: false)
@@ -162,8 +162,8 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func verticalMask(for view: UIView, container: UIView, radius R: CGFloat, isOpen: Bool) -> CALayer {
-        let delta = container.frame.height - container.layer.presentation()!.frame.height
-        let fromFrame = view.layer.presentation()!.frame
+        let delta = container.frame.height - container.layer.presentationOrSelf().frame.height
+        let fromFrame = view.layer.presentationOrSelf().frame
         let maskH = fromFrame.height + 301
         
         let mask = CALayer()
@@ -205,8 +205,8 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
     func horizontalMask(for view: UIView, container: UIView, radius R: CGFloat, isOpen: Bool) -> CALayer {
         let scale = 0.98
         let verticalMargin = 50.0
-        let fromFrame = isOpen ? view.layer.presentation()!.frame : view.layer.frame
-        let xOffset = container.window!.convert(container.frame, from: container).maxX
+        let fromFrame = isOpen ? view.layer.presentationOrSelf().frame : view.layer.frame
+        let xOffset = container.window?.convert(container.frame, from: container).maxX ?? 0
         
         let mask = CALayer()
         let path = UIBezierPath()

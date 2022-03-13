@@ -5,8 +5,8 @@
 //  Created by Andrei Soprachev on 13.03.2022.
 //
 
-import XCTest
 @testable import PolyNavi
+import XCTest
 import CoreLocation
 import MapKit
 

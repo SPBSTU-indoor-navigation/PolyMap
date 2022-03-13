@@ -34,6 +34,12 @@ extension UIView {
     }
 }
 
+extension CALayer {
+    func presentationOrSelf() -> CALayer {
+        return presentation() ?? self
+    }
+}
+
 extension UIScrollView {
     var topOffset: CGFloat {
         return safeAreaInsets.top

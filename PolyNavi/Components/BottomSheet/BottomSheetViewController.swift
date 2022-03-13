@@ -56,20 +56,6 @@ class BottomSheetViewController: UINavigationController {
         case small = 0
         case medium = 1
         case big = 2
-        
-        var stateBigger: [VerticalSize] {
-            switch self {
-            case .small: return [.medium, .big]
-            case .medium, .big: return [.big]
-            }
-        }
-        
-        var stateSmaller: [VerticalSize] {
-            switch self {
-            case .small, .medium: return [.small]
-            case .big: return [.small, .medium]
-            }
-        }
     }
     
     var bottomSheetDelegate: BottomSheetDelegate?
@@ -97,9 +83,10 @@ class BottomSheetViewController: UINavigationController {
     internal private(set) var moovedByScroll = false
     
     private var stateByViewControllers: [UIViewController:VerticalSize] = [:]
+    private var parentVC: UIViewController
     
     private var containerView: UIView {
-        return view.window!
+        return view.window ?? parentVC.view
     }
     
     
@@ -140,6 +127,8 @@ class BottomSheetViewController: UINavigationController {
     }(SafeZone())
 
     public init(parentVC: UIViewController, rootViewController: UIViewController) {
+        self.parentVC = parentVC
+        
         super.init(rootViewController: rootViewController)
         
         let gr = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
@@ -574,3 +563,12 @@ fileprivate func expLimit(_ x: CGFloat, _ maxVal: CGFloat) -> CGFloat {
 fileprivate func progress(for val: CGFloat, from: CGFloat, to: CGFloat) -> CGFloat {
     return (val - to) / (from - to)
 }
+
+
+#if DEBUG
+extension BottomSheetViewController {
+    func _endAnimation(velocity: CGFloat) {
+        endAnimation(velocity)
+    }
+}
+#endif
