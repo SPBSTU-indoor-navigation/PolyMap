@@ -31,6 +31,7 @@
 		5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 		7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F912E21A3F89F0FBB707D3FB /* libPods-PolyNaviClip.a */; };
 		93D2C7A2828B28E922CB95BE /* libPods-PolyNaviTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 402FCEC83668C759A9342F29 /* libPods-PolyNaviTests.a */; };
+		970B3B9527DD7A5F0048DF61 /* AnnotaionUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3B9427DD7A5F0048DF61 /* AnnotaionUI.swift */; };
 		9717E4272742991F00332D29 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4262742991F00332D29 /* MapView.swift */; };
 		9717E46027447A7D00332D29 /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		971F8DD127BD52EE0018F98A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD027BD52EE0018F98A /* AppDelegate.swift */; };
@@ -222,6 +223,7 @@
 		61FE63C9DA90B118DD85EF21 /* Pods-PolyNaviTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviTests.release.xcconfig"; path = "Target Support Files/Pods-PolyNaviTests/Pods-PolyNaviTests.release.xcconfig"; sourceTree = "<group>"; };
 		764E24D0B031857F17BD56B5 /* libPods-PolyMapAppClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyMapAppClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8CE2653503032042C79524 /* Pods-PolyMapAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyMapAppClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyMapAppClip/Pods-PolyMapAppClip.debug.xcconfig"; sourceTree = "<group>"; };
+		970B3B9427DD7A5F0048DF61 /* AnnotaionUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotaionUI.swift; sourceTree = "<group>"; };
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNaviClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -345,6 +347,7 @@
 			children = (
 				979784D427C8305F00DE457D /* InitUI.swift */,
 				054E980827C81DF300173EF1 /* PolyNaviTests.swift */,
+				970B3B9427DD7A5F0048DF61 /* AnnotaionUI.swift */,
 			);
 			path = PolyNaviTests;
 			sourceTree = "<group>";
@@ -976,6 +979,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				970B3B9527DD7A5F0048DF61 /* AnnotaionUI.swift in Sources */,
 				054E980927C81DF300173EF1 /* PolyNaviTests.swift in Sources */,
 				979784D527C8305F00DE457D /* InitUI.swift in Sources */,
 			);

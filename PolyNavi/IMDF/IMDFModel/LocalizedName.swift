@@ -10,6 +10,10 @@ import Foundation
 struct LocalizedName: Codable {
     private let localizations: [String: String]
     
+    init(localizations: [String: String]) {
+        self.localizations = localizations
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.localizations = try container.decode([String: String].self)
@@ -27,7 +31,6 @@ struct LocalizedName: Codable {
             }
         }
         
-        // Fall back to English if no better match was found.
         return localizations["ru"]
     }
 }
