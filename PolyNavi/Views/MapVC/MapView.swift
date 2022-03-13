@@ -370,6 +370,11 @@ extension MapView: MKMapViewDelegate {
 
 
 extension MapView {
+    
+    func focusAndSelect(annotation: MKAnnotation) {
+        focus(on: annotation)
+    }
+    
     func focus(on annotation: MKAnnotation) {
         
         var targetZoom = mapView.camera.centerCoordinateDistance
