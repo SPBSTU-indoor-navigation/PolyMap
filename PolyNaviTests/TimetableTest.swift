@@ -339,4 +339,50 @@ class TimetableTest: XCTestCase {
         
         wait(for: [promise], timeout: 5)
     }
+    
+    func testCellForRowAtInTimetableVC() {
+        timetableVC.loadData()
+        while timetableVC.loader.isAnimating {
+            sleep(1)
+        }
+        
+        let cellForRow: (IndexPath) -> UITableViewCell = { indexPath in
+            self.timetableVC.tableView(self.timetableVC.tableView, cellForRowAt: indexPath)
+        }
+        
+        guard timetableVC.arrayOfDaysWithLessons.count != 0 else {
+            XCTFail("Empty array after loading")
+            return
+        }
+        
+        XCTAssert(cellForRow(IndexPath(row: 0, section: 1)) is LessonCellView)
+    }
+    
+    func testHeaderViewAtInTimetableVC() {
+        timetableVC.loadData()
+        while timetableVC.loader.isAnimating {
+            sleep(1)
+        }
+        
+        guard timetableVC.arrayOfDaysWithLessons.count != 0 else {
+            XCTFail("Empty array after loading")
+            return
+        }
+        
+        XCTAssert(timetableVC.tableView(timetableVC.tableView, viewForHeaderInSection: 0) is DateTableViewCell)
+    }
+    
+    func testRefreshIsHiddenAfterLoad() {
+        let promise = expectation(description: "Refresh is hidden")
+        timetableVC.refreshDate {
+            guard let refresh = self.timetableVC.tableView.refreshControl else {
+                XCTFail("Refresh isn't included into table")
+                return
+            }
+            
+            XCTAssert(!refresh.isRefreshing)
+            promise.fulfill()
+        }
+        wait(for: [promise], timeout: 5)
+    }
 }
