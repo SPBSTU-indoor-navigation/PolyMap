@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530A99B274969C700302C5F /* TimetableToolBar.swift */; };
-		054E980927C81DF300173EF1 /* PolyNaviTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054E980827C81DF300173EF1 /* PolyNaviTests.swift */; };
 		054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F6787270C7B4C00FCC07C /* AppDelegate.swift */; };
 		054F678A270C7B4C00FCC07C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F6789270C7B4C00FCC07C /* SceneDelegate.swift */; };
 		054F6791270C7B4C00FCC07C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054F6790270C7B4C00FCC07C /* Assets.xcassets */; };
@@ -80,12 +79,9 @@
 		971F8E1027BD556B0018F98A /* AmenityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015422795B14400326B09 /* AmenityAnnotation.swift */; };
 		971F8E1127BD55820018F98A /* NavbarBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BB27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift */; };
 		971F8E1227BD55820018F98A /* TableBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */; };
-		971F8E1327BD55820018F98A /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
-		971F8E1427BD55820018F98A /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972174D927B549420055FCF0 /* TitleCell.swift */; };
 		971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		971F8E1627BD55820018F98A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
 		971F8E1727BD558F0018F98A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		972174DA27B549420055FCF0 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972174D927B549420055FCF0 /* TitleCell.swift */; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* OccupantAnnotation.swift */; };
@@ -102,6 +98,7 @@
 		9750155727976A0A00326B09 /* THLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155627976A0A00326B09 /* THLabel.swift */; };
 		97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */; };
 		975015622799B86F00326B09 /* CustomOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015612799B86F00326B09 /* CustomOverlay.swift */; };
+		9754526027DED14D00E9B0B3 /* ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9754525F27DED14D00E9B0B3 /* ExtensionsTest.swift */; };
 		976A027827B9846800128EE6 /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027727B9846800128EE6 /* BottomSheetTransition.swift */; };
 		976A027A27BB26F000128EE6 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027927BB26F000128EE6 /* AnimationExtensions.swift */; };
 		9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */; };
@@ -121,6 +118,8 @@
 		97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941916278BCAF10038CBEF /* PointAnnotationView.swift */; };
 		97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */; };
 		97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */; };
+		9795440527DEBE2400A076E2 /* MapInfoPagesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9795440427DEBE2400A076E2 /* MapInfoPagesTest.swift */; };
+		9795440727DEC81900A076E2 /* MapViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9795440627DEC81900A076E2 /* MapViewTest.swift */; };
 		979784D527C8305F00DE457D /* InitUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979784D427C8305F00DE457D /* InitUI.swift */; };
 		979E2C75278763A9008CFA05 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C74278763A9008CFA05 /* Venue.swift */; };
 		979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C762788A7C7008CFA05 /* MapExtensions.swift */; };
@@ -142,6 +141,7 @@
 		97A566F927D589FA00A064CC /* MapDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A566F727D589FA00A064CC /* MapDetailInfo.swift */; };
 		97A566FB27D6920100A064CC /* UtilsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A566FA27D6920100A064CC /* UtilsExtensions.swift */; };
 		97A566FC27D6920100A064CC /* UtilsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A566FA27D6920100A064CC /* UtilsExtensions.swift */; };
+		97A912A527DE81A90099897A /* MapInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A912A427DE81A90099897A /* MapInfoTest.swift */; };
 		97B8E18427CEDA6D003D1EF4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */; };
 		97B8E18527CEDA6D003D1EF4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */; };
 		97B8E18727CEDA80003D1EF4 /* RouteInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18627CEDA80003D1EF4 /* RouteInfoCell.swift */; };
@@ -153,7 +153,6 @@
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
 		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
-		97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
 		97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
 		97FCC17927C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
@@ -193,7 +192,6 @@
 /* Begin PBXFileReference section */
 		0530A99B274969C700302C5F /* TimetableToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimetableToolBar.swift; path = PolyNavi/Views/TimetableVC/TimetableToolBar.swift; sourceTree = SOURCE_ROOT; };
 		054E980627C81DF300173EF1 /* PolyNaviTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolyNaviTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		054E980827C81DF300173EF1 /* PolyNaviTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyNaviTests.swift; sourceTree = "<group>"; };
 		054F6784270C7B4C00FCC07C /* PolyNavi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNavi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		054F6787270C7B4C00FCC07C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		054F6789270C7B4C00FCC07C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 		05C4C82C27134C5100C22D61 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timetable+DatasourceDelegate.swift"; sourceTree = "<group>"; };
 		05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimetableEmptyView.swift; path = PolyNavi/Views/TimetableVC/TimetableWeekVC/TimetableEmptyView.swift; sourceTree = SOURCE_ROOT; };
-		05F0D498278B4230009CEBA2 /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
 		16E50C685E2282BC85B0A7D3 /* Pods-PolyNaviClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip.debug.xcconfig"; sourceTree = "<group>"; };
 		378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		402FCEC83668C759A9342F29 /* libPods-PolyNaviTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNaviTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,7 +233,6 @@
 		971F8DDC27BD52EF0018F98A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		971F8DDE27BD52EF0018F98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNaviClip.entitlements; sourceTree = "<group>"; };
-		972174D927B549420055FCF0 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNavi.entitlements; sourceTree = "<group>"; };
 		974FA70927B88D51001A4A25 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
@@ -254,6 +250,7 @@
 		9750155627976A0A00326B09 /* THLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THLabel.swift; sourceTree = "<group>"; };
 		9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPolygonDetailRenderer.swift; sourceTree = "<group>"; };
 		975015612799B86F00326B09 /* CustomOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlay.swift; sourceTree = "<group>"; };
+		9754525F27DED14D00E9B0B3 /* ExtensionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsTest.swift; sourceTree = "<group>"; };
 		976A027727B9846800128EE6 /* BottomSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetTransition.swift; sourceTree = "<group>"; };
 		976A027927BB26F000128EE6 /* AnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtensions.swift; sourceTree = "<group>"; };
 		9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeableBlurEffectView.swift; sourceTree = "<group>"; };
@@ -271,6 +268,8 @@
 		97941916278BCAF10038CBEF /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
 		97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityAnnotationView.swift; sourceTree = "<group>"; };
 		97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayedMapView.swift; sourceTree = "<group>"; };
+		9795440427DEBE2400A076E2 /* MapInfoPagesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoPagesTest.swift; sourceTree = "<group>"; };
+		9795440627DEC81900A076E2 /* MapViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewTest.swift; sourceTree = "<group>"; };
 		979784D427C8305F00DE457D /* InitUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitUI.swift; sourceTree = "<group>"; };
 		979E2C74278763A9008CFA05 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		979E2C762788A7C7008CFA05 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
@@ -286,6 +285,7 @@
 		97A484BF2717BAF700D14997 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		97A566F727D589FA00A064CC /* MapDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailInfo.swift; sourceTree = "<group>"; };
 		97A566FA27D6920100A064CC /* UtilsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsExtensions.swift; sourceTree = "<group>"; };
+		97A912A427DE81A90099897A /* MapInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoTest.swift; sourceTree = "<group>"; };
 		97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
 		97B8E18627CEDA80003D1EF4 /* RouteInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfoCell.swift; sourceTree = "<group>"; };
 		97B8E18927CEDA8B003D1EF4 /* Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
@@ -349,9 +349,12 @@
 		054E980727C81DF300173EF1 /* PolyNaviTests */ = {
 			isa = PBXGroup;
 			children = (
+				9754525F27DED14D00E9B0B3 /* ExtensionsTest.swift */,
+				9795440627DEC81900A076E2 /* MapViewTest.swift */,
+				9795440427DEBE2400A076E2 /* MapInfoPagesTest.swift */,
+				97A912A427DE81A90099897A /* MapInfoTest.swift */,
 				9784149E27DE59A4003204C5 /* BottomSheet.swift */,
 				979784D427C8305F00DE457D /* InitUI.swift */,
-				054E980827C81DF300173EF1 /* PolyNaviTests.swift */,
 				970B3B9427DD7A5F0048DF61 /* AnnotaionUI.swift */,
 				059A18C427DDEB9200700F61 /* TimetableTest.swift */,
 			);
@@ -497,7 +500,6 @@
 				979F86EA27D6E9570048B486 /* RouteDetail */,
 				972174D827B5488B0055FCF0 /* UnitDetail */,
 				9780D8C327B349C800DBDBF3 /* Base */,
-				05F0D498278B4230009CEBA2 /* FirstVC.swift */,
 				9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */,
 			);
 			path = BottomSheetPages;
@@ -728,7 +730,6 @@
 		97B8E18227CEDA4E003D1EF4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				972174D927B549420055FCF0 /* TitleCell.swift */,
 				97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */,
 				97B8E18627CEDA80003D1EF4 /* RouteInfoCell.swift */,
 				97B8E18927CEDA8B003D1EF4 /* Spacer.swift */,
@@ -986,10 +987,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				970B3B9527DD7A5F0048DF61 /* AnnotaionUI.swift in Sources */,
+				9795440727DEC81900A076E2 /* MapViewTest.swift in Sources */,
+				9795440527DEBE2400A076E2 /* MapInfoPagesTest.swift in Sources */,
 				9784149F27DE59A4003204C5 /* BottomSheet.swift in Sources */,
 				059A18C527DDEB9200700F61 /* TimetableTest.swift in Sources */,
-				054E980927C81DF300173EF1 /* PolyNaviTests.swift in Sources */,
 				979784D527C8305F00DE457D /* InitUI.swift in Sources */,
+				97A912A527DE81A90099897A /* MapInfoTest.swift in Sources */,
+				9754526027DED14D00E9B0B3 /* ExtensionsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1036,7 +1040,6 @@
 				97B8E18727CEDA80003D1EF4 /* RouteInfoCell.swift in Sources */,
 				9780D8BE27B3404B00DBDBF3 /* UnitDetailVC.swift in Sources */,
 				9780D8C027B3412A00DBDBF3 /* SearchVC.swift in Sources */,
-				972174DA27B549420055FCF0 /* TitleCell.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
 				976A027A27BB26F000128EE6 /* AnimationExtensions.swift in Sources */,
 				97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */,
@@ -1057,7 +1060,6 @@
 				975015432795B14400326B09 /* AmenityAnnotation.swift in Sources */,
 				979F86EC27D6E9720048B486 /* RouteDetailVC.swift in Sources */,
 				97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */,
-				97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */,
 				979E2C792789D1C6008CFA05 /* Feature.swift in Sources */,
 				05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */,
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
@@ -1097,7 +1099,6 @@
 				971F8E1027BD556B0018F98A /* AmenityAnnotation.swift in Sources */,
 				978B793027D12F8C0003626F /* AnnotationConvert.swift in Sources */,
 				979E5C9927BF0B3400A48816 /* SwiftUIExtensions.swift in Sources */,
-				971F8E1327BD55820018F98A /* FirstVC.swift in Sources */,
 				971F8E0B27BD556B0018F98A /* EnviromentAmenityAnnotation.swift in Sources */,
 				979E5C9C27C0023000A48816 /* MapInfo.swift in Sources */,
 				971F8DF527BD55480018F98A /* XCAssets+Generated.swift in Sources */,
@@ -1127,7 +1128,6 @@
 				971F8DFE27BD55650018F98A /* MapView.swift in Sources */,
 				97FCC17927C6A313009F3C39 /* ScaledImageView.swift in Sources */,
 				971F8E1127BD55820018F98A /* NavbarBottomSheetPage.swift in Sources */,
-				971F8E1427BD55820018F98A /* TitleCell.swift in Sources */,
 				971F8E0E27BD556B0018F98A /* AttractionAnnotationView.swift in Sources */,
 				971F8E0F27BD556B0018F98A /* OccupantAnnotation.swift in Sources */,
 				971F8DE927BD54F30018F98A /* UIKitExtensions.swift in Sources */,

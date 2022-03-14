@@ -317,8 +317,8 @@ extension MapView: MKMapViewDelegate {
         mapInfoDelegate?.didSelect(view.annotation)
         
 //        focus(on: venue!.buildings[2].levels[0].occupants[12])
-        focus(on: view.annotation!)
-        return
+//        focus(on: view.annotation!)
+//        return
         
         let mapSafeZone = mapInfoDelegate!.getSafeZone()
         let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: self.mapView)

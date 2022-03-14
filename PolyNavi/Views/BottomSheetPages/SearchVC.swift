@@ -6,7 +6,7 @@ class SearchVC: NavbarBottomSheetPage {
     
     private var preferredScrollProgress = 0.0
     
-    private lazy var searchBar: UISearchBar = {
+    lazy var searchBar: UISearchBar = {
         $0.placeholder = L10n.ChoosingSearchController.searchPlaceholder
         $0.searchBarStyle = .minimal
         $0.frame = navbar.frame

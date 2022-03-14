@@ -32,7 +32,7 @@ class MapInfo: BottomSheetViewController {
     
     static private(set) var routeDetail: RouteDetail? = nil
     
-    var pages: [Page] = [.search]
+    var pages: [Page] = []
     var mapView: OverlayedMapView?
     
     private var startZoom: Float = 0
@@ -78,6 +78,8 @@ class MapInfo: BottomSheetViewController {
             pages.append(.annotationInfo)
         case is RouteDetailVC:
             pages.append(.route)
+        case is SearchVC:
+            pages.append(.search)
         default:
             pages.append(.unknown)
         }

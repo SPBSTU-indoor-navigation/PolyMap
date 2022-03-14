@@ -38,6 +38,11 @@
                BlueprintName = "PolyNaviTests"
                ReferencedContainer = "container:PolyNavi.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "PolyNaviTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
