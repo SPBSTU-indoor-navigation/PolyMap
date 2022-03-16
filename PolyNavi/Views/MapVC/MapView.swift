@@ -8,6 +8,12 @@
 import UIKit
 import MapKit
 
+protocol MapViewDelegate {
+    func focusAndSelect(annotation: MKAnnotation) -> Bool
+    func focus(on annotation: MKAnnotation)
+    func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool)
+}
+
 class MapView: UIView {
     
     enum Constants {
@@ -30,6 +36,7 @@ class MapView: UIView {
     
     var levelSwitcherConstraint: NSLayoutConstraint?
     private var zoomByAnimation = false
+    private var wantSelect: MKAnnotation?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,6 +56,7 @@ class MapView: UIView {
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false
         $0.delegate = self
+        $0.onAnnotationAdd = onAnnotationAdd
         
         $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: OccupantAnnotation.identifier)
         $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: AmenityAnnotation.identifier)
@@ -245,6 +253,23 @@ class MapView: UIView {
         }
     }
     
+    func selectAnnotationAfterAdding(annotation: MKAnnotation?) {
+        
+        guard let annotation = annotation else { return }
+        
+        if mapView.annotations.contains(where: { annotation.isEqual($0) }) {
+            mapView.selectAnnotation(annotation, animated: true)
+        } else {
+            wantSelect = annotation
+        }
+    }
+    
+    func onAnnotationAdd(_ annotation: MKAnnotation) {
+        if annotation.isEqual(wantSelect) {
+            mapView.selectAnnotation(annotation, animated: true)
+        }
+    }
+    
 }
 
 
@@ -312,13 +337,9 @@ extension MapView: MKMapViewDelegate {
         updateMap(zoomLevel: getZoom())
     }
     
-
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        wantSelect = nil
         mapInfoDelegate?.didSelect(view.annotation)
-        
-//        focus(on: venue!.buildings[2].levels[0].occupants[12])
-        focus(on: view.annotation!)
-        return
         
         let mapSafeZone = mapInfoDelegate!.getSafeZone()
         let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: self.mapView)
@@ -369,10 +390,17 @@ extension MapView: MKMapViewDelegate {
 }
 
 
-extension MapView {
+extension MapView: MapViewDelegate {
     
-    func focusAndSelect(annotation: MKAnnotation) {
+    func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool) {
+        mapView.deselectAnnotation(annotation, animated: animated)
+    }
+    
+    func focusAndSelect(annotation: MKAnnotation) -> Bool {
+        selectAnnotationAfterAdding(annotation: annotation)
         focus(on: annotation)
+        
+        return !mapView.selectedAnnotations.contains(where: { annotation.isEqual($0) })
     }
     
     func focus(on annotation: MKAnnotation) {

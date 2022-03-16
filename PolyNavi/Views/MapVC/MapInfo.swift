@@ -32,13 +32,14 @@ class MapInfo: BottomSheetViewController {
     
     static private(set) var routeDetail: RouteDetail? = nil
     
-    var pages: [Page] = [.search]
-    var mapView: OverlayedMapView?
+    var pages: [Page] = []
+    var mapViewDelegate: MapViewDelegate?
     
     private var startZoom: Float = 0
     private var lastZoomChange = Date.timeIntervalSinceReferenceDate
     private var zoomHidden = false
     private var currentSelection: MKAnnotation?
+    private var skipSelectStateChange = false
     
     var routeDetailVC: RouteDetailVC?
     
@@ -57,11 +58,19 @@ class MapInfo: BottomSheetViewController {
     
     override func popViewController(animated: Bool) -> UIViewController? {
         if pages.last == .annotationInfo {
-            mapView?.deselectAnnotation(currentSelection, animated: true)
+            mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
         }
+        
         pages.removeLast()
         let vc = super.popViewController(animated: animated)
+
+        if let unitDetail = self.viewControllers.last as? UnitDetailVC,
+           let annotation = unitDetail.mapDetailInfo?.annotation {
+            skipSelectStateChange = true
+            skipSelectStateChange = mapViewDelegate?.focusAndSelect(annotation: annotation) ?? false
+        }
         
+                
         switch vc {
         case is RouteDetailVC:
             routeDetailVC = nil
@@ -77,6 +86,8 @@ class MapInfo: BottomSheetViewController {
             pages.append(.annotationInfo)
         case is RouteDetailVC:
             pages.append(.route)
+        case is SearchVC:
+            pages.append(.search)
         default:
             pages.append(.unknown)
         }
@@ -140,9 +151,13 @@ extension MapInfo: MapInfoDelegate {
             pushViewController(vc, animated: true)
         }
         
-        if state != .medium && currentSize == .big {
+        print(skipSelectStateChange)
+        
+        if state != .medium && currentSize == .big && !skipSelectStateChange {
             changeState(state: .medium)
         }
+        
+        skipSelectStateChange = false
     }
     
     func didDeselect(_ annotation: MKAnnotation?) {

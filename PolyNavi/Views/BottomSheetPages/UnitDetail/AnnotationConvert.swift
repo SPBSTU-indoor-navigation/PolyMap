@@ -19,6 +19,8 @@ extension OccupantAnnotation: Castable {
         res.sections.append(MapDetailInfo.Detail(phone: properties.phone, email: properties.email, website: properties.website, address: address?.addressString()))
         res.sections.append(MapDetailInfo.Report())
         
+        res.annotation = self
+        
         return res
     }
 }
@@ -30,6 +32,8 @@ extension AmenityAnnotation: Castable {
         res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
         res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false))
         res.sections.append(MapDetailInfo.Report(favorite: false, report: true))
+        
+        res.annotation = self
         
         return res
     }
@@ -43,6 +47,8 @@ extension EnviromentAmenityAnnotation: Castable {
         res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false))
         res.sections.append(MapDetailInfo.Report(favorite: false, report: true))
         
+        res.annotation = self
+        
         return res
     }
 }
@@ -54,6 +60,8 @@ extension AttractionAnnotation: Castable {
         res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
         res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: true).with(buildingID: properties.building_id))
         res.sections.append(MapDetailInfo.Report(favorite: true, report: true))
+        
+        res.annotation = self
         
         return res
     }

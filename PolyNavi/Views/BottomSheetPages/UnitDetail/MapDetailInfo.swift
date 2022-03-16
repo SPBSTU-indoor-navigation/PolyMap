@@ -5,6 +5,7 @@
 //  Created by Andrei Soprachev on 07.03.2022.
 //
 import UIKit
+import MapKit
 
 protocol CellFor {
     func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell
@@ -13,6 +14,7 @@ protocol CellFor {
 class MapDetailInfo {
     var title: String = ""
     var sections: [Section] = []
+    var annotation: MKAnnotation?
     
     
     class Section {
