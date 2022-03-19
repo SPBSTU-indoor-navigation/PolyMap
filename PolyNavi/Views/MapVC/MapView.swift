@@ -270,6 +270,74 @@ class MapView: UIView {
         }
     }
     
+    func mapFocusCenter(point: CLLocationCoordinate2D, distance: CGFloat, complition: (() -> Void)?) {
+        
+        let shoudUseCam = abs(mapView.camera.centerCoordinateDistance - distance) > 0.1
+        let targetCam = MKMapCamera(lookingAtCenter: mapView.camera.centerCoordinate, fromDistance: distance, pitch: mapView.camera.pitch, heading: mapView.camera.heading)
+        
+        let tempMap = MKMapView(frame: mapView.frame)
+        tempMap.setCamera(shoudUseCam ? targetCam : mapView.camera, animated: false)
+        tempMap.setCenter(point, animated: false)
+        
+        
+        let safeZone = mapInfoDelegate?.getSafeZone() ?? mapView
+        let targetCenter = tempMap.convert(CGPoint(x: mapView.frame.width - safeZone.center.x,
+                                                   y: mapView.frame.height - safeZone.center.y + (mapInfoDelegate?.getHorizontalSize() != .big ? mapView.frame.height / 20 : 0)), //Сдвиг вверх по правилам дизайна. Человеческий глаз склонен завышать точку центра
+                                           toCoordinateFrom: mapView)
+        
+        MKMapView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            if shoudUseCam { self.mapView.camera = targetCam }
+            self.mapView.centerCoordinate = targetCenter
+        }, completion: { _ in
+            complition?()
+        })
+    }
+    
+    func mapFocusSafeArea(point: CLLocationCoordinate2D, boundingBox: CGRect, complition: (() -> Void)? = nil) {
+        let mapSafeZone = mapInfoDelegate!.getSafeZone()
+        let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: self.mapView)
+        
+        let centerCG = mapView.convert(mapView.centerCoordinate, toPointTo: mapView)
+        let annotationCG = mapView.convert(point, toPointTo: mapView)
+        
+        
+        var dx = 0.0
+        var dy = 0.0
+        
+        let offset = UIEdgeInsets(top: -boundingBox.origin.y,
+                                  left: -boundingBox.origin.x,
+                                  bottom: boundingBox.height + boundingBox.origin.y,
+                                  right: boundingBox.width + boundingBox.origin.x)
+        
+        let target = safeZone
+            .inset(by: offset)
+            .inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 50, right: 10))
+        
+        
+        
+        if !target.contains(annotationCG) {
+            if annotationCG.y < target.minY {
+                dy = annotationCG.y - target.minY
+            } else if annotationCG.y > target.maxY {
+                dy = annotationCG.y - target.maxY
+            }
+            
+            if annotationCG.x < target.minX {
+                dx = annotationCG.x - target.minX
+            } else if annotationCG.x > target.maxX {
+                dx = annotationCG.x - target.maxX
+            }
+            
+            
+            let point = MKMapPoint(mapView.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: mapView))
+            MKMapView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.mapView.centerCoordinate = point.coordinate
+            }, completion: { _ in
+                complition?()
+            })
+        }
+    }
+    
 }
 
 
@@ -340,47 +408,9 @@ extension MapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         wantSelect = nil
         mapInfoDelegate?.didSelect(view.annotation)
-        
-        let mapSafeZone = mapInfoDelegate!.getSafeZone()
-        let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: self.mapView)
-        
-        let centerCG = mapView.convert(mapView.centerCoordinate, toPointTo: mapView)
-        let annotationCG = mapView.convert(view.annotation!.coordinate, toPointTo: mapView)
-        
-        
+
         let boundingBox = (view as? BoundingBox)?.boundingBox() ?? .zero
-        
-        var dx = 0.0
-        var dy = 0.0
-        
-        let offset = UIEdgeInsets(top: -boundingBox.origin.y,
-                                  left: -boundingBox.origin.x,
-                                  bottom: boundingBox.height + boundingBox.origin.y,
-                                  right: boundingBox.width + boundingBox.origin.x)
-        
-        let target = safeZone
-            .inset(by: offset)
-            .inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 50, right: 10))
-        
-        
-            
-        if !target.contains(annotationCG) {
-            if annotationCG.y < target.minY {
-                dy = annotationCG.y - target.minY
-            } else if annotationCG.y > target.maxY {
-                dy = annotationCG.y - target.maxY
-            }
-            
-            if annotationCG.x < target.minX {
-                dx = annotationCG.x - target.minX
-            } else if annotationCG.x > target.maxX {
-                dx = annotationCG.x - target.maxX
-            }
-            
-            
-            let point = MKMapPoint(mapView.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: mapView))
-            mapView.setCenter(point.coordinate, animated: true)
-        }
+        mapFocusSafeArea(point: view.annotation!.coordinate, boundingBox: boundingBox)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -421,27 +451,23 @@ extension MapView: MapViewDelegate {
         default: break
         }
         
+        self.zoomByAnimation = true
+        
+        let view = mapView.view(for: annotation)
+        let boundingBox = (view as? BoundingBox)?.boundingBox() ?? .zero
 
-        let shoudUseCam = abs(mapView.camera.centerCoordinateDistance - targetZoom) > 20
-        let targetCam = MKMapCamera(lookingAtCenter: mapView.camera.centerCoordinate, fromDistance: targetZoom, pitch: mapView.camera.pitch, heading: mapView.camera.heading)
-
-        let tempMap = MKMapView(frame: mapView.frame)
-        tempMap.setCamera(shoudUseCam ? targetCam : mapView.camera, animated: false)
-        tempMap.setCenter(annotation.coordinate, animated: false)
-        
-        
-        let safeZone = mapInfoDelegate?.getSafeZone() ?? mapView
-        let targetCenter = tempMap.convert(CGPoint(x: mapView.frame.width - safeZone.center.x,
-                                                   y: mapView.frame.height - safeZone.center.y + (mapInfoDelegate?.getHorizontalSize() != .big ? mapView.frame.height / 20 : 0)), //Сдвиг вверх по правилам дизайна. Человеческий глаз склонен завышать точку центра
-                                           toCoordinateFrom: mapView)
-        
-        MKMapView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-            if shoudUseCam { self.mapView.camera = targetCam }
-            self.mapView.centerCoordinate = targetCenter
-            self.zoomByAnimation = true
-        }, completion: { _ in
-            self.zoomByAnimation = false
-        })
+        if let view = view,
+           mapView.frame.intersects(view.frame.inset(by: .init(top: boundingBox.maxY, left: boundingBox.minX, bottom: boundingBox.minY, right: boundingBox.maxX))) {
+            mapFocusSafeArea(point: annotation.coordinate,
+                             boundingBox: boundingBox,
+                             complition: {
+                self.zoomByAnimation = false
+            })
+        } else {
+            mapFocusCenter(point: annotation.coordinate, distance: targetZoom, complition: {
+                self.zoomByAnimation = false
+            })
+        }
         
     }
 }
