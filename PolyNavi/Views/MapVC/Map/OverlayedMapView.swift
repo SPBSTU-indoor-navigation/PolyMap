@@ -7,7 +7,7 @@
 
 import MapKit
 
-class OverlayedMapView: MKMapView {
+class OverlayedMapView: PinnableMapView {
     
     var onPan: ((UIPanGestureRecognizer) -> Void)?
     var onAnnotationAdd: ((_ annotation: MKAnnotation) -> Void)?

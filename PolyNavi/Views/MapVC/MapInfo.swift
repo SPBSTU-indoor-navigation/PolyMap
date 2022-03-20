@@ -18,8 +18,8 @@ protocol MapInfoDelegate {
 }
 
 protocol RouteDetail {
-    func setFrom()
-    func setTo()
+    func setFrom(_ annotation: MKAnnotation)
+    func setTo(_ annotation: MKAnnotation)
 }
 
 class MapInfo: BottomSheetViewController {
@@ -151,8 +151,6 @@ extension MapInfo: MapInfoDelegate {
             pushViewController(vc, animated: true)
         }
         
-        print(skipSelectStateChange)
-        
         if state != .medium && currentSize == .big && !skipSelectStateChange {
             changeState(state: .medium)
         }
@@ -177,11 +175,12 @@ extension MapInfo: MapInfoDelegate {
 }
 
 extension MapInfo: RouteDetail {
-    func setFrom() {
+    func setFrom(_ annotation: MKAnnotation) {
+        mapViewDelegate?.pinAnnotation(annotation, animated: true)
         let vc = getRouteVC()
     }
     
-    func setTo() {
+    func setTo(_ annotation: MKAnnotation) {
         let vc = getRouteVC()
     }
     

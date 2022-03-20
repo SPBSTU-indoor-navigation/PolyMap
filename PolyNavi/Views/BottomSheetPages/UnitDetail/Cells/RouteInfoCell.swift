@@ -13,6 +13,9 @@ class RouteInfoCell: UITableViewCell {
         return String(describing: self)
     }
     
+    var onRouteClick: (() -> Void)?
+    var onBuildingClick: (() -> Void)?
+    
     private lazy var routeButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setImage(UIImage(systemName: "figure.walk"), for: .normal)
@@ -45,11 +48,7 @@ class RouteInfoCell: UITableViewCell {
             $0.setBackgroundColor(color: Asset.Colors.bottomSheetPlan.color, forState: .normal)
             $0.tintColor = Asset.accentColor.color
         }
-        
-        
-
-        
-        $0.addTarget(self, action: #selector(routeClick(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(buildingClick(_:)), for: .touchUpInside)
         return $0
     }(UIButton(type: .system))
     
@@ -91,8 +90,11 @@ class RouteInfoCell: UITableViewCell {
     }
     
     @objc func routeClick(_ sender: UIButton?) {
-        print("CLICK")
-        MapInfo.routeDetail?.setTo()
+        onRouteClick?()
+    }
+    
+    @objc func buildingClick(_ sender: UIButton?) {
+        onBuildingClick?()
     }
     
     required init?(coder: NSCoder) {

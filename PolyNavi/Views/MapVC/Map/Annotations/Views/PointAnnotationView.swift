@@ -16,7 +16,7 @@ protocol BoundingBox {
     func boundingBox() -> CGRect
 }
 
-class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
+class PointAnnotationView: PinnableAnnotationView, AnnotationMapSize, BoundingBox {
     private var annotationDetailState: OccupantAnnotation.DetailLevel = .pointSecondary
     override var annotation: MKAnnotation? {
         didSet {
@@ -53,16 +53,15 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
             }
             
             label.alpha = labelOpacity
-            point.transform = CGAffineTransform(scaleX: pointSize, y: pointSize)
+            point.transform = pointTransform
             label.transform = labelTransform
         }
     }
     
     var state: DetailLevelState = .undefined
     
-    var pointSize: CGFloat {
-        get {
-            
+    var pointTransform: CGAffineTransform {
+        var normalScale: CGFloat {
             if [.circleWithoutLabel].contains(annotationDetailState) {
                 switch state {
                 case .big: return 2.0
@@ -75,9 +74,36 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
                 }
             }
         }
+        
+        if isSelected { return .one.scaled(scale: 7.0).translatedBy(x: 0, y: -6.8) }
+        if isPinned { return .one.scaled(scale: 3.0).translatedBy(x: 0, y: -6.8) }
+        
+        return .one.scaled(scale: normalScale)
+    }
+    
+    var miniPointTransform: CGAffineTransform {
+        var size: CGFloat {
+            if isSelected { return 1 }
+            if isPinned { return 0.5 }
+            return 0
+        }
+        return .one.scaled(scale: size)
+    }
+    
+    var pointShapeTransform: CGAffineTransform {
+        if isSelected || isPinned {
+            return .identity.scaledBy(x: 1, y: 1)
+        }
+        return CGAffineTransform(translationX: 0, y: -1).scaledBy(x: 1, y: 0)
+    }
+    
+    var borderColor: CGColor {
+        return UIColor.systemBackground.withAlphaComponent(isSelected || isPinned ? 0 : 1).cgColor
     }
     
     var labelOpacity: CGFloat {
+        if isSelected || isPinned { return 1 }
+        
         if [.circleWithoutLabel].contains(annotationDetailState) {
             return 0.0
         }
@@ -85,6 +111,9 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
     }
     
     var labelTransform: CGAffineTransform {
+        if isSelected { return CGAffineTransform(translationX: 0, y: -0.5) }
+        if isPinned { return CGAffineTransform(translationX: 0, y: -4) }
+        
         if [.circleWithoutLabel].contains(annotationDetailState) {
             return CGAffineTransform(translationX: 0, y: -12).scaledBy(x: 0.5, y: 0.5)
         }
@@ -92,6 +121,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
     }
     
     var imageOpacity: CGFloat {
+        if isSelected || isPinned { return 1 }
         if [.circleWithoutLabel].contains(annotationDetailState) {
             return 1.0
         }
@@ -168,7 +198,6 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
         
         $0.font = .systemFont(ofSize: 11, weight: .semibold)
         
-        
         $0.strokeSize = 0.5
         $0.strokeColor = Asset.Annotation.Colors.stroke.color
         return $0
@@ -209,26 +238,26 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
         
         selectAnim
             .animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
-                point.transform = CGAffineTransform(scaleX: 7, y: 7).translatedBy(x: 0, y: -6.8)
-                label.transform = CGAffineTransform(translationX: 0, y: -0.5)
+                point.transform = pointTransform
+                label.transform = labelTransform
                 imageView.alpha = 1.0
                 imageView.startAnim()
             }, completion: { _ in self.imageView.endAnim()})
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
-                miniPoint.transform = .identity
+                miniPoint.transform = miniPointTransform
             })
             .animate(withDuration: 0.2, delay: 0.05, options: .curveEaseInOut, animations: { [self] in
-                shape.transform = .identity.scaledBy(x: 1, y: 1)
-                label.alpha = 1.0
+                shape.transform = pointShapeTransform
+                label.alpha = labelOpacity
             })
             .animate(withDuration: 0.05, delay: 0, options: .curveEaseIn, animations: { [self] in
-                point.layer.borderColor = UIColor.systemBackground.withAlphaComponent(0).cgColor
+                point.layer.borderColor = borderColor
             })
         
         deselectAnim
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
-                point.transform = .identity.scaledBy(x: pointSize, y: pointSize)
+                point.transform = pointTransform
                 imageView.startAnim()
             }, completion: { _ in self.imageView.endAnim()})
             .animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: { [self] in
@@ -236,14 +265,13 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
                 label.transform = labelTransform
             })
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
-                shape.transform = CGAffineTransform(translationX: 0, y: -1).scaledBy(x: 1, y: 0)
-                miniPoint.transform = CGAffineTransform(scaleX: 0, y: 0)
+                shape.transform = pointShapeTransform
+                miniPoint.transform = miniPointTransform
                 
-
                 imageView.alpha = imageOpacity
                 
-                point.layer.borderColor = UIColor.systemBackground.cgColor
-            }, completion: { _ in self.miniPoint.isHidden = true })
+                point.layer.borderColor = borderColor
+            }, completion: { _ in self.miniPoint.isHidden = self.miniPoint.transform == .zero })
     }
     
     func boundingBox() -> CGRect {
@@ -257,11 +285,9 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
         }
         
         if #available(iOS 14.0, *) {
-            zPriority = MKAnnotationViewZPriority(rawValue: 500)
+            unpinnedZPriority = MKAnnotationViewZPriority(rawValue: 500)
         }
     }
-    
-    
     
     func changeState(state: DetailLevelState, animate: Bool) {
         self.state = state
@@ -271,7 +297,7 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
         let change = { [self] in
             label.transform = labelTransform
             label.alpha = labelOpacity
-            point.transform = CGAffineTransform(scaleX: pointSize, y: pointSize)
+            point.transform = pointTransform
         }
         
         if animate {
@@ -293,14 +319,21 @@ class PointAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        
+        super.setSelected(selected, animated: animated)
+
         if selected {
             selectAnim.play(animated: animated)
         } else {
             deselectAnim.play(animated: animated)
         }
     }
-                
+    
+    override func setPinned(_ pinned: Bool, animated: Bool) {
+        super.setPinned(pinned, animated: animated)
+        
+        setSelected(isSelected, animated: animated)
+    }
+    
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

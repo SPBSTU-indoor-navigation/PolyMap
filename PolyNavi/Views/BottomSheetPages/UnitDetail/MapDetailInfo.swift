@@ -25,18 +25,26 @@ class MapDetailInfo {
     class Route: Section, CellFor {
         var showRoute = true
         var showIndoor = true
+        var annotation: MKAnnotation?
         
         var buildingID: UUID?
         
-        init(showRoute: Bool = true, showIndoor: Bool = true) {
+        init(showRoute: Bool = true, showIndoor: Bool = true, annotation: MKAnnotation? = nil) {
             self.showRoute = showRoute
             self.showIndoor = showIndoor
+            self.annotation = annotation
         }
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: RouteInfoCell.identifire, for: indexPath) as! RouteInfoCell
             cell.configutate(showRoute: showRoute, showIndoor: showIndoor, buildingID: buildingID)
             cell.selectionStyle = .none
+            cell.onRouteClick = {
+                if let annotation = self.annotation {
+                    MapInfo.routeDetail?.setFrom(annotation)
+                }
+            }
+            cell.onBuildingClick = { print("BUILDING") }
             return cell
         }
         

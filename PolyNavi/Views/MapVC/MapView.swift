@@ -12,6 +12,8 @@ protocol MapViewDelegate {
     func focusAndSelect(annotation: MKAnnotation) -> Bool
     func focus(on annotation: MKAnnotation)
     func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool)
+    func pinAnnotation(_ annotation: MKAnnotation, animated: Bool)
+    func unpinAnnotation(_ annotation: MKAnnotation, animated: Bool)
 }
 
 class MapView: UIView {
@@ -421,6 +423,14 @@ extension MapView: MKMapViewDelegate {
 
 
 extension MapView: MapViewDelegate {
+    func pinAnnotation(_ annotation: MKAnnotation, animated: Bool) {
+        mapView.pinAnnotation(annotation, animated: animated)
+    }
+    
+    func unpinAnnotation(_ annotation: MKAnnotation, animated: Bool) {
+        mapView.unpinAnnotation(annotation, animated: animated)
+    }
+    
     
     func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool) {
         mapView.deselectAnnotation(annotation, animated: animated)

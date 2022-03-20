@@ -31,6 +31,8 @@
 		7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F912E21A3F89F0FBB707D3FB /* libPods-PolyNaviClip.a */; };
 		9717E4272742991F00332D29 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4262742991F00332D29 /* MapView.swift */; };
 		9717E46027447A7D00332D29 /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
+		97196E7E27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
+		97196E7F27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
 		971F8DD127BD52EE0018F98A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD027BD52EE0018F98A /* AppDelegate.swift */; };
 		971F8DD327BD52EE0018F98A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD227BD52EE0018F98A /* SceneDelegate.swift */; };
 		971F8DDA27BD52EF0018F98A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971F8DD927BD52EF0018F98A /* Assets.xcassets */; };
@@ -209,6 +211,7 @@
 		8F8CE2653503032042C79524 /* Pods-PolyMapAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyMapAppClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyMapAppClip/Pods-PolyMapAppClip.debug.xcconfig"; sourceTree = "<group>"; };
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
+		97196E7D27E6781D00F9E73A /* PinnableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnableMapView.swift; sourceTree = "<group>"; };
 		971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNaviClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971F8DD027BD52EE0018F98A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		971F8DD227BD52EE0018F98A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -620,6 +623,7 @@
 			isa = PBXGroup;
 			children = (
 				97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */,
+				97196E7D27E6781D00F9E73A /* PinnableMapView.swift */,
 				975015462795B19200326B09 /* Shared.swift */,
 				9750153D2795B10300326B09 /* Annotations */,
 				9750153C2795B0EB00326B09 /* Overlays */,
@@ -939,6 +943,7 @@
 				9780D8B727B32C7000DBDBF3 /* BottomSheetViewController.swift in Sources */,
 				054F67CC270CDFB400FCC07C /* LessonModel.swift in Sources */,
 				0574A2292711FF5F00C33317 /* TimetableBreakTableViewCell.swift in Sources */,
+				97196E7E27E6781D00F9E73A /* PinnableMapView.swift in Sources */,
 				97B8E18427CEDA6D003D1EF4 /* TitleHeader.swift in Sources */,
 				979E2C7D2789D234008CFA05 /* IMDFDecoder.swift in Sources */,
 				056F2D1E271CAED30063015B /* SettingTimetableVC.swift in Sources */,
@@ -1014,6 +1019,7 @@
 				971F8DFD27BD55650018F98A /* OverlayedMapView.swift in Sources */,
 				971F8DFE27BD55650018F98A /* MapView.swift in Sources */,
 				97FCC17927C6A313009F3C39 /* ScaledImageView.swift in Sources */,
+				97196E7F27E6781D00F9E73A /* PinnableMapView.swift in Sources */,
 				971F8E1127BD55820018F98A /* NavbarBottomSheetPage.swift in Sources */,
 				971F8E1427BD55820018F98A /* TitleCell.swift in Sources */,
 				971F8E0E27BD556B0018F98A /* AttractionAnnotationView.swift in Sources */,

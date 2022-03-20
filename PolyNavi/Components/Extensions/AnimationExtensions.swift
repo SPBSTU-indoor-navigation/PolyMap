@@ -32,3 +32,12 @@ extension UIViewPropertyAnimator {
     }
 
 }
+
+extension CGAffineTransform {
+    public static var one: CGAffineTransform { return CGAffineTransform(scaleX: 1, y: 1) }
+    public static var zero: CGAffineTransform { return CGAffineTransform(scaleX: 0, y: 0) }
+    
+    public func scaled(scale: CGFloat) -> Self {
+        return scaledBy(x: scale, y: scale)
+    }
+}
