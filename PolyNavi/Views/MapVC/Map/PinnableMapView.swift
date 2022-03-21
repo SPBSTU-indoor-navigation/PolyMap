@@ -24,7 +24,7 @@ class PinnableAnnotationView: MKAnnotationView, Pinnable {
         
         set {
             _unpinnedZPriority = newValue
-            zPriority = isPinned ? .defaultSelected : .init(rawValue: 900)
+            zPriority = isPinned ? .defaultSelected : newValue
         }
     }
     

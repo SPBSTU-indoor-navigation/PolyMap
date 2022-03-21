@@ -33,6 +33,8 @@
 		9717E46027447A7D00332D29 /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		97196E7E27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
 		97196E7F27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
+		97196E8127E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */; };
+		97196E8227E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */; };
 		971F8DD127BD52EE0018F98A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD027BD52EE0018F98A /* AppDelegate.swift */; };
 		971F8DD327BD52EE0018F98A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD227BD52EE0018F98A /* SceneDelegate.swift */; };
 		971F8DDA27BD52EF0018F98A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971F8DD927BD52EF0018F98A /* Assets.xcassets */; };
@@ -212,6 +214,7 @@
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		97196E7D27E6781D00F9E73A /* PinnableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnableMapView.swift; sourceTree = "<group>"; };
+		97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnnotationView.swift; sourceTree = "<group>"; };
 		971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNaviClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971F8DD027BD52EE0018F98A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		971F8DD227BD52EE0018F98A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -612,6 +615,7 @@
 		97941915278BCAF10038CBEF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */,
 				97941916278BCAF10038CBEF /* PointAnnotationView.swift */,
 				97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */,
 				97501552279631A100326B09 /* AttractionAnnotationView.swift */,
@@ -905,6 +909,7 @@
 				0574A227271036CC00C33317 /* DateTableViewCell.swift in Sources */,
 				979E5C9827BF0B3400A48816 /* SwiftUIExtensions.swift in Sources */,
 				05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */,
+				97196E8127E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */,
 				9780D8BC27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift in Sources */,
 				9780D8BA27B32DDD00DBDBF3 /* UIKitExtensions.swift in Sources */,
 				97A566FB27D6920100A064CC /* UtilsExtensions.swift in Sources */,
@@ -1001,6 +1006,7 @@
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
 				971F8DF927BD555B0018F98A /* IMDFDecoder.swift in Sources */,
 				971F8DF227BD54FA0018F98A /* BottomSheetPage.swift in Sources */,
+				97196E8227E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */,
 				971F8E0727BD55680018F98A /* CustomOverlay.swift in Sources */,
 				971F8DE827BD54F30018F98A /* MapExtensions.swift in Sources */,
 				97B8E18B27CEDA8B003D1EF4 /* Spacer.swift in Sources */,

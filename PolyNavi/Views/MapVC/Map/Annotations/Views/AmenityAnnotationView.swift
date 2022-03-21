@@ -7,10 +7,7 @@
 
 import MapKit
 
-class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
-    var state: DetailLevelState = .undefined
-    var detailLevel: Int = 0
-    
+class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
     override var annotation: MKAnnotation? {
         didSet {
             if let amenity = annotation as? AmenityAnnotation {
@@ -25,43 +22,11 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
                 label.text = nil
             }
             
-            if let detail = annotation as? DetailLevel {
-                detailLevel = detail.detailLevel()
+            if let detail = annotation as? AmenityDetailLevel {
+                detailLevel = detail.detailLevel
             } else {
-                detailLevel = 0
+                detailLevel = .min
             }
-        }
-    }
-    
-    var selectAnim = Animator(),
-        deselectAnim = Animator(),
-        min = Animator(),
-        big = Animator(),
-        hide = Animator(),
-        normal = Animator()
-    
-    var backgroundSize: CGFloat {
-        get {
-            switch state {
-            case .big:
-                return 1.2
-            case .normal:
-                return 0.8
-            case .hide, .min, .undefined:
-                return 0.3
-            }
-        }
-    }
-    
-    var imageAlpha: CGFloat {
-        get {
-            return [.big, .normal].contains(state) ? 1.0 : 0
-        }
-    }
-    
-    var backgroundCornerRadius: CGFloat {
-        get {
-            return [.big, .normal].contains(state) ? 5 : 10
         }
     }
     
@@ -203,74 +168,63 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
     
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
     
-    func boundingBox() -> CGRect {
-        return background.frame.union(label.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
-    }
+    override var detailLevelProcessor: DetailLevelProcessor<DetailLevelState> { AmenityAnnotation.levelProcessor }
+    
+    @available(iOS 14.0, *)
+    override var defaultPriority: MKAnnotationViewZPriority { .init(rawValue: 600) }
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
-        
         imageView.renderIfNeed()
-        
-        if #available(iOS 14.0, *) {
-            zPriority = MKAnnotationViewZPriority(rawValue: 700)
-        }
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        
-        if selected {
-            selectAnim.play(animated: animated)
-        } else {
-            deselectAnim.play(animated: animated)
-        }
+    override func boundingBox() -> CGRect {
+        return background.frame.union(label.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
     }
     
-    func changeState(state: DetailLevelState, animate: Bool) {
-        self.state = state
-        
+    override func changeState(state: DetailLevelState, animate: Bool) {
+        super.changeState(state: state, animate: animate)
         if isSelected { return }
         
-        let change = { [self] in
+        Animator().animate(withDuration: 0.3, animations: { [self] in
             background.transform = CGAffineTransform(scaleX: backgroundSize, y: backgroundSize)
             imageView.alpha = imageAlpha
             background.layer.cornerRadius = backgroundCornerRadius
-            alpha = state == .hide ? 0 : 1
-            if state != .hide {
-                isHidden = false
-                alpha = 1
-            } else {
-                alpha = 0
-            }
-        }
-        
-        let completion = {
-            if self.state == .hide {
-                self.isHidden = true
-            }
+            alpha = CGFloat((state != .hide).intValue)
+            isHidden = state == .hide
+        }, completion: { _ in
+            self.isHidden = self.state == .hide
             self.imageView.renderIfNeed()
-        }
-        
-        if animate {
-            UIView.animate(withDuration: 0.3, animations: {
-                change()
-            }, completion: { _ in completion() })
-        } else {
-            change()
-            completion()
+        }).play(animated: animate)
+    }
+}
+
+extension AmenityAnnotationView {
+    var backgroundSize: CGFloat {
+        get {
+            switch state {
+            case .big:
+                return 1.2
+            case .normal:
+                return 0.8
+            case .hide, .min, .undefined:
+                return 0.3
+            }
         }
     }
     
-    func update(mapSize: Float, animate: Bool) {
-        
-        let targetState = AmenityAnnotation.levelProcessor.evaluate(forDetailLevel: detailLevel, mapSize: mapSize) ?? .normal
-        
-        if state != targetState {
-            changeState(state: targetState, animate: animate)
+    var imageAlpha: CGFloat {
+        get {
+            return [.big, .normal].contains(state) ? 1.0 : 0
+        }
+    }
+    
+    var backgroundCornerRadius: CGFloat {
+        get {
+            return [.big, .normal].contains(state) ? 5 : 10
         }
     }
 }

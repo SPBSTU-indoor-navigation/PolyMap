@@ -15,28 +15,6 @@ class OccupantAnnotation: NSObject, MKAnnotation, Identifiable {
         case pointPrimary = 3
         case pointSecondary = 4
     }
-    
-    static var levelProcessor: DetailLevelProcessor<DetailLevelState> = {
-        
-        $0.builder(for: DetailLevel.circleWithoutLabel.rawValue)
-            .add(mapSize: 0, state: .min)
-            .add(mapSize: 19, state: .normal)
-            .add(mapSize: 21, state: .big)
-        
-        $0.builder(for: DetailLevel.pointPrimary.rawValue)
-            .add(mapSize: 19.6, state: .min)
-            .add(mapSize: 20.2, state: .normal)
-            .add(mapSize: 21.5, state: .big)
-        
-        $0.builder(for: DetailLevel.pointSecondary.rawValue)
-            .add(mapSize: 17.0, state: .hide)
-            .add(mapSize: 19.6, state: .min)
-            .add(mapSize: 20.2, state: .normal)
-            .add(mapSize: 21.5, state: .big)
-        return $0
-    }(DetailLevelProcessor<DetailLevelState>())
-    
-    
     var identifier: String = identifier
     static var identifier: String = String(describing: OccupantAnnotation.self)
     
@@ -63,4 +41,26 @@ class OccupantAnnotation: NSObject, MKAnnotation, Identifiable {
         self.address = address
         super.init()
     }
+}
+
+
+extension OccupantAnnotation {
+    static var levelProcessor: DetailLevelProcessor<DetailLevelState> = {
+        $0.builder(for: DetailLevel.circleWithoutLabel.rawValue)
+            .add(mapSize: 0, state: .min)
+            .add(mapSize: 19, state: .normal)
+            .add(mapSize: 21, state: .big)
+        
+        $0.builder(for: DetailLevel.pointPrimary.rawValue)
+            .add(mapSize: 19.6, state: .min)
+            .add(mapSize: 20.2, state: .normal)
+            .add(mapSize: 21.5, state: .big)
+        
+        $0.builder(for: DetailLevel.pointSecondary.rawValue)
+            .add(mapSize: 17.0, state: .hide)
+            .add(mapSize: 19.6, state: .min)
+            .add(mapSize: 20.2, state: .normal)
+            .add(mapSize: 21.5, state: .big)
+        return $0
+    }(DetailLevelProcessor<DetailLevelState>())
 }
