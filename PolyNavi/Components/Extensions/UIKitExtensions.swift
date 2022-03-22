@@ -32,6 +32,14 @@ extension UIView {
             return nil
         }
     }
+    
+    func hideIfZeroTransform() {
+        isHidden = transform == .zero
+    }
+    
+    func hideIfZeroAlpha() {
+        isHidden = alpha == 0
+    }
 }
 
 extension UIScrollView {

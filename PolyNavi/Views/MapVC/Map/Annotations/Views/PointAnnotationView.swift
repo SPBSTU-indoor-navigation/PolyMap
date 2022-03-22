@@ -178,7 +178,7 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
                 imageView.alpha = imageOpacity
                 
                 point.layer.borderColor = borderColor
-            }, completion: { _ in self.miniPoint.isHidden = self.miniPoint.transform == .zero })
+            }, completion: { _ in self.miniPoint.hideIfZeroTransform() })
     }
     
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }

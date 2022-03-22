@@ -124,46 +124,49 @@ class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
         selectAnim
             .animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 isHidden = false
-                imageView.alpha = 1
-                background.layer.cornerRadius = 5
-                background.transform = CGAffineTransform(scaleX: 2.5, y: 2.5).translatedBy(x: 0, y: -15.5)
-                
                 label.isHidden = false
-                label.alpha = 1
-                label.transform = .identity
+                
+                imageView.alpha = imageOpacity
+                background.layer.cornerRadius = backgroundCornerRadius
+                background.transform = backgroundTransform
+                
+                label.alpha = labelOpacity
+                label.transform = labelTransform
                 
                 imageView.startAnim()
             }, completion: { _ in self.imageView.endAnim()})
+        
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
-                miniPoint.transform = .identity
+                miniPoint.transform = miniPointTransform
             })
+        
             .animate(withDuration: 0.35, delay: 0.05, options: .curveEaseInOut, animations: { [self] in
-                shape.transform = .identity.scaledBy(x: 1, y: 1)
+                shape.transform = shapeTransform
             })
         
         deselectAnim
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: { [self] in
-                isHidden = false
-                background.transform = CGAffineTransform(scaleX: backgroundSize, y: backgroundSize)
-                if state == .hide { alpha = 0 }
+                alpha = viewOpacity
+                background.transform = backgroundTransform
+                
                 imageView.startAnim()
             }, completion: { _ in self.imageView.endAnim()})
+        
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
-                shape.transform = CGAffineTransform(translationX: 0, y: -1).scaledBy(x: 1, y: 0)
-                miniPoint.transform = CGAffineTransform(scaleX: 0, y: 0)
-            }, completion: { _ in self.miniPoint.isHidden = true })
+                shape.transform = shapeTransform
+                miniPoint.transform = miniPointTransform
+            }, completion: { _ in self.miniPoint.hideIfZeroTransform() })
+        
             .animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: { [self] in
-                label.alpha = 0
-                label.transform = CGAffineTransform(translationX: 0, y: -10).scaledBy(x: 0.5, y: 0.5)
-                if [.hide, .min].contains(state) {
-                    imageView.alpha = 0
-                    background.layer.cornerRadius = 10
-                }
-            }, completion: { _ in
-                self.label.isHidden = true
-                self.isHidden = self.state == .hide
+                label.alpha = labelOpacity
+                label.transform = labelTransform
+                imageView.alpha = imageOpacity
+                background.layer.cornerRadius = backgroundCornerRadius
                 
+            }, completion: { _ in
+                self.label.hideIfZeroAlpha()
+                self.hideIfZeroAlpha()
             })
     
     }
@@ -190,21 +193,54 @@ class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
         if isSelected { return }
         
         Animator().animate(withDuration: 0.3, animations: { [self] in
-            background.transform = CGAffineTransform(scaleX: backgroundSize, y: backgroundSize)
-            imageView.alpha = imageAlpha
+            background.transform = backgroundTransform
+            imageView.alpha = imageOpacity
             background.layer.cornerRadius = backgroundCornerRadius
-            alpha = CGFloat((state != .hide).intValue)
-            isHidden = state == .hide
+            alpha = viewOpacity
+            if isHidden && alpha > 0 { isHidden = false }
         }, completion: { _ in
-            self.isHidden = self.state == .hide
+            self.hideIfZeroAlpha()
             self.imageView.renderIfNeed()
         }).play(animated: animate)
     }
 }
 
 extension AmenityAnnotationView {
-    var backgroundSize: CGFloat {
-        get {
+    var labelOpacity: CGFloat {
+        isSelected || isPinned ? 1 : 0
+    }
+    
+    var viewOpacity: CGFloat {
+        isSelected || isPinned || state != .hide ? 1 : 0
+    }
+    
+    var miniPointTransform: CGAffineTransform {
+        if isSelected { return .identity }
+        if isPinned { return .one.scaled(scale: 0.5) }
+        return .one.scaled(scale: 0)
+    }
+    
+    var labelTransform: CGAffineTransform {
+        if isSelected { return .identity }
+        if isPinned { return CGAffineTransform(translationX: 0, y: -2) }
+        
+        return .one.scaled(scale: 0.5).translatedBy(x: 0, y: -10)
+    }
+    
+    var imageOpacity: CGFloat {
+        if isSelected || isPinned {
+            return 1
+        }
+        
+        return [.big, .normal].contains(state) ? 1.0 : 0
+    }
+    
+    var shapeTransform: CGAffineTransform {
+        isSelected || isPinned ? .one : .one.translatedBy(x: 0, y: -1).scaledBy(x: 1, y: 0)
+    }
+    
+    var backgroundTransform: CGAffineTransform {
+        var size: CGFloat {
             switch state {
             case .big:
                 return 1.2
@@ -214,18 +250,16 @@ extension AmenityAnnotationView {
                 return 0.3
             }
         }
-    }
-    
-    var imageAlpha: CGFloat {
-        get {
-            return [.big, .normal].contains(state) ? 1.0 : 0
-        }
+        
+        if isSelected { return .one.scaled(scale: 2.5).translatedBy(x: 0, y: -15.5) }
+        if isPinned { return .one.scaled(scale: 1.2).translatedBy(x: 0, y: -15.5) }
+        
+        return .one.scaled(scale: size)
     }
     
     var backgroundCornerRadius: CGFloat {
-        get {
-            return [.big, .normal].contains(state) ? 5 : 10
-        }
+        if isSelected || isPinned { return 5 }
+        return [.big, .normal].contains(state) ? 5 : 10
     }
 }
 
