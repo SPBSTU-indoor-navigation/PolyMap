@@ -152,6 +152,8 @@
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
 		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
 		97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
+		97F0F89727EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
+		97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
 		97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
 		97FCC17927C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
@@ -283,6 +285,7 @@
 		97E15D0D27BC7F2B00E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0E27BC7F2B00E636FC /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0F27BC7F2B00E636FC /* libUIScreenExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIScreenExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97F0F89627EAAC1500296DA3 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		97FCC17727C6A313009F3C39 /* ScaledImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledImageView.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
 		B18DDFB614B7A61777B8455A /* Pods-PolyNaviClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviClip.release.xcconfig"; path = "Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip.release.xcconfig"; sourceTree = "<group>"; };
@@ -404,6 +407,7 @@
 			children = (
 				054F67CB270CDFB400FCC07C /* LessonModel.swift */,
 				05C32AC6271F4C3E0033B751 /* SettingsModel.swift */,
+				97F0F89627EAAC1500296DA3 /* SearchModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -456,11 +460,11 @@
 		05F0D49227859D9D009CEBA2 /* BottomSheetPages */ = {
 			isa = PBXGroup;
 			children = (
+				97196E8327EAA01F00F9E73A /* SearchDetail */,
 				979F86EA27D6E9570048B486 /* RouteDetail */,
 				972174D827B5488B0055FCF0 /* UnitDetail */,
 				9780D8C327B349C800DBDBF3 /* Base */,
 				05F0D498278B4230009CEBA2 /* FirstVC.swift */,
-				9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */,
 			);
 			path = BottomSheetPages;
 			sourceTree = "<group>";
@@ -513,6 +517,14 @@
 			path = IMDFModel;
 			sourceTree = "<group>";
 		};
+		97196E8327EAA01F00F9E73A /* SearchDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */,
+			);
+			path = SearchDetail;
+			sourceTree = "<group>";
+		};
 		971F8DCF27BD52EE0018F98A /* PolyNaviClip */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				9750155E2797882500326B09 /* Renderers */,
+				97A484BB2717858700D14997 /* MapViewController.swift */,
 				979E2C74278763A9008CFA05 /* Venue.swift */,
 				975015482795B2DF00326B09 /* Opening.swift */,
 				9750154A2795B2F400326B09 /* Unit.swift */,
@@ -626,11 +639,11 @@
 		979E2C7227875BF2008CFA05 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				9750153D2795B10300326B09 /* Annotations */,
+				9750153C2795B0EB00326B09 /* Overlays */,
 				97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */,
 				97196E7D27E6781D00F9E73A /* PinnableMapView.swift */,
 				975015462795B19200326B09 /* Shared.swift */,
-				9750153D2795B10300326B09 /* Annotations */,
-				9750153C2795B0EB00326B09 /* Overlays */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -664,7 +677,6 @@
 			isa = PBXGroup;
 			children = (
 				979E2C7227875BF2008CFA05 /* Map */,
-				97A484BB2717858700D14997 /* MapViewController.swift */,
 				9717E4262742991F00332D29 /* MapView.swift */,
 				97DD22D82772BBCF0083561B /* LevelSwitcher.swift */,
 				979E5C9A27C0023000A48816 /* MapInfo.swift */,
@@ -953,6 +965,7 @@
 				979E2C7D2789D234008CFA05 /* IMDFDecoder.swift in Sources */,
 				056F2D1E271CAED30063015B /* SettingTimetableVC.swift in Sources */,
 				975015432795B14400326B09 /* AmenityAnnotation.swift in Sources */,
+				97F0F89727EAAC1500296DA3 /* SearchModel.swift in Sources */,
 				979F86EC27D6E9720048B486 /* RouteDetailVC.swift in Sources */,
 				97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */,
 				97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */,
@@ -991,6 +1004,7 @@
 				97B8E18527CEDA6D003D1EF4 /* TitleHeader.swift in Sources */,
 				971F8E0827BD55680018F98A /* Building.swift in Sources */,
 				971F8E1627BD55820018F98A /* SearchVC.swift in Sources */,
+				97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */,
 				971F8DF327BD55000018F98A /* THLabel.swift in Sources */,
 				971F8E1027BD556B0018F98A /* AmenityAnnotation.swift in Sources */,
 				978B793027D12F8C0003626F /* AnnotationConvert.swift in Sources */,

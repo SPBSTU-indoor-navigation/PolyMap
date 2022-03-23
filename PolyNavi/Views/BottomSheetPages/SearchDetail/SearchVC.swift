@@ -1,5 +1,36 @@
 import UIKit
 
+class SearchCell: UITableViewCell {
+    public static var identifire: String {
+        return String(describing: self)
+    }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setViews() {
+//        contentView.addSubview(title)
+//        contentView.addSubview(content)
+//        backgroundColor = Asset.Colors.bottomSheetGroupped.color
+//
+//        NSLayoutConstraint.activate([
+//            title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+//            title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+//            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+//            content.topAnchor.constraint(equalTo: title.bottomAnchor),
+//            content.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+//            content.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+//            contentView.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: 8),
+//        ])
+    }
+}
+
 class SearchVC: NavbarBottomSheetPage {
     
     var isSearch = false
@@ -18,7 +49,7 @@ class SearchVC: NavbarBottomSheetPage {
     }(UISearchBar())
     
     lazy var tableView: UITableView = {
-        $0.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
+        $0.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifire)
         $0.delegate = self
         $0.dataSource = self
         $0.backgroundColor = .clear
@@ -83,9 +114,11 @@ extension SearchVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-        cell.backgroundColor = .clear
-        cell.textLabel?.text = "Search \(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifire, for: indexPath)
+//        cell.backgroundColor = .clear
+//        cell.textLabel?.text = "Search \(indexPath.row)"
+//        cell.imageView?.image = Asset.Annotation.Amenity.classroom.image
+//        cell.detailTextLabel?.text = "bar"
         return cell
     }
     
