@@ -14,22 +14,27 @@ class Level: CustomOverlay, Styleble, MapRenderer {
     var amenitys: [AmenityAnnotation] = []
     var occupants: [OccupantAnnotation] = []
     var details: [Detail] = []
-    var ordinal: Int = 0
-    var shortName: LocalizedName?
+    var properties: IMDF.Level.Properties!
     
-    init(_ geometry: MKShape & MKOverlay, ordinal: Int, units: [Unit], openings: [Opening], shortName: LocalizedName?, amenitys: [IMDF.Amenity], details: [Detail], occupants: [(IMDF.Occupant, IMDF.Anchor)], addresses: [IMDF.Address] ) {
+    var building: Building?
+    
+    
+    var ordinal: Int { properties.ordinal }
+    var shortName: LocalizedName? { properties.short_name }
+    
+    init(_ geometry: MKShape & MKOverlay, units: [Unit], openings: [Opening], properties: IMDF.Level.Properties, amenitys: [IMDF.Amenity], details: [Detail], occupants: [(IMDF.Occupant, IMDF.Anchor)], addresses: [IMDF.Address]) {
         super.init(geometry)
-        self.ordinal = ordinal
+        self.properties = properties
         self.units = units
         self.openings = openings
-        self.shortName = shortName
         self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, properties: $0.properties, detailLevel: $0.properties.detailLevel) })
         self.details = details
         
         self.occupants = occupants.map({ occupant in
             OccupantAnnotation(coordinate: (occupant.1.geometry.first as! MKPointAnnotation).coordinate,
                                properties: occupant.0.properties,
-                               address: addresses.first(where: { $0.identifier == occupant.1.properties.address_id }))
+                               address: addresses.first(where: { $0.identifier == occupant.1.properties.address_id }),
+                               level: self)
         })
     
     }

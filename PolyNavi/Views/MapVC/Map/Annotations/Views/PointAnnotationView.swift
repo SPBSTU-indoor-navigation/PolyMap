@@ -13,24 +13,10 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
             if let unit = annotation as? OccupantAnnotation {
                 detailLevel = unit.detailLevel
                 
-                var imageName: String? = nil
-                switch unit.properties.category {
-                case .classroom: imageName = "classroom"
-                case .laboratory: imageName = "laboratorium"
-                case .auditorium: imageName = "lecture"
-                default: break
-                }
-                imageView.sourceImage = UIImage(named: imageName ?? unit.properties.category.rawValue)
+                imageView.sourceImage = unit.sprite
                 imageView.alpha = imageOpacity
                 
-                
-                var colorName: String
-                switch unit.properties.category {
-                case .restroom, .restroomMale, .restroomFemale: colorName = "restroom"
-                default: colorName = unit.properties.category.rawValue
-                }
-                changePointColor(UIColor(named: colorName + "-annotation") ?? .systemOrange)
-                
+                changePointColor(unit.backgroundSpriteColor)
             }
             
             if let title = annotation?.title {

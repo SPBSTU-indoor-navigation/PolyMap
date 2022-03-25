@@ -65,11 +65,12 @@ class MapViewController: UIViewController {
         $0.view.layer.masksToBounds = false
         $0.bottomSheetDelegate = self
         return $0
-    }(MapInfo(parentVC: self, rootViewController: SearchVC()))
+    }(MapInfo(parentVC: self))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        loadIMDF()
     }
     
     override func viewDidLayoutSubviews() {
@@ -108,6 +109,14 @@ class MapViewController: UIViewController {
             timeTableSmallOffset!
         ])
         
+    }
+    
+    func loadIMDF() {
+        let path = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
+        let venue = IMDFDecoder.decode(path)
+        
+        mapView.venue = venue
+        mapInfo.searchVC.searchable = venue?.searchable() ?? []
     }
     
     @objc
@@ -155,5 +164,14 @@ extension MapViewController: BottomSheetDelegate {
     func onSizeChange(from: BottomSheetViewController.HorizontalSize?, to: BottomSheetViewController.HorizontalSize) {
         timeTableSmallButton.isHidden = to != .big
         timeTableButtonContainer.isHidden = to == .big
+    }
+}
+
+fileprivate extension Venue {
+    func searchable() -> [Searchable] {
+        
+        let occupants = buildings.flatMap({ $0.levels.flatMap({ $0.occupants }) }).map({ $0 as Searchable })
+
+        return occupants
     }
 }

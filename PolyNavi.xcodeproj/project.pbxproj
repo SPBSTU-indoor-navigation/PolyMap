@@ -553,7 +553,6 @@
 			isa = PBXGroup;
 			children = (
 				9750155E2797882500326B09 /* Renderers */,
-				97A484BB2717858700D14997 /* MapViewController.swift */,
 				979E2C74278763A9008CFA05 /* Venue.swift */,
 				975015482795B2DF00326B09 /* Opening.swift */,
 				9750154A2795B2F400326B09 /* Unit.swift */,
@@ -644,6 +643,7 @@
 				97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */,
 				97196E7D27E6781D00F9E73A /* PinnableMapView.swift */,
 				975015462795B19200326B09 /* Shared.swift */,
+				9717E4262742991F00332D29 /* MapView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -677,7 +677,7 @@
 			isa = PBXGroup;
 			children = (
 				979E2C7227875BF2008CFA05 /* Map */,
-				9717E4262742991F00332D29 /* MapView.swift */,
+				97A484BB2717858700D14997 /* MapViewController.swift */,
 				97DD22D82772BBCF0083561B /* LevelSwitcher.swift */,
 				979E5C9A27C0023000A48816 /* MapInfo.swift */,
 			);

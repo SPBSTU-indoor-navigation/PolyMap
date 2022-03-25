@@ -24,6 +24,27 @@ class OccupantAnnotation: NSObject, MKAnnotation, Identifiable {
     }
     var properties: IMDF.Occupant.Properties
     var address: IMDF.Address?
+    var level: Level
+    
+    lazy var sprite: UIImage = {
+        var imageName: String? = nil
+        switch properties.category {
+        case .classroom: imageName = "classroom"
+        case .laboratory: imageName = "laboratorium"
+        case .auditorium: imageName = "lecture"
+        default: break
+        }
+        return UIImage(named: imageName ?? properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+    }()
+    
+    lazy var backgroundSpriteColor: UIColor = {
+        var colorName: String
+        switch properties.category {
+        case .restroom, .restroomMale, .restroomFemale: colorName = "restroom"
+        default: colorName = properties.category.rawValue
+        }
+        return UIColor(named: colorName + "-annotation") ?? .systemOrange
+    }()
     
     var detailLevel: DetailLevel {
         switch properties.category {
@@ -35,14 +56,38 @@ class OccupantAnnotation: NSObject, MKAnnotation, Identifiable {
         }
     }
     
-    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Occupant.Properties, address: IMDF.Address?) {
+    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Occupant.Properties, address: IMDF.Address?, level: Level) {
         self.coordinate = coordinate
         self.properties = properties
         self.address = address
+        self.level = level
         super.init()
     }
 }
 
+extension OccupantAnnotation: Searchable {
+    var annotation: MKAnnotation {
+        self
+    }
+    
+    var annotationSprite: UIImage? {
+        sprite
+    }
+    
+    var mainTitle: String? {
+        properties.name?.bestLocalizedValue
+    }
+    
+    var place: String? {
+        level.building?.properties.name?.bestLocalizedValue
+    }
+    
+    var floor: String? { level.properties.name?.bestLocalizedValue }
+    
+    var searchTags: [String] { [] }
+    
+
+}
 
 extension OccupantAnnotation {
     static var levelProcessor: DetailLevelProcessor<DetailLevelState> = {

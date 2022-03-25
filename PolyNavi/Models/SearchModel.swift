@@ -7,31 +7,14 @@
 
 import MapKit
 
-class SearchModel {
-    var annotation: MKAnnotation
-    var sprite: UIImage?
-    var title: LocalizedName
-    var subtitle: LocalizedName?
+protocol Searchable {
+    var annotation: MKAnnotation { get }
+    var annotationSprite: UIImage? { get }
+    var backgroundSpriteColor: UIColor { get }
     
-    init(annotation: MKAnnotation, title: LocalizedName, subtitle: LocalizedName? = nil, sprite: UIImage? = nil) {
-        self.annotation = annotation
-        self.title = title
-        self.subtitle = subtitle
-        self.sprite = sprite
-    }
-}
-
-class SearchAttractionModel: SearchModel {
-    var shortLabel: LocalizedName?
-}
-
-class SearchAmenityModel: SearchModel {
-    var indoor: Bool
+    var mainTitle: String? { get }
+    var place: String? { get }
+    var floor: String? { get }
     
-    init(annotation: MKAnnotation, indoor: Bool, title: LocalizedName, subtitle: LocalizedName? = nil, sprite: UIImage? = nil) {
-        self.indoor = indoor
-        super.init(annotation: annotation, title: title, subtitle: subtitle, sprite: sprite)
-    }
+    var searchTags: [String] { get }
 }
-
-class SearchOccupantModel: SearchModel { }

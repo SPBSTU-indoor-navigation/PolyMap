@@ -34,6 +34,9 @@ class SearchCell: UITableViewCell {
 class SearchVC: NavbarBottomSheetPage {
     
     var isSearch = false
+    var searchable: [Searchable] = []
+    var mapViewDelegate: MapViewDelegate?
+    var mapInfoDelegate: MapInfoDelegate?
     
     private var preferredScrollProgress = 0.0
     
@@ -73,13 +76,6 @@ class SearchVC: NavbarBottomSheetPage {
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let unitDetail = UnitDetailVC(closable: true)
-//        unitDetail.configurate(unitInfo: UnitInfo()
-        navigationController?.pushViewController(unitDetail, animated: true)
-    }
-    
     func cancelEdit() {
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.text = ""
@@ -110,20 +106,17 @@ class SearchVC: NavbarBottomSheetPage {
 
 extension SearchVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return searchable.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifire, for: indexPath)
-//        cell.backgroundColor = .clear
+        cell.backgroundColor = .clear
+        cell.textLabel?.text = "\(searchable[indexPath.row].mainTitle ?? "") • \(searchable[indexPath.row].floor ?? "")"
 //        cell.textLabel?.text = "Search \(indexPath.row)"
-//        cell.imageView?.image = Asset.Annotation.Amenity.classroom.image
+        cell.imageView?.image = searchable[indexPath.row].annotationSprite?.withTintColor(searchable[indexPath.row].backgroundSpriteColor)
 //        cell.detailTextLabel?.text = "bar"
         return cell
-    }
-    
-    func setupColor(color: UIColor) {
-        view.backgroundColor = .clear
     }
 }
 
@@ -141,6 +134,17 @@ extension SearchVC: UITableViewDelegate {
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         delegate?.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        cancelEdit()
+        mapInfoDelegate?.select(searchable[indexPath.row].annotation)
+        mapViewDelegate?.focusAndSelect(annotation: searchable[indexPath.row].annotation, focusVariant: .center)
+        
+//        let unitDetail = UnitDetailVC(closable: true)
+//        unitDetail.configurate(unitInfo: UnitInfo()
+//        navigationController?.pushViewController(unitDetail, animated: true)
     }
 }
 

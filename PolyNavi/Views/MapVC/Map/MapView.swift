@@ -9,18 +9,25 @@ import UIKit
 import MapKit
 
 protocol MapViewDelegate {
-    func focusAndSelect(annotation: MKAnnotation) -> Bool
-    func focus(on annotation: MKAnnotation)
+    func focusAndSelect(annotation: MKAnnotation, focusVariant: MapView.FocusVariant) -> Bool
+    func focus(on annotation: MKAnnotation, focusVariant: MapView.FocusVariant)
     func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool)
     func pinAnnotation(_ annotation: MKAnnotation, animated: Bool)
     func unpinAnnotation(_ annotation: MKAnnotation, animated: Bool)
 }
+
 
 class MapView: UIView {
     
     enum Constants {
         static let minShowZoom: Float = 18.5
         static let horizontalOffset = -7.0
+    }
+    
+    enum FocusVariant {
+        case auto
+        case center
+        case safeArea
     }
     
     var mapInfoDelegate: MapInfoDelegate? {
@@ -33,18 +40,32 @@ class MapView: UIView {
     var lastZoom : Float = 16
     var currentBuilding: Building?
     
-    var venue: Venue?
+    var venue: Venue? {
+        willSet {
+            venue?.hide(mapView)
+        }
+        
+        didSet {
+            guard let venue = venue else {
+                return
+            }
+
+            venue.show(mapView)
+            mapView.setVisibleMapRect(venue.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: false)
+            mapView.setCameraBoundary(MKMapView.CameraBoundary(mapRect: venue.boundingMapRect), animated: false)
+        }
+    }
     
     
     var levelSwitcherConstraint: NSLayoutConstraint?
     private var zoomByAnimation = false
+    private var preventFocus = false
     private var wantSelect: MKAnnotation?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     
         layoutViews()
-        loadIMDF()
     }
     
     required init?(coder: NSCoder) {
@@ -118,17 +139,6 @@ class MapView: UIView {
             debug.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor)
         ])
         
-    }
-    
-    
-    func loadIMDF() {
-        let path = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
-        
-        venue = IMDFDecoder.decode(path)
-        venue?.show(mapView)
-        
-        mapView.setVisibleMapRect(venue!.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: false)
-        mapView.setCameraBoundary(MKMapView.CameraBoundary(mapRect: venue!.boundingMapRect), animated: false)
     }
     
     func onLevelChange(ordinal: Int) {
@@ -260,7 +270,7 @@ class MapView: UIView {
         guard let annotation = annotation else { return }
         
         if mapView.annotations.contains(where: { annotation.isEqual($0) }) {
-            mapView.selectAnnotation(annotation, animated: true)
+            selectAnnotation(annotation, animated: true, preventFocus: true)
         } else {
             wantSelect = annotation
         }
@@ -268,7 +278,7 @@ class MapView: UIView {
     
     func onAnnotationAdd(_ annotation: MKAnnotation) {
         if annotation.isEqual(wantSelect) {
-            mapView.selectAnnotation(annotation, animated: true)
+            selectAnnotation(annotation, animated: true, preventFocus: true)
         }
     }
     
@@ -330,7 +340,6 @@ class MapView: UIView {
                 dx = annotationCG.x - target.maxX
             }
             
-            
             let point = MKMapPoint(mapView.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: mapView))
             MKMapView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
                 self.mapView.centerCoordinate = point.coordinate
@@ -340,6 +349,10 @@ class MapView: UIView {
         }
     }
     
+    func selectAnnotation(_ annotation: MKAnnotation, animated: Bool, preventFocus: Bool ) {
+        self.preventFocus = preventFocus
+        mapView.selectAnnotation(annotation, animated: animated)
+    }
 }
 
 
@@ -409,20 +422,25 @@ extension MapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         wantSelect = nil
-        mapInfoDelegate?.didSelect(view.annotation)
-
-        let boundingBox = (view as? BoundingBox)?.boundingBox() ?? .zero
-        mapFocusSafeArea(point: view.annotation!.coordinate, boundingBox: boundingBox)
+        mapInfoDelegate?.mkDidSelect(view.annotation)
+        
+        if preventFocus {
+            preventFocus = false
+        } else {
+            let boundingBox = (view as? BoundingBox)?.boundingBox() ?? .zero
+            mapFocusSafeArea(point: view.annotation!.coordinate, boundingBox: boundingBox)
+        }
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        mapInfoDelegate?.didDeselect(view.annotation)
+        mapInfoDelegate?.mkDidDeselect(view.annotation)
     }
 
 }
 
 
 extension MapView: MapViewDelegate {
+    
     func pinAnnotation(_ annotation: MKAnnotation, animated: Bool) {
         mapView.pinAnnotation(annotation, animated: animated)
     }
@@ -436,14 +454,14 @@ extension MapView: MapViewDelegate {
         mapView.deselectAnnotation(annotation, animated: animated)
     }
     
-    func focusAndSelect(annotation: MKAnnotation) -> Bool {
+    func focusAndSelect(annotation: MKAnnotation, focusVariant: MapView.FocusVariant = .auto) -> Bool {
         selectAnnotationAfterAdding(annotation: annotation)
-        focus(on: annotation)
+        focus(on: annotation, focusVariant: focusVariant)
         
         return !mapView.selectedAnnotations.contains(where: { annotation.isEqual($0) })
     }
     
-    func focus(on annotation: MKAnnotation) {
+    func focus(on annotation: MKAnnotation, focusVariant: FocusVariant = .auto) {
         
         var targetZoom = mapView.camera.centerCoordinateDistance
         
@@ -466,15 +484,23 @@ extension MapView: MapViewDelegate {
         let view = mapView.view(for: annotation)
         let boundingBox = (view as? BoundingBox)?.boundingBox() ?? .zero
 
-        if let view = view,
-           mapView.frame.intersects(view.frame.inset(by: .init(top: boundingBox.maxY, left: boundingBox.minX, bottom: boundingBox.minY, right: boundingBox.maxX))) {
-            mapFocusSafeArea(point: annotation.coordinate,
-                             boundingBox: boundingBox,
-                             complition: {
+        var centering = focusVariant == .center
+        
+        if focusVariant == .auto {
+            if let view = view,
+               mapView.frame.intersects(view.frame.inset(by: .init(top: boundingBox.maxY, left: boundingBox.minX, bottom: boundingBox.minY, right: boundingBox.maxX))) {
+                centering = false
+            } else {
+                centering = true
+            }
+        }
+        
+        if centering {
+            mapFocusCenter(point: annotation.coordinate, distance: targetZoom, complition: {
                 self.zoomByAnimation = false
             })
         } else {
-            mapFocusCenter(point: annotation.coordinate, distance: targetZoom, complition: {
+            mapFocusSafeArea(point: annotation.coordinate, boundingBox: boundingBox, complition: {
                 self.zoomByAnimation = false
             })
         }

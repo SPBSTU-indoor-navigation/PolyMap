@@ -11,8 +11,9 @@ import MapKit
 protocol MapInfoDelegate {
     func panAction(_ sender: UIPanGestureRecognizer)
     func zoomMap(zoom: Float, animated: Bool)
-    func didSelect(_ annotation: MKAnnotation?)
-    func didDeselect(_ annotation: MKAnnotation?)
+    func mkDidSelect(_ annotation: MKAnnotation?) //only for mapkit
+    func mkDidDeselect(_ annotation: MKAnnotation?) //only for mapkit
+    func select(_ annotation: MKAnnotation?)
     func getSafeZone() -> UIView
     func getHorizontalSize() -> BottomSheetViewController.HorizontalSize
 }
@@ -33,7 +34,11 @@ class MapInfo: BottomSheetViewController {
     static private(set) var routeDetail: RouteDetail? = nil
     
     var pages: [Page] = []
-    var mapViewDelegate: MapViewDelegate?
+    var mapViewDelegate: MapViewDelegate? {
+        didSet {
+            searchVC.mapViewDelegate = mapViewDelegate
+        }
+    }
     
     private var startZoom: Float = 0
     private var lastZoomChange = Date.timeIntervalSinceReferenceDate
@@ -42,6 +47,7 @@ class MapInfo: BottomSheetViewController {
     private var skipSelectStateChange = false
     
     var routeDetailVC: RouteDetailVC?
+    var searchVC: SearchVC
     
     private var hidingEnable: Bool {
         return !(mooved || moovedByScroll) && currentSize == .big && state == .medium
@@ -61,13 +67,15 @@ class MapInfo: BottomSheetViewController {
             mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
         }
         
-        pages.removeLast()
         let vc = super.popViewController(animated: animated)
 
+        guard let vc = vc else { return vc }
+        pages.removeLast()
+        
         if let unitDetail = self.viewControllers.last as? UnitDetailVC,
            let annotation = unitDetail.mapDetailInfo?.annotation {
             skipSelectStateChange = true
-            skipSelectStateChange = mapViewDelegate?.focusAndSelect(annotation: annotation) ?? false
+            skipSelectStateChange = mapViewDelegate?.focusAndSelect(annotation: annotation, focusVariant: .auto) ?? false
         }
         
                 
@@ -94,9 +102,11 @@ class MapInfo: BottomSheetViewController {
         super.pushViewController(viewController, animated: animated)
     }
     
-    override init(parentVC: UIViewController, rootViewController: UIViewController) {
-        super.init(parentVC: parentVC, rootViewController: rootViewController)
+    init (parentVC: UIViewController) {
+        searchVC = SearchVC()
+        super.init(parentVC: parentVC, rootViewController: searchVC)
         
+        searchVC.mapInfoDelegate = self
         MapInfo.routeDetail = self
     }
     
@@ -137,8 +147,18 @@ extension MapInfo: MapInfoDelegate {
         }
     }
     
-    func didSelect(_ annotation: MKAnnotation?) {
+    func mkDidSelect(_ annotation: MKAnnotation?) {
         currentSelection = annotation
+        select(annotation)
+    }
+    
+    func mkDidDeselect(_ annotation: MKAnnotation?) {
+        DispatchQueue.main.async { [weak self] in
+            self?.annotationDeselect(annotation: annotation)
+        }
+    }
+    
+    func select(_ annotation: MKAnnotation?) {
         guard let annotation = annotation as? Castable else { return }
         
         if pages.last == .annotationInfo {
@@ -156,12 +176,6 @@ extension MapInfo: MapInfoDelegate {
         }
         
         skipSelectStateChange = false
-    }
-    
-    func didDeselect(_ annotation: MKAnnotation?) {
-        DispatchQueue.main.async { [weak self] in
-            self?.annotationDeselect(annotation: annotation)
-        }
     }
     
     func getSafeZone() -> UIView {
