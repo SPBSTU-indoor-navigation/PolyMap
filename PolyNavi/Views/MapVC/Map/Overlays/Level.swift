@@ -16,7 +16,7 @@ class Level: CustomOverlay, Styleble, MapRenderer {
     var details: [Detail] = []
     var properties: IMDF.Level.Properties!
     
-    var building: Building?
+    var building: Building!
     
     
     var ordinal: Int { properties.ordinal }

@@ -7,7 +7,7 @@
 
 import MapKit
 
-class OccupantAnnotation: NSObject, MKAnnotation, Identifiable {
+class OccupantAnnotation: NSObject, MKAnnotation, Identifiable, IndoorAnnotation {
     enum DetailLevel: Int {
         case circlePrimary = 0
         case circleSecondary = 1
@@ -25,6 +25,8 @@ class OccupantAnnotation: NSObject, MKAnnotation, Identifiable {
     var properties: IMDF.Occupant.Properties
     var address: IMDF.Address?
     var level: Level
+    
+    var building: Building { level.building }
     
     lazy var sprite: UIImage = {
         var imageName: String? = nil

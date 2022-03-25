@@ -182,11 +182,7 @@ class LevelSwitcher: UIView {
     }
     
     func onLevelTap(_ button: Int) {
-        currentConstraint?.constant = CGFloat(button) * 45.0 + 22.5
-        UIView.animate(withDuration: 0.15) {
-            self.layoutIfNeeded()
-        }
-        onChange?(levelLabels[button].tag)
+        changeLevel(selected: levelLabels[button].tag, animated: true)
     }
     
 }
@@ -197,5 +193,22 @@ extension LevelSwitcher {
         self.levels = levels
         changeLevels()
         currentConstraint?.constant = CGFloat(Array(levels.keys).sorted(by:>).firstIndex(of: selected)!) * 45.0 + 22.5
+        layoutIfNeeded()
+    }
+    
+    func changeLevel(selected: Int = 0, animated: Bool) {
+        guard let position = Array(levels.keys).sorted(by:>).firstIndex(of: selected) else { return }
+        
+        currentConstraint?.constant = CGFloat(position) * 45.0 + 22.5
+
+        if animated {
+            UIView.animate(withDuration: 0.15) {
+                self.layoutIfNeeded()
+            }
+        } else {
+            layoutIfNeeded()
+        }
+        
+        onChange?(selected)
     }
 }

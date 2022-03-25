@@ -15,6 +15,11 @@ protocol BoundingBox {
     func boundingBox() -> CGRect
 }
 
+protocol IndoorAnnotation {
+    var building: Building { get }
+    var level: Level { get }
+}
+
 class BaseAnnotationView<D: RawRepresentable>: PinnableAnnotationView, BoundingBox, AnnotationMapSize where D.RawValue == Int {
     
     var selectAnim = Animator()

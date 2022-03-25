@@ -138,7 +138,6 @@ class MapView: UIView {
             debug.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             debug.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor)
         ])
-        
     }
     
     func onLevelChange(ordinal: Int) {
@@ -217,7 +216,7 @@ class MapView: UIView {
         if let currentBuilding = currentBuilding {
             if zoomLevel > Constants.minShowZoom {
                 currentBuilding.show(mapView)
-                showLevelSwitcher()
+                showLevelSwitcher(building: currentBuilding)
             } else {
                 currentBuilding.hide(mapView)
                 hideLevelSwitcher()
@@ -238,18 +237,12 @@ class MapView: UIView {
                 currentBuilding.hide(mapView)
             }
             
-            if getZoom() > Constants.minShowZoom {
-                nearestBuilding?.show(mapView)
+            if let nearestBuilding = nearestBuilding {
                 
-                if let t = nearestBuilding, t.levels.count > 0 {
-                    showLevelSwitcher()
+                if getZoom() > Constants.minShowZoom {
+                    nearestBuilding.show(mapView)
+                    showLevelSwitcher(building: nearestBuilding)
                 }
-            }
-            
-            if nearestBuilding != nil {
-                levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: nearestBuilding!.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
-                                           selected: nearestBuilding!.ordinal)
-                
             } else {
                 hideLevelSwitcher()
             }
@@ -357,7 +350,12 @@ class MapView: UIView {
 
 
 extension MapView {
-    func showLevelSwitcher() {
+    func showLevelSwitcher(building: Building) {
+        levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: building.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
+                                   selected: building.ordinal)
+        
+        self.layoutSubviews()
+        
         updateLevelSwitcher(Constants.horizontalOffset)
     }
     
@@ -366,8 +364,9 @@ extension MapView {
     }
     
     private func updateLevelSwitcher(_ pos: CGFloat) {
-        levelSwitcherConstraint?.constant = pos
+        self.layoutIfNeeded()
         UIView.animate(withDuration: 0.15) {
+            self.levelSwitcherConstraint?.constant = pos
             self.layoutIfNeeded()
         }
     }
@@ -477,6 +476,14 @@ extension MapView: MapViewDelegate {
                 targetZoom = 400
             }
         default: break
+        }
+        
+        if let indoor = annotation as? IndoorAnnotation {
+            if currentBuilding == indoor.building {
+                levelSwitcher.changeLevel(selected: indoor.level.ordinal, animated: true)
+            } else {
+                indoor.building.ordinal = indoor.level.ordinal
+            }
         }
         
         self.zoomByAnimation = true
