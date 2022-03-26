@@ -64,9 +64,10 @@ class UnitDetailVC: NavbarBottomSheetPage {
     
     
     override func viewDidLoad() {
-        background.addSubview(tableView)
         background.addSubview(titleLabel)
         super.viewDidLoad()
+        
+        contentView.addSubview(tableView)
         
         navbarHeight = 60
         navbar.clipsToBounds = true

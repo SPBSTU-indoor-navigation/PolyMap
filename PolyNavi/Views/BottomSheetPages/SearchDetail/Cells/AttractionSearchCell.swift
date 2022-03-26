@@ -59,9 +59,12 @@ class AttractionSearchCell: UITableViewCell {
         insertSubview(separator, belowSubview: contentView)
         
         NSLayoutConstraint.activate([
-            icon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             icon.widthAnchor.constraint(equalToConstant: 35),
             icon.heightAnchor.constraint(equalToConstant: 35),
+        ].priority(.required))
+        
+        NSLayoutConstraint.activate([
+            icon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             separator.heightAnchor.constraint(equalToConstant: 0.5),
@@ -77,7 +80,7 @@ class AttractionSearchCell: UITableViewCell {
             shortTitle.centerYAnchor.constraint(equalTo: icon.centerYAnchor),
         
             contentView.bottomAnchor.constraint(equalTo: icon.bottomAnchor, constant: 10)
-        ])
+        ].priority(.defaultHigh))
     }
     
     func configurate(searchable: Searchable) {

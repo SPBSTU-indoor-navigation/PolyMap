@@ -116,6 +116,8 @@
 		978B320D27EE638300760B78 /* AttractionSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B320B27EE638300760B78 /* AttractionSearchCell.swift */; };
 		978B320F27EE7C0A00760B78 /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B320E27EE7C0A00760B78 /* SearchHeaderView.swift */; };
 		978B321027EE7C0A00760B78 /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B320E27EE7C0A00760B78 /* SearchHeaderView.swift */; };
+		978B321227EF74C300760B78 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B321127EF74C300760B78 /* SearchTableView.swift */; };
+		978B321327EF74C300760B78 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B321127EF74C300760B78 /* SearchTableView.swift */; };
 		978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B792E27D12F8C0003626F /* AnnotationConvert.swift */; };
 		978B793027D12F8C0003626F /* AnnotationConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B792E27D12F8C0003626F /* AnnotationConvert.swift */; };
 		978B793227D2DBA70003626F /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B793127D2DBA70003626F /* DetailCell.swift */; };
@@ -258,6 +260,7 @@
 		978B320727EE630300760B78 /* OccupantSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupantSearchCell.swift; sourceTree = "<group>"; };
 		978B320B27EE638300760B78 /* AttractionSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionSearchCell.swift; sourceTree = "<group>"; };
 		978B320E27EE7C0A00760B78 /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
+		978B321127EF74C300760B78 /* SearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
 		978B792E27D12F8C0003626F /* AnnotationConvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationConvert.swift; sourceTree = "<group>"; };
 		978B793127D2DBA70003626F /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		978D9DC7273F56E300293A6C /* TimetableNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavbar.swift; sourceTree = "<group>"; };
@@ -528,6 +531,7 @@
 			children = (
 				978B320A27EE630700760B78 /* Cells */,
 				9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */,
+				978B321127EF74C300760B78 /* SearchTableView.swift */,
 			);
 			path = SearchDetail;
 			sourceTree = "<group>";
@@ -962,6 +966,7 @@
 				97B8E18727CEDA80003D1EF4 /* RouteInfoCell.swift in Sources */,
 				9780D8BE27B3404B00DBDBF3 /* UnitDetailVC.swift in Sources */,
 				9780D8C027B3412A00DBDBF3 /* SearchVC.swift in Sources */,
+				978B321227EF74C300760B78 /* SearchTableView.swift in Sources */,
 				978B320827EE630300760B78 /* OccupantSearchCell.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
 				976A027A27BB26F000128EE6 /* AnimationExtensions.swift in Sources */,
@@ -1057,6 +1062,7 @@
 				971F8E0D27BD556B0018F98A /* AttractionAnnotation.swift in Sources */,
 				971F8DF427BD55480018F98A /* Strings+Generated.swift in Sources */,
 				971F8DFD27BD55650018F98A /* OverlayedMapView.swift in Sources */,
+				978B321327EF74C300760B78 /* SearchTableView.swift in Sources */,
 				971F8DFE27BD55650018F98A /* MapView.swift in Sources */,
 				97FCC17927C6A313009F3C39 /* ScaledImageView.swift in Sources */,
 				97196E7F27E6781D00F9E73A /* PinnableMapView.swift in Sources */,

@@ -83,7 +83,7 @@ class OccupantSearchCell: UITableViewCell {
             subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
             subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             contentView.bottomAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: 10)
-        ])
+        ].priority(.defaultHigh))
     }
     
     func configurate(searchable: Searchable) {

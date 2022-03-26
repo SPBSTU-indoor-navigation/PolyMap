@@ -40,7 +40,7 @@ class SearchHeaderView: UITableViewHeaderFooterView {
             separator.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        ])
+        ].priority(.defaultHigh))
     }
     
     required init?(coder: NSCoder) {
