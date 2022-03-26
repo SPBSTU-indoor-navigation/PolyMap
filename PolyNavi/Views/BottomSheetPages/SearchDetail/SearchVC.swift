@@ -33,6 +33,7 @@ class SearchVC: NavbarBottomSheetPage {
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.separatorColor = .clear
+        $0.estimatedSectionHeaderHeight = 28
         return $0
     }(UITableView(frame: .zero, style: .grouped))
     
