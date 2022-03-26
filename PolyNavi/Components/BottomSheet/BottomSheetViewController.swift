@@ -101,7 +101,7 @@ class BottomSheetViewController: UINavigationController {
     private var stateByViewControllers: [UIViewController:VerticalSize] = [:]
     
     private var containerView: UIView {
-        return view.window!
+        return view.window ?? parent!.view
     }
     
     

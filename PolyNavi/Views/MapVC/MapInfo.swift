@@ -116,7 +116,6 @@ class MapInfo: BottomSheetViewController {
 }
 
 extension MapInfo: MapInfoDelegate {
-
     
     func zoomMap(zoom: Float, animated: Bool) {
         

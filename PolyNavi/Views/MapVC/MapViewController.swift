@@ -171,7 +171,12 @@ fileprivate extension Venue {
     func searchable() -> [Searchable] {
         
         let occupants = buildings.flatMap({ $0.levels.flatMap({ $0.occupants }) }).map({ $0 as Searchable })
+        let attraction = buildings.flatMap({ $0.attractions.map({ $0 as Searchable }) })
 
-        return occupants
+        var result: [Searchable] = []
+        result.append(contentsOf: occupants)
+        result.append(contentsOf: attraction)
+        
+        return result
     }
 }

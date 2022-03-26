@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 
 protocol MapViewDelegate {
+    @discardableResult
     func focusAndSelect(annotation: MKAnnotation, focusVariant: MapView.FocusVariant) -> Bool
     func focus(on annotation: MKAnnotation, focusVariant: MapView.FocusVariant)
     func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool)

@@ -25,7 +25,7 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
         didSet {
             label.text = annotation?.title!
             if let attraction = annotation as? AttractionAnnotation {
-                if let imageName = attraction.properties.image, let image = UIImage(named: imageName) {
+                if let image = attraction.annotationSprite {
                     imageView.image = image
                     imageView.isHidden = false
                     labelShort.isHidden = true

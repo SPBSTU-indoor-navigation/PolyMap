@@ -1,42 +1,15 @@
 import UIKit
 
-class SearchCell: UITableViewCell {
-    public static var identifire: String {
-        return String(describing: self)
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setViews() {
-//        contentView.addSubview(title)
-//        contentView.addSubview(content)
-//        backgroundColor = Asset.Colors.bottomSheetGroupped.color
-//
-//        NSLayoutConstraint.activate([
-//            title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-//            title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-//            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-//            content.topAnchor.constraint(equalTo: title.bottomAnchor),
-//            content.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-//            content.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-//            contentView.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: 8),
-//        ])
-    }
-}
-
 class SearchVC: NavbarBottomSheetPage {
     
     var isSearch = false
     var searchable: [Searchable] = []
     var mapViewDelegate: MapViewDelegate?
     var mapInfoDelegate: MapInfoDelegate?
+    
+    
+    private var lastSearch: String = " "
+    private var searchableSections: [(String,[Searchable])] = []
     
     private var preferredScrollProgress = 0.0
     
@@ -52,13 +25,25 @@ class SearchVC: NavbarBottomSheetPage {
     }(UISearchBar())
     
     lazy var tableView: UITableView = {
-        $0.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifire)
+        $0.register(OccupantSearchCell.self, forCellReuseIdentifier: OccupantAnnotation.identifier)
+        $0.register(AttractionSearchCell.self, forCellReuseIdentifier: AttractionAnnotation.identifier)
+        $0.register(SearchHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchHeaderView.identifier)
         $0.delegate = self
         $0.dataSource = self
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.separatorColor = .clear
         return $0
-    }(UITableView())
+    }(UITableView(frame: .zero, style: .grouped))
+    
+    lazy var emptyResult: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.font = .preferredFont(forTextStyle: .callout)
+        $0.textColor = .secondaryLabel
+        $0.text = "Ничего не найдено"
+        $0.isHidden = true
+        return $0
+    }(UILabel())
     
     override func viewDidLoad() {
         
@@ -66,14 +51,58 @@ class SearchVC: NavbarBottomSheetPage {
         background.addSubview(tableView)
         super.viewDidLoad()
         
+        tableView.addSubview(emptyResult)
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: background.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
+            
+            emptyResult.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 50),
+            emptyResult.centerXAnchor.constraint(equalTo: tableView.centerXAnchor)
         ])
-        tableView.reloadData()
         
+        proccesSearcheble()
+    }
+    
+    func proccesSearcheble(searchText: String = "") {
+        let searchText = searchText.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if searchText == lastSearch { return }
+        lastSearch = searchText
+        
+        let searchable: [Searchable]
+        
+        if searchText.isEmpty {
+            searchable = self.searchable
+        } else {
+            searchable = self.searchable.filter({ searchable in
+                
+                guard let title = searchable.mainTitle else { return false }
+                
+                return title.lowercased().contains(searchText)
+            })
+        }
+        
+
+        
+        searchableSections = []
+        
+        let buildings = searchable.filter({ $0 is AttractionAnnotation }).sorted(by: comparator)
+        if !buildings.isEmpty {
+            searchableSections.append(("Buildings", buildings))
+        }
+        
+        let occupants = searchable.filter({ $0 is OccupantAnnotation })
+        
+        let grouped = Dictionary(grouping: occupants, by: { $0.place })
+        for group in grouped {
+            searchableSections.append((group.key ?? "-", group.value.sorted(by: comparator)))
+        }
+        
+        tableView.reloadData()
+        emptyResult.isHidden = !searchableSections.isEmpty
     }
     
     func cancelEdit() {
@@ -81,6 +110,7 @@ class SearchVC: NavbarBottomSheetPage {
         searchBar.text = ""
         searchBar.endEditing(true)
         isSearch = false
+        proccesSearcheble()
     }
     
     override func onStateChange(verticalSize: BottomSheetViewController.VerticalSize) {
@@ -105,18 +135,36 @@ class SearchVC: NavbarBottomSheetPage {
 }
 
 extension SearchVC: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return searchableSections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchable.count
+        return searchableSections[section].1.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifire, for: indexPath)
-        cell.backgroundColor = .clear
-        cell.textLabel?.text = "\(searchable[indexPath.row].mainTitle ?? "") • \(searchable[indexPath.row].floor ?? "")"
-//        cell.textLabel?.text = "Search \(indexPath.row)"
-        cell.imageView?.image = searchable[indexPath.row].annotationSprite?.withTintColor(searchable[indexPath.row].backgroundSpriteColor)
-//        cell.detailTextLabel?.text = "bar"
+        let searchable = searchableSections[indexPath.section].1[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: (searchable as? Identifiable)?.identifier ?? OccupantAnnotation.identifier, for: indexPath)
+        
+        if searchable is OccupantAnnotation {
+            (cell as? OccupantSearchCell)?.configurate(searchable: searchable)
+        } else if searchable is AttractionAnnotation {
+            (cell as? AttractionSearchCell)?.configurate(searchable: searchable)
+        }
+        
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SearchHeaderView.identifier) as? SearchHeaderView else { return nil}
+
+        header.configurate(text: searchableSections[section].0)
+        
+        return header
     }
 }
 
@@ -138,13 +186,11 @@ extension SearchVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        cancelEdit()
-        mapInfoDelegate?.select(searchable[indexPath.row].annotation)
-        mapViewDelegate?.focusAndSelect(annotation: searchable[indexPath.row].annotation, focusVariant: .center)
+        let annotation = searchableSections[indexPath.section].1[indexPath.row].annotation
+        searchBar.endEditing(true)
         
-//        let unitDetail = UnitDetailVC(closable: true)
-//        unitDetail.configurate(unitInfo: UnitInfo()
-//        navigationController?.pushViewController(unitDetail, animated: true)
+        mapInfoDelegate?.select(annotation)
+        mapViewDelegate?.focusAndSelect(annotation: annotation, focusVariant: .center)
     }
 }
 
@@ -157,12 +203,15 @@ extension SearchVC: UISearchBarDelegate {
         return true
     }
     
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         cancelEdit()
         if delegate?.horizontalSize() == .big && delegate?.verticalSize() == .big {
             delegate?.change(verticalSize: .medium, animated: true)
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        proccesSearcheble(searchText: searchText)
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
@@ -173,4 +222,8 @@ extension SearchVC: UISearchBarDelegate {
         }
         return true
     }
+}
+
+fileprivate func comparator(a: Searchable, b: Searchable) -> Bool {
+    return (a.mainTitle ?? "") < (b.mainTitle ?? "")
 }

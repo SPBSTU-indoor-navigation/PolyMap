@@ -23,4 +23,28 @@ class AttractionAnnotation: NSObject, MKAnnotation, Identifiable {
         self.properties = properties
         super.init()
     }
+    
+    lazy var annotationSprite: UIImage? = {
+        if let imageName = properties.image, let image = UIImage(named: imageName) {
+            return image
+        }
+        return nil
+    }()
+}
+
+extension AttractionAnnotation: Searchable {
+    var annotation: MKAnnotation { self }
+    
+    var backgroundSpriteColor: UIColor { .clear }
+    
+    var mainTitle: String? { properties.name?.bestLocalizedValue }
+    
+    var place: String? { nil }
+    
+    var floor: String? { nil }
+    
+    var searchTags: [String] { [] }
+    
+    var additionalTitle: String? { properties.short_name?.bestLocalizedValue }
+    
 }
