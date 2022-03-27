@@ -70,7 +70,7 @@ class MapDetailInfo {
         }
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier) as! DetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifire) as! DetailCell
             
             cell.configurate(title: content[indexPath.row].0, content: content[indexPath.row].1)
             cell.selectionStyle = .none
@@ -91,7 +91,7 @@ class MapDetailInfo {
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableView.UITableViewCellIdentifire, for: indexPath)
             
             let image = UIImage(systemName: favorite && indexPath.row == 0 ? "star.fill" : "exclamationmark.bubble.fill")
             let text = favorite && indexPath.row == 0 ? L10n.MapInfo.Report.favorites : L10n.MapInfo.Report.issue

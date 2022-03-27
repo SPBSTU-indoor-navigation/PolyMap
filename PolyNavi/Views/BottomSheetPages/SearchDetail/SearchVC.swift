@@ -1,17 +1,20 @@
 import UIKit
+import MapKit
 
 class SearchVC: NavbarBottomSheetPage {
     
-    var isSearch = false
+    var isSearch = false {
+        didSet {
+            searchTableView.isHidden = !isSearch
+            mainTableView.isHidden = isSearch
+        }
+    }
     var mapViewDelegate: MapViewDelegate?
     var mapInfoDelegate: MapInfoDelegate?
-    var searchable: [Searchable] {
-        set {
-            searchTableView.searchable = newValue
-        }
-        
-        get {
-            searchTableView.searchable
+    var searchable: [Searchable] = [] {
+        didSet {
+            searchTableView.searchable = searchable
+            mainTableView.searchable = searchable
         }
     }
     
@@ -25,6 +28,11 @@ class SearchVC: NavbarBottomSheetPage {
         
         return $0
     }(UISearchBar())
+    
+    lazy var mainTableView: MainSearchTableView = {
+        $0.mainSearchTableViewDelegate = self
+        return $0
+    }(MainSearchTableView(frame: .zero, style: .insetGrouped))
 
     lazy var searchTableView: SearchTableView = {
         $0.searchTableViewDelegate = self
@@ -36,13 +44,21 @@ class SearchVC: NavbarBottomSheetPage {
         super.viewDidLoad()
         
         contentView.addSubview(searchTableView)
+        contentView.addSubview(mainTableView)
         
         NSLayoutConstraint.activate([
             searchTableView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
             searchTableView.bottomAnchor.constraint(equalTo: background.bottomAnchor),
             searchTableView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
-            searchTableView.trailingAnchor.constraint(equalTo: background.trailingAnchor)
+            searchTableView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
+            
+            mainTableView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
+            mainTableView.bottomAnchor.constraint(equalTo: background.bottomAnchor),
+            mainTableView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
+            mainTableView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
         ])
+        
+        isSearch = false
     
     }
     
@@ -56,35 +72,64 @@ class SearchVC: NavbarBottomSheetPage {
     
     override func onStateChange(verticalSize: BottomSheetViewController.VerticalSize) {
         super.onStateChange(verticalSize: verticalSize)
-        if isSearch && verticalSize != .big {
+        if isSearch && verticalSize == .small {
             cancelEdit()
         }
     }
     
-}
-
-extension SearchVC: SearchTableViewDelegate {
-    func willBeginDragging(_ scrollView: UIScrollView) {
-        delegate?.scrollViewWillBeginDragging(scrollView)
-        searchBar.endEditing(true)
+    override func onButtomSheetScroll(progress: CGFloat) {
+        super.onButtomSheetScroll(progress: progress)
+        if isSearch {
+            searchBar.endEditing(true)
+        }
     }
     
-    func didScroll(_ scrollView: UIScrollView) {
+    private func select(annotation: MKAnnotation) {
+        mapInfoDelegate?.select(annotation)
+        mapViewDelegate?.focusAndSelect(annotation: annotation, focusVariant: .center)
+    }
+    
+}
+
+extension SearchVC: SearchTableViewDelegate, MainSearchTableViewDelegate {
+    
+    private func deginScroll(_ scrollView: UIScrollView) {
+        delegate?.scrollViewWillBeginDragging(scrollView)
+    }
+    
+    private func didScroll(_ scrollView: UIScrollView) {
         delegate?.scrollViewDidScroll(scrollView)
         update(progress: scrollView.topContentOffset.y / 20)
     }
     
-    func willEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    
+    func mainSearchTableDidScroll(_ scrollView: UIScrollView) { didScroll(scrollView) }
+    func searchTableDidScroll(_ scrollView: UIScrollView) { didScroll(scrollView) }
+    
+    
+    func mainSearchTableWillBeginDragging(_ scrollView: UIScrollView) { deginScroll(scrollView) }
+    func searchTableWillBeginDragging(_ scrollView: UIScrollView) {
+        deginScroll(scrollView)
+        searchBar.endEditing(true)
+    }
+    
+    
+    func mainSearchTableWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         delegate?.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
     }
     
-    func didSelect(_ searchable: Searchable) {
-        let annotation = searchable.annotation
-        
+    func searchTableWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        delegate?.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+    
+    
+    func mainSearchTable(didSelect searchable: Searchable) {
+        select(annotation: searchable.annotation)
+    }
+    
+    func searchTable(didSelect searchable: Searchable) {
+        select(annotation: searchable.annotation)
         searchBar.endEditing(true)
-        
-        mapInfoDelegate?.select(annotation)
-        mapViewDelegate?.focusAndSelect(annotation: annotation, focusVariant: .center)
     }
 }
 

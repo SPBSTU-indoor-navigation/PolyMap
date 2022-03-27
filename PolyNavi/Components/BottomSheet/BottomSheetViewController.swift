@@ -380,7 +380,7 @@ class BottomSheetViewController: UINavigationController {
         anim?.startAnimation()
     }
     
-    func changeState(state: VerticalSize, duration: CGFloat = Constants.transitionDuration, animated: Bool = true, options: UIView.AnimationOptions = .curveEaseOut) {
+    func changeState(state: VerticalSize, duration: CGFloat = Constants.transitionDuration, animated: Bool = true, options: UIView.AnimationOptions = .curveEaseInOut) {
         self.state = state
         
         currentPosition = position(for: state)

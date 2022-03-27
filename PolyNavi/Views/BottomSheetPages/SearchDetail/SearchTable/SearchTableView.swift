@@ -7,12 +7,11 @@
 
 import UIKit
 
-
 protocol SearchTableViewDelegate {
-    func willBeginDragging(_ scrollView: UIScrollView);
-    func didScroll(_ scrollView: UIScrollView);
-    func willEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
-    func didSelect(_ searchable: Searchable)
+    func searchTableWillBeginDragging(_ scrollView: UIScrollView);
+    func searchTableDidScroll(_ scrollView: UIScrollView);
+    func searchTableWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
+    func searchTable(didSelect searchable: Searchable)
 }
 
 class SearchTableView: UITableView {
@@ -31,7 +30,7 @@ class SearchTableView: UITableView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .callout)
         $0.textColor = .secondaryLabel
-        $0.text = "Ничего не найдено"
+        $0.text = L10n.MapInfo.Search.emptySearchResult
         $0.isHidden = true
         return $0
     }(UILabel())
@@ -40,9 +39,7 @@ class SearchTableView: UITableView {
         super.init(frame: frame, style: style)
         
         translatesAutoresizingMaskIntoConstraints = false
-        register(OccupantSearchCell.self, forCellReuseIdentifier: OccupantAnnotation.identifier)
-        register(AttractionSearchCell.self, forCellReuseIdentifier: AttractionAnnotation.identifier)
-        register(SearchHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchHeaderView.identifier)
+        SearchShared.registerCells(tableView: self)
         delegate = self
         dataSource = self
         backgroundColor = .clear
@@ -89,7 +86,7 @@ class SearchTableView: UITableView {
         
         let buildings = searchable.filter({ $0 is AttractionAnnotation }).sorted(by: { comparator($0, $1, searchText: searchText) })
         if !buildings.isEmpty {
-            searchableSections.append(("Buildings", buildings))
+            searchableSections.append((L10n.MapInfo.Search.buildings, buildings))
         }
         
         let occupants = searchable.filter({ $0 is OccupantAnnotation })
@@ -115,46 +112,31 @@ extension SearchTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let searchable = searchable(for: indexPath)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: (searchable as? Identifiable)?.identifier ?? OccupantAnnotation.identifier, for: indexPath)
-        
-        if searchable is OccupantAnnotation {
-            (cell as? OccupantSearchCell)?.configurate(searchable: searchable)
-        } else if searchable is AttractionAnnotation {
-            (cell as? AttractionSearchCell)?.configurate(searchable: searchable)
-        }
-        
-        return cell
+        return SearchShared.cell(tableView, for: searchable(for: indexPath), indexPath: indexPath)
     }
     
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SearchHeaderView.identifier) as? SearchHeaderView else { return nil}
-        
-        header.configurate(text: searchableSections[section].0)
-        
-        return header
+        return SearchShared.header(tableView, for: section, title: searchableSections[section].0)
     }
 }
 
 extension SearchTableView: UITableViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        searchTableViewDelegate?.willBeginDragging(scrollView)
+        searchTableViewDelegate?.searchTableWillBeginDragging(scrollView)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        searchTableViewDelegate?.didScroll(scrollView)
+        searchTableViewDelegate?.searchTableDidScroll(scrollView)
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        searchTableViewDelegate?.willEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+        searchTableViewDelegate?.searchTableWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        searchTableViewDelegate?.didSelect(searchable(for: indexPath))
+        searchTableViewDelegate?.searchTable(didSelect: searchable(for: indexPath))
     }
 }
 

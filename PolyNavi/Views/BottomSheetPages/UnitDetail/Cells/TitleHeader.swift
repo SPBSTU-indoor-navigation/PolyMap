@@ -8,12 +8,11 @@
 import UIKit
 
 class TitleHeader: UITableViewHeaderFooterView {
-    static var identifier: String = String(describing: TitleHeader.self)
+    static var identifier = String(describing: TitleHeader.self)
     
     private lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
-        $0.text = "Ratings & Reviews"
         return $0
     }(UILabel())
     
@@ -23,7 +22,7 @@ class TitleHeader: UITableViewHeaderFooterView {
         
         NSLayoutConstraint.activate([
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 7.5),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             contentView.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8)
         ].priority(.defaultHigh))

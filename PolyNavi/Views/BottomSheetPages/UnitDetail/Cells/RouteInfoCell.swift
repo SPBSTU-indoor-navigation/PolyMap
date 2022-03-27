@@ -8,10 +8,7 @@
 import UIKit
 
 class RouteInfoCell: UITableViewCell {
-    
-    public static var identifire: String {
-        return String(describing: self)
-    }
+    static var identifire = String(describing: RouteInfoCell.self)
     
     var onRouteClick: (() -> Void)?
     var onBuildingClick: (() -> Void)?

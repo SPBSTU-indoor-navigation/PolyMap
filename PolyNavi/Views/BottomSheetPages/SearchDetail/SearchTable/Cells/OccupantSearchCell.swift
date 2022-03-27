@@ -7,8 +7,7 @@
 
 import UIKit
 
-class OccupantSearchCell: UITableViewCell {
-    
+class OccupantSearchCell: BaseSearchCell {
     private lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .body)
@@ -35,23 +34,8 @@ class OccupantSearchCell: UITableViewCell {
         return $0
     }(UIView())
     
-    private lazy var separator: UIView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .separator
-        return $0
-    }(UIView())
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setViews() {
-        backgroundColor = .clear
+    override func setViews() {
+        super.setViews()
         
         contentView.addSubview(titleLabel)
         contentView.addSubview(subTitleLabel)
@@ -78,12 +62,12 @@ class OccupantSearchCell: UITableViewCell {
             
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             titleLabel.leadingAnchor.constraint(equalTo: iconContainer.trailingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            subTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
+            subTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
             subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
             subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             contentView.bottomAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: 10)
-        ].priority(.defaultHigh))
+        ].priority(.required))
     }
     
     func configurate(searchable: Searchable) {

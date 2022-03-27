@@ -73,6 +73,8 @@ extension UIButton {
 }
 
 extension UITableView {
+    static let UITableViewCellIdentifire = String(describing: UITableViewCell.self)
+    
     var wrapperView: UIView {
         get {
             return self.subviewsByType("UITableViewWrapperView") ?? self

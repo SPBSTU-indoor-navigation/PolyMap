@@ -27,6 +27,12 @@ struct LocalizedName: Codable {
             }
         }
         
+        for languageCode in NSLocale.preferredLanguages.map({ $0.split(separator: "-")[0] }) {
+            if let localizedValue = localizations[String(languageCode)] {
+                return localizedValue
+            }
+        }
+        
         // Fall back to English if no better match was found.
         return localizations["ru"]
     }

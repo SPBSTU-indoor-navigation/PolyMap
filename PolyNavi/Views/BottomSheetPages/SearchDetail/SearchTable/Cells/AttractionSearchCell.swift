@@ -7,8 +7,7 @@
 
 import UIKit
 
-class AttractionSearchCell: UITableViewCell {
-    
+class AttractionSearchCell: BaseSearchCell {
     private lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .body)
@@ -18,7 +17,7 @@ class AttractionSearchCell: UITableViewCell {
     private lazy var shortTitle: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = Asset.Annotation.Colors.attractionBorder.color
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .systemFont(ofSize: 18, weight: .bold)
         return $0
     }(UILabel())
     
@@ -33,24 +32,9 @@ class AttractionSearchCell: UITableViewCell {
         return $0
     }(UIImageView())
     
-    private lazy var separator: UIView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .separator
-        return $0
-    }(UIView())
     
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setViews() {
-        backgroundColor = .clear
+    override func setViews() {
+        super.setViews()
         
         contentView.addSubview(titleLabel)
         icon.addSubview(shortTitle)
@@ -61,6 +45,7 @@ class AttractionSearchCell: UITableViewCell {
         NSLayoutConstraint.activate([
             icon.widthAnchor.constraint(equalToConstant: 35),
             icon.heightAnchor.constraint(equalToConstant: 35),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
         ].priority(.required))
         
         NSLayoutConstraint.activate([
@@ -74,7 +59,6 @@ class AttractionSearchCell: UITableViewCell {
             
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             shortTitle.centerXAnchor.constraint(equalTo: icon.centerXAnchor),
             shortTitle.centerYAnchor.constraint(equalTo: icon.centerYAnchor),

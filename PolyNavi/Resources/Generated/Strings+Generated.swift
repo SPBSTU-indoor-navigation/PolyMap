@@ -39,6 +39,18 @@ internal enum L10n {
       /// Route
       internal static let route = L10n.tr("Localizable", "MapInfo.Route.Route")
     }
+    internal enum Search {
+      /// Buildings
+      internal static let buildings = L10n.tr("Localizable", "MapInfo.Search.Buildings")
+      /// No suggestion found
+      internal static let emptySearchResult = L10n.tr("Localizable", "MapInfo.Search.EmptySearchResult")
+      /// Favorites
+      internal static let favorites = L10n.tr("Localizable", "MapInfo.Search.Favorites")
+      /// Recent
+      internal static let recent = L10n.tr("Localizable", "MapInfo.Search.Recent")
+      /// Today
+      internal static let today = L10n.tr("Localizable", "MapInfo.Search.Today")
+    }
   }
 
   internal enum Settings {

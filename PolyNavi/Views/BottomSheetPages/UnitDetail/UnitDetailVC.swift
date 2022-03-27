@@ -48,10 +48,10 @@ class UnitDetailVC: NavbarBottomSheetPage {
     }(UILabel())
     
     lazy var tableView: UITableView = {
-        $0.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
-        $0.register(Spacer.self, forCellReuseIdentifier: "spacer")
+        $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableView.UITableViewCellIdentifire)
+        $0.register(Spacer.self, forCellReuseIdentifier: Spacer.identifire)
         $0.register(RouteInfoCell.self, forCellReuseIdentifier: RouteInfoCell.identifire)
-        $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifier)
+        $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifire)
         $0.register(TitleHeader.self, forHeaderFooterViewReuseIdentifier: TitleHeader.identifier)
         $0.delegate = self
         $0.dataSource = self
@@ -136,7 +136,7 @@ extension UnitDetailVC: UITableViewDataSource {
         if useTitleTransition && indexPath.row == 0 && indexPath.section == 0 {
             var cell: UITableViewCell?
             UIView.performWithoutAnimation {
-                let spacer = tableView.dequeueReusableCell(withIdentifier: "spacer", for: indexPath) as! Spacer
+                let spacer = tableView.dequeueReusableCell(withIdentifier: Spacer.identifire, for: indexPath) as! Spacer
                 spacer.configurate(height: titleLabel.frame.height - navbar.frame.height + titleTopOffset + 3)
                 cell = spacer
             }
