@@ -30,9 +30,10 @@ class MainSearchTableView: UITableView {
         translatesAutoresizingMaskIntoConstraints = false
         dataSource = data
         delegate = self
-        
+            
         SearchShared.registerCells(tableView: self)
         register(SearchGroupedHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchGroupedHeaderView.identifier)
+        register(TodayTableViewCell.self, forCellReuseIdentifier: TodayTableViewCell.identifier)
 
         estimatedSectionFooterHeight = 0
         backgroundColor = .clear
@@ -161,9 +162,9 @@ extension MainSearchData: UITableViewDataSource {
         let section = compute[indexPath.section]
         
         if section.0 == .today {
-            let t = UITableViewCell()
-            t.textLabel?.text = "*горизонтальный скролл*"
-            t.selectionStyle = .none
+            
+            let t = tableView.dequeueReusableCell(withIdentifier: TodayTableViewCell.identifier, for: indexPath) as! TodayTableViewCell
+            t.configurate(tableView: tableView)
             return t
         }
         

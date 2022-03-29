@@ -110,6 +110,7 @@
 		9780D8BE27B3404B00DBDBF3 /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		9780D8C027B3412A00DBDBF3 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
 		9780D8C227B3421800DBDBF3 /* TableBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */; };
+		9787697827F120EF008138EC /* TodayCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B322D27F1187A00760B78 /* TodayCollectionCell.swift */; };
 		978B320827EE630300760B78 /* OccupantSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B320727EE630300760B78 /* OccupantSearchCell.swift */; };
 		978B320927EE630300760B78 /* OccupantSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B320727EE630300760B78 /* OccupantSearchCell.swift */; };
 		978B320C27EE638300760B78 /* AttractionSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B320B27EE638300760B78 /* AttractionSearchCell.swift */; };
@@ -126,6 +127,11 @@
 		978B321E27EFFDD100760B78 /* BaseSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B321C27EFFDD100760B78 /* BaseSearchCell.swift */; };
 		978B322427F0058B00760B78 /* SearchGroupedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B322327F0058B00760B78 /* SearchGroupedHeaderView.swift */; };
 		978B322527F0058B00760B78 /* SearchGroupedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B322327F0058B00760B78 /* SearchGroupedHeaderView.swift */; };
+		978B322827F0D59800760B78 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B322727F0D59800760B78 /* FlowLayout.swift */; };
+		978B322927F0D59800760B78 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B322727F0D59800760B78 /* FlowLayout.swift */; };
+		978B322B27F0D86F00760B78 /* TodayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B322A27F0D86F00760B78 /* TodayTableViewCell.swift */; };
+		978B322C27F0D86F00760B78 /* TodayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B322A27F0D86F00760B78 /* TodayTableViewCell.swift */; };
+		978B322E27F1187A00760B78 /* TodayCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B322D27F1187A00760B78 /* TodayCollectionCell.swift */; };
 		978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B792E27D12F8C0003626F /* AnnotationConvert.swift */; };
 		978B793027D12F8C0003626F /* AnnotationConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B792E27D12F8C0003626F /* AnnotationConvert.swift */; };
 		978B793227D2DBA70003626F /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B793127D2DBA70003626F /* DetailCell.swift */; };
@@ -273,6 +279,9 @@
 		978B321927EFF1C500760B78 /* SearchShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchShared.swift; sourceTree = "<group>"; };
 		978B321C27EFFDD100760B78 /* BaseSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSearchCell.swift; sourceTree = "<group>"; };
 		978B322327F0058B00760B78 /* SearchGroupedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupedHeaderView.swift; sourceTree = "<group>"; };
+		978B322727F0D59800760B78 /* FlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		978B322A27F0D86F00760B78 /* TodayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewCell.swift; sourceTree = "<group>"; };
+		978B322D27F1187A00760B78 /* TodayCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCollectionCell.swift; sourceTree = "<group>"; };
 		978B792E27D12F8C0003626F /* AnnotationConvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationConvert.swift; sourceTree = "<group>"; };
 		978B793127D2DBA70003626F /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		978D9DC7273F56E300293A6C /* TimetableNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavbar.swift; sourceTree = "<group>"; };
@@ -648,6 +657,16 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		9787697927F297BA008138EC /* TODO Collcetion Collapsable */ = {
+			isa = PBXGroup;
+			children = (
+				978B322727F0D59800760B78 /* FlowLayout.swift */,
+				978B322D27F1187A00760B78 /* TodayCollectionCell.swift */,
+				978B322A27F0D86F00760B78 /* TodayTableViewCell.swift */,
+			);
+			path = "TODO Collcetion Collapsable";
+			sourceTree = "<group>";
+		};
 		978B320A27EE630700760B78 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,6 +690,7 @@
 		978B321827EFE11000760B78 /* MainTable */ = {
 			isa = PBXGroup;
 			children = (
+				9787697927F297BA008138EC /* TODO Collcetion Collapsable */,
 				978B322227F0057600760B78 /* Cells */,
 				978B321427EFA7CD00760B78 /* MainSearchTableView.swift */,
 			);
@@ -970,6 +990,7 @@
 				9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */,
 				056F2D20271CAF400063015B /* GroupsAndTeacherStorage.swift in Sources */,
 				97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */,
+				978B322B27F0D86F00760B78 /* TodayTableViewCell.swift in Sources */,
 				9750154D2795B30A00326B09 /* Level.swift in Sources */,
 				976A027827B9846800128EE6 /* BottomSheetTransition.swift in Sources */,
 				97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */,
@@ -1037,11 +1058,13 @@
 				97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */,
 				979E2C792789D1C6008CFA05 /* Feature.swift in Sources */,
 				05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */,
+				978B322E27F1187A00760B78 /* TodayCollectionCell.swift in Sources */,
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */,
 				97E15D2827BC7FB500E636FC /* (null) in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
+				978B322827F0D59800760B78 /* FlowLayout.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
 				97A566F827D589FA00A064CC /* MapDetailInfo.swift in Sources */,
 				978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */,
@@ -1065,6 +1088,7 @@
 				971F8E0927BD55680018F98A /* Opening.swift in Sources */,
 				979E5C8F27BEF42700A48816 /* AnimationExtensions.swift in Sources */,
 				971F8E0327BD55680018F98A /* EnviromentUnit.swift in Sources */,
+				978B322927F0D59800760B78 /* FlowLayout.swift in Sources */,
 				97A566FC27D6920100A064CC /* UtilsExtensions.swift in Sources */,
 				971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */,
 				971F8DEE27BD54FA0018F98A /* BottomSheetTransition.swift in Sources */,
@@ -1088,6 +1112,7 @@
 				971F8E1727BD558F0018F98A /* (null) in Sources */,
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
 				978B321027EE7C0A00760B78 /* SearchHeaderView.swift in Sources */,
+				9787697827F120EF008138EC /* TodayCollectionCell.swift in Sources */,
 				971F8DF927BD555B0018F98A /* IMDFDecoder.swift in Sources */,
 				971F8DF227BD54FA0018F98A /* BottomSheetPage.swift in Sources */,
 				97196E8227E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */,
@@ -1107,6 +1132,7 @@
 				971F8DE627BD54E00018F98A /* MapViewController.swift in Sources */,
 				97A566F927D589FA00A064CC /* MapDetailInfo.swift in Sources */,
 				971F8E0D27BD556B0018F98A /* AttractionAnnotation.swift in Sources */,
+				978B322C27F0D86F00760B78 /* TodayTableViewCell.swift in Sources */,
 				971F8DF427BD55480018F98A /* Strings+Generated.swift in Sources */,
 				971F8DFD27BD55650018F98A /* OverlayedMapView.swift in Sources */,
 				978B321327EF74C300760B78 /* SearchTableView.swift in Sources */,
