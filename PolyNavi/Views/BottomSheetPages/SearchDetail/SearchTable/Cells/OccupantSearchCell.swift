@@ -21,39 +21,25 @@ class OccupantSearchCell: BaseSearchCell {
         return $0
     }(UILabel())
     
-    private lazy var icon: UIImageView = {
+    private lazy var iconOccuptant: OccupantSearchIcon = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.contentMode = .scaleAspectFit
         return $0
-    }(UIImageView())
-    
-    private lazy var iconContainer: UIView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .systemBlue
-        $0.layer.cornerRadius = 35 / 2
-        return $0
-    }(UIView())
+    }(OccupantSearchIcon())
     
     override func setViews() {
         super.setViews()
         
         contentView.addSubview(titleLabel)
         contentView.addSubview(subTitleLabel)
-        iconContainer.addSubview(icon)
-        contentView.addSubview(iconContainer)
+        contentView.addSubview(iconOccuptant)
         
         insertSubview(separator, belowSubview: contentView)
         
         NSLayoutConstraint.activate([
-            iconContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            iconContainer.widthAnchor.constraint(equalToConstant: 35),
-            iconContainer.heightAnchor.constraint(equalToConstant: 35),
-            iconContainer.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            
-            icon.centerYAnchor.constraint(equalTo: iconContainer.centerYAnchor),
-            icon.centerXAnchor.constraint(equalTo: iconContainer.centerXAnchor),
-            icon.widthAnchor.constraint(equalToConstant: 20),
-            icon.heightAnchor.constraint(equalToConstant: 20),
+            iconOccuptant.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            iconOccuptant.widthAnchor.constraint(equalToConstant: 35),
+            iconOccuptant.heightAnchor.constraint(equalToConstant: 35),
+            iconOccuptant.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             separator.heightAnchor.constraint(equalToConstant: 0.5),
             separator.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -61,19 +47,19 @@ class OccupantSearchCell: BaseSearchCell {
             separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: iconContainer.trailingAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: iconOccuptant.trailingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
             subTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
             subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
             subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             contentView.bottomAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: 10)
         ].priority(.required))
+        
     }
     
     func configurate(searchable: Searchable) {
         titleLabel.text = searchable.mainTitle
         subTitleLabel.text = "\(searchable.place ?? "") • \(searchable.floor ?? "")"
-        icon.image = searchable.annotationSprite
-        iconContainer.backgroundColor = searchable.backgroundSpriteColor
+        iconOccuptant.configurate(searchable: searchable)
     }
 }

@@ -33,6 +33,8 @@ class MainSearchTableView: UITableView {
         
         SearchShared.registerCells(tableView: self)
         register(SearchGroupedHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchGroupedHeaderView.identifier)
+        register(TodayCellAttraction.self, forCellReuseIdentifier: TodayCellAttraction.identifier)
+        register(TodayCellOccupant.self, forCellReuseIdentifier: TodayCellOccupant.identifier)
 
         estimatedSectionFooterHeight = 0
         backgroundColor = .clear
@@ -101,17 +103,7 @@ class MainSearchData: NSObject {
         }
     }
     
-    class TodayData {
-        var searchable: Searchable
-        var progress: CGFloat
-        
-        init(searchable: Searchable) {
-            self.searchable = searchable
-            progress = 0.4
-        }
-    }
-    
-    var today: (SectionType, [TodayData]) = (.today, [])
+    var today: (SectionType, [TodayCellModel]) = (.today, [])
     var favorites: (SectionType, [Searchable]) = (.favorites,[])
     var recent: (SectionType, [Searchable]) = (.recent,[])
     
@@ -120,14 +112,18 @@ class MainSearchData: NSObject {
     func process(searchable: [Searchable]) {
         recent.1 = Array(searchable[2...4])
         favorites.1 = Array(searchable[52...55])
-        today.1 = Array(searchable[12...15]).map({ TodayData(searchable: $0) })
-        
+        today.1 = Array(searchable[87...90]).map({ TodayCellModel(searchable: $0, title: "Высшая математика", timeStart: Date().advanced(by: -341), timeEnd: Date().advanced(by: 1000)) })
         reload()
     }
     
     func searchable(for indexPath: IndexPath) -> Searchable? {
-        if let searchable = compute[indexPath.section].1[indexPath.row] as? Searchable {
+        let data = compute[indexPath.section].1[indexPath.row]
+        if let searchable = data as? Searchable {
             return searchable
+        }
+        
+        if let today = data as? TodayCellModel {
+            return today.searchable
         }
         
         return nil
@@ -145,11 +141,6 @@ extension MainSearchData: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = compute[section]
-        
-        if section.1 is [TodayData] {
-            return 1
-        }
-        
         return section.1.count
     }
     
@@ -161,10 +152,19 @@ extension MainSearchData: UITableViewDataSource {
         let section = compute[indexPath.section]
         
         if section.0 == .today {
-            let t = UITableViewCell()
-            t.textLabel?.text = "*горизонтальный скролл*"
-            t.selectionStyle = .none
-            return t
+            if let today = section.1[indexPath.row] as? TodayCellModel {
+                let cell: UITableViewCell
+                
+                if today.searchable is OccupantAnnotation {
+                    cell = tableView.dequeueReusableCell(withIdentifier: TodayCellOccupant.identifier)!
+                } else {
+                    cell = tableView.dequeueReusableCell(withIdentifier: TodayCellAttraction.identifier)!
+                }
+                
+                (cell as? TodayCell)?.configurate(today)
+                
+                return cell
+            }
         }
         
         if let searchable = searchable(for: indexPath) {

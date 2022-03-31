@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SearchableConfigurate {
+    func configurate(searchable: Searchable)
+}
+
 class SearchShared {
     static func registerCells(tableView: UITableView) {
         tableView.register(OccupantSearchCell.self, forCellReuseIdentifier: OccupantAnnotation.identifier)
