@@ -112,7 +112,7 @@ class MainSearchData: NSObject {
     func process(searchable: [Searchable]) {
         recent.1 = Array(searchable[2...4])
         favorites.1 = Array(searchable[52...55])
-        today.1 = Array(searchable[87...90]).map({ TodayCellModel(searchable: $0, title: "Высшая математика", timeStart: Date().advanced(by: -341), timeEnd: Date().advanced(by: 1000)) })
+        today.1 = Array(searchable[87...90]).map({ TodayCellModel(searchable: $0, title: "Высшая математика", timeStart: Date().advanced(by: -300), timeEnd: Date().advanced(by: 500)) })
         reload()
     }
     

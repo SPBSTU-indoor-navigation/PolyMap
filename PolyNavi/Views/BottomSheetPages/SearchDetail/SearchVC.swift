@@ -5,10 +5,21 @@ class SearchVC: NavbarBottomSheetPage {
     
     var isSearch = false {
         didSet {
-            searchTableView.isHidden = !isSearch
-            mainTableView.isHidden = isSearch
+            UIView.animate(withDuration: 0.2, animations: { [self] in
+                
+                searchTableView.isHidden = false
+                mainTableView.isHidden = false
+                
+                searchTableView.alpha = isSearch ? 1 : 0
+                mainTableView.alpha = !isSearch ? 1 : 0
+            }, completion: { _ in
+                self.searchTableView.isHidden = !self.isSearch
+                self.mainTableView.isHidden = self.isSearch
+            })
+            
         }
     }
+    
     var mapViewDelegate: MapViewDelegate?
     var mapInfoDelegate: MapInfoDelegate?
     var searchable: [Searchable] = [] {
@@ -19,9 +30,11 @@ class SearchVC: NavbarBottomSheetPage {
     }
     
     private lazy var searchBar: UISearchBar = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.placeholder = L10n.ChoosingSearchController.searchPlaceholder
         $0.searchBarStyle = .minimal
         $0.frame = navbar.frame
+        $0.returnKeyType = .search
         $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         $0.delegate = self
@@ -51,6 +64,10 @@ class SearchVC: NavbarBottomSheetPage {
             searchTableView.bottomAnchor.constraint(equalTo: background.bottomAnchor),
             searchTableView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
             searchTableView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
+            
+            searchBar.leadingAnchor.constraint(equalTo: navbar.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: navbar.trailingAnchor),
+            searchBar.centerYAnchor.constraint(equalTo: navbar.centerYAnchor),
             
             mainTableView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
             mainTableView.bottomAnchor.constraint(equalTo: background.bottomAnchor),
@@ -147,6 +164,10 @@ extension SearchVC: UISearchBarDelegate {
         if delegate?.horizontalSize() == .big && delegate?.verticalSize() == .big {
             delegate?.change(verticalSize: .medium, animated: true)
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

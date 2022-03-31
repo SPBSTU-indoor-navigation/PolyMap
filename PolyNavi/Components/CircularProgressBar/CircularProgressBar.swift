@@ -40,6 +40,10 @@ class CircularProgressBar: UIView {
         progressLayer.lineWidth = ringWidth
         progressLayer.fillColor = nil
         layer.addSublayer(progressLayer)
+        
+        progressLayer.minificationFilter = .trilinear
+        progressLayer.magnificationFilter = .trilinear
+        
         layer.transform = CATransform3DMakeRotation(CGFloat(90 * Double.pi / 180), 0, 0, -1)
     }
     
