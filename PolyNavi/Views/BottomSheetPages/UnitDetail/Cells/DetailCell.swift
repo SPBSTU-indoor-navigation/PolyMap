@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailCell: UITableViewCell {
-    static var identifier: String = String(describing: DetailCell.self)
+    static var identifire = String(describing: DetailCell.self)
     
     private lazy var title: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false

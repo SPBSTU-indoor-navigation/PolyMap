@@ -7,7 +7,7 @@
 
 import MapKit
 
-class EnviromentAmenityAnnotation: NSObject, MKAnnotation, DetailLevel, Identifiable {
+class EnviromentAmenityAnnotation: NSObject, MKAnnotation, Identifiable, AmenityDetailLevel {
     var identifier: String = identifier
     static var identifier: String = String(describing: EnviromentAmenityAnnotation.self)
     
@@ -20,16 +20,12 @@ class EnviromentAmenityAnnotation: NSObject, MKAnnotation, DetailLevel, Identifi
     
     var properties: IMDF.EnviromentAmenity.Properties
     
-    var detail: Int = 0
+    var detailLevel: AmenityAnnotation.DetailLevel
     
     init(coordinate: CLLocationCoordinate2D, properties: IMDF.EnviromentAmenity.Properties, detailLevel: Int) {
         self.coordinate = coordinate
         self.properties = properties
-        self.detail = detailLevel
+        self.detailLevel = .init(rawValue: detailLevel)!
         super.init()
-    }
-    
-    func detailLevel() -> Int {
-        return detail
     }
 }

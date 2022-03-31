@@ -81,7 +81,7 @@ class IMDFDecoder {
                                 .filter({ $0.properties.building_ids.contains(building.identifier) })
                                 .map({ $0.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys, details: detail, occupantAnchor: occupantAnchor, addresses: addresses)}),
                             attractions: attraction.filter({ $0.properties.building_id == building.identifier }),
-                            rotation: building.properties.rotation)
+                            properties: building.properties)
         })
         
         let result = Venue(geometry: venue.geometry.overlay(),
@@ -115,10 +115,9 @@ extension IMDF.Level {
         let occupants = occupantAnchor.filter({ unitsIds.contains($0.1.properties.unit_id)})
         
         return Level(self.geometry.overlay(),
-                     ordinal: self.properties.ordinal,
                      units: units.map({ $0.cast() }),
                      openings: openings.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }),
-                     shortName: self.properties.short_name,
+                     properties: self.properties,
                      amenitys: amenitysFiltred,
                      details: details.filter({ $0.properties.level_id == self.identifier }).map({ $0.cast() }),
                      occupants: occupants,
@@ -156,15 +155,6 @@ extension IMDF.Detail {
 }
 
 extension Array where Element == MKShape & MKGeoJSONObject {
-//    func polygon() -> [MKPolygon] {
-//        if let geometry = self.first as? MKPolygon {
-//            return [geometry]
-//        } else if let geometry = self.first as? MKMultiPolygon {
-//            return geometry.polygons
-//        }
-//        return []
-//    }
-    
     func overlay() -> MKShape & MKOverlay {
         return self.first as! MKShape & MKOverlay
     }

@@ -41,3 +41,12 @@ MapInfo.Detail.Address = "Address";
 
 MapInfo.Report.Favorites = "Favorites";
 MapInfo.Report.Issue = "Report an Issue";
+
+MapInfo.Route.Route = "Route";
+MapInfo.Route.Plan = "Plan";
+
+MapInfo.Search.EmptySearchResult = "No suggestion found";
+MapInfo.Search.Today = "Today";
+MapInfo.Search.Recent = "Recent";
+MapInfo.Search.Favorites = "Favorites";
+MapInfo.Search.Buildings = "Buildings";

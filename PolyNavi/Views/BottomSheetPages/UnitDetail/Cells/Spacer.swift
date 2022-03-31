@@ -8,6 +8,8 @@
 import UIKit
 
 class Spacer: UITableViewCell {
+    static var identifire = String(describing: Spacer.self)
+    
     var navbarHeightConstraint: NSLayoutConstraint?
     
     func configurate(height: CGFloat) {

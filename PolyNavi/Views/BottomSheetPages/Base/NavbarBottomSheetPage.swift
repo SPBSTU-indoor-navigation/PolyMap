@@ -23,6 +23,11 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
         return $0
     }(UIView())
     
+    let contentView: UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIView())
+    
     let navbarSeparator: UIView = {
         $0.backgroundColor = .separator
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +35,7 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
         return $0
     }(UIView())
     
-    private lazy var closeButton: UIButton = {
+    lazy var closeButton: UIButton = {
         $0.addTarget(self, action: #selector(close(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -50,12 +55,18 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
         super.viewDidLoad()
         navbar.addSubview(navbarSeparator)
         background.addSubview(navbar)
+        background.addSubview(contentView)
         
         if closable {
             navbar.addSubview(closeButton)
             NSLayoutConstraint.activate([
                 closeButton.centerYAnchor.constraint(equalTo: navbar.centerYAnchor),
                 closeButton.trailingAnchor.constraint(equalTo: navbar.trailingAnchor, constant: -15)
+            ].priority(.defaultLow))
+            
+            NSLayoutConstraint.activate([
+                closeButton.widthAnchor.constraint(equalToConstant: 30),
+                closeButton.heightAnchor.constraint(equalToConstant: 30),
             ])
         }
         
@@ -70,15 +81,21 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
             navbarSeparator.trailingAnchor.constraint(equalTo: navbar.trailingAnchor),
             navbarSeparator.leadingAnchor.constraint(equalTo: navbar.leadingAnchor),
             navbarSeparator.bottomAnchor.constraint(equalTo: navbar.bottomAnchor),
-        ])
+            
+            contentView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: background.bottomAnchor)
+        ].priority(.defaultLow))
         
         additionalSafeAreaInsets = UIEdgeInsets(top: navbarHeight, left: 0, bottom: 0, right: 0)
     }
     
+    private var lastProgress: CGFloat = 0
     func update(progress: CGFloat) {
-        navbarSeparator.alpha = max(0, min(1, progress))
+        lastProgress = progress
+        navbarSeparator.alpha = lastProgress.clamped(0, 1) * contentView.alpha
     }
-
     
     @objc
     private func close(_ sender: UIButton?) {
@@ -87,4 +104,16 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
     }
     
     func beforeClose() { }
+    
+    override func onButtomSheetScroll(progress: CGFloat) {
+        super.onButtomSheetScroll(progress: progress)
+        let limit = 0.9
+        if progress > limit {
+            contentView.alpha = 1 - (progress - limit) / (1 - limit)
+            update(progress: lastProgress)
+        } else if contentView.alpha != 1 {
+            contentView.alpha = 1
+            update(progress: lastProgress)
+        }
+    }
 }

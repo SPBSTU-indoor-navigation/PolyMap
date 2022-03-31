@@ -7,7 +7,7 @@
 
 import MapKit
 
-class OccupantAnnotation: NSObject, MKAnnotation, Identifiable {
+class OccupantAnnotation: NSObject, MKAnnotation, Identifiable, IndoorAnnotation {
     enum DetailLevel: Int {
         case circlePrimary = 0
         case circleSecondary = 1
@@ -15,9 +15,84 @@ class OccupantAnnotation: NSObject, MKAnnotation, Identifiable {
         case pointPrimary = 3
         case pointSecondary = 4
     }
+    var identifier: String = identifier
+    static var identifier: String = String(describing: OccupantAnnotation.self)
     
+    @objc dynamic var coordinate: CLLocationCoordinate2D
+    var title: String? {
+        return properties.shortName?.bestLocalizedValue
+    }
+    var properties: IMDF.Occupant.Properties
+    var address: IMDF.Address?
+    var level: Level
+    
+    var building: Building { level.building }
+    
+    lazy var sprite: UIImage = {
+        var imageName: String? = nil
+        switch properties.category {
+        case .classroom: imageName = "classroom"
+        case .laboratory: imageName = "laboratorium"
+        case .auditorium: imageName = "lecture"
+        default: break
+        }
+        return UIImage(named: imageName ?? properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+    }()
+    
+    lazy var backgroundSpriteColor: UIColor = {
+        var colorName: String
+        switch properties.category {
+        case .restroom, .restroomMale, .restroomFemale: colorName = "restroom"
+        default: colorName = properties.category.rawValue
+        }
+        return UIColor(named: colorName + "-annotation") ?? .systemOrange
+    }()
+    
+    var detailLevel: DetailLevel {
+        switch properties.category {
+        case .restroom, .restroomMale, .restroomFemale, .security: return .circleWithoutLabel
+        case .administration, .wardrobe: return .circleWithoutLabel
+        case .souvenirs, .foodserviceСoffee: return .circleWithoutLabel
+        case .auditorium, .classroom: return .pointSecondary
+        default: return .pointSecondary
+        }
+    }
+    
+    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Occupant.Properties, address: IMDF.Address?, level: Level) {
+        self.coordinate = coordinate
+        self.properties = properties
+        self.address = address
+        self.level = level
+        super.init()
+    }
+}
+
+extension OccupantAnnotation: Searchable {
+    var annotation: MKAnnotation {
+        self
+    }
+    
+    var annotationSprite: UIImage? {
+        sprite
+    }
+    
+    var mainTitle: String? {
+        properties.name?.bestLocalizedValue
+    }
+    
+    var place: String? {
+        level.building?.properties.name?.bestLocalizedValue
+    }
+    
+    var floor: String? { level.properties.name?.bestLocalizedValue }
+    
+    var searchTags: [String] { [] }
+    
+
+}
+
+extension OccupantAnnotation {
     static var levelProcessor: DetailLevelProcessor<DetailLevelState> = {
-        
         $0.builder(for: DetailLevel.circleWithoutLabel.rawValue)
             .add(mapSize: 0, state: .min)
             .add(mapSize: 19, state: .normal)
@@ -35,32 +110,4 @@ class OccupantAnnotation: NSObject, MKAnnotation, Identifiable {
             .add(mapSize: 21.5, state: .big)
         return $0
     }(DetailLevelProcessor<DetailLevelState>())
-    
-    
-    var identifier: String = identifier
-    static var identifier: String = String(describing: OccupantAnnotation.self)
-    
-    @objc dynamic var coordinate: CLLocationCoordinate2D
-    var title: String? {
-        return properties.shortName?.bestLocalizedValue
-    }
-    var properties: IMDF.Occupant.Properties
-    var address: IMDF.Address?
-    
-    var detailLevel: DetailLevel {
-        switch properties.category {
-        case .restroom, .restroomMale, .restroomFemale, .security: return .circleWithoutLabel
-        case .administration, .wardrobe: return .circleWithoutLabel
-        case .souvenirs, .foodserviceСoffee: return .circleWithoutLabel
-        case .auditorium, .classroom: return .pointSecondary
-        default: return .pointSecondary
-        }
-    }
-    
-    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Occupant.Properties, address: IMDF.Address?) {
-        self.coordinate = coordinate
-        self.properties = properties
-        self.address = address
-        super.init()
-    }
 }

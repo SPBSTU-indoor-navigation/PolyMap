@@ -10,21 +10,29 @@ import MapKit
 class Building: CustomOverlay, Styleble, MapRenderer {
     var levels: [Level] = []
     var attractions: [AttractionAnnotation] = []
-    var rotation: CGFloat?
-    
+    var properties: IMDF.Building.Properties!
     
     var ordinal = -1
     private var isShow = false
     
+    var rotation: CGFloat? {
+        properties.rotation
+    }
     
-    init(_ geometry: MKShape & MKOverlay, levels: [Level], attractions: [IMDF.Attraction], rotation: CGFloat?) {
+    init(_ geometry: MKShape & MKOverlay, levels: [Level], attractions: [IMDF.Attraction], properties: IMDF.Building.Properties) {
         super.init(geometry)
         
         self.levels = levels
         self.attractions = attractions.map({ AttractionAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, properties: $0.properties) })
         self.ordinal = levels.map({ $0.ordinal }).min() ?? -1
-        self.rotation = rotation
+        self.properties = properties
+        
+        for level in levels {
+            level.building = self
+        }
     }
+    
+    
     
     func configurate(renderer: MKOverlayRenderer) {
         guard let renderer = renderer as? MKOverlayPathRenderer else { return }

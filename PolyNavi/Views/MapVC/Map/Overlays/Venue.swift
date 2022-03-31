@@ -49,6 +49,15 @@ class Venue: CustomOverlay, Styleble {
         mapView.addAnnotations(buildings.flatMap({ $0.attractions }))
     }
     
+    func hide(_ mapView: OverlayedMapView) {
+        mapView.removeOverlay(self)
+        mapView.removeOverlays(enviroments)
+        mapView.removeOverlays(enviromentDetail)
+        mapView.removeOverlays(buildings)
+        mapView.removeAnnotations(amenitys)
+        mapView.removeAnnotations(buildings.flatMap({ $0.attractions }))
+    }
+    
     func configurate(renderer: MKOverlayRenderer) {
         guard let renderer = renderer as? MKOverlayPathRenderer else { return }
         renderer.strokeColor = Asset.IMDFColors.venueFill.color

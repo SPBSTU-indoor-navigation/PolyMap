@@ -73,6 +73,11 @@ class Animator {
     init() { }
     
     @discardableResult
+    func animate(withDuration: TimeInterval, animations: @escaping (() -> Void), completion: ((Bool) -> Void)? = nil) -> Self {
+        return animate(withDuration: withDuration, delay: 0, options: [], animations: animations, completion: completion)
+    }
+    
+    @discardableResult
     func animate(withDuration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions, animations: @escaping (() -> Void), completion: ((Bool) -> Void)? = nil) -> Self {
         self.animations.append(Basic(withDuration: withDuration, delay: delay, options: options, animations: animations, completion: completion))
         return self

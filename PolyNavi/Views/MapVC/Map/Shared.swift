@@ -7,10 +7,6 @@
 
 import MapKit
 
-protocol DetailLevel {
-    func detailLevel() -> Int
-}
-
 protocol Styleble {
     func configurate(renderer: MKOverlayRenderer)
 }

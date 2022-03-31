@@ -7,9 +7,10 @@
 
 import MapKit
 
-class OverlayedMapView: MKMapView {
+class OverlayedMapView: PinnableMapView {
     
     var onPan: ((UIPanGestureRecognizer) -> Void)?
+    var onAnnotationAdd: ((_ annotation: MKAnnotation) -> Void)?
     var currentOverlays: [MKShape:CustomOverlay] = [:]
     
     
@@ -25,6 +26,19 @@ class OverlayedMapView: MKMapView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func addAnnotation(_ annotation: MKAnnotation) {
+        super.addAnnotation(annotation)
+        onAnnotationAdd?(annotation)
+    }
+    
+    override func addAnnotations(_ annotations: [MKAnnotation]) {
+        super.addAnnotations(annotations)
+        for annotation in annotations {
+            onAnnotationAdd?(annotation)
+        }
     }
     
     @objc

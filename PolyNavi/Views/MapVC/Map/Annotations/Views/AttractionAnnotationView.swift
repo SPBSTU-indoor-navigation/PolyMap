@@ -7,12 +7,25 @@
 
 import MapKit
 
-class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
+class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.DetailLevel> {
+    enum DetailLevel: Int {
+        case normal = 0
+    }
+    
+    static let stateProcessor: DetailLevelProcessor<DetailLevelState> = {
+        $0.builder(for: 0)
+            .add(mapSize: 0, state: .hide)
+            .add(mapSize: 17.2, state: .min)
+            .add(mapSize: 18, state: .normal)
+        return $0
+    }(DetailLevelProcessor<DetailLevelState>())
+    
+    
     override var annotation: MKAnnotation? {
         didSet {
             label.text = annotation?.title!
             if let attraction = annotation as? AttractionAnnotation {
-                if let imageName = attraction.properties.image, let image = UIImage(named: imageName) {
+                if let image = attraction.annotationSprite {
                     imageView.image = image
                     imageView.isHidden = false
                     labelShort.isHidden = true
@@ -24,33 +37,7 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox
             }
         }
     }
-    
-    let stateProcessor: DetailLevelProcessor<DetailLevelState> = {
-        $0.builder(for: 0)
-            .add(mapSize: 0, state: .hide)
-            .add(mapSize: 17.2, state: .min)
-            .add(mapSize: 18, state: .normal)
-        return $0
-    }(DetailLevelProcessor<DetailLevelState>())
-    
-    var state: DetailLevelState = .min
-    
-    var pointSize: CGFloat {
-        get {
-            switch state {
-            case .big, .normal: return 1
-            case .hide, .min, .undefined: return 0.8
-            }
-        }
-    }
-    
-    var textOpacity: CGFloat {
-        return [.min, .normal, .big].contains(state) ? 1.0 : 0.0
-    }
-    
-    var selectAnim = Animator()
-    var deselectAnim = Animator()
-    
+
     lazy var shape: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         let t = CAShapeLayer()
@@ -74,7 +61,6 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox
         $0.transform = CGAffineTransform(translationX: 0, y: -4).scaledBy(x: 1, y: 0)
         return $0
     }(UIView())
-    
     
     lazy var background: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -131,6 +117,8 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        detailLevel = .normal
+        
         self.frame.size = CGSize(width: 40, height: 40)
         
         addSubview(miniPoint)
@@ -165,94 +153,98 @@ class AttractionAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox
         
         selectAnim
             .animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
-                background.transform = CGAffineTransform(scaleX: 1.5, y: 1.5).translatedBy(x: 0, y: -29)
-                label.transform = CGAffineTransform(translationX: 0, y: -18)
+                background.transform = pointTransform
+                label.transform = labelTransform
                 label.textColor = .label
             })
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
-                miniPoint.transform = .identity
+                miniPoint.transform = miniPointTransform
             })
             .animate(withDuration: 0.2, delay: 0.05, options: .curveEaseInOut, animations: { [self] in
-                shape.transform = .identity.scaledBy(x: 1, y: 1)
-                label.alpha = 1.0
+                shape.transform = shapeTransform
+                label.alpha = labelOpacity
             })
         
         deselectAnim
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
-                background.transform = .identity.scaledBy(x: pointSize, y: pointSize)
-                label.transform = CGAffineTransform(translationX: 0, y: (1 - pointSize) * -20)
+                background.transform = pointTransform
+                label.transform = labelTransform
                 label.textColor = Asset.Annotation.Colors.attractionTextColor.color
             })
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
-                shape.transform = CGAffineTransform(translationX: 0, y: -4).scaledBy(x: 1, y: 0)
-                miniPoint.transform = CGAffineTransform(scaleX: 0, y: 0)
-                label.alpha = textOpacity
-            }, completion: { _ in self.miniPoint.isHidden = true })
+                shape.transform = shapeTransform
+                miniPoint.transform = miniPointTransform
+                label.alpha = labelOpacity
+            }, completion: { _ in self.miniPoint.hideIfZeroTransform() })
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
     
-    func boundingBox() -> CGRect {
+    
+    override var detailLevelProcessor: DetailLevelProcessor<DetailLevelState> { AttractionAnnotationView.stateProcessor }
+    
+    @available(iOS 14.0, *)
+    override var defaultPriority: MKAnnotationViewZPriority { .init(rawValue: 700) }
+    
+    override func boundingBox() -> CGRect {
         return label.frame.union(background.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
     }
     
-    override func prepareForDisplay() {
-        super.prepareForDisplay()
-        
-        if #available(iOS 14.0, *) {
-            zPriority = MKAnnotationViewZPriority(rawValue: 900)
-        }
-    }
-    
-    func changeState(state: DetailLevelState, animate: Bool) {
-        self.state = state
-        
+    override func changeState(state: DetailLevelState, animate: Bool) {
+        super.changeState(state: state, animate: animate)
         if isSelected { return }
         
-        let change = { [self] in
-            label.alpha = textOpacity
-            background.transform = CGAffineTransform(scaleX: pointSize, y: pointSize)
-            label.transform = CGAffineTransform(translationX: 0, y: (1 - pointSize) * -20)
+        Animator().animate(withDuration: 0.2, animations: { [self] in
+            label.alpha = labelOpacity
+            background.transform = pointTransform
+            label.transform = labelTransform
+        }).play(animated: animate)
+    }
+    
+    override func appearanceDidChange() {
+        (shape.layer.sublayers?[0] as! CAShapeLayer).fillColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
+        background.layer.borderColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
+    }
+}
+
+extension AttractionAnnotationView {
+    
+    private var pointSize : CGFloat {
+        switch state {
+        case .big, .normal: return 1
+        case .hide, .min, .undefined: return 0.8
         }
+    }
+
+    var pointTransform: CGAffineTransform {
+        if isSelected { return .one.scaled(scale: 1.5).translatedBy(x: 0, y: -29)}
+        if isPinned { return.one.scaled(scale: 1).translatedBy(x: 0, y: -29) }
         
-        if animate {
-            UIView.animate(withDuration: 0.2, animations: {
-                change()
-            })
-        } else {
-            change()
-        }
+        return .one.scaled(scale: pointSize)
     }
     
-    func update(mapSize: Float, animate: Bool) {
-        let targetState = stateProcessor.evaluate(forDetailLevel: 0, mapSize: mapSize) ?? .normal
+    var miniPointTransform: CGAffineTransform {
+        if isSelected { return .one}
+        if isPinned { return .one.scaled(scale: 0.8) }
         
-        if state != targetState {
-            changeState(state: targetState, animate: animate)
-        }
+        return .zero
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    var labelTransform: CGAffineTransform {
+        if isSelected { return .one.translatedBy(x: 0, y: -18) }
+        if isPinned { return .one.translatedBy(x: 0, y: -19) }
         
-        if selected {
-            selectAnim.play(animated: animated)
-        } else {
-            deselectAnim.play(animated: animated)
-        }
+        return .one.translatedBy(x: 0, y: (1 - pointSize) * -20)
     }
     
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        if #available(iOS 13.0, *) {
-            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
-                
-                (shape.layer.sublayers?[0] as! CAShapeLayer).fillColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
-                background.layer.borderColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
-            }
-        }
+    var shapeTransform: CGAffineTransform {
+        isSelected || isPinned ? .one : .one.translatedBy(x: 0, y: -4).scaledBy(x: 1, y: 0)
     }
     
+    var labelOpacity: CGFloat {
+        if isSelected || isPinned { return 1 }
+        return [.min, .normal, .big].contains(state) ? 1.0 : 0.0
+    }
 }

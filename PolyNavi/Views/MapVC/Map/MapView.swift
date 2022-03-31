@@ -8,11 +8,27 @@
 import UIKit
 import MapKit
 
+protocol MapViewDelegate {
+    @discardableResult
+    func focusAndSelect(annotation: MKAnnotation, focusVariant: MapView.FocusVariant) -> Bool
+    func focus(on annotation: MKAnnotation, focusVariant: MapView.FocusVariant)
+    func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool)
+    func pinAnnotation(_ annotation: MKAnnotation, animated: Bool)
+    func unpinAnnotation(_ annotation: MKAnnotation, animated: Bool)
+}
+
+
 class MapView: UIView {
     
     enum Constants {
         static let minShowZoom: Float = 18.5
         static let horizontalOffset = -7.0
+    }
+    
+    enum FocusVariant {
+        case auto
+        case center
+        case safeArea
     }
     
     var mapInfoDelegate: MapInfoDelegate? {
@@ -25,17 +41,32 @@ class MapView: UIView {
     var lastZoom : Float = 16
     var currentBuilding: Building?
     
-    var venue: Venue?
+    var venue: Venue? {
+        willSet {
+            venue?.hide(mapView)
+        }
+        
+        didSet {
+            guard let venue = venue else {
+                return
+            }
+
+            venue.show(mapView)
+            mapView.setVisibleMapRect(venue.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: false)
+            mapView.setCameraBoundary(MKMapView.CameraBoundary(mapRect: venue.boundingMapRect), animated: false)
+        }
+    }
     
     
     var levelSwitcherConstraint: NSLayoutConstraint?
-
+    private var zoomByAnimation = false
+    private var preventFocus = false
+    private var wantSelect: MKAnnotation?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     
         layoutViews()
-        loadIMDF()
     }
     
     required init?(coder: NSCoder) {
@@ -49,6 +80,7 @@ class MapView: UIView {
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false
         $0.delegate = self
+        $0.onAnnotationAdd = onAnnotationAdd
         
         $0.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: OccupantAnnotation.identifier)
         $0.register(AmenityAnnotationView.self, forAnnotationViewWithReuseIdentifier: AmenityAnnotation.identifier)
@@ -75,6 +107,7 @@ class MapView: UIView {
     let debug: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .callout)
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
     
@@ -106,18 +139,6 @@ class MapView: UIView {
             debug.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             debug.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor)
         ])
-        
-    }
-    
-    
-    func loadIMDF() {
-        let path = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
-        
-        venue = IMDFDecoder.decode(path)
-        venue?.show(mapView)
-        
-        mapView.setVisibleMapRect(venue!.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: false)
-        mapView.setCameraBoundary(MKMapView.CameraBoundary(mapRect: venue!.boundingMapRect), animated: false)
     }
     
     func onLevelChange(ordinal: Int) {
@@ -188,15 +209,15 @@ class MapView: UIView {
     
     
     func updateMap(zoomLevel: Float) {
-        debug.text = "Zoom: \(roundf(zoomLevel * 100) / 100)"
+        debug.text = "Zoom: \(roundf(zoomLevel * 100) / 100)\ndist: \(mapView.camera.centerCoordinateDistance)"
         if abs(lastZoom - zoomLevel) < 0.001 { return }
-        mapInfoDelegate?.zoomMap(zoom: zoomLevel)
+        mapInfoDelegate?.zoomMap(zoom: zoomLevel, animated: zoomByAnimation)
         lastZoom = zoomLevel
     
         if let currentBuilding = currentBuilding {
             if zoomLevel > Constants.minShowZoom {
                 currentBuilding.show(mapView)
-                showLevelSwitcher()
+                showLevelSwitcher(building: currentBuilding)
             } else {
                 currentBuilding.hide(mapView)
                 hideLevelSwitcher()
@@ -217,18 +238,12 @@ class MapView: UIView {
                 currentBuilding.hide(mapView)
             }
             
-            if getZoom() > Constants.minShowZoom {
-                nearestBuilding?.show(mapView)
+            if let nearestBuilding = nearestBuilding {
                 
-                if let t = nearestBuilding, t.levels.count > 0 {
-                    showLevelSwitcher()
+                if getZoom() > Constants.minShowZoom {
+                    nearestBuilding.show(mapView)
+                    showLevelSwitcher(building: nearestBuilding)
                 }
-            }
-            
-            if nearestBuilding != nil {
-                levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: nearestBuilding!.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
-                                           selected: nearestBuilding!.ordinal)
-                
             } else {
                 hideLevelSwitcher()
             }
@@ -244,11 +259,104 @@ class MapView: UIView {
         }
     }
     
+    func selectAnnotationAfterAdding(annotation: MKAnnotation?) {
+        
+        guard let annotation = annotation else { return }
+        
+        if mapView.annotations.contains(where: { annotation.isEqual($0) }) {
+            selectAnnotation(annotation, animated: true, preventFocus: true)
+        } else {
+            wantSelect = annotation
+        }
+    }
+    
+    func onAnnotationAdd(_ annotation: MKAnnotation) {
+        if annotation.isEqual(wantSelect) {
+            selectAnnotation(annotation, animated: true, preventFocus: true)
+        }
+    }
+    
+    func mapFocusCenter(point: CLLocationCoordinate2D, distance: CGFloat, complition: (() -> Void)?) {
+        
+        let shoudUseCam = abs(mapView.camera.centerCoordinateDistance - distance) > 0.1
+        let targetCam = MKMapCamera(lookingAtCenter: mapView.camera.centerCoordinate, fromDistance: distance, pitch: mapView.camera.pitch, heading: mapView.camera.heading)
+        
+        let tempMap = MKMapView(frame: mapView.frame)
+        tempMap.setCamera(shoudUseCam ? targetCam : mapView.camera, animated: false)
+        tempMap.setCenter(point, animated: false)
+        
+        
+        let safeZone = mapInfoDelegate?.getSafeZone() ?? mapView
+        let targetCenter = tempMap.convert(CGPoint(x: mapView.frame.width - safeZone.center.x,
+                                                   y: mapView.frame.height - safeZone.center.y + (mapInfoDelegate?.getHorizontalSize() != .big ? mapView.frame.height / 20 : 0)), //Сдвиг вверх по правилам дизайна. Человеческий глаз склонен завышать точку центра
+                                           toCoordinateFrom: mapView)
+        
+        MKMapView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            if shoudUseCam { self.mapView.camera = targetCam }
+            self.mapView.centerCoordinate = targetCenter
+        }, completion: { _ in
+            complition?()
+        })
+    }
+    
+    func mapFocusSafeArea(point: CLLocationCoordinate2D, boundingBox: CGRect, complition: (() -> Void)? = nil) {
+        let mapSafeZone = mapInfoDelegate!.getSafeZone()
+        let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: self.mapView)
+        
+        let centerCG = mapView.convert(mapView.centerCoordinate, toPointTo: mapView)
+        let annotationCG = mapView.convert(point, toPointTo: mapView)
+        
+        
+        var dx = 0.0
+        var dy = 0.0
+        
+        let offset = UIEdgeInsets(top: -boundingBox.origin.y,
+                                  left: -boundingBox.origin.x,
+                                  bottom: boundingBox.height + boundingBox.origin.y,
+                                  right: boundingBox.width + boundingBox.origin.x)
+        
+        let target = safeZone
+            .inset(by: offset)
+            .inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 50, right: 10))
+        
+        
+        
+        if !target.contains(annotationCG) {
+            if annotationCG.y < target.minY {
+                dy = annotationCG.y - target.minY
+            } else if annotationCG.y > target.maxY {
+                dy = annotationCG.y - target.maxY
+            }
+            
+            if annotationCG.x < target.minX {
+                dx = annotationCG.x - target.minX
+            } else if annotationCG.x > target.maxX {
+                dx = annotationCG.x - target.maxX
+            }
+            
+            let point = MKMapPoint(mapView.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: mapView))
+            MKMapView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.mapView.centerCoordinate = point.coordinate
+            }, completion: { _ in
+                complition?()
+            })
+        }
+    }
+    
+    func selectAnnotation(_ annotation: MKAnnotation, animated: Bool, preventFocus: Bool ) {
+        self.preventFocus = preventFocus
+        mapView.selectAnnotation(annotation, animated: animated)
+    }
 }
 
 
 extension MapView {
-    func showLevelSwitcher() {
+    func showLevelSwitcher(building: Building) {
+        levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: building.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
+                                   selected: building.ordinal)
+        
+        self.layoutSubviews()
+        
         updateLevelSwitcher(Constants.horizontalOffset)
     }
     
@@ -257,8 +365,9 @@ extension MapView {
     }
     
     private func updateLevelSwitcher(_ pos: CGFloat) {
-        levelSwitcherConstraint?.constant = pos
+        self.layoutIfNeeded()
         UIView.animate(withDuration: 0.15) {
+            self.levelSwitcherConstraint?.constant = pos
             self.layoutIfNeeded()
         }
     }
@@ -310,55 +419,99 @@ extension MapView: MKMapViewDelegate {
         updateMap(centerPosition: mapView.centerCoordinate)
         updateMap(zoomLevel: getZoom())
     }
-
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        mapInfoDelegate?.didSelect(view.annotation)
+        wantSelect = nil
+        mapInfoDelegate?.mkDidSelect(view.annotation)
         
-        let mapSafeZone = mapInfoDelegate!.getSafeZone()
-        let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: self.mapView)
-        
-        let centerCG = mapView.convert(mapView.centerCoordinate, toPointTo: mapView)
-        let annotationCG = mapView.convert(view.annotation!.coordinate, toPointTo: mapView)
-        
-        
-        let boundingBox = (view as? BoundingBox)?.boundingBox() ?? .zero
-        
-        var dx = 0.0
-        var dy = 0.0
-        
-        let offset = UIEdgeInsets(top: -boundingBox.origin.y,
-                                  left: -boundingBox.origin.x,
-                                  bottom: boundingBox.height + boundingBox.origin.y,
-                                  right: boundingBox.width + boundingBox.origin.x)
-        
-        let target = safeZone
-            .inset(by: offset)
-            .inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 50, right: 10))
-        
-        
-            
-        if !target.contains(annotationCG) {
-            if annotationCG.y < target.minY {
-                dy = annotationCG.y - target.minY
-            } else if annotationCG.y > target.maxY {
-                dy = annotationCG.y - target.maxY
-            }
-            
-            if annotationCG.x < target.minX {
-                dx = annotationCG.x - target.minX
-            } else if annotationCG.x > target.maxX {
-                dx = annotationCG.x - target.maxX
-            }
-            
-            
-            let point = MKMapPoint(mapView.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: mapView))
-            mapView.setCenter(point.coordinate, animated: true)
+        if preventFocus {
+            preventFocus = false
+        } else {
+            let boundingBox = (view as? BoundingBox)?.boundingBox() ?? .zero
+            mapFocusSafeArea(point: view.annotation!.coordinate, boundingBox: boundingBox)
         }
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        mapInfoDelegate?.didDeselect(view.annotation)
+        mapInfoDelegate?.mkDidDeselect(view.annotation)
     }
 
 }
 
+
+extension MapView: MapViewDelegate {
+    
+    func pinAnnotation(_ annotation: MKAnnotation, animated: Bool) {
+        mapView.pinAnnotation(annotation, animated: animated)
+    }
+    
+    func unpinAnnotation(_ annotation: MKAnnotation, animated: Bool) {
+        mapView.unpinAnnotation(annotation, animated: animated)
+    }
+    
+    
+    func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool) {
+        mapView.deselectAnnotation(annotation, animated: animated)
+    }
+    
+    func focusAndSelect(annotation: MKAnnotation, focusVariant: MapView.FocusVariant = .auto) -> Bool {
+        selectAnnotationAfterAdding(annotation: annotation)
+        focus(on: annotation, focusVariant: focusVariant)
+        
+        return !mapView.selectedAnnotations.contains(where: { annotation.isEqual($0) })
+    }
+    
+    func focus(on annotation: MKAnnotation, focusVariant: FocusVariant = .auto) {
+        
+        var targetZoom = mapView.camera.centerCoordinateDistance
+        
+        switch annotation {
+        case is OccupantAnnotation: targetZoom = 150
+        case is AmenityAnnotation: targetZoom = 200
+        case is AttractionAnnotation:
+            if targetZoom > 1000 || lastZoom > Constants.minShowZoom {
+                targetZoom = 800
+            }
+        case is EnviromentAmenityAnnotation:
+            if 500 < targetZoom || targetZoom < 200 {
+                targetZoom = 400
+            }
+        default: break
+        }
+        
+        if let indoor = annotation as? IndoorAnnotation {
+            if currentBuilding == indoor.building {
+                levelSwitcher.changeLevel(selected: indoor.level.ordinal, animated: true)
+            } else {
+                indoor.building.ordinal = indoor.level.ordinal
+            }
+        }
+        
+        self.zoomByAnimation = true
+        
+        let view = mapView.view(for: annotation)
+        let boundingBox = (view as? BoundingBox)?.boundingBox() ?? .zero
+
+        var centering = focusVariant == .center
+        
+        if focusVariant == .auto {
+            if let view = view,
+               mapView.frame.intersects(view.frame.inset(by: .init(top: boundingBox.maxY, left: boundingBox.minX, bottom: boundingBox.minY, right: boundingBox.maxX))) {
+                centering = false
+            } else {
+                centering = true
+            }
+        }
+        
+        if centering {
+            mapFocusCenter(point: annotation.coordinate, distance: targetZoom, complition: {
+                self.zoomByAnimation = false
+            })
+        } else {
+            mapFocusSafeArea(point: annotation.coordinate, boundingBox: boundingBox, complition: {
+                self.zoomByAnimation = false
+            })
+        }
+        
+    }
+}

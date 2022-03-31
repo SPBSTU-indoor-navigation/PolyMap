@@ -7,10 +7,7 @@
 
 import MapKit
 
-class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
-    var state: DetailLevelState = .undefined
-    var detailLevel: Int = 0
-    
+class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
     override var annotation: MKAnnotation? {
         didSet {
             if let amenity = annotation as? AmenityAnnotation {
@@ -25,43 +22,11 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
                 label.text = nil
             }
             
-            if let detail = annotation as? DetailLevel {
-                detailLevel = detail.detailLevel()
+            if let detail = annotation as? AmenityDetailLevel {
+                detailLevel = detail.detailLevel
             } else {
-                detailLevel = 0
+                detailLevel = .min
             }
-        }
-    }
-    
-    var selectAnim = Animator(),
-        deselectAnim = Animator(),
-        min = Animator(),
-        big = Animator(),
-        hide = Animator(),
-        normal = Animator()
-    
-    var backgroundSize: CGFloat {
-        get {
-            switch state {
-            case .big:
-                return 1.2
-            case .normal:
-                return 0.8
-            case .hide, .min, .undefined:
-                return 0.3
-            }
-        }
-    }
-    
-    var imageAlpha: CGFloat {
-        get {
-            return [.big, .normal].contains(state) ? 1.0 : 0
-        }
-    }
-    
-    var backgroundCornerRadius: CGFloat {
-        get {
-            return [.big, .normal].contains(state) ? 5 : 10
         }
     }
     
@@ -159,119 +124,142 @@ class AmenityAnnotationView: MKAnnotationView, AnnotationMapSize, BoundingBox {
         selectAnim
             .animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 isHidden = false
-                imageView.alpha = 1
-                background.layer.cornerRadius = 5
-                background.transform = CGAffineTransform(scaleX: 2.5, y: 2.5).translatedBy(x: 0, y: -15.5)
-                
                 label.isHidden = false
-                label.alpha = 1
-                label.transform = .identity
+                
+                imageView.alpha = imageOpacity
+                background.layer.cornerRadius = backgroundCornerRadius
+                background.transform = backgroundTransform
+                
+                label.alpha = labelOpacity
+                label.transform = labelTransform
                 
                 imageView.startAnim()
             }, completion: { _ in self.imageView.endAnim()})
+        
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
-                miniPoint.transform = .identity
+                miniPoint.transform = miniPointTransform
             })
+        
             .animate(withDuration: 0.35, delay: 0.05, options: .curveEaseInOut, animations: { [self] in
-                shape.transform = .identity.scaledBy(x: 1, y: 1)
+                shape.transform = shapeTransform
             })
         
         deselectAnim
             .animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: { [self] in
-                isHidden = false
-                background.transform = CGAffineTransform(scaleX: backgroundSize, y: backgroundSize)
-                if state == .hide { alpha = 0 }
+                alpha = viewOpacity
+                background.transform = backgroundTransform
+                
                 imageView.startAnim()
             }, completion: { _ in self.imageView.endAnim()})
+        
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
-                shape.transform = CGAffineTransform(translationX: 0, y: -1).scaledBy(x: 1, y: 0)
-                miniPoint.transform = CGAffineTransform(scaleX: 0, y: 0)
-            }, completion: { _ in self.miniPoint.isHidden = true })
+                shape.transform = shapeTransform
+                miniPoint.transform = miniPointTransform
+            }, completion: { _ in self.miniPoint.hideIfZeroTransform() })
+        
             .animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: { [self] in
-                label.alpha = 0
-                label.transform = CGAffineTransform(translationX: 0, y: -10).scaledBy(x: 0.5, y: 0.5)
-                if [.hide, .min].contains(state) {
-                    imageView.alpha = 0
-                    background.layer.cornerRadius = 10
-                }
-            }, completion: { _ in
-                self.label.isHidden = true
-                self.isHidden = self.state == .hide
+                label.alpha = labelOpacity
+                label.transform = labelTransform
+                imageView.alpha = imageOpacity
+                background.layer.cornerRadius = backgroundCornerRadius
                 
+            }, completion: { _ in
+                self.label.hideIfZeroAlpha()
+                self.hideIfZeroAlpha()
             })
     
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
     
-    func boundingBox() -> CGRect {
-        return background.frame.union(label.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
-    }
+    override var detailLevelProcessor: DetailLevelProcessor<DetailLevelState> { AmenityAnnotation.levelProcessor }
+    
+    @available(iOS 14.0, *)
+    override var defaultPriority: MKAnnotationViewZPriority { .init(rawValue: 600) }
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
-        
         imageView.renderIfNeed()
-        
-        if #available(iOS 14.0, *) {
-            zPriority = MKAnnotationViewZPriority(rawValue: 700)
-        }
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        
-        if selected {
-            selectAnim.play(animated: animated)
-        } else {
-            deselectAnim.play(animated: animated)
-        }
+    override func boundingBox() -> CGRect {
+        return background.frame.union(label.frame).offsetBy(dx: -frame.width / 2, dy: -frame.height / 2)
     }
     
-    func changeState(state: DetailLevelState, animate: Bool) {
-        self.state = state
-        
+    override func changeState(state: DetailLevelState, animate: Bool) {
+        super.changeState(state: state, animate: animate)
         if isSelected { return }
         
-        let change = { [self] in
-            background.transform = CGAffineTransform(scaleX: backgroundSize, y: backgroundSize)
-            imageView.alpha = imageAlpha
+        Animator().animate(withDuration: 0.3, animations: { [self] in
+            background.transform = backgroundTransform
+            imageView.alpha = imageOpacity
             background.layer.cornerRadius = backgroundCornerRadius
-            alpha = state == .hide ? 0 : 1
-            if state != .hide {
-                isHidden = false
-                alpha = 1
-            } else {
-                alpha = 0
-            }
-        }
-        
-        let completion = {
-            if self.state == .hide {
-                self.isHidden = true
-            }
+            alpha = viewOpacity
+            if isHidden && alpha > 0 { isHidden = false }
+        }, completion: { _ in
+            self.hideIfZeroAlpha()
             self.imageView.renderIfNeed()
-        }
-        
-        if animate {
-            UIView.animate(withDuration: 0.3, animations: {
-                change()
-            }, completion: { _ in completion() })
-        } else {
-            change()
-            completion()
-        }
+        }).play(animated: animate)
+    }
+}
+
+extension AmenityAnnotationView {
+    var labelOpacity: CGFloat {
+        isSelected || isPinned ? 1 : 0
     }
     
-    func update(mapSize: Float, animate: Bool) {
+    var viewOpacity: CGFloat {
+        isSelected || isPinned || state != .hide ? 1 : 0
+    }
+    
+    var miniPointTransform: CGAffineTransform {
+        if isSelected { return .identity }
+        if isPinned { return .one.scaled(scale: 0.5) }
+        return .one.scaled(scale: 0)
+    }
+    
+    var labelTransform: CGAffineTransform {
+        if isSelected { return .identity }
+        if isPinned { return CGAffineTransform(translationX: 0, y: -2) }
         
-        let targetState = AmenityAnnotation.levelProcessor.evaluate(forDetailLevel: detailLevel, mapSize: mapSize) ?? .normal
-        
-        if state != targetState {
-            changeState(state: targetState, animate: animate)
+        return .one.scaled(scale: 0.5).translatedBy(x: 0, y: -10)
+    }
+    
+    var imageOpacity: CGFloat {
+        if isSelected || isPinned {
+            return 1
         }
+        
+        return [.big, .normal].contains(state) ? 1.0 : 0
+    }
+    
+    var shapeTransform: CGAffineTransform {
+        isSelected || isPinned ? .one : .one.translatedBy(x: 0, y: -1).scaledBy(x: 1, y: 0)
+    }
+    
+    var backgroundTransform: CGAffineTransform {
+        var size: CGFloat {
+            switch state {
+            case .big:
+                return 1.2
+            case .normal:
+                return 0.8
+            case .hide, .min, .undefined:
+                return 0.3
+            }
+        }
+        
+        if isSelected { return .one.scaled(scale: 2.5).translatedBy(x: 0, y: -15.5) }
+        if isPinned { return .one.scaled(scale: 1.2).translatedBy(x: 0, y: -15.5) }
+        
+        return .one.scaled(scale: size)
+    }
+    
+    var backgroundCornerRadius: CGFloat {
+        if isSelected || isPinned { return 5 }
+        return [.big, .normal].contains(state) ? 5 : 10
     }
 }
 

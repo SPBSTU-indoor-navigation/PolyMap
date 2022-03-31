@@ -5,6 +5,7 @@
 //  Created by Andrei Soprachev on 07.03.2022.
 //
 import UIKit
+import MapKit
 
 protocol CellFor {
     func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell
@@ -13,6 +14,7 @@ protocol CellFor {
 class MapDetailInfo {
     var title: String = ""
     var sections: [Section] = []
+    var annotation: MKAnnotation?
     
     
     class Section {
@@ -23,18 +25,26 @@ class MapDetailInfo {
     class Route: Section, CellFor {
         var showRoute = true
         var showIndoor = true
+        var annotation: MKAnnotation?
         
         var buildingID: UUID?
         
-        init(showRoute: Bool = true, showIndoor: Bool = true) {
+        init(showRoute: Bool = true, showIndoor: Bool = true, annotation: MKAnnotation? = nil) {
             self.showRoute = showRoute
             self.showIndoor = showIndoor
+            self.annotation = annotation
         }
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: RouteInfoCell.identifire, for: indexPath) as! RouteInfoCell
             cell.configutate(showRoute: showRoute, showIndoor: showIndoor, buildingID: buildingID)
             cell.selectionStyle = .none
+            cell.onRouteClick = {
+                if let annotation = self.annotation {
+                    MapInfo.routeDetail?.setFrom(annotation)
+                }
+            }
+            cell.onBuildingClick = { print("BUILDING") }
             return cell
         }
         
@@ -60,7 +70,7 @@ class MapDetailInfo {
         }
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifier) as! DetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifire) as! DetailCell
             
             cell.configurate(title: content[indexPath.row].0, content: content[indexPath.row].1)
             cell.selectionStyle = .none
@@ -81,7 +91,7 @@ class MapDetailInfo {
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableView.UITableViewCellIdentifire, for: indexPath)
             
             let image = UIImage(systemName: favorite && indexPath.row == 0 ? "star.fill" : "exclamationmark.bubble.fill")
             let text = favorite && indexPath.row == 0 ? L10n.MapInfo.Report.favorites : L10n.MapInfo.Report.issue

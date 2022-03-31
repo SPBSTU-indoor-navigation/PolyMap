@@ -32,6 +32,14 @@ extension UIView {
             return nil
         }
     }
+    
+    func hideIfZeroTransform() {
+        isHidden = transform == .zero
+    }
+    
+    func hideIfZeroAlpha() {
+        isHidden = alpha == 0
+    }
 }
 
 extension UIScrollView {
@@ -60,6 +68,16 @@ extension UIButton {
             let colorImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             self.setBackgroundImage(colorImage, for: forState)
+        }
+    }
+}
+
+extension UITableView {
+    static let UITableViewCellIdentifire = String(describing: UITableViewCell.self)
+    
+    var wrapperView: UIView {
+        get {
+            return self.subviewsByType("UITableViewWrapperView") ?? self
         }
     }
 }
@@ -114,6 +132,13 @@ extension UIGestureRecognizer {
 extension Array where Iterator.Element : NSLayoutConstraint {
     func priority(_ priority: UILayoutPriority) -> Self {
         self.forEach({ $0.priority = priority })
+        return self
+    }
+}
+
+extension NSLayoutConstraint {
+    func withPriority(_ priority: UILayoutPriority) -> Self {
+        self.priority = priority
         return self
     }
 }

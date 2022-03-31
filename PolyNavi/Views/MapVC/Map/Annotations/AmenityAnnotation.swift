@@ -7,7 +7,11 @@
 
 import MapKit
 
-class AmenityAnnotation: NSObject, MKAnnotation, DetailLevel, Identifiable {
+protocol AmenityDetailLevel {
+    var detailLevel: AmenityAnnotation.DetailLevel { get  }
+}
+
+class AmenityAnnotation: NSObject, MKAnnotation, Identifiable, AmenityDetailLevel {
     enum DetailLevel: Int {
         case alwaysShowBig = 0
         case alwaysShow = 1
@@ -16,8 +20,31 @@ class AmenityAnnotation: NSObject, MKAnnotation, DetailLevel, Identifiable {
         case alwaysShowMin = 4
     }
     
+    var identifier: String = identifier
+    static var identifier: String = String(describing: AmenityAnnotation.self)
+    
+    @objc dynamic var coordinate: CLLocationCoordinate2D
+    var title: String? {
+        get {
+            return properties.alt_name?.bestLocalizedValue
+        }
+    }
+    
+    var properties: IMDF.Amenity.Properties
+    var detailLevel: DetailLevel
+    
+    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Amenity.Properties, detailLevel: Int) {
+        self.coordinate = coordinate
+        self.properties = properties
+        self.detailLevel = .init(rawValue: detailLevel)!
+        super.init()
+    }
+}
+
+
+extension AmenityAnnotation {
+    
     static var levelProcessor: DetailLevelProcessor<DetailLevelState> = {
-        
         $0.builder(for: DetailLevel.alwaysShowBig.rawValue)
             .add(mapSize: 0, state: .normal)
             .add(mapSize: 17, state: .big)
@@ -42,32 +69,8 @@ class AmenityAnnotation: NSObject, MKAnnotation, DetailLevel, Identifiable {
         $0.builder(for: DetailLevel.alwaysShowMin.rawValue)
             .add(mapSize: 0, state: .normal)
             .add(mapSize: 22, state: .big)
-        
+    
         return $0
     }(DetailLevelProcessor<DetailLevelState>())
     
-    var identifier: String = identifier
-    static var identifier: String = String(describing: AmenityAnnotation.self)
-    
-    @objc dynamic var coordinate: CLLocationCoordinate2D
-    var title: String? {
-        get {
-            return properties.alt_name?.bestLocalizedValue
-        }
-    }
-    
-    var properties: IMDF.Amenity.Properties
-    
-    var detail: Int = 0
-    
-    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Amenity.Properties, detailLevel: Int) {
-        self.coordinate = coordinate
-        self.properties = properties
-        detail = detailLevel
-        super.init()
-    }
-    
-    func detailLevel() -> Int {
-        return detail
-    }
 }

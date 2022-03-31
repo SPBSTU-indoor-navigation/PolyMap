@@ -56,7 +56,7 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
         to.view.transform = CGAffineTransform(translationX: -xOffset, y: -delta)
         
-        let anim = UIViewPropertyAnimator(duration: duration, curve: .easeOut) {
+        let anim = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
             to.view.transform = .identity
             from.view.layer.shadowOpacity = 0
             if self.fromState != .big {
@@ -83,7 +83,7 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
         from.view.layer.addSublayer(mask)
         from.view.layer.mask = mask
         
-        let anim = UIViewPropertyAnimator(duration: duration, curve: .easeOut) {
+        let anim = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
             to.view.transform = .identity
             from.view.layer.shadowOpacity = 0
             
@@ -116,7 +116,7 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
         to.view.layer.addSublayer(mask)
         to.view.layer.mask = mask
         
-        let anim = UIViewPropertyAnimator(duration: duration, curve: .easeIn) {
+        let anim = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
             to.view.layer.shadowOpacity = BottomSheetViewController.Constants.shadowOpacity
             
             to.view.transform = .identity
@@ -195,7 +195,7 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
             $0.toValue = isOpen ? open : (close + delta)
             $0.fillMode = .forwards
             $0.duration = duration
-            $0.timingFunction = CAMediaTimingFunction(name: isOpen ? .easeOut : .easeIn)
+            $0.timingFunction = CAMediaTimingFunction(name: isOpen ? .easeInEaseOut : .easeIn)
             return $0
         } (CABasicAnimation(keyPath: "position.y"))
         mask.add(maskAnim, forKey: "position.y")
@@ -259,7 +259,7 @@ class BottomSheetTransition: NSObject, UIViewControllerAnimatedTransitioning {
             $0.toValue = isOpen ? open : close
             $0.fillMode = .forwards
             $0.duration = duration
-            $0.timingFunction = CAMediaTimingFunction(name: isOpen ? .easeOut : .easeIn)
+            $0.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
             return $0
         } (CABasicAnimation(keyPath: "position.x"))
         mask.add(maskAnimP, forKey: "position.x")

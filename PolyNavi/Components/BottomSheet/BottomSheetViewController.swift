@@ -93,6 +93,7 @@ class BottomSheetViewController: UINavigationController {
     
     private var startPosotion = 0.0
     private var startContentOffset: CGFloat = 0
+    private var navigationAnimated = false
     
     internal private(set) var mooved = false
     internal private(set) var moovedByScroll = false
@@ -100,7 +101,7 @@ class BottomSheetViewController: UINavigationController {
     private var stateByViewControllers: [UIViewController:VerticalSize] = [:]
     
     private var containerView: UIView {
-        return view.window!
+        return view.window ?? parent!.view
     }
     
     
@@ -322,7 +323,7 @@ class BottomSheetViewController: UINavigationController {
     
     @objc
     private func panAction(_ sender: UIPanGestureRecognizer) {
-        defer { viewDidLayoutSubviews() }
+        if navigationAnimated { return }
         
         let translation = sender.translation(in: containerView)
         
@@ -355,6 +356,8 @@ class BottomSheetViewController: UINavigationController {
         default: break
         }
         
+        viewDidLayoutSubviews()
+        
     }
     
     private func endAnimation(_ velocity: CGFloat) {
@@ -377,7 +380,7 @@ class BottomSheetViewController: UINavigationController {
         anim?.startAnimation()
     }
     
-    func changeState(state: VerticalSize, duration: CGFloat = Constants.transitionDuration, animated: Bool = true, options: UIView.AnimationOptions = .curveEaseOut) {
+    func changeState(state: VerticalSize, duration: CGFloat = Constants.transitionDuration, animated: Bool = true, options: UIView.AnimationOptions = .curveEaseInOut) {
         self.state = state
         
         currentPosition = position(for: state)
@@ -406,7 +409,7 @@ class BottomSheetViewController: UINavigationController {
         }
         
         if animated {
-            view.isUserInteractionEnabled = false
+            navigationAnimated = true //false
         }
         
         super.pushViewController(viewController, animated: animated)
@@ -419,11 +422,11 @@ class BottomSheetViewController: UINavigationController {
         lastState = state
         
         if animated {
-            view.isUserInteractionEnabled = false
+            navigationAnimated = true //false
         }
         
         guard let targetVC = super.popViewController(animated: animated) else {
-            view.isUserInteractionEnabled = true
+            navigationAnimated = false
             return nil
         }
         
@@ -454,7 +457,7 @@ extension BottomSheetViewController: UINavigationControllerDelegate {
         
         applyBottomSheetPage(vc: toVC)
         
-        return BottomSheetTransition(operation: operation, fromState: lastState, size: currentSize, duration: Constants.transitionDuration, complition: { self.view.isUserInteractionEnabled = true })
+        return BottomSheetTransition(operation: operation, fromState: lastState, size: currentSize, duration: Constants.transitionDuration, complition: { self.navigationAnimated = false })
     }
 }
 

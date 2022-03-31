@@ -41,3 +41,12 @@ MapInfo.Detail.Address = "Адрес";
 
 MapInfo.Report.Favorites = "Закладки";
 MapInfo.Report.Issue = "Сообщить об ошибке";
+
+MapInfo.Route.Route = "Маршрут";
+MapInfo.Route.Plan = "Планировка";
+
+MapInfo.Search.EmptySearchResult = "Ничего не найдено";
+MapInfo.Search.Today = "Сегодня";
+MapInfo.Search.Recent = "Недавние";
+MapInfo.Search.Favorites = "Избранные";
+MapInfo.Search.Buildings = "Учебные корпуса";
