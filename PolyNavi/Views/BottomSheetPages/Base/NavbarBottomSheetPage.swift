@@ -75,7 +75,6 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
             navbarHeightConstraint!,
             navbar.leadingAnchor.constraint(equalTo: background.leadingAnchor),
             navbar.trailingAnchor.constraint(equalTo: background.trailingAnchor),
-            navbar.topAnchor.constraint(equalTo: background.topAnchor),
             
             navbarSeparator.heightAnchor.constraint(equalToConstant: 1),
             navbarSeparator.trailingAnchor.constraint(equalTo: navbar.trailingAnchor),
@@ -87,6 +86,10 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
             contentView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: background.bottomAnchor)
         ].priority(.defaultLow))
+        
+        NSLayoutConstraint.activate([
+            navbar.topAnchor.constraint(equalTo: background.topAnchor)
+        ].priority(.required))
         
         additionalSafeAreaInsets = UIEdgeInsets(top: navbarHeight, left: 0, bottom: 0, right: 0)
     }

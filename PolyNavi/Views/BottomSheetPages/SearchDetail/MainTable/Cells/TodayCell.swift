@@ -116,17 +116,23 @@ class TodayCell: UITableViewCell {
         return $0
     }(CircularProgressBar())
 
+    private var currentModel: TodayCellModel?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
+        Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { _ in
+            self.setTimeCursor()
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+
     }
     
     func setupViews() {
+        backgroundColor = Asset.Colors.bottomSheetGroupped.color
         contentView.addSubview(titleLabel)
         contentView.addSubview(subTitleLabel)
         contentView.addSubview(subSubTitleLabel)
@@ -156,14 +162,21 @@ class TodayCell: UITableViewCell {
         ])
     }
     
-    func configurate(_ model: TodayCellModel) {
-        titleLabel.text = model.title
-        subTitleLabel.text = model.searchable.mainTitle
-        subSubTitleLabel.text = model.timeInterval()
+    func setTimeCursor() {
+        guard let model = currentModel else { return }
         
         let timeProgress = (model.timeStart.distance(to: Date()) / model.timeStart.distance(to: model.timeEnd)).clamped(0, 1)
         
         progress.isHidden = timeProgress == 0
         progress.progress = timeProgress
+    }
+    
+    func configurate(_ model: TodayCellModel) {
+        currentModel = model
+        titleLabel.text = model.title
+        subTitleLabel.text = model.searchable.mainTitle
+        subSubTitleLabel.text = model.timeInterval()
+        
+        setTimeCursor()
     }
 }
