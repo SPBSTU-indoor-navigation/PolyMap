@@ -1,0 +1,116 @@
+{
+    "type": "FeatureCollection",
+    "name": "navPathAssocieted",
+    "features": [
+        {
+            "id": "cf97c63a-9f27-496e-ad82-03564a49ed24",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "c940d79e-74a8-4834-a9fc-5d79b3f125e8",
+                "associeted_id": "eecfe07d-3e76-4c63-abd9-fc932f239e13"
+            }
+        },
+        {
+            "id": "64c39e12-2e57-4ed4-bc67-5134907a76f5",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "65f80469-d3c3-4593-9e9a-fb0b6425b166",
+                "associeted_id": "1e3a0cba-edbc-44af-a56f-3cc007568509"
+            }
+        },
+        {
+            "id": "46300a12-51f0-4354-8477-dbf643dddfc3",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "b9f6269c-3be6-48a7-867c-baea68741e6e",
+                "associeted_id": "c2bb85f5-c2ec-4274-9e83-a72f8f77f6d3"
+            }
+        },
+        {
+            "id": "abd6f0f8-913b-4c1e-ae5f-e0a6e579a0f4",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "77e0f098-da85-4371-bb2f-2d5cef1ed1eb",
+                "associeted_id": "52778eed-0943-476d-9996-aa053b6c8bf0"
+            }
+        },
+        {
+            "id": "dcabbda1-4028-47c4-913d-2d3e5e0005d3",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "b4644a05-c7e0-41a8-b72e-7f35a099a26c",
+                "associeted_id": "7ac9ac6a-7e73-48da-9f09-a99c8aa8b1ee"
+            }
+        },
+        {
+            "id": "2bbf5313-f64d-415c-845b-25a991bfccc1",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "cbc2283b-6081-4f40-8d1f-4d20d12b10e4",
+                "associeted_id": "26b65c0d-998c-48ff-9af2-98a2cbbdfea9"
+            }
+        },
+        {
+            "id": "78c1cdd8-9f24-4cd7-b25f-088941653e67",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "f091fb66-fb21-4a35-99bf-d2c71e69e07e",
+                "associeted_id": "fe3b3ffc-16eb-4345-b922-b0229f6df279"
+            }
+        },
+        {
+            "id": "3436f7f2-4248-404d-8445-873ba1e486de",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "c27bb39b-eda3-4bc4-8b0a-b7e0fc6f4f9d",
+                "associeted_id": "1f683d42-bcd7-4173-99fa-c5bfccf00263"
+            }
+        },
+        {
+            "id": "6c0bb6c6-0e51-4d40-8cd8-7ce444a9c7fe",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "df9328de-7fa2-4d58-bf33-fe0d565d0d7d",
+                "associeted_id": "3b717113-bba6-4f50-8cae-db09f7257048"
+            }
+        },
+        {
+            "id": "266196d2-b69d-4cc4-bfbe-c6fb165688ed",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "77d030c8-3f5e-476d-be72-efcca7e27077",
+                "associeted_id": "c03170a1-83e1-433b-8049-eb8feab5c302"
+            }
+        },
+        {
+            "id": "34e9642d-eb17-476e-8cde-82e4229db1d8",
+            "type": "Feature",
+            "feature_type": "navPathAssocieted",
+            "geometry": null,
+            "properties": {
+                "pathNode_id": "f1ef38b2-3713-4c24-8214-e99aedf412ce",
+                "associeted_id": "55a8d05b-6f18-4ea1-ac46-f147a16fc82a"
+            }
+        }
+    ]
+}

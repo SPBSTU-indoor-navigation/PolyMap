@@ -38,6 +38,8 @@ enum File {
     case enviroment
     case enviromentAmenity
     case attraction
+    case navPath
+    case navPathAssocieted
     
     var filename: String {
         return "\(self).geojson"
@@ -67,6 +69,8 @@ class IMDFDecoder {
         let enviroments = try! decodeFeatures(IMDF.EnviromentUnit.self, path: File.enviroment.fileURL(path))
         let enviromentAmenitys = try! decodeFeatures(IMDF.EnviromentAmenity.self, path: File.enviromentAmenity.fileURL(path))
         let attraction = try! decodeFeatures(IMDF.Attraction.self, path: File.attraction.fileURL(path))
+        let navPath = try! decodeFeatures(IMDF.NavPath.self, path: File.navPath.fileURL(path))
+        let navPathAssocieted = try! decodeFeatures(IMDF.NavPathAssocieted.self, path: File.navPathAssocieted.fileURL(path))
         
         
         guard let venue = venues.first else { return nil }

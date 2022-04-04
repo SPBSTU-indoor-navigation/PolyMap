@@ -1,1 +1,1896 @@
-{"type":"FeatureCollection","name":"occupant","features":[{"id":"cb8ff8c1-0dd8-4b60-93a8-6d16b1da1a37","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кафетерий «Бульвар»"},"shortName":{"ru":"Бульвар"},"category":"foodservice.coffee","anchor_id":"b2b5326b-1651-4c54-a65d-69412b387606","hours":null,"phone":"+7 (812) 555-42-81","email":"dmts@spbstu.ru","website":"https://umto.spbstu.ru/Kafe_bufet/","correlation_id":null}},{"id":"7aa0156a-f1b3-4b4b-a6d7-1dc9dd604521","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 304"},"shortName":{"ru":"304"},"category":"classroom","anchor_id":"054c5006-6c99-47b6-94ee-034cc7bb041f","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"c75a2971-bcaa-402e-91e3-6ddd7f0ed429","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Лекторий 305"},"shortName":{"ru":"305"},"category":"auditorium","anchor_id":"d0e5ed65-fe3f-45be-b3f0-e13111785c1e","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"d230e72e-3521-43bc-bcbb-9ae1e1ca807c","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 327"},"shortName":{"ru":"327"},"category":"classroom","anchor_id":"77068a83-7119-4299-acfb-4c9fd8d370b8","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"2003e6fc-fae4-4645-bb81-3af38911a670","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Лекторий 329"},"shortName":{"ru":"329"},"category":"auditorium","anchor_id":"ab7bf24b-7aac-4994-b289-6fb917cd53ef","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"744bd2e4-0431-4119-8c24-daeb4bc3a400","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 346"},"shortName":{"ru":"346"},"category":"classroom","anchor_id":"df8e6eda-892b-4ae8-8ad1-ab162c1d76e5","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"e47ff8ea-c318-46f4-b0eb-2c3919463a99","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 351"},"shortName":{"ru":"351"},"category":"classroom","anchor_id":"60d8e930-5454-43a9-a14b-5ffe7ebeb5d3","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"3063cccd-1f85-40bb-a973-00177cece7f9","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 303"},"shortName":{"ru":"303"},"category":"classroom","anchor_id":"687b423e-434e-4cfe-8bc4-19906ab909e5","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"a97f005c-ef8b-4a99-8080-80cda0fa9818","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 301"},"shortName":{"ru":"301"},"category":"classroom","anchor_id":"f40d2614-a6d7-4cd7-9a37-5b16d40d969c","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"0aa3b8a2-8f4a-405a-abf8-98d66a6eba2e","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 315"},"shortName":{"ru":"315"},"category":"auditorium","anchor_id":"3d808ff6-73c2-4039-ba01-50b622c75543","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"06011086-2d91-4e63-b63a-642d341d3025","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 314"},"shortName":{"ru":"314"},"category":"auditorium","anchor_id":"a3060f15-1a79-4bed-9bba-51ca8d8fe880","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"ef5a4218-f9f7-42ee-9966-2ab0c23752a7","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 326"},"shortName":{"ru":"326"},"category":"auditorium","anchor_id":"d57a2403-2272-4e0b-b3d0-2ab3dcd45126","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"b0208e26-ccac-41fa-942e-157a7b310f9b","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 325"},"shortName":{"ru":"325"},"category":"auditorium","anchor_id":"e58cbe34-3ed2-4fbb-8d30-d965950a4b06","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"bf2fde24-aaab-4d6b-ac60-06447dd09427","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Лекторий 313"},"shortName":{"ru":"313"},"category":"auditorium","anchor_id":"75e60b59-748a-4eb0-9e0b-ec9abc29c505","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"3d1026e6-149d-4963-bf92-708cbad97c25","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Лекторий 324"},"shortName":{"ru":"324"},"category":"auditorium","anchor_id":"02e3e479-3aad-4bc4-ad5d-bdaf09201f72","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"4a79776a-c407-4fd4-aacc-c321c5a4dcc4","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 183"},"shortName":{"ru":"183"},"category":"classroom","anchor_id":"3cfab3f3-5fbb-4e1b-8abd-d19c1c0b5c6d","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"db58453c-1633-4b90-8f08-a5e53f76101e","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 184"},"shortName":{"ru":"184"},"category":"classroom","anchor_id":"e59c45e8-8ba8-4a4f-b7f4-e9594d9e0e25","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"e7eb1e29-d16a-4d93-bd12-fd49402900f0","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 170"},"shortName":{"ru":"170"},"category":"classroom","anchor_id":"c026a4ec-a44d-4584-9aaf-714c27a97e07","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"8da995cc-a31f-4efd-be44-1e9176239801","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 170б"},"shortName":{"ru":"170б"},"category":"classroom","anchor_id":"7d5d2455-b511-4ae7-9f72-6dabe612acf0","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"8f303161-0521-4c5e-a928-2d8669b01f94","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 171"},"shortName":{"ru":"171"},"category":"classroom","anchor_id":"f000fd03-5e39-41de-af25-c3c9ca21f415","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"c8819a99-0f30-46dc-a38d-e2f7830dfaa9","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 172"},"shortName":{"ru":"172"},"category":"classroom","anchor_id":"0baeeb93-9d43-484d-8415-d772493d0de7","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"e8171842-f7c9-4a34-a579-a0b9d5a4cec6","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 173"},"shortName":{"ru":"173"},"category":"classroom","anchor_id":"817f0d9e-0d63-4969-b7b3-a63409dc57c6","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"6deee278-a316-4b24-ba2f-4ac74c489dd6","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 174"},"shortName":{"ru":"174"},"category":"classroom","anchor_id":"18092f33-d37e-475a-8ae8-3f36f456111d","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"4a0e61f5-e999-4dcb-a465-7257846fe6f2","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 175"},"shortName":{"ru":"175"},"category":"classroom","anchor_id":"2852c99f-ecca-49e9-9dbd-558859f1ddd4","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"6c6601b8-134f-4595-81d0-9e8f577092c0","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 176"},"shortName":{"ru":"176"},"category":"classroom","anchor_id":"73339ae9-e9c7-4f57-879d-0b257e9f5d69","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"c21e9074-521a-48cb-b94e-b66eb7e9f8ca","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 177"},"shortName":{"ru":"177"},"category":"classroom","anchor_id":"e700aa24-d3d0-42b6-bfc7-8b73ec502149","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"12b0b4ec-3088-4df6-ac01-8d286e6bc7e1","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 178а"},"shortName":{"ru":"178а"},"category":"classroom","anchor_id":"dcd7c367-bf9d-40e7-b3c3-7bfae3119572","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"dcdc6f27-af93-4b0d-b669-2aed83cdd9a7","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 178"},"shortName":{"ru":"178"},"category":"classroom","anchor_id":"db36fca1-b879-4554-9f4a-81406d65bced","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"bcfd34b8-403e-4475-b21f-9c2b453619c0","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 181"},"shortName":{"ru":"181"},"category":"classroom","anchor_id":"2469dd26-7f4e-4099-a7ce-74763a2f125c","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"c0b44d01-034c-4bc6-818e-e1c72a4f2989","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 179"},"shortName":{"ru":"179"},"category":"classroom","anchor_id":"5d7cee4b-5f05-408b-a185-64d4abc3241c","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"d3eeffda-0faa-40ce-b7ae-468c5dc06e12","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 180"},"shortName":{"ru":"180"},"category":"classroom","anchor_id":"39477964-9174-4cac-9515-42a963ae33e0","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"7a995b86-42bd-40d5-ac48-095cd391bfa4","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 182"},"shortName":{"ru":"182"},"category":"classroom","anchor_id":"fb02aca6-8940-4284-9af7-6c32f4409879","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"b5ea5b4a-8f07-48f9-87b8-30141d8c6e41","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 186"},"shortName":{"ru":"186"},"category":"laboratory","anchor_id":"527f9200-3293-4453-ad1e-fef96d9c8043","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"ccb6a974-a5b3-4921-be21-a9401a9a1b95","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 186а"},"shortName":{"ru":"186а"},"category":"laboratory","anchor_id":"6df188a9-724d-416d-9076-a80c6c8d9d3f","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"84bc88e0-140e-4f94-bf67-0acfe961ad23","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 155"},"shortName":{"ru":"155"},"category":"laboratory","anchor_id":"88bf8045-2932-4ca4-bc72-2c3ba72693be","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"21d23a28-6c78-409c-b595-597b1118edcd","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Учебная библиотека"},"shortName":{"ru":"Библиотека"},"category":"unspecified","anchor_id":"8f51e275-09fd-421c-9229-afdda4c90e93","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"66ca96fc-6ee6-4aaa-b755-484ea4089271","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Гардероб"},"shortName":{"ru":"Гардероб"},"category":"wardrobe","anchor_id":"66ab4360-4836-4e08-be5c-e01516672639","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"95e287a6-14da-4d53-9fe2-3e073422d116","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Гардероб"},"shortName":{"ru":"Гардероб"},"category":"wardrobe","anchor_id":"87eeb090-4f31-4b95-8dbd-0e93a2e3b185","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"1f5dd53c-d1ca-408e-b6ca-9338899e98c1","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Магазиг"},"shortName":{"ru":"Магазин"},"category":"souvenirs","anchor_id":"691af80f-c2a3-4f70-b289-18efc49bfd8a","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"d27ff7ef-940b-4fbc-b5b2-9477e76d3d1e","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 159"},"shortName":{"ru":"159"},"category":"classroom","anchor_id":"70476bed-967a-4d57-8ff1-f0470bb2a950","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"b19b0960-9c45-4f47-b444-2940bdd97aab","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 157"},"shortName":{"ru":"157"},"category":"classroom","anchor_id":"33777dff-b773-4dd0-8e46-c0e45ee4f8e4","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"584038cf-db25-4b9d-bf62-48671de458ab","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 158"},"shortName":{"ru":"158"},"category":"classroom","anchor_id":"9af2bb64-51cc-4211-b5fb-74b15a6486f7","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"301aadac-1810-4ffa-9c7c-ecb523e8d234","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 163"},"shortName":{"ru":"163"},"category":"classroom","anchor_id":"510cbcad-6abf-45ca-bca7-9183f24345a0","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"d469942a-e4b7-4a43-919f-61906ee65565","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 162"},"shortName":{"ru":"162"},"category":"classroom","anchor_id":"1031ebd1-c3da-45b9-96dd-3fe2810b255d","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"5ccbee7a-bbe0-4606-a649-3c2b854a258d","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 150"},"shortName":{"ru":"150"},"category":"classroom","anchor_id":"a9a6e85b-05a8-4113-bc93-ab98d04ee301","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"7e4e5c7f-6f81-4db3-85d9-388b3da214e4","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 153"},"shortName":{"ru":"153"},"category":"classroom","anchor_id":"2b6d1fc9-7c5a-45b4-aec4-6c735382f1ad","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"29328734-29f0-4c10-a1c7-1d0c2dbba2f4","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 154"},"shortName":{"ru":"154"},"category":"classroom","anchor_id":"eb6e667d-8778-4e68-94ad-0922a69515d8","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"273d9ab1-0997-480e-bc7f-a94e03903570","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Выставочный зал"},"shortName":{"ru":"Выставочный зал"},"category":"unspecified","anchor_id":"597d4103-2595-4b4e-873d-9b4e574d2e39","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"772a11c9-1fe3-48c3-bd34-dc468902c45b","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 130"},"shortName":{"ru":"130"},"category":"classroom","anchor_id":"e3132e71-0972-4398-9635-87ee7a5f3eee","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"43385ea7-4950-4338-b25b-15e795ea285f","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Зал заседания ученого совета"},"shortName":{"ru":"Ученый совет"},"category":"unspecified","anchor_id":"06c16f15-119b-4fd4-96bb-1a4de2136837","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"95cef623-c306-45f5-8d4f-58466d1ddada","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Охрана"},"shortName":{"ru":"Охрана"},"category":"security","anchor_id":"20ecf048-35f9-4282-82e1-85779fa30737","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"0e1c5066-6a65-4105-9f30-fcaf1c397be1","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Ректорат"},"shortName":{"ru":"Ректорат"},"category":"administration","anchor_id":"468db45d-fed1-4cb6-ba7f-c6254c59714a","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"a2375687-2b42-46bb-90f9-eacb0a8c16f6","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 118"},"shortName":{"ru":"118"},"category":"classroom","anchor_id":"04e6fabd-0387-4477-952a-0672df207293","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"664c21d8-369e-4c85-8c6e-04f6e3e5416d","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 117"},"shortName":{"ru":"117"},"category":"classroom","anchor_id":"aed0f926-d0dd-4c42-a312-947010a34a64","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"df534be8-c838-4c27-bfa5-1a3f17443831","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 116"},"shortName":{"ru":"116"},"category":"classroom","anchor_id":"f8aa09cf-6b63-4f48-a25f-4a4913ab140e","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"ed87b63f-f71b-48a8-97ea-5a5be492e157","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Ректорат"},"shortName":{"ru":"Ректорат"},"category":"administration","anchor_id":"3477248a-af17-4d70-8901-65bc17ebbb2e","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"48ad0fed-44be-407e-bff1-f355aa97ca14","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 123"},"shortName":{"ru":"123"},"category":"classroom","anchor_id":"4e5114f3-d4e1-4140-b5d2-1f14fcfedfa3","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"e9217de8-6b96-44f5-99f4-fc166a38635c","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 122"},"shortName":{"ru":"122"},"category":"classroom","anchor_id":"ff85938f-872d-4bc8-86e6-efecbb1d1c39","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"83e3fe6e-8997-4fe9-bd70-af891102c577","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 101а"},"shortName":{"ru":"101а"},"category":"classroom","anchor_id":"0f177701-8d7e-4087-9d95-ea200eedaee9","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"17ae47e3-2e4e-45cf-b3c1-4ee476f771a1","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 101"},"shortName":{"ru":"101"},"category":"classroom","anchor_id":"8e4f407e-0550-40e1-bd83-9959eb9c0df5","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"01196e1c-65b5-4c08-b84d-18f18d4adced","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 109"},"shortName":{"ru":"109"},"category":"classroom","anchor_id":"8fa049c9-4839-48ef-86c0-dc1b7d9a4f8a","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"3f542d2c-69c2-4cb3-a26b-dc55958736a1","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 108"},"shortName":{"ru":"108"},"category":"classroom","anchor_id":"65bbf489-d0be-423e-a014-66814cab9eb7","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"9f2a4aeb-4ba2-4d9f-9949-20db24bb5dad","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 107"},"shortName":{"ru":"107"},"category":"classroom","anchor_id":"f05b79a2-deda-499f-8538-82db20b1b6c1","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"7144eace-b73d-4d8f-a0c8-a7febe7d91d4","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 106"},"shortName":{"ru":"106"},"category":"classroom","anchor_id":"663a817b-2146-457b-a456-9eb638566ca5","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"9579f48a-2ca3-4711-95ac-707c6f7f6ff5","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 105"},"shortName":{"ru":"105"},"category":"classroom","anchor_id":"0976bd8c-eb13-425e-b0cc-1ab463b9a70f","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"c4a566b6-4a6b-485e-88b1-01927426dbee","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 104"},"shortName":{"ru":"104"},"category":"classroom","anchor_id":"7b18a511-4763-4f5c-9a39-d444af17df73","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"2de58f55-56b0-4aaa-adb9-b5919fba908a","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 103"},"shortName":{"ru":"103"},"category":"classroom","anchor_id":"c18ae3a2-db0e-413b-9c06-971dfc20fa2a","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"3b7962a4-cba7-4820-89bd-48db6b7036c1","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Туалет женский"},"shortName":{"ru":"Туалет ж."},"category":"restroom.female","anchor_id":"bf6e87d4-f946-4193-982f-1e76960c8363","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"e29e9a6d-a6e8-4eba-b436-fea7b42a270a","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Туалет женский"},"shortName":{"ru":"Туалет ж."},"category":"restroom.female","anchor_id":"5f253a86-c4ea-4625-b036-9357579500e1","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"37f6d098-2ef1-4e64-bf9c-b33023ccb285","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Туалет женский"},"shortName":{"ru":"Туалет ж."},"category":"restroom.female","anchor_id":"eb19b72f-6823-4ced-bae4-a8a1b591b51a","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"b5f3c8f3-1220-49c8-89be-4c28aad7b9a0","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Туалет мужской"},"shortName":{"ru":"Туалет м."},"category":"restroom.male","anchor_id":"6904d7a8-675a-4179-bcb7-bd310fb86ceb","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"ffbec4d6-6aa1-4e00-99e7-57e6391c133b","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Туалет мужской"},"shortName":{"ru":"Туалет м."},"category":"restroom.male","anchor_id":"ff8046a4-d8aa-4639-9e8c-777d1f33f8d6","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"e18a7f7c-5561-482b-990e-90dd27c50166","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 165"},"shortName":{"ru":"165"},"category":"classroom","anchor_id":"f2642933-ad12-45ee-af3e-12ce0e4e4b58","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"d99fad50-d060-4bf0-89de-a7f78c42b95a","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 164"},"shortName":{"ru":"164"},"category":"classroom","anchor_id":"9194408a-0c90-4328-86b8-87cbc00fd608","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"b05259e1-fd64-4e2a-aa77-238a55fba65a","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 152"},"shortName":{"ru":"152"},"category":"classroom","anchor_id":"b6c4d2dc-c91c-4129-990e-edfe2a62669b","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"933c6e73-071b-494b-9db4-3385ff830744","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 151"},"shortName":{"ru":"151"},"category":"classroom","anchor_id":"941e15eb-fe44-4f4b-ab2f-db2fd57201bc","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"138d2a91-5256-4529-ab00-5c623856325a","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 161"},"shortName":{"ru":"161"},"category":"classroom","anchor_id":"227bc5fd-20c9-44ec-afd9-b8d4927cc750","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"3a8143b9-6ad9-47d6-82f1-a9f36b597d93","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 160"},"shortName":{"ru":"160"},"category":"classroom","anchor_id":"a07e328a-49db-4eea-a801-78948e144d77","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"d9a06fb9-c65a-447e-8b42-12405f3fa810","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 140"},"shortName":{"ru":"140"},"category":"classroom","anchor_id":"caba621e-4de1-4bb8-85c0-4a02e4fd8a3a","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"bc3d1789-66b2-434a-ba88-2693a6c16d6b","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 139"},"shortName":{"ru":"139"},"category":"classroom","anchor_id":"66dd8bdc-a5ef-4012-b2a6-6c177151c11d","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"68b0a01a-1e1c-47c4-a395-1ee67e788296","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 138"},"shortName":{"ru":"138"},"category":"classroom","anchor_id":"669785ff-0153-4545-a97d-75661b0545e5","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"1f4c67c4-9e8c-4c95-8f7a-e661e211adee","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 137"},"shortName":{"ru":"137"},"category":"classroom","anchor_id":"a97de4fd-08ed-4f09-8a5e-7cbf620870ef","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"6a4c4e6e-7efd-4893-9912-3cfd0bd3e0fe","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 136"},"shortName":{"ru":"136"},"category":"classroom","anchor_id":"aa75509e-911e-466d-854d-6a73575ac5d5","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"16b1064e-7b8e-4dbd-9480-2bdacac107b7","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 135"},"shortName":{"ru":"135"},"category":"classroom","anchor_id":"799ec42f-5aa8-42c2-9931-ffd0e83990be","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"0a579b43-cfc6-478b-9f99-4e7b14c96570","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 134"},"shortName":{"ru":"134"},"category":"classroom","anchor_id":"adeab76f-5a54-4d87-a5f8-b8fba35919a0","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"84ab6cc9-040c-4d76-a022-1dbda148dc69","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 124"},"shortName":{"ru":"124"},"category":"classroom","anchor_id":"c4384419-956a-4da8-b6d5-7ce1a24426cc","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"b24c7d1e-3dbb-423c-97cc-2c4af68e3511","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 125"},"shortName":{"ru":"125"},"category":"classroom","anchor_id":"979c4d7b-c0af-4699-a70b-769d804483d2","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"303e02de-fb9d-440f-b8c8-d832be091aef","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 126"},"shortName":{"ru":"126"},"category":"classroom","anchor_id":"9a8c712d-659b-4f54-8e5e-fc54bcd122a3","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"4fffce5c-6481-4afe-89b5-4f0a0c45cd8f","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 127"},"shortName":{"ru":"127"},"category":"classroom","anchor_id":"b569b0d9-3ad9-4ae1-b022-1203461c6e15","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}},{"id":"84379110-6635-46d9-a0cc-0f0f081fc69e","type":"Feature","feature_type":"occupant","geometry":null,"properties":{"name":{"ru":"Кабинет 128"},"shortName":{"ru":"128"},"category":"classroom","anchor_id":"26e5b4cc-0d0a-48e0-96e3-4efa4d3e55c7","hours":null,"phone":null,"email":null,"website":null,"correlation_id":null}}]}
+{
+    "type": "FeatureCollection",
+    "name": "occupant",
+    "features": [
+        {
+            "id": "646e7f32-be1e-46d3-bdb1-9d75d32b4e4e",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 304"
+                },
+                "shortName": {
+                    "ru": "304"
+                },
+                "category": "classroom",
+                "anchor_id": "eba0c621-a807-4afd-b555-df8b3c208624",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "79324b5e-8919-4bc0-be9e-4437b24d5ef6",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Лекторий 305"
+                },
+                "shortName": {
+                    "ru": "305"
+                },
+                "category": "auditorium",
+                "anchor_id": "726e0769-5bc9-4f72-a6a1-90c3b3c519d6",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "5b1f07df-020a-42a7-8539-8a63ef39c68f",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 327"
+                },
+                "shortName": {
+                    "ru": "327"
+                },
+                "category": "classroom",
+                "anchor_id": "08d56a15-bec8-4d7b-9db9-0bf162dade18",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "aa1022f4-6971-42b7-ae22-ae024ea277fb",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Лекторий 329"
+                },
+                "shortName": {
+                    "ru": "329"
+                },
+                "category": "auditorium",
+                "anchor_id": "565de1fd-f8dc-480c-a87b-df133f296004",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "feb2ed9a-8391-4a73-a9a9-f9d3c51e5e3f",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 346"
+                },
+                "shortName": {
+                    "ru": "346"
+                },
+                "category": "classroom",
+                "anchor_id": "a2b692ca-0ebd-47bb-83c9-cf47b8913a97",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "53acdf4f-9265-433f-85b8-40e5d1404f57",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 351"
+                },
+                "shortName": {
+                    "ru": "351"
+                },
+                "category": "classroom",
+                "anchor_id": "e7f84cae-db20-4a97-a7ff-05e6b31b3c51",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "5a4e1188-4995-4817-a4f1-84eec65d9a19",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 303"
+                },
+                "shortName": {
+                    "ru": "303"
+                },
+                "category": "classroom",
+                "anchor_id": "a85a3f8d-ebf1-4a1d-9205-968cbf961229",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "d0adcbb5-1849-4364-8e71-42471cc02b26",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 301"
+                },
+                "shortName": {
+                    "ru": "301"
+                },
+                "category": "classroom",
+                "anchor_id": "0382f4ca-f1c3-4285-969e-f3ed7410f3c7",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "0f451ec8-fff4-4a82-8821-638e6b686432",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 315"
+                },
+                "shortName": {
+                    "ru": "315"
+                },
+                "category": "auditorium",
+                "anchor_id": "e4c37fe0-3ef8-4e75-8a6f-a2e16fb88fc7",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "974c1ec5-c444-44b5-83b6-cf692c7f1444",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 314"
+                },
+                "shortName": {
+                    "ru": "314"
+                },
+                "category": "auditorium",
+                "anchor_id": "302b0f5e-c6f6-4d5d-b3c4-b761221555ca",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "d7a0f1cd-cb67-4426-9435-4c2986f9c4ac",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 326"
+                },
+                "shortName": {
+                    "ru": "326"
+                },
+                "category": "auditorium",
+                "anchor_id": "da430448-8f1c-4d50-9b31-8c3f66e83878",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "6b38da61-9c6a-4528-9e0d-878843ebd9f1",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 325"
+                },
+                "shortName": {
+                    "ru": "325"
+                },
+                "category": "auditorium",
+                "anchor_id": "c3043e71-74c2-4fb0-a061-5f351f89c501",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "84dd1ea0-5b5d-4b11-8481-dea57609ccb2",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Лекторий 313"
+                },
+                "shortName": {
+                    "ru": "313"
+                },
+                "category": "auditorium",
+                "anchor_id": "350ec684-5769-4757-b873-4263630fa347",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "697cce2f-b9ed-4b87-bc3c-7a8660a13ed3",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Лекторий 324"
+                },
+                "shortName": {
+                    "ru": "324"
+                },
+                "category": "auditorium",
+                "anchor_id": "a533136f-64cb-49fc-a1a4-13f72670ca81",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "1b815433-48ca-4dcf-99fc-a1e3f5713496",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 183"
+                },
+                "shortName": {
+                    "ru": "183"
+                },
+                "category": "classroom",
+                "anchor_id": "c9eb17ea-7a62-4bc7-9f4b-1e2ee9f10d69",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "fd853f95-d77e-4067-a709-c64a8bff36e0",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 184"
+                },
+                "shortName": {
+                    "ru": "184"
+                },
+                "category": "classroom",
+                "anchor_id": "343ad215-ac47-459f-ac11-6e7a06e99e21",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "f3c6c420-9062-484f-81f0-2a145845682c",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 170"
+                },
+                "shortName": {
+                    "ru": "170"
+                },
+                "category": "classroom",
+                "anchor_id": "2d8f1526-aa83-4adb-8e06-7c598f1fd639",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "72b8e9fd-2e0b-4c4d-89e0-71e78ad14b56",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 170б"
+                },
+                "shortName": {
+                    "ru": "170б"
+                },
+                "category": "classroom",
+                "anchor_id": "7825dfa2-c832-4bd0-b647-f29790f727ec",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "7e45804c-2dbf-4036-90f7-90e75699ed49",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 171"
+                },
+                "shortName": {
+                    "ru": "171"
+                },
+                "category": "classroom",
+                "anchor_id": "4fa0c173-2b6b-4ab8-85e3-2a75f4cff80d",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "c04cda9e-fe4f-4084-acf4-bd1bdd76799d",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 172"
+                },
+                "shortName": {
+                    "ru": "172"
+                },
+                "category": "classroom",
+                "anchor_id": "9b4cde61-49f9-4cbd-98b1-491cc8bd8744",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "c28eddd7-f4c3-429c-b127-369fa91fae2e",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 173"
+                },
+                "shortName": {
+                    "ru": "173"
+                },
+                "category": "classroom",
+                "anchor_id": "f9183b2c-7a3e-4e7a-bb7e-80055987aade",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "d3a86846-4974-4139-a4ee-a4edd86f092e",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 174"
+                },
+                "shortName": {
+                    "ru": "174"
+                },
+                "category": "classroom",
+                "anchor_id": "3eda852b-2a4d-40f9-9992-a660917e64ae",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "73d99da0-1273-4479-b260-9c282068870c",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 175"
+                },
+                "shortName": {
+                    "ru": "175"
+                },
+                "category": "classroom",
+                "anchor_id": "0aec8269-3a72-4b9a-b644-a73ced88e76e",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "4168d394-cce9-4695-87fe-3dc9901fef83",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 176"
+                },
+                "shortName": {
+                    "ru": "176"
+                },
+                "category": "classroom",
+                "anchor_id": "00643468-a08b-4f8f-a283-5da7fe7e8c8d",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "53c92539-8f9f-4667-9100-40ee7bbd94fc",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 177"
+                },
+                "shortName": {
+                    "ru": "177"
+                },
+                "category": "classroom",
+                "anchor_id": "6a2bc83c-b982-470a-8feb-1b449044ca21",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "59b11fc5-c814-4e07-8c9f-58ddbb90f6f5",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 178а"
+                },
+                "shortName": {
+                    "ru": "178а"
+                },
+                "category": "classroom",
+                "anchor_id": "0401f5b5-f3f5-4fc5-8692-c3f9606f60a9",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "e5ea7b26-50b8-4ec1-8846-c9d24b3a4de1",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 178"
+                },
+                "shortName": {
+                    "ru": "178"
+                },
+                "category": "classroom",
+                "anchor_id": "055adf21-cea7-42e5-9906-e921477c81ff",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "c306f08d-1e58-41fe-a5f8-7db658bb136c",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 181"
+                },
+                "shortName": {
+                    "ru": "181"
+                },
+                "category": "classroom",
+                "anchor_id": "1844b4f8-178f-4edd-b75f-cf24ebe4a3e6",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "fb378015-1e35-4650-ad49-7473e74a90a8",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 179"
+                },
+                "shortName": {
+                    "ru": "179"
+                },
+                "category": "classroom",
+                "anchor_id": "51888e1c-228f-4fcd-b24f-6eaca6228542",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "38ae69bb-c476-4573-a609-359fc8222fcf",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 180"
+                },
+                "shortName": {
+                    "ru": "180"
+                },
+                "category": "classroom",
+                "anchor_id": "33b52305-2f88-431d-a2c8-955c923a1de6",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "2a779950-fba7-4b42-a1c5-411e4b4bb36f",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 182"
+                },
+                "shortName": {
+                    "ru": "182"
+                },
+                "category": "classroom",
+                "anchor_id": "a6239a76-1c80-4d13-8033-1e16597dceb9",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "e822c609-7006-4da0-9f88-58a51bd1019b",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 186"
+                },
+                "shortName": {
+                    "ru": "186"
+                },
+                "category": "laboratory",
+                "anchor_id": "a5cab7f4-08a1-47c3-a7ad-dcca0fb5e2c0",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "0133d98f-55fd-4850-af4e-2e72fc3178ed",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 186а"
+                },
+                "shortName": {
+                    "ru": "186а"
+                },
+                "category": "laboratory",
+                "anchor_id": "c6d7d459-0856-4647-b89c-6bbd817b6655",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "79d3acbb-0637-4795-95ee-09a2fe7885ef",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 155"
+                },
+                "shortName": {
+                    "ru": "155"
+                },
+                "category": "laboratory",
+                "anchor_id": "5769d6d6-9cd3-4872-a9fc-6bf05ded86b3",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "3b84eb03-3cf0-41ed-b99a-e754457fc7c1",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Учебная библиотека"
+                },
+                "shortName": {
+                    "ru": "Библиотека"
+                },
+                "category": "unspecified",
+                "anchor_id": "e58f0b5a-dda7-4add-b090-263fc67caf3b",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "e025aa60-43fe-4d8d-a7cf-4f0a89ffc53f",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Гардероб"
+                },
+                "shortName": {
+                    "ru": "Гардероб"
+                },
+                "category": "wardrobe",
+                "anchor_id": "9ea09d97-394a-4d67-8cb4-38ad1b9b63fb",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "3411004c-8174-4e59-9385-ca6c47eee86f",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Гардероб"
+                },
+                "shortName": {
+                    "ru": "Гардероб"
+                },
+                "category": "wardrobe",
+                "anchor_id": "5e3d888a-fb76-4779-905e-7d8c93ff8824",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "717c02e1-787f-4bf7-8d95-479a0168c028",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Магазиг"
+                },
+                "shortName": {
+                    "ru": "Магазин"
+                },
+                "category": "souvenirs",
+                "anchor_id": "c6e9d744-dba1-4d84-a3ec-df4eac82aee9",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "71d0d4ee-59cf-4f10-975e-85255be8f0d1",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кафетерий «Бульвар»"
+                },
+                "shortName": {
+                    "ru": "Бульвар"
+                },
+                "category": "foodservice.coffee",
+                "anchor_id": "fb42f1fe-8c51-462e-9c14-478950fc841b",
+                "hours": null,
+                "phone": "+7 (812) 555-42-81",
+                "email": "dmts@spbstu.ru",
+                "website": "https://umto.spbstu.ru/Kafe_bufet/",
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "8db0d1ad-e269-4249-b046-11e8c0f1d330",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 159"
+                },
+                "shortName": {
+                    "ru": "159"
+                },
+                "category": "classroom",
+                "anchor_id": "5c408785-d9af-4d05-9d4e-8c5eb059be5b",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "8dd36f16-b77a-4b41-84bf-a92e97d398bd",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 157"
+                },
+                "shortName": {
+                    "ru": "157"
+                },
+                "category": "classroom",
+                "anchor_id": "5a89ef13-c584-4007-87b9-937221b76d40",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "20bf5db6-f62f-4aa9-a28f-13f646ebe141",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 158"
+                },
+                "shortName": {
+                    "ru": "158"
+                },
+                "category": "classroom",
+                "anchor_id": "26eb89e0-a276-44c9-b8dd-b17f09aba683",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "9b44f0a3-7c41-4613-b83c-e54e4becd77f",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 163"
+                },
+                "shortName": {
+                    "ru": "163"
+                },
+                "category": "classroom",
+                "anchor_id": "3790b0ff-d81f-497b-8834-77d2b9607cf5",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "ef773a9f-b9ae-4a19-9e7f-77a0668677b2",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 162"
+                },
+                "shortName": {
+                    "ru": "162"
+                },
+                "category": "classroom",
+                "anchor_id": "765c9892-61a6-4727-a368-ccb0871ebaa2",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "987aa70d-1241-4415-8694-d20bc2bf985b",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 150"
+                },
+                "shortName": {
+                    "ru": "150"
+                },
+                "category": "classroom",
+                "anchor_id": "35fbd08b-96f1-4c2e-b7bd-8a7d3a7f1d73",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "1507eac3-8740-475f-91b4-3c205cd841e9",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 153"
+                },
+                "shortName": {
+                    "ru": "153"
+                },
+                "category": "classroom",
+                "anchor_id": "6442ca09-ef3d-48b9-9500-d818492139fb",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "d792f7f6-4b5e-464a-a0bd-d61a539508a1",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 154"
+                },
+                "shortName": {
+                    "ru": "154"
+                },
+                "category": "classroom",
+                "anchor_id": "95ba25f0-f8da-4c47-904e-c6a0defc02f4",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "4d708630-086d-49a4-9b15-3bcf770cbb40",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Выставочный зал"
+                },
+                "shortName": {
+                    "ru": "Выставочный зал"
+                },
+                "category": "unspecified",
+                "anchor_id": "fd675ae8-2ee2-46a2-9134-5174df2ca915",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "24d2d02f-b231-440f-b6dd-b291359a85e7",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 130"
+                },
+                "shortName": {
+                    "ru": "130"
+                },
+                "category": "classroom",
+                "anchor_id": "30a61bc9-2eb5-46ba-81eb-f0986e59fa6c",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "b6722260-35c2-4c7d-8c0e-328a0cf2d987",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Зал заседания ученого совета"
+                },
+                "shortName": {
+                    "ru": "Ученый совет"
+                },
+                "category": "unspecified",
+                "anchor_id": "17824990-bb4b-4dda-b975-45f5ceaf1493",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "0bf960e0-179f-43b6-9a5c-267d52fa7c87",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Охрана"
+                },
+                "shortName": {
+                    "ru": "Охрана"
+                },
+                "category": "security",
+                "anchor_id": "5410f8e2-eb21-41b6-87cc-77a53d649f29",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "a673951f-a2dd-4c55-b900-0689cec76a68",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Ректорат"
+                },
+                "shortName": {
+                    "ru": "Ректорат"
+                },
+                "category": "administration",
+                "anchor_id": "79e53fb0-81bc-4c4c-96d5-d1f48eb104a0",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "48440567-5b1a-40be-b7fc-049983649239",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 118"
+                },
+                "shortName": {
+                    "ru": "118"
+                },
+                "category": "classroom",
+                "anchor_id": "39b27756-b9a3-4484-a3fc-3f7ce5fa9a4d",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "b27f7011-60c7-4be2-9456-e41e22da09f9",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 117"
+                },
+                "shortName": {
+                    "ru": "117"
+                },
+                "category": "classroom",
+                "anchor_id": "cb9e3f6c-ed8e-42ef-8c2f-050a8a1bf4c1",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "a6bb3e24-0a0d-4e1b-a8fd-dc4167c232d3",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 116"
+                },
+                "shortName": {
+                    "ru": "116"
+                },
+                "category": "classroom",
+                "anchor_id": "683bad4d-a58e-4703-8058-ad55697acd0e",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "2ffef567-643a-4011-bdfd-06def555242b",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Ректорат"
+                },
+                "shortName": {
+                    "ru": "Ректорат"
+                },
+                "category": "administration",
+                "anchor_id": "c9d04325-d4ca-4c52-94da-aa5f77b95c3d",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "19f31092-3fee-4c46-bc31-2f900b248fd0",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 123"
+                },
+                "shortName": {
+                    "ru": "123"
+                },
+                "category": "classroom",
+                "anchor_id": "a0961460-382f-4589-b056-3cbc3c5d93fc",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "f1e85b8c-2f9d-460d-830d-0ca63c965399",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 122"
+                },
+                "shortName": {
+                    "ru": "122"
+                },
+                "category": "classroom",
+                "anchor_id": "735feb0e-b786-4266-bf5b-e8bc91411d24",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "c016a83f-254e-43c6-afd3-7167a65808e3",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 101а"
+                },
+                "shortName": {
+                    "ru": "101а"
+                },
+                "category": "classroom",
+                "anchor_id": "fae94fdf-a459-4884-8f50-defe44e01e1b",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "d3674e55-4949-49ae-ad40-305d0159e15f",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 101"
+                },
+                "shortName": {
+                    "ru": "101"
+                },
+                "category": "classroom",
+                "anchor_id": "ee5f2d98-3ddf-416a-a53a-cee604c74c52",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "8b7ab399-3779-494c-b6bc-1d31d8ecdbb5",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 109"
+                },
+                "shortName": {
+                    "ru": "109"
+                },
+                "category": "classroom",
+                "anchor_id": "d25d6246-98fe-429d-906e-aa7e78304b34",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "63787f25-4d11-466b-b11f-c09b6726b900",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 108"
+                },
+                "shortName": {
+                    "ru": "108"
+                },
+                "category": "classroom",
+                "anchor_id": "45a6ed1c-e6bf-4ec6-bc5b-d7ad7740da25",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "d8a96476-d9a1-4e36-921f-982c40cb8a20",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 107"
+                },
+                "shortName": {
+                    "ru": "107"
+                },
+                "category": "classroom",
+                "anchor_id": "933aa611-d82a-4c66-9960-31d5c6e417c9",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "e1bc9be8-f6c5-48f6-b39b-9155f7e3314b",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 106"
+                },
+                "shortName": {
+                    "ru": "106"
+                },
+                "category": "classroom",
+                "anchor_id": "4ccc9040-3a10-47bc-b9f9-76a27bd12077",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "53b5f44c-8ea6-44af-bfa3-b1e98c6d2b26",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 105"
+                },
+                "shortName": {
+                    "ru": "105"
+                },
+                "category": "classroom",
+                "anchor_id": "db66b844-e92a-4331-bbd7-8fe01f1d384f",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "009f15d2-aab3-49fb-8cd9-d4ab66b1b206",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 104"
+                },
+                "shortName": {
+                    "ru": "104"
+                },
+                "category": "classroom",
+                "anchor_id": "5134f5af-178c-4e45-9b6e-3b2945f0405d",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "958f41b4-35f1-4460-a554-8bcd0059fb10",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 103"
+                },
+                "shortName": {
+                    "ru": "103"
+                },
+                "category": "classroom",
+                "anchor_id": "fc366d07-55cf-46ac-b830-2db1f419c82c",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "77547290-8a91-4c14-a632-3d7222dff301",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Туалет женский"
+                },
+                "shortName": {
+                    "ru": "Туалет ж."
+                },
+                "category": "restroom.female",
+                "anchor_id": "31dccdd0-4c3c-486e-a1fa-7f74b82fd09d",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "a9509a87-299f-4ff9-8d0f-f2ec09a01c08",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Туалет женский"
+                },
+                "shortName": {
+                    "ru": "Туалет ж."
+                },
+                "category": "restroom.female",
+                "anchor_id": "f130dc20-38de-48b7-b8b8-69e72307d123",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "63909714-c170-4ef8-8773-097cfda41173",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Туалет женский"
+                },
+                "shortName": {
+                    "ru": "Туалет ж."
+                },
+                "category": "restroom.female",
+                "anchor_id": "a8ed4ca7-092e-4016-ace3-8aa6d561c4b8",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "fb9f4d6d-6ab0-4dce-b11c-5354b51b0452",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Туалет мужской"
+                },
+                "shortName": {
+                    "ru": "Туалет м."
+                },
+                "category": "restroom.male",
+                "anchor_id": "bdbeddaf-d612-4a3f-a256-94c25d7bd431",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "9f5f7243-258f-449c-b433-5bdfea3d9510",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Туалет мужской"
+                },
+                "shortName": {
+                    "ru": "Туалет м."
+                },
+                "category": "restroom.male",
+                "anchor_id": "6ae3ec2b-5584-401f-a135-c67e4e2e1ca3",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "582187a6-7ab9-47e8-88d7-c06d040ffc06",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 165"
+                },
+                "shortName": {
+                    "ru": "165"
+                },
+                "category": "classroom",
+                "anchor_id": "66ca212d-347b-4537-8da4-a44011b5251e",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "41e3d87e-6b6c-466f-8553-c8060a544b2b",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 164"
+                },
+                "shortName": {
+                    "ru": "164"
+                },
+                "category": "classroom",
+                "anchor_id": "f0cf4be5-4d53-4e5c-9f54-093b4cb8b2a0",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "90a4e548-a2c7-4c78-9ae6-188dfab4172a",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 152"
+                },
+                "shortName": {
+                    "ru": "152"
+                },
+                "category": "classroom",
+                "anchor_id": "ce8e8492-1c67-4b73-b48b-8a0c4fcc96fc",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "0fadcc67-4952-43c6-b5ad-c4589644f201",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 151"
+                },
+                "shortName": {
+                    "ru": "151"
+                },
+                "category": "classroom",
+                "anchor_id": "9e625a18-297b-4f56-9ed5-0b74346ceb6f",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "0a0214b6-f9bb-4598-8ab4-3d9a9e00b241",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 161"
+                },
+                "shortName": {
+                    "ru": "161"
+                },
+                "category": "classroom",
+                "anchor_id": "f8401005-bded-4743-8a75-d9369a5e0cd7",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "97183cf1-af7f-4674-b1f9-471a64f7711c",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 160"
+                },
+                "shortName": {
+                    "ru": "160"
+                },
+                "category": "classroom",
+                "anchor_id": "f057fd9f-b29f-499d-8d31-7bd09b94c866",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "3b717113-bba6-4f50-8cae-db09f7257048",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 140"
+                },
+                "shortName": {
+                    "ru": "140"
+                },
+                "category": "classroom",
+                "anchor_id": "00eecc07-493a-4b60-9577-4154523469c4",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "1f683d42-bcd7-4173-99fa-c5bfccf00263",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 139"
+                },
+                "shortName": {
+                    "ru": "139"
+                },
+                "category": "classroom",
+                "anchor_id": "d778ba1b-f173-4fae-a511-9a828a7de647",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "fe3b3ffc-16eb-4345-b922-b0229f6df279",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 138"
+                },
+                "shortName": {
+                    "ru": "138"
+                },
+                "category": "classroom",
+                "anchor_id": "e37f9820-d137-46f9-9e7a-115381e1af61",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "26b65c0d-998c-48ff-9af2-98a2cbbdfea9",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 137"
+                },
+                "shortName": {
+                    "ru": "137"
+                },
+                "category": "classroom",
+                "anchor_id": "70f6e11f-5552-49eb-9962-e72463c76182",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "7ac9ac6a-7e73-48da-9f09-a99c8aa8b1ee",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 136"
+                },
+                "shortName": {
+                    "ru": "136"
+                },
+                "category": "classroom",
+                "anchor_id": "9ad874a5-5689-4871-af5c-41fe33781cb3",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "52778eed-0943-476d-9996-aa053b6c8bf0",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 135"
+                },
+                "shortName": {
+                    "ru": "135"
+                },
+                "category": "classroom",
+                "anchor_id": "b11ac4a1-5eb8-406d-8845-7a046a17aec8",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "c2bb85f5-c2ec-4274-9e83-a72f8f77f6d3",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 134"
+                },
+                "shortName": {
+                    "ru": "134"
+                },
+                "category": "classroom",
+                "anchor_id": "5c7ae5e7-2729-4ae7-9256-bf8345ce5abf",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "58a2f12b-758c-49af-88a4-052d919af163",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 124"
+                },
+                "shortName": {
+                    "ru": "124"
+                },
+                "category": "classroom",
+                "anchor_id": "796cf5ba-dfcd-4333-a5e6-c2a8455454ad",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "9c539361-f03e-4cbf-bf6c-b2a78f952253",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 125"
+                },
+                "shortName": {
+                    "ru": "125"
+                },
+                "category": "classroom",
+                "anchor_id": "e8b245f0-cb98-4557-bf37-1d05677b6dbe",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "f0250e4f-ceb3-4af4-92be-7c2b4f9bd9c3",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 126"
+                },
+                "shortName": {
+                    "ru": "126"
+                },
+                "category": "classroom",
+                "anchor_id": "f64769bd-e3d8-496e-b8c2-d11edd974312",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "eecfe07d-3e76-4c63-abd9-fc932f239e13",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 127"
+                },
+                "shortName": {
+                    "ru": "127"
+                },
+                "category": "classroom",
+                "anchor_id": "f97d4a77-a002-469e-959d-87ca7cadad9d",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        },
+        {
+            "id": "1e3a0cba-edbc-44af-a56f-3cc007568509",
+            "type": "Feature",
+            "feature_type": "occupant",
+            "geometry": null,
+            "properties": {
+                "name": {
+                    "ru": "Кабинет 128"
+                },
+                "shortName": {
+                    "ru": "128"
+                },
+                "category": "classroom",
+                "anchor_id": "2dc15cba-60d3-4c91-bcda-83217e29ec85",
+                "hours": null,
+                "phone": null,
+                "email": null,
+                "website": null,
+                "correlation_id": null
+            }
+        }
+    ]
+}

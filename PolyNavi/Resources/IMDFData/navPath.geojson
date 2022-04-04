@@ -1,0 +1,1892 @@
+{
+    "type": "FeatureCollection",
+    "name": "navPath",
+    "features": [
+        {
+            "id": "c940d79e-74a8-4834-a9fc-5d79b3f125e8",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371742573824612,
+                    60.00760974305561
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "583cc22a-8a98-4e20-aeb3-8f8ca5d7e742"
+                ]
+            }
+        },
+        {
+            "id": "65f80469-d3c3-4593-9e9a-fb0b6425b166",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371802146604487,
+                    60.007599553232716
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "a1a64f5d-2009-47dc-9b05-07fd55ce5760"
+                ]
+            }
+        },
+        {
+            "id": "45fb09ee-ba1e-4a22-9fbe-a8f40d8f5d65",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371973362065486,
+                    60.00754412946641
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "543b28d5-9215-4f74-b3c1-c5fa9cc8359a"
+                ]
+            }
+        },
+        {
+            "id": "543b28d5-9215-4f74-b3c1-c5fa9cc8359a",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371989375927519,
+                    60.007567529172839
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "039681ec-cc68-49d2-9c63-09ac908bf1ff",
+                    "45fb09ee-ba1e-4a22-9fbe-a8f40d8f5d65"
+                ]
+            }
+        },
+        {
+            "id": "b9f6269c-3be6-48a7-867c-baea68741e6e",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372176605069257,
+                    60.007535505112969
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "9083f095-897d-431d-95a6-13434df39c68"
+                ]
+            }
+        },
+        {
+            "id": "77e0f098-da85-4371-bb2f-2d5cef1ed1eb",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372240432982125,
+                    60.007524587720027
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "a7191652-bb14-4ded-8d51-dc9552489fde"
+                ]
+            }
+        },
+        {
+            "id": "b4644a05-c7e0-41a8-b72e-7f35a099a26c",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372304261148418,
+                    60.007513670327086
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "daa36854-28ce-48c9-9546-36fd4efd36aa"
+                ]
+            }
+        },
+        {
+            "id": "cbc2283b-6081-4f40-8d1f-4d20d12b10e4",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372368089019147,
+                    60.007502752934151
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "edd305cc-3993-4f20-8256-22b5679bec6a"
+                ]
+            }
+        },
+        {
+            "id": "f091fb66-fb21-4a35-99bf-d2c71e69e07e",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372431916868806,
+                    60.007491835541209
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "c0279d0b-c4f6-4321-8f28-3522f41595c2"
+                ]
+            }
+        },
+        {
+            "id": "c27bb39b-eda3-4bc4-8b0a-b7e0fc6f4f9d",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372491489985254,
+                    60.007481646267216
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "716e5e9e-703d-47cb-8b19-ad7796e14b5e"
+                ]
+            }
+        },
+        {
+            "id": "df9328de-7fa2-4d58-bf33-fe0d565d0d7d",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372557155280219,
+                    60.00747041462769
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "ab1a2792-bc64-4e55-8c87-49301c62a0e0"
+                ]
+            }
+        },
+        {
+            "id": "fa8cb8db-454a-4c46-ac2d-b78752423922",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.3715668024759,
+                    60.007678207369075
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "c46aad06-a4ab-483e-b757-6528d88eb9a1"
+                ]
+            }
+        },
+        {
+            "id": "c46aad06-a4ab-483e-b757-6528d88eb9a1",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37162215409964,
+                    60.007668739901646
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "3bfc9ea9-62c8-4c1c-ae24-01a0eca160f4",
+                    "fa8cb8db-454a-4c46-ac2d-b78752423922"
+                ]
+            }
+        },
+        {
+            "id": "3bfc9ea9-62c8-4c1c-ae24-01a0eca160f4",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371697756311946,
+                    60.0076558083116
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "583cc22a-8a98-4e20-aeb3-8f8ca5d7e742",
+                    "c46aad06-a4ab-483e-b757-6528d88eb9a1"
+                ]
+            }
+        },
+        {
+            "id": "583cc22a-8a98-4e20-aeb3-8f8ca5d7e742",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.3717660988264,
+                    60.007644118887526
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "a1a64f5d-2009-47dc-9b05-07fd55ce5760",
+                    "3bfc9ea9-62c8-4c1c-ae24-01a0eca160f4",
+                    "c940d79e-74a8-4834-a9fc-5d79b3f125e8"
+                ]
+            }
+        },
+        {
+            "id": "a1a64f5d-2009-47dc-9b05-07fd55ce5760",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371825671633573,
+                    60.007633929613533
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "039681ec-cc68-49d2-9c63-09ac908bf1ff",
+                    "583cc22a-8a98-4e20-aeb3-8f8ca5d7e742",
+                    "65f80469-d3c3-4593-9e9a-fb0b6425b166"
+                ]
+            }
+        },
+        {
+            "id": "039681ec-cc68-49d2-9c63-09ac908bf1ff",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372015016601686,
+                    60.00760154327812
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "9083f095-897d-431d-95a6-13434df39c68",
+                    "a1a64f5d-2009-47dc-9b05-07fd55ce5760",
+                    "543b28d5-9215-4f74-b3c1-c5fa9cc8359a"
+                ]
+            }
+        },
+        {
+            "id": "9083f095-897d-431d-95a6-13434df39c68",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372200129995708,
+                    60.007569880944885
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "a7191652-bb14-4ded-8d51-dc9552489fde",
+                    "039681ec-cc68-49d2-9c63-09ac908bf1ff",
+                    "b9f6269c-3be6-48a7-867c-baea68741e6e"
+                ]
+            }
+        },
+        {
+            "id": "a7191652-bb14-4ded-8d51-dc9552489fde",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37226395793785,
+                    60.0075589638264
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "daa36854-28ce-48c9-9546-36fd4efd36aa",
+                    "9083f095-897d-431d-95a6-13434df39c68",
+                    "77e0f098-da85-4371-bb2f-2d5cef1ed1eb"
+                ]
+            }
+        },
+        {
+            "id": "daa36854-28ce-48c9-9546-36fd4efd36aa",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372327786407944,
+                    60.007548046159
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "edd305cc-3993-4f20-8256-22b5679bec6a",
+                    "a7191652-bb14-4ded-8d51-dc9552489fde",
+                    "b4644a05-c7e0-41a8-b72e-7f35a099a26c"
+                ]
+            }
+        },
+        {
+            "id": "edd305cc-3993-4f20-8256-22b5679bec6a",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372391614307947,
+                    60.007537129040514
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "c0279d0b-c4f6-4321-8f28-3522f41595c2",
+                    "daa36854-28ce-48c9-9546-36fd4efd36aa",
+                    "cbc2283b-6081-4f40-8d1f-4d20d12b10e4"
+                ]
+            }
+        },
+        {
+            "id": "c0279d0b-c4f6-4321-8f28-3522f41595c2",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37245544218688,
+                    60.007526211922027
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "716e5e9e-703d-47cb-8b19-ad7796e14b5e",
+                    "edd305cc-3993-4f20-8256-22b5679bec6a",
+                    "f091fb66-fb21-4a35-99bf-d2c71e69e07e"
+                ]
+            }
+        },
+        {
+            "id": "716e5e9e-703d-47cb-8b19-ad7796e14b5e",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372515015330691,
+                    60.007516022099132
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "ab1a2792-bc64-4e55-8c87-49301c62a0e0",
+                    "c0279d0b-c4f6-4321-8f28-3522f41595c2",
+                    "c27bb39b-eda3-4bc4-8b0a-b7e0fc6f4f9d"
+                ]
+            }
+        },
+        {
+            "id": "ab1a2792-bc64-4e55-8c87-49301c62a0e0",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372580680655794,
+                    60.007504790459606
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "c766f23a-dfac-4399-b9ce-848f1b8dc09c",
+                    "716e5e9e-703d-47cb-8b19-ad7796e14b5e",
+                    "df9328de-7fa2-4d58-bf33-fe0d565d0d7d"
+                ]
+            }
+        },
+        {
+            "id": "c766f23a-dfac-4399-b9ce-848f1b8dc09c",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372825411041429,
+                    60.007462550778428
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "d030f0ba-aaa6-400b-b50b-85f63ef5ee7a",
+                    "ab1a2792-bc64-4e55-8c87-49301c62a0e0"
+                ]
+            }
+        },
+        {
+            "id": "d030f0ba-aaa6-400b-b50b-85f63ef5ee7a",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372972462205933,
+                    60.007423318807575
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "3ff8492e-676b-4cb2-bbad-1c625cec6a2f",
+                    "c766f23a-dfac-4399-b9ce-848f1b8dc09c"
+                ]
+            }
+        },
+        {
+            "id": "3ff8492e-676b-4cb2-bbad-1c625cec6a2f",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372915886589741,
+                    60.00733776826231
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "ea7551e5-5f88-439c-bbef-6d9809a7b0eb",
+                    "d030f0ba-aaa6-400b-b50b-85f63ef5ee7a"
+                ]
+            }
+        },
+        {
+            "id": "ea7551e5-5f88-439c-bbef-6d9809a7b0eb",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37284623266272,
+                    60.007249879942016
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "08e9e2da-70ab-4b9a-9717-04b4f993ed0c",
+                    "3ff8492e-676b-4cb2-bbad-1c625cec6a2f"
+                ]
+            }
+        },
+        {
+            "id": "08e9e2da-70ab-4b9a-9717-04b4f993ed0c",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37282700499874,
+                    60.007221783278332
+                ]
+            },
+            "properties": {
+                "level_id": "5ed572b9-5585-42bd-b348-deae1b5cf585",
+                "builing_id": "da543787-4b01-45ba-91a8-ae635f55c11c",
+                "neighbours": [
+                    "ea7551e5-5f88-439c-bbef-6d9809a7b0eb"
+                ]
+            }
+        },
+        {
+            "id": "cd77df0c-2668-4740-ad8f-e8e583963651",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370479543055456,
+                    60.007424653738049
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "ee5167b5-277d-42c8-b53a-8315d76d87b3",
+                    "317650d7-5512-49ab-a142-1cc9bfe5d750",
+                    "362b066c-a698-4667-ab7b-33be5af9ad47",
+                    "bb3c2152-0944-4fc8-a0a3-73c28ab418aa"
+                ]
+            }
+        },
+        {
+            "id": "ee5167b5-277d-42c8-b53a-8315d76d87b3",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370536836583117,
+                    60.00750457666215
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "eca09ac9-9b4e-43bb-abdc-809389643df9",
+                    "cd77df0c-2668-4740-ad8f-e8e583963651",
+                    "b77b7621-9906-492c-b1c5-cd4419820586"
+                ]
+            }
+        },
+        {
+            "id": "77d030c8-3f5e-476d-be72-efcca7e27077",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370083610783695,
+                    60.0081192251436
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "b45d9f3e-b21f-41b1-851e-70e4628f3570",
+                    "ebc18e05-d729-4fed-a6ed-f06decc6648c"
+                ]
+            }
+        },
+        {
+            "id": "332562fb-51dd-4c03-841a-8a2f0cf39b7c",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370838468270481,
+                    60.008640825073932
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "98ec3339-12ba-454c-8afa-7593080b5ec0",
+                    "f711ade8-153f-451b-acde-4c46c35b46be",
+                    "01c8ba18-e225-41af-ae2f-443eef09ae94"
+                ]
+            }
+        },
+        {
+            "id": "ae5bf50a-a941-43fb-b491-9711e5fa2612",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371094175660986,
+                    60.008421575917524
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "f711ade8-153f-451b-acde-4c46c35b46be",
+                    "1dfac02b-3021-4b3e-8b67-b7060d92c29b",
+                    "98ec3339-12ba-454c-8afa-7593080b5ec0"
+                ]
+            }
+        },
+        {
+            "id": "3418e04f-6cfc-46af-950f-378fc3ca479b",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371358462998352,
+                    60.008592785141808
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "3e5b2ce7-4e5c-4a27-ba07-fd46879653a4"
+                ]
+            }
+        },
+        {
+            "id": "3e5b2ce7-4e5c-4a27-ba07-fd46879653a4",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371312471374218,
+                    60.008600920423277
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "f711ade8-153f-451b-acde-4c46c35b46be",
+                    "3418e04f-6cfc-46af-950f-378fc3ca479b"
+                ]
+            }
+        },
+        {
+            "id": "f711ade8-153f-451b-acde-4c46c35b46be",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371202816689816,
+                    60.008583516377023
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "3e5b2ce7-4e5c-4a27-ba07-fd46879653a4",
+                    "ae5bf50a-a941-43fb-b491-9711e5fa2612",
+                    "98ec3339-12ba-454c-8afa-7593080b5ec0",
+                    "332562fb-51dd-4c03-841a-8a2f0cf39b7c"
+                ]
+            }
+        },
+        {
+            "id": "bf20cf39-757c-4688-926d-80fe9e092d41",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370412708313605,
+                    60.008962970363761
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "d239a163-8731-40eb-bdcf-289a73f4f731"
+                ]
+            }
+        },
+        {
+            "id": "b113a82a-76ef-453c-aa28-026f8068851c",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.369793196065739,
+                    60.008924026292185
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "27644428-7225-4a7c-ae92-77e9bb808b26",
+                    "c186b580-a604-4039-861b-f482ab60e080"
+                ]
+            }
+        },
+        {
+            "id": "27644428-7225-4a7c-ae92-77e9bb808b26",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370007183628989,
+                    60.0088269984736
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "d239a163-8731-40eb-bdcf-289a73f4f731",
+                    "b113a82a-76ef-453c-aa28-026f8068851c",
+                    "c186b580-a604-4039-861b-f482ab60e080"
+                ]
+            }
+        },
+        {
+            "id": "d239a163-8731-40eb-bdcf-289a73f4f731",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370310915236335,
+                    60.00881741079656
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "01c8ba18-e225-41af-ae2f-443eef09ae94",
+                    "27644428-7225-4a7c-ae92-77e9bb808b26",
+                    "bf20cf39-757c-4688-926d-80fe9e092d41"
+                ]
+            }
+        },
+        {
+            "id": "01c8ba18-e225-41af-ae2f-443eef09ae94",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370302196469794,
+                    60.008737294109942
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "d740252e-51e6-42d8-92e1-3524e37c2325",
+                    "d239a163-8731-40eb-bdcf-289a73f4f731",
+                    "332562fb-51dd-4c03-841a-8a2f0cf39b7c"
+                ]
+            }
+        },
+        {
+            "id": "d740252e-51e6-42d8-92e1-3524e37c2325",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370185955610239,
+                    60.008569460634995
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "5845c5c9-f882-4a30-91c3-8e72ba64cc11",
+                    "4e662254-4188-45bc-8388-7cd73ab7c803",
+                    "01c8ba18-e225-41af-ae2f-443eef09ae94",
+                    "708cb096-c716-47ea-94a2-ed36eb2b5d52"
+                ]
+            }
+        },
+        {
+            "id": "317650d7-5512-49ab-a142-1cc9bfe5d750",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370399590236904,
+                    60.007302108822294
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "bb3c2152-0944-4fc8-a0a3-73c28ab418aa",
+                    "362b066c-a698-4667-ab7b-33be5af9ad47",
+                    "d3282974-636f-401e-afa7-079df763b203",
+                    "6a804500-2bee-41cd-ab30-c40c7d724d08",
+                    "cd77df0c-2668-4740-ad8f-e8e583963651"
+                ]
+            }
+        },
+        {
+            "id": "eca09ac9-9b4e-43bb-abdc-809389643df9",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370724383024719,
+                    60.00778005400123
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "b0a0e6e1-e51e-4ce4-9eb2-f6f0d1fed49a",
+                    "ee5167b5-277d-42c8-b53a-8315d76d87b3"
+                ]
+            }
+        },
+        {
+            "id": "b0a0e6e1-e51e-4ce4-9eb2-f6f0d1fed49a",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370745754680996,
+                    60.007810745326239
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "490496dc-40bb-4f78-b73f-fe0ff3394c2b",
+                    "eca09ac9-9b4e-43bb-abdc-809389643df9"
+                ]
+            }
+        },
+        {
+            "id": "490496dc-40bb-4f78-b73f-fe0ff3394c2b",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370771415647503,
+                    60.007848782062261
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "2be7c0f8-b39d-4d3a-bf63-9a2ff4948bf4",
+                    "b0a0e6e1-e51e-4ce4-9eb2-f6f0d1fed49a"
+                ]
+            }
+        },
+        {
+            "id": "2be7c0f8-b39d-4d3a-bf63-9a2ff4948bf4",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370888415797879,
+                    60.008019214589744
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "3b5bb6f4-2026-408e-a3ef-8a7ebe582bdd",
+                    "490496dc-40bb-4f78-b73f-fe0ff3394c2b",
+                    "6329b365-e1a4-43e3-b00b-2ab7ba5e909e"
+                ]
+            }
+        },
+        {
+            "id": "3b5bb6f4-2026-408e-a3ef-8a7ebe582bdd",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370930631830216,
+                    60.008080904625075
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "1dfac02b-3021-4b3e-8b67-b7060d92c29b",
+                    "2be7c0f8-b39d-4d3a-bf63-9a2ff4948bf4",
+                    "6329b365-e1a4-43e3-b00b-2ab7ba5e909e"
+                ]
+            }
+        },
+        {
+            "id": "1dfac02b-3021-4b3e-8b67-b7060d92c29b",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371009242074543,
+                    60.008195775611775
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "98ec3339-12ba-454c-8afa-7593080b5ec0",
+                    "3b5bb6f4-2026-408e-a3ef-8a7ebe582bdd",
+                    "ae5bf50a-a941-43fb-b491-9711e5fa2612",
+                    "9913c32d-9115-42bc-b4ec-91a2395d2455"
+                ]
+            }
+        },
+        {
+            "id": "98ec3339-12ba-454c-8afa-7593080b5ec0",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370882478627031,
+                    60.008455080366986
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "3512b8d5-0786-4767-8acc-f6a0f68c4a39",
+                    "1dfac02b-3021-4b3e-8b67-b7060d92c29b",
+                    "ae5bf50a-a941-43fb-b491-9711e5fa2612",
+                    "f711ade8-153f-451b-acde-4c46c35b46be",
+                    "332562fb-51dd-4c03-841a-8a2f0cf39b7c"
+                ]
+            }
+        },
+        {
+            "id": "3512b8d5-0786-4767-8acc-f6a0f68c4a39",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370742074789145,
+                    60.008479454923958
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "4e662254-4188-45bc-8388-7cd73ab7c803",
+                    "98ec3339-12ba-454c-8afa-7593080b5ec0"
+                ]
+            }
+        },
+        {
+            "id": "4e662254-4188-45bc-8388-7cd73ab7c803",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37042401141996,
+                    60.008531879487911
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "9913c32d-9115-42bc-b4ec-91a2395d2455",
+                    "3512b8d5-0786-4767-8acc-f6a0f68c4a39",
+                    "d740252e-51e6-42d8-92e1-3524e37c2325",
+                    "e695a476-baba-4716-b317-29a92ed9fcc4"
+                ]
+            }
+        },
+        {
+            "id": "6329b365-e1a4-43e3-b00b-2ab7ba5e909e",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370867810839595,
+                    60.008065511208066
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "9913c32d-9115-42bc-b4ec-91a2395d2455",
+                    "2be7c0f8-b39d-4d3a-bf63-9a2ff4948bf4",
+                    "3b5bb6f4-2026-408e-a3ef-8a7ebe582bdd"
+                ]
+            }
+        },
+        {
+            "id": "9913c32d-9115-42bc-b4ec-91a2395d2455",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370661303169534,
+                    60.008271853475037
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "708cb096-c716-47ea-94a2-ed36eb2b5d52",
+                    "6329b365-e1a4-43e3-b00b-2ab7ba5e909e",
+                    "4e662254-4188-45bc-8388-7cd73ab7c803",
+                    "1dfac02b-3021-4b3e-8b67-b7060d92c29b"
+                ]
+            }
+        },
+        {
+            "id": "708cb096-c716-47ea-94a2-ed36eb2b5d52",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370272482497853,
+                    60.008339345408018
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "9913c32d-9115-42bc-b4ec-91a2395d2455",
+                    "e695a476-baba-4716-b317-29a92ed9fcc4",
+                    "ab79af9c-db5d-41f8-8956-1973319c4c7d",
+                    "5845c5c9-f882-4a30-91c3-8e72ba64cc11",
+                    "d740252e-51e6-42d8-92e1-3524e37c2325"
+                ]
+            }
+        },
+        {
+            "id": "8c98a7a1-351f-488c-b6d0-c4ba30715a27",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372337573498864,
+                    60.008227490639634
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "23acaf76-529b-49d9-8e96-788aa9ff3540"
+                ]
+            }
+        },
+        {
+            "id": "23acaf76-529b-49d9-8e96-788aa9ff3540",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372013653927411,
+                    60.008275952128749
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "3450a174-f999-4936-8a4a-f7da9d04bb30",
+                    "8c98a7a1-351f-488c-b6d0-c4ba30715a27"
+                ]
+            }
+        },
+        {
+            "id": "3450a174-f999-4936-8a4a-f7da9d04bb30",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371492550071444,
+                    60.008360238826391
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "09763125-e5d6-4ba5-9763-adcbe89d94a5",
+                    "23acaf76-529b-49d9-8e96-788aa9ff3540"
+                ]
+            }
+        },
+        {
+            "id": "09763125-e5d6-4ba5-9763-adcbe89d94a5",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371367672766638,
+                    60.008344188373293
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "342b86af-1905-42eb-82bf-f7f9d6263da6",
+                    "3450a174-f999-4936-8a4a-f7da9d04bb30"
+                ]
+            }
+        },
+        {
+            "id": "342b86af-1905-42eb-82bf-f7f9d6263da6",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370974467983917,
+                    60.0077730104865
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "23b12468-87d1-4d83-b8e9-aa57bd4847f6",
+                    "09763125-e5d6-4ba5-9763-adcbe89d94a5"
+                ]
+            }
+        },
+        {
+            "id": "23b12468-87d1-4d83-b8e9-aa57bd4847f6",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.3709012920816,
+                    60.007667728274647
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "4d8b606b-1b9c-4eda-ba6a-7cd301295f1a",
+                    "342b86af-1905-42eb-82bf-f7f9d6263da6"
+                ]
+            }
+        },
+        {
+            "id": "478b58e0-45c7-477b-b3e2-9dc96ab085e4",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371826696922575,
+                    60.007016283850895
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "709d30d0-842e-480f-ba92-98bfdea6c762",
+                    "724e58a7-2c98-4233-b6d7-8f0bab99884a"
+                ]
+            }
+        },
+        {
+            "id": "ce943372-802b-449d-a2e4-01120e369238",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372514250510388,
+                    60.007179506546244
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "709d30d0-842e-480f-ba92-98bfdea6c762",
+                    "e6ba202b-7c02-4ce3-b4df-f9869af649f3"
+                ]
+            }
+        },
+        {
+            "id": "709d30d0-842e-480f-ba92-98bfdea6c762",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37234187627033,
+                    60.006933810452104
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "d60730eb-9aa6-4dc1-9da2-88cf661d2b8c",
+                    "ce943372-802b-449d-a2e4-01120e369238",
+                    "478b58e0-45c7-477b-b3e2-9dc96ab085e4"
+                ]
+            }
+        },
+        {
+            "id": "d60730eb-9aa6-4dc1-9da2-88cf661d2b8c",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372622840085992,
+                    60.006888575685352
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "f1ef38b2-3713-4c24-8214-e99aedf412ce",
+                    "709d30d0-842e-480f-ba92-98bfdea6c762"
+                ]
+            }
+        },
+        {
+            "id": "f1ef38b2-3713-4c24-8214-e99aedf412ce",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372845225250884,
+                    60.007199099066092
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "b22575ba-c373-4b26-a874-67268ac6f11a",
+                    "d60730eb-9aa6-4dc1-9da2-88cf661d2b8c"
+                ]
+            }
+        },
+        {
+            "id": "b22575ba-c373-4b26-a874-67268ac6f11a",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372725590528219,
+                    60.007218150368246
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "e6ba202b-7c02-4ce3-b4df-f9869af649f3",
+                    "f1ef38b2-3713-4c24-8214-e99aedf412ce"
+                ]
+            }
+        },
+        {
+            "id": "e6ba202b-7c02-4ce3-b4df-f9869af649f3",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372526453736921,
+                    60.007230338195633
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "7bc6cae9-3507-4f1a-aa49-168f379eca7d",
+                    "b22575ba-c373-4b26-a874-67268ac6f11a",
+                    "ce943372-802b-449d-a2e4-01120e369238"
+                ]
+            }
+        },
+        {
+            "id": "7bc6cae9-3507-4f1a-aa49-168f379eca7d",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372344307459464,
+                    60.007221980608719
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "c12573d6-aca1-4dbb-a200-313018e7114d",
+                    "e6ba202b-7c02-4ce3-b4df-f9869af649f3"
+                ]
+            }
+        },
+        {
+            "id": "c12573d6-aca1-4dbb-a200-313018e7114d",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372193250431174,
+                    60.007203365958375
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "950e67fd-ad38-4dd2-b81e-54cfbc9f8531",
+                    "7bc6cae9-3507-4f1a-aa49-168f379eca7d"
+                ]
+            }
+        },
+        {
+            "id": "950e67fd-ad38-4dd2-b81e-54cfbc9f8531",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.372035143856404,
+                    60.007166200055906
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "1aadded2-1818-4a6b-a52b-e4abd8d65027",
+                    "c12573d6-aca1-4dbb-a200-313018e7114d"
+                ]
+            }
+        },
+        {
+            "id": "1aadded2-1818-4a6b-a52b-e4abd8d65027",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371942208670141,
+                    60.007137645333223
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "724e58a7-2c98-4233-b6d7-8f0bab99884a",
+                    "950e67fd-ad38-4dd2-b81e-54cfbc9f8531"
+                ]
+            }
+        },
+        {
+            "id": "724e58a7-2c98-4233-b6d7-8f0bab99884a",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37174855754251,
+                    60.007042351497105
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "51704045-ec97-464e-8807-6c1daf822cf9",
+                    "1aadded2-1818-4a6b-a52b-e4abd8d65027",
+                    "478b58e0-45c7-477b-b3e2-9dc96ab085e4"
+                ]
+            }
+        },
+        {
+            "id": "51704045-ec97-464e-8807-6c1daf822cf9",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371650202486375,
+                    60.006964626103496
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "1254aa4b-73d2-4015-a26f-13f2618bed7f",
+                    "724e58a7-2c98-4233-b6d7-8f0bab99884a"
+                ]
+            }
+        },
+        {
+            "id": "1254aa4b-73d2-4015-a26f-13f2618bed7f",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.371470949641434,
+                    60.00695224533694
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "d9716c68-9011-42a4-98a5-781c859775bd",
+                    "51704045-ec97-464e-8807-6c1daf822cf9"
+                ]
+            }
+        },
+        {
+            "id": "d9716c68-9011-42a4-98a5-781c859775bd",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370563813105964,
+                    60.007111638889619
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "4d8b606b-1b9c-4eda-ba6a-7cd301295f1a",
+                    "1254aa4b-73d2-4015-a26f-13f2618bed7f"
+                ]
+            }
+        },
+        {
+            "id": "63e86f48-e9e2-4eaf-99fd-e359b7c80bd3",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370408788088536,
+                    60.007053122607573
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "4d8b606b-1b9c-4eda-ba6a-7cd301295f1a"
+                ]
+            }
+        },
+        {
+            "id": "fb63f067-caaa-4b35-b782-7ff028559647",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370068201705156,
+                    60.007102154131765
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "6a804500-2bee-41cd-ab30-c40c7d724d08"
+                ]
+            }
+        },
+        {
+            "id": "6a804500-2bee-41cd-ab30-c40c7d724d08",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370140057948408,
+                    60.007241811077733
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "bb3c2152-0944-4fc8-a0a3-73c28ab418aa",
+                    "fb63f067-caaa-4b35-b782-7ff028559647",
+                    "d3282974-636f-401e-afa7-079df763b203",
+                    "317650d7-5512-49ab-a142-1cc9bfe5d750"
+                ]
+            }
+        },
+        {
+            "id": "bb3c2152-0944-4fc8-a0a3-73c28ab418aa",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.3701678881834,
+                    60.007329727392047
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "362b066c-a698-4667-ab7b-33be5af9ad47",
+                    "6a804500-2bee-41cd-ab30-c40c7d724d08",
+                    "317650d7-5512-49ab-a142-1cc9bfe5d750",
+                    "d3282974-636f-401e-afa7-079df763b203",
+                    "cd77df0c-2668-4740-ad8f-e8e583963651"
+                ]
+            }
+        },
+        {
+            "id": "362b066c-a698-4667-ab7b-33be5af9ad47",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370161740931941,
+                    60.007430999872362
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "b77b7621-9906-492c-b1c5-cd4419820586",
+                    "bb3c2152-0944-4fc8-a0a3-73c28ab418aa",
+                    "317650d7-5512-49ab-a142-1cc9bfe5d750",
+                    "cd77df0c-2668-4740-ad8f-e8e583963651"
+                ]
+            }
+        },
+        {
+            "id": "b77b7621-9906-492c-b1c5-cd4419820586",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370146107909491,
+                    60.007483212834472
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "b45d9f3e-b21f-41b1-851e-70e4628f3570",
+                    "362b066c-a698-4667-ab7b-33be5af9ad47",
+                    "ee5167b5-277d-42c8-b53a-8315d76d87b3"
+                ]
+            }
+        },
+        {
+            "id": "b45d9f3e-b21f-41b1-851e-70e4628f3570",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.370015777387696,
+                    60.0080745335157
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "ebc18e05-d729-4fed-a6ed-f06decc6648c",
+                    "b77b7621-9906-492c-b1c5-cd4419820586",
+                    "77d030c8-3f5e-476d-be72-efcca7e27077"
+                ]
+            }
+        },
+        {
+            "id": "ebc18e05-d729-4fed-a6ed-f06decc6648c",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.369998255772455,
+                    60.008149732586332
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "e603ae99-ab81-4811-affc-ed194d3c44d4",
+                    "b45d9f3e-b21f-41b1-851e-70e4628f3570",
+                    "77d030c8-3f5e-476d-be72-efcca7e27077"
+                ]
+            }
+        },
+        {
+            "id": "e603ae99-ab81-4811-affc-ed194d3c44d4",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.369962044035368,
+                    60.008307873543885
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "e695a476-baba-4716-b317-29a92ed9fcc4",
+                    "ebc18e05-d729-4fed-a6ed-f06decc6648c"
+                ]
+            }
+        },
+        {
+            "id": "e695a476-baba-4716-b317-29a92ed9fcc4",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.369953561497621,
+                    60.008383682445007
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "ab79af9c-db5d-41f8-8956-1973319c4c7d",
+                    "e603ae99-ab81-4811-affc-ed194d3c44d4",
+                    "4e662254-4188-45bc-8388-7cd73ab7c803",
+                    "708cb096-c716-47ea-94a2-ed36eb2b5d52"
+                ]
+            }
+        },
+        {
+            "id": "ab79af9c-db5d-41f8-8956-1973319c4c7d",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.369925980340888,
+                    60.008516638116852
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "5845c5c9-f882-4a30-91c3-8e72ba64cc11",
+                    "e695a476-baba-4716-b317-29a92ed9fcc4",
+                    "708cb096-c716-47ea-94a2-ed36eb2b5d52"
+                ]
+            }
+        },
+        {
+            "id": "5845c5c9-f882-4a30-91c3-8e72ba64cc11",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.369895303392244,
+                    60.008616717283495
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "c186b580-a604-4039-861b-f482ab60e080",
+                    "ab79af9c-db5d-41f8-8956-1973319c4c7d",
+                    "d740252e-51e6-42d8-92e1-3524e37c2325",
+                    "708cb096-c716-47ea-94a2-ed36eb2b5d52"
+                ]
+            }
+        },
+        {
+            "id": "c186b580-a604-4039-861b-f482ab60e080",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.369858519199195,
+                    60.008730018409523
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "5845c5c9-f882-4a30-91c3-8e72ba64cc11",
+                    "b113a82a-76ef-453c-aa28-026f8068851c",
+                    "27644428-7225-4a7c-ae92-77e9bb808b26"
+                ]
+            }
+        },
+        {
+            "id": "4d8b606b-1b9c-4eda-ba6a-7cd301295f1a",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37055061760308,
+                    60.007154595437243
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "d3282974-636f-401e-afa7-079df763b203",
+                    "63e86f48-e9e2-4eaf-99fd-e359b7c80bd3",
+                    "d9716c68-9011-42a4-98a5-781c859775bd",
+                    "23b12468-87d1-4d83-b8e9-aa57bd4847f6"
+                ]
+            }
+        },
+        {
+            "id": "d3282974-636f-401e-afa7-079df763b203",
+            "type": "Feature",
+            "feature_type": "navPath",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.37029235709117,
+                    60.007196813436785
+                ]
+            },
+            "properties": {
+                "level_id": null,
+                "builing_id": null,
+                "neighbours": [
+                    "4d8b606b-1b9c-4eda-ba6a-7cd301295f1a",
+                    "6a804500-2bee-41cd-ab30-c40c7d724d08",
+                    "317650d7-5512-49ab-a142-1cc9bfe5d750",
+                    "bb3c2152-0944-4fc8-a0a3-73c28ab418aa"
+                ]
+            }
+        }
+    ]
+}

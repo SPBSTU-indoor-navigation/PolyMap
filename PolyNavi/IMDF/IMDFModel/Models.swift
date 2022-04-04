@@ -319,6 +319,21 @@ struct IMDF {
         }
     }
     
+    class NavPath: Feature<NavPath.Properties> {
+        struct Properties: Codable {
+            let builing_id: UUID?
+            let level_id: UUID?
+            let neighbours: [UUID]
+        }
+    }
+    
+    class NavPathAssocieted: Feature<NavPathAssocieted.Properties> {
+        struct Properties: Codable {
+            let pathNode_id: UUID
+            let associeted_id: UUID
+        }
+    }
+    
 }
 
 
