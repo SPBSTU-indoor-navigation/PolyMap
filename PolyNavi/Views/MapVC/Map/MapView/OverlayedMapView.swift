@@ -75,8 +75,6 @@ class OverlayedMapView: PinnableMapView {
         
         return nil
     }
-    
-    
 }
 
 extension OverlayedMapView: UIGestureRecognizerDelegate {

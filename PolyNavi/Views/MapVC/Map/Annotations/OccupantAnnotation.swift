@@ -7,7 +7,7 @@
 
 import MapKit
 
-class OccupantAnnotation: NSObject, MKAnnotation, Identifiable, IndoorAnnotation {
+class OccupantAnnotation: BaseAnnotation, MKAnnotation, Identifiable, IndoorAnnotation {
     enum DetailLevel: Int {
         case circlePrimary = 0
         case circleSecondary = 1
@@ -58,12 +58,13 @@ class OccupantAnnotation: NSObject, MKAnnotation, Identifiable, IndoorAnnotation
         }
     }
     
-    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Occupant.Properties, address: IMDF.Address?, level: Level) {
+    init(coordinate: CLLocationCoordinate2D, imdfID: UUID, properties: IMDF.Occupant.Properties, address: IMDF.Address?, level: Level) {
         self.coordinate = coordinate
         self.properties = properties
         self.address = address
         self.level = level
         super.init()
+        self.imdfID = imdfID
     }
 }
 

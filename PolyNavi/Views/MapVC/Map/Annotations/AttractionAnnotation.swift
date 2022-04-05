@@ -7,7 +7,7 @@
 
 import MapKit
 
-class AttractionAnnotation: NSObject, MKAnnotation, Identifiable {
+class AttractionAnnotation: BaseAnnotation, MKAnnotation, Identifiable {
     var identifier: String = identifier
     static var identifier: String = String(describing: AttractionAnnotation.self)
     
@@ -18,10 +18,11 @@ class AttractionAnnotation: NSObject, MKAnnotation, Identifiable {
 
     var properties: IMDF.Attraction.Properties
     
-    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Attraction.Properties) {
+    init(coordinate: CLLocationCoordinate2D, imdfID: UUID, properties: IMDF.Attraction.Properties) {
         self.coordinate = coordinate
         self.properties = properties
         super.init()
+        self.imdfID = imdfID
     }
     
     lazy var annotationSprite: UIImage? = {

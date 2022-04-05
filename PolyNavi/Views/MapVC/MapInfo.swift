@@ -189,24 +189,27 @@ extension MapInfo: MapInfoDelegate {
 
 extension MapInfo: RouteDetail {
     func setFrom(_ annotation: MKAnnotation) {
-        mapViewDelegate?.pinAnnotation(annotation, animated: true)
         let vc = getRouteVC()
+        vc.setFrom(annotation)
     }
     
     func setTo(_ annotation: MKAnnotation) {
         let vc = getRouteVC()
+        vc.setTo(annotation)
     }
     
     func getRouteVC() -> RouteDetailVC {
         if routeDetailVC == nil {
-            let vc = RouteDetailVC(closable: true)
+            let vc = RouteDetailVC(closable: true, mapViewDelegate: mapViewDelegate!)
             routeDetailVC = vc
             pushViewController(vc, animated: true)
             return vc
         }
         
-        while pages.last != .route {
-            popViewController(animated: true)
+        DispatchQueue.main.async { [self] in 
+            while pages.last != .route {
+                popViewController(animated: true)
+            }
         }
         
         return self.routeDetailVC!

@@ -27,11 +27,14 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         self.properties = properties
         self.units = units
         self.openings = openings
-        self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, properties: $0.properties, detailLevel: $0.properties.detailLevel) })
+        self.amenitys = amenitys.map({ AmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate,
+                                                         imdfID: $0.identifier,
+                                                         properties: $0.properties, detailLevel: $0.properties.detailLevel) })
         self.details = details
         
         self.occupants = occupants.map({ occupant in
             OccupantAnnotation(coordinate: (occupant.1.geometry.first as! MKPointAnnotation).coordinate,
+                               imdfID: occupant.0.identifier,
                                properties: occupant.0.properties,
                                address: addresses.first(where: { $0.identifier == occupant.1.properties.address_id }),
                                level: self)

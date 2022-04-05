@@ -79,21 +79,45 @@ class IMDFDecoder {
             return (occupant, anchor.first(where: { $0.identifier == occupant.properties.anchor_id })!)
         })
         
-        let buildings = imdfBuildings.map({ building in
-            return Building(building.geometry.overlay(),
-                            levels: imdfLevels
-                                .filter({ $0.properties.building_ids.contains(building.identifier) })
-                                .map({ $0.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys, details: detail, occupantAnchor: occupantAnchor, addresses: addresses)}),
-                            attractions: attraction.filter({ $0.properties.building_id == building.identifier }),
-                            properties: building.properties)
+        let levelById = imdfLevels.reduce([UUID:Level](), { dict, level in
+            var dict = dict
+            dict[level.identifier] = level.cast(units: imdfUnits, openings: imdfOpening, amenitys: amenitys, details: detail,
+                                                occupantAnchor: occupantAnchor, addresses: addresses)
+            return dict
+        })
+        
+        let builingById = imdfBuildings.reduce([UUID:Building](), { dict, building in
+            var dict = dict
+            dict[building.identifier] = Building(building.geometry.overlay(),
+                     levels: levelById.values.filter({ $0.properties.building_ids.contains(building.identifier) }),
+                     attractions: attraction.filter({ $0.properties.building_id == building.identifier }),
+                     properties: building.properties)
+            return dict
         })
         
         let result = Venue(geometry: venue.geometry.overlay(),
-                           buildings: buildings,
-                           enviroments: enviroments.map({ $0.cast() }),
-                           enviromentDetail: detail.filter({ $0.properties.level_id == nil }).map({ $0.cast() }),
-                           address: addressesByID[venue.properties.address_id],
-                           amenitys: enviromentAmenitys)
+                          buildings: Array(builingById.values),
+                          enviroments: enviroments.map({ $0.cast() }),
+                          enviromentDetail: detail.filter({ $0.properties.level_id == nil }).map({ $0.cast() }),
+                          address: addressesByID[venue.properties.address_id],
+                          amenitys: enviromentAmenitys)
+        
+        
+        let annotationIds: [UUID:MKAnnotation] =
+            (
+                result.amenitys.map({ ($0.imdfID!, $0 as MKAnnotation) }) +
+                result.buildings.flatMap({ $0.attractions.map({ ($0.imdfID!, $0 as MKAnnotation) }) }) +
+                result.buildings.flatMap({ $0.levels.flatMap({ $0.amenitys.map({ ($0.imdfID!, $0 as MKAnnotation) }) }) }) +
+                result.buildings.flatMap({ $0.levels.flatMap({ $0.occupants.map({ ($0.imdfID!, $0 as MKAnnotation) }) }) })
+            ).reduce([UUID:MKAnnotation](), { dict, node in
+                var dict = dict
+                dict[node.0] = node.1
+                return dict
+            })
+            
+        
+        PathFinder.shared.setup(navPath: navPath, associeted: navPathAssocieted, buildings: builingById, levels: levelById, annotations: annotationIds)
+        
         return result
     }
     

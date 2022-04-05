@@ -7,13 +7,16 @@
 
 import UIKit
 
-protocol Executable {
-    func execute(animated: Bool)
-}
-
 class Animator {
+    
+    class Animation {
+        var playing = false
+        func execute(animated: Bool) {
+            playing = true
+        }
+    }
 
-    class Basic: Executable {
+    class Basic: Animation {
         var withDuration: TimeInterval
         var delay: TimeInterval
         var options: UIView.AnimationOptions
@@ -28,17 +31,23 @@ class Animator {
             self.completion = completion
         }
         
-        func execute(animated: Bool) {
+        override func execute(animated: Bool) {
+            super.execute(animated: animated)
+            
             if animated {
-                UIView.animate(withDuration: withDuration, delay: delay, options: options, animations: animations, completion: completion)
+                UIView.animate(withDuration: withDuration, delay: delay, options: options, animations: animations, completion: { [weak self] comp in
+                    self?.completion?(comp)
+                    self?.playing = false
+                })
             } else {
                 animations()
+                playing = false
                 completion?(true)
             }
         }
     }
     
-    class Spring: Executable {
+    class Spring: Animation {
         var withDuration: TimeInterval
         var delay: TimeInterval
         var usingSpringWithDamping: CGFloat
@@ -57,18 +66,26 @@ class Animator {
             self.completion = completion
         }
         
-        func execute(animated: Bool) {
+        override func execute(animated: Bool) {
+            super.execute(animated: animated)
+            
             if animated {
-                UIView.animate(withDuration: withDuration, delay: delay, usingSpringWithDamping: usingSpringWithDamping, initialSpringVelocity: initialSpringVelocity, options: options, animations: animations, completion: completion)
+                UIView.animate(withDuration: withDuration, delay: delay, usingSpringWithDamping: usingSpringWithDamping, initialSpringVelocity: initialSpringVelocity, options: options, animations: animations, completion: { [weak self] comp in
+                    self?.completion?(comp)
+                    self?.playing = false
+                })
             } else {
                 animations()
                 completion?(true)
+                playing = false
             }
         }
     }
     
     
-    var animations: [Executable] = []
+    var animations: [Animation] = []
+    
+    var isPlaying: Bool { animations.first(where: { $0.playing }) != nil }
     
     init() { }
     
