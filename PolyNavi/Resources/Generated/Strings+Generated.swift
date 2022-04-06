@@ -34,10 +34,14 @@ internal enum L10n {
       internal static let issue = L10n.tr("Localizable", "MapInfo.Report.Issue")
     }
     internal enum Route {
+      /// From
+      internal static let from = L10n.tr("Localizable", "MapInfo.Route.From")
       /// Plan
       internal static let plan = L10n.tr("Localizable", "MapInfo.Route.Plan")
       /// Route
       internal static let route = L10n.tr("Localizable", "MapInfo.Route.Route")
+      /// To
+      internal static let to = L10n.tr("Localizable", "MapInfo.Route.To")
     }
     internal enum Search {
       /// Buildings

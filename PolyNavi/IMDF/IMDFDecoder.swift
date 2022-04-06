@@ -51,6 +51,8 @@ enum File {
 }
 
 class IMDFDecoder {
+    static var defaultPathStartPoint: MKAnnotation?
+    
     static func decode(_ path: URL) -> Venue? {
         
         let addresses = try! decodeFeatures(IMDF.Address.self, path: File.address.fileURL(path))
@@ -115,9 +117,15 @@ class IMDFDecoder {
                 return dict
             })
             
-        
         PathFinder.shared.setup(navPath: navPath, associeted: navPathAssocieted, buildings: builingById, levels: levelById, annotations: annotationIds)
         
+    
+        if let id = venue.properties.navpath_begin_id {
+            defaultPathStartPoint = annotationIds[id]
+        } else {
+            defaultPathStartPoint = nil
+        }
+    
         return result
     }
     

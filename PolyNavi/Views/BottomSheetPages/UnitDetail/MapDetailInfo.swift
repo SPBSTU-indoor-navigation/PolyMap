@@ -37,11 +37,29 @@ class MapDetailInfo {
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: RouteInfoCell.identifire, for: indexPath) as! RouteInfoCell
-            cell.configutate(showRoute: showRoute, showIndoor: showIndoor, buildingID: buildingID)
+            
+            var variant: RouteInfoCell.RouteVariant = .to
+            
+            if let to = RouteDetailVC.toPoint, let from = RouteDetailVC.fromPoint {
+                if from === annotation { variant = .from }
+                else if to === annotation { variant = .to }
+                else { variant = .fromTo }
+            } else if let to = RouteDetailVC.toPoint {
+                if to === annotation { variant = .to }
+            } else if let from = RouteDetailVC.fromPoint {
+                if from === annotation { variant = .from }
+            }
+            
+            
+            cell.configutate(routeVariant: variant, showIndoor: showIndoor, buildingID: buildingID)
             cell.selectionStyle = .none
-            cell.onRouteClick = {
+            cell.onRouteClick = { variant in
                 if let annotation = self.annotation {
-                    MapInfo.routeDetail?.setFrom(annotation)
+                    if variant == .to {
+                        MapInfo.routeDetail?.setTo(annotation)
+                    } else {
+                        MapInfo.routeDetail?.setFrom(annotation)
+                    }
                 }
             }
             cell.onBuildingClick = { print("BUILDING") }

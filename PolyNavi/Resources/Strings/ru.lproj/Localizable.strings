@@ -43,6 +43,8 @@ MapInfo.Report.Favorites = "Закладки";
 MapInfo.Report.Issue = "Сообщить об ошибке";
 
 MapInfo.Route.Route = "Маршрут";
+MapInfo.Route.From = "Отсюда";
+MapInfo.Route.To = "Сюда";
 MapInfo.Route.Plan = "Планировка";
 
 MapInfo.Search.EmptySearchResult = "Ничего не найдено";

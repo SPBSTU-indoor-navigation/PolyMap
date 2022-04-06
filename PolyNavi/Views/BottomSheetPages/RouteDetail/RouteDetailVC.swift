@@ -9,6 +9,9 @@ import UIKit
 import MapKit
 
 class RouteDetailVC: NavbarBottomSheetPage {
+    static var toPoint: MKAnnotation?
+    static var fromPoint: MKAnnotation?
+    
     var mapViewDelegate: MapViewDelegate
     var from: MKAnnotation? = nil
     var to: MKAnnotation? = nil
@@ -23,22 +26,16 @@ class RouteDetailVC: NavbarBottomSheetPage {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     func setFrom(_ annotation: MKAnnotation) {
-        
-        if (from != nil) {
-            setTo(annotation)
-            return
-        }
-        
-        if let from = from { mapViewDelegate.unpinAnnotation(from, animated: true) }
+        if let from = RouteDetailVC.fromPoint { mapViewDelegate.unpinAnnotation(from, animated: true) }
         mapViewDelegate.pinAnnotation(annotation, animated: true)
-        
+
         from = annotation
         
         drawPath()
     }
     
     func setTo(_ annotation: MKAnnotation) {
-        if let to = to { mapViewDelegate.unpinAnnotation(to, animated: true) }
+        if let to = RouteDetailVC.toPoint { mapViewDelegate.unpinAnnotation(to, animated: true) }
         mapViewDelegate.pinAnnotation(annotation, animated: true)
         
         to = annotation
@@ -47,18 +44,27 @@ class RouteDetailVC: NavbarBottomSheetPage {
     }
     
     func drawPath() {
-        guard let from = from,
+        guard let from = from ?? IMDFDecoder.defaultPathStartPoint,
               let to = to else { return }
-
+        
+        RouteDetailVC.fromPoint = from
+        RouteDetailVC.toPoint = to
+        
         if let pathID = pathID {
             mapViewDelegate.removePath(id: pathID)
         }
+        
+        [to, from].forEach({
+            mapViewDelegate.pinAnnotation($0, animated: true)
+        })
         
         pathID = mapViewDelegate.addPath(path: PathFinder.shared.findPath(from: from, to: to))
     }
     
     override func beforeClose() {
         super.beforeClose()
+        RouteDetailVC.toPoint = nil
+        RouteDetailVC.fromPoint = nil
         
         DispatchQueue.main.async { [self] in
             [to, from].compactMap({ $0 }).forEach({
@@ -66,11 +72,14 @@ class RouteDetailVC: NavbarBottomSheetPage {
             })
             
             if let pathID = pathID {
+                if from == nil,
+                   let from = IMDFDecoder.defaultPathStartPoint {
+                    mapViewDelegate.unpinAnnotation(from, animated: true)
+                }
+                
                 mapViewDelegate.removePath(id: pathID)
             }
         }
-
-        
         
     }
 }

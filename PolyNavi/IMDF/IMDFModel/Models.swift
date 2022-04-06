@@ -16,6 +16,7 @@ struct IMDF {
             let phone: String
             let website: String
             let address_id: UUID
+            let navpath_begin_id: UUID?
         }
     }
     

@@ -43,6 +43,8 @@ MapInfo.Report.Favorites = "Favorites";
 MapInfo.Report.Issue = "Report an Issue";
 
 MapInfo.Route.Route = "Route";
+MapInfo.Route.From = "From";
+MapInfo.Route.To = "To";
 MapInfo.Route.Plan = "Plan";
 
 MapInfo.Search.EmptySearchResult = "No suggestion found";
