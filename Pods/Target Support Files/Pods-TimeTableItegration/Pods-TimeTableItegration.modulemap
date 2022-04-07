@@ -1,0 +1,6 @@
+module Pods_TimeTableItegration {
+  umbrella header "Pods-TimeTableItegration-umbrella.h"
+
+  export *
+  module * { export * }
+}

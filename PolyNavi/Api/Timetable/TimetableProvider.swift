@@ -27,17 +27,12 @@ enum ApiStatus<T> {
     }
 }
 
-class TimetableProvider {
-    static let shared = TimetableProvider()
-    
-    var timetable: Timetable? = nil
-    var faculties: FacultiesList? = nil
-    var teachers: TeachersList? = nil
-    var groups: GroupsList? = nil
-    
-    var timetableCache: [String: Timetable] = [:]
-    
-    func load<T:Codable>(url: String, params: Dictionary<String, String>, completion: @escaping (ApiStatus<T>) -> Void) {
+protocol HTTPLoader {
+    func load<T:Codable>(url: String, params: Dictionary<String, String>, completion: @escaping (ApiStatus<T>) -> Void)
+}
+
+class AFLoader: HTTPLoader {
+    func load<T>(url: String, params: Dictionary<String, String>, completion: @escaping (ApiStatus<T>) -> Void) where T : Decodable, T : Encodable {
         AF.request(BASE_URL + url,
                    method: .get,
                    parameters: params)
@@ -67,6 +62,20 @@ class TimetableProvider {
                 }
             }
     }
+}
+
+class TimetableProvider {
+    static let shared = TimetableProvider()
+    
+    var timetable: Timetable? = nil
+    var faculties: FacultiesList? = nil
+    var teachers: TeachersList? = nil
+    var groups: GroupsList? = nil
+    
+    var loader: HTTPLoader = AFLoader()
+    
+    var timetableCache: [String: Timetable] = [:]
+
     
     func loadFaculties(completion: @escaping (ApiStatus<FacultiesList>) -> Void) {
         let t: (ApiStatus<FacultiesList>) -> Void = { r in
@@ -74,7 +83,7 @@ class TimetableProvider {
             completion(r)
         }
         
-        load(url: "/faculties", params: [:], completion: t)
+        loader.load(url: "/faculties", params: [:], completion: t)
     }
     
     func loadGroups(faculty: Faculty, completion: @escaping (ApiStatus<GroupsList>) -> Void) {
@@ -83,7 +92,7 @@ class TimetableProvider {
             completion(r)
         }
         
-        load(url: "/faculties/\(faculty.id)/groups", params: [:], completion: t)
+        loader.load(url: "/faculties/\(faculty.id)/groups", params: [:], completion: t)
     }
     
     func loadTeachers(completion: @escaping (ApiStatus<TeachersList>) -> Void) {
@@ -92,7 +101,7 @@ class TimetableProvider {
             completion(r)
         }
         
-        load(url: "/teachers", params: [:], completion: t)
+        loader.load(url: "/teachers", params: [:], completion: t)
     }
     
     
@@ -116,7 +125,7 @@ class TimetableProvider {
         }
         
         let strURL = (filter == .groups) ? "/scheduler/\(id)" : "/teachers/\(id)/scheduler/"
-        load(url: strURL, params: [ "date": startWeek ], completion: t)
+        loader.load(url: strURL, params: [ "date": startWeek ], completion: t)
         
     }
     
@@ -126,7 +135,7 @@ class TimetableProvider {
             completion(r)
         }
         
-        load(url: "/scheduler/\(group.id)", params: [ "date": apiFormatDate(startOfWeek(startDate)) ], completion: t)
+        loader.load(url: "/scheduler/\(group.id)", params: [ "date": apiFormatDate(startOfWeek(startDate)) ], completion: t)
     }
     
     func loadTimetable(teacher: ID, completion: @escaping (ApiStatus<Timetable>) -> Void, startDate: Date = Date()) {
@@ -135,7 +144,7 @@ class TimetableProvider {
             completion(r)
         }
         
-        load(url: "/teachers/\(teacher.id)/scheduler/", params: [ "date": apiFormatDate(startOfWeek(startDate)) ], completion: t)
+        loader.load(url: "/teachers/\(teacher.id)/scheduler/", params: [ "date": apiFormatDate(startOfWeek(startDate)) ], completion: t)
     }
     
     //MARK:- Support Functions

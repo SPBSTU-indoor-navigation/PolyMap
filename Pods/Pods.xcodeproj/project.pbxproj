@@ -35,16 +35,18 @@
 		09CBF0B5BE5FDD9991CFDE17D7E3F1D3 /* M13CheckboxFadeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F08CB6086BF5D0FBBB8A645CB9DD1E /* M13CheckboxFadeController.swift */; };
 		0D4F410326C612E858201731D4A9DD31 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8703AD21BB197EF3B06E9C71CB0E880 /* HTTPMethod.swift */; };
 		0F83ED8717D42B7399735A84076F9363 /* URLConvertible+URLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8269161CD814309EA4C4F557FE7D6C /* URLConvertible+URLRequestConvertible.swift */; };
-		13FD53152805A54075F024D865C9CFE0 /* Pods-PolyNavi-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EAEB8125CD91512340FE8BA96C67D7 /* Pods-PolyNavi-dummy.m */; };
+		13FD53152805A54075F024D865C9CFE0 /* Pods-PolyNavi-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1612099EBB1F861EEBCCA353F63CDE32 /* Pods-PolyNavi-dummy.m */; };
 		159F9181E7D4C420D2C4779EB314FBD0 /* M13CheckboxBounceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2599F8C5708F674EB7CF05163336E0 /* M13CheckboxBounceController.swift */; };
 		167E6A3B4127F13A1C1E403CA0D614F6 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20F93C3D94BA5A74331BECBFFB9A61 /* Combine.swift */; };
 		16BC8977297C71B4DDEF57AB009CFC43 /* UIScreenExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = CB80A1904E24021319E3D0A1D31D8D79 /* UIScreenExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1A2871B659028B2E20B3801DCB18BD36 /* Result+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E5F5DD4B8E6CF72F8CE20513C1EB32 /* Result+Alamofire.swift */; };
 		1BB752C4F7C403B80FBC7D8AF3F709E2 /* UIScreenExtension-iOS15.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CA3F8DA0DB139AC21C6666AACDDBD4 /* UIScreenExtension-iOS15.0-dummy.m */; };
 		1C0E1FAB09CFAA657DDD395EA8D4D32F /* ServerTrustEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAEE1CE2B087D611EEB74B6BEFB0A1E /* ServerTrustEvaluation.swift */; };
+		1E6516098C007818708897A9AF41434F /* Pods-TimeTableItegration-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D77A171C5046C484B5C1741B2CAC17A4 /* Pods-TimeTableItegration-dummy.m */; };
 		1F7B8FD4D3459A0926C9267FA2E8D946 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C67E03D10A5F6F7A0BFBA257B0458AB /* AFError.swift */; };
 		1FABDD77C3094F7F4FD2AA6E33484C39 /* Alamofire-iOS15.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CA201D78B78B7F212EFC7B50E5D9BD1B /* Alamofire-iOS15.0-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2160B5731D272A8C5370649E2CA3B18D /* ParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A011CB7E7D9F39C83FB721F5CCA0A0E0 /* ParameterEncoder.swift */; };
+		21BC35AA034BA79AC5A04EC1DAF04975 /* Pods-TimeTableItegration-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C8230421AFD306C47140009FBDA8FB9B /* Pods-TimeTableItegration-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		264ACECCF601715AB56EA8864EA65126 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338134FB0361ADF090D9E5E5C027C119 /* SessionDelegate.swift */; };
 		299DECBDDC1CA775B9653B525A2982EC /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AE4CF7C3210EA38A5751B24E08D4C /* Response.swift */; };
 		3069D82A658007EDC074520225BE9A44 /* M13Checkbox+IB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE4798DA3CF1A00757CB7B741DF762 /* M13Checkbox+IB.swift */; };
@@ -57,11 +59,11 @@
 		43CC7A4D0DE4FFFCC7850DFF11261FB7 /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2B4832766806144882C9D3E664E67 /* RequestInterceptor.swift */; };
 		443DBC919B7833CD956CDEE8C99B5EF8 /* OperationQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98630838C182E438BC9F5A580365AFF0 /* OperationQueue+Alamofire.swift */; };
 		45A88B2D9C5B745BF5F10C4F7256B92E /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE54EBCEE46D84D4D043466B2B64AD3 /* Notifications.swift */; };
-		45C70F5C1ED510DD74349379E6A5743D /* Pods-PolyNaviClip-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C42AC17BDC7EDC630C1F4BBAFF06240 /* Pods-PolyNaviClip-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		45C70F5C1ED510DD74349379E6A5743D /* Pods-PolyNaviClip-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D15AA841DF45DF9B3D6CB1D03930598B /* Pods-PolyNaviClip-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4C28B1306208F861FFE0892F26FCE939 /* M13CheckboxFillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1197DF6EB47C3295FB607F0A613F2BCA /* M13CheckboxFillController.swift */; };
 		4C4D165AA1B0B9B9DE9BEC9F00602E9F /* URLSessionConfiguration+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DA04B4E1FB7952FF00B7C080A4A1B0 /* URLSessionConfiguration+Alamofire.swift */; };
 		4D229F37B52D5832A1825ECB8753D297 /* URLEncodedFormEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69747C8596AE0E24D8B6EBF29A05EA2D /* URLEncodedFormEncoder.swift */; };
-		54967D4B4A6F132A6CCE495239B12329 /* Pods-PolyNavi-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 91497299CCFFC5A1D5D9E620550C5C97 /* Pods-PolyNavi-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		54967D4B4A6F132A6CCE495239B12329 /* Pods-PolyNavi-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 72E336BCAAD817B27AD95B3BECA58493 /* Pods-PolyNavi-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		56C93074EFAFE40F6EC67FFFA55CDC55 /* StringEncoding+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DA57A34C71FD8EA5496D91B0478C31 /* StringEncoding+Alamofire.swift */; };
 		64575CAEA52F747F7E3C45DAD6B27294 /* MultipartUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDFB40D087B0489D33EEB945F35E92 /* MultipartUpload.swift */; };
 		679C0741BDBA186E1BCB85F84EAD3824 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C67E03D10A5F6F7A0BFBA257B0458AB /* AFError.swift */; };
@@ -128,7 +130,7 @@
 		E3B2F357C32C29DCB410F0E7E249625C /* ServerTrustEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAEE1CE2B087D611EEB74B6BEFB0A1E /* ServerTrustEvaluation.swift */; };
 		E50484B23DAC24ABCA5937BDCE35C830 /* AuthenticationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96420D66FC631FD510E48A69D03D757D /* AuthenticationInterceptor.swift */; };
 		E6CFEFA9EF5594065800BB011934A88D /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE1900C6FFF9C4416868832419318E /* ParameterEncoding.swift */; };
-		E775871714A104736216A47E731CA653 /* Pods-PolyNaviClip-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD24D16C8A964CCD3B39BF98254E336 /* Pods-PolyNaviClip-dummy.m */; };
+		E775871714A104736216A47E731CA653 /* Pods-PolyNaviClip-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE5C0D8A1139F8DAEF4D9FB61F15594 /* Pods-PolyNaviClip-dummy.m */; };
 		EA841009283DE9E1521535404306FAA7 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C805C4CC82F6AC976F71261427F0B76 /* Protected.swift */; };
 		EBFE55D7B9B840093334CD56BD113E63 /* M13CheckboxExpandController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66882BA0C8B7397F57EF83CBFA9EA953 /* M13CheckboxExpandController.swift */; };
 		EDA81B7634ADD37B51C1EC0EAC19A754 /* Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6463A7F15C29C9A4B72BAAC443EC3E /* Concurrency.swift */; };
@@ -149,6 +151,13 @@
 			remoteGlobalIDString = 674195C4CB27B7F4591EDB48382A7FA4;
 			remoteInfo = "Alamofire-iOS13.0";
 		};
+		12495DB65935941AF36B8362CEB87F69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C20429433F74CB6336D4A1D86F6DCE30;
+			remoteInfo = "SwiftGen-iOS13.0";
+		};
 		1ABF2AD967A7C10E92147FF6EF6178A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -162,6 +171,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = C20429433F74CB6336D4A1D86F6DCE30;
 			remoteInfo = "SwiftGen-iOS13.0";
+		};
+		568B0833F6BF8197635BF4BA3B5F5B53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 674195C4CB27B7F4591EDB48382A7FA4;
+			remoteInfo = "Alamofire-iOS13.0";
+		};
+		7D2B1A23EBF992E40A10AD0938D0BD1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7111E54EAE43E89F451A75076C3525ED;
+			remoteInfo = M13Checkbox;
 		};
 		993F185F67B2D75977C736DE3B8D8164 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -184,6 +207,13 @@
 			remoteGlobalIDString = DD6E514DD2E948D6FCA7DA963A302730;
 			remoteInfo = "UIScreenExtension-iOS15.0";
 		};
+		CB093ACE72D0358D541E2D3C818DCF0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2199AD117145091F09EF974D23A4D676;
+			remoteInfo = "UIScreenExtension-iOS13.0";
+		};
 		E138D8FBDA3E3C10BEDD1C83F41447D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -194,6 +224,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		006934B89573AC335ADDE17DD1F57C8B /* Pods-PolyNavi-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PolyNavi-acknowledgements.plist"; sourceTree = "<group>"; };
 		033069C3B7C8F5554696B75006AD4EC8 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		0383E338EF6A5501CE6B68D89AD420A9 /* SwiftGen-iOS13.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SwiftGen-iOS13.0.debug.xcconfig"; sourceTree = "<group>"; };
 		09EBF542BFDD849CABAE76C4C6572D33 /* M13CheckboxDisclosurePathGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxDisclosurePathGenerator.swift; path = Sources/Paths/M13CheckboxDisclosurePathGenerator.swift; sourceTree = "<group>"; };
@@ -204,13 +235,14 @@
 		1197DF6EB47C3295FB607F0A613F2BCA /* M13CheckboxFillController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxFillController.swift; path = Sources/Managers/M13CheckboxFillController.swift; sourceTree = "<group>"; };
 		1402F09FD78BCB103F5C360A1BD32512 /* RedirectHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RedirectHandler.swift; path = Source/RedirectHandler.swift; sourceTree = "<group>"; };
 		151E71F4D47FE7FDA60B66DA5AD25A16 /* Alamofire-iOS15.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Alamofire-iOS15.0.debug.xcconfig"; path = "../Alamofire-iOS15.0/Alamofire-iOS15.0.debug.xcconfig"; sourceTree = "<group>"; };
+		1612099EBB1F861EEBCCA353F63CDE32 /* Pods-PolyNavi-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PolyNavi-dummy.m"; sourceTree = "<group>"; };
 		184C84097BC78C2FA92EC8328B200625 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		1995ABAE6FCF73E9AF8D7396DFBFE951 /* RequestTaskMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestTaskMap.swift; path = Source/RequestTaskMap.swift; sourceTree = "<group>"; };
 		1CD7276BD1AFAB522D714FCE89FE7B15 /* UIScreenExtension-iOS13.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "UIScreenExtension-iOS13.0.modulemap"; sourceTree = "<group>"; };
 		1EBD3A5E061A9FD7385EA09AC0AB6ABB /* SimulatorDeviceInfoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SimulatorDeviceInfoView.swift; path = UIScreenExtension/SimulatorDeviceInfoView.swift; sourceTree = "<group>"; };
-		207D7A45CB24599194FF82BE649D61FB /* Pods-PolyNaviClip.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PolyNaviClip.modulemap"; sourceTree = "<group>"; };
 		210601A11A07D33649445142606DC0A3 /* AlamofireExtended.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlamofireExtended.swift; path = Source/AlamofireExtended.swift; sourceTree = "<group>"; };
 		21754826A228A40832C3751E8926DE9E /* M13Checkbox-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "M13Checkbox-umbrella.h"; sourceTree = "<group>"; };
+		24ED9C14FC8869F3707AA511043BADEF /* Pods-PolyNaviClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PolyNaviClip.debug.xcconfig"; sourceTree = "<group>"; };
 		29ACC7FAA8857A6FB370D04FD6746C61 /* Alamofire-iOS13.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Alamofire-iOS13.0.debug.xcconfig"; sourceTree = "<group>"; };
 		2A579A6E90267A45197F44A62D52577D /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		2B0ADDD49FDC0CF7D8E22E11EDDFC93F /* UIScreenExtension-iOS13.0 */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "UIScreenExtension-iOS13.0"; path = "libUIScreenExtension-iOS13.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,22 +251,26 @@
 		321733F810CFCEFA176BCA70CE6E99A9 /* UIScreenExtension-iOS15.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "UIScreenExtension-iOS15.0.debug.xcconfig"; path = "../UIScreenExtension-iOS15.0/UIScreenExtension-iOS15.0.debug.xcconfig"; sourceTree = "<group>"; };
 		33151B4EC4E2EF5BCE2937AB6D4DD33D /* M13CheckboxCheckPathGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxCheckPathGenerator.swift; path = Sources/Paths/M13CheckboxCheckPathGenerator.swift; sourceTree = "<group>"; };
 		338134FB0361ADF090D9E5E5C027C119 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
+		3809AED774B699BDD9873EAD2F7A2DCF /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
 		3C004EEB4487137AC3DB1572ADE38DEB /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		3C805C4CC82F6AC976F71261427F0B76 /* Protected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Protected.swift; path = Source/Protected.swift; sourceTree = "<group>"; };
 		3E14C76D005D20574F35D41BCF426888 /* UIScreenExtension-iOS13.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "UIScreenExtension-iOS13.0.release.xcconfig"; sourceTree = "<group>"; };
 		3EA7D21C20CD4697DA9721344AE1BCB0 /* UIScreenExtension-iOS15.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScreenExtension-iOS15.0-umbrella.h"; path = "../UIScreenExtension-iOS15.0/UIScreenExtension-iOS15.0-umbrella.h"; sourceTree = "<group>"; };
 		412C3B82E51C36FFF70112C1510B5167 /* SwiftGen-iOS13.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SwiftGen-iOS13.0.release.xcconfig"; sourceTree = "<group>"; };
 		42188C7AD0B65594CD6A393512F61C31 /* M13Checkbox-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "M13Checkbox-prefix.pch"; sourceTree = "<group>"; };
-		426869CF0B245256A2F07D01A4D27FB1 /* Pods-PolyNavi-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PolyNavi-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4481B66DDCB0A08013C567B889E8C46E /* M13Checkbox.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = M13Checkbox.modulemap; sourceTree = "<group>"; };
 		465C32B1DEA4BC2E0886D8E92748E3B6 /* M13CheckboxSpiralController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxSpiralController.swift; path = Sources/Managers/M13CheckboxSpiralController.swift; sourceTree = "<group>"; };
 		49DA57A34C71FD8EA5496D91B0478C31 /* StringEncoding+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "StringEncoding+Alamofire.swift"; path = "Source/StringEncoding+Alamofire.swift"; sourceTree = "<group>"; };
-		4C42AC17BDC7EDC630C1F4BBAFF06240 /* Pods-PolyNaviClip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PolyNaviClip-umbrella.h"; sourceTree = "<group>"; };
+		4AFEDAA87B698A73DC1C8CEEBC903206 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
+		4FE5C0D8A1139F8DAEF4D9FB61F15594 /* Pods-PolyNaviClip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PolyNaviClip-dummy.m"; sourceTree = "<group>"; };
+		510264A4F6FF6AEED3F92A604A45DE94 /* Pods-PolyNavi.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PolyNavi.modulemap"; sourceTree = "<group>"; };
+		54B1D3D319866FFF3966DB403345D29D /* Pods-TimeTableItegration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TimeTableItegration.release.xcconfig"; sourceTree = "<group>"; };
 		57DA04B4E1FB7952FF00B7C080A4A1B0 /* URLSessionConfiguration+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLSessionConfiguration+Alamofire.swift"; path = "Source/URLSessionConfiguration+Alamofire.swift"; sourceTree = "<group>"; };
 		58DB33CE15344EAE25D0470D46D26BD2 /* Alamofire-iOS13.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-iOS13.0-umbrella.h"; sourceTree = "<group>"; };
 		5C67E03D10A5F6F7A0BFBA257B0458AB /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		5CAEE1CE2B087D611EEB74B6BEFB0A1E /* ServerTrustEvaluation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustEvaluation.swift; path = Source/ServerTrustEvaluation.swift; sourceTree = "<group>"; };
 		5CE79C5BF20743404E59BEFD080A364D /* M13Checkbox */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = M13Checkbox; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D385B1D3F8A41294F42F5681282676A /* Pods-PolyNaviClip-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PolyNaviClip-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5F54DDD8DDB85F5B80E3A2CEF07AF4C8 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		5F8269161CD814309EA4C4F557FE7D6C /* URLConvertible+URLRequestConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLConvertible+URLRequestConvertible.swift"; path = "Source/URLConvertible+URLRequestConvertible.swift"; sourceTree = "<group>"; };
 		66882BA0C8B7397F57EF83CBFA9EA953 /* M13CheckboxExpandController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxExpandController.swift; path = Sources/Managers/M13CheckboxExpandController.swift; sourceTree = "<group>"; };
@@ -242,8 +278,9 @@
 		6AF79654EF9B9FBD9AB5B05B6F45A8A1 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		6D2599F8C5708F674EB7CF05163336E0 /* M13CheckboxBounceController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxBounceController.swift; path = Sources/Managers/M13CheckboxBounceController.swift; sourceTree = "<group>"; };
 		6F479190C4546FBF81C6D4FA62D521C9 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
-		70A3A47ABA743B0A52AC79005CF1288C /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
+		72E336BCAAD817B27AD95B3BECA58493 /* Pods-PolyNavi-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PolyNavi-umbrella.h"; sourceTree = "<group>"; };
 		7318747268CFAF7FE0300824A5AD628E /* M13Checkbox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13Checkbox.swift; path = Sources/M13Checkbox.swift; sourceTree = "<group>"; };
+		75ED90AB8855450A2FDD80759C092FED /* Pods-PolyNaviClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PolyNaviClip.release.xcconfig"; sourceTree = "<group>"; };
 		785E17FBDEFAFEC6485CAE58FCBBF067 /* M13CheckboxFlatController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxFlatController.swift; path = Sources/Managers/M13CheckboxFlatController.swift; sourceTree = "<group>"; };
 		80092B98DEC0EC566D42E63EA403A9A4 /* Pods-PolyNavi */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-PolyNavi"; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		825AF4254EABA42E9EFC4535E42DDFB9 /* UIScreenExtension-iOS15.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = "UIScreenExtension-iOS15.0.modulemap"; path = "../UIScreenExtension-iOS15.0/UIScreenExtension-iOS15.0.modulemap"; sourceTree = "<group>"; };
@@ -254,46 +291,47 @@
 		8DD2B4832766806144882C9D3E664E67 /* RequestInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestInterceptor.swift; path = Source/RequestInterceptor.swift; sourceTree = "<group>"; };
 		8ED760B54F94937282DAB03CB65E19D7 /* SwiftGen-iOS15.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "SwiftGen-iOS15.0.release.xcconfig"; path = "../SwiftGen-iOS15.0/SwiftGen-iOS15.0.release.xcconfig"; sourceTree = "<group>"; };
 		8F4A09E3E1DB453B1C83DC6FA819A8CA /* UIScreenExtension-iOS15.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScreenExtension-iOS15.0-prefix.pch"; path = "../UIScreenExtension-iOS15.0/UIScreenExtension-iOS15.0-prefix.pch"; sourceTree = "<group>"; };
-		911E87AA34F45219558D78A21498DC4F /* Pods-PolyNaviClip-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PolyNaviClip-acknowledgements.markdown"; sourceTree = "<group>"; };
-		91497299CCFFC5A1D5D9E620550C5C97 /* Pods-PolyNavi-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PolyNavi-umbrella.h"; sourceTree = "<group>"; };
 		91F08CB6086BF5D0FBBB8A645CB9DD1E /* M13CheckboxFadeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxFadeController.swift; path = Sources/Managers/M13CheckboxFadeController.swift; sourceTree = "<group>"; };
 		92FE4798DA3CF1A00757CB7B741DF762 /* M13Checkbox+IB.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "M13Checkbox+IB.swift"; path = "Sources/M13Checkbox+IB.swift"; sourceTree = "<group>"; };
 		9382405921738ACAE1B44294965C5D9D /* Alamofire-iOS13.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Alamofire-iOS13.0.release.xcconfig"; sourceTree = "<group>"; };
 		96420D66FC631FD510E48A69D03D757D /* AuthenticationInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthenticationInterceptor.swift; path = Source/AuthenticationInterceptor.swift; sourceTree = "<group>"; };
 		984878EDF341E9548C6108012C8610D0 /* M13CheckboxDotController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxDotController.swift; path = Sources/Managers/M13CheckboxDotController.swift; sourceTree = "<group>"; };
 		98630838C182E438BC9F5A580365AFF0 /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		9CD24D16C8A964CCD3B39BF98254E336 /* Pods-PolyNaviClip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PolyNaviClip-dummy.m"; sourceTree = "<group>"; };
+		9B5B00EE920B25DE4092193F548020CD /* Pods-TimeTableItegration */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-TimeTableItegration"; path = "libPods-TimeTableItegration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A011CB7E7D9F39C83FB721F5CCA0A0E0 /* ParameterEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoder.swift; path = Source/ParameterEncoder.swift; sourceTree = "<group>"; };
+		A1E3326BAF7A39E1CC3C1613A8FBD774 /* Pods-PolyNavi-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PolyNavi-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A2AE38E0B8376FC8C28DDEAC7F6B4EE2 /* Pods-TimeTableItegration.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TimeTableItegration.modulemap"; sourceTree = "<group>"; };
 		A2E5F5DD4B8E6CF72F8CE20513C1EB32 /* Result+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Result+Alamofire.swift"; path = "Source/Result+Alamofire.swift"; sourceTree = "<group>"; };
+		A2EB01BCAA20949FCB89F9597C751A76 /* Pods-TimeTableItegration-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TimeTableItegration-acknowledgements.plist"; sourceTree = "<group>"; };
 		A6085E7523893CFF05065E0CA9EF0FFE /* M13CheckboxAddRemovePathGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxAddRemovePathGenerator.swift; path = Sources/Paths/M13CheckboxAddRemovePathGenerator.swift; sourceTree = "<group>"; };
 		AD20F93C3D94BA5A74331BECBFFB9A61 /* Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Combine.swift; path = Source/Combine.swift; sourceTree = "<group>"; };
-		ADA155C1642FE98EEF3B6CB37528DAC0 /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
-		ADB1A201ACF44FDCFC7645ED840F27ED /* Pods-PolyNaviClip-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PolyNaviClip-acknowledgements.plist"; sourceTree = "<group>"; };
+		ADF2B59C8A3482D766BC35820C8B233A /* Pods-PolyNaviClip.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PolyNaviClip.modulemap"; sourceTree = "<group>"; };
 		B14264593EE6AB988A61CAC68CA0CFBD /* M13Checkbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = M13Checkbox.debug.xcconfig; sourceTree = "<group>"; };
 		B49775E22AAEFF5C8A790DC18EB4A545 /* Alamofire-iOS13.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-iOS13.0-prefix.pch"; sourceTree = "<group>"; };
-		BA84F93B6B1474C78DC8F712A2FF10D3 /* Pods-PolyNavi.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PolyNavi.modulemap"; sourceTree = "<group>"; };
 		BCBFF297C250E715AA9830A409D35AE0 /* CachedResponseHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CachedResponseHandler.swift; path = Source/CachedResponseHandler.swift; sourceTree = "<group>"; };
-		C1DA8DBB44EE8E2EF8AF67BD96AE4678 /* Pods-PolyNaviClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PolyNaviClip.release.xcconfig"; sourceTree = "<group>"; };
+		BE6C6E5B0610D2D350E95E98D08952A2 /* Pods-TimeTableItegration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TimeTableItegration.debug.xcconfig"; sourceTree = "<group>"; };
 		C697D45C806D0DCE2D52FEBB2E61F3A5 /* UIScreenExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIScreenExtension.swift; path = Sources/UIScreenExtension/UIScreenExtension.swift; sourceTree = "<group>"; };
 		C791FAE330973A1B7AF9AE28EA2E6245 /* UIScreenExtension-iOS15.0 */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "UIScreenExtension-iOS15.0"; path = "libUIScreenExtension-iOS15.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7E7B41764D7406B686219993C8FCB14 /* Pods-PolyNaviClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PolyNaviClip.debug.xcconfig"; sourceTree = "<group>"; };
+		C8230421AFD306C47140009FBDA8FB9B /* Pods-TimeTableItegration-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TimeTableItegration-umbrella.h"; sourceTree = "<group>"; };
 		C8C40537253D3C9A15B6B64DBF00E6EE /* DefaultValues.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultValues.swift; path = Sources/DefaultValues.swift; sourceTree = "<group>"; };
 		CA201D78B78B7F212EFC7B50E5D9BD1B /* Alamofire-iOS15.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Alamofire-iOS15.0-umbrella.h"; path = "../Alamofire-iOS15.0/Alamofire-iOS15.0-umbrella.h"; sourceTree = "<group>"; };
 		CA8B6C849CA723F7E81E3BACB6801996 /* M13Checkbox-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "M13Checkbox-dummy.m"; sourceTree = "<group>"; };
 		CAFDFB40D087B0489D33EEB945F35E92 /* MultipartUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartUpload.swift; path = Source/MultipartUpload.swift; sourceTree = "<group>"; };
 		CB80A1904E24021319E3D0A1D31D8D79 /* UIScreenExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UIScreenExtension.h; path = UIScreenExtension/UIScreenExtension.h; sourceTree = "<group>"; };
 		CDB6E571C9F4087CE4BE294A02B5A691 /* M13Checkbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = M13Checkbox.release.xcconfig; sourceTree = "<group>"; };
+		D15AA841DF45DF9B3D6CB1D03930598B /* Pods-PolyNaviClip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PolyNaviClip-umbrella.h"; sourceTree = "<group>"; };
 		D1B2162D91801F4645B3AB89BEEB40B1 /* Alamofire-iOS15.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Alamofire-iOS15.0-prefix.pch"; path = "../Alamofire-iOS15.0/Alamofire-iOS15.0-prefix.pch"; sourceTree = "<group>"; };
 		D44F6CB6D0865857C8FDD43B3FCD58E2 /* Pods-PolyNaviClip */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-PolyNaviClip"; path = "libPods-PolyNaviClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A48FC3757287F67DA1CB1384272510 /* Alamofire-iOS15.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Alamofire-iOS15.0.release.xcconfig"; path = "../Alamofire-iOS15.0/Alamofire-iOS15.0.release.xcconfig"; sourceTree = "<group>"; };
+		D77A171C5046C484B5C1741B2CAC17A4 /* Pods-TimeTableItegration-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TimeTableItegration-dummy.m"; sourceTree = "<group>"; };
 		DABB36A2D3D4D3DC8B26238C7FA1522B /* M13CheckboxPathGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxPathGenerator.swift; path = Sources/Paths/M13CheckboxPathGenerator.swift; sourceTree = "<group>"; };
+		DB144FA9348341B8500F91ABC154BF31 /* Pods-TimeTableItegration-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TimeTableItegration-acknowledgements.markdown"; sourceTree = "<group>"; };
 		DDB5189E9C21E97B353502FA10A1A595 /* M13CheckboxAnimationGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxAnimationGenerator.swift; path = Sources/M13CheckboxAnimationGenerator.swift; sourceTree = "<group>"; };
 		DDE54EBCEE46D84D4D043466B2B64AD3 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		DDEAED4A8F9B3402F49F0097424C7E5F /* HTTPHeaders.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTPHeaders.swift; path = Source/HTTPHeaders.swift; sourceTree = "<group>"; };
 		DF232905BF44EA0D94AF6E552874C160 /* M13CheckboxStrokeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxStrokeController.swift; path = Sources/Managers/M13CheckboxStrokeController.swift; sourceTree = "<group>"; };
 		E40BD8654A4CA25D7CAEF043801513B6 /* UIScreenExtension-iOS13.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIScreenExtension-iOS13.0-dummy.m"; sourceTree = "<group>"; };
-		E4EAEB8125CD91512340FE8BA96C67D7 /* Pods-PolyNavi-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PolyNavi-dummy.m"; sourceTree = "<group>"; };
 		E68BA1808AC0E0D1E876FE9B1C343797 /* Alamofire-iOS15.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = "Alamofire-iOS15.0.modulemap"; path = "../Alamofire-iOS15.0/Alamofire-iOS15.0.modulemap"; sourceTree = "<group>"; };
 		E6DAA14C36769F96E05F4083253C4579 /* Alamofire-iOS15.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Alamofire-iOS15.0-dummy.m"; path = "../Alamofire-iOS15.0/Alamofire-iOS15.0-dummy.m"; sourceTree = "<group>"; };
 		E7DF4FEE90DB8C0566CFC9A15332CD40 /* M13CheckboxRadioPathGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M13CheckboxRadioPathGenerator.swift; path = Sources/Paths/M13CheckboxRadioPathGenerator.swift; sourceTree = "<group>"; };
@@ -307,7 +345,7 @@
 		F83967AE3817D3ABB968965D17B98F2C /* UIScreenExtension-iOS13.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIScreenExtension-iOS13.0-umbrella.h"; sourceTree = "<group>"; };
 		FD775755CFCA3C33091AC43503CC1C80 /* UIScreenExtension-iOS13.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "UIScreenExtension-iOS13.0.debug.xcconfig"; sourceTree = "<group>"; };
 		FD8DE95B469B9EF9E92E3EEADEC45DCD /* RetryPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RetryPolicy.swift; path = Source/RetryPolicy.swift; sourceTree = "<group>"; };
-		FE1C7B7325F1392CCD6E5096DBCE2EBB /* Pods-PolyNavi-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PolyNavi-acknowledgements.plist"; sourceTree = "<group>"; };
+		FE64F779B362C9B7C30BA88830A39DF4 /* Pods-PolyNaviClip-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PolyNaviClip-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +371,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6818F59F3FF143DC5092236924979BDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		931E62C2B6EF3ABF89DE0FFE2E8E4A24 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -419,30 +464,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		22A09F11D523DADDFDC0CD9541030F66 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F1AD0C03333A90EDBF11F4964A2EBA94 /* Pods-PolyNavi */,
-				51E8A7E5A3732DFA807EF2B5C762AF50 /* Pods-PolyNaviClip */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		51E8A7E5A3732DFA807EF2B5C762AF50 /* Pods-PolyNaviClip */ = {
-			isa = PBXGroup;
-			children = (
-				207D7A45CB24599194FF82BE649D61FB /* Pods-PolyNaviClip.modulemap */,
-				911E87AA34F45219558D78A21498DC4F /* Pods-PolyNaviClip-acknowledgements.markdown */,
-				ADB1A201ACF44FDCFC7645ED840F27ED /* Pods-PolyNaviClip-acknowledgements.plist */,
-				9CD24D16C8A964CCD3B39BF98254E336 /* Pods-PolyNaviClip-dummy.m */,
-				4C42AC17BDC7EDC630C1F4BBAFF06240 /* Pods-PolyNaviClip-umbrella.h */,
-				C7E7B41764D7406B686219993C8FCB14 /* Pods-PolyNaviClip.debug.xcconfig */,
-				C1DA8DBB44EE8E2EF8AF67BD96AE4678 /* Pods-PolyNaviClip.release.xcconfig */,
-			);
-			name = "Pods-PolyNaviClip";
-			path = "Target Support Files/Pods-PolyNaviClip";
-			sourceTree = "<group>";
-		};
 		55A667C6AA5FDBB055171A93F1B0656F /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,6 +482,21 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/UIScreenExtension-iOS13.0";
+			sourceTree = "<group>";
+		};
+		56C466A589C87F549A2BC58354904364 /* Pods-PolyNavi */ = {
+			isa = PBXGroup;
+			children = (
+				510264A4F6FF6AEED3F92A604A45DE94 /* Pods-PolyNavi.modulemap */,
+				A1E3326BAF7A39E1CC3C1613A8FBD774 /* Pods-PolyNavi-acknowledgements.markdown */,
+				006934B89573AC335ADDE17DD1F57C8B /* Pods-PolyNavi-acknowledgements.plist */,
+				1612099EBB1F861EEBCCA353F63CDE32 /* Pods-PolyNavi-dummy.m */,
+				72E336BCAAD817B27AD95B3BECA58493 /* Pods-PolyNavi-umbrella.h */,
+				4AFEDAA87B698A73DC1C8CEEBC903206 /* Pods-PolyNavi.debug.xcconfig */,
+				3809AED774B699BDD9873EAD2F7A2DCF /* Pods-PolyNavi.release.xcconfig */,
+			);
+			name = "Pods-PolyNavi";
+			path = "Target Support Files/Pods-PolyNavi";
 			sourceTree = "<group>";
 		};
 		62A334DC9E7676DB23B780E87C43D8B0 /* Support Files */ = {
@@ -483,6 +519,21 @@
 			path = "../Target Support Files/Alamofire-iOS13.0";
 			sourceTree = "<group>";
 		};
+		6FB433DCB451209A16F6D6A317875A84 /* Pods-TimeTableItegration */ = {
+			isa = PBXGroup;
+			children = (
+				A2AE38E0B8376FC8C28DDEAC7F6B4EE2 /* Pods-TimeTableItegration.modulemap */,
+				DB144FA9348341B8500F91ABC154BF31 /* Pods-TimeTableItegration-acknowledgements.markdown */,
+				A2EB01BCAA20949FCB89F9597C751A76 /* Pods-TimeTableItegration-acknowledgements.plist */,
+				D77A171C5046C484B5C1741B2CAC17A4 /* Pods-TimeTableItegration-dummy.m */,
+				C8230421AFD306C47140009FBDA8FB9B /* Pods-TimeTableItegration-umbrella.h */,
+				BE6C6E5B0610D2D350E95E98D08952A2 /* Pods-TimeTableItegration.debug.xcconfig */,
+				54B1D3D319866FFF3966DB403345D29D /* Pods-TimeTableItegration.release.xcconfig */,
+			);
+			name = "Pods-TimeTableItegration";
+			path = "Target Support Files/Pods-TimeTableItegration";
+			sourceTree = "<group>";
+		};
 		803681147241E74A1BF85A0F576D50E3 /* SwiftGen */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,18 +543,19 @@
 			path = SwiftGen;
 			sourceTree = "<group>";
 		};
-		9703E2E4BAA1681E9BFA7C11B4B9ACE1 /* Products */ = {
+		A3A98037F387A310541A27E9238FBFC9 /* Pods-PolyNaviClip */ = {
 			isa = PBXGroup;
 			children = (
-				0C016F9151B61C4CE6559E22E686AA97 /* Alamofire-iOS13.0 */,
-				F723AC3B8EC8DEF75E17679F98A7F641 /* Alamofire-iOS15.0 */,
-				5CE79C5BF20743404E59BEFD080A364D /* M13Checkbox */,
-				80092B98DEC0EC566D42E63EA403A9A4 /* Pods-PolyNavi */,
-				D44F6CB6D0865857C8FDD43B3FCD58E2 /* Pods-PolyNaviClip */,
-				2B0ADDD49FDC0CF7D8E22E11EDDFC93F /* UIScreenExtension-iOS13.0 */,
-				C791FAE330973A1B7AF9AE28EA2E6245 /* UIScreenExtension-iOS15.0 */,
+				ADF2B59C8A3482D766BC35820C8B233A /* Pods-PolyNaviClip.modulemap */,
+				5D385B1D3F8A41294F42F5681282676A /* Pods-PolyNaviClip-acknowledgements.markdown */,
+				FE64F779B362C9B7C30BA88830A39DF4 /* Pods-PolyNaviClip-acknowledgements.plist */,
+				4FE5C0D8A1139F8DAEF4D9FB61F15594 /* Pods-PolyNaviClip-dummy.m */,
+				D15AA841DF45DF9B3D6CB1D03930598B /* Pods-PolyNaviClip-umbrella.h */,
+				24ED9C14FC8869F3707AA511043BADEF /* Pods-PolyNaviClip.debug.xcconfig */,
+				75ED90AB8855450A2FDD80759C092FED /* Pods-PolyNaviClip.release.xcconfig */,
 			);
-			name = Products;
+			name = "Pods-PolyNaviClip";
+			path = "Target Support Files/Pods-PolyNaviClip";
 			sourceTree = "<group>";
 		};
 		BAC16CDA5003AD8764071535D49596AB /* Support Files */ = {
@@ -518,14 +570,24 @@
 			path = "../Target Support Files/SwiftGen-iOS13.0";
 			sourceTree = "<group>";
 		};
+		BCB84C4F190545F191B2BC523431B556 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				56C466A589C87F549A2BC58354904364 /* Pods-PolyNavi */,
+				A3A98037F387A310541A27E9238FBFC9 /* Pods-PolyNaviClip */,
+				6FB433DCB451209A16F6D6A317875A84 /* Pods-TimeTableItegration */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
 				1C5472C17EF5DFEE9348CAFC632BD5D4 /* Pods */,
-				9703E2E4BAA1681E9BFA7C11B4B9ACE1 /* Products */,
-				22A09F11D523DADDFDC0CD9541030F66 /* Targets Support Files */,
+				D59EB9369A987208FCF5F59825678CCF /* Products */,
+				BCB84C4F190545F191B2BC523431B556 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -539,6 +601,21 @@
 			);
 			name = UIScreenExtension;
 			path = UIScreenExtension;
+			sourceTree = "<group>";
+		};
+		D59EB9369A987208FCF5F59825678CCF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0C016F9151B61C4CE6559E22E686AA97 /* Alamofire-iOS13.0 */,
+				F723AC3B8EC8DEF75E17679F98A7F641 /* Alamofire-iOS15.0 */,
+				5CE79C5BF20743404E59BEFD080A364D /* M13Checkbox */,
+				80092B98DEC0EC566D42E63EA403A9A4 /* Pods-PolyNavi */,
+				D44F6CB6D0865857C8FDD43B3FCD58E2 /* Pods-PolyNaviClip */,
+				9B5B00EE920B25DE4092193F548020CD /* Pods-TimeTableItegration */,
+				2B0ADDD49FDC0CF7D8E22E11EDDFC93F /* UIScreenExtension-iOS13.0 */,
+				C791FAE330973A1B7AF9AE28EA2E6245 /* UIScreenExtension-iOS15.0 */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D5C74646CAA712A51CFAC97AF6123773 /* M13Checkbox */ = {
@@ -590,24 +667,17 @@
 			path = "../Target Support Files/M13Checkbox";
 			sourceTree = "<group>";
 		};
-		F1AD0C03333A90EDBF11F4964A2EBA94 /* Pods-PolyNavi */ = {
-			isa = PBXGroup;
-			children = (
-				BA84F93B6B1474C78DC8F712A2FF10D3 /* Pods-PolyNavi.modulemap */,
-				426869CF0B245256A2F07D01A4D27FB1 /* Pods-PolyNavi-acknowledgements.markdown */,
-				FE1C7B7325F1392CCD6E5096DBCE2EBB /* Pods-PolyNavi-acknowledgements.plist */,
-				E4EAEB8125CD91512340FE8BA96C67D7 /* Pods-PolyNavi-dummy.m */,
-				91497299CCFFC5A1D5D9E620550C5C97 /* Pods-PolyNavi-umbrella.h */,
-				70A3A47ABA743B0A52AC79005CF1288C /* Pods-PolyNavi.debug.xcconfig */,
-				ADA155C1642FE98EEF3B6CB37528DAC0 /* Pods-PolyNavi.release.xcconfig */,
-			);
-			name = "Pods-PolyNavi";
-			path = "Target Support Files/Pods-PolyNavi";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		0BB3F2C02C209F629AC4B7C18F968EB4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21BC35AA034BA79AC5A04EC1DAF04975 /* Pods-TimeTableItegration-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4640C1833E6C7B5F7F1203B1DECBBC7E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -685,6 +755,27 @@
 			name = "UIScreenExtension-iOS13.0";
 			productName = "UIScreenExtension-iOS13.0";
 			productReference = 2B0ADDD49FDC0CF7D8E22E11EDDFC93F /* UIScreenExtension-iOS13.0 */;
+			productType = "com.apple.product-type.library.static";
+		};
+		626A3EE150C726C243FE830BE5DE2DAC /* Pods-TimeTableItegration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09BAB70509CD7B070915640D557E1DFD /* Build configuration list for PBXNativeTarget "Pods-TimeTableItegration" */;
+			buildPhases = (
+				0BB3F2C02C209F629AC4B7C18F968EB4 /* Headers */,
+				46600F38740A214EC12B55DF9C56644A /* Sources */,
+				931E62C2B6EF3ABF89DE0FFE2E8E4A24 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7C9C54508FDF0B1715E5DFF5CAE9F80 /* PBXTargetDependency */,
+				B45B6F786FE0B591B982D2799F563625 /* PBXTargetDependency */,
+				05D04CB235668B7172DC896AA166514A /* PBXTargetDependency */,
+				7FE707D2E802A9032437EAE93B42961C /* PBXTargetDependency */,
+			);
+			name = "Pods-TimeTableItegration";
+			productName = "Pods-TimeTableItegration";
+			productReference = 9B5B00EE920B25DE4092193F548020CD /* Pods-TimeTableItegration */;
 			productType = "com.apple.product-type.library.static";
 		};
 		674195C4CB27B7F4591EDB48382A7FA4 /* Alamofire-iOS13.0 */ = {
@@ -818,7 +909,7 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 9703E2E4BAA1681E9BFA7C11B4B9ACE1 /* Products */;
+			productRefGroup = D59EB9369A987208FCF5F59825678CCF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -827,6 +918,7 @@
 				7111E54EAE43E89F451A75076C3525ED /* M13Checkbox */,
 				E378FD627F6BDD2CB0DAFFE3C89D0E36 /* Pods-PolyNavi */,
 				67B313FAE29FA92792950A5D45C5E67B /* Pods-PolyNaviClip */,
+				626A3EE150C726C243FE830BE5DE2DAC /* Pods-TimeTableItegration */,
 				C20429433F74CB6336D4A1D86F6DCE30 /* SwiftGen-iOS13.0 */,
 				C42180E5E1BED358EBFA0BB3E49483EE /* SwiftGen-iOS15.0 */,
 				2199AD117145091F09EF974D23A4D676 /* UIScreenExtension-iOS13.0 */,
@@ -1030,6 +1122,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		46600F38740A214EC12B55DF9C56644A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E6516098C007818708897A9AF41434F /* Pods-TimeTableItegration-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6C5B8D7DDA5ADB8D482AA47E9CDD6761 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1119,6 +1219,12 @@
 			target = DD6E514DD2E948D6FCA7DA963A302730 /* UIScreenExtension-iOS15.0 */;
 			targetProxy = ABE01CCBC53F646D3E0DDCD4ADEAF465 /* PBXContainerItemProxy */;
 		};
+		05D04CB235668B7172DC896AA166514A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SwiftGen-iOS13.0";
+			target = C20429433F74CB6336D4A1D86F6DCE30 /* SwiftGen-iOS13.0 */;
+			targetProxy = 12495DB65935941AF36B8362CEB87F69 /* PBXContainerItemProxy */;
+		};
 		2B3CE45B0EA43DE4D00815C75EE1987B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = M13Checkbox;
@@ -1130,6 +1236,18 @@
 			name = "Alamofire-iOS15.0";
 			target = 95C437E0BE79A639B68536652EFF012E /* Alamofire-iOS15.0 */;
 			targetProxy = 9B1BF44A3E462CF26A4C9B2FB01AC2F7 /* PBXContainerItemProxy */;
+		};
+		7FE707D2E802A9032437EAE93B42961C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "UIScreenExtension-iOS13.0";
+			target = 2199AD117145091F09EF974D23A4D676 /* UIScreenExtension-iOS13.0 */;
+			targetProxy = CB093ACE72D0358D541E2D3C818DCF0C /* PBXContainerItemProxy */;
+		};
+		B45B6F786FE0B591B982D2799F563625 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = M13Checkbox;
+			target = 7111E54EAE43E89F451A75076C3525ED /* M13Checkbox */;
+			targetProxy = 7D2B1A23EBF992E40A10AD0938D0BD1B /* PBXContainerItemProxy */;
 		};
 		BDE4D6CE6E3C6245CB566E163D6ED346 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1148,6 +1266,12 @@
 			name = "Alamofire-iOS13.0";
 			target = 674195C4CB27B7F4591EDB48382A7FA4 /* Alamofire-iOS13.0 */;
 			targetProxy = 010069CF435649D0B6687A69EDBD3ED8 /* PBXContainerItemProxy */;
+		};
+		F7C9C54508FDF0B1715E5DFF5CAE9F80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire-iOS13.0";
+			target = 674195C4CB27B7F4591EDB48382A7FA4 /* Alamofire-iOS13.0 */;
+			targetProxy = 568B0833F6BF8197635BF4BA3B5F5B53 /* PBXContainerItemProxy */;
 		};
 		FCF06D4453B1211BFA2FB41DF3ECC408 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1211,7 +1335,7 @@
 		};
 		32DC683D4D3AFD240FEC1C44D326C7D0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C1DA8DBB44EE8E2EF8AF67BD96AE4678 /* Pods-PolyNaviClip.release.xcconfig */;
+			baseConfigurationReference = 75ED90AB8855450A2FDD80759C092FED /* Pods-PolyNaviClip.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1234,7 +1358,7 @@
 		};
 		3361408F82D1EF8671FE999FF15DB583 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70A3A47ABA743B0A52AC79005CF1288C /* Pods-PolyNavi.debug.xcconfig */;
+			baseConfigurationReference = 4AFEDAA87B698A73DC1C8CEEBC903206 /* Pods-PolyNavi.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1396,9 +1520,32 @@
 			};
 			name = Debug;
 		};
+		54B7E1BC874B066238B66EB59EAD4E60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54B1D3D319866FFF3966DB403345D29D /* Pods-TimeTableItegration.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TimeTableItegration/Pods-TimeTableItegration.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		649AA5F832D424B854ED72FB99036B60 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7E7B41764D7406B686219993C8FCB14 /* Pods-PolyNaviClip.debug.xcconfig */;
+			baseConfigurationReference = 24ED9C14FC8869F3707AA511043BADEF /* Pods-PolyNaviClip.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1420,7 +1567,7 @@
 		};
 		7ECE6D4A3EA4950D6C22E21554AAC0F6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ADA155C1642FE98EEF3B6CB37528DAC0 /* Pods-PolyNavi.release.xcconfig */;
+			baseConfigurationReference = 3809AED774B699BDD9873EAD2F7A2DCF /* Pods-PolyNavi.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1664,6 +1811,28 @@
 			};
 			name = Release;
 		};
+		F0156766F1720E82792A7CB981DE3308 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE6C6E5B0610D2D350E95E98D08952A2 /* Pods-TimeTableItegration.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TimeTableItegration/Pods-TimeTableItegration.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		F2C03931D214FCF588F7FE1DF3472343 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8ED760B54F94937282DAB03CB65E19D7 /* SwiftGen-iOS15.0.release.xcconfig */;
@@ -1702,6 +1871,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		09BAB70509CD7B070915640D557E1DFD /* Build configuration list for PBXNativeTarget "Pods-TimeTableItegration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0156766F1720E82792A7CB981DE3308 /* Debug */,
+				54B7E1BC874B066238B66EB59EAD4E60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1683BC121ECA04777B3085D1F8A96206 /* Build configuration list for PBXNativeTarget "Alamofire-iOS13.0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
