@@ -402,11 +402,11 @@ extension MapView: MKMapViewDelegate {
             return renderer
         }
         
-        if let path = overlay as? PathOverlay {
-            let t = GradientPathRenderer(polyline: overlay as! MKPolyline, colors: [.systemBlue], showsBorder: true, borderColor: .white)
+        if overlay is PathOverlay {
+            let pathRenderer = GradientPathRenderer(polyline: overlay as! MKPolyline, colors: [.systemBlue], showsBorder: true, borderColor: .white)
             
-            t.lineWidth = 7
-            return t
+            pathRenderer.lineWidth = 7
+            return pathRenderer
         }
 
     
