@@ -403,9 +403,10 @@ extension MapView: MKMapViewDelegate {
         }
         
         if overlay is PathOverlay {
-            let pathRenderer = GradientPathRenderer(polyline: overlay as! MKPolyline, colors: [.systemBlue], showsBorder: true, borderColor: .white)
-            
+//            let pathRenderer = GradientPathRenderer(polyline: overlay as! MKPolyline, colors: [.systemBlue], showsBorder: true, borderColor: .white)
+            let pathRenderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
             pathRenderer.lineWidth = 7
+            pathRenderer.strokeColor = .systemBlue
             return pathRenderer
         }
 
@@ -529,11 +530,12 @@ extension MapView: MapViewDelegate {
     }
     
     func addPath(path: [PathResultNode]) -> UUID {
-        return mapView.addPath(path: path)
+//        mapView.addPath(path: path)
+        return venue?.addPath(mapView, path: path) ?? UUID()
     }
     
     func removePath(id: UUID) {
-        mapView.removePath(id: id)
+        venue?.removePath(mapView, id: id)
     }
     
     

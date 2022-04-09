@@ -18,6 +18,7 @@ class Level: CustomOverlay, Styleble, MapRenderer {
     
     var building: Building!
     
+    var navPaths: [UUID:[PathOverlay]] = [:]
     
     var ordinal: Int { properties.ordinal }
     var shortName: LocalizedName? { properties.short_name }
@@ -42,6 +43,49 @@ class Level: CustomOverlay, Styleble, MapRenderer {
     
     }
     
+    func addPath(_ mapView: MKMapView, path: [PathResultNode], id: UUID) {
+        
+        var splitByLevel: [[PathResultNode]] = []
+        
+        var currentPath: [PathResultNode] = [path[0]]
+        for i in 1..<path.count {
+            if path[i-1].level != path[i].level {
+                
+                let isUp = path[i-1].level!.ordinal < path[i].level!.ordinal
+                
+                if !isUp { currentPath.append(path[i]) }
+                splitByLevel.append(currentPath)
+                
+                currentPath = []
+                if isUp {
+                    currentPath.append(path[i-1])
+                }
+                currentPath.append(path[i])
+            } else {
+                currentPath.append(path[i])
+            }
+        }
+        
+        splitByLevel.append(currentPath)
+        
+        splitByLevel = splitByLevel.filter({ $0.count >= 2 && $0[1].level == self })
+        
+        let overlays = splitByLevel.map({ PathOverlay(coordinates: $0.map({ $0.location }), count: $0.count) })
+        navPaths[id] = overlays
+        
+        if isShow {
+            for overlay in overlays {
+                mapView.insertOverlay(overlay, above: geometry)
+            }
+        }
+    }
+    
+    func removePath(_ mapView: MKMapView, id: UUID) {
+        if let path = navPaths.removeValue(forKey: id), isShow {
+            mapView.removeOverlays(path)
+        }
+    }
+    
     func show(_ mapView: OverlayedMapView) {
         if isShow { return }
         mapView.addOverlays(units.filter({ $0.properties.category == .walkway }))
@@ -53,6 +97,10 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         mapView.addAnnotations(occupants)
         mapView.addAnnotations(amenitys)
         isShow = true
+        
+        for paths in navPaths {
+            mapView.addOverlays(paths.value)
+        }
     }
     
     func hide(_ mapView: OverlayedMapView) {
@@ -66,6 +114,10 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         mapView.removeAnnotations(amenitys)
         
         isShow = false
+        
+        for paths in navPaths {
+            mapView.removeOverlays(paths.value)
+        }
     }
     
     func configurate(renderer: MKOverlayRenderer) {
