@@ -61,7 +61,13 @@ class RouteDetailVC: NavbarBottomSheetPage {
             mapViewDelegate.pinAnnotation($0, animated: true)
         })
         
-        pathID = mapViewDelegate.addPath(path: PathFinder.shared.findPath(from: from, to: to))
+        let result = PathFinder.shared.findPath(from: from, to: to)
+        
+        if let result = result {
+            pathID = mapViewDelegate.addPath(path: result.path)
+        } else {
+            pathID = nil
+        }
     }
     
     override func beforeClose() {
