@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -118,8 +118,6 @@
 		9787698A27F519DB008138EC /* OccupantSearchIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787698827F519DB008138EC /* OccupantSearchIcon.swift */; };
 		9787698C27F51A00008138EC /* AttractionSearchIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787698B27F51A00008138EC /* AttractionSearchIcon.swift */; };
 		9787698D27F51A00008138EC /* AttractionSearchIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787698B27F51A00008138EC /* AttractionSearchIcon.swift */; };
-		9787699627FB3D38008138EC /* AStar in Frameworks */ = {isa = PBXBuildFile; productRef = 9787699527FB3D38008138EC /* AStar */; };
-		9787699827FB3D4C008138EC /* AStar in Frameworks */ = {isa = PBXBuildFile; productRef = 9787699727FB3D4C008138EC /* AStar */; };
 		9787699B27FB3E44008138EC /* PathFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787699A27FB3E44008138EC /* PathFinder.swift */; };
 		9787699D27FB9963008138EC /* BaseAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787699C27FB9963008138EC /* BaseAnnotation.swift */; };
 		9787699E27FB9963008138EC /* BaseAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787699C27FB9963008138EC /* BaseAnnotation.swift */; };
@@ -348,7 +346,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9787699627FB3D38008138EC /* AStar in Frameworks */,
 				CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */,
 				5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */,
 			);
@@ -358,7 +355,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9787699827FB3D4C008138EC /* AStar in Frameworks */,
 				7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -883,7 +879,6 @@
 			);
 			name = PolyNavi;
 			packageProductDependencies = (
-				9787699527FB3D38008138EC /* AStar */,
 			);
 			productName = PolyNavi;
 			productReference = 054F6784270C7B4C00FCC07C /* PolyNavi.app */;
@@ -904,7 +899,6 @@
 			);
 			name = PolyNaviClip;
 			packageProductDependencies = (
-				9787699727FB3D4C008138EC /* AStar */,
 			);
 			productName = PolyNaviClip;
 			productReference = 971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */;
@@ -938,7 +932,6 @@
 			);
 			mainGroup = 054F677B270C7B4B00FCC07C;
 			packageReferences = (
-				9787699427FB3D38008138EC /* XCRemoteSwiftPackageReference "A-Star" */,
 			);
 			productRefGroup = 054F6785270C7B4C00FCC07C /* Products */;
 			projectDirPath = "";
@@ -1539,30 +1532,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		9787699427FB3D38008138EC /* XCRemoteSwiftPackageReference "A-Star" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Dev1an/A-Star.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		9787699527FB3D38008138EC /* AStar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9787699427FB3D38008138EC /* XCRemoteSwiftPackageReference "A-Star" */;
-			productName = AStar;
-		};
-		9787699727FB3D4C008138EC /* AStar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9787699427FB3D38008138EC /* XCRemoteSwiftPackageReference "A-Star" */;
-			productName = AStar;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 054F677C270C7B4B00FCC07C /* Project object */;
 }

@@ -5,9 +5,9 @@
 //  Created by Andrei Soprachev on 04.04.2022.
 //
 
-import AStar
 import CoreLocation
 import MapKit
+import GameplayKit
 
 protocol PathResultNode {
     var location: CLLocationCoordinate2D { get }
@@ -15,33 +15,36 @@ protocol PathResultNode {
     var level: Level? { get }
 }
 
-final class PathNode: GraphNode, PathResultNode {
+final class PathNode: GKGraphNode, PathResultNode {
     typealias Cost = Float
     
+    var connectedNodes_: [PathNode] = [] {
+        didSet {
+            self.addConnections(to: connectedNodes_, bidirectional: false)
+        }
+    }
+    
     var location: CLLocationCoordinate2D
-    var connectedNodes: Set<PathNode> = []
     var building: Building?
     var level: Level?
     
     init(location: CLLocationCoordinate2D) {
         self.location = location
+        super.init()
     }
     
-    func cost(to node: PathNode) -> Float {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func cost(to node: GKGraphNode) -> Float {
+        guard let node = node as? PathNode else { return 0}
+        
         return Float(node.location.distance(from: location))
     }
     
-    func estimatedCost(to node: PathNode) -> Float {
+    override func estimatedCost(to node: GKGraphNode) -> Float {
         return cost(to: node)
-    }
-    
-    static func == (lhs: PathNode, rhs: PathNode) -> Bool {
-        lhs === rhs
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(location.latitude)
-        hasher.combine(location.longitude)
     }
 }
 
@@ -67,7 +70,7 @@ class PathFinder {
         })
         
         converted.forEach({ id, node in
-            node.1.connectedNodes = Set(node.0.properties.neighbours.compactMap({ converted[$0]?.1 }))
+            node.1.connectedNodes_ = node.0.properties.neighbours.compactMap({ converted[$0]?.1 })
             if let builingID = node.0.properties.builing_id,
                let builindg = buildings[builingID] {
                 node.1.building = builindg
@@ -90,8 +93,7 @@ class PathFinder {
         
         guard let fromNode = fromNode,
               let toNode = toNode else { return [] }
-
         
-        return fromNode.findPath(to: toNode)
+        return (fromNode.findPath(to: toNode as GKGraphNode)).map({ $0 as! PathNode })
     }
 }
