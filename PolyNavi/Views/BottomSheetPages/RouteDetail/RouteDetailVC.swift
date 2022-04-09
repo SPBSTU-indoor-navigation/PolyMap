@@ -36,7 +36,10 @@ class RouteDetailVC: NavbarBottomSheetPage {
     
     func setTo(_ annotation: MKAnnotation) {
         if let to = RouteDetailVC.toPoint { mapViewDelegate.unpinAnnotation(to, animated: true) }
-        mapViewDelegate.pinAnnotation(annotation, animated: true)
+        
+        self.mapViewDelegate.pinAnnotation(annotation, animated: true)
+        self.mapViewDelegate.deselectAnnotation(annotation, animated: true)
+        
         
         to = annotation
         
