@@ -48,8 +48,12 @@ enum File {
     }
 }
 
-class IMDFDecoder {
-    static func decode(_ path: URL) -> Venue? {
+protocol IMDFDecoder {
+    func decode(_ path: URL) -> Venue?
+}
+
+class IMDFDecoderGeoJson: IMDFDecoder {
+    func decode(_ path: URL) -> Venue? {
         
         let addresses = try! decodeFeatures(IMDF.Address.self, path: File.address.fileURL(path))
         let addressesByID = Dictionary(uniqueKeysWithValues: addresses.map{ ($0.identifier, $0) })
@@ -93,7 +97,7 @@ class IMDFDecoder {
         return result
     }
     
-    static func decodeFeatures<T: IMDFDecodableFeature>(_ type: T.Type, path: URL) throws -> [T] {
+    func decodeFeatures<T: IMDFDecodableFeature>(_ type: T.Type, path: URL) throws -> [T] {
         let data = try Data(contentsOf: path)
         let geoJSONFeatures = try MKGeoJSONDecoder().decode(data)
         

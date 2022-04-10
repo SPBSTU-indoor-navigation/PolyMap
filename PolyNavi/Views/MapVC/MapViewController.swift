@@ -9,6 +9,7 @@ import UIKit
 
 class MapViewController: UIViewController {
     var timeTableSmallOffset: NSLayoutConstraint?
+    var decoder: IMDFDecoder? = IMDFDecoderGeoJson()
     
     private lazy var timeTableButton: RoundButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +55,7 @@ class MapViewController: UIViewController {
         return $0
     }(UIButton())
     
-    private lazy var mapView: MapView = {
+    lazy var mapView: MapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.mapInfoDelegate = mapInfo
         $0.accessibilityIdentifier = "MapView"
@@ -114,7 +115,7 @@ class MapViewController: UIViewController {
     
     func loadIMDF() {
         let path = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
-        let venue = IMDFDecoder.decode(path)
+        let venue = decoder?.decode(path)
         
         mapView.venue = venue
         mapInfo.searchVC.searchable = venue?.searchable() ?? []

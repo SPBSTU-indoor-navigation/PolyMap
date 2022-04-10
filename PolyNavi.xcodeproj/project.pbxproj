@@ -176,6 +176,7 @@
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
 		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
 		97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
+		97EC30FD280219A3007928DD /* IMDFMapIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EC30FC280219A3007928DD /* IMDFMapIntegration.swift */; };
 		97EC311628023D8B007928DD /* PolyNaviUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EC311528023D8B007928DD /* PolyNaviUITests.swift */; };
 		97F0F89727EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
 		97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
@@ -340,6 +341,7 @@
 		97E15D0D27BC7F2B00E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0E27BC7F2B00E636FC /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0F27BC7F2B00E636FC /* libUIScreenExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIScreenExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97EC30FC280219A3007928DD /* IMDFMapIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDFMapIntegration.swift; sourceTree = "<group>"; };
 		97EC311328023D8B007928DD /* PolyNaviUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolyNaviUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97EC311528023D8B007928DD /* PolyNaviUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyNaviUITests.swift; sourceTree = "<group>"; };
 		97F0F89627EAAC1500296DA3 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
@@ -860,6 +862,7 @@
 		97C5A1DF27FF7E9A0019FE5C /* TimeTableItegration */ = {
 			isa = PBXGroup;
 			children = (
+				97EC30FC280219A3007928DD /* IMDFMapIntegration.swift */,
 				97C5A1E027FF7E9A0019FE5C /* TimeTableItegration.swift */,
 			);
 			path = TimeTableItegration;
@@ -1316,6 +1319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C5A1E127FF7E9A0019FE5C /* TimeTableItegration.swift in Sources */,
+				97EC30FD280219A3007928DD /* IMDFMapIntegration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
