@@ -64,6 +64,16 @@ class AFLoader: HTTPLoader {
     }
 }
 
+class MockLoader: HTTPLoader {
+
+    func load<T:Codable>(url: String, params: Dictionary<String, String>, completion: @escaping (ApiStatus<T>) -> Void) {
+        print(url)
+        print(params)
+
+        completion(.error)
+    }
+}
+
 class TimetableProvider {
     static let shared = TimetableProvider()
     
@@ -72,10 +82,14 @@ class TimetableProvider {
     var teachers: TeachersList? = nil
     var groups: GroupsList? = nil
     
-    var loader: HTTPLoader = AFLoader()
+    var loader: HTTPLoader
     
     var timetableCache: [String: Timetable] = [:]
-
+    
+    init() {
+        print(ProcessInfo.processInfo.arguments.contains("UI-TESTING"))
+        loader = ProcessInfo.processInfo.arguments.contains("UI-TESTING") ? MockLoader() : AFLoader()
+    }
     
     func loadFaculties(completion: @escaping (ApiStatus<FacultiesList>) -> Void) {
         let t: (ApiStatus<FacultiesList>) -> Void = { r in

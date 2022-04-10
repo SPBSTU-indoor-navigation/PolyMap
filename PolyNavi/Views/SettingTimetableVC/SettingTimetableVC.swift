@@ -122,6 +122,7 @@ extension SettingTimetableVC: UITableViewDelegate, UITableViewDataSource {
         let textLabel = UILabel()
         textLabel.font = .preferredFont(forTextStyle: .headline)
         let title = cellTitles[selectedIndex][indexPath.row]
+        cell.accessibilityIdentifier = cellTitles[selectedIndex][indexPath.row]
         if #available(iOS 14.0, *) {
             var content = cell.defaultContentConfiguration()
             content.text = title
