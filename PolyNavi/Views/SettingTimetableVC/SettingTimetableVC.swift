@@ -139,7 +139,7 @@ extension SettingTimetableVC: UITableViewDelegate, UITableViewDataSource {
         let vc = ChoosingWithSearchTableView()
         if (selectedIndex == 0) {
             if (indexPath.row == 0) {
-                vc.loadFunction = { completion in
+                vc.loadFunction = { completion, _ in
                     if let faculties = TimetableProvider.shared.faculties {
                         completion(faculties.convert())
                         return
@@ -157,7 +157,7 @@ extension SettingTimetableVC: UITableViewDelegate, UITableViewDataSource {
                 vc.navigationItem.title = L10n.Settings.titleOfInstituteCell
             } else {
                 guard let institute = GroupsAndTeacherStorage.shared.institute else {return}
-                vc.loadFunction = { completion in
+                vc.loadFunction = { completion, _ in
                     if let groups = TimetableProvider.shared.groups {
                         if groups.faculty.id == GroupsAndTeacherStorage.shared.institute?.ID {
                             completion(groups.convert())
@@ -177,7 +177,7 @@ extension SettingTimetableVC: UITableViewDelegate, UITableViewDataSource {
                 vc.navigationItem.title = L10n.Settings.titleOfGroupCell
             }
         } else {
-            vc.loadFunction = { completion in
+            vc.loadFunction = { completion, _ in
                 if let teachers = TimetableProvider.shared.teachers {
                     completion(teachers.convert())
                     return

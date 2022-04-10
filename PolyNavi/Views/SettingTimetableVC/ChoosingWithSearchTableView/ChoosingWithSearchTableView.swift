@@ -9,11 +9,18 @@ import UIKit
 
 
 class ChoosingWithSearchTableView: UIViewController {
+    enum LoadingError {
+        case errorWithInternet
+        case error
+    }
     
-    private var currentArray: [SettingsModel] = []
-    private var filteredArray: [SettingsModel] = []
+    var currentArray: [SettingsModel] = []
+    var filteredArray: [SettingsModel] = []
     public var choosingFunction: (SettingsModel) -> Void = { _ in }
-    public var loadFunction: (@escaping ([SettingsModel]) -> Void) -> Void = { _ in  }
+    public var loadFunction: (
+        @escaping ([SettingsModel]) -> Void,
+        @escaping (LoadingError) -> Void
+    ) -> Void = { _, _ in  }
     public var selectedID: Int? = nil
     
     private lazy var searchController: UISearchController = {
@@ -41,6 +48,11 @@ class ChoosingWithSearchTableView: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIActivityIndicatorView())
+    
+    lazy var label: UILabel = {
+        $0.isHidden = true
+        return $0
+    }(UILabel())
     
     
     override func viewDidLoad() {
@@ -115,6 +127,7 @@ extension ChoosingWithSearchTableView {
     
     private func setViews() {
         view.addSubview(tableView)
+        view.addSubview(label)
         view.addSubview(indicator)
         
         view.backgroundColor = .systemBackground
@@ -123,6 +136,9 @@ extension ChoosingWithSearchTableView {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
             indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -135,7 +151,7 @@ extension ChoosingWithSearchTableView {
 extension ChoosingWithSearchTableView {
     func loadData() {
         indicator.startAnimating()
-        self.loadFunction { [weak self] arr in
+        self.loadFunction({ [weak self] arr in
             guard let self = self else {return}
             self.currentArray = arr.sorted(by: {
                 if $0.ID == self.selectedID  {
@@ -151,6 +167,19 @@ extension ChoosingWithSearchTableView {
                 self?.indicator.stopAnimating()
                 self?.tableView.reloadData()
             }
-        }
+        }, { status in
+            switch status {
+            case .errorWithInternet:
+                DispatchQueue.main.async {
+                    self.label.isHidden = false
+                    self.label.text = "Please, check internet connection"
+                }
+            case .error:
+                DispatchQueue.main.async {
+                    self.label.isHidden = false
+                    self.label.text = "Error with loading timetable"
+                }
+            }
+        })
     }
 }

@@ -60,6 +60,11 @@ class TimetableViewController: UIViewController {
         return $0
     }(TimetableEmptyView(frame: .zero))
     
+    internal lazy var label: UILabel = {
+        $0.isHidden = true
+        return $0
+    }(UILabel())
+    
     
     init(date: Date) {
         super.init(nibName: nil, bundle: nil)
@@ -150,6 +155,7 @@ private extension TimetableViewController {
         view.addSubview(loader)
         view.addSubview(tableView)
         view.addSubview(emptyWeekView)
+        view.addSubview(label)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -163,7 +169,10 @@ private extension TimetableViewController {
             emptyWeekView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             emptyWeekView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             emptyWeekView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            emptyWeekView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            emptyWeekView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
 }
@@ -183,24 +192,40 @@ internal extension TimetableViewController {
         
         TimetableProvider.shared.loadTimetabe(id: id ?? -1, filter: GroupsAndTeacherStorage.shared.currentFilter, startDate: date, fromCache: true) {
             [weak self] response in
-            guard let self = self, let response = response.data else { return }
-            self.arrayOfDaysWithLessons = TimetableWeek.convert(response).days.map { pair in
-                return TimetableWeek.TimetableDay(date: pair.date, timetableCell: LessonModel.createCorrectTimeTable(currentArray: pair.timetableCell))
-            }
-            self.weekData = response.week
+            guard let self = self else { return }
             
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.tableView.reloadData()
-                self.loader.stopAnimating()
-                self.tableView.refreshControl = self.refreshControl
-                self.emptyWeekView.isHidden = !self.arrayOfDaysWithLessons.isEmpty
-                self.tableView.isHidden = self.arrayOfDaysWithLessons.isEmpty
-                self.dateLoaded?(self.weekData)
-                if self.checkCurrentDateAfterLoading {
-                    let indexCurrent = self.arrayOfDaysWithLessons.firstIndex(where: {Calendar.current.isDate($0.date!, inSameDayAs: Date())})
-                    self.thisWeekDontHaveCurrentDay = indexCurrent == nil
-                    self.updateButtonTitle?(true, self.thisWeekDontHaveCurrentDay)
+            switch response {
+            case .successWith(let data):
+                self.arrayOfDaysWithLessons = TimetableWeek.convert(data).days.map { pair in
+                    return TimetableWeek.TimetableDay(date: pair.date, timetableCell: LessonModel.createCorrectTimeTable(currentArray: pair.timetableCell))
+                }
+                self.weekData = data.week
+                
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.tableView.reloadData()
+                    self.loader.stopAnimating()
+                    self.tableView.refreshControl = self.refreshControl
+                    self.emptyWeekView.isHidden = !self.arrayOfDaysWithLessons.isEmpty
+                    self.tableView.isHidden = self.arrayOfDaysWithLessons.isEmpty
+                    self.dateLoaded?(self.weekData)
+                    if self.checkCurrentDateAfterLoading {
+                        let indexCurrent = self.arrayOfDaysWithLessons.firstIndex(where: {Calendar.current.isDate($0.date!, inSameDayAs: Date())})
+                        self.thisWeekDontHaveCurrentDay = indexCurrent == nil
+                        self.updateButtonTitle?(true, self.thisWeekDontHaveCurrentDay)
+                    }
+                }
+                break
+                
+            case .errorNoInternet:
+                DispatchQueue.main.async {
+                    self.label.isHidden = false
+                    self.label.text = "Please, check internet connection"
+                }
+            case .error:
+                DispatchQueue.main.async {
+                    self.label.isHidden = false
+                    self.label.text = "Error with loading timetable"
                 }
             }
         }
@@ -211,17 +236,32 @@ internal extension TimetableViewController {
         TimetableProvider.shared.loadTimetabe(id: id ?? -1, filter: GroupsAndTeacherStorage.shared.currentFilter, startDate: date, fromCache: false) {
             [weak self] response in
             
-            guard let self = self, let response = response.data else { return }
-            self.arrayOfDaysWithLessons = TimetableWeek.convert(response).days.map { pair in
-                return TimetableWeek.TimetableDay(date: pair.date, timetableCell: LessonModel.createCorrectTimeTable(currentArray: pair.timetableCell))
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
-                guard let self = self else { return }
-                self.emptyWeekView.isHidden = !self.arrayOfDaysWithLessons.isEmpty
-                self.tableView.isHidden = self.arrayOfDaysWithLessons.isEmpty
-                self.tableView.reloadData()
-                completion()
+            guard let self = self else { return }
+            switch response {
+            case .successWith(let data):
+                self.arrayOfDaysWithLessons = TimetableWeek.convert(data).days.map { pair in
+                    return TimetableWeek.TimetableDay(date: pair.date, timetableCell: LessonModel.createCorrectTimeTable(currentArray: pair.timetableCell))
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+                    guard let self = self else { return }
+                    self.emptyWeekView.isHidden = !self.arrayOfDaysWithLessons.isEmpty
+                    self.tableView.isHidden = self.arrayOfDaysWithLessons.isEmpty
+                    self.tableView.reloadData()
+                    completion()
+                }
+            case .errorNoInternet:
+                DispatchQueue.main.async {
+                    self.label.isHidden = false
+                    self.label.text = "Please, check internet connection"
+                    completion()
+                }
+            case .error:
+                DispatchQueue.main.async {
+                    self.label.isHidden = false
+                    self.label.text = "Error with loading timetable"
+                    completion()
+                }
             }
         }
     }
