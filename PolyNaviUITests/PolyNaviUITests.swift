@@ -21,7 +21,7 @@ class PolyNaviUITests: XCTestCase {
     // в поиске найти 186а кабинет
     // нажать на него, чтоб посмотреть информацию о нем
     // проложить маршрут до него
-    func testCabinetPath() throws {
+    func testCabinetPath() {
         
         let mapInfo = app.otherElements["MapInfo"]
         mapInfo.swipeUp()
@@ -37,4 +37,15 @@ class PolyNaviUITests: XCTestCase {
         app.buttons["route"].tap()
         
     }
+    
+    // нажать на аннотацию на карте
+    // проложить маршрут до неё
+    func testAnnotationTapAndPath() {
+        let map = app.otherElements["MapView"]
+        
+        map.otherElements["Главный учебный корпус"].tap()
+        
+        app.buttons["route"].tap()
+    }
+        
 }

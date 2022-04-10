@@ -57,6 +57,7 @@ class MapViewController: UIViewController {
     private lazy var mapView: MapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.mapInfoDelegate = mapInfo
+        $0.accessibilityIdentifier = "MapView"
         return $0
     }(MapView())
     
