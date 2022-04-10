@@ -106,6 +106,8 @@ class MapInfo: BottomSheetViewController {
         searchVC = SearchVC()
         super.init(parentVC: parentVC, rootViewController: searchVC)
         
+        view.accessibilityIdentifier = "MapInfo"
+        
         searchVC.mapInfoDelegate = self
         MapInfo.routeDetail = self
     }
