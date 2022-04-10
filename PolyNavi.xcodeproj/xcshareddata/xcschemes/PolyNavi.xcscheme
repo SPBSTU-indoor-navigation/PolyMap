@@ -38,6 +38,16 @@
                ReferencedContainer = "container:PolyNavi.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "97C5A1DD27FF7E9A0019FE5C"
+               BuildableName = "TimeTableItegration.xctest"
+               BlueprintName = "TimeTableItegration"
+               ReferencedContainer = "container:PolyNavi.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
