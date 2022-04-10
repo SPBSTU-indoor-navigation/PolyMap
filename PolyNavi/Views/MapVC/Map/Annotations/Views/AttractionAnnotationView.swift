@@ -24,6 +24,7 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
     override var annotation: MKAnnotation? {
         didSet {
             label.text = annotation?.title!
+            accessibilityIdentifier = annotation?.title!
             if let attraction = annotation as? AttractionAnnotation {
                 if let image = attraction.annotationSprite {
                     imageView.image = image
