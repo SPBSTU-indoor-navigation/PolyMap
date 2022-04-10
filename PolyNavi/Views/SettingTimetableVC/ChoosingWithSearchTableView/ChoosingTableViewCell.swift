@@ -69,6 +69,7 @@ extension ChoosingTableViewCell {
     public func configure(title: String, status: Bool) {
         checkBox.setCheckState((status) ? .checked : .unchecked, animated: false)
         titleLabel.text = title
+        accessibilityIdentifier = title
     }
     
     public func toogleCheckbox() {

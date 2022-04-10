@@ -67,6 +67,7 @@ class GroupsAndTeacherStorage {
     }
     
     func isReady() -> Bool {
+        readAll()
         return (fillter == .groups && groupNumber != nil && institute != nil) || (fillter == .teachers && teachersName != nil)
     }
     

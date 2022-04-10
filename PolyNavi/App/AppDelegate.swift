@@ -13,6 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if CommandLine.arguments.contains("UI-TESTING") {
+            UIView.setAnimationsEnabled(false)
+        }
+        
+        if CommandLine.arguments.contains("RESET-STORAGE") {
+            UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        }
+        
+        
         // Override point for customization after application launch.
         return true
     }

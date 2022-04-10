@@ -36,6 +36,8 @@
 		97196E7F27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
 		97196E8127E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */; };
 		97196E8227E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */; };
+		9719FBE72803A0DA0048C810 /* PolyNaviUITestsFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719FBE62803A0DA0048C810 /* PolyNaviUITestsFirstLaunch.swift */; };
+		9719FBE92803A17D0048C810 /* PolyNaviTestsTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719FBE82803A17D0048C810 /* PolyNaviTestsTimeTable.swift */; };
 		971F8DD127BD52EE0018F98A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD027BD52EE0018F98A /* AppDelegate.swift */; };
 		971F8DD327BD52EE0018F98A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD227BD52EE0018F98A /* SceneDelegate.swift */; };
 		971F8DDA27BD52EF0018F98A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971F8DD927BD52EF0018F98A /* Assets.xcassets */; };
@@ -84,7 +86,7 @@
 		971F8E1327BD55820018F98A /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
 		971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		971F8E1627BD55820018F98A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
-		971F8E1727BD558F0018F98A /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		971F8E1727BD558F0018F98A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* OccupantAnnotation.swift */; };
@@ -174,7 +176,7 @@
 		97C5A1E127FF7E9A0019FE5C /* TimeTableItegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C5A1E027FF7E9A0019FE5C /* TimeTableItegration.swift */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
-		97E15D2827BC7FB500E636FC /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
 		97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
 		97EC30FD280219A3007928DD /* IMDFMapIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EC30FC280219A3007928DD /* IMDFMapIntegration.swift */; };
 		97EC311628023D8B007928DD /* PolyNaviUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EC311528023D8B007928DD /* PolyNaviUITests.swift */; };
@@ -261,6 +263,8 @@
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		97196E7D27E6781D00F9E73A /* PinnableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnableMapView.swift; sourceTree = "<group>"; };
 		97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnnotationView.swift; sourceTree = "<group>"; };
+		9719FBE62803A0DA0048C810 /* PolyNaviUITestsFirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyNaviUITestsFirstLaunch.swift; sourceTree = "<group>"; };
+		9719FBE82803A17D0048C810 /* PolyNaviTestsTimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyNaviTestsTimeTable.swift; sourceTree = "<group>"; };
 		971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNaviClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971F8DD027BD52EE0018F98A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		971F8DD227BD52EE0018F98A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -890,6 +894,8 @@
 		97EC311428023D8B007928DD /* PolyNaviUITests */ = {
 			isa = PBXGroup;
 			children = (
+				9719FBE82803A17D0048C810 /* PolyNaviTestsTimeTable.swift */,
+				9719FBE62803A0DA0048C810 /* PolyNaviUITestsFirstLaunch.swift */,
 				97EC311528023D8B007928DD /* PolyNaviUITests.swift */,
 			);
 			path = PolyNaviUITests;
@@ -1255,7 +1261,7 @@
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */,
-				97E15D2827BC7FB500E636FC /* BuildFile in Sources */,
+				97E15D2827BC7FB500E636FC /* (null) in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
 				97A566F827D589FA00A064CC /* MapDetailInfo.swift in Sources */,
@@ -1303,7 +1309,7 @@
 				9787697C27F4BB14008138EC /* TodayCell.swift in Sources */,
 				971F8DFF27BD55650018F98A /* LevelSwitcher.swift in Sources */,
 				979F86ED27D6E9720048B486 /* RouteDetailVC.swift in Sources */,
-				971F8E1727BD558F0018F98A /* BuildFile in Sources */,
+				971F8E1727BD558F0018F98A /* (null) in Sources */,
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
 				978B321027EE7C0A00760B78 /* SearchHeaderView.swift in Sources */,
 				971F8DF927BD555B0018F98A /* IMDFDecoder.swift in Sources */,
@@ -1358,6 +1364,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9719FBE92803A17D0048C810 /* PolyNaviTestsTimeTable.swift in Sources */,
+				9719FBE72803A0DA0048C810 /* PolyNaviUITestsFirstLaunch.swift in Sources */,
 				97EC311628023D8B007928DD /* PolyNaviUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

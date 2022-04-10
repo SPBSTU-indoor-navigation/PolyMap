@@ -19,10 +19,7 @@ class PolyNaviUITests: XCTestCase {
         app.launch()
     }
     
-    // открыть боттон шит
-    // в поиске найти 186а кабинет
-    // нажать на него, чтоб посмотреть информацию о нем
-    // проложить маршрут до него
+//    1. Через поиск найти кабинет 186а, посмотреть о нём информацию и его расположение на карте, построить маршрут до него
     func testCabinetPath() {
         
         let mapInfo = app.otherElements["MapInfo"]
@@ -40,8 +37,7 @@ class PolyNaviUITests: XCTestCase {
         
     }
     
-    // нажать на аннотацию на карте
-    // проложить маршрут до неё
+//    2. На карте нажать на аннотацию ГЗ, посмотреть информацию о нём, построить маршрут до него
     func testAnnotationTapAndPath() {
         let map = app.otherElements["MapView"]
         
@@ -50,31 +46,131 @@ class PolyNaviUITests: XCTestCase {
         app.buttons["route"].tap()
     }
     
-    // открыть расписание
-    // открыть настройки
-    // выбрать институт и группу
-    // закрыть насройки
-    // посмотреть расписание
-    
-//  Отурыть расписание в первый раз, выбрать источник, перейти к просмотру расписания
-    func testTimteTableStudent() {
-        let keys = ["filterVal",
-                    "instituteID",
-                    "instituteName",
-                    "groupID",
-                    "groupName",
-                    "teacherID",
-                    "teacherName"]
+//    3. При просмотре планировки переключатель этажа должен переключать этаж
+    func testLevelSwitcher() {
+        let map = app.otherElements["MapView"]
+        let mapInfo = app.otherElements["MapInfo"]
         
-        for key in keys {
-            let prefs = UserDefaults.standard
-            prefs.removeObject(forKey: key)
-        }
+        let searchBar = mapInfo.otherElements["SearchBar"]
+        searchBar.searchFields.element.tap()
+        searchBar.typeText("183")
+        mapInfo.tables.cells.staticTexts["Кабинет 183"].tap()
         
-        app.buttons["timetable"].tap()
-        app.cells["Институт"].tap()
+        XCTAssert(map.otherElements["183"].exists)
+        XCTAssert(!map.otherElements["329"].exists)
         
-        print(app.debugDescription)
+        XCTAssert(app.otherElements["MapView"].staticTexts["1"].exists)
+        XCTAssert(app.otherElements["MapView"].staticTexts["3"].exists)
+        
+        app.otherElements["MapView"].staticTexts["3"].tap()
+        XCTAssert(!map.otherElements["183"].exists)
+        XCTAssert(map.otherElements["329"].exists)
+        
+        app.otherElements["MapView"].staticTexts["1"].tap()
+        XCTAssert(map.otherElements["183"].exists)
+        XCTAssert(!map.otherElements["329"].exists)
     }
+    
+//    4. По нажанию на аннотацию кабинета, должна показываьтся планировка здания
+    func testAnnotationZoom() {
+        let map = app.otherElements["MapView"]
+        let mapInfo = app.otherElements["MapInfo"]
         
+        let searchBar = mapInfo.otherElements["SearchBar"]
+        searchBar.searchFields.element.tap()
+        searchBar.typeText("186а")
+        mapInfo.tables.cells.staticTexts["Кабинет 186а"].tap()
+        
+        XCTAssert(!map.otherElements["Главный учебный корпус"].exists)
+        XCTAssert(map.otherElements["186а"].exists)
+        XCTAssert(map.otherElements["155"].exists)
+    }
+    
+//   5. Ввести в поиск несуществующий кабинет и увидить строчку что ничего не найдено
+    func testSearchEmpty() {
+        let mapInfo = app.otherElements["MapInfo"]
+        
+        let searchBar = mapInfo.otherElements["SearchBar"]
+        searchBar.searchFields.element.tap()
+        
+        searchBar.typeText("186")
+        XCTAssert(!mapInfo.staticTexts["Ничего не найдено"].exists)
+        
+        searchBar.typeText("qwerty")
+        XCTAssert(mapInfo.staticTexts["Ничего не найдено"].exists)
+    }
+    
+    //   6. Проверить что окно поиска увеличивается свайпом
+    func testMapInfoOpenSwipe() {
+        let mapInfo = app.otherElements["MapInfo"]
+        
+        let startHeight = mapInfo.frame.height
+        
+        mapInfo.swipeUp()
+        let mediumHeight = mapInfo.frame.height
+        
+        mapInfo.swipeUp()
+        let endHeight = mapInfo.frame.height
+        
+        XCTAssertGreaterThan(mediumHeight, startHeight)
+        XCTAssertGreaterThan(endHeight, mediumHeight)
+    }
+    
+    //   7. Проверить что окно поиска умеьшается свайпом
+    func testMapInfoCloseSwipe() {
+        let mapInfo = app.otherElements["MapInfo"]
+        mapInfo.swipeUp()
+        mapInfo.swipeUp()
+        
+        let startHeight = mapInfo.frame.height
+        
+        mapInfo.swipeDown()
+        let mediumHeight = mapInfo.frame.height
+        
+        mapInfo.swipeDown()
+        let endHeight = mapInfo.frame.height
+        
+        XCTAssertLessThan(mediumHeight, startHeight)
+        XCTAssertLessThan(endHeight, mediumHeight)
+    }
+    
+    //   8. Проверить что окно поиска увеличивается по нажатию на строку поиска
+    func testMapInfoOpenBySearch() {
+        let mapInfo = app.otherElements["MapInfo"]
+        
+        let startHeight = mapInfo.frame.height
+        mapInfo.otherElements["SearchBar"].searchFields.element.tap()
+        let endHeight = mapInfo.frame.height
+        
+        XCTAssertGreaterThan(endHeight, startHeight)
+    }
+    
+    //   9. Проверить что окно поиска становится меньше при нажатие на аннотацию в поиске
+    func testMapInfoCollapsByTapSearchResult() {
+        let mapInfo = app.otherElements["MapInfo"]
+        
+        let searchBar = mapInfo.otherElements["SearchBar"]
+        searchBar.searchFields.element.tap()
+        searchBar.typeText("183")
+        
+        let startHeight = mapInfo.frame.height
+        mapInfo.tables.cells.staticTexts["Кабинет 183"].tap()
+        let endHeight = mapInfo.frame.height
+        
+        XCTAssertLessThan(endHeight, startHeight)
+    }
+    
+    //   10. Проверить что окно поиска при нажатие на "отменить" в поиске
+    func testMapInfoCollapsByCancelSearch() {
+        let mapInfo = app.otherElements["MapInfo"]
+        
+        let searchBar = mapInfo.otherElements["SearchBar"]
+        searchBar.searchFields.element.tap()
+        
+        let startHeight = mapInfo.frame.height
+        searchBar.staticTexts["Отменить"].tap()
+        let endHeight = mapInfo.frame.height
+        
+        XCTAssertLessThan(endHeight, startHeight)
+    }
 }
