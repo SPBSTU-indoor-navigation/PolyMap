@@ -110,9 +110,9 @@ class MainSearchData: NSObject {
     private var compute: [(SectionType, [Any])] = []
     
     func process(searchable: [Searchable]) {
-        recent.1 = Array(searchable[2...4])
-        favorites.1 = Array(searchable[52...55])
-        today.1 = Array(searchable[87...90]).map({ TodayCellModel(searchable: $0, title: "Высшая математика", timeStart: Date().advanced(by: -300), timeEnd: Date().advanced(by: 500)) })
+//        recent.1 = Array(searchable[2...4])
+//        favorites.1 = Array(searchable[52...55])
+//        today.1 = Array(searchable[87...90]).map({ TodayCellModel(searchable: $0, title: "Высшая математика", timeStart: Date().advanced(by: -300), timeEnd: Date().advanced(by: 500)) })
         reload()
     }
     
