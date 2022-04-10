@@ -7,6 +7,7 @@
 
 import XCTest
 
+
 class PolyNaviUITests: XCTestCase {
 
     var app: XCUIApplication!
@@ -14,6 +15,7 @@ class PolyNaviUITests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         app = XCUIApplication()
+        app.launchArguments += ["UI-TESTING"]
         app.launch()
     }
     
@@ -53,10 +55,26 @@ class PolyNaviUITests: XCTestCase {
     // выбрать институт и группу
     // закрыть насройки
     // посмотреть расписание
+    
+//  Отурыть расписание в первый раз, выбрать источник, перейти к просмотру расписания
     func testTimteTableStudent() {
+        let keys = ["filterVal",
+                    "instituteID",
+                    "instituteName",
+                    "groupID",
+                    "groupName",
+                    "teacherID",
+                    "teacherName"]
+        
+        for key in keys {
+            let prefs = UserDefaults.standard
+            prefs.removeObject(forKey: key)
+        }
+        
         app.buttons["timetable"].tap()
-
-//        ..........
+        app.cells["Институт"].tap()
+        
+        print(app.debugDescription)
     }
         
 }

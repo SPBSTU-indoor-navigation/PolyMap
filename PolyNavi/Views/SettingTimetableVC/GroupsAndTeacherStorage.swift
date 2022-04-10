@@ -22,6 +22,14 @@ class GroupsAndTeacherStorage {
         static let groupName = "groupName"
         static let teacherID = "teacherID"
         static let teacherName = "teacherName"
+        
+        static let allCases = [ filterVal,
+                                instituteID,
+                                instituteName,
+                                groupID,
+                                groupName,
+                                teacherID,
+                                teacherName ]
     }
     
     static let shared = GroupsAndTeacherStorage()
