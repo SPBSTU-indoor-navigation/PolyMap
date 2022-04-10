@@ -37,6 +37,7 @@ class SearchVC: NavbarBottomSheetPage {
         $0.returnKeyType = .search
         $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        $0.accessibilityIdentifier = "SearchBar"
         $0.delegate = self
         
         return $0

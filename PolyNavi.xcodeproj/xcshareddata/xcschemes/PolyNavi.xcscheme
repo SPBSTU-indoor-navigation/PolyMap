@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "97C5A1DD27FF7E9A0019FE5C"
-               BuildableName = "TimeTableItegration.xctest"
-               BlueprintName = "TimeTableItegration"
+               BlueprintIdentifier = "97EC311228023D8B007928DD"
+               BuildableName = "PolyNaviUITests.xctest"
+               BlueprintName = "PolyNaviUITests"
                ReferencedContainer = "container:PolyNavi.xcodeproj">
             </BuildableReference>
          </TestableReference>

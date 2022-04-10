@@ -84,7 +84,7 @@
 		971F8E1327BD55820018F98A /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
 		971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		971F8E1627BD55820018F98A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
-		971F8E1727BD558F0018F98A /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		971F8E1727BD558F0018F98A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* OccupantAnnotation.swift */; };
@@ -174,8 +174,9 @@
 		97C5A1E127FF7E9A0019FE5C /* TimeTableItegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C5A1E027FF7E9A0019FE5C /* TimeTableItegration.swift */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
-		97E15D2827BC7FB500E636FC /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
 		97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
+		97EC311628023D8B007928DD /* PolyNaviUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EC311528023D8B007928DD /* PolyNaviUITests.swift */; };
 		97F0F89727EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
 		97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
 		97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
@@ -192,6 +193,13 @@
 			remoteInfo = PolyNaviClip;
 		};
 		97C5A1E227FF7E9A0019FE5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054F677C270C7B4B00FCC07C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 054F6783270C7B4C00FCC07C;
+			remoteInfo = PolyNavi;
+		};
+		97EC311928023D8B007928DD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 054F677C270C7B4B00FCC07C /* Project object */;
 			proxyType = 1;
@@ -332,6 +340,8 @@
 		97E15D0D27BC7F2B00E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0E27BC7F2B00E636FC /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0F27BC7F2B00E636FC /* libUIScreenExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIScreenExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97EC311328023D8B007928DD /* PolyNaviUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolyNaviUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97EC311528023D8B007928DD /* PolyNaviUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyNaviUITests.swift; sourceTree = "<group>"; };
 		97F0F89627EAAC1500296DA3 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		97FCC17727C6A313009F3C39 /* ScaledImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledImageView.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
@@ -366,6 +376,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		97EC311028023D8B007928DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -386,6 +403,7 @@
 				054F6786270C7B4C00FCC07C /* PolyNavi */,
 				971F8DCF27BD52EE0018F98A /* PolyNaviClip */,
 				97C5A1DF27FF7E9A0019FE5C /* TimeTableItegration */,
+				97EC311428023D8B007928DD /* PolyNaviUITests */,
 				054F6785270C7B4C00FCC07C /* Products */,
 				46370B1FDDF5AC7D9755CB89 /* Pods */,
 				4B73B799F57DEF02F87D3626 /* Frameworks */,
@@ -398,6 +416,7 @@
 				054F6784270C7B4C00FCC07C /* PolyNavi.app */,
 				971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */,
 				97C5A1DE27FF7E9A0019FE5C /* TimeTableItegration.xctest */,
+				97EC311328023D8B007928DD /* PolyNaviUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -857,6 +876,14 @@
 			path = TimeTableVC;
 			sourceTree = "<group>";
 		};
+		97EC311428023D8B007928DD /* PolyNaviUITests */ = {
+			isa = PBXGroup;
+			children = (
+				97EC311528023D8B007928DD /* PolyNaviUITests.swift */,
+			);
+			path = PolyNaviUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -918,6 +945,24 @@
 			productReference = 97C5A1DE27FF7E9A0019FE5C /* TimeTableItegration.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		97EC311228023D8B007928DD /* PolyNaviUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97EC311D28023D8B007928DD /* Build configuration list for PBXNativeTarget "PolyNaviUITests" */;
+			buildPhases = (
+				97EC310F28023D8B007928DD /* Sources */,
+				97EC311028023D8B007928DD /* Frameworks */,
+				97EC311128023D8B007928DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97EC311A28023D8B007928DD /* PBXTargetDependency */,
+			);
+			name = PolyNaviUITests;
+			productName = PolyNaviUITests;
+			productReference = 97EC311328023D8B007928DD /* PolyNaviUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -934,6 +979,10 @@
 						CreatedOnToolsVersion = 13.2.1;
 					};
 					97C5A1DD27FF7E9A0019FE5C = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 054F6783270C7B4C00FCC07C;
+					};
+					97EC311228023D8B007928DD = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 054F6783270C7B4C00FCC07C;
 					};
@@ -956,6 +1005,7 @@
 				054F6783270C7B4C00FCC07C /* PolyNavi */,
 				971F8DCD27BD52EE0018F98A /* PolyNaviClip */,
 				97C5A1DD27FF7E9A0019FE5C /* TimeTableItegration */,
+				97EC311228023D8B007928DD /* PolyNaviUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -985,6 +1035,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		97C5A1DC27FF7E9A0019FE5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97EC311128023D8B007928DD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1164,7 +1221,7 @@
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */,
-				97E15D2827BC7FB500E636FC /* BuildFile in Sources */,
+				97E15D2827BC7FB500E636FC /* (null) in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
 				97A566F827D589FA00A064CC /* MapDetailInfo.swift in Sources */,
@@ -1212,7 +1269,7 @@
 				9787697C27F4BB14008138EC /* TodayCell.swift in Sources */,
 				971F8DFF27BD55650018F98A /* LevelSwitcher.swift in Sources */,
 				979F86ED27D6E9720048B486 /* RouteDetailVC.swift in Sources */,
-				971F8E1727BD558F0018F98A /* BuildFile in Sources */,
+				971F8E1727BD558F0018F98A /* (null) in Sources */,
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
 				978B321027EE7C0A00760B78 /* SearchHeaderView.swift in Sources */,
 				971F8DF927BD555B0018F98A /* IMDFDecoder.swift in Sources */,
@@ -1262,6 +1319,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		97EC310F28023D8B007928DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97EC311628023D8B007928DD /* PolyNaviUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1274,6 +1339,11 @@
 			isa = PBXTargetDependency;
 			target = 054F6783270C7B4C00FCC07C /* PolyNavi */;
 			targetProxy = 97C5A1E227FF7E9A0019FE5C /* PBXContainerItemProxy */;
+		};
+		97EC311A28023D8B007928DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 054F6783270C7B4C00FCC07C /* PolyNavi */;
+			targetProxy = 97EC311928023D8B007928DD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1592,6 +1662,44 @@
 			};
 			name = Release;
 		};
+		97EC311B28023D8B007928DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LZP5UN7552;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Soprachev.PolyNaviUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PolyNavi;
+			};
+			name = Debug;
+		};
+		97EC311C28023D8B007928DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LZP5UN7552;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Soprachev.PolyNaviUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PolyNavi;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1627,6 +1735,15 @@
 			buildConfigurations = (
 				97C5A1E427FF7E9A0019FE5C /* Debug */,
 				97C5A1E527FF7E9A0019FE5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97EC311D28023D8B007928DD /* Build configuration list for PBXNativeTarget "PolyNaviUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97EC311B28023D8B007928DD /* Debug */,
+				97EC311C28023D8B007928DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
