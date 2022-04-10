@@ -20,6 +20,7 @@ class MapViewController: UIViewController {
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout)
         $0.addShadow()
         $0.addTarget(self, action: #selector(openTimetable(_:)), for: .touchUpInside)
+        $0.accessibilityIdentifier = "timetable"
         return $0
     }(RoundButton(type: .system))
     
@@ -36,6 +37,8 @@ class MapViewController: UIViewController {
         $0.setImage(UIImage(systemName: "calendar"), for: .normal)
         $0.setTitle(L10n.Timetable.title, for: .normal)
         $0.addTarget(self, action: #selector(openTimetable(_:)), for: .touchUpInside)
+        
+        $0.accessibilityIdentifier = "timetable"
         
         if #available(iOS 15.0, *) {
             $0.configuration = .plain()

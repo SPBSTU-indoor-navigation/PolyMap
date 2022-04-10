@@ -113,7 +113,13 @@ class MapDetailInfo {
     }
     
     func section(for row: Int, title: Bool) -> Section? {
-        return sections[row - title.intValue]
+        let index = row - title.intValue
+        
+        if index >= 0 && index < sections.count {
+            return sections[index]
+        }
+        
+        return nil
     }
     
 }

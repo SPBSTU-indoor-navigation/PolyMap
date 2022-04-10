@@ -47,5 +47,16 @@ class PolyNaviUITests: XCTestCase {
         
         app.buttons["route"].tap()
     }
+    
+    // открыть расписание
+    // открыть настройки
+    // выбрать институт и группу
+    // закрыть насройки
+    // посмотреть расписание
+    func testTimteTableStudent() {
+        app.buttons["timetable"].tap()
+
+//        ..........
+    }
         
 }
