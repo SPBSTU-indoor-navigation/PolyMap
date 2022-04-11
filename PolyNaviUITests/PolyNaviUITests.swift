@@ -41,13 +41,7 @@ class PolyNaviUITests: XCTestCase {
     func testAnnotationTapAndPath() {
         let map = app.otherElements["MapView"]
         
-        // focus map
-        let mapInfo = app.otherElements["MapInfo"]
-        mapInfo.otherElements["SearchBar"].tap()
-        mapInfo.tables.cells.staticTexts["Главный учебный корпус"].tap()
-        app.buttons["закрыть"].tap()
 
-        
         map.otherElements["Главный учебный корпус"].tap()
         
         app.buttons["route"].tap()

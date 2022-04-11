@@ -37,6 +37,11 @@
                BlueprintName = "PolyNaviUITests"
                ReferencedContainer = "container:PolyNavi.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "PolyNaviUITests/testAnnotationTapAndPath()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">
