@@ -14,7 +14,7 @@ class PolyNaviUITestsFirstLaunch: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         app = XCUIApplication()
-        app.launchArguments += ["UI-TESTING", "RESET-STORAGE"]
+        app.launchArguments += ["UI-TESTING", "RESET-STORAGE", "-AppleLanguages", "(ru)"]
         app.launch()
     }
     

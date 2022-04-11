@@ -14,7 +14,7 @@ class PolyNaviTestsTimeTable: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         app = XCUIApplication()
-        app.launchArguments += ["UI-TESTING"]
+        app.launchArguments += ["UI-TESTING", "-AppleLanguages", "(ru)"]
         app.launch()
         
         app.buttons["timetable"].tap()
@@ -138,7 +138,7 @@ class PolyNaviTestsTimeTable: XCTestCase {
     
     func dateLabel(for date: Date = Date()) -> String {
         let stringDateFormatter: DateFormatter = {
-            $0.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMdd", options: 0, locale: Locale.current)!
+            $0.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMdd", options: 0, locale: Locale.init(identifier: "ru"))!
             return $0
         }(DateFormatter())
         
