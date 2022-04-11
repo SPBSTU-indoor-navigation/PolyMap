@@ -41,7 +41,7 @@ class PolyNaviUITests: XCTestCase {
     func testAnnotationTapAndPath() {
         let map = app.otherElements["MapView"]
         
-        map.otherElements["Главный учебный корпус"].tap()
+        map.otherElements["Главный учебный корпус"].forceTapElement()
         
         app.buttons["route"].tap()
     }
@@ -172,5 +172,17 @@ class PolyNaviUITests: XCTestCase {
         let endHeight = mapInfo.frame.height
         
         XCTAssertLessThan(endHeight, startHeight)
+    }
+}
+
+extension XCUIElement {
+    func forceTapElement() {
+        if self.isHittable {
+            self.tap()
+        }
+        else {
+            let coordinate: XCUICoordinate = self.coordinate(withNormalizedOffset: CGVector(dx:0.0, dy:0.0))
+            coordinate.tap()
+        }
     }
 }
