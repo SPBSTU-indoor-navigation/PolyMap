@@ -90,3 +90,10 @@ platform :ios do
     delete_temp_keychain(keychain_name)
   end
 end
+
+platform :ios do
+  desc "Lane to run the unit tests"
+  lane :tests do
+    run_tests(device: "iPhone 12", scheme: "PolyNavi")
+  end
+end

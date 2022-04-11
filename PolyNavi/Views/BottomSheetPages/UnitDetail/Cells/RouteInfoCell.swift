@@ -20,6 +20,7 @@ class RouteInfoCell: UITableViewCell {
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         
         $0.setBackgroundColor(color: Asset.accentColor.color, forState: .normal)
+        $0.accessibilityIdentifier = "route"
         
         $0.tintColor = .white
         $0.layer.cornerRadius = 10

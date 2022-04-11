@@ -23,6 +23,7 @@ class TimetableToolBar: UIView {
     public lazy var toCorrectPositionButton: UIButton = {
         $0.setTitle(L10n.Timetable.toTodayTimetable, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 18)
+        $0.accessibilityIdentifier = "today"
         return $0
     }(UIButton(type: .system))
     

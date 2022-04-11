@@ -40,6 +40,7 @@ class TimetableNavbar: UIView  {
     public lazy var rightButton: UIButton = {
         $0.setTitle(L10n.Timetable.editButton, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 17)
+        $0.accessibilityIdentifier = "settings"
         return $0
     }(UIButton(type: .system))
     
@@ -61,6 +62,7 @@ class TimetableNavbar: UIView  {
         $0.font = .preferredFont(forTextStyle: .callout)
         $0.lineBreakMode = .byWordWrapping
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.accessibilityIdentifier = "ttDay"
         return $0
     }(UILabel())
     

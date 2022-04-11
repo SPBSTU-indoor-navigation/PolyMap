@@ -28,6 +28,31 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "97EC311228023D8B007928DD"
+               BuildableName = "PolyNaviUITests.xctest"
+               BlueprintName = "PolyNaviUITests"
+               ReferencedContainer = "container:PolyNavi.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "PolyNaviUITests/testAnnotationTapAndPath()">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "97C5A1DD27FF7E9A0019FE5C"
+               BuildableName = "TimeTableItegration.xctest"
+               BlueprintName = "TimeTableItegration"
+               ReferencedContainer = "container:PolyNavi.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

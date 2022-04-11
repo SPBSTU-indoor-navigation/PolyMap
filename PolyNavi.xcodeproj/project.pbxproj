@@ -27,6 +27,7 @@
 		05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82C27134C5100C22D61 /* TimetableViewController.swift */; };
 		05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */; };
 		05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */; };
+		3DE44EAE9B8D33BBCD67FA1F /* libPods-TimeTableItegration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832E11D43F3E1274E0AA7406 /* libPods-TimeTableItegration.a */; };
 		5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 		7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F912E21A3F89F0FBB707D3FB /* libPods-PolyNaviClip.a */; };
 		9717E4272742991F00332D29 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4262742991F00332D29 /* MapView.swift */; };
@@ -35,6 +36,8 @@
 		97196E7F27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
 		97196E8127E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */; };
 		97196E8227E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */; };
+		9719FBE72803A0DA0048C810 /* PolyNaviUITestsFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719FBE62803A0DA0048C810 /* PolyNaviUITestsFirstLaunch.swift */; };
+		9719FBE92803A17D0048C810 /* PolyNaviTestsTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719FBE82803A17D0048C810 /* PolyNaviTestsTimeTable.swift */; };
 		971F8DD127BD52EE0018F98A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD027BD52EE0018F98A /* AppDelegate.swift */; };
 		971F8DD327BD52EE0018F98A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD227BD52EE0018F98A /* SceneDelegate.swift */; };
 		971F8DDA27BD52EF0018F98A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971F8DD927BD52EF0018F98A /* Assets.xcassets */; };
@@ -170,15 +173,19 @@
 		97B8E18B27CEDA8B003D1EF4 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18927CEDA8B003D1EF4 /* Spacer.swift */; };
 		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
 		97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */; };
+		97C5A1E127FF7E9A0019FE5C /* TimeTableItegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C5A1E027FF7E9A0019FE5C /* TimeTableItegration.swift */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
 		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
 		97E15D3B27BC816600E636FC /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0D498278B4230009CEBA2 /* FirstVC.swift */; };
+		97EC30FD280219A3007928DD /* IMDFMapIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EC30FC280219A3007928DD /* IMDFMapIntegration.swift */; };
+		97EC311628023D8B007928DD /* PolyNaviUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EC311528023D8B007928DD /* PolyNaviUITests.swift */; };
 		97F0F89727EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
 		97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
 		97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
 		97FCC17927C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
 		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
+		CC4DDEC1275C125E093E3222 /* libPods-PolyNaviUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CDC40AECAA55424D000A9C /* libPods-PolyNaviUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +195,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 971F8DCD27BD52EE0018F98A;
 			remoteInfo = PolyNaviClip;
+		};
+		97C5A1E227FF7E9A0019FE5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054F677C270C7B4B00FCC07C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 054F6783270C7B4C00FCC07C;
+			remoteInfo = PolyNavi;
+		};
+		97EC311928023D8B007928DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054F677C270C7B4B00FCC07C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 054F6783270C7B4C00FCC07C;
+			remoteInfo = PolyNavi;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -231,14 +252,19 @@
 		05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimetableEmptyView.swift; path = PolyNavi/Views/TimetableVC/TimetableWeekVC/TimetableEmptyView.swift; sourceTree = SOURCE_ROOT; };
 		05F0D498278B4230009CEBA2 /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
 		16E50C685E2282BC85B0A7D3 /* Pods-PolyNaviClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip.debug.xcconfig"; sourceTree = "<group>"; };
+		287B866CA00DD9E04B59B512 /* Pods-TimeTableItegration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeTableItegration.release.xcconfig"; path = "Target Support Files/Pods-TimeTableItegration/Pods-TimeTableItegration.release.xcconfig"; sourceTree = "<group>"; };
 		378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55528A932DA8C01C2D2D6568 /* Pods-PolyMapAppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyMapAppClip.release.xcconfig"; path = "Target Support Files/Pods-PolyMapAppClip/Pods-PolyMapAppClip.release.xcconfig"; sourceTree = "<group>"; };
+		6496B8938192C5BDC6ABA1FF /* Pods-TimeTableItegration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeTableItegration.debug.xcconfig"; path = "Target Support Files/Pods-TimeTableItegration/Pods-TimeTableItegration.debug.xcconfig"; sourceTree = "<group>"; };
 		764E24D0B031857F17BD56B5 /* libPods-PolyMapAppClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyMapAppClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		832E11D43F3E1274E0AA7406 /* libPods-TimeTableItegration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TimeTableItegration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8CE2653503032042C79524 /* Pods-PolyMapAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyMapAppClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyMapAppClip/Pods-PolyMapAppClip.debug.xcconfig"; sourceTree = "<group>"; };
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		97196E7D27E6781D00F9E73A /* PinnableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnableMapView.swift; sourceTree = "<group>"; };
 		97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnnotationView.swift; sourceTree = "<group>"; };
+		9719FBE62803A0DA0048C810 /* PolyNaviUITestsFirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyNaviUITestsFirstLaunch.swift; sourceTree = "<group>"; };
+		9719FBE82803A17D0048C810 /* PolyNaviTestsTimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyNaviTestsTimeTable.swift; sourceTree = "<group>"; };
 		971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNaviClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971F8DD027BD52EE0018F98A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		971F8DD227BD52EE0018F98A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -310,6 +336,8 @@
 		97B8E18927CEDA8B003D1EF4 /* Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
 		97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
 		97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableProvider.swift; sourceTree = "<group>"; };
+		97C5A1DE27FF7E9A0019FE5C /* TimeTableItegration.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeTableItegration.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97C5A1E027FF7E9A0019FE5C /* TimeTableItegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableItegration.swift; sourceTree = "<group>"; };
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		97DD22D82772BBCF0083561B /* LevelSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSwitcher.swift; sourceTree = "<group>"; };
 		97E15D0127BC7EF200E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,11 +346,17 @@
 		97E15D0D27BC7F2B00E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0E27BC7F2B00E636FC /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0F27BC7F2B00E636FC /* libUIScreenExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIScreenExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97EC30FC280219A3007928DD /* IMDFMapIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDFMapIntegration.swift; sourceTree = "<group>"; };
+		97EC311328023D8B007928DD /* PolyNaviUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolyNaviUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97EC311528023D8B007928DD /* PolyNaviUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyNaviUITests.swift; sourceTree = "<group>"; };
 		97F0F89627EAAC1500296DA3 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		97FCC17727C6A313009F3C39 /* ScaledImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledImageView.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
 		B18DDFB614B7A61777B8455A /* Pods-PolyNaviClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviClip.release.xcconfig"; path = "Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip.release.xcconfig"; sourceTree = "<group>"; };
+		BDA9EF043417EF5AD6B442AE /* Pods-PolyNaviUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviUITests.debug.xcconfig"; path = "Target Support Files/Pods-PolyNaviUITests/Pods-PolyNaviUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.release.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
+		E9CDC40AECAA55424D000A9C /* libPods-PolyNaviUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNaviUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8270327F53861F430598D4E /* Pods-PolyNaviUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviUITests.release.xcconfig"; path = "Target Support Files/Pods-PolyNaviUITests/Pods-PolyNaviUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F912E21A3F89F0FBB707D3FB /* libPods-PolyNaviClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNaviClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -341,6 +375,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97C5A1DB27FF7E9A0019FE5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DE44EAE9B8D33BBCD67FA1F /* libPods-TimeTableItegration.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97EC311028023D8B007928DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC4DDEC1275C125E093E3222 /* libPods-PolyNaviUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +413,8 @@
 			children = (
 				054F6786270C7B4C00FCC07C /* PolyNavi */,
 				971F8DCF27BD52EE0018F98A /* PolyNaviClip */,
+				97C5A1DF27FF7E9A0019FE5C /* TimeTableItegration */,
+				97EC311428023D8B007928DD /* PolyNaviUITests */,
 				054F6785270C7B4C00FCC07C /* Products */,
 				46370B1FDDF5AC7D9755CB89 /* Pods */,
 				4B73B799F57DEF02F87D3626 /* Frameworks */,
@@ -374,6 +426,8 @@
 			children = (
 				054F6784270C7B4C00FCC07C /* PolyNavi.app */,
 				971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */,
+				97C5A1DE27FF7E9A0019FE5C /* TimeTableItegration.xctest */,
+				97EC311328023D8B007928DD /* PolyNaviUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -511,6 +565,10 @@
 				55528A932DA8C01C2D2D6568 /* Pods-PolyMapAppClip.release.xcconfig */,
 				16E50C685E2282BC85B0A7D3 /* Pods-PolyNaviClip.debug.xcconfig */,
 				B18DDFB614B7A61777B8455A /* Pods-PolyNaviClip.release.xcconfig */,
+				6496B8938192C5BDC6ABA1FF /* Pods-TimeTableItegration.debug.xcconfig */,
+				287B866CA00DD9E04B59B512 /* Pods-TimeTableItegration.release.xcconfig */,
+				BDA9EF043417EF5AD6B442AE /* Pods-PolyNaviUITests.debug.xcconfig */,
+				F8270327F53861F430598D4E /* Pods-PolyNaviUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -527,6 +585,8 @@
 				378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */,
 				764E24D0B031857F17BD56B5 /* libPods-PolyMapAppClip.a */,
 				F912E21A3F89F0FBB707D3FB /* libPods-PolyNaviClip.a */,
+				832E11D43F3E1274E0AA7406 /* libPods-TimeTableItegration.a */,
+				E9CDC40AECAA55424D000A9C /* libPods-PolyNaviUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -811,6 +871,15 @@
 			path = Timetable;
 			sourceTree = "<group>";
 		};
+		97C5A1DF27FF7E9A0019FE5C /* TimeTableItegration */ = {
+			isa = PBXGroup;
+			children = (
+				97EC30FC280219A3007928DD /* IMDFMapIntegration.swift */,
+				97C5A1E027FF7E9A0019FE5C /* TimeTableItegration.swift */,
+			);
+			path = TimeTableItegration;
+			sourceTree = "<group>";
+		};
 		97D551D62739D5FD002A5BBD /* TimeTableVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -820,6 +889,16 @@
 				0530A99B274969C700302C5F /* TimetableToolBar.swift */,
 			);
 			path = TimeTableVC;
+			sourceTree = "<group>";
+		};
+		97EC311428023D8B007928DD /* PolyNaviUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9719FBE82803A17D0048C810 /* PolyNaviTestsTimeTable.swift */,
+				9719FBE62803A0DA0048C810 /* PolyNaviUITestsFirstLaunch.swift */,
+				97EC311528023D8B007928DD /* PolyNaviUITests.swift */,
+			);
+			path = PolyNaviUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -864,6 +943,44 @@
 			productReference = 971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */;
 			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
+		97C5A1DD27FF7E9A0019FE5C /* TimeTableItegration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97C5A1E627FF7E9A0019FE5C /* Build configuration list for PBXNativeTarget "TimeTableItegration" */;
+			buildPhases = (
+				065B791147F2CA30566256ED /* [CP] Check Pods Manifest.lock */,
+				97C5A1DA27FF7E9A0019FE5C /* Sources */,
+				97C5A1DB27FF7E9A0019FE5C /* Frameworks */,
+				97C5A1DC27FF7E9A0019FE5C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97C5A1E327FF7E9A0019FE5C /* PBXTargetDependency */,
+			);
+			name = TimeTableItegration;
+			productName = TimeTableItegration;
+			productReference = 97C5A1DE27FF7E9A0019FE5C /* TimeTableItegration.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		97EC311228023D8B007928DD /* PolyNaviUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97EC311D28023D8B007928DD /* Build configuration list for PBXNativeTarget "PolyNaviUITests" */;
+			buildPhases = (
+				6516962C5B8950BD3C41B7AF /* [CP] Check Pods Manifest.lock */,
+				97EC310F28023D8B007928DD /* Sources */,
+				97EC311028023D8B007928DD /* Frameworks */,
+				97EC311128023D8B007928DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97EC311A28023D8B007928DD /* PBXTargetDependency */,
+			);
+			name = PolyNaviUITests;
+			productName = PolyNaviUITests;
+			productReference = 97EC311328023D8B007928DD /* PolyNaviUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -878,6 +995,14 @@
 					};
 					971F8DCD27BD52EE0018F98A = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					97C5A1DD27FF7E9A0019FE5C = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 054F6783270C7B4C00FCC07C;
+					};
+					97EC311228023D8B007928DD = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 054F6783270C7B4C00FCC07C;
 					};
 				};
 			};
@@ -897,6 +1022,8 @@
 			targets = (
 				054F6783270C7B4C00FCC07C /* PolyNavi */,
 				971F8DCD27BD52EE0018F98A /* PolyNaviClip */,
+				97C5A1DD27FF7E9A0019FE5C /* TimeTableItegration */,
+				97EC311228023D8B007928DD /* PolyNaviUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -925,6 +1052,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		97C5A1DC27FF7E9A0019FE5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97EC311128023D8B007928DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -945,6 +1086,50 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT\"/SwiftGen/bin/swiftgen\n";
+		};
+		065B791147F2CA30566256ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimeTableItegration-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6516962C5B8950BD3C41B7AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PolyNaviUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		815C1176DEC788E6FE62EE8D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1166,6 +1351,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		97C5A1DA27FF7E9A0019FE5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97C5A1E127FF7E9A0019FE5C /* TimeTableItegration.swift in Sources */,
+				97EC30FD280219A3007928DD /* IMDFMapIntegration.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97EC310F28023D8B007928DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9719FBE92803A17D0048C810 /* PolyNaviTestsTimeTable.swift in Sources */,
+				9719FBE72803A0DA0048C810 /* PolyNaviUITestsFirstLaunch.swift in Sources */,
+				97EC311628023D8B007928DD /* PolyNaviUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1173,6 +1377,16 @@
 			isa = PBXTargetDependency;
 			target = 971F8DCD27BD52EE0018F98A /* PolyNaviClip */;
 			targetProxy = 971F8DE027BD52EF0018F98A /* PBXContainerItemProxy */;
+		};
+		97C5A1E327FF7E9A0019FE5C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 054F6783270C7B4C00FCC07C /* PolyNavi */;
+			targetProxy = 97C5A1E227FF7E9A0019FE5C /* PBXContainerItemProxy */;
+		};
+		97EC311A28023D8B007928DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 054F6783270C7B4C00FCC07C /* PolyNavi */;
+			targetProxy = 97EC311928023D8B007928DD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1449,6 +1663,88 @@
 			};
 			name = Release;
 		};
+		97C5A1E427FF7E9A0019FE5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6496B8938192C5BDC6ABA1FF /* Pods-TimeTableItegration.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LZP5UN7552;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Soprachev.TimeTableItegration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PolyNavi.app/PolyNavi";
+			};
+			name = Debug;
+		};
+		97C5A1E527FF7E9A0019FE5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 287B866CA00DD9E04B59B512 /* Pods-TimeTableItegration.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LZP5UN7552;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Soprachev.TimeTableItegration;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PolyNavi.app/PolyNavi";
+			};
+			name = Release;
+		};
+		97EC311B28023D8B007928DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDA9EF043417EF5AD6B442AE /* Pods-PolyNaviUITests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LZP5UN7552;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Soprachev.PolyNaviUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PolyNavi;
+			};
+			name = Debug;
+		};
+		97EC311C28023D8B007928DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8270327F53861F430598D4E /* Pods-PolyNaviUITests.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LZP5UN7552;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Soprachev.PolyNaviUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PolyNavi;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1475,6 +1771,24 @@
 			buildConfigurations = (
 				971F8DE427BD52EF0018F98A /* Debug */,
 				971F8DE527BD52EF0018F98A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97C5A1E627FF7E9A0019FE5C /* Build configuration list for PBXNativeTarget "TimeTableItegration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97C5A1E427FF7E9A0019FE5C /* Debug */,
+				97C5A1E527FF7E9A0019FE5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97EC311D28023D8B007928DD /* Build configuration list for PBXNativeTarget "PolyNaviUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97EC311B28023D8B007928DD /* Debug */,
+				97EC311C28023D8B007928DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

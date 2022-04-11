@@ -9,6 +9,7 @@ import UIKit
 
 class MapViewController: UIViewController {
     var timeTableSmallOffset: NSLayoutConstraint?
+    var decoder: IMDFDecoder? = IMDFDecoderGeoJson()
     
     private lazy var timeTableButton: RoundButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -20,6 +21,7 @@ class MapViewController: UIViewController {
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .callout)
         $0.addShadow()
         $0.addTarget(self, action: #selector(openTimetable(_:)), for: .touchUpInside)
+        $0.accessibilityIdentifier = "timetable"
         return $0
     }(RoundButton(type: .system))
     
@@ -36,6 +38,8 @@ class MapViewController: UIViewController {
         $0.setImage(UIImage(systemName: "calendar"), for: .normal)
         $0.setTitle(L10n.Timetable.title, for: .normal)
         $0.addTarget(self, action: #selector(openTimetable(_:)), for: .touchUpInside)
+        
+        $0.accessibilityIdentifier = "timetable"
         
         if #available(iOS 15.0, *) {
             $0.configuration = .plain()
@@ -54,9 +58,10 @@ class MapViewController: UIViewController {
         return $0
     }(UIButton())
     
-    private lazy var mapView: MapView = {
+    lazy var mapView: MapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.mapInfoDelegate = mapInfo
+        $0.accessibilityIdentifier = "MapView"
         return $0
     }(MapView())
     
@@ -113,7 +118,7 @@ class MapViewController: UIViewController {
     
     func loadIMDF() {
         let path = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
-        let venue = IMDFDecoder.decode(path)
+        let venue = decoder?.decode(path)
         
         mapView.venue = venue
         mapInfo.searchVC.searchable = venue?.searchable() ?? []
