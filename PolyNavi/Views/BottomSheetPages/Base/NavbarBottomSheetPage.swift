@@ -73,8 +73,6 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
         navbarHeightConstraint = navbar.heightAnchor.constraint(equalToConstant: navbarHeight)
         NSLayoutConstraint.activate([
             navbarHeightConstraint!,
-            navbar.leadingAnchor.constraint(equalTo: background.leadingAnchor),
-            navbar.trailingAnchor.constraint(equalTo: background.trailingAnchor),
             
             navbarSeparator.heightAnchor.constraint(equalToConstant: 1),
             navbarSeparator.trailingAnchor.constraint(equalTo: navbar.trailingAnchor),
@@ -88,6 +86,8 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
         ].priority(.defaultLow))
         
         NSLayoutConstraint.activate([
+            navbar.leadingAnchor.constraint(equalTo: background.leadingAnchor),
+            navbar.trailingAnchor.constraint(equalTo: background.trailingAnchor),
             navbar.topAnchor.constraint(equalTo: background.topAnchor)
         ].priority(.required))
         
