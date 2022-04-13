@@ -35,6 +35,8 @@
 		97196E7F27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
 		97196E8127E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */; };
 		97196E8227E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */; };
+		9719FBEB2806478A0048C810 /* OpacityHitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719FBEA2806478A0048C810 /* OpacityHitTest.swift */; };
+		9719FBEC2806478C0048C810 /* OpacityHitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719FBEA2806478A0048C810 /* OpacityHitTest.swift */; };
 		971F8DD127BD52EE0018F98A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD027BD52EE0018F98A /* AppDelegate.swift */; };
 		971F8DD327BD52EE0018F98A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F8DD227BD52EE0018F98A /* SceneDelegate.swift */; };
 		971F8DDA27BD52EF0018F98A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971F8DD927BD52EF0018F98A /* Assets.xcassets */; };
@@ -249,6 +251,7 @@
 		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		97196E7D27E6781D00F9E73A /* PinnableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnableMapView.swift; sourceTree = "<group>"; };
 		97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnnotationView.swift; sourceTree = "<group>"; };
+		9719FBEA2806478A0048C810 /* OpacityHitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityHitTest.swift; sourceTree = "<group>"; };
 		971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNaviClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971F8DD027BD52EE0018F98A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		971F8DD227BD52EE0018F98A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -823,6 +826,7 @@
 				9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */,
 				97A484BF2717BAF700D14997 /* RoundButton.swift */,
 				97FCC17727C6A313009F3C39 /* ScaledImageView.swift */,
+				9719FBEA2806478A0048C810 /* OpacityHitTest.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1066,6 +1070,7 @@
 				97A566FB27D6920100A064CC /* UtilsExtensions.swift in Sources */,
 				9787698927F519DB008138EC /* OccupantSearchIcon.swift in Sources */,
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
+				9719FBEB2806478A0048C810 /* OpacityHitTest.swift in Sources */,
 				9780D8C227B3421800DBDBF3 /* TableBottomSheetPage.swift in Sources */,
 				0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */,
 				975015452795B16900326B09 /* EnviromentAmenityAnnotation.swift in Sources */,
@@ -1177,6 +1182,7 @@
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
 				978B321027EE7C0A00760B78 /* SearchHeaderView.swift in Sources */,
 				971F8DF927BD555B0018F98A /* IMDFDecoder.swift in Sources */,
+				9719FBEC2806478C0048C810 /* OpacityHitTest.swift in Sources */,
 				971F8DF227BD54FA0018F98A /* BottomSheetPage.swift in Sources */,
 				9787699F27FBA0D6008138EC /* PathFinder.swift in Sources */,
 				97196E8227E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */,

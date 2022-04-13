@@ -112,11 +112,15 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
         super.onButtomSheetScroll(progress: progress)
         let limit = 0.9
         if progress > limit {
-            contentView.alpha = 1 - (progress - limit) / (1 - limit)
+            changeContentAlpha(1 - (progress - limit) / (1 - limit))
             update(progress: lastProgress)
         } else if contentView.alpha != 1 {
-            contentView.alpha = 1
+            changeContentAlpha(1)
             update(progress: lastProgress)
         }
+    }
+    
+    func changeContentAlpha(_ alpha: CGFloat) {
+        contentView.alpha = alpha
     }
 }
