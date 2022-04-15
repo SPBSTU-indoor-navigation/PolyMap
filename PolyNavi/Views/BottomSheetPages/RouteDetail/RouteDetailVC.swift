@@ -8,156 +8,6 @@
 import UIKit
 import MapKit
 
-class SearchLine: UIView, UITextFieldDelegate {
-    
-    var beginEditing: (() -> Void)?
-    var endEditing: (() -> Void)?
-    
-    var maskCorners: CACornerMask = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner] {
-        didSet {
-            containerView.layer.maskedCorners = maskCorners
-        }
-    }
-    
-    var isSearch = false {
-        didSet {
-            UIView.animate(withDuration: 0.25, animations: { [self] in
-                if isSearch {
-                    NSLayoutConstraint.activate(selectedConstraints)
-                    backgroundView.layer.cornerRadius = 10
-                } else {
-                    NSLayoutConstraint.deactivate(selectedConstraints)
-                    cancelButton.alpha = 0
-                    backgroundView.layer.cornerRadius = 0
-                }
-                
-                layoutIfNeeded()
-            }, completion: { _ in
-                if self.isSearch {
-                    self.textField.clearButtonMode = .whileEditing
-                }
-            })
-            
-            if isSearch {
-                UIView.animate(withDuration: 0.1, animations: { [self] in
-                    cancelButton.alpha = 1
-                })
-            }
-            
-            if !isSearch {
-                self.textField.clearButtonMode = .never
-            }
-        }
-    }
-    
-    var isEditing = false
-    
-    lazy var containerView: UIView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 10
-        $0.layer.cornerCurve = .continuous
-        return $0
-    }(UIButton())
-    
-    lazy var backgroundView: UIView = {
-        $0.layer.cornerCurve = .continuous
-        $0.clipsToBounds = true
-        $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        $0.backgroundColor = Asset.Colors.searchBarBackground.color
-        return $0
-    }(UIButton())
-    
-    lazy var textField: UITextField = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.placeholder = "Search"
-        $0.delegate = self
-        $0.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        $0.tintColor = Asset.accentColor.color
-        $0.clearButtonMode = .never
-        return $0
-    }(UITextField())
-    
-    lazy var titleLabel: UILabel = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.text = "From:"
-        $0.textColor = .secondaryLabel
-        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        return $0
-    }(UILabel())
-    
-    lazy var cancelButton: UIButton = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setTitle("Cancel", for: .normal)
-        $0.setTitleColor(Asset.accentColor.color, for: .normal)
-        $0.setTitleColor(Asset.accentColor.color.withAlphaComponent(0.8), for: .selected)
-        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
-        $0.alpha = 0
-        
-        $0.addTarget(self, action: #selector(cancel(_:)), for: .touchUpInside)
-        return $0
-    }(UIButton())
-    
-    var selectedConstraints: [NSLayoutConstraint] = []
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        addSubview(containerView)
-        addSubview(cancelButton)
-        containerView.addSubview(backgroundView)
-        backgroundView.addSubview(textField)
-        backgroundView.addSubview(titleLabel)
-        
-        
-        selectedConstraints = [
-            cancelButton.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ].priority(.required)
-        
-        NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: topAnchor),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: cancelButton.leadingAnchor, constant: -10),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor).withPriority(.defaultHigh),
-            
-            cancelButton.trailingAnchor.constraint(equalTo: trailingAnchor).withPriority(.defaultLow),
-            cancelButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
-            textField.topAnchor.constraint(equalTo: topAnchor),
-            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
-            textField.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
-            textField.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 5),
-    
-            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 8),
-        ])
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc
-    func cancel(_ sender: UIButton?) {
-        isSearch = false
-        textField.endEditing(true)
-        endEditing?()
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        isSearch = true
-        beginEditing?()
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        isEditing = false
-    }
-}
-
-
 class RouteDetailVC: NavbarBottomSheetPage {
     enum State {
         case normal
@@ -173,12 +23,19 @@ class RouteDetailVC: NavbarBottomSheetPage {
     var to: MKAnnotation? = nil
     
     var state: State = .normal
-    
     var pathID: UUID?
     
-    init(closable: Bool = false, mapViewDelegate: MapViewDelegate) {
+    var searchable: [Searchable] = [] {
+        didSet {
+            searchTableView.searchable = searchable
+        }
+    }
+    
+    init(closable: Bool = false, mapViewDelegate: MapViewDelegate, searchable: [Searchable]) {
         self.mapViewDelegate = mapViewDelegate
         super.init(closable: closable)
+        
+        self.searchable = searchable
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -204,8 +61,10 @@ class RouteDetailVC: NavbarBottomSheetPage {
         $0.maskCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.titleLabel.text = "From:"
         $0.endEditing = cancelEditing
-        $0.beginEditing = {
+        $0.didChange = { str in self.onSearchEdit(from: .to, text: str)}
+        $0.beginEditing = { str in
             self.beginEditing(state: .from)
+            self.searchTableView.proccesSearcheble(searchText: str, force: true)
         }
         
         return $0
@@ -216,8 +75,10 @@ class RouteDetailVC: NavbarBottomSheetPage {
         $0.maskCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         $0.titleLabel.text = "To:"
         $0.endEditing = cancelEditing
-        $0.beginEditing = {
+        $0.didChange = { str in self.onSearchEdit(from: .to, text: str)}
+        $0.beginEditing = { str in
             self.beginEditing(state: .to)
+            self.searchTableView.proccesSearcheble(searchText: str, force: true)
         }
         return $0
     }(SearchLine())
@@ -237,6 +98,14 @@ class RouteDetailVC: NavbarBottomSheetPage {
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
     
+    lazy var searchTableView: SearchTableView = {
+        $0.searchTableViewDelegate = self
+        $0.searchable = searchable
+        $0.alpha = 0
+        $0.isHidden = true
+        return $0
+    }(SearchTableView(frame: .zero, style: .grouped))
+    
     var openFromConstraints: [NSLayoutConstraint] = []
     var openToConstraints: [NSLayoutConstraint] = []
     
@@ -254,42 +123,47 @@ class RouteDetailVC: NavbarBottomSheetPage {
     
     func changeState(state: State) {
         if self.state == state { return }
+        searchTableView.isHidden = false
         
-        UIView.animate(withDuration: 0.25, animations: { [self] in
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: { [self] in
             if state == .normal {
                 NSLayoutConstraint.deactivate(self.state == .from ? openFromConstraints : openToConstraints)
             } else {
                 NSLayoutConstraint.activate(state == .from ? openFromConstraints : openToConstraints)
             }
             
-            closeButton.alpha = state == .normal ? 1 : 0
-            titleLabel.alpha = state == .normal ? 1 : 0
-            separator.alpha = state == .normal ? 1 : 0
+            let normalEnable = state == .normal ? 1.0 : 0.0
+            
+            closeButton.alpha = normalEnable
+            titleLabel.alpha = normalEnable
+            separator.alpha = normalEnable
+            tableView.alpha = normalEnable
             
             searchFrom.alpha = state != .to ? 1 : 0
             searchTo.alpha = state != .from ? 1 : 0
             
+            searchTableView.alpha = state != .normal ? 1 : 0
+            
             view.layoutIfNeeded()
-       })
+        }, completion: { _ in
+            if state == .to { self.searchTo.textField.selectAll(nil) }
+            if state == .from { self.searchFrom.textField.selectAll(nil) }
+            self.searchTableView.isHidden = state == .normal
+        })
         
         self.state = state
     }
     
-    var lastProgress: CGFloat = 0
     override func onButtomSheetScroll(progress: CGFloat) {
         super.onButtomSheetScroll(progress: progress)
-        if lastProgress != progress {
-            lastProgress = progress
-            if state != .normal {
-                searchFrom.endEditing(true)
-                searchTo.endEditing(true)
-            }
-        }
+        if searchFrom.isEditing { searchFrom.endEditing(true) }
+        if searchTo.isEditing { searchTo.endEditing(true) }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.addSubview(tableView)
+        contentView.addSubview(searchTableView)
         
         container.addSubview(searchFrom)
         container.addSubview(searchTo)
@@ -346,8 +220,18 @@ class RouteDetailVC: NavbarBottomSheetPage {
             tableView.bottomAnchor.constraint(equalTo: background.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
+            
+            searchTableView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
+            searchTableView.bottomAnchor.constraint(equalTo: background.bottomAnchor),
+            searchTableView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
+            searchTableView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
+            
             closeButton.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 15).withPriority(.init(rawValue: 900))
         ])
+    }
+    
+    func onSearchEdit(from state: State, text: String) {
+        searchTableView.proccesSearcheble(searchText: text)
     }
     
     override func changeContentAlpha(_ alpha: CGFloat) {
@@ -385,52 +269,32 @@ class RouteDetailVC: NavbarBottomSheetPage {
             }
         }
     }
-
+    
 }
 
-extension RouteDetailVC {
-    func setFrom(_ annotation: MKAnnotation) {
-        if let from = RouteDetailVC.fromPoint { mapViewDelegate.unpinAnnotation(from, animated: true) }
-        mapViewDelegate.pinAnnotation(annotation, animated: true)
-        
-        from = annotation
-        
-        drawPath()
+extension RouteDetailVC: SearchTableViewDelegate {
+    func searchTableWillBeginDragging(_ scrollView: UIScrollView) {
+        delegate?.scrollViewWillBeginDragging(scrollView)
     }
     
-    func setTo(_ annotation: MKAnnotation) {
-        if let to = RouteDetailVC.toPoint { mapViewDelegate.unpinAnnotation(to, animated: true) }
-        
-        self.mapViewDelegate.pinAnnotation(annotation, animated: true)
-        self.mapViewDelegate.deselectAnnotation(annotation, animated: true)
-        
-        
-        to = annotation
-        
-        drawPath()
+    func searchTableDidScroll(_ scrollView: UIScrollView) {
+        delegate?.scrollViewDidScroll(scrollView)
+        update(progress: scrollView.topContentOffset.y / 20)
     }
     
-    func drawPath() {
-        guard let from = from ?? IMDFDecoder.defaultPathStartPoint,
-              let to = to else { return }
+    func searchTableWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        delegate?.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+    
+    func searchTable(didSelect searchable: Searchable) {
+        let annotation = searchable as? MKAnnotation
         
-        RouteDetailVC.fromPoint = from
-        RouteDetailVC.toPoint = to
-        
-        if let pathID = pathID {
-            mapViewDelegate.removePath(id: pathID)
-        }
-        
-        [to, from].forEach({
-            mapViewDelegate.pinAnnotation($0, animated: true)
-        })
-        
-        let result = PathFinder.shared.findPath(from: from, to: to)
-        
-        if let result = result {
-            pathID = mapViewDelegate.addPath(path: result.path)
-        } else {
-            pathID = nil
+        if state == .to {
+            if let annotation = annotation { setTo(annotation) }
+            searchTo.endSearch()
+        } else if state == .from {
+            if let annotation = annotation { setFrom(annotation) }
+            searchFrom.endSearch()
         }
     }
 }
@@ -469,6 +333,61 @@ extension RouteDetailVC: UITableViewDataSource {
         return cell
         
     }
+}
+
+
+extension RouteDetailVC {
+    func setFrom(_ annotation: MKAnnotation) {
+        if let from = RouteDetailVC.fromPoint { mapViewDelegate.unpinAnnotation(from, animated: true) }
+        mapViewDelegate.pinAnnotation(annotation, animated: true)
+        
+        from = annotation
+        
+        drawPath()
+    }
     
+    func setTo(_ annotation: MKAnnotation) {
+        if let to = RouteDetailVC.toPoint { mapViewDelegate.unpinAnnotation(to, animated: true) }
+        
+        self.mapViewDelegate.pinAnnotation(annotation, animated: true)
+        self.mapViewDelegate.deselectAnnotation(annotation, animated: true)
+        
+        to = annotation
+        
+        drawPath()
+    }
+    
+    func drawPath() {
+        guard let from = from ?? IMDFDecoder.defaultPathStartPoint,
+              let to = to else { return }
+        
+        RouteDetailVC.fromPoint = from
+        RouteDetailVC.toPoint = to
+        
+        
+        if let searchable = from as? Searchable {
+            searchFrom.setup(text: searchable.mainTitle ?? "")
+        }
+        
+        if let searchable = to as? Searchable {
+            searchTo.setup(text: searchable.mainTitle ?? "")
+        }
+        
+        if let pathID = pathID {
+            mapViewDelegate.removePath(id: pathID)
+        }
+        
+        [to, from].forEach({
+            mapViewDelegate.pinAnnotation($0, animated: true)
+        })
+        
+        let result = PathFinder.shared.findPath(from: from, to: to)
+        
+        if let result = result {
+            pathID = mapViewDelegate.addPath(path: result.path)
+        } else {
+            pathID = nil
+        }
+    }
     
 }

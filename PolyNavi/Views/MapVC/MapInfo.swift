@@ -33,6 +33,12 @@ class MapInfo: BottomSheetViewController {
     
     static private(set) var routeDetail: RouteDetail? = nil
     
+    var searchable: [Searchable] = [] {
+        didSet {
+            searchVC.searchable = searchable
+            routeDetailVC?.searchable = searchable
+        }
+    }
     var pages: [Page] = []
     var mapViewDelegate: MapViewDelegate? {
         didSet {
@@ -46,7 +52,7 @@ class MapInfo: BottomSheetViewController {
     private var currentSelection: MKAnnotation?
     private var skipSelectStateChange = false
     
-    var routeDetailVC: RouteDetailVC?
+    weak var routeDetailVC: RouteDetailVC?
     var searchVC: SearchVC
     
     private var hidingEnable: Bool {
@@ -62,6 +68,7 @@ class MapInfo: BottomSheetViewController {
         }
     }
     
+    @discardableResult
     override func popViewController(animated: Bool) -> UIViewController? {
         if pages.last == .annotationInfo {
             mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
@@ -200,7 +207,7 @@ extension MapInfo: RouteDetail {
     
     func getRouteVC() -> RouteDetailVC {
         if routeDetailVC == nil {
-            let vc = RouteDetailVC(closable: true, mapViewDelegate: mapViewDelegate!)
+            let vc = RouteDetailVC(closable: true, mapViewDelegate: mapViewDelegate!, searchable: searchable)
             routeDetailVC = vc
             pushViewController(vc, animated: true)
             return vc

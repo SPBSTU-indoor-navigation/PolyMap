@@ -86,6 +86,8 @@
 		971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		971F8E1627BD55820018F98A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
 		971F8E1727BD558F0018F98A /* (null) in Sources */ = {isa = PBXBuildFile; };
+		973962BE2808DCB4000E478F /* SearchLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962BD2808DCB4000E478F /* SearchLine.swift */; };
+		973962BF2808DCB4000E478F /* SearchLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962BD2808DCB4000E478F /* SearchLine.swift */; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* OccupantAnnotation.swift */; };
@@ -259,6 +261,7 @@
 		971F8DDC27BD52EF0018F98A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		971F8DDE27BD52EF0018F98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNaviClip.entitlements; sourceTree = "<group>"; };
+		973962BD2808DCB4000E478F /* SearchLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLine.swift; sourceTree = "<group>"; };
 		973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNavi.entitlements; sourceTree = "<group>"; };
 		974FA70927B88D51001A4A25 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
@@ -800,6 +803,7 @@
 			isa = PBXGroup;
 			children = (
 				979F86EB27D6E9720048B486 /* RouteDetailVC.swift */,
+				973962BD2808DCB4000E478F /* SearchLine.swift */,
 			);
 			path = RouteDetail;
 			sourceTree = "<group>";
@@ -1107,6 +1111,7 @@
 				979E2C812789DE95008CFA05 /* Models.swift in Sources */,
 				9780D8B727B32C7000DBDBF3 /* BottomSheetViewController.swift in Sources */,
 				054F67CC270CDFB400FCC07C /* LessonModel.swift in Sources */,
+				973962BE2808DCB4000E478F /* SearchLine.swift in Sources */,
 				0574A2292711FF5F00C33317 /* TimetableBreakTableViewCell.swift in Sources */,
 				97196E7E27E6781D00F9E73A /* PinnableMapView.swift in Sources */,
 				9787697B27F4BB14008138EC /* TodayCell.swift in Sources */,
@@ -1215,6 +1220,7 @@
 				971F8E0E27BD556B0018F98A /* AttractionAnnotationView.swift in Sources */,
 				978B321B27EFF1C500760B78 /* SearchShared.swift in Sources */,
 				971F8E0F27BD556B0018F98A /* OccupantAnnotation.swift in Sources */,
+				973962BF2808DCB4000E478F /* SearchLine.swift in Sources */,
 				978B320927EE630300760B78 /* OccupantSearchCell.swift in Sources */,
 				971F8DE927BD54F30018F98A /* UIKitExtensions.swift in Sources */,
 				971F8E0027BD55650018F98A /* Shared.swift in Sources */,
