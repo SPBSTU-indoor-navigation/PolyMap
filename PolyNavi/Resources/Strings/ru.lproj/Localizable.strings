@@ -46,6 +46,10 @@ MapInfo.Route.Route = "Маршрут";
 MapInfo.Route.From = "Отсюда";
 MapInfo.Route.To = "Сюда";
 MapInfo.Route.Plan = "Планировка";
+MapInfo.Route.Info.Title = "Маршрут";
+MapInfo.Route.Info.Search = "Поиск";
+MapInfo.Route.Info.From = "От:";
+MapInfo.Route.Info.To = "К:";
 
 MapInfo.Search.EmptySearchResult = "Ничего не найдено";
 MapInfo.Search.Today = "Сегодня";

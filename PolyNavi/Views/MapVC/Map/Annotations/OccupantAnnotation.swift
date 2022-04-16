@@ -69,13 +69,9 @@ class OccupantAnnotation: BaseAnnotation, MKAnnotation, Identifiable, IndoorAnno
 }
 
 extension OccupantAnnotation: Searchable {
-    var annotation: MKAnnotation {
-        self
-    }
+    var annotation: MKAnnotation { self }
     
-    var annotationSprite: UIImage? {
-        sprite
-    }
+    var annotationSprite: UIImage? { sprite }
     
     var mainTitle: String? {
         properties.name?.bestLocalizedValue

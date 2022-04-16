@@ -11,9 +11,9 @@ class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
     override var annotation: MKAnnotation? {
         didSet {
             if let amenity = annotation as? AmenityAnnotation {
-                imageView.sourceImage = UIImage(named: amenity.properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+                imageView.sourceImage = amenity.sprite
             } else if let amenity = annotation as? EnviromentAmenityAnnotation {
-                imageView.sourceImage = UIImage(named: amenity.properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+                imageView.sourceImage = amenity.sprite
             }
             
             if let title = annotation?.title {

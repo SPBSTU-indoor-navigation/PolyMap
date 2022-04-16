@@ -46,6 +46,10 @@ MapInfo.Route.Route = "Route";
 MapInfo.Route.From = "From";
 MapInfo.Route.To = "To";
 MapInfo.Route.Plan = "Plan";
+MapInfo.Route.Info.Title = "Route";
+MapInfo.Route.Info.Search = "Search";
+MapInfo.Route.Info.From = "From:";
+MapInfo.Route.Info.To = "To:";
 
 MapInfo.Search.EmptySearchResult = "No suggestion found";
 MapInfo.Search.Today = "Today";

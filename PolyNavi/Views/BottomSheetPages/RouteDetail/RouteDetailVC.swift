@@ -44,7 +44,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
     lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.isUserInteractionEnabled = false
-        $0.text = "Маршрут"
+        $0.text = L10n.MapInfo.Route.Info.title
         $0.font = .systemFont(ofSize: 29, weight: .bold)
         return $0
     }(UILabel())
@@ -56,16 +56,22 @@ class RouteDetailVC: NavbarBottomSheetPage {
         return $0
     }(UIView())
     
+    lazy var changeDirection: UIButton = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setImage(UIImage(systemName: "arrow.up.arrow.down"), for: .normal)
+        $0.backgroundColor = Asset.Colors.bottomSheetGroupped.color
+        $0.layer.cornerRadius = 45 / 2
+        $0.addTarget(self, action: #selector(changeDirectionTap(_:)), for: .touchUpInside)
+        return $0
+    }(UIButton())
+    
     lazy var searchFrom: SearchLine = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.maskCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        $0.titleLabel.text = "From:"
+        $0.titleLabel.text = L10n.MapInfo.Route.Info.from
         $0.endEditing = cancelEditing
-        $0.didChange = { str in self.onSearchEdit(from: .to, text: str)}
-        $0.beginEditing = { str in
-            self.beginEditing(state: .from)
-            self.searchTableView.proccesSearcheble(searchText: str, force: true)
-        }
+        $0.didChange = { str in self.onSearchEdit(from: .from, text: str)}
+        $0.beginEditing = { str in self.beginEditing(state: .from, text: str) }
         
         return $0
     }(SearchLine())
@@ -73,13 +79,10 @@ class RouteDetailVC: NavbarBottomSheetPage {
     lazy var searchTo: SearchLine = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.maskCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        $0.titleLabel.text = "To:"
+        $0.titleLabel.text = L10n.MapInfo.Route.Info.to
         $0.endEditing = cancelEditing
         $0.didChange = { str in self.onSearchEdit(from: .to, text: str)}
-        $0.beginEditing = { str in
-            self.beginEditing(state: .to)
-            self.searchTableView.proccesSearcheble(searchText: str, force: true)
-        }
+        $0.beginEditing = { str in self.beginEditing(state: .to, text: str) }
         return $0
     }(SearchLine())
     
@@ -98,20 +101,30 @@ class RouteDetailVC: NavbarBottomSheetPage {
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
     
-    lazy var searchTableView: SearchTableView = {
+    lazy var searchTableView: RouteDetailSearchTableView = {
         $0.searchTableViewDelegate = self
         $0.searchable = searchable
         $0.alpha = 0
         $0.isHidden = true
         return $0
-    }(SearchTableView(frame: .zero, style: .grouped))
+    }(RouteDetailSearchTableView(frame: .zero, style: .grouped))
     
     var openFromConstraints: [NSLayoutConstraint] = []
     var openToConstraints: [NSLayoutConstraint] = []
     
-    func beginEditing(state: State) {
-        delegate?.change(verticalSize: .big, animated: true)
-        changeState(state: state)
+    func beginEditing(state: State, text: String) {
+        if self.state != .normal {
+            DispatchQueue.main.async { [self] in
+                searchFrom.endSearch()
+                searchTo.endSearch()
+                
+                changeState(state: .normal)
+            }
+        } else {
+            delegate?.change(verticalSize: .big, animated: true)
+            changeState(state: state)
+            searchTableView.proccesSearcheble(searchText: text, force: true)
+        }
     }
     
     func cancelEditing() {
@@ -123,7 +136,25 @@ class RouteDetailVC: NavbarBottomSheetPage {
     
     func changeState(state: State) {
         if self.state == state { return }
+        
+        if state != .normal {
+            searchTableView.skipSearchable = (state == .from ? searchTo.searchable : searchFrom.searchable)
+        }
+        
         searchTableView.isHidden = false
+        let normalEnable = state == .normal ? 1.0 : 0.0
+        
+        if state == .normal {
+            UIView.animate(withDuration: 0.1, delay: 0.2, options: .curveEaseInOut, animations: { [self] in
+                changeDirection.alpha = 1
+                changeDirection.transform = .one
+            })
+        } else {
+            UIView.animate(withDuration: 0.1, animations: { [self] in
+                changeDirection.alpha = 0
+                changeDirection.transform = .one.scaled(scale: 0.7)
+            })
+        }
         
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: { [self] in
             if state == .normal {
@@ -131,8 +162,6 @@ class RouteDetailVC: NavbarBottomSheetPage {
             } else {
                 NSLayoutConstraint.activate(state == .from ? openFromConstraints : openToConstraints)
             }
-            
-            let normalEnable = state == .normal ? 1.0 : 0.0
             
             closeButton.alpha = normalEnable
             titleLabel.alpha = normalEnable
@@ -149,9 +178,38 @@ class RouteDetailVC: NavbarBottomSheetPage {
             if state == .to { self.searchTo.textField.selectAll(nil) }
             if state == .from { self.searchFrom.textField.selectAll(nil) }
             self.searchTableView.isHidden = state == .normal
+            
+            if state == .normal {
+                self.searchTo.isEditing = false
+                self.searchFrom.isEditing = false
+            }
         })
         
         self.state = state
+    }
+    
+    var changeDirectionAnimate = false
+    @objc
+    func changeDirectionTap(_ sender: UIButton?) {
+        if changeDirectionAnimate { return }
+        
+        changeDirectionAnimate = true
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: { [self] in
+            changeDirection.imageView?.transform = CGAffineTransform(rotationAngle: .pi)
+            
+            let delta = searchFrom.titleLabel.frame.maxX - searchTo.titleLabel.frame.maxX
+            searchTo.textField.transform = CGAffineTransform(translationX: delta, y: -40)
+            searchFrom.textField.transform = CGAffineTransform(translationX: -delta, y: 40)
+        }, completion: { _ in
+            self.changeDirection.imageView?.transform = .identity
+            self.searchFrom.textField.transform = .identity
+            self.searchTo.textField.transform = .identity
+            
+            swap(&self.from, &self.to)
+            self.drawPath()
+            
+            self.changeDirectionAnimate = false
+        })
     }
     
     override func onButtomSheetScroll(progress: CGFloat) {
@@ -168,18 +226,19 @@ class RouteDetailVC: NavbarBottomSheetPage {
         container.addSubview(searchFrom)
         container.addSubview(searchTo)
         container.addSubview(separator)
+        container.addSubview(changeDirection)
         
         navbar.addSubview(titleLabel)
         navbar.insertSubview(container, aboveSubview: titleLabel)
         
         openFromConstraints = [
-            navbar.heightAnchor.constraint(equalToConstant: 75),
+            navbar.heightAnchor.constraint(equalToConstant: 70),
             searchFrom.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 17),
             searchFrom.heightAnchor.constraint(equalToConstant: 36)
         ].priority(.required)
         
         openToConstraints = [
-            navbar.heightAnchor.constraint(equalToConstant: 75),
+            navbar.heightAnchor.constraint(equalToConstant: 70),
             searchTo.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 17),
             searchTo.heightAnchor.constraint(equalToConstant: 36)
         ].priority(.required)
@@ -212,7 +271,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
             separator.heightAnchor.constraint(equalToConstant: 1),
             
             closeButton.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor).withPriority(.defaultHigh),
-            navbar.heightAnchor.constraint(equalToConstant: 150)
+            navbar.heightAnchor.constraint(equalToConstant: 155).withPriority(.required)
         ])
         
         NSLayoutConstraint.activate([
@@ -221,13 +280,20 @@ class RouteDetailVC: NavbarBottomSheetPage {
             tableView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
             
-            searchTableView.topAnchor.constraint(equalTo: navbar.bottomAnchor),
-            searchTableView.bottomAnchor.constraint(equalTo: background.bottomAnchor),
-            searchTableView.leadingAnchor.constraint(equalTo: background.leadingAnchor),
-            searchTableView.trailingAnchor.constraint(equalTo: background.trailingAnchor),
+            searchTableView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            searchTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            searchTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            searchTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            changeDirection.widthAnchor.constraint(equalToConstant: 45),
+            changeDirection.heightAnchor.constraint(equalToConstant: 45),
+            changeDirection.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -25),
+            changeDirection.centerYAnchor.constraint(equalTo: separator.centerYAnchor),
             
             closeButton.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 15).withPriority(.init(rawValue: 900))
         ])
+        
+        closeButton.becomeFirstResponder()
     }
     
     func onSearchEdit(from state: State, text: String) {
@@ -358,19 +424,22 @@ extension RouteDetailVC {
     }
     
     func drawPath() {
+        from = from ?? IMDFDecoder.defaultPathStartPoint
+        
         guard let from = from ?? IMDFDecoder.defaultPathStartPoint,
               let to = to else { return }
+        
         
         RouteDetailVC.fromPoint = from
         RouteDetailVC.toPoint = to
         
         
         if let searchable = from as? Searchable {
-            searchFrom.setup(text: searchable.mainTitle ?? "")
+            searchFrom.setup(searchable)
         }
         
         if let searchable = to as? Searchable {
-            searchTo.setup(text: searchable.mainTitle ?? "")
+            searchTo.setup(searchable)
         }
         
         if let pathID = pathID {

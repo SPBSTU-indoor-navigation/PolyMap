@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchLine: UIView, UITextFieldDelegate {
+class SearchLine: UIView {
     
     var beginEditing: ((String) -> Void)?
     var didChange: ((String) -> Void)?
@@ -34,7 +34,7 @@ class SearchLine: UIView, UITextFieldDelegate {
                 layoutIfNeeded()
             }, completion: { _ in
                 if self.isSearch {
-                    self.textField.clearButtonMode = .whileEditing
+                    self.textField.clearButtonMode = .always
                 }
             })
             
@@ -50,6 +50,7 @@ class SearchLine: UIView, UITextFieldDelegate {
         }
     }
     
+    var searchable: Searchable? = nil
     var isEditing = false
     
     lazy var containerView: UIView = {
@@ -62,7 +63,6 @@ class SearchLine: UIView, UITextFieldDelegate {
     
     lazy var backgroundView: UIView = {
         $0.layer.cornerCurve = .continuous
-        $0.clipsToBounds = true
         $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         $0.backgroundColor = Asset.Colors.searchBarBackground.color
         return $0
@@ -70,12 +70,15 @@ class SearchLine: UIView, UITextFieldDelegate {
     
     lazy var textField: UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.placeholder = "Search"
+        $0.placeholder = L10n.MapInfo.Route.Info.search
         $0.delegate = self
         $0.setContentHuggingPriority(.defaultLow, for: .horizontal)
         $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         $0.tintColor = Asset.accentColor.color
+        $0.spellCheckingType = .no
         $0.clearButtonMode = .never
+        $0.returnKeyType = .search
+        $0.enablesReturnKeyAutomatically = true
         $0.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return $0
     }(UITextField())
@@ -108,7 +111,7 @@ class SearchLine: UIView, UITextFieldDelegate {
         addSubview(containerView)
         addSubview(cancelButton)
         containerView.addSubview(backgroundView)
-        backgroundView.addSubview(textField)
+        addSubview(textField)
         backgroundView.addSubview(titleLabel)
         
         
@@ -141,8 +144,13 @@ class SearchLine: UIView, UITextFieldDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(text: String) {
-        textField.text = text
+    func setup(_ searchable: Searchable?) {
+        self.searchable = searchable
+        setText()
+    }
+    
+    private func setText() {
+        textField.text = searchable?.mainTitle ?? ""
     }
     
     @objc
@@ -154,6 +162,7 @@ class SearchLine: UIView, UITextFieldDelegate {
         isSearch = false
         textField.endEditing(true)
         endEditing?()
+        setText()
     }
     
     @objc
@@ -161,6 +170,10 @@ class SearchLine: UIView, UITextFieldDelegate {
         self.didChange?(textField.text ?? "")
     }
     
+
+}
+
+extension SearchLine: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         isSearch = true
         beginEditing?(textField.text ?? "")
@@ -170,5 +183,10 @@ class SearchLine: UIView, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         isEditing = false
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
     }
 }

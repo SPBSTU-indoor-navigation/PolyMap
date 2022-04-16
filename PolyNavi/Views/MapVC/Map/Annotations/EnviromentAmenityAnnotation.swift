@@ -18,6 +18,10 @@ class EnviromentAmenityAnnotation: BaseAnnotation, MKAnnotation, Identifiable, A
         }
     }
     
+    lazy var sprite: UIImage = {
+        return UIImage(named: properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+    }()
+    
     var properties: IMDF.EnviromentAmenity.Properties
     
     var detailLevel: AmenityAnnotation.DetailLevel
@@ -29,4 +33,22 @@ class EnviromentAmenityAnnotation: BaseAnnotation, MKAnnotation, Identifiable, A
         super.init()
         self.imdfID = imdfID
     }
+}
+
+extension EnviromentAmenityAnnotation: Searchable {
+    var annotation: MKAnnotation { self }
+    
+    var annotationSprite: UIImage? { sprite }
+    
+    var backgroundSpriteColor: UIColor { .systemBlue }
+    
+    var mainTitle: String? {
+        properties.alt_name?.bestLocalizedValue
+    }
+    
+    var place: String? { nil }
+    
+    var floor: String? { nil }
+    
+    var searchTags: [String] { [] }
 }
