@@ -231,6 +231,13 @@ class MapView: UIView {
                 mapSize.update(mapSize: zoomLevel, animate: true)
             }
         }
+        
+        mapView.currentOverlays
+            .compactMap({ $0.value as? CustomOverlay & StylebleMapSize })
+            .forEach({
+                guard let renderer = mapView.renderer(for: $0.geometry) else { return }
+                $0.configurate(renderer: renderer, mapSize: zoomLevel)
+            })
     }
     
     func updateMap(nearestBuilding: Building?) {

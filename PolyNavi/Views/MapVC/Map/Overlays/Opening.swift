@@ -7,7 +7,8 @@
 
 import MapKit
 
-class Opening: CustomOverlay, Styleble {
+class Opening: CustomOverlay, Styleble, StylebleMapSize {
+    
     var unitCategory: IMDF.Unit.Category?
     
     init(geometry: MKShape & MKOverlay, unitCategory: IMDF.Unit.Category?) {
@@ -20,13 +21,20 @@ class Opening: CustomOverlay, Styleble {
         switch unitCategory {
         case .stairs:
             renderer.strokeColor = Asset.IMDFColors.Units.stairs.color
-            renderer.lineCap = .butt
         case .walkway:
             renderer.strokeColor = Asset.IMDFColors.Units.walkway.color
         case .restroom, .restroomFemale, .restroomMale:
             renderer.strokeColor = Asset.IMDFColors.Units.restroom.color
         default: renderer.strokeColor = Asset.IMDFColors.default.color
         }
-        renderer.lineWidth = 4
+        renderer.lineCap = .butt
+        renderer.lineWidth = 2
+    }
+    
+    
+    func configurate(renderer: MKOverlayRenderer, mapSize: Float) {
+        guard let renderer = renderer as? MKPolylineRenderer else { return }
+        
+        renderer.lineWidth = CGFloat(max(2, (mapSize - 20) * 1.5))
     }
 }

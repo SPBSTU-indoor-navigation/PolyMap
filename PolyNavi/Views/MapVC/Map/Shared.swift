@@ -11,6 +11,10 @@ protocol Styleble {
     func configurate(renderer: MKOverlayRenderer)
 }
 
+protocol StylebleMapSize {
+    func configurate(renderer: MKOverlayRenderer, mapSize: Float)
+}
+
 protocol MapRenderer {
     func show(_ mapView: OverlayedMapView)
     func hide(_ mapView: OverlayedMapView)
