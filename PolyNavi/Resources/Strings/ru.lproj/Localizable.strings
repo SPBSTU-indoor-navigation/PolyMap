@@ -50,6 +50,11 @@ MapInfo.Route.Info.Title = "Маршрут";
 MapInfo.Route.Info.Search = "Поиск";
 MapInfo.Route.Info.From = "От:";
 MapInfo.Route.Info.To = "К:";
+MapInfo.Route.Info.Distance = "Дистанция";
+MapInfo.Route.Info.Time = "Время";
+MapInfo.Route.Info.FastTime = "Быстрым шагом";
+MapInfo.Route.Info.Indoor = "Внутри помещения";
+MapInfo.Route.Info.Outdoor = "По улице";
 
 MapInfo.Search.EmptySearchResult = "Ничего не найдено";
 MapInfo.Search.Today = "Сегодня";

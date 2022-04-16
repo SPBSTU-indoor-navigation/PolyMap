@@ -22,6 +22,12 @@ class RouteDetailVC: NavbarBottomSheetPage {
     var from: MKAnnotation? = nil
     var to: MKAnnotation? = nil
     
+    var routeDetailInfo: RouteDetailInfo? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     var state: State = .normal
     var pathID: UUID?
     
@@ -93,6 +99,10 @@ class RouteDetailVC: NavbarBottomSheetPage {
     }(OpacityHitTest())
     
     lazy var tableView: UITableView = {
+        $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableView.UITableViewCellIdentifire)
+        $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifire)
+        $0.register(SearchGroupedHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchGroupedHeaderView.identifier)
+        
         $0.delegate = self
         $0.dataSource = self
         $0.backgroundColor = .clear
@@ -255,15 +265,15 @@ class RouteDetailVC: NavbarBottomSheetPage {
             titleLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -5),
             titleLabel.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
             
-            searchFrom.heightAnchor.constraint(equalToConstant: 40),
+            searchFrom.heightAnchor.constraint(equalToConstant: 40).withPriority(.defaultHigh),
             searchFrom.leadingAnchor.constraint(equalTo: tableView.wrapperView.leadingAnchor),
             searchFrom.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor),
-            searchFrom.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 60),
+            searchFrom.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 60).withPriority(.defaultHigh),
             
-            searchTo.heightAnchor.constraint(equalToConstant: 40),
+            searchTo.heightAnchor.constraint(equalToConstant: 40).withPriority(.defaultHigh),
             searchTo.leadingAnchor.constraint(equalTo: tableView.wrapperView.leadingAnchor),
             searchTo.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor),
-            searchTo.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 100),
+            searchTo.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 100).withPriority(.defaultHigh),
             
             separator.centerYAnchor.constraint(equalTo: navbar.topAnchor, constant: 100),
             separator.leadingAnchor.constraint(equalTo: searchFrom.leadingAnchor),
@@ -271,7 +281,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
             separator.heightAnchor.constraint(equalToConstant: 1),
             
             closeButton.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor).withPriority(.defaultHigh),
-            navbar.heightAnchor.constraint(equalToConstant: 155).withPriority(.required)
+            navbar.heightAnchor.constraint(equalToConstant: 155).withPriority(.defaultHigh)
         ])
         
         NSLayoutConstraint.activate([
@@ -379,25 +389,40 @@ extension RouteDetailVC: UITableViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         delegate?.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let title = routeDetailInfo?.section(for: section)?.title else { return nil }
+        
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SearchGroupedHeaderView.identifier) as? SearchGroupedHeaderView else { return nil}
+        
+        header.configurate(text: title)
+        
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension RouteDetailVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return routeDetailInfo?.sections.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        return routeDetailInfo?.sections[section].cellCount ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        if let routeDetailInfo = routeDetailInfo,
+           let section = routeDetailInfo.section(for: indexPath.section),
+           let cellFor = section as? CellFor {
+            return cellFor.cellFor(tableView, indexPath)
+        }
         
-        cell.textLabel?.text = "\(indexPath.row)"
-        
-        return cell
-        
+        return UITableViewCell()
     }
 }
 
@@ -451,6 +476,8 @@ extension RouteDetailVC {
         })
         
         let result = PathFinder.shared.findPath(from: from, to: to)
+        
+        routeDetailInfo = RouteDetailInfo(result: result)
         
         if let result = result {
             pathID = mapViewDelegate.addPath(path: result.path)

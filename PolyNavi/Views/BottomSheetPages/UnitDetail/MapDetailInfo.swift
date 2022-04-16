@@ -7,21 +7,10 @@
 import UIKit
 import MapKit
 
-protocol CellFor {
-    func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell
-}
-
-class MapDetailInfo {
+class MapDetailInfo: SectionCollection {
     var title: String = ""
-    var sections: [Section] = []
     var annotation: MKAnnotation?
-    
-    
-    class Section {
-        var title: String? { return nil }
-        var cellCount: Int { return 1 }
-    }
-    
+
     class Route: Section, CellFor {
         var showRoute = true
         var showIndoor = true
@@ -91,41 +80,6 @@ class MapDetailInfo {
             let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifire) as! DetailCell
             
             cell.configurate(title: content[indexPath.row].0, content: content[indexPath.row].1)
-            cell.selectionStyle = .none
-            return cell
-        }
-    }
-    
-    class Report: Section, CellFor {
-        var favorite: Bool = true
-        var report: Bool = true
-        
-        override var cellCount: Int { return favorite.intValue + report.intValue }
-        
-        init(favorite: Bool = true, report: Bool = true) {
-            self.favorite = favorite
-            self.report = report
-        }
-        
-        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableView.UITableViewCellIdentifire, for: indexPath)
-            
-            let image = UIImage(systemName: favorite && indexPath.row == 0 ? "star.fill" : "exclamationmark.bubble.fill")
-            let text = favorite && indexPath.row == 0 ? L10n.MapInfo.Report.favorites : L10n.MapInfo.Report.issue
-            
-            if #available(iOS 14.0, *) {
-                var content = cell.defaultContentConfiguration()
-                content.image = image
-                content.text = text
-                cell.contentConfiguration = content
-            } else {
-                cell.textLabel?.text = text
-                cell.imageView?.image = image
-            }
-            
-            cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
-            cell.selectionStyle = .gray
             return cell
         }
     }
@@ -133,5 +87,4 @@ class MapDetailInfo {
     func section(for row: Int, title: Bool) -> Section? {
         return sections[row - title.intValue]
     }
-    
 }

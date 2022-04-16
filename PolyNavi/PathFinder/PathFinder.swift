@@ -40,8 +40,8 @@ class PathResult {
         indoorDistance = PathResult.indoorDistance(path: path)
         outdoorDistance = PathResult.outdoorDistance(path: path)
         
-        time = Float(outdoorDistance / 5.0 + indoorDistance / 3.0)
-        fastTime = Float(outdoorDistance / 6.0 + indoorDistance / 4.0)
+        time = Float(outdoorDistance / 4.0 + indoorDistance / 2.0)
+        fastTime = Float(outdoorDistance / 5.0 + indoorDistance / 3.0)
     }
     
     static func distance(path: [PathResultNode]) -> Double {

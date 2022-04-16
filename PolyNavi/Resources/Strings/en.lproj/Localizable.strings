@@ -50,6 +50,11 @@ MapInfo.Route.Info.Title = "Route";
 MapInfo.Route.Info.Search = "Search";
 MapInfo.Route.Info.From = "From:";
 MapInfo.Route.Info.To = "To:";
+MapInfo.Route.Info.Distance = "Distance";
+MapInfo.Route.Info.Time = "Time";
+MapInfo.Route.Info.FastTime = "Fast pace";
+MapInfo.Route.Info.Indoor = "Indoor";
+MapInfo.Route.Info.Outdoor = "Outdoor";
 
 MapInfo.Search.EmptySearchResult = "No suggestion found";
 MapInfo.Search.Today = "Today";

@@ -116,24 +116,22 @@ class RouteInfoCell: UITableViewCell {
             routeButton.heightAnchor.constraint(equalTo: routeContainer.heightAnchor),
             fromRouteButton.heightAnchor.constraint(equalTo: routeContainer.heightAnchor),
             toRouteButton.heightAnchor.constraint(equalTo: routeContainer.heightAnchor),
+            buildingButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            buildingButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
         ].priority(.defaultHigh))
         
         singleLine = [
-            contentView.heightAnchor.constraint(equalToConstant: 46),
+            contentView.heightAnchor.constraint(equalToConstant: 46).withPriority(.defaultHigh),
             buildingButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            buildingButton.widthAnchor.constraint(equalToConstant: 100).withPriority(.defaultLow),
-            buildingButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            buildingButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            buildingButton.widthAnchor.constraint(equalToConstant: 100).withPriority(.defaultLow)
         ]
         
         multyLine = [
-            contentView.heightAnchor.constraint(equalToConstant: 46 * 2 + 8),
+            contentView.heightAnchor.constraint(equalToConstant: 46 * 2 + 8).withPriority(.defaultHigh),
             routeContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             buildingButton.heightAnchor.constraint(equalToConstant: 46),
             buildingButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            buildingButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            buildingButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ]
         
         routeConstraint = [
