@@ -7,7 +7,25 @@
 
 import UIKit
 
+
 class SearchLine: UIView {
+    class TextField: UITextField {
+        
+        var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        override open func textRect(forBounds bounds: CGRect) -> CGRect {
+            return super.textRect(forBounds: bounds).inset(by: padding)
+        }
+        
+        override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+            return super.placeholderRect(forBounds: bounds).inset(by: padding)
+        }
+        
+        override open func editingRect(forBounds bounds: CGRect) -> CGRect {
+            return super.editingRect(forBounds: bounds).intersection(bounds.inset(by: padding))
+        }
+    }
+    
     
     var beginEditing: ((String) -> Void)?
     var didChange: ((String) -> Void)?
@@ -23,9 +41,11 @@ class SearchLine: UIView {
         didSet {
             UIView.animate(withDuration: 0.3, animations: { [self] in
                 if isSearch {
+                    textField.padding = .init(top: 0, left: 0, bottom: 0, right: 30)
                     NSLayoutConstraint.activate(selectedConstraints)
                     backgroundView.layer.cornerRadius = 10
                 } else {
+                    textField.padding = .init(top: 0, left: 0, bottom: 0, right: 50)
                     NSLayoutConstraint.deactivate(selectedConstraints)
                     cancelButton.alpha = 0
                     backgroundView.layer.cornerRadius = 0
@@ -68,7 +88,7 @@ class SearchLine: UIView {
         return $0
     }(UIButton())
     
-    lazy var textField: UITextField = {
+    lazy var textField: TextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.placeholder = L10n.MapInfo.Route.Info.search
         $0.delegate = self
@@ -79,9 +99,10 @@ class SearchLine: UIView {
         $0.clearButtonMode = .never
         $0.returnKeyType = .search
         $0.enablesReturnKeyAutomatically = true
+        $0.padding = .init(top: 0, left: 0, bottom: 0, right: 50)
         $0.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return $0
-    }(UITextField())
+    }(TextField())
     
     lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
