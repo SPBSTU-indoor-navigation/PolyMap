@@ -12,7 +12,7 @@ class RouteDetailInfo: SectionCollection {
     class PathInfo: Section, CellFor {
         let result: PathResult
         
-        override var title: String? { "Информация о маршруте" }
+        override var title: String? { L10n.MapInfo.Route.Info.routeInformation }
         var content: [(String, String)] = []
         
         override var cellCount: Int { return content.count }
