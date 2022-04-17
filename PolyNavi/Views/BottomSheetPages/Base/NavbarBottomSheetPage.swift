@@ -41,10 +41,15 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
         return $0
     }(UIButton(type: .close))
     
-    init(closable: Bool = false) {
+    init(closable: Bool = false, maximizationByNavbarClick: Bool = true) {
         super.init(nibName: nil, bundle: nil)
         
         self.closable = closable
+        
+        if maximizationByNavbarClick {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(navbarTap))
+            navbar.addGestureRecognizer(tap)
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -98,6 +103,25 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
     func update(progress: CGFloat) {
         lastProgress = progress
         navbarSeparator.alpha = lastProgress.clamped(0, 1) * contentView.alpha
+    }
+    
+    @objc
+    private func navbarTap(_ sender: UIButton?) {
+        let verticalSize = delegate?.verticalSize() ?? .small
+        
+        var targetSize = verticalSize
+        switch verticalSize {
+        case .small:
+            targetSize = .medium
+        case .medium:
+            targetSize = .big
+        case .big:
+            targetSize = .small
+        }
+        
+        if targetSize != verticalSize {
+            delegate?.change(verticalSize: targetSize, animated: true)
+        }
     }
     
     @objc
