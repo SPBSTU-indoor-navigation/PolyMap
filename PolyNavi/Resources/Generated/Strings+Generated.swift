@@ -43,6 +43,8 @@ internal enum L10n {
       /// To
       internal static let to = L10n.tr("Localizable", "MapInfo.Route.To")
       internal enum Info {
+        /// On paved roads
+        internal static let asphalt = L10n.tr("Localizable", "MapInfo.Route.Info.Asphalt")
         /// Distance
         internal static let distance = L10n.tr("Localizable", "MapInfo.Route.Info.Distance")
         /// Fast pace
@@ -53,8 +55,12 @@ internal enum L10n {
         internal static let indoor = L10n.tr("Localizable", "MapInfo.Route.Info.Indoor")
         /// Outdoor
         internal static let outdoor = L10n.tr("Localizable", "MapInfo.Route.Info.Outdoor")
+        /// Parameters
+        internal static let parameters = L10n.tr("Localizable", "MapInfo.Route.Info.Parameters")
         /// Search
         internal static let search = L10n.tr("Localizable", "MapInfo.Route.Info.Search")
+        /// Allow service routes
+        internal static let serviceRoute = L10n.tr("Localizable", "MapInfo.Route.Info.ServiceRoute")
         /// Time
         internal static let time = L10n.tr("Localizable", "MapInfo.Route.Info.Time")
         /// Route

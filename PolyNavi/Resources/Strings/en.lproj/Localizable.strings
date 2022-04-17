@@ -55,6 +55,9 @@ MapInfo.Route.Info.Time = "Time";
 MapInfo.Route.Info.FastTime = "Fast pace";
 MapInfo.Route.Info.Indoor = "Indoor";
 MapInfo.Route.Info.Outdoor = "Outdoor";
+MapInfo.Route.Info.Parameters = "Parameters";
+MapInfo.Route.Info.Asphalt = "On paved roads";
+MapInfo.Route.Info.ServiceRoute = "Allow service routes";
 
 MapInfo.Search.EmptySearchResult = "No suggestion found";
 MapInfo.Search.Today = "Today";
