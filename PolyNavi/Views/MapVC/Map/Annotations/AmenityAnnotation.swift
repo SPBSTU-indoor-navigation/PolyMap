@@ -11,7 +11,7 @@ protocol AmenityDetailLevel {
     var detailLevel: AmenityAnnotation.DetailLevel { get  }
 }
 
-class AmenityAnnotation: NSObject, MKAnnotation, Identifiable, AmenityDetailLevel {
+class AmenityAnnotation: BaseAnnotation, MKAnnotation, Identifiable, AmenityDetailLevel {
     enum DetailLevel: Int {
         case alwaysShowBig = 0
         case alwaysShow = 1
@@ -30,17 +30,39 @@ class AmenityAnnotation: NSObject, MKAnnotation, Identifiable, AmenityDetailLeve
         }
     }
     
+    lazy var sprite: UIImage = {
+        return UIImage(named: properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+    }()
+    
     var properties: IMDF.Amenity.Properties
     var detailLevel: DetailLevel
     
-    init(coordinate: CLLocationCoordinate2D, properties: IMDF.Amenity.Properties, detailLevel: Int) {
+    init(coordinate: CLLocationCoordinate2D, imdfID: UUID, properties: IMDF.Amenity.Properties, detailLevel: Int) {
         self.coordinate = coordinate
         self.properties = properties
         self.detailLevel = .init(rawValue: detailLevel)!
         super.init()
+        self.imdfID = imdfID
     }
 }
 
+extension AmenityAnnotation: Searchable {
+    var annotation: MKAnnotation { self }
+    
+    var annotationSprite: UIImage? { sprite }
+    
+    var backgroundSpriteColor: UIColor { .systemBlue }
+    
+    var mainTitle: String? {
+        properties.alt_name?.bestLocalizedValue
+    }
+    
+    var place: String? { nil }
+    
+    var floor: String? { nil }
+    
+    var searchTags: [String] { [] }
+}
 
 extension AmenityAnnotation {
     

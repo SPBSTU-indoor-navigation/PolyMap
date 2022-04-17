@@ -15,6 +15,8 @@ protocol MapViewDelegate {
     func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool)
     func pinAnnotation(_ annotation: MKAnnotation, animated: Bool)
     func unpinAnnotation(_ annotation: MKAnnotation, animated: Bool)
+    func addPath(path: [PathResultNode]) -> UUID
+    func removePath(id: UUID)
 }
 
 
@@ -73,7 +75,7 @@ class MapView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var mapView: OverlayedMapView = {
+    lazy var mapView: PathMapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 25, maxCenterCoordinateDistance: 5000), animated: false)
         $0.isPitchEnabled = false
@@ -88,7 +90,7 @@ class MapView: UIView {
         $0.register(AttractionAnnotationView.self, forAnnotationViewWithReuseIdentifier: AttractionAnnotation.identifier)
         
         return $0
-    }(OverlayedMapView())
+    }(PathMapView())
     
     lazy var compassButton: MKCompassButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -229,6 +231,13 @@ class MapView: UIView {
                 mapSize.update(mapSize: zoomLevel, animate: true)
             }
         }
+        
+        mapView.currentOverlays
+            .compactMap({ $0.value as? CustomOverlay & StylebleMapSize })
+            .forEach({
+                guard let renderer = mapView.renderer(for: $0.geometry) else { return }
+                $0.configurate(renderer: renderer, mapSize: zoomLevel)
+            })
     }
     
     func updateMap(nearestBuilding: Building?) {
@@ -373,36 +382,49 @@ extension MapView {
     }
 }
 
-
 extension MapView: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    
+    func renderer(for overlay: MKOverlay) -> MKOverlayRenderer {
+        switch overlay {
+        case is MKMultiPolygon: return MKMultiPolygonRenderer(overlay: overlay)
+        case is MKPolygon: return MKPolygonRenderer(overlay: overlay)
+        case is MKMultiPolyline: return MKMultiPolylineRenderer(overlay: overlay)
+        case is MKPolyline: return MKPolylineRenderer(overlay: overlay)
+        default: return MKOverlayRenderer(overlay: overlay)
+        }
         
-        guard let customOverlay = self.mapView.customOverlay(for: overlay) else { return MKOverlayRenderer(overlay: overlay) }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let customOverlay = self.mapView.customOverlay(for: overlay) {
 
-        if let renderer = customOverlay.overlayRenderer {
+            if let renderer = customOverlay.overlayRenderer {
+                (customOverlay as! Styleble).configurate(renderer: renderer)
+                return renderer
+            }
+
+            let renderer = renderer(for: overlay)
             (customOverlay as! Styleble).configurate(renderer: renderer)
+
             return renderer
         }
-
-        let renderer: MKOverlayPathRenderer
-
-        switch overlay {
-        case is MKMultiPolygon:
-            renderer = MKMultiPolygonRenderer(overlay: overlay)
-        case is MKPolygon:
-            renderer = MKPolygonRenderer(overlay: overlay)
-        case is MKMultiPolyline:
-            renderer = MKMultiPolylineRenderer(overlay: overlay)
-        case is MKPolyline:
-            renderer = MKPolylineRenderer(overlay: overlay)
-        default:
-            return MKOverlayRenderer(overlay: overlay)
+        
+        if overlay is PathOverlay {
+//            let pathRenderer = GradientPathRenderer(polyline: overlay as! MKPolyline, colors: [.systemBlue], showsBorder: true, borderColor: .white)
+            let pathRenderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+            pathRenderer.lineWidth = 7
+            pathRenderer.strokeColor = .systemBlue
+            return pathRenderer
         }
 
-        (customOverlay as! Styleble).configurate(renderer: renderer)
-
+    
+        let renderer = renderer(for: overlay)
+        if let styleble = overlay as? Styleble {
+            styleble.configurate(renderer: renderer)
+            return renderer
+        }
+        
         return renderer
-
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -440,7 +462,6 @@ extension MapView: MKMapViewDelegate {
 
 
 extension MapView: MapViewDelegate {
-    
     func pinAnnotation(_ annotation: MKAnnotation, animated: Bool) {
         mapView.pinAnnotation(annotation, animated: animated)
     }
@@ -514,4 +535,15 @@ extension MapView: MapViewDelegate {
         }
         
     }
+    
+    func addPath(path: [PathResultNode]) -> UUID {
+//        mapView.addPath(path: path)
+        return venue?.addPath(mapView, path: path) ?? UUID()
+    }
+    
+    func removePath(id: UUID) {
+        venue?.removePath(mapView, id: id)
+    }
+    
+    
 }

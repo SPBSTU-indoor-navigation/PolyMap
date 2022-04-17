@@ -15,6 +15,8 @@ class Venue: CustomOverlay, Styleble {
     var amenitys: [EnviromentAmenityAnnotation] = []
     var address: IMDF.Address?
     
+    var outdoorPath: [UUID:PathOverlay] = [:]
+    
     init(geometry: MKShape & MKOverlay, buildings: [Building], enviroments: [EnviromentUnit],
          enviromentDetail: [Detail], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {
         super.init(geometry)
@@ -22,7 +24,35 @@ class Venue: CustomOverlay, Styleble {
         self.address = address
         self.enviroments = enviroments
         self.enviromentDetail = enviromentDetail
-        self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, properties: $0.properties, detailLevel: $0.properties.detailLevel) })
+        self.amenitys = amenitys.map({ EnviromentAmenityAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate,
+                                                                   imdfID: $0.identifier, properties: $0.properties,
+                                                                   detailLevel: $0.properties.detailLevel)})
+    }
+    
+    func addPath(_ mapView: MKMapView, path: [PathResultNode]) -> UUID {
+        let id = UUID()
+        let outdoor = path
+        
+        let overlay = PathOverlay(coordinates: outdoor.map({ $0.location }), count: outdoor.count)
+        outdoorPath[id] = overlay
+        
+        for building in buildings {
+            building.addPath(mapView, path: path, id: id)
+        }
+
+        mapView.insertOverlay(overlay, below: buildings[0].geometry)
+        
+        return id
+    }
+    
+    func removePath(_ mapView: MKMapView, id: UUID) {
+        if let path = outdoorPath.removeValue(forKey: id) {
+            mapView.removeOverlay(path)
+            
+            for building in buildings {
+                building.removePath(mapView, id: id)
+            }
+        }
     }
     
     func show(_ mapView: OverlayedMapView) {

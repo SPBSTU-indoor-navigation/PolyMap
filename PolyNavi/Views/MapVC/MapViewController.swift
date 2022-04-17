@@ -116,7 +116,7 @@ class MapViewController: UIViewController {
         let venue = IMDFDecoder.decode(path)
         
         mapView.venue = venue
-        mapInfo.searchVC.searchable = venue?.searchable() ?? []
+        mapInfo.searchable = venue?.searchable() ?? []
     }
     
     @objc

@@ -7,21 +7,10 @@
 import UIKit
 import MapKit
 
-protocol CellFor {
-    func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell
-}
-
-class MapDetailInfo {
+class MapDetailInfo: SectionCollection {
     var title: String = ""
-    var sections: [Section] = []
     var annotation: MKAnnotation?
-    
-    
-    class Section {
-        var title: String? { return nil }
-        var cellCount: Int { return 1 }
-    }
-    
+
     class Route: Section, CellFor {
         var showRoute = true
         var showIndoor = true
@@ -37,11 +26,29 @@ class MapDetailInfo {
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: RouteInfoCell.identifire, for: indexPath) as! RouteInfoCell
-            cell.configutate(showRoute: showRoute, showIndoor: showIndoor, buildingID: buildingID)
+            
+            var variant: RouteInfoCell.RouteVariant = .to
+            
+            if let to = RouteDetailVC.toPoint, let from = RouteDetailVC.fromPoint {
+                if from === annotation { variant = .from }
+                else if to === annotation { variant = .to }
+                else { variant = .fromTo }
+            } else if let to = RouteDetailVC.toPoint {
+                if to === annotation { variant = .to }
+            } else if let from = RouteDetailVC.fromPoint {
+                if from === annotation { variant = .from }
+            }
+            
+            
+            cell.configutate(routeVariant: variant, showIndoor: showIndoor, buildingID: buildingID)
             cell.selectionStyle = .none
-            cell.onRouteClick = {
+            cell.onRouteClick = { variant in
                 if let annotation = self.annotation {
-                    MapInfo.routeDetail?.setFrom(annotation)
+                    if variant == .to {
+                        MapInfo.routeDetail?.setTo(annotation)
+                    } else {
+                        MapInfo.routeDetail?.setFrom(annotation)
+                    }
                 }
             }
             cell.onBuildingClick = { print("BUILDING") }
@@ -73,41 +80,6 @@ class MapDetailInfo {
             let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.identifire) as! DetailCell
             
             cell.configurate(title: content[indexPath.row].0, content: content[indexPath.row].1)
-            cell.selectionStyle = .none
-            return cell
-        }
-    }
-    
-    class Report: Section, CellFor {
-        var favorite: Bool = true
-        var report: Bool = true
-        
-        override var cellCount: Int { return favorite.intValue + report.intValue }
-        
-        init(favorite: Bool = true, report: Bool = true) {
-            self.favorite = favorite
-            self.report = report
-        }
-        
-        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableView.UITableViewCellIdentifire, for: indexPath)
-            
-            let image = UIImage(systemName: favorite && indexPath.row == 0 ? "star.fill" : "exclamationmark.bubble.fill")
-            let text = favorite && indexPath.row == 0 ? L10n.MapInfo.Report.favorites : L10n.MapInfo.Report.issue
-            
-            if #available(iOS 14.0, *) {
-                var content = cell.defaultContentConfiguration()
-                content.image = image
-                content.text = text
-                cell.contentConfiguration = content
-            } else {
-                cell.textLabel?.text = text
-                cell.imageView?.image = image
-            }
-            
-            cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
-            cell.selectionStyle = .gray
             return cell
         }
     }
@@ -115,5 +87,4 @@ class MapDetailInfo {
     func section(for row: Int, title: Bool) -> Section? {
         return sections[row - title.intValue]
     }
-    
 }

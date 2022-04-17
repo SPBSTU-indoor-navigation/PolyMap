@@ -7,7 +7,7 @@
 
 import MapKit
 
-class EnviromentAmenityAnnotation: NSObject, MKAnnotation, Identifiable, AmenityDetailLevel {
+class EnviromentAmenityAnnotation: BaseAnnotation, MKAnnotation, Identifiable, AmenityDetailLevel {
     var identifier: String = identifier
     static var identifier: String = String(describing: EnviromentAmenityAnnotation.self)
     
@@ -18,14 +18,37 @@ class EnviromentAmenityAnnotation: NSObject, MKAnnotation, Identifiable, Amenity
         }
     }
     
+    lazy var sprite: UIImage = {
+        return UIImage(named: properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
+    }()
+    
     var properties: IMDF.EnviromentAmenity.Properties
     
     var detailLevel: AmenityAnnotation.DetailLevel
     
-    init(coordinate: CLLocationCoordinate2D, properties: IMDF.EnviromentAmenity.Properties, detailLevel: Int) {
+    init(coordinate: CLLocationCoordinate2D, imdfID: UUID, properties: IMDF.EnviromentAmenity.Properties, detailLevel: Int) {
         self.coordinate = coordinate
         self.properties = properties
         self.detailLevel = .init(rawValue: detailLevel)!
         super.init()
+        self.imdfID = imdfID
     }
+}
+
+extension EnviromentAmenityAnnotation: Searchable {
+    var annotation: MKAnnotation { self }
+    
+    var annotationSprite: UIImage? { sprite }
+    
+    var backgroundSpriteColor: UIColor { .systemBlue }
+    
+    var mainTitle: String? {
+        properties.alt_name?.bestLocalizedValue
+    }
+    
+    var place: String? { nil }
+    
+    var floor: String? { nil }
+    
+    var searchTags: [String] { [] }
 }

@@ -7,8 +7,8 @@
 
 import MapKit
 
-class Unit: CustomOverlay, Styleble {
-    
+class Unit: CustomOverlay, Styleble, StylebleMapSize {
+
     var id: UUID
     var properties: IMDF.Unit.Properties
     
@@ -42,9 +42,10 @@ class Unit: CustomOverlay, Styleble {
             default: break
             }
         }
-        
-        
-        
+    }
+    
+    func configurate(renderer: MKOverlayRenderer, mapSize: Float) {
+        guard let renderer = renderer as? MKOverlayPathRenderer else { return }
+        renderer.lineWidth = CGFloat(max(1, mapSize - 20))
     }
 }
-

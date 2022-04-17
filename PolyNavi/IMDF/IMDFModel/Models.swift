@@ -16,6 +16,7 @@ struct IMDF {
             let phone: String
             let website: String
             let address_id: UUID
+            let navpath_begin_id: UUID?
         }
     }
     
@@ -316,6 +317,21 @@ struct IMDF {
             let website: String?
             
             let correlation_id: UUID?
+        }
+    }
+    
+    class NavPath: Feature<NavPath.Properties> {
+        struct Properties: Codable {
+            let builing_id: UUID?
+            let level_id: UUID?
+            let neighbours: [UUID]
+        }
+    }
+    
+    class NavPathAssocieted: Feature<NavPathAssocieted.Properties> {
+        struct Properties: Codable {
+            let pathNode_id: UUID
+            let associeted_id: UUID
         }
     }
     

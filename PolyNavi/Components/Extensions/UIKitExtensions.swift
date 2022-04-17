@@ -134,6 +134,18 @@ extension Array where Iterator.Element : NSLayoutConstraint {
         self.forEach({ $0.priority = priority })
         return self
     }
+    
+    @discardableResult
+    func activate() -> Self {
+        NSLayoutConstraint.activate(self)
+        return self
+    }
+    
+    @discardableResult
+    func deactivate() -> Self {
+        NSLayoutConstraint.deactivate(self)
+        return self
+    }
 }
 
 extension NSLayoutConstraint {

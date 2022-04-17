@@ -34,10 +34,40 @@ internal enum L10n {
       internal static let issue = L10n.tr("Localizable", "MapInfo.Report.Issue")
     }
     internal enum Route {
+      /// From
+      internal static let from = L10n.tr("Localizable", "MapInfo.Route.From")
       /// Plan
       internal static let plan = L10n.tr("Localizable", "MapInfo.Route.Plan")
       /// Route
       internal static let route = L10n.tr("Localizable", "MapInfo.Route.Route")
+      /// To
+      internal static let to = L10n.tr("Localizable", "MapInfo.Route.To")
+      internal enum Info {
+        /// On paved roads
+        internal static let asphalt = L10n.tr("Localizable", "MapInfo.Route.Info.Asphalt")
+        /// Distance
+        internal static let distance = L10n.tr("Localizable", "MapInfo.Route.Info.Distance")
+        /// Fast pace
+        internal static let fastTime = L10n.tr("Localizable", "MapInfo.Route.Info.FastTime")
+        /// From:
+        internal static let from = L10n.tr("Localizable", "MapInfo.Route.Info.From")
+        /// Indoor
+        internal static let indoor = L10n.tr("Localizable", "MapInfo.Route.Info.Indoor")
+        /// Outdoor
+        internal static let outdoor = L10n.tr("Localizable", "MapInfo.Route.Info.Outdoor")
+        /// Parameters
+        internal static let parameters = L10n.tr("Localizable", "MapInfo.Route.Info.Parameters")
+        /// Search
+        internal static let search = L10n.tr("Localizable", "MapInfo.Route.Info.Search")
+        /// Allow service routes
+        internal static let serviceRoute = L10n.tr("Localizable", "MapInfo.Route.Info.ServiceRoute")
+        /// Time
+        internal static let time = L10n.tr("Localizable", "MapInfo.Route.Info.Time")
+        /// Route
+        internal static let title = L10n.tr("Localizable", "MapInfo.Route.Info.Title")
+        /// To:
+        internal static let to = L10n.tr("Localizable", "MapInfo.Route.Info.To")
+      }
     }
     internal enum Search {
       /// Buildings

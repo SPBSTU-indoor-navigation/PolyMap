@@ -54,13 +54,18 @@ class DetailCell: UITableViewCell {
             content.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             contentView.bottomAnchor.constraint(equalTo: content.bottomAnchor, constant: 8),
         ])
+        
+        selectionStyle = .none
     }
     
-    func configurate(title: String, content: String) {
+    func configurate(title: String, content: String, isSelectable: Bool = true) {
         self.title.text = title
         self.content.text = content
+        self.content.isSelectable = isSelectable
         
-        self.content.sizeToFit()
+        UIView.performWithoutAnimation {
+            self.content.sizeToFit()
+        }
     }
 
 }

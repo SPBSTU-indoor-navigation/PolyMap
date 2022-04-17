@@ -23,7 +23,9 @@ class Building: CustomOverlay, Styleble, MapRenderer {
         super.init(geometry)
         
         self.levels = levels
-        self.attractions = attractions.map({ AttractionAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate, properties: $0.properties) })
+        self.attractions = attractions.map({ AttractionAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate,
+                                                                  imdfID: $0.identifier,
+                                                                  properties: $0.properties) })
         self.ordinal = levels.map({ $0.ordinal }).min() ?? -1
         self.properties = properties
         
@@ -32,7 +34,21 @@ class Building: CustomOverlay, Styleble, MapRenderer {
         }
     }
     
+    func addPath(_ mapView: MKMapView, path: [PathResultNode], id: UUID) {
+        let indoor = path.filter({ $0.building == self })
+        
+        if indoor.isEmpty { return }
+        
+        for level in levels {
+            level.addPath(mapView, path: indoor, id: id)
+        }
+    }
     
+    func removePath(_ mapView: MKMapView, id: UUID) {
+        for level in levels {
+            level.removePath(mapView, id: id)
+        }
+    }
     
     func configurate(renderer: MKOverlayRenderer) {
         guard let renderer = renderer as? MKOverlayPathRenderer else { return }

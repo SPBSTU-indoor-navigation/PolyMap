@@ -23,8 +23,8 @@ class SearchTableView: UITableView {
             proccesSearcheble(searchText: lastSearch, force: true)
         }
     }
-    private var lastSearch: String = " "
-    private var searchableSections: [(String,[Searchable])] = []
+    var lastSearch: String = " "
+    var searchableSections: [(String,[Searchable])] = []
     
     lazy var emptyResult: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -63,12 +63,7 @@ class SearchTableView: UITableView {
         return searchableSections[indexPath.section].1[indexPath.row]
     }
     
-    func proccesSearcheble(searchText: String = "", force: Bool = false) {
-        let searchText = searchText.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        if searchText == lastSearch && !force { return }
-        lastSearch = searchText
-        
+    func filter(searchText: String) -> [Searchable] {
         let searchable: [Searchable]
         
         if searchText.isEmpty {
@@ -81,6 +76,17 @@ class SearchTableView: UITableView {
                 return title.lowercased().contains(searchText)
             })
         }
+        
+        return searchable
+    }
+    
+    func proccesSearcheble(searchText: String = "", force: Bool = false) {
+        let searchText = searchText.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if searchText == lastSearch && !force { return }
+        lastSearch = searchText
+        
+        let searchable = filter(searchText: searchText)
         
         searchableSections = []
         

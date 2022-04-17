@@ -9,6 +9,7 @@ import MapKit
 
 
 protocol Pinnable {
+    var isPinned: Bool { get }
     func setPinned(_ pinned: Bool, animated: Bool)
 }
 

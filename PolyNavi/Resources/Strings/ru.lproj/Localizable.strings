@@ -43,7 +43,21 @@ MapInfo.Report.Favorites = "Закладки";
 MapInfo.Report.Issue = "Сообщить об ошибке";
 
 MapInfo.Route.Route = "Маршрут";
+MapInfo.Route.From = "Отсюда";
+MapInfo.Route.To = "Сюда";
 MapInfo.Route.Plan = "Планировка";
+MapInfo.Route.Info.Title = "Маршрут";
+MapInfo.Route.Info.Search = "Поиск";
+MapInfo.Route.Info.From = "От:";
+MapInfo.Route.Info.To = "К:";
+MapInfo.Route.Info.Distance = "Дистанция";
+MapInfo.Route.Info.Time = "Время";
+MapInfo.Route.Info.FastTime = "Быстрым шагом";
+MapInfo.Route.Info.Indoor = "Внутри помещения";
+MapInfo.Route.Info.Outdoor = "По улице";
+MapInfo.Route.Info.Parameters = "Параметры";
+MapInfo.Route.Info.Asphalt = "По асфальтированным дорогам";
+MapInfo.Route.Info.ServiceRoute = "Разрешить служебные проходы";
 
 MapInfo.Search.EmptySearchResult = "Ничего не найдено";
 MapInfo.Search.Today = "Сегодня";
