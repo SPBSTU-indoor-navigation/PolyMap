@@ -57,6 +57,8 @@ internal enum L10n {
         internal static let outdoor = L10n.tr("Localizable", "MapInfo.Route.Info.Outdoor")
         /// Parameters
         internal static let parameters = L10n.tr("Localizable", "MapInfo.Route.Info.Parameters")
+        /// Route information
+        internal static let routeInformation = L10n.tr("Localizable", "MapInfo.Route.Info.RouteInformation")
         /// Search
         internal static let search = L10n.tr("Localizable", "MapInfo.Route.Info.Search")
         /// Allow service routes
