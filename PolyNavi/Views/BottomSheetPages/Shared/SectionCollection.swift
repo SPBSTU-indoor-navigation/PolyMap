@@ -11,6 +11,10 @@ protocol CellFor {
     func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell
 }
 
+protocol SelectRowFor {
+    func didSelect(_ tableView: UITableView, _ indexPath: IndexPath)
+}
+
 class SectionCollection {
     class Section {
         var title: String? { return nil }
@@ -46,11 +50,47 @@ class SectionCollection {
             }
             
             cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
-            cell.selectionStyle = .gray
             return cell
         }
     }
     
+    class Share: Section, CellFor, SelectRowFor {
+        override var cellCount: Int { 2 }
+        
+        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: SimpleShareCell.identifire, for: indexPath) as! SimpleShareCell
+                
+                cell.configurate()
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ShareAppClip.identifire, for: indexPath) as! ShareAppClip
+                
+                cell.configurate()
+                
+                return cell
+            }
+        }
+        
+        func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
+            if indexPath.row == 0 {
+                
+                let textToShare = [ "text" ]
+                let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)?.accessoryView
+                
+                if let vc = tableView.delegate as? UIViewController {
+                    vc.present(activityViewController, animated: true, completion: nil)
+                }
+                
+            } else {
+                if let vc = tableView.delegate as? UIViewController {
+                    ShareDialog().present(to: vc, animated: true, completion: nil)
+                }
+            }
+        }
+    }
     
     var sections: [Section] = []
     

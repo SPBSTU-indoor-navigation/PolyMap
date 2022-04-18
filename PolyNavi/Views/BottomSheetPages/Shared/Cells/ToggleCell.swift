@@ -33,7 +33,6 @@ class ToggleCell: UITableViewCell {
         if #available(iOS 14.0, *) {
             var content = defaultContentConfiguration()
             content.text = title
-            content.imageProperties.tintColor = .purple
             
             contentConfiguration = content
         } else {
