@@ -17,6 +17,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = MapViewController()
         window?.makeKeyAndVisible()
+        
+        if let userActivity = connectionOptions.userActivities.first,
+              userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+           let url = userActivity.webpageURL {
+            OpenUrlPopup(url: url.absoluteString).present(to: window!.rootViewController!, animated: true, completion: nil)
+        }
+
+    }
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if let url = userActivity.webpageURL,
+           let vc = window?.rootViewController {
+                OpenUrlPopup(url: url.absoluteString).present(to: vc, animated: true, completion: nil)
+            }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -105,6 +105,8 @@
 		973962DD280CE4E9000E478F /* CodeVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962DB280CE4E9000E478F /* CodeVariant.swift */; };
 		973E861A280D004A007F4BE2 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E8619280D004A007F4BE2 /* TextView.swift */; };
 		973E861B280D004A007F4BE2 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E8619280D004A007F4BE2 /* TextView.swift */; };
+		974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
+		974D423D280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* OccupantAnnotation.swift */; };
@@ -287,6 +289,7 @@
 		973962DB280CE4E9000E478F /* CodeVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVariant.swift; sourceTree = "<group>"; };
 		973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNavi.entitlements; sourceTree = "<group>"; };
 		973E8619280D004A007F4BE2 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlPopup.swift; sourceTree = "<group>"; };
 		974FA70927B88D51001A4A25 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		9750153E2795B11500326B09 /* OccupantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupantAnnotation.swift; sourceTree = "<group>"; };
@@ -658,6 +661,7 @@
 				973962D8280CB720000E478F /* ShareDialog.swift */,
 				973962DB280CE4E9000E478F /* CodeVariant.swift */,
 				973E8619280D004A007F4BE2 /* TextView.swift */,
+				974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */,
 			);
 			path = ShareDialog;
 			sourceTree = "<group>";
@@ -1197,6 +1201,7 @@
 				9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */,
 				97E15D2827BC7FB500E636FC /* (null) in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
+				974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */,
 				978769A127FBB22B008138EC /* PathOverlay.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
 				97A566F827D589FA00A064CC /* MapDetailInfo.swift in Sources */,
@@ -1219,6 +1224,7 @@
 				971F8E0227BD55680018F98A /* Detail.swift in Sources */,
 				971F8E0A27BD556B0018F98A /* AmenityAnnotationView.swift in Sources */,
 				973962C9280B62D7000E478F /* RouteDetailInfo.swift in Sources */,
+				974D423D280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */,
 				971F8E0C27BD556B0018F98A /* PointAnnotationView.swift in Sources */,
 				973962C2280A41AB000E478F /* RouteDetailSearchTableView.swift in Sources */,
 				971F8E0527BD55680018F98A /* Level.swift in Sources */,
@@ -1467,6 +1473,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = PolyNavi/PolyNavi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 44;
@@ -1494,6 +1501,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = PolyNavi/PolyNavi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 44;
