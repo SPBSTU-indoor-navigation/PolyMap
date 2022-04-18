@@ -17,7 +17,9 @@ struct CodeVariantSection: View {
                 
                 CodeVariant(enabled: $isQR, title: "QR", image: Image(systemName: "qrcode"))
                     .simultaneousGesture(TapGesture().onEnded({
-                        isQR = true
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            isQR = true
+                        }
                     }))
                 
                 Spacer()
@@ -25,7 +27,9 @@ struct CodeVariantSection: View {
                 
                 CodeVariant(enabled: Binding<Bool>(get: { !isQR }, set: { _ in }), title: "AppClip", image: Image(systemName: "appclip"))
                     .simultaneousGesture(TapGesture().onEnded({
-                        isQR = false
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            isQR = false
+                        }
                     }))
                 Spacer()
             }.padding()
@@ -73,10 +77,50 @@ struct HelloTextSection: View {
     }
 }
 
+struct ColorSection: View {
+    @Binding var colorVariant: ShareDialog.ColorVariant
+    
+    var body: some View {
+        
+        NavigationLink(destination: {
+            List {
+                ForEach(ShareDialog.ColorVariant.allCases) { color in
+                    Button(action: {
+                        
+                        colorVariant = color
+                    }, label: {
+                        HStack {
+                            Text(color.rawValue).foregroundColor(.primary)
+                            Spacer()
+                            if colorVariant == color {
+                                Image(systemName: "checkmark").foregroundColor(.accentColor)
+                            }
+                        }
+                    })
+                }
+            }
+        }, label: {
+            HStack {
+                Text("Color")
+                Spacer()
+                Text(colorVariant.rawValue).foregroundColor(.secondary)
+            }
+        })
+    }
+}
+
 struct ShareDialog: View {
+    
+    enum ColorVariant: String, CaseIterable, Identifiable {
+        case red, white, yellow
+        
+        var id: Self { self }
+    }
+    
     @State var isQR: Bool = false
     @State var showHelloText: Bool = false
     @State var helloText: String = ""
+    @State var colorVariant: ColorVariant = .white
     
     var body: some View {
         NavigationView {
@@ -88,6 +132,10 @@ struct ShareDialog: View {
                 
                 HelloTextSection(showHelloText: $showHelloText, helloText: $helloText)
                 CodeVariantSection(isQR: $isQR)
+                
+                if !isQR {
+                    ColorSection(colorVariant: $colorVariant)
+                }
                 
                 Section {
                     HStack {

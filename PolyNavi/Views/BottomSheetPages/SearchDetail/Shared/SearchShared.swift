@@ -19,7 +19,7 @@ class SearchShared {
     }
     
     static func cell(_ tableView: UITableView, for searchable: Searchable, indexPath: IndexPath, grouped: Bool = false) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: (searchable as? Identifiable)?.identifier ?? OccupantAnnotation.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: (searchable as? ReusableCell)?.identifier ?? OccupantAnnotation.identifier, for: indexPath)
         
         if searchable is OccupantAnnotation {
             (cell as? OccupantSearchCell)?.configurate(searchable: searchable)

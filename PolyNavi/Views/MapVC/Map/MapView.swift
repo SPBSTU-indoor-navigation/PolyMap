@@ -429,7 +429,7 @@ extension MapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
-        guard let reusable = annotation as? Identifiable else { return nil }
+        guard let reusable = annotation as? ReusableCell else { return nil }
         
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reusable.identifier, for: annotation)
         (annotationView as? AnnotationMapSize)?.update(mapSize: lastZoom, animate: false)

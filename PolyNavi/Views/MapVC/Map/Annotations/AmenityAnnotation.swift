@@ -11,7 +11,7 @@ protocol AmenityDetailLevel {
     var detailLevel: AmenityAnnotation.DetailLevel { get  }
 }
 
-class AmenityAnnotation: BaseAnnotation, MKAnnotation, Identifiable, AmenityDetailLevel {
+class AmenityAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, AmenityDetailLevel {
     enum DetailLevel: Int {
         case alwaysShowBig = 0
         case alwaysShow = 1
