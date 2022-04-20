@@ -9,8 +9,28 @@ import SwiftUI
 
 struct OpenUrlPopup: View {
     @State var url: String = ""
+    @State var data: CodeGeneratorModel.DataResponse? = nil
+    
     var body: some View {
-        Text(url)
+        List {
+            Text(url)
+            
+            if let data = data {
+                Text("from: \(data.from.uuidString)")
+                Text("to: \(data.to.uuidString)")
+                
+                Section {
+                    Text("text: \(data.helloText)")
+                }
+            }
+        }.onAppear {
+            let id = url.split(separator: "/").last! 
+            
+            CodeGeneratorProvider.loadData(id: String(id), completion: {
+                data = $0.data
+            })
+            
+        }
     }
 }
 
