@@ -115,6 +115,8 @@
 		974D424B280F897500F05434 /* CodeGeneratorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D4249280F897500F05434 /* CodeGeneratorProvider.swift */; };
 		974D424D280F8B0200F05434 /* CodeGeneratorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D424C280F8B0200F05434 /* CodeGeneratorModel.swift */; };
 		974D424E280F8B0200F05434 /* CodeGeneratorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D424C280F8B0200F05434 /* CodeGeneratorModel.swift */; };
+		974D42502810E08100F05434 /* AppClipCodePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D424F2810E08100F05434 /* AppClipCodePreview.swift */; };
+		974D42512810E08100F05434 /* AppClipCodePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D424F2810E08100F05434 /* AppClipCodePreview.swift */; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* OccupantAnnotation.swift */; };
@@ -302,6 +304,7 @@
 		974D4245280F894100F05434 /* NetworkShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkShared.swift; sourceTree = "<group>"; };
 		974D4249280F897500F05434 /* CodeGeneratorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeGeneratorProvider.swift; sourceTree = "<group>"; };
 		974D424C280F8B0200F05434 /* CodeGeneratorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeGeneratorModel.swift; sourceTree = "<group>"; };
+		974D424F2810E08100F05434 /* AppClipCodePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClipCodePreview.swift; sourceTree = "<group>"; };
 		974FA70927B88D51001A4A25 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		9750153E2795B11500326B09 /* OccupantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupantAnnotation.swift; sourceTree = "<group>"; };
@@ -677,6 +680,7 @@
 				973E8619280D004A007F4BE2 /* TextView.swift */,
 				974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */,
 				974D423E280E110A00F05434 /* ShareResult.swift */,
+				974D424F2810E08100F05434 /* AppClipCodePreview.swift */,
 			);
 			path = ShareDialog;
 			sourceTree = "<group>";
@@ -1197,6 +1201,7 @@
 				978B320827EE630300760B78 /* OccupantSearchCell.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
 				973962D6280C96A8000E478F /* SimpleShareCell.swift in Sources */,
+				974D42502810E08100F05434 /* AppClipCodePreview.swift in Sources */,
 				976A027A27BB26F000128EE6 /* AnimationExtensions.swift in Sources */,
 				97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */,
 				975015492795B2DF00326B09 /* Opening.swift in Sources */,
@@ -1311,6 +1316,7 @@
 				978B322527F0058B00760B78 /* SearchGroupedHeaderView.swift in Sources */,
 				971F8DFB27BD555B0018F98A /* LocalizedName.swift in Sources */,
 				971F8E1227BD55820018F98A /* TableBottomSheetPage.swift in Sources */,
+				974D42512810E08100F05434 /* AppClipCodePreview.swift in Sources */,
 				971F8E0627BD55680018F98A /* Venue.swift in Sources */,
 				978B320D27EE638300760B78 /* AttractionSearchCell.swift in Sources */,
 				971F8DD327BD52EE0018F98A /* SceneDelegate.swift in Sources */,

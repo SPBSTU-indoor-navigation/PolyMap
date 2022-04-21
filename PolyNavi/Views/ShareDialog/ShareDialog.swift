@@ -18,33 +18,82 @@ struct ShareDialog: View {
             let badgeTextColor: String
         }
         
-        case whiteD, blackL, greenL, greenD
+        case whiteBlack, blackWhite,
+             grayWhite, whiteGray,
+             redWhite, whiteRed,
+             orangeWhite, whiteOrange,
+             greenWhite, whiteGreen,
+             tealWhite, whiteTeal,
+             blueWhite, whiteBlue,
+             indigoWhite, whiteIndigo,
+             purpleWhite, whitePurple
         
         var id: Self { self }
         
         var localizrdName: String {
-            switch self {
-            case .whiteD:
-                return "белый на черном"
-            case .blackL:
-                return "черные на белом"
-            case .greenL:
-                return "зелёный на белом"
-            case .greenD:
-                return "зелёный на черном"
+            
+            let names: [Self: String] = [
+                .whiteBlack: "Белый / Черный",
+                .blackWhite: "Черный / Белый",
+                .grayWhite: "Серый / Белый",
+                .whiteGray: "Белый / Серый",
+                .redWhite: "Красный / Белый",
+                .whiteRed: "Белый / Красный",
+                .orangeWhite: "Оранжевый / Белый",
+                .whiteOrange: "Белый / Оранжевый",
+                .greenWhite: "Зеленый / Белый",
+                .whiteGreen: "Белый / Зеленый",
+                .tealWhite: "Сине-зеленый / Белый",
+                .whiteTeal: "Белый / Сине-зеленый",
+                .blueWhite: "Синий / Белый",
+                .whiteBlue: "Белый / Синий",
+                .indigoWhite: "Индиго / Белый",
+                .whiteIndigo: "Белый / Индиго",
+                .purpleWhite: "Фиолетовый / Белый",
+                .whitePurple: "Белый / Фиолетовый"
+            ]
+            
+            if let name = names[self] {
+                return name
+            } else {
+                return "-"
             }
         }
         
         var preset: Preset {
-            switch self {
-            case .whiteD:
-                return Preset(background: "000", primary: "fff", secondary: "888", badgeTextColor: "fff")
-            case .blackL:
-                return Preset(background: "fff", primary: "000", secondary: "888", badgeTextColor: "000")
-            case .greenL:
-                return Preset(background: "fff", primary: "33aa22", secondary: "a8db9f", badgeTextColor: "000")
-            case .greenD:
-                return Preset(background: "33aa22", primary: "fff", secondary: "a8db9f", badgeTextColor: "fff")
+            let presets: [Self: Preset] = [
+                .blackWhite: .init(background: "000", primary: "fff", secondary: "888", badgeTextColor: "fff"),
+                .whiteBlack: .init(background: "fff", primary: "000", secondary: "888", badgeTextColor: "000"),
+                
+                .grayWhite:  .init(background: "777", primary: "fff", secondary: "aaa", badgeTextColor: "fff"),
+                .whiteGray:  .init(background: "fff", primary: "777", secondary: "aaa", badgeTextColor: "000"),
+                
+                .redWhite:   .init(background: "ff3b30", primary: "fff", secondary: "f99", badgeTextColor: "fff"),
+                .whiteRed:   .init(background: "fff", primary: "ff3b30", secondary: "f99", badgeTextColor: "000"),
+                
+                .orangeWhite:.init(background: "EE7733", primary: "fff", secondary: "eb8", badgeTextColor: "000"),
+                .whiteOrange:.init(background: "fff", primary: "EE7733", secondary: "eb8", badgeTextColor: "000"),
+                
+                .greenWhite: .init(background: "33AA22", primary: "fff", secondary: "9d9", badgeTextColor: "fff"),
+                .whiteGreen: .init(background: "fff", primary: "33AA22", secondary: "9d9", badgeTextColor: "000"),
+                
+                .tealWhite:  .init(background: "00A6A1", primary: "fff", secondary: "8dc", badgeTextColor: "fff"),
+                .whiteTeal:  .init(background: "fff", primary: "00A6A1", secondary: "8dc", badgeTextColor: "000"),
+                
+                .blueWhite:  .init(background: "007AFF", primary: "fff", secondary: "7df", badgeTextColor: "fff"),
+                .whiteBlue:  .init(background: "fff", primary: "007AFF", secondary: "7df", badgeTextColor: "000"),
+                
+                .indigoWhite:.init(background: "5856D6", primary: "fff", secondary: "bbe", badgeTextColor: "fff"),
+                .whiteIndigo:.init(background: "fff", primary: "5856D6", secondary: "bbe", badgeTextColor: "000"),
+                
+                .purpleWhite:.init(background: "CC73E1", primary: "fff", secondary: "ebe", badgeTextColor: "fff"),
+                .whitePurple:.init(background: "fff", primary: "CC73E1", secondary: "ebe", badgeTextColor: "000")
+            ]
+            
+            if let preset = presets[self] {
+                return preset
+            } else {
+                return .init(background: "fff", primary: "000", secondary: "888", badgeTextColor: "000")
             }
         }
     }
@@ -57,7 +106,7 @@ struct ShareDialog: View {
         var localizrdName: String {
             switch self {
             case .camera:
-                return "Сканировать"
+                return "Только сканирование"
             case .phone:
                 return "NFC"
             }
@@ -65,16 +114,16 @@ struct ShareDialog: View {
     }
     
     enum BadgeVariant: String, CaseIterable, Identifiable {
-        case circle, badge
+        case badge, circle
         
         var id: Self { self }
         
         var localizrdName: String {
             switch self {
             case .circle:
-                return "Только код"
+                return "Без логотипа"
             case .badge:
-                return "Код в прямоугольнике с фоном"
+                return "Использовать логотип"
             }
         }
     }
@@ -93,9 +142,9 @@ struct ShareDialog: View {
     @State var isQR: Bool = false
     @State var showHelloText: Bool = false
     @State var helloText: String = ""
-    @State var colorVariant: ColorVariant = .whiteD
+    @State var colorVariant: ColorVariant = .greenWhite
     @State var logoVariant: LogoVariant = .camera
-    @State var badgeVariant: BadgeVariant = .circle
+    @State var badgeVariant: BadgeVariant = .badge
     
     @State var serverStatus: ApiStatus<CodeGeneratorModel.ServerStatus>? = nil
     @State var serverStatusAlert: Bool = false
@@ -112,9 +161,9 @@ struct ShareDialog: View {
                 CodeVariantSection(isQR: $isQR)
                 
                 if !isQR {
-                    ColorSection(colorVariant: $colorVariant)
-                    LogoSection(logoVariant: $logoVariant)
-                    BadgeSection(badgeVariant: $badgeVariant)
+                    ColorSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                    LogoSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                    BadgeSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
                 }
                 
                 Section {
@@ -243,29 +292,40 @@ struct ShareDialog: View {
     
     struct ColorSection: View {
         @Binding var colorVariant: ShareDialog.ColorVariant
+        @Binding var logoVariant: ShareDialog.LogoVariant
+        @Binding var badgeVariant: ShareDialog.BadgeVariant
         
         var body: some View {
             
             NavigationLink(destination: {
-                List {
-                    ForEach(ShareDialog.ColorVariant.allCases) { variant in
-                        Button(action: {
-                            
-                            colorVariant = variant
-                        }, label: {
-                            HStack {
-                                Text(variant.localizrdName).foregroundColor(.primary)
-                                Spacer()
-                                if colorVariant == variant {
-                                    Image(systemName: "checkmark").foregroundColor(.accentColor)
+                VStack {
+                    List {
+                        ForEach(ShareDialog.ColorVariant.allCases) { variant in
+                            Button(action: {
+                                
+                                colorVariant = variant
+                            }, label: {
+                                HStack {
+                                    Circle()
+                                        .strokeBorder(Color.init(hex: variant.preset.background), lineWidth: 5)
+                                        .background(Circle().foregroundColor(.init(hex: variant.preset.primary)))
+                                        .frame(width: 20, height: 20)
+                                    Text(variant.localizrdName).foregroundColor(.primary)
+                                    Spacer()
+                                    if colorVariant == variant {
+                                        Image(systemName: "checkmark").foregroundColor(.accentColor)
+                                    }
                                 }
-                            }
-                        })
+                            })
+                        }
                     }
+                    AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                        .frame(maxWidth: 250)
+                        .padding()
                 }
             }, label: {
                 HStack {
-                    Text("Цветовая палитра")
+                    Text("Цвет")
                     Spacer()
                     Text(colorVariant.localizrdName).foregroundColor(.secondary)
                 }
@@ -274,30 +334,40 @@ struct ShareDialog: View {
     }
     
     struct LogoSection: View {
+        @Binding var colorVariant: ShareDialog.ColorVariant
         @Binding var logoVariant: ShareDialog.LogoVariant
+        @Binding var badgeVariant: ShareDialog.BadgeVariant
         
         var body: some View {
             
             NavigationLink(destination: {
-                List {
-                    ForEach(ShareDialog.LogoVariant.allCases) { variant in
-                        Button(action: {
-                            
-                            logoVariant = variant
-                        }, label: {
-                            HStack {
-                                Text(variant.localizrdName).foregroundColor(.primary)
-                                Spacer()
-                                if logoVariant == variant {
-                                    Image(systemName: "checkmark").foregroundColor(.accentColor)
-                                }
+                VStack {
+                    List {
+                        Section(footer: Text("Если вы объединяете код с NFC-меткой, выберите дизайн NFC. Если вы не вставляете NFC-метку, выберите дизайн «Только сканирование»")) {
+                            ForEach(ShareDialog.LogoVariant.allCases) { variant in
+                                Button(action: {
+                                    
+                                    logoVariant = variant
+                                }, label: {
+                                    HStack {
+                                        Text(variant.localizrdName).foregroundColor(.primary)
+                                        Spacer()
+                                        if logoVariant == variant {
+                                            Image(systemName: "checkmark").foregroundColor(.accentColor)
+                                        }
+                                    }
+                                })
                             }
-                        })
+                        }
                     }
+                    AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                        .frame(maxWidth: 250)
+                        .padding()
                 }
+
             }, label: {
                 HStack {
-                    Text("Иконка")
+                    Text("Тип кода")
                     Spacer()
                     Text(logoVariant.localizrdName).foregroundColor(.secondary)
                 }
@@ -306,26 +376,34 @@ struct ShareDialog: View {
     }
     
     struct BadgeSection: View {
+        @Binding var colorVariant: ShareDialog.ColorVariant
+        @Binding var logoVariant: ShareDialog.LogoVariant
         @Binding var badgeVariant: ShareDialog.BadgeVariant
         
         var body: some View {
-            
             NavigationLink(destination: {
-                List {
-                    ForEach(ShareDialog.BadgeVariant.allCases) { variant in
-                        Button(action: {
-                            
-                            badgeVariant = variant
-                        }, label: {
-                            HStack {
-                                Text(variant.localizrdName).foregroundColor(.primary)
-                                Spacer()
-                                if badgeVariant == variant {
-                                    Image(systemName: "checkmark").foregroundColor(.accentColor)
-                                }
+                VStack {
+                    List {
+                        Section(footer: Text("Рекомендуется использовать код с логотипом, за сключением случаев, когда невозможно удовлетворить требования к свободному пространству или если код будет размещаться на одноразовых товарах")) {
+                            ForEach(ShareDialog.BadgeVariant.allCases) { variant in
+                                Button(action: {
+                                    badgeVariant = variant
+                                }, label: {
+                                    HStack {
+                                        Text(variant.localizrdName).foregroundColor(.primary)
+                                        Spacer()
+                                        if badgeVariant == variant {
+                                            Image(systemName: "checkmark").foregroundColor(.accentColor)
+                                        }
+                                    }
+                                })
                             }
-                        })
+                        }
                     }
+                    
+                    AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                        .frame(maxWidth: 250)
+                        .padding()
                 }
             }, label: {
                 HStack {

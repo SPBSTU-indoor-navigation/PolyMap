@@ -69,7 +69,7 @@ struct ShareResult: View {
                             Image(uiImage: result ?? UIImage(systemName: "xmark.octagon")!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 200, height: 200)
+                                .frame(maxWidth: 250)
                             Spacer()
                         }
                         .listRowBackground(Color.clear)
@@ -90,8 +90,20 @@ struct ShareResult: View {
                     Text("Loading...")
                 }
             }
-        }.onAppear(perform: {
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(trailing: Button(action: {
+            print("closr")
             
+            if var topController = UIApplication.shared.windows.first!.rootViewController {
+                while let presentedViewController = topController.presentedViewController {
+                    topController = presentedViewController
+                }
+                topController.dismiss(animated: true)
+            }
+            
+        }, label: { Text("Done") } ))
+        .onAppear(perform: {
             CodeGeneratorProvider.generateCode(isQR: settings.isQR, from: settings.from, to: settings.to, text: settings.text, completion: { res in
                 if let res = res.data {
                     response = res
@@ -112,7 +124,7 @@ struct ShareResult: View {
 
 struct ShareResult_Previews: PreviewProvider {
     static var previews: some View {
-        ShareResult(settings:  .init(color: .blackL, logo: .camera, bage: .circle, isQR: false, from: UUID(), to: UUID(), text: ""))
+        ShareResult(settings:  .init(color: .greenWhite, logo: .camera, bage: .circle, isQR: false, from: UUID(), to: UUID(), text: ""))
             .environment(\.colorScheme, .dark)
     }
 }
