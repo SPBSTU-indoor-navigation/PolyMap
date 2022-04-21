@@ -117,6 +117,8 @@
 		974D424E280F8B0200F05434 /* CodeGeneratorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D424C280F8B0200F05434 /* CodeGeneratorModel.swift */; };
 		974D42502810E08100F05434 /* AppClipCodePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D424F2810E08100F05434 /* AppClipCodePreview.swift */; };
 		974D42512810E08100F05434 /* AppClipCodePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D424F2810E08100F05434 /* AppClipCodePreview.swift */; };
+		974D42552811E3B700F05434 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 974D42582811E3B700F05434 /* InfoPlist.strings */; };
+		974D42562811E3B700F05434 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 974D42582811E3B700F05434 /* InfoPlist.strings */; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* OccupantAnnotation.swift */; };
@@ -305,6 +307,8 @@
 		974D4249280F897500F05434 /* CodeGeneratorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeGeneratorProvider.swift; sourceTree = "<group>"; };
 		974D424C280F8B0200F05434 /* CodeGeneratorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeGeneratorModel.swift; sourceTree = "<group>"; };
 		974D424F2810E08100F05434 /* AppClipCodePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClipCodePreview.swift; sourceTree = "<group>"; };
+		974D42572811E3B700F05434 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		974D42592811E3B900F05434 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		974FA70927B88D51001A4A25 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		9750153E2795B11500326B09 /* OccupantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupantAnnotation.swift; sourceTree = "<group>"; };
@@ -455,6 +459,7 @@
 				054F6792270C7B4C00FCC07C /* LaunchScreen.storyboard */,
 				973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */,
 				054F6795270C7B4C00FCC07C /* Info.plist */,
+				974D42582811E3B700F05434 /* InfoPlist.strings */,
 			);
 			path = PolyNavi;
 			sourceTree = "<group>";
@@ -1056,6 +1061,7 @@
 				056F2D13271C623B0063015B /* Localizable.strings in Resources */,
 				9717E46027447A7D00332D29 /* IMDFData in Resources */,
 				054F6791270C7B4C00FCC07C /* Assets.xcassets in Resources */,
+				974D42552811E3B700F05434 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,6 +1070,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				971F8DDD27BD52EF0018F98A /* LaunchScreen.storyboard in Resources */,
+				974D42562811E3B700F05434 /* InfoPlist.strings in Resources */,
 				971F8DF827BD55540018F98A /* IMDFData in Resources */,
 				971F8DF727BD55510018F98A /* Localizable.strings in Resources */,
 				971F8DF627BD554B0018F98A /* Assets.xcassets in Resources */,
@@ -1388,6 +1395,15 @@
 				971F8DDC27BD52EF0018F98A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		974D42582811E3B700F05434 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				974D42572811E3B700F05434 /* en */,
+				974D42592811E3B900F05434 /* ru */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
