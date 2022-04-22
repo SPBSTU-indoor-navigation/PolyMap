@@ -212,6 +212,7 @@ struct ShareDialog: View {
                     Text("Создать")
                         .padding(.vertical, 9.0)
                         .font(.headline)
+                        .frame(minHeight: 46)
                         .foregroundColor(.primary)
                         .cornerRadius(10)
                 }
