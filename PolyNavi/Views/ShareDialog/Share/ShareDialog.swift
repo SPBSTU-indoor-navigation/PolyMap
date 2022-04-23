@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Alamofire
+import MapKit
 
 struct ShareDialog: View {    
     enum ColorVariant: String, CaseIterable, Identifiable {
@@ -149,6 +150,9 @@ struct ShareDialog: View {
     @State var serverStatus: ApiStatus<CodeGeneratorModel.ServerStatus>? = nil
     @State var serverStatusAlert: Bool = false
     
+    var from: Searchable & BaseAnnotation
+    var to: Searchable & BaseAnnotation
+    
     var body: some View {
         NavigationView {
             List {
@@ -156,6 +160,21 @@ struct ShareDialog: View {
                     .font(.callout)
                     .foregroundColor(.secondary)
                     .listRowBackground(Color.clear)
+                
+                Section {
+                    HStack {
+                        Text("From: ")
+                        SearchablePreview(searchable: from)
+                            .padding(.vertical, 5)
+                    }
+                    
+                    HStack {
+                        Text("To: ")
+                        SearchablePreview(searchable: to)
+                            .padding(.vertical, 5)
+                    }
+                }
+                
                 
                 HelloTextSection(showHelloText: $showHelloText, helloText: $helloText)
                 CodeVariantSection(isQR: $isQR)
@@ -167,7 +186,7 @@ struct ShareDialog: View {
                 }
                 
                 Section {
-                    CreateButton(isQR: $isQR, serverReady: (serverStatus?.data?.appclip == true).bindig, helloText: $helloText, colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                    CreateButton(isQR: $isQR, serverReady: (serverStatus?.data?.appclip == true).bindig, helloText: $helloText, colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant, from: from.imdfID, to: to.imdfID)
                 }
             }
             .navigationBarTitle("Создание кода", displayMode: .inline)
@@ -179,6 +198,10 @@ struct ShareDialog: View {
                 serverStatus = res
                 serverStatusAlert = res.data?.appclip != true
             })
+            
+            
+            print(from.mainTitle)
+            print(to.mainTitle)
             
             UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = Asset.accentColor.color
         })
@@ -199,13 +222,15 @@ struct ShareDialog: View {
         @Binding var colorVariant: ColorVariant
         @Binding var logoVariant: LogoVariant
         @Binding var badgeVariant: BadgeVariant
+        var from: UUID
+        var to: UUID
         
         var body: some View {
             HStack {
                 Spacer()
                 ZStack {
                     if serverReady {
-                        NavigationLink(destination: { ShareResult(settings: Settings(color: colorVariant, logo: logoVariant, bage: badgeVariant, isQR: isQR, from: UUID(), to: UUID(), text: helloText)) }, label: { EmptyView() })
+                        NavigationLink(destination: { ShareResult(settings: Settings(color: colorVariant, logo: logoVariant, bage: badgeVariant, isQR: isQR, from: from, to: to, text: helloText)) }, label: { EmptyView() })
                             .opacity(0.0)
                     }
                     RoundedRectangle(cornerRadius: 10)
@@ -442,8 +467,11 @@ struct ShareDialog: View {
 }
 
 struct ShareDialog_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ShareDialog()
+        ShareDialog(from: EnviromentAmenityAnnotation(coordinate: .init(latitude: 0, longitude: 0), imdfID: UUID(), properties: .init(name: nil, alt_name: nil, category: .banch, detailLevel: 1), detailLevel: 1),
+                    to: EnviromentAmenityAnnotation(coordinate: .init(latitude: 0, longitude: 0), imdfID: UUID(), properties: .init(name: nil, alt_name: nil, category: .banch, detailLevel: 1), detailLevel: 1))
+            .preferredColorScheme(.dark)
             .environment(\.colorScheme, .light)
     }
 }

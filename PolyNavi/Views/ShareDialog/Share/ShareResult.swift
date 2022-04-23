@@ -115,13 +115,7 @@ struct ShareResult: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle("REsutl")
         .navigationBarItems(trailing: Button(action: {
-            if var topController = UIApplication.shared.windows.first!.rootViewController {
-                while let presentedViewController = topController.presentedViewController {
-                    topController = presentedViewController
-                }
-                topController.dismiss(animated: true)
-            }
-            
+            dismiss(animated: true)
         }, label: { Text("Done") } ))
         .onAppear(perform: {
         

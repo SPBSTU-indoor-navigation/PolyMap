@@ -52,7 +52,7 @@ class RouteDetailInfo: SectionCollection {
         }
     }
     
-    class Settings: Section, CellFor {
+    class Settings: Section, CellFor, SelectRowFor {
         override var title: String? { L10n.MapInfo.Route.Info.parameters }
         override var cellCount: Int { 2 }
         
@@ -73,6 +73,12 @@ class RouteDetailInfo: SectionCollection {
             }
             
             return cell
+        }
+        
+        func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
+            if let toggle = tableView.cellForRow(at: indexPath) as? ToggleCell {
+                toggle.toggleSwitch()
+            }
         }
     }
     
@@ -101,6 +107,12 @@ class RouteDetailInfo: SectionCollection {
             sections.append(PathInfo(result: result))
         }
         sections.append(Settings(asphalt: { self.asphalt = $0 }, serviceRoute: { self.serviceRoute = $0 }))
+        if let result = result,
+           let from = result.from as? (BaseAnnotation & Searchable),
+           let to = result.to as? (BaseAnnotation & Searchable) {
+            sections.append(Share(from: from, to: to))
+        }
+       
         sections.append(Report(favorite: false, report: true))
     }
 }

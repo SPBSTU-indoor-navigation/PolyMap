@@ -125,6 +125,8 @@
 		974D4261281393BC00F05434 /* OpenUrlPopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425F281393BC00F05434 /* OpenUrlPopupContent.swift */; };
 		974D42632813945E00F05434 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D42622813945E00F05434 /* ActivityIndicator.swift */; };
 		974D42642813945E00F05434 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D42622813945E00F05434 /* ActivityIndicator.swift */; };
+		974D42672814795000F05434 /* SearchablePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D42662814795000F05434 /* SearchablePreview.swift */; };
+		974D42682814795000F05434 /* SearchablePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D42662814795000F05434 /* SearchablePreview.swift */; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* OccupantAnnotation.swift */; };
@@ -318,6 +320,7 @@
 		974D425A281390A500F05434 /* CodeGeneratorAppOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeGeneratorAppOpen.swift; sourceTree = "<group>"; };
 		974D425F281393BC00F05434 /* OpenUrlPopupContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlPopupContent.swift; sourceTree = "<group>"; };
 		974D42622813945E00F05434 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		974D42662814795000F05434 /* SearchablePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchablePreview.swift; sourceTree = "<group>"; };
 		974FA70927B88D51001A4A25 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		9750153E2795B11500326B09 /* OccupantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupantAnnotation.swift; sourceTree = "<group>"; };
@@ -689,8 +692,7 @@
 		973962CE280C7E9D000E478F /* ShareDialog */ = {
 			isa = PBXGroup;
 			children = (
-				974D42622813945E00F05434 /* ActivityIndicator.swift */,
-				973E8619280D004A007F4BE2 /* TextView.swift */,
+				974D42652814793D00F05434 /* Shared */,
 				974D425E2813939C00F05434 /* Share */,
 				974D425D2813939000F05434 /* OpenUrl */,
 			);
@@ -733,6 +735,16 @@
 				974D424F2810E08100F05434 /* AppClipCodePreview.swift */,
 			);
 			path = Share;
+			sourceTree = "<group>";
+		};
+		974D42652814793D00F05434 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				974D42622813945E00F05434 /* ActivityIndicator.swift */,
+				973E8619280D004A007F4BE2 /* TextView.swift */,
+				974D42662814795000F05434 /* SearchablePreview.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		9750153C2795B0EB00326B09 /* Overlays */ = {
@@ -1212,6 +1224,7 @@
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
 				9719FBEB2806478A0048C810 /* OpacityHitTest.swift in Sources */,
 				9780D8C227B3421800DBDBF3 /* TableBottomSheetPage.swift in Sources */,
+				974D42672814795000F05434 /* SearchablePreview.swift in Sources */,
 				0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */,
 				975015452795B16900326B09 /* EnviromentAmenityAnnotation.swift in Sources */,
 				975015512795B33300326B09 /* EnviromentUnit.swift in Sources */,
@@ -1391,6 +1404,7 @@
 				974D425C281390A600F05434 /* CodeGeneratorAppOpen.swift in Sources */,
 				971F8DEF27BD54FA0018F98A /* BottomSheetViewController.swift in Sources */,
 				974D4240280E110A00F05434 /* ShareResult.swift in Sources */,
+				974D42682814795000F05434 /* SearchablePreview.swift in Sources */,
 				97B8E18827CEDA80003D1EF4 /* RouteInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -55,7 +55,15 @@ class SectionCollection {
     }
     
     class Share: Section, CellFor, SelectRowFor {
-        override var cellCount: Int { 2 }
+        override var cellCount: Int { 1 + (to != nil).intValue }
+        
+        var from: BaseAnnotation & Searchable
+        var to: (BaseAnnotation & Searchable)?
+        
+        init(from: (BaseAnnotation & Searchable), to: (BaseAnnotation & Searchable)? = nil) {
+            self.from = from
+            self.to = to
+        }
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             
@@ -85,8 +93,9 @@ class SectionCollection {
                 }
                 
             } else {
-                if let vc = tableView.delegate as? UIViewController {
-                    ShareDialog().present(to: vc, animated: true, completion: nil)
+                if let vc = tableView.delegate as? UIViewController,
+                   let to = to {
+                    ShareDialog(from: from, to: to).present(to: vc, animated: true, completion: nil)
                 }
             }
         }

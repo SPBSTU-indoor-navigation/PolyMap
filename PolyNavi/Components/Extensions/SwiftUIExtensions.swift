@@ -49,6 +49,15 @@ extension View {
             onRelease()
         }))
     }
+    
+    func dismiss(animated: Bool) {
+        if var topController = UIApplication.shared.windows.first!.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            topController.dismiss(animated: animated)
+        }
+    }
 }
 
 

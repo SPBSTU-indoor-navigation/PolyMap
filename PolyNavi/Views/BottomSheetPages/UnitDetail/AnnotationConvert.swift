@@ -17,7 +17,7 @@ extension OccupantAnnotation: Castable {
         
         res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false, annotation: self))
         res.sections.append(MapDetailInfo.Detail(phone: properties.phone, email: properties.email, website: properties.website, address: address?.addressString()))
-        res.sections.append(MapDetailInfo.Share())
+        res.sections.append(MapDetailInfo.Share(from: self))
         res.sections.append(MapDetailInfo.Report())
         
         res.annotation = self
@@ -60,7 +60,7 @@ extension AttractionAnnotation: Castable {
         
         res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
         res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: true, annotation: self).with(buildingID: properties.building_id))
-        res.sections.append(MapDetailInfo.Share())
+        res.sections.append(MapDetailInfo.Share(from: self))
         res.sections.append(MapDetailInfo.Report(favorite: true, report: true))
         
         res.annotation = self

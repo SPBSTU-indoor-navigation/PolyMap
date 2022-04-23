@@ -102,6 +102,8 @@ class RouteDetailVC: NavbarBottomSheetPage {
         $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableView.UITableViewCellIdentifire)
         $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifire)
         $0.register(ToggleCell.self, forCellReuseIdentifier: ToggleCell.identifire)
+        $0.register(SimpleShareCell.self, forCellReuseIdentifier: SimpleShareCell.identifire)
+        $0.register(ShareAppClip.self, forCellReuseIdentifier: ShareAppClip.identifire)
         $0.register(SearchGroupedHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchGroupedHeaderView.identifier)
         
         $0.delegate = self
@@ -338,7 +340,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
             
             if let pathID = pathID {
                 if from == nil,
-                   let from = IMDFDecoder.defaultPathStartPoint {
+                   let from = MapViewController.currentVenue?.defaultPathStartPoint {
                     mapViewDelegate.unpinAnnotation(from, animated: true)
                 }
                 
@@ -402,9 +404,13 @@ extension RouteDetailVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let toggle = tableView.cellForRow(at: indexPath) as? ToggleCell {
-            toggle.toggleSwitch()
+        if let routeDetailInfo = routeDetailInfo,
+           let section = routeDetailInfo.section(for: indexPath.section)
+        {
+            (section as? SelectRowFor)?.didSelect(tableView, indexPath)
         }
+        
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -453,9 +459,9 @@ extension RouteDetailVC {
     }
     
     func drawPath() {
-        from = from ?? IMDFDecoder.defaultPathStartPoint
+        from = from ?? MapViewController.currentVenue?.defaultPathStartPoint
         
-        guard let from = from ?? IMDFDecoder.defaultPathStartPoint,
+        guard let from = from,
               let to = to else { return }
         
         
