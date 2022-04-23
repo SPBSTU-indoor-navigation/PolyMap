@@ -179,6 +179,8 @@ struct ShareDialog: View {
                 serverStatus = res
                 serverStatusAlert = res.data?.appclip != true
             })
+            
+            UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = Asset.accentColor.color
         })
         .alert(isPresented: $serverStatusAlert) {
             Alert(
@@ -213,7 +215,7 @@ struct ShareDialog: View {
                         .padding(.vertical, 9.0)
                         .font(.headline)
                         .frame(minHeight: 46)
-                        .foregroundColor(.primary)
+                        .foregroundColor(.white)
                         .cornerRadius(10)
                 }
                 Spacer()
@@ -239,7 +241,7 @@ struct ShareDialog: View {
                     Spacer()
                     Spacer()
                     
-                    CodeVariant(enabled: (!isQR).bindig, title: "AppClip", image: Image(systemName: "appclip"))
+                    CodeVariant(enabled: (!isQR).bindig, title: "AppClip", image: Image(uiImage: Asset.AppClip.appclipPreview.image))
                         .simultaneousGesture(TapGesture().onEnded({
                             withAnimation(.easeInOut(duration: 0.2)) {
                                 isQR = false
@@ -262,6 +264,7 @@ struct ShareDialog: View {
         var body: some View {
             Section(content: {
                 Toggle(isOn: $showHelloText, label: { Text("Отображать приветствие") })
+                
                 if showHelloText {
                     ZStack {
                         if helloText.isEmpty {
@@ -296,14 +299,15 @@ struct ShareDialog: View {
         @Binding var logoVariant: ShareDialog.LogoVariant
         @Binding var badgeVariant: ShareDialog.BadgeVariant
         
+
+        
         var body: some View {
             
             NavigationLink(destination: {
-                VStack {
+                VStack(spacing: 0) {
                     List {
                         ForEach(ShareDialog.ColorVariant.allCases) { variant in
                             Button(action: {
-                                
                                 colorVariant = variant
                             }, label: {
                                 HStack {
@@ -320,9 +324,15 @@ struct ShareDialog: View {
                             })
                         }
                     }
-                    AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
-                        .frame(maxWidth: 250)
-                        .padding()
+                    ZStack {
+                        ZStack {}
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color(UIColor.systemGroupedBackground))
+                            .edgesIgnoringSafeArea(.all)
+                        
+                        AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                            .frame(maxWidth: 250)
+                    }
                 }
             }, label: {
                 HStack {
@@ -340,9 +350,8 @@ struct ShareDialog: View {
         @Binding var badgeVariant: ShareDialog.BadgeVariant
         
         var body: some View {
-            
             NavigationLink(destination: {
-                VStack {
+                VStack(spacing: 0) {
                     List {
                         Section(footer: Text("Если вы объединяете код с NFC-меткой, выберите дизайн NFC. Если вы не вставляете NFC-метку, выберите дизайн «Только сканирование»")) {
                             ForEach(ShareDialog.LogoVariant.allCases) { variant in
@@ -361,9 +370,17 @@ struct ShareDialog: View {
                             }
                         }
                     }
-                    AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
-                        .frame(maxWidth: 250)
-                        .padding()
+                    
+                    ZStack {
+                        ZStack {}
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color(UIColor.systemGroupedBackground))
+                        .edgesIgnoringSafeArea(.all)
+                        
+                        AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                            .frame(maxWidth: 250)
+                            .padding()
+                    }
                 }
 
             }, label: {
@@ -383,7 +400,7 @@ struct ShareDialog: View {
         
         var body: some View {
             NavigationLink(destination: {
-                VStack {
+                VStack(spacing: 0) {
                     List {
                         Section(footer: Text("Рекомендуется использовать код с логотипом, за сключением случаев, когда невозможно удовлетворить требования к свободному пространству или если код будет размещаться на одноразовых товарах")) {
                             ForEach(ShareDialog.BadgeVariant.allCases) { variant in
@@ -402,9 +419,16 @@ struct ShareDialog: View {
                         }
                     }
                     
-                    AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
-                        .frame(maxWidth: 250)
-                        .padding()
+                    ZStack {
+                        ZStack {}
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color(UIColor.systemGroupedBackground))
+                            .edgesIgnoringSafeArea(.all)
+                        
+                        AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                            .frame(maxWidth: 250)
+                            .padding()
+                    }
                 }
             }, label: {
                 HStack {
@@ -420,7 +444,7 @@ struct ShareDialog: View {
 struct ShareDialog_Previews: PreviewProvider {
     static var previews: some View {
         ShareDialog()
-            .environment(\.colorScheme, .dark)
+            .environment(\.colorScheme, .light)
     }
 }
 

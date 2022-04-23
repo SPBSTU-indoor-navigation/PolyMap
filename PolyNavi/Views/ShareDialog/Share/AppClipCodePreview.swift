@@ -16,39 +16,46 @@ struct AppClipCodePreview: View {
         ZStack {
             Image(uiImage: badgeVariant == .badge ? Asset.AppClip.Badge.badge.image : Asset.AppClip.Circle.appclipCBackground.image)
                 .resizable()
+                .interpolation(.high)
                 .renderingMode(.template)
                 .foregroundColor(.init(hex: color.preset.background))
             
             if badgeVariant == .badge {
                 Image(uiImage: Asset.AppClip.Badge.badgeText.image)
                     .resizable()
+                    .interpolation(.high)
                     .renderingMode(.template)
                     .foregroundColor(.init(hex: color.preset.badgeTextColor))
             }
             
             Image(uiImage: badgeVariant == .badge ? Asset.AppClip.Badge.appclipPrimary.image : Asset.AppClip.Circle.appclipCPrimary.image)
                 .resizable()
+                .interpolation(.high)
                 .renderingMode(.template)
                 .foregroundColor(.init(hex: color.preset.primary))
             
             Image(uiImage: badgeVariant == .badge ? Asset.AppClip.Badge.appclipSecondary.image : Asset.AppClip.Circle.appclipCSecondary.image)
                 .resizable()
+                .interpolation(.high)
                 .renderingMode(.template)
                 .foregroundColor(.init(hex: color.preset.secondary))
             
             if logoVariant == .phone {
                 Image(uiImage: badgeVariant == .badge ? Asset.AppClip.Badge.appclipNfcPrimary.image : Asset.AppClip.Circle.appclipCNfcPrimary.image)
                     .resizable()
+                    .interpolation(.high)
                     .renderingMode(.template)
                     .foregroundColor(.init(hex: color.preset.primary))
                 
                 Image(uiImage: badgeVariant == .badge ? Asset.AppClip.Badge.appclipNfcSecondary.image : Asset.AppClip.Circle.appclipCNfcSecondary.image)
                     .resizable()
+                    .interpolation(.high)
                     .renderingMode(.template)
                     .foregroundColor(.init(hex: color.preset.secondary))
             } else {
                 Image(uiImage: badgeVariant == .badge ? Asset.AppClip.Badge.appclipCamera.image : Asset.AppClip.Circle.appclipCCamera.image)
                     .resizable()
+                    .interpolation(.high)
                     .renderingMode(.template)
                     .foregroundColor(.init(hex: color.preset.primary))
             }

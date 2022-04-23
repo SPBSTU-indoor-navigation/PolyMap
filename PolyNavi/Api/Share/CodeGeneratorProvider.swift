@@ -22,7 +22,7 @@ class CodeGeneratorProvider{
     }
     
     static func loadData(id: String, completion: @escaping (ApiStatus<CodeGeneratorModel.DataResponse>) -> Void) {
-        load(url: "/l/\(id)", metod: .get, params: [:], completion: completion)
+        load(url: "/load/\(id)", metod: .get, params: [:], completion: completion)
     }
     
     static func generateCode(isQR: Bool, from: UUID, to: UUID, text: String?, completion: @escaping (ApiStatus<CodeGeneratorModel.GenerateResponse>) -> Void) {

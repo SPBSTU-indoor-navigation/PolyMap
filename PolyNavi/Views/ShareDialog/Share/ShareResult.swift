@@ -25,18 +25,6 @@ struct ActivityViewController: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) { }
 }
 
-struct ActivityIndicator: UIViewRepresentable {
-    let style: UIActivityIndicatorView.Style
-    
-    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
-        return UIActivityIndicatorView(style: style)
-    }
-    
-    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
-        uiView.startAnimating()
-    }
-}
-
 struct SharePngResultLine: View {
     @State var title: String
     @State var show: Bool = false

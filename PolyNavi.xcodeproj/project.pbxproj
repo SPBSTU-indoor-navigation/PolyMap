@@ -119,6 +119,12 @@
 		974D42512810E08100F05434 /* AppClipCodePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D424F2810E08100F05434 /* AppClipCodePreview.swift */; };
 		974D42552811E3B700F05434 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 974D42582811E3B700F05434 /* InfoPlist.strings */; };
 		974D42562811E3B700F05434 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 974D42582811E3B700F05434 /* InfoPlist.strings */; };
+		974D425B281390A600F05434 /* CodeGeneratorAppOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425A281390A500F05434 /* CodeGeneratorAppOpen.swift */; };
+		974D425C281390A600F05434 /* CodeGeneratorAppOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425A281390A500F05434 /* CodeGeneratorAppOpen.swift */; };
+		974D4260281393BC00F05434 /* OpenUrlPopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425F281393BC00F05434 /* OpenUrlPopupContent.swift */; };
+		974D4261281393BC00F05434 /* OpenUrlPopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425F281393BC00F05434 /* OpenUrlPopupContent.swift */; };
+		974D42632813945E00F05434 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D42622813945E00F05434 /* ActivityIndicator.swift */; };
+		974D42642813945E00F05434 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D42622813945E00F05434 /* ActivityIndicator.swift */; };
 		974FA70A27B88D51001A4A25 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974FA70927B88D51001A4A25 /* Detail.swift */; };
 		9750153B2793BA1400326B09 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153E2795B11500326B09 /* OccupantAnnotation.swift */; };
@@ -309,6 +315,9 @@
 		974D424F2810E08100F05434 /* AppClipCodePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClipCodePreview.swift; sourceTree = "<group>"; };
 		974D42572811E3B700F05434 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		974D42592811E3B900F05434 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		974D425A281390A500F05434 /* CodeGeneratorAppOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeGeneratorAppOpen.swift; sourceTree = "<group>"; };
+		974D425F281393BC00F05434 /* OpenUrlPopupContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlPopupContent.swift; sourceTree = "<group>"; };
+		974D42622813945E00F05434 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		974FA70927B88D51001A4A25 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		9750153A2793BA1400326B09 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		9750153E2795B11500326B09 /* OccupantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupantAnnotation.swift; sourceTree = "<group>"; };
@@ -680,12 +689,10 @@
 		973962CE280C7E9D000E478F /* ShareDialog */ = {
 			isa = PBXGroup;
 			children = (
-				973962D8280CB720000E478F /* ShareDialog.swift */,
-				973962DB280CE4E9000E478F /* CodeVariant.swift */,
+				974D42622813945E00F05434 /* ActivityIndicator.swift */,
 				973E8619280D004A007F4BE2 /* TextView.swift */,
-				974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */,
-				974D423E280E110A00F05434 /* ShareResult.swift */,
-				974D424F2810E08100F05434 /* AppClipCodePreview.swift */,
+				974D425E2813939C00F05434 /* Share */,
+				974D425D2813939000F05434 /* OpenUrl */,
 			);
 			path = ShareDialog;
 			sourceTree = "<group>";
@@ -703,6 +710,27 @@
 			children = (
 				974D424C280F8B0200F05434 /* CodeGeneratorModel.swift */,
 				974D4249280F897500F05434 /* CodeGeneratorProvider.swift */,
+				974D425A281390A500F05434 /* CodeGeneratorAppOpen.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		974D425D2813939000F05434 /* OpenUrl */ = {
+			isa = PBXGroup;
+			children = (
+				974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */,
+				974D425F281393BC00F05434 /* OpenUrlPopupContent.swift */,
+			);
+			path = OpenUrl;
+			sourceTree = "<group>";
+		};
+		974D425E2813939C00F05434 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				973962D8280CB720000E478F /* ShareDialog.swift */,
+				973962DB280CE4E9000E478F /* CodeVariant.swift */,
+				974D423E280E110A00F05434 /* ShareResult.swift */,
+				974D424F2810E08100F05434 /* AppClipCodePreview.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -1174,6 +1202,7 @@
 				05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */,
 				97196E8127E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */,
 				978B321527EFA7CD00760B78 /* MainSearchTableView.swift in Sources */,
+				974D425B281390A600F05434 /* CodeGeneratorAppOpen.swift in Sources */,
 				9780D8BC27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift in Sources */,
 				973962DC280CE4E9000E478F /* CodeVariant.swift in Sources */,
 				9780D8BA27B32DDD00DBDBF3 /* UIKitExtensions.swift in Sources */,
@@ -1187,6 +1216,7 @@
 				975015452795B16900326B09 /* EnviromentAmenityAnnotation.swift in Sources */,
 				975015512795B33300326B09 /* EnviromentUnit.swift in Sources */,
 				054F6788270C7B4C00FCC07C /* AppDelegate.swift in Sources */,
+				974D4260281393BC00F05434 /* OpenUrlPopupContent.swift in Sources */,
 				975015412795B13200326B09 /* AttractionAnnotation.swift in Sources */,
 				97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */,
 				974D424A280F897500F05434 /* CodeGeneratorProvider.swift in Sources */,
@@ -1208,6 +1238,7 @@
 				978B320827EE630300760B78 /* OccupantSearchCell.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
 				973962D6280C96A8000E478F /* SimpleShareCell.swift in Sources */,
+				974D42632813945E00F05434 /* ActivityIndicator.swift in Sources */,
 				974D42502810E08100F05434 /* AppClipCodePreview.swift in Sources */,
 				976A027A27BB26F000128EE6 /* AnimationExtensions.swift in Sources */,
 				97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */,
@@ -1278,6 +1309,7 @@
 				971F8E0527BD55680018F98A /* Level.swift in Sources */,
 				971F8E0927BD55680018F98A /* Opening.swift in Sources */,
 				979E5C8F27BEF42700A48816 /* AnimationExtensions.swift in Sources */,
+				974D4261281393BC00F05434 /* OpenUrlPopupContent.swift in Sources */,
 				971F8E0327BD55680018F98A /* EnviromentUnit.swift in Sources */,
 				974D424B280F897500F05434 /* CodeGeneratorProvider.swift in Sources */,
 				97A566FC27D6920100A064CC /* UtilsExtensions.swift in Sources */,
@@ -1286,6 +1318,7 @@
 				97B8E18527CEDA6D003D1EF4 /* TitleHeader.swift in Sources */,
 				9787699E27FB9963008138EC /* BaseAnnotation.swift in Sources */,
 				971F8E0827BD55680018F98A /* Building.swift in Sources */,
+				974D42642813945E00F05434 /* ActivityIndicator.swift in Sources */,
 				978B321E27EFFDD100760B78 /* BaseSearchCell.swift in Sources */,
 				971F8E1627BD55820018F98A /* SearchVC.swift in Sources */,
 				97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */,
@@ -1355,6 +1388,7 @@
 				973962DA280CB720000E478F /* ShareDialog.swift in Sources */,
 				971F8E0027BD55650018F98A /* Shared.swift in Sources */,
 				979E5C9327BF005800A48816 /* TimeTableError.swift in Sources */,
+				974D425C281390A600F05434 /* CodeGeneratorAppOpen.swift in Sources */,
 				971F8DEF27BD54FA0018F98A /* BottomSheetViewController.swift in Sources */,
 				974D4240280E110A00F05434 /* ShareResult.swift in Sources */,
 				97B8E18827CEDA80003D1EF4 /* RouteInfoCell.swift in Sources */,

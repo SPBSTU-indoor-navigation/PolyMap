@@ -62,6 +62,7 @@ internal enum Asset {
     }
   }
   internal enum AppClip {
+    internal static let appclipPreview = ImageAsset(name: "AppclipPreview")
     internal enum Badge {
       internal static let appclipCamera = ImageAsset(name: "appclip.camera")
       internal static let appclipNfcPrimary = ImageAsset(name: "appclip.nfc.primary")

@@ -18,6 +18,8 @@ struct CodeVariant: View {
         VStack(alignment: .center, spacing: 8.0) {
             image
                 .resizable(resizingMode: .stretch)
+                .interpolation(.high)
+                .antialiased(true)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 80, height: 90)
             Text(title)
@@ -40,11 +42,6 @@ struct CodeVariant: View {
             }.frame(width: 25, height: 25)
         }
         .foregroundColor(isPressed ? .secondary : .primary)
-//        .pressAction(onPress: {
-//            isPressed = true
-//        }, onRelease: {
-//            isPressed = false
-//        })
     }
 }
 
