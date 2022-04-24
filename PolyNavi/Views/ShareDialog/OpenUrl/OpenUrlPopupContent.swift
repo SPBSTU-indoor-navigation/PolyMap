@@ -73,7 +73,14 @@ struct OpenUrlPopupContent: View {
                 
             
             Button(action: {
-                dismiss(animated: true)
+                if let from = from?.annotation,
+                   let to = to?.annotation {
+                        MapInfo.exclusiveRouteDetail?.show(from: from, to: to)
+                    }
+                
+                DispatchQueue.main.async {
+                    dismiss(animated: true)
+                }
             }, label: {
                 Text("Продолжить")
                     .font(.headline)

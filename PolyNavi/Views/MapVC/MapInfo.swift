@@ -23,15 +23,21 @@ protocol RouteDetail {
     func setTo(_ annotation: MKAnnotation)
 }
 
+protocol ExclusiveRouteDetail {
+    func show(from: MKAnnotation, to: MKAnnotation)
+}
+
 class MapInfo: BottomSheetViewController {
     enum Page {
         case search
         case annotationInfo
         case route
+        case exclusiveRoute
         case unknown
     }
     
     static private(set) var routeDetail: RouteDetail? = nil
+    static private(set) var exclusiveRouteDetail: ExclusiveRouteDetail? = nil
     
     var searchable: [Searchable] = [] {
         didSet {
@@ -53,6 +59,7 @@ class MapInfo: BottomSheetViewController {
     private var skipSelectStateChange = false
     
     weak var routeDetailVC: RouteDetailVC?
+    weak var exclusiveRouteDetailVC: ExclusiveRouteDetailVC?
     var searchVC: SearchVC
     
     private var hidingEnable: Bool {
@@ -68,28 +75,63 @@ class MapInfo: BottomSheetViewController {
         }
     }
     
-    @discardableResult
-    override func popViewController(animated: Bool) -> UIViewController? {
-        if pages.last == .annotationInfo {
-            mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
+    func onPopVC(_ vc: UIViewController) {
+        switch vc {
+        case is RouteDetailVC:
+            routeDetailVC?.beforeClose()
+            routeDetailVC = nil
+        case is ExclusiveRouteDetailVC:
+            exclusiveRouteDetailVC?.beforeClose()
+            exclusiveRouteDetailVC = nil
+        default: break
         }
-        
-        let vc = super.popViewController(animated: animated)
-
-        guard let vc = vc else { return vc }
-        pages.removeLast()
-        
-        if let unitDetail = self.viewControllers.last as? UnitDetailVC,
+    }
+    
+    func onPopToVC(_ vc: UIViewController) {
+        if let unitDetail = vc as? UnitDetailVC,
            let annotation = unitDetail.mapDetailInfo?.annotation {
             skipSelectStateChange = true
             skipSelectStateChange = mapViewDelegate?.focusAndSelect(annotation: annotation, focusVariant: .auto) ?? false
         }
+    }
+    
+    @discardableResult
+    override func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
+        let vcs = super.popToViewController(viewController, animated: animated)
         
-                
-        switch vc {
-        case is RouteDetailVC:
-            routeDetailVC = nil
-        default: break
+        if let vcs = vcs {
+            
+            if !vcs.isEmpty {
+                if pages.last == .annotationInfo {
+                    mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
+                }
+            }
+            
+            for vc in vcs {
+                pages.removeLast()
+                onPopVC(vc)
+            }
+        }
+        
+        onPopToVC(viewController)
+        
+        return vcs
+    }
+    
+    @discardableResult
+    override func popViewController(animated: Bool) -> UIViewController? {
+        let vc = super.popViewController(animated: animated)
+        
+        if pages.last == .annotationInfo {
+            mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
+        }
+
+        if let vc = vc {
+            pages.removeLast()
+            if let last = self.viewControllers.last {
+                onPopToVC(last)
+            }
+            onPopVC(vc)
         }
         
         return vc
@@ -101,6 +143,8 @@ class MapInfo: BottomSheetViewController {
             pages.append(.annotationInfo)
         case is RouteDetailVC:
             pages.append(.route)
+        case is ExclusiveRouteDetailVC:
+            pages.append(.exclusiveRoute)
         case is SearchVC:
             pages.append(.search)
         default:
@@ -115,6 +159,7 @@ class MapInfo: BottomSheetViewController {
         
         searchVC.mapInfoDelegate = self
         MapInfo.routeDetail = self
+        MapInfo.exclusiveRouteDetail = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -206,21 +251,41 @@ extension MapInfo: RouteDetail {
     }
     
     func getRouteVC() -> RouteDetailVC {
-        if routeDetailVC == nil {
+        if let routeDetailVC = routeDetailVC, viewControllers.contains(routeDetailVC) {
+            DispatchQueue.main.async { [self] in
+                popToViewController(routeDetailVC, animated: true)
+            }
+            return routeDetailVC
+        } else {
             let vc = RouteDetailVC(closable: true, mapViewDelegate: mapViewDelegate!, searchable: searchable)
             routeDetailVC = vc
             pushViewController(vc, animated: true)
             return vc
         }
-        
-        DispatchQueue.main.async { [self] in 
-            while pages.last != .route {
-                popViewController(animated: true)
-            }
+    }
+}
+
+extension MapInfo: ExclusiveRouteDetail {
+    func show(from: MKAnnotation, to: MKAnnotation) {
+        if pages.last == .annotationInfo {
+            mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
         }
         
-        return self.routeDetailVC!
+        getExclusiveRouteVC().show(from: from, to: to)
     }
     
-    
+    func getExclusiveRouteVC() -> ExclusiveRouteDetailVC {
+        
+        if let exclusiveRouteDetailVC = exclusiveRouteDetailVC, viewControllers.contains(exclusiveRouteDetailVC) {
+            DispatchQueue.main.async { [self] in
+                popToViewController(exclusiveRouteDetailVC, animated: true)
+            }
+            return exclusiveRouteDetailVC
+        } else {
+            let vc = ExclusiveRouteDetailVC(closable: false, mapViewDelegate: mapViewDelegate!)
+            exclusiveRouteDetailVC = vc
+            pushViewController(vc, animated: true)
+            return vc
+        }
+    }
 }

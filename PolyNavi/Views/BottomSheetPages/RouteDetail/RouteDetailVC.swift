@@ -21,6 +21,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
     var mapViewDelegate: MapViewDelegate
     var from: MKAnnotation? = nil
     var to: MKAnnotation? = nil
+    var beforeCloseCompleate = false
     
     var routeDetailInfo: RouteDetailInfo? {
         didSet {
@@ -330,6 +331,10 @@ class RouteDetailVC: NavbarBottomSheetPage {
     
     override func beforeClose() {
         super.beforeClose()
+        
+        if beforeCloseCompleate { return }
+        beforeCloseCompleate = true
+        
         RouteDetailVC.toPoint = nil
         RouteDetailVC.fromPoint = nil
         

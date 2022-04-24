@@ -8,11 +8,6 @@
 import UIKit
 import SwiftUI
 
-extension View {
-    func present(to: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        to.present(UIHostingController(rootView: self), animated: flag, completion: completion)
-    }
-}
 
 extension Color {
     init(hex: String) {
@@ -42,12 +37,8 @@ extension Color {
 }
 
 extension View {
-    func pressAction(onPress: @escaping (() -> Void), onRelease: @escaping (() -> Void)) -> some View {
-        modifier(PressActions(onPress: {
-            onPress()
-        }, onRelease: {
-            onRelease()
-        }))
+    func present(to: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        to.present(UIHostingController(rootView: self), animated: flag, completion: completion)
     }
     
     func dismiss(animated: Bool) {
@@ -57,6 +48,14 @@ extension View {
             }
             topController.dismiss(animated: animated)
         }
+    }
+    
+    func pressAction(onPress: @escaping (() -> Void), onRelease: @escaping (() -> Void)) -> some View {
+        modifier(PressActions(onPress: {
+            onPress()
+        }, onRelease: {
+            onRelease()
+        }))
     }
 }
 
@@ -77,4 +76,4 @@ struct PressActions: ViewModifier {
                     })
             )
     }
-    }
+}
