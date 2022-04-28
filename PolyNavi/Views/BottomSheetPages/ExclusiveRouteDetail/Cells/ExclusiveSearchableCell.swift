@@ -40,6 +40,8 @@ class ExclusiveSearchableCell: UITableViewCell {
             name.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             name.leadingAnchor.constraint(equalTo: title.trailingAnchor, constant: 5).withPriority(.defaultHigh)
         ])
+        
+        backgroundColor = Asset.Colors.bottomSheetGroupped.color
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -68,23 +70,5 @@ class ExclusiveSearchableCell: UITableViewCell {
             
             lastIcon = icon
         }
-        
-//        if let cell = SearchShared.createCell(for: searchable) {
-//            cell.translatesAutoresizingMaskIntoConstraints = false
-//            contentView.addSubview(cell)
-//            cell.separator.isHidden = true
-//
-//            NSLayoutConstraint.activate([
-//                cell.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: -10),
-//                cell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-//                cell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//                cell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//                cell.heightAnchor.constraint(equalToConstant: 61),
-//                contentView.bottomAnchor.constraint(equalTo: cell.bottomAnchor)
-//            ])
-//
-//            lastContent = cell
-//        }
-        
     }
 }

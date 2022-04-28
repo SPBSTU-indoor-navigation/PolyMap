@@ -214,11 +214,11 @@ extension MapInfo: MapInfoDelegate {
         
         if pages.last == .annotationInfo {
             if let unitDetail = viewControllers.last as? UnitDetailVC {
-                unitDetail.configurate(mapDetailInfo: annotation.cast())
+                unitDetail.configurate(mapDetailInfo: annotation.cast(), showRouteButton: !pages.contains(.exclusiveRoute))
             }
         } else {
             let vc = UnitDetailVC(closable: true)
-            vc.configurate(mapDetailInfo: annotation.cast())
+            vc.configurate(mapDetailInfo: annotation.cast(), showRouteButton: !pages.contains(.exclusiveRoute))
             pushViewController(vc, animated: true)
         }
         
@@ -282,6 +282,9 @@ extension MapInfo: ExclusiveRouteDetail {
             }
             return exclusiveRouteDetailVC
         } else {
+            if let firstVC = viewControllers.first {
+                popToViewController(firstVC, animated: true)
+            }
             let vc = ExclusiveRouteDetailVC(closable: false, mapViewDelegate: mapViewDelegate!)
             exclusiveRouteDetailVC = vc
             pushViewController(vc, animated: true)

@@ -15,7 +15,7 @@ protocol SelectRowFor {
     func didSelect(_ tableView: UITableView, _ indexPath: IndexPath)
 }
 
-class SectionCollection {
+class SectionCollection: NSObject, UITableViewDataSource {
     class Section {
         var title: String? { return nil }
         var cellCount: Int { return 1 }
@@ -105,5 +105,38 @@ class SectionCollection {
     
     func section(for row: Int) -> Section? {
         return sections[row]
+    }
+    
+    
+    //Delegate
+    func delegateTV(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let section = section(for: indexPath.section)
+        {
+            (section as? SelectRowFor)?.didSelect(tableView, indexPath)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func delegateTV(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    //DataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        sections[section].cellCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let section = section(for: indexPath.section),
+           let cellFor = section as? CellFor {
+            return cellFor.cellFor(tableView, indexPath)
+        }
+        
+        return UITableViewCell()
     }
 }

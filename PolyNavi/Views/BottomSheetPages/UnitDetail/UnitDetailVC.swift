@@ -98,7 +98,11 @@ class UnitDetailVC: NavbarBottomSheetPage {
         super.onStateChange(horizontalSize: horizontalSize)
     }
     
-    func configurate(mapDetailInfo: MapDetailInfo) {
+    func configurate(mapDetailInfo: MapDetailInfo, showRouteButton: Bool = true) {
+        if !showRouteButton {
+            mapDetailInfo.sections = mapDetailInfo.sections.filter({ !($0 is MapDetailInfo.Route) })
+        }
+        
         self.mapDetailInfo = mapDetailInfo
         titleLabel.text = mapDetailInfo.title
         titleNavbarLabel.text = mapDetailInfo.title

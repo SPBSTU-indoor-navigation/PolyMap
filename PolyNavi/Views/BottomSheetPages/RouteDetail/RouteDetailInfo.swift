@@ -82,6 +82,15 @@ class RouteDetailInfo: SectionCollection {
         }
     }
     
+    static func register(tableView: UITableView) {
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableView.UITableViewCellIdentifire)
+        tableView.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifire)
+        tableView.register(ToggleCell.self, forCellReuseIdentifier: ToggleCell.identifire)
+        tableView.register(SimpleShareCell.self, forCellReuseIdentifier: SimpleShareCell.identifire)
+        tableView.register(ShareAppClip.self, forCellReuseIdentifier: ShareAppClip.identifire)
+        tableView.register(SearchGroupedHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchGroupedHeaderView.identifier)
+    }
+    
     var redrawPath: (() -> Void)?
     var asphalt: Bool = false {
         didSet {
@@ -100,7 +109,10 @@ class RouteDetailInfo: SectionCollection {
         self.redrawPath = redrawPath
         
         super.init()
-        
+        configurate(result: result, tableView: nil)
+    }
+    
+    func configurate(result: PathResult?, tableView: UITableView?) {
         sections = []
         
         if let result = result {
@@ -112,12 +124,24 @@ class RouteDetailInfo: SectionCollection {
            let to = result.to as? (BaseAnnotation & Searchable) {
             sections.append(Share(from: from, to: to))
         }
-       
+        
         sections.append(Report(favorite: false, report: true))
+        
+        tableView?.reloadSections(IndexSet(0...0), with: .none)
     }
     
     override init() {
         super.init()
+    }
+    
+    override func delegateTV(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let title = self.section(for: section)?.title else { return nil }
+        
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SearchGroupedHeaderView.identifier) as? SearchGroupedHeaderView else { return nil}
+        
+        header.configurate(text: title)
+        
+        return header
     }
 
 }

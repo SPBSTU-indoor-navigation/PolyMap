@@ -25,7 +25,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
     
     var routeDetailInfo: RouteDetailInfo? {
         didSet {
-            tableView.reloadSections(IndexSet(0...0), with: .none)
+            tableView.dataSource = routeDetailInfo
         }
     }
     
@@ -100,18 +100,11 @@ class RouteDetailVC: NavbarBottomSheetPage {
     }(OpacityHitTest())
     
     lazy var tableView: UITableView = {
-        $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableView.UITableViewCellIdentifire)
-        $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifire)
-        $0.register(ToggleCell.self, forCellReuseIdentifier: ToggleCell.identifire)
-        $0.register(SimpleShareCell.self, forCellReuseIdentifier: SimpleShareCell.identifire)
-        $0.register(ShareAppClip.self, forCellReuseIdentifier: ShareAppClip.identifire)
-        $0.register(SearchGroupedHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchGroupedHeaderView.identifier)
-        
         $0.delegate = self
-        $0.dataSource = self
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.estimatedSectionFooterHeight = 0
+        RouteDetailInfo.register(tableView: $0)
         return $0
     }(UITableView(frame: .zero, style: .insetGrouped))
     
@@ -399,45 +392,11 @@ extension RouteDetailVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let title = routeDetailInfo?.section(for: section)?.title else { return nil }
-        
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SearchGroupedHeaderView.identifier) as? SearchGroupedHeaderView else { return nil}
-        
-        header.configurate(text: title)
-        
-        return header
+        routeDetailInfo?.delegateTV(tableView, viewForHeaderInSection: section)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let routeDetailInfo = routeDetailInfo,
-           let section = routeDetailInfo.section(for: indexPath.section)
-        {
-            (section as? SelectRowFor)?.didSelect(tableView, indexPath)
-        }
-        
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-extension RouteDetailVC: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return routeDetailInfo?.sections.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return routeDetailInfo?.sections[section].cellCount ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let routeDetailInfo = routeDetailInfo,
-           let section = routeDetailInfo.section(for: indexPath.section),
-           let cellFor = section as? CellFor {
-            return cellFor.cellFor(tableView, indexPath)
-        }
-        
-        return UITableViewCell()
+        routeDetailInfo?.delegateTV(tableView, didSelectRowAt: indexPath)
     }
 }
 
@@ -492,8 +451,13 @@ extension RouteDetailVC {
         
         let result = PathFinder.shared.findPath(from: from, to: to)
         
-        routeDetailInfo = RouteDetailInfo(result: result, redrawPath: self.drawPath, asphalt: false, serviceRoute: false)
+        if let routeDetailInfo = routeDetailInfo {
+            routeDetailInfo.configurate(result: result, tableView: tableView)
+        } else {
+            routeDetailInfo = RouteDetailInfo(result: result, redrawPath: self.drawPath, asphalt: false, serviceRoute: false)
+        }
         
+                
         if let result = result {
             pathID = mapViewDelegate.addPath(path: result.path)
         } else {
