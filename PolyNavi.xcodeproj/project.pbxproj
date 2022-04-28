@@ -225,6 +225,14 @@
 		97B8E18B27CEDA8B003D1EF4 /* SpaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8E18927CEDA8B003D1EF4 /* SpaceCell.swift */; };
 		97BBFEC727121F9E0039F3E0 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */; };
 		97BBFECA2712271D0039F3E0 /* TimetableProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */; };
+		97BC3D2C2819DB59000734D9 /* ExclusiveCloseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D2B2819DB59000734D9 /* ExclusiveCloseCell.swift */; };
+		97BC3D2D2819DB59000734D9 /* ExclusiveCloseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D2B2819DB59000734D9 /* ExclusiveCloseCell.swift */; };
+		97BC3D2F2819EA3E000734D9 /* TintedUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D2E2819EA3E000734D9 /* TintedUILabel.swift */; };
+		97BC3D302819EA3E000734D9 /* TintedUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D2E2819EA3E000734D9 /* TintedUILabel.swift */; };
+		97BC3D322819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D312819FA55000734D9 /* ExclusiveRouteDetailInfo.swift */; };
+		97BC3D332819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D312819FA55000734D9 /* ExclusiveRouteDetailInfo.swift */; };
+		97BC3D37281A017B000734D9 /* ExclusiveSearchableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */; };
+		97BC3D38281A017B000734D9 /* ExclusiveSearchableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
 		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -392,6 +400,10 @@
 		97B8E18927CEDA8B003D1EF4 /* SpaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceCell.swift; sourceTree = "<group>"; };
 		97BBFEC627121F9E0039F3E0 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
 		97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableProvider.swift; sourceTree = "<group>"; };
+		97BC3D2B2819DB59000734D9 /* ExclusiveCloseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveCloseCell.swift; sourceTree = "<group>"; };
+		97BC3D2E2819EA3E000734D9 /* TintedUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedUILabel.swift; sourceTree = "<group>"; };
+		97BC3D312819FA55000734D9 /* ExclusiveRouteDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveRouteDetailInfo.swift; sourceTree = "<group>"; };
+		97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveSearchableCell.swift; sourceTree = "<group>"; };
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		97DD22D82772BBCF0083561B /* LevelSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSwitcher.swift; sourceTree = "<group>"; };
 		97E15D0127BC7EF200E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -685,6 +697,7 @@
 		973962CA280B64F3000E478F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				97BC3D342819FE83000734D9 /* SearchableCells */,
 				978B793127D2DBA70003626F /* DetailCell.swift */,
 				973962CB280B8861000E478F /* ToggleCell.swift */,
 				973962D2280C80AE000E478F /* ShareAppClip.swift */,
@@ -754,7 +767,9 @@
 		974D42692814D5F700F05434 /* ExclusiveRouteDetail */ = {
 			isa = PBXGroup;
 			children = (
+				97BC3D35281A0160000734D9 /* Cells */,
 				974D426A2814D62400F05434 /* ExclusiveRouteDetailVC.swift */,
+				97BC3D312819FA55000734D9 /* ExclusiveRouteDetailInfo.swift */,
 			);
 			path = ExclusiveRouteDetail;
 			sourceTree = "<group>";
@@ -876,9 +891,6 @@
 		978B320A27EE630700760B78 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				978B321C27EFFDD100760B78 /* BaseSearchCell.swift */,
-				978B320727EE630300760B78 /* OccupantSearchCell.swift */,
-				978B320B27EE638300760B78 /* AttractionSearchCell.swift */,
 				978B320E27EE7C0A00760B78 /* SearchHeaderView.swift */,
 			);
 			path = Cells;
@@ -985,6 +997,7 @@
 				97A484BF2717BAF700D14997 /* RoundButton.swift */,
 				97FCC17727C6A313009F3C39 /* ScaledImageView.swift */,
 				9719FBEA2806478A0048C810 /* OpacityHitTest.swift */,
+				97BC3D2E2819EA3E000734D9 /* TintedUILabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1006,6 +1019,25 @@
 				97BBFEC92712271D0039F3E0 /* TimetableProvider.swift */,
 			);
 			path = Timetable;
+			sourceTree = "<group>";
+		};
+		97BC3D342819FE83000734D9 /* SearchableCells */ = {
+			isa = PBXGroup;
+			children = (
+				978B321C27EFFDD100760B78 /* BaseSearchCell.swift */,
+				978B320727EE630300760B78 /* OccupantSearchCell.swift */,
+				978B320B27EE638300760B78 /* AttractionSearchCell.swift */,
+			);
+			path = SearchableCells;
+			sourceTree = "<group>";
+		};
+		97BC3D35281A0160000734D9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				97BC3D2B2819DB59000734D9 /* ExclusiveCloseCell.swift */,
+				97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		97D551D62739D5FD002A5BBD /* TimeTableVC */ = {
@@ -1234,7 +1266,9 @@
 				97A566FB27D6920100A064CC /* UtilsExtensions.swift in Sources */,
 				9787698927F519DB008138EC /* OccupantSearchIcon.swift in Sources */,
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
+				97BC3D322819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */,
 				9719FBEB2806478A0048C810 /* OpacityHitTest.swift in Sources */,
+				97BC3D37281A017B000734D9 /* ExclusiveSearchableCell.swift in Sources */,
 				9780D8C227B3421800DBDBF3 /* TableBottomSheetPage.swift in Sources */,
 				974D42672814795000F05434 /* SearchablePreview.swift in Sources */,
 				0530A99C274969C700302C5F /* TimetableToolBar.swift in Sources */,
@@ -1250,6 +1284,7 @@
 				974D423F280E110A00F05434 /* ShareResult.swift in Sources */,
 				9780D8B627B32C7000DBDBF3 /* BottomSheetPage.swift in Sources */,
 				05C32AC7271F4C3E0033B751 /* SettingsModel.swift in Sources */,
+				97BC3D2F2819EA3E000734D9 /* TintedUILabel.swift in Sources */,
 				978B320C27EE638300760B78 /* AttractionSearchCell.swift in Sources */,
 				978B793227D2DBA70003626F /* DetailCell.swift in Sources */,
 				9750154B2795B2F400326B09 /* Unit.swift in Sources */,
@@ -1297,6 +1332,7 @@
 				973962C1280A41AB000E478F /* RouteDetailSearchTableView.swift in Sources */,
 				978B321D27EFFDD100760B78 /* BaseSearchCell.swift in Sources */,
 				97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */,
+				97BC3D2C2819DB59000734D9 /* ExclusiveCloseCell.swift in Sources */,
 				978769A827FBC0FE008138EC /* PathMapView.swift in Sources */,
 				979E2C792789D1C6008CFA05 /* Feature.swift in Sources */,
 				05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */,
@@ -1325,6 +1361,8 @@
 			files = (
 				973962D7280C96A8000E478F /* SimpleShareCell.swift in Sources */,
 				971F8DF127BD54FA0018F98A /* Animator.swift in Sources */,
+				97BC3D302819EA3E000734D9 /* TintedUILabel.swift in Sources */,
+				97BC3D332819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */,
 				971F8DF027BD54FA0018F98A /* RoundButton.swift in Sources */,
 				971F8E0227BD55680018F98A /* Detail.swift in Sources */,
 				971F8E0A27BD556B0018F98A /* AmenityAnnotationView.swift in Sources */,
@@ -1356,12 +1394,14 @@
 				978769A527FBB6BD008138EC /* GradientPathRenderer.swift in Sources */,
 				971F8E0B27BD556B0018F98A /* EnviromentAmenityAnnotation.swift in Sources */,
 				9787698A27F519DB008138EC /* OccupantSearchIcon.swift in Sources */,
+				97BC3D38281A017B000734D9 /* ExclusiveSearchableCell.swift in Sources */,
 				979E5C9C27C0023000A48816 /* MapInfo.swift in Sources */,
 				971F8DF527BD55480018F98A /* XCAssets+Generated.swift in Sources */,
 				974D424E280F8B0200F05434 /* CodeGeneratorModel.swift in Sources */,
 				973962CD280B8861000E478F /* ToggleCell.swift in Sources */,
 				971F8DFC27BD555B0018F98A /* Feature.swift in Sources */,
 				9787698D27F51A00008138EC /* AttractionSearchIcon.swift in Sources */,
+				97BC3D2D2819DB59000734D9 /* ExclusiveCloseCell.swift in Sources */,
 				9787697C27F4BB14008138EC /* TodayCell.swift in Sources */,
 				971F8DFF27BD55650018F98A /* LevelSwitcher.swift in Sources */,
 				979F86ED27D6E9720048B486 /* RouteDetailVC.swift in Sources */,
@@ -1600,7 +1640,7 @@
 				CODE_SIGN_ENTITLEMENTS = PolyNavi/PolyNavi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = LZP5UN7552;
 				INFOPLIST_FILE = PolyNavi/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1628,7 +1668,7 @@
 				CODE_SIGN_ENTITLEMENTS = PolyNavi/PolyNavi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = LZP5UN7552;
 				INFOPLIST_FILE = PolyNavi/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1655,7 +1695,7 @@
 				CODE_SIGN_ENTITLEMENTS = PolyNaviClip/PolyNaviClip.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = LZP5UN7552;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PolyNaviClip/Info.plist;
@@ -1691,7 +1731,7 @@
 				CODE_SIGN_ENTITLEMENTS = PolyNaviClip/PolyNaviClip.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = LZP5UN7552;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PolyNaviClip/Info.plist;

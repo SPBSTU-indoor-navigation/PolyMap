@@ -83,12 +83,12 @@ class RouteDetailInfo: SectionCollection {
     }
     
     var redrawPath: (() -> Void)?
-    var asphalt: Bool {
+    var asphalt: Bool = false {
         didSet {
             redrawPath?()
         }
     }
-    var serviceRoute: Bool {
+    var serviceRoute: Bool = false {
         didSet {
             redrawPath?()
         }
@@ -115,4 +115,9 @@ class RouteDetailInfo: SectionCollection {
        
         sections.append(Report(favorite: false, report: true))
     }
+    
+    override init() {
+        super.init()
+    }
+
 }

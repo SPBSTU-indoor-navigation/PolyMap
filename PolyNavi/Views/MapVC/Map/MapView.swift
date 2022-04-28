@@ -110,6 +110,7 @@ class MapView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .callout)
         $0.numberOfLines = 0
+        $0.alpha = 0
         return $0
     }(UILabel())
     

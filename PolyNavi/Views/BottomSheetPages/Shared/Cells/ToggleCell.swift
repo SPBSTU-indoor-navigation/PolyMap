@@ -9,7 +9,7 @@ import UIKit
 
 class ToggleCell: UITableViewCell {
     
-    static var identifire = String(describing: self)
+    static var identifire = String(describing: ToggleCell.self)
     
     var action: ((Bool)->Void)? = nil
     

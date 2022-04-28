@@ -38,8 +38,9 @@ struct SearchablePreview: View {
                     }
                 } else if searchable is AmenityAnnotation || searchable is EnviromentAmenityAnnotation {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 10)
+                        RoundedRectangle(cornerRadius: 8)
                             .foregroundColor(Color(searchable.backgroundSpriteColor))
+                            .padding(3.0)
                         if let sprite = searchable.annotationSprite {
                             Image(uiImage: sprite)
                                 .resizable(resizingMode: .stretch)
