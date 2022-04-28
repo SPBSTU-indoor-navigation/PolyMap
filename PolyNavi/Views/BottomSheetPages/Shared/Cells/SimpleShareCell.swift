@@ -12,7 +12,7 @@ class SimpleShareCell: UITableViewCell {
     
     func configurate() {
         let image = UIImage(systemName: "square.and.arrow.up")
-        let text = "Share"
+        let text = L10n.MapInfo.share
         
         if #available(iOS 14.0, *) {
             var content = defaultContentConfiguration()

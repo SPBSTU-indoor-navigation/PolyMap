@@ -32,7 +32,9 @@ struct SharePngResultLine: View {
     
     var body: some View {
         Button(action: {
-            show.toggle()
+            if result?.data != nil {
+                show.toggle()
+            }
         }, label: {
             HStack {
                 Text(title)

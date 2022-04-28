@@ -19,14 +19,14 @@ class ShareAppClip: UITableViewCell {
     
     lazy var title: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.text = "Share"
+        $0.text = L10n.MapInfo.Route.Share.title
         $0.font = .preferredFont(forTextStyle: .body)
         return $0
     }(UILabel())
     
     lazy var subtitle: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.text = "QR code or AppClip code"
+        $0.text = L10n.MapInfo.Route.Share.appClipQR
         $0.font = .preferredFont(forTextStyle: .caption1)
         $0.lineBreakMode = .byWordWrapping
         $0.numberOfLines = 2

@@ -34,6 +34,8 @@ Settings.titleOfTeacherCell = "Преподаватель";
 ChoosingSearchController.searchPlaceholder = "Поиск";
 
 //MARK:- MapInfo
+MapInfo.Share = "Поделиться";
+
 MapInfo.Detail.Phone = "Телефон";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Вебсайт";
@@ -60,6 +62,8 @@ MapInfo.Route.Info.Outdoor = "По улице";
 MapInfo.Route.Info.Parameters = "Параметры";
 MapInfo.Route.Info.Asphalt = "По асфальтированным дорогам";
 MapInfo.Route.Info.ServiceRoute = "Разрешить служебные проходы";
+MapInfo.Route.Share.Title = "Поделиться";
+MapInfo.Route.Share.AppClipQR = "QR код или AppClip код";
 
 MapInfo.Search.EmptySearchResult = "Ничего не найдено";
 MapInfo.Search.Today = "Сегодня";

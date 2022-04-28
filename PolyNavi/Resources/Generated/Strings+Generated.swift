@@ -17,6 +17,8 @@ internal enum L10n {
   }
 
   internal enum MapInfo {
+    /// Share
+    internal static let share = L10n.tr("Localizable", "MapInfo.Share")
     internal enum Detail {
       /// Address
       internal static let address = L10n.tr("Localizable", "MapInfo.Detail.Address")
@@ -85,6 +87,12 @@ internal enum L10n {
         internal static let title = L10n.tr("Localizable", "MapInfo.Route.Info.Title")
         /// To:
         internal static let to = L10n.tr("Localizable", "MapInfo.Route.Info.To")
+      }
+      internal enum Share {
+        /// QR code or AppClip code
+        internal static let appClipQR = L10n.tr("Localizable", "MapInfo.Route.Share.AppClipQR")
+        /// Share
+        internal static let title = L10n.tr("Localizable", "MapInfo.Route.Share.Title")
       }
     }
     internal enum Search {
