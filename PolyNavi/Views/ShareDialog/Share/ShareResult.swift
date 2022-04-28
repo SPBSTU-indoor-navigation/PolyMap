@@ -80,14 +80,14 @@ struct ShareResult: View {
                         }
                         .listRowBackground(Color.clear)
                     }
-                    SharePngResultLine(title: "Растровое изображение PNG", result: $png)
-                    SharePngResultLine(title: "Векторное изображение SVG", result: $svg)
+                    SharePngResultLine(title: L10n.Share.Result.sharePng, result: $png)
+                    SharePngResultLine(title: L10n.Share.Result.shareSvg, result: $svg)
                     if let tutorial = tutorial {
                         Button(action: {
                             UIApplication.shared.open(tutorial)
                         }, label: {
                             HStack {
-                                Text("Рекомендации по использованию PDF")
+                                Text(L10n.Share.Result.sharePdf)
                                     .foregroundColor(.primary)
                                 Spacer()
                                 Image(systemName: "safari")
@@ -97,8 +97,8 @@ struct ShareResult: View {
                     }
                     
                     if let response = response {
-                        Section(footer: Text("Ссылку можно самостоятельно встроить в любой вид кодов, либо просто отправить в текстовом виде")) {
-                            SharePngResultLine(title: "Постоянная ссылка", result: .constant(ApiStatus.successWith(response.codeUrl)))
+                        Section(footer: Text(L10n.Share.Result.ShareUrl.info)) {
+                            SharePngResultLine(title: L10n.Share.Result.shareUrl, result: .constant(ApiStatus.successWith(response.codeUrl)))
                         }
                     }
                     
@@ -108,15 +108,15 @@ struct ShareResult: View {
                 if #available(iOS 14.0, *) {
                     ProgressView()
                 } else {
-                    Text("Loading...")
+                    Text(L10n.Share.Result.loading)
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationBarTitle("REsutl")
+        .navigationBarTitle(L10n.Share.Result.navigationTitle)
         .navigationBarItems(trailing: Button(action: {
             dismiss(animated: true)
-        }, label: { Text("Done") } ))
+        }, label: { Text(L10n.Share.Result.done) } ))
         .onAppear(perform: {
         
             let cast: (ApiStatus<URL>) -> (ApiStatus<Any>) = { res in

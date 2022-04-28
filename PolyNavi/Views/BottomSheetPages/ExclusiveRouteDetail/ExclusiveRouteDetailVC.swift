@@ -156,11 +156,11 @@ extension ExclusiveRouteDetailVC {
         if let result = result {
             routeDetailInfo = ExclusiveRouteDetailInfo(result: result, onExclusiveClose: {
                 
-                let alert = UIAlertController(title: "Sign out?", message: "You can always access your content by signing back in",         preferredStyle: .alert)
+                let alert = UIAlertController(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.title, message: L10n.MapInfo.ExclRoute.Info.CloseAlert.message, preferredStyle: .alert)
                 
-                alert.addAction(UIAlertAction(title: "Отменить", style: .cancel))
+                alert.addAction(UIAlertAction(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.cancel, style: .cancel))
                 
-                alert.addAction(UIAlertAction(title: "Завершить", style: .destructive, handler: { _ in
+                alert.addAction(UIAlertAction(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.end, style: .destructive, handler: { _ in
                     self.close(nil)
                 }))
                 

@@ -66,3 +66,77 @@ MapInfo.Search.Today = "Today";
 MapInfo.Search.Recent = "Recent";
 MapInfo.Search.Favorites = "Favorites";
 MapInfo.Search.Buildings = "Buildings";
+
+MapInfo.ExclRoute.Info.Close = "Finish exclusive mode";
+MapInfo.ExclRoute.Info.CloseAlert.Title = "Finish exclusive mode";
+MapInfo.ExclRoute.Info.CloseAlert.Message = "Finish the exclusive mode will erase the route from the map. To re-view you will need to re-open the invitation";
+MapInfo.ExclRoute.Info.CloseAlert.Cancel = "Cancel";
+MapInfo.ExclRoute.Info.CloseAlert.End = "Finish";
+
+Share.OpenURL.Title = "Welcome";
+Share.OpenURL.Info = "Shared with you the route";
+Share.OpenURL.Message = "Author's messages";
+Share.OpenURL.OpenInfo = "The route will be laid in \"exclusive\" mode, to exit it, swipe the curtain up and click on the \"finish\" button";
+Share.OpenURL.Continue = "Continue";
+
+
+//MARK:- ShareDialog
+Share.ColorVariant.Title = "Color";
+Share.ColorVariant.Preset.whiteBlack = "White / Black";
+Share.ColorVariant.Preset.blackWhite = "Black / White";
+Share.ColorVariant.Preset.grayWhite = "Grey / White";
+Share.ColorVariant.Preset.whiteGray = "White / Grey";
+Share.ColorVariant.Preset.redWhite = "Red / White";
+Share.ColorVariant.Preset.whiteRed = "White / Red";
+Share.ColorVariant.Preset.orangeWhite = "Orange / White";
+Share.ColorVariant.Preset.whiteOrange = "White / Orange";
+Share.ColorVariant.Preset.greenWhite = "Green / White";
+Share.ColorVariant.Preset.whiteGreen = "White / Green";
+Share.ColorVariant.Preset.tealWhite = "Teal / White";
+Share.ColorVariant.Preset.whiteTeal = "White / Teal";
+Share.ColorVariant.Preset.blueWhite = "Blue / White";
+Share.ColorVariant.Preset.whiteBlue = "White / Blue";
+Share.ColorVariant.Preset.indigoWhite = "Indigo / White";
+Share.ColorVariant.Preset.whiteIndigo = "White / Indigo";
+Share.ColorVariant.Preset.purpleWhite = "Purple / White";
+Share.ColorVariant.Preset.whitePurple = "White / Purple";
+
+Share.LogoVariant.Title = "Logo";
+Share.LogoVariant.Camera = "Scan Only";
+Share.LogoVariant.Phone = "NFC";
+Share.LogoVariant.Info = "If you combine the code with an NFC tag, please select the NFC design. If you don't insert an NFC tag, please select «Scan Only» design";
+
+Share.BadgeVariant.Title = "Badge variant";
+Share.BadgeVariant.Circle = "No logo";
+Share.BadgeVariant.Badge = "Use logo";
+Share.BadgeVariant.Info = "It is recommended to use the code with the logo, except in cases where it is impossible to meet the requirements for free space or if the code will be placed on disposable products";
+
+
+Share.CodeVariant.Title = "Code variant";
+Share.CodeVariant.QR = "QR";
+Share.CodeVariant.AppClip = "AppClip";
+Share.CodeVariant.Info = "The QR code can contain a route from any one point to any other\n\nAppClip code can contain a route starting only at the main entrance to the campus, but it looks more beautiful";
+
+Share.HelloText.Title = "Display welcome message";
+Share.HelloText.Placehodler = "Enter your welcome message";
+Share.HelloText.Info = "Will be shown in a pop-up window after scanning the code";
+
+Share.MainInfo = "You can create a QR code associated with this route";
+Share.NavigationTitle = "Code generation";
+
+Share.ErrorAlert.Title = "Server is not available";
+Share.ErrorAlert.Message = "The code generation server is temporarily unavailable, try again later or contact the developer directly";
+
+Share.Create = "Generate";
+
+
+//MARK:- ShareResult
+Share.Result.NavigationTitle = "Result";
+Share.Result.Done = "Done";
+Share.Result.SharePng = "PNG bitmap image";
+Share.Result.ShareSvg = "SVG vector image";
+Share.Result.SharePdf = "Guidelines for using PDF";
+Share.Result.ShareUrl = "Permalink";
+Share.Result.ShareUrl.Info = "You can embed the link yourself in any type of codes, or simply send it in text form";
+
+Share.Result.Loading = "Loading...";

@@ -21,7 +21,7 @@ class ExclusiveRouteDetailInfo: RouteDetailInfo {
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: ExclusiveCloseCell.identifire) as! ExclusiveCloseCell
             
-            cell.configurate(title: "Завершить эксклюзивный режим")
+            cell.configurate(title: L10n.MapInfo.ExclRoute.Info.close)
             
             return cell
         }
@@ -45,7 +45,7 @@ class ExclusiveRouteDetailInfo: RouteDetailInfo {
             
             let isFrom = indexPath.row == 0
             
-            cell.configurate(searchable: isFrom ? from : to, title: isFrom ? "from:" : "to:")
+            cell.configurate(searchable: isFrom ? from : to, title: isFrom ? L10n.MapInfo.Route.Info.from : L10n.MapInfo.Route.Info.to)
             
             return cell
         }

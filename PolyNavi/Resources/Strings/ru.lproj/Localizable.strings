@@ -66,3 +66,77 @@ MapInfo.Search.Today = "Сегодня";
 MapInfo.Search.Recent = "Недавние";
 MapInfo.Search.Favorites = "Избранные";
 MapInfo.Search.Buildings = "Учебные корпуса";
+
+MapInfo.ExclRoute.Info.Close = "Завершить эксклюзивный режим";
+MapInfo.ExclRoute.Info.CloseAlert.Title = "Завершить эксклюзивный режим";
+MapInfo.ExclRoute.Info.CloseAlert.Message = "Завершение эксклюзивного режима сотрёт маршрут с карты. Для повторного просмотна надо будет заново открыть приглашение";
+MapInfo.ExclRoute.Info.CloseAlert.Cancel = "Отмена";
+MapInfo.ExclRoute.Info.CloseAlert.End = "Завершить";
+
+Share.OpenURL.Title = "Добро пожаловать";
+Share.OpenURL.Info = "С вами поделились маршрутом";
+Share.OpenURL.Message = "Сообщения автора";
+Share.OpenURL.OpenInfo = "Будет проложен маршрут в \"эксклюзивном\" режиме, для выхода из него, смахните шторку вверх и нажмите на кнопку \"завершить\"";
+Share.OpenURL.Continue = "Продолжить";
+
+
+//MARK:- ShareDialog
+Share.ColorVariant.Title = "Цвет";
+Share.ColorVariant.Preset.whiteBlack = "Белый / Черный";
+Share.ColorVariant.Preset.blackWhite = "Черный / Белый";
+Share.ColorVariant.Preset.grayWhite = "Серый / Белый";
+Share.ColorVariant.Preset.whiteGray = "Белый / Серый";
+Share.ColorVariant.Preset.redWhite = "Красный / Белый";
+Share.ColorVariant.Preset.whiteRed = "Белый / Красный";
+Share.ColorVariant.Preset.orangeWhite = "Оранжевый / Белый";
+Share.ColorVariant.Preset.whiteOrange = "Белый / Оранжевый";
+Share.ColorVariant.Preset.greenWhite = "Зеленый / Белый";
+Share.ColorVariant.Preset.whiteGreen = "Белый / Зеленый";
+Share.ColorVariant.Preset.tealWhite = "Сине-зеленый / Белый";
+Share.ColorVariant.Preset.whiteTeal = "Белый / Сине-зеленый";
+Share.ColorVariant.Preset.blueWhite = "Синий / Белый";
+Share.ColorVariant.Preset.whiteBlue = "Белый / Синий";
+Share.ColorVariant.Preset.indigoWhite = "Индиго / Белый";
+Share.ColorVariant.Preset.whiteIndigo = "Белый / Индиго";
+Share.ColorVariant.Preset.purpleWhite = "Фиолетовый / Белый";
+Share.ColorVariant.Preset.whitePurple = "Белый / Фиолетовый";
+
+Share.LogoVariant.Title = "Тип кода";
+Share.LogoVariant.Camera = "Только сканирование";
+Share.LogoVariant.Phone = "NFC";
+Share.LogoVariant.Info = "Если вы объединяете код с NFC-меткой, выберите дизайн NFC. Если вы не вставляете NFC-метку, выберите дизайн «Только сканирование»";
+
+Share.BadgeVariant.Title = "Форма";
+Share.BadgeVariant.Circle = "Без логотипа";
+Share.BadgeVariant.Badge = "Использовать логотип";
+Share.BadgeVariant.Info = "Рекомендуется использовать код с логотипом, за сключением случаев, когда невозможно удовлетворить требования к свободному пространству или если код будет размещаться на одноразовых товарах";
+
+
+Share.CodeVariant.Title = "Тип кода";
+Share.CodeVariant.QR = "QR";
+Share.CodeVariant.AppClip = "AppClip";
+Share.CodeVariant.Info = "QR код может содержать в себе маршру от любой одной точки до любой другой\n\nAppClip код может содержать маршрут начинающийся только у главного входа в кампус, однако выглядит красивее";
+
+Share.HelloText.Title = "Отображать приветствие";
+Share.HelloText.Placehodler = "Введите приветсвенное сообщение";
+Share.HelloText.Info = "Будет показываться во всплывающем окне после сканирования кода";
+
+Share.MainInfo = "Вы можете создать QR код ассоциированный с этим маршрутом";
+Share.NavigationTitle = "Создание кода";
+
+Share.ErrorAlert.Title = "Сервер недоступен";
+Share.ErrorAlert.Message = "Сервер генерации кодов временно недоступен, попробуйте позже или обратитесь напрямую к разработчику";
+
+Share.Create = "Создать";
+
+
+//MARK:- ShareResult
+Share.Result.NavigationTitle = "Результат";
+Share.Result.Done = "Готово";
+Share.Result.SharePng = "Растровое изображение PNG";
+Share.Result.ShareSvg = "Векторное изображение SVG";
+Share.Result.SharePdf = "Рекомендации по использованию PDF";
+Share.Result.ShareUrl = "Постоянная ссылка";
+Share.Result.ShareUrl.Info = "Ссылку можно самостоятельно встроить в любой вид кодов, либо просто отправить в текстовом виде";
+
+Share.Result.Loading = "Загрузка...";

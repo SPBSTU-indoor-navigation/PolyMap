@@ -14,26 +14,26 @@ struct OpenUrlPopupContent: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Добро пожаловать")
+            Text(L10n.Share.OpenURL.title)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.top, 40.0)
                 .padding(.bottom, 30)
             
             VStack(alignment: .leading) {
-                Text("С вами поделились маршрутом")
+                Text(L10n.Share.OpenURL.info)
                 
                 if let from = from,// ?? SearchablePreview_Previews.Mock(),
                    let to = to //?? SearchablePreview_Previews.Mock()
                 {
                     VStack {
                         HStack {
-                            Text("From:")
+                            Text(L10n.MapInfo.Route.Info.from)
                             SearchablePreview(searchable: from)
                         }
                         Divider()
                         HStack {
-                            Text("To:")
+                            Text(L10n.MapInfo.Route.Info.to)
                             SearchablePreview(searchable: to)
                         }
                     }
@@ -53,7 +53,7 @@ struct OpenUrlPopupContent: View {
                             .frame(width: 40, height: 40)
                             .padding(.trailing)
                         VStack(alignment: .leading) {
-                            Text("Сообщения автора")
+                            Text(L10n.Share.OpenURL.message)
                                 .font(.headline)
                             Text(data.helloText)
                                 .foregroundColor(.secondary)
@@ -66,7 +66,7 @@ struct OpenUrlPopupContent: View {
             
             Spacer()
             
-            Text("Будет проложен маршрут в \"эксклюзивном\" режиме, для выхода из него, смахните шторку вверх и нажмите на кнопку \"завершить\"")
+            Text(L10n.Share.OpenURL.openInfo)
                 .foregroundColor(.secondary)
                 .font(.footnote)
                 .padding(.horizontal, 20)
@@ -82,7 +82,7 @@ struct OpenUrlPopupContent: View {
                     dismiss(animated: true)
                 }
             }, label: {
-                Text("Продолжить")
+                Text(L10n.Share.OpenURL.continue)
                     .font(.headline)
                     .frame(maxWidth: 300)
                     .frame(height: 46)

@@ -34,24 +34,24 @@ struct ShareDialog: View {
         var localizrdName: String {
             
             let names: [Self: String] = [
-                .whiteBlack: "Белый / Черный",
-                .blackWhite: "Черный / Белый",
-                .grayWhite: "Серый / Белый",
-                .whiteGray: "Белый / Серый",
-                .redWhite: "Красный / Белый",
-                .whiteRed: "Белый / Красный",
-                .orangeWhite: "Оранжевый / Белый",
-                .whiteOrange: "Белый / Оранжевый",
-                .greenWhite: "Зеленый / Белый",
-                .whiteGreen: "Белый / Зеленый",
-                .tealWhite: "Сине-зеленый / Белый",
-                .whiteTeal: "Белый / Сине-зеленый",
-                .blueWhite: "Синий / Белый",
-                .whiteBlue: "Белый / Синий",
-                .indigoWhite: "Индиго / Белый",
-                .whiteIndigo: "Белый / Индиго",
-                .purpleWhite: "Фиолетовый / Белый",
-                .whitePurple: "Белый / Фиолетовый"
+                .whiteBlack: L10n.Share.ColorVariant.Preset.whiteBlack,
+                .blackWhite: L10n.Share.ColorVariant.Preset.blackWhite,
+                .grayWhite: L10n.Share.ColorVariant.Preset.grayWhite,
+                .whiteGray: L10n.Share.ColorVariant.Preset.whiteGray,
+                .redWhite: L10n.Share.ColorVariant.Preset.redWhite,
+                .whiteRed: L10n.Share.ColorVariant.Preset.whiteRed,
+                .orangeWhite: L10n.Share.ColorVariant.Preset.orangeWhite,
+                .whiteOrange: L10n.Share.ColorVariant.Preset.whiteOrange,
+                .greenWhite: L10n.Share.ColorVariant.Preset.greenWhite,
+                .whiteGreen: L10n.Share.ColorVariant.Preset.whiteGreen,
+                .tealWhite: L10n.Share.ColorVariant.Preset.tealWhite,
+                .whiteTeal: L10n.Share.ColorVariant.Preset.whiteTeal,
+                .blueWhite: L10n.Share.ColorVariant.Preset.blueWhite,
+                .whiteBlue: L10n.Share.ColorVariant.Preset.whiteBlue,
+                .indigoWhite: L10n.Share.ColorVariant.Preset.indigoWhite,
+                .whiteIndigo: L10n.Share.ColorVariant.Preset.whiteIndigo,
+                .purpleWhite: L10n.Share.ColorVariant.Preset.purpleWhite,
+                .whitePurple: L10n.Share.ColorVariant.Preset.whitePurple,
             ]
             
             if let name = names[self] {
@@ -107,9 +107,9 @@ struct ShareDialog: View {
         var localizrdName: String {
             switch self {
             case .camera:
-                return "Только сканирование"
+                return L10n.Share.LogoVariant.camera
             case .phone:
-                return "NFC"
+                return L10n.Share.LogoVariant.phone
             }
         }
     }
@@ -122,9 +122,9 @@ struct ShareDialog: View {
         var localizrdName: String {
             switch self {
             case .circle:
-                return "Без логотипа"
+                return L10n.Share.BadgeVariant.circle
             case .badge:
-                return "Использовать логотип"
+                return L10n.Share.BadgeVariant.badge
             }
         }
     }
@@ -156,20 +156,20 @@ struct ShareDialog: View {
     var body: some View {
         NavigationView {
             List {
-                Text("Вы можете создать QR код ассоциированный с этим маршрутом")
+                Text(L10n.Share.mainInfo)
                     .font(.callout)
                     .foregroundColor(.secondary)
                     .listRowBackground(Color.clear)
                 
                 Section {
                     HStack {
-                        Text("From: ")
+                        Text(L10n.MapInfo.Route.Info.from)
                         SearchablePreview(searchable: from)
                             .padding(.vertical, 5)
                     }
                     
                     HStack {
-                        Text("To: ")
+                        Text(L10n.MapInfo.Route.Info.to)
                         SearchablePreview(searchable: to)
                             .padding(.vertical, 5)
                     }
@@ -189,7 +189,7 @@ struct ShareDialog: View {
                     CreateButton(isQR: $isQR, serverReady: (serverStatus?.data?.appclip == true).bindig, helloText: $helloText, colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant, from: from.imdfID, to: to.imdfID)
                 }
             }
-            .navigationBarTitle("Создание кода", displayMode: .inline)
+            .navigationBarTitle("\(L10n.Share.navigationTitle)", displayMode: .inline)
         }
         .navigationViewStyle(.stack)
         .onAppear(perform: {
@@ -199,16 +199,12 @@ struct ShareDialog: View {
                 serverStatusAlert = res.data?.appclip != true
             })
             
-            
-            print(from.mainTitle)
-            print(to.mainTitle)
-            
             UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = Asset.accentColor.color
         })
         .alert(isPresented: $serverStatusAlert) {
             Alert(
-                title: Text( "Сервер недоступен"),
-                message: Text("Сервер генерации кодов временно недоступен, попробуйте позже или обратитесь напрямую к разработчику")
+                title: Text(L10n.Share.ErrorAlert.title),
+                message: Text(L10n.Share.ErrorAlert.message)
             )
         }
         
@@ -236,7 +232,7 @@ struct ShareDialog: View {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: 200)
                         .foregroundColor(serverReady ? .accentColor : .secondary)
-                    Text("Создать")
+                    Text(L10n.Share.create)
                         .padding(.vertical, 9.0)
                         .font(.headline)
                         .frame(minHeight: 46)
@@ -256,7 +252,7 @@ struct ShareDialog: View {
                 HStack {
                     Spacer()
                     
-                    CodeVariant(enabled: $isQR, title: "QR", image: Image(systemName: "qrcode"))
+                    CodeVariant(enabled: $isQR, title: L10n.Share.CodeVariant.qr, image: Image(systemName: "qrcode"))
                         .simultaneousGesture(TapGesture().onEnded({
                             withAnimation(.easeInOut(duration: 0.2)) {
                                 isQR = true
@@ -266,7 +262,7 @@ struct ShareDialog: View {
                     Spacer()
                     Spacer()
                     
-                    CodeVariant(enabled: (!isQR).bindig, title: "AppClip", image: Image(uiImage: Asset.AppClip.appclipPreview.image))
+                    CodeVariant(enabled: (!isQR).bindig, title: L10n.Share.CodeVariant.appClip, image: Image(uiImage: Asset.AppClip.appclipPreview.image))
                         .simultaneousGesture(TapGesture().onEnded({
                             withAnimation(.easeInOut(duration: 0.2)) {
                                 isQR = false
@@ -275,9 +271,9 @@ struct ShareDialog: View {
                     Spacer()
                 }.padding()
             }, header: {
-                Text("Тип кода")
+                Text(L10n.Share.CodeVariant.title)
             }, footer: {
-                Text("QR код может содержать в себе маршру от любой одной точки до любой другой\n\nAppClip код может содержать маршрут начинающийся только у главного входа в кампус, однако выглядит красивее")
+                Text(L10n.Share.CodeVariant.info)
             })
         }
     }
@@ -288,14 +284,14 @@ struct ShareDialog: View {
         
         var body: some View {
             Section(content: {
-                Toggle(isOn: $showHelloText, label: { Text("Отображать приветствие") })
+                Toggle(isOn: $showHelloText, label: { Text(L10n.Share.HelloText.title) })
                 
                 if showHelloText {
                     ZStack {
                         if helloText.isEmpty {
                             VStack{
                                 HStack{
-                                    Text("Введите приветсвенное сообщение")
+                                    Text(L10n.Share.HelloText.placehodler)
                                         .foregroundColor(.secondary)
                                     Spacer()
                                 }
@@ -314,7 +310,7 @@ struct ShareDialog: View {
                     }
                 }
             }, footer: {
-                Text("Будет показываться во всплывающем окне после сканирования кода")
+                Text(L10n.Share.HelloText.info)
             })
         }
     }
@@ -361,7 +357,7 @@ struct ShareDialog: View {
                 }
             }, label: {
                 HStack {
-                    Text("Цвет")
+                    Text(L10n.Share.ColorVariant.title)
                     Spacer()
                     Text(colorVariant.localizrdName).foregroundColor(.secondary)
                 }
@@ -378,7 +374,7 @@ struct ShareDialog: View {
             NavigationLink(destination: {
                 VStack(spacing: 0) {
                     List {
-                        Section(footer: Text("Если вы объединяете код с NFC-меткой, выберите дизайн NFC. Если вы не вставляете NFC-метку, выберите дизайн «Только сканирование»")) {
+                        Section(footer: Text(L10n.Share.LogoVariant.info)) {
                             ForEach(ShareDialog.LogoVariant.allCases) { variant in
                                 Button(action: {
                                     
@@ -410,7 +406,7 @@ struct ShareDialog: View {
 
             }, label: {
                 HStack {
-                    Text("Тип кода")
+                    Text(L10n.Share.LogoVariant.title)
                     Spacer()
                     Text(logoVariant.localizrdName).foregroundColor(.secondary)
                 }
@@ -427,7 +423,7 @@ struct ShareDialog: View {
             NavigationLink(destination: {
                 VStack(spacing: 0) {
                     List {
-                        Section(footer: Text("Рекомендуется использовать код с логотипом, за сключением случаев, когда невозможно удовлетворить требования к свободному пространству или если код будет размещаться на одноразовых товарах")) {
+                        Section(footer: Text(L10n.Share.BadgeVariant.info)) {
                             ForEach(ShareDialog.BadgeVariant.allCases) { variant in
                                 Button(action: {
                                     badgeVariant = variant
@@ -457,7 +453,7 @@ struct ShareDialog: View {
                 }
             }, label: {
                 HStack {
-                    Text("Форма")
+                    Text(L10n.Share.BadgeVariant.title)
                     Spacer()
                     Text(badgeVariant.localizrdName).foregroundColor(.secondary)
                 }
