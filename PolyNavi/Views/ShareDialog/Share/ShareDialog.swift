@@ -142,6 +142,7 @@ struct ShareDialog: View {
     
     @State var isQR: Bool = false
     @State var showHelloText: Bool = false
+    @State var routeParameterChanging: Bool = false
     @State var helloText: String = ""
     @State var colorVariant: ColorVariant = .greenWhite
     @State var logoVariant: LogoVariant = .camera
@@ -157,7 +158,7 @@ struct ShareDialog: View {
         NavigationView {
             List {
                 Text(L10n.Share.mainInfo)
-                    .font(.callout)
+                    .font(.footnote)
                     .foregroundColor(.secondary)
                     .listRowBackground(Color.clear)
                 
@@ -175,6 +176,12 @@ struct ShareDialog: View {
                     }
                 }
                 
+                Section(content: {
+                    Toggle(isOn: $routeParameterChanging, label: { Text("Изменение параметров") })
+                }, footer: {
+                    Text("Разрешить пользователю менять параметры построеня маршрута (служебные маршруты/асфальтированные дороги)")
+                })
+                
                 
                 HelloTextSection(showHelloText: $showHelloText, helloText: $helloText)
                 CodeVariantSection(isQR: $isQR)
@@ -186,7 +193,7 @@ struct ShareDialog: View {
                 }
                 
                 Section {
-                    CreateButton(isQR: $isQR, serverReady: (serverStatus?.data?.appclip == true).bindig, helloText: $helloText, colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant, from: from.imdfID, to: to.imdfID)
+                    CreateButton(isQR: $isQR, serverReady: .constant(serverStatus?.data?.appclip == true), helloText: $helloText, colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant, from: from.imdfID, to: to.imdfID)
                 }
             }
             .navigationBarTitle("\(L10n.Share.navigationTitle)", displayMode: .inline)
@@ -262,7 +269,7 @@ struct ShareDialog: View {
                     Spacer()
                     Spacer()
                     
-                    CodeVariant(enabled: (!isQR).bindig, title: L10n.Share.CodeVariant.appClip, image: Image(uiImage: Asset.AppClip.appclipPreview.image))
+                    CodeVariant(enabled: .constant(!isQR), title: L10n.Share.CodeVariant.appClip, image: Image(uiImage: Asset.AppClip.appclipPreview.image))
                         .simultaneousGesture(TapGesture().onEnded({
                             withAnimation(.easeInOut(duration: 0.2)) {
                                 isQR = false
@@ -320,16 +327,15 @@ struct ShareDialog: View {
         @Binding var logoVariant: ShareDialog.LogoVariant
         @Binding var badgeVariant: ShareDialog.BadgeVariant
         
-
-        
         var body: some View {
-            
             NavigationLink(destination: {
                 VStack(spacing: 0) {
                     List {
                         ForEach(ShareDialog.ColorVariant.allCases) { variant in
                             Button(action: {
-                                colorVariant = variant
+                                withAnimation {
+                                    colorVariant = variant
+                                }
                             }, label: {
                                 HStack {
                                     Circle()
@@ -377,7 +383,6 @@ struct ShareDialog: View {
                         Section(footer: Text(L10n.Share.LogoVariant.info)) {
                             ForEach(ShareDialog.LogoVariant.allCases) { variant in
                                 Button(action: {
-                                    
                                     logoVariant = variant
                                 }, label: {
                                     HStack {
@@ -400,7 +405,6 @@ struct ShareDialog: View {
                         
                         AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
                             .frame(maxWidth: 250)
-                            .padding()
                     }
                 }
 
@@ -448,7 +452,6 @@ struct ShareDialog: View {
                         
                         AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
                             .frame(maxWidth: 250)
-                            .padding()
                     }
                 }
             }, label: {
@@ -470,8 +473,4 @@ struct ShareDialog_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
             .environment(\.colorScheme, .light)
     }
-}
-
-extension Bool {
-    var bindig: Binding<Bool> { return Binding<Bool> ( get: { return self }, set: { _ in})}
 }
