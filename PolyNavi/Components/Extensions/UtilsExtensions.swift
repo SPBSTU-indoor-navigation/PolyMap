@@ -14,6 +14,12 @@ extension Comparable {
     }
 }
 
+extension Array {
+    subscript (safe index: Index) -> Element? {
+        0 <= index && index < count ? self[index] : nil
+    }
+}
+
 extension StringProtocol {
     func index<S: StringProtocol>(of string: S, options: String.CompareOptions = []) -> Index? {
         range(of: string, options: options)?.lowerBound

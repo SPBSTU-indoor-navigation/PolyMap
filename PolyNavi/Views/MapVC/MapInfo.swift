@@ -138,19 +138,25 @@ class MapInfo: BottomSheetViewController {
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        switch viewController {
-        case is UnitDetailVC:
-            pages.append(.annotationInfo)
-        case is RouteDetailVC:
-            pages.append(.route)
-        case is ExclusiveRouteDetailVC:
-            pages.append(.exclusiveRoute)
-        case is SearchVC:
-            pages.append(.search)
-        default:
-            pages.append(.unknown)
-        }
+        
+        let count = viewControllers.count
+        
         super.pushViewController(viewController, animated: animated)
+        
+        if count != viewControllers.count {
+            switch viewController {
+            case is UnitDetailVC:
+                pages.append(.annotationInfo)
+            case is RouteDetailVC:
+                pages.append(.route)
+            case is ExclusiveRouteDetailVC:
+                pages.append(.exclusiveRoute)
+            case is SearchVC:
+                pages.append(.search)
+            default:
+                pages.append(.unknown)
+            }
+        }
     }
     
     init (parentVC: UIViewController) {
@@ -271,24 +277,31 @@ extension MapInfo: ExclusiveRouteDetail {
             mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
         }
         
-        getExclusiveRouteVC().show(from: from, to: to)
+        getExclusiveRouteVC(completion: { $0.show(from: from, to: to) })
     }
     
-    func getExclusiveRouteVC() -> ExclusiveRouteDetailVC {
-        
+    func getExclusiveRouteVC(completion: @escaping (ExclusiveRouteDetailVC) -> Void) {
         if let exclusiveRouteDetailVC = exclusiveRouteDetailVC, viewControllers.contains(exclusiveRouteDetailVC) {
-            DispatchQueue.main.async { [self] in
-                popToViewController(exclusiveRouteDetailVC, animated: true)
-            }
-            return exclusiveRouteDetailVC
+            popToViewController(exclusiveRouteDetailVC, animated: true)
+            completion(exclusiveRouteDetailVC)
         } else {
-            if let firstVC = viewControllers.first {
-                popToViewController(firstVC, animated: true)
+            
+            func create() {
+                let vc = ExclusiveRouteDetailVC(closable: false, mapViewDelegate: mapViewDelegate!)
+                exclusiveRouteDetailVC = vc
+                pushViewController(vc, animated: true)
+                completion(vc)
             }
-            let vc = ExclusiveRouteDetailVC(closable: false, mapViewDelegate: mapViewDelegate!)
-            exclusiveRouteDetailVC = vc
-            pushViewController(vc, animated: true)
-            return vc
+            
+            if viewControllers.count > 1,
+                let firstVC = viewControllers.first {
+                popToViewController(firstVC, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.55, execute: {
+                    create()
+                })
+            } else {
+                create()
+            }
         }
     }
 }

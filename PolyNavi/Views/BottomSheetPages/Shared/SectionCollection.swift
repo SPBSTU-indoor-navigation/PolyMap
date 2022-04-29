@@ -104,7 +104,7 @@ class SectionCollection: NSObject, UITableViewDataSource {
     var sections: [Section] = []
     
     func section(for row: Int) -> Section? {
-        return sections[row]
+        return sections[safe: row]
     }
     
     
@@ -138,5 +138,9 @@ class SectionCollection: NSObject, UITableViewDataSource {
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        UITableView.automaticDimension
     }
 }

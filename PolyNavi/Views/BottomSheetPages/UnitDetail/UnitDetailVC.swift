@@ -161,16 +161,20 @@ extension UnitDetailVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if section == 0,
+           let mapDetailInfo = mapDetailInfo,
+           let section = mapDetailInfo.section(for: section, title: useTitleTransition),
+           let _ = section.title {
+            return UITableView.automaticDimension
+        }
+        
+        
         if section == 0 {
             return 0
         }
         
         return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if useTitleTransition && indexPath.row == 0 && indexPath.section == 0 { return nil }
-        return indexPath
     }
 
 }
