@@ -132,7 +132,7 @@ struct ShareResult: View {
                 }
             }
             
-            CodeGeneratorProvider.generateCode(isQR: settings.isQR, from: settings.from, to: settings.to, text: settings.text, completion: { res in
+            CodeGeneratorProvider.generateCode(settings: settings.routeSettings, completion: { res in
                 if let res = res.data {
                     response = res
                     tutorial = CodeGeneratorProvider.tutorialUrl(id: res.appClipID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage)
@@ -164,7 +164,7 @@ struct ShareResult: View {
 
 struct ShareResult_Previews: PreviewProvider {
     static var previews: some View {
-        ShareResult(settings:  .init(color: .greenWhite, logo: .camera, bage: .circle, isQR: false, from: UUID(), to: UUID(), text: ""))
+        ShareResult(settings: .init(color: .greenWhite, logo: .camera, bage: .circle, isQR: false, from: UUID(), to: UUID(), text: "", asphalt: false, serviceRoute: false, allowParameterChange: false))
             .environment(\.colorScheme, .dark)
     }
 }

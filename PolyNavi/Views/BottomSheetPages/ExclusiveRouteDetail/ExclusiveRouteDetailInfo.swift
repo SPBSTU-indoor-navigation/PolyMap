@@ -52,12 +52,37 @@ class ExclusiveRouteDetailInfo: RouteDetailInfo {
     }
     
 
-    init(result: PathResult, onExclusiveClose: @escaping () -> Void) {
+    var allowParameterChange: Bool
+    var onExclusiveClose: () -> Void
+    init(result: PathResult, asphalt: Bool, serviceRoute: Bool, allowParameterChange: Bool, redrawPath: (() -> Void)?, onExclusiveClose: @escaping () -> Void) {
+        self.allowParameterChange = allowParameterChange
+        self.onExclusiveClose = onExclusiveClose
+        
         super.init()
         
+        self.asphalt = asphalt
+        self.serviceRoute = serviceRoute
+        self.redrawPath = redrawPath
+        
+        configurate(result: result, tableView: nil)
+    }
+    
+    override func configurate(result: PathResult?, tableView: UITableView?) {
         sections = []
-        sections.append(FromTo(from: result.from as! Searchable, to: result.to as! Searchable))
-        sections.append(PathInfo(result: result))
+        
+        if let result = result {
+            if let from = result.from as? Searchable,
+               let to = result.to as? Searchable {
+                sections.append(FromTo(from: from, to: to))
+            }
+            sections.append(PathInfo(result: result))
+        }
+        
+        if allowParameterChange {
+            sections.append(Settings(asphalt: .init(get: { self.asphalt }, set: { self.asphalt = $0 }),
+                                     serviceRoute: .init(get: { self.serviceRoute }, set: { self.serviceRoute = $0 })))
+        }
+        
         sections.append(Close(onClose: onExclusiveClose))
     }
 }

@@ -28,7 +28,7 @@ class ToggleCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configurate(title: String, onToggle: ((Bool)->Void)? = nil) {
+    func configurate(title: String, value: Bool, onToggle: ((Bool)->Void)? = nil) {
         
         if #available(iOS 14.0, *) {
             var content = defaultContentConfiguration()
@@ -40,6 +40,7 @@ class ToggleCell: UITableViewCell {
         }
         
         accessoryView = switcher
+        switcher.isOn = value
         action = onToggle
     }
     

@@ -8,9 +8,19 @@
 import Foundation
 import Alamofire
 
-class CodeGeneratorProvider{
+class CodeGeneratorProvider {
     enum Constants {
         static let BASE_URL = "https://polymap.ru"
+    }
+    
+    struct RouteSettings {
+        let isQR: Bool
+        let from: UUID
+        let to: UUID
+        let text: String?
+        let asphalt: Bool
+        let serviceRoute: Bool
+        let allowParameterChange: Bool
     }
     
     static func load<T:Codable>(url: String, metod: HTTPMethod, params: Dictionary<String, String>, enecodig: ParameterEncoding = URLEncoding.default, completion: @escaping (ApiStatus<T>) -> Void) {
@@ -25,15 +35,18 @@ class CodeGeneratorProvider{
         load(url: "/load/\(id)", metod: .get, params: [:], completion: completion)
     }
     
-    static func generateCode(isQR: Bool, from: UUID, to: UUID, text: String?, completion: @escaping (ApiStatus<CodeGeneratorModel.GenerateResponse>) -> Void) {
-        let settings =  [
-            "codeVariant": isQR ? "qr" : "appclip",
-            "from": from.uuidString,
-            "to": to.uuidString,
-            "helloText": text ?? ""
+    static func generateCode(settings: RouteSettings, completion: @escaping (ApiStatus<CodeGeneratorModel.GenerateResponse>) -> Void) {
+        let params = [
+            "codeVariant": settings.isQR ? "qr" : "appclip",
+            "from": settings.from.uuidString,
+            "to": settings.to.uuidString,
+            "helloText": settings.text ?? "",
+            "asphalt": String(settings.asphalt),
+            "serviceRoute": String(settings.serviceRoute),
+            "allowParameterChange": String(settings.allowParameterChange)
         ]
         
-        load(url: "/generate", metod: .post, params: settings, enecodig: JSONEncoding.default, completion: completion)
+        load(url: "/generate", metod: .post, params: params, enecodig: JSONEncoding.default, completion: completion)
     }
     
     static func createParams(id: Int,

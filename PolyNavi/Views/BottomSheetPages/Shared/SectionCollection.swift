@@ -55,48 +55,28 @@ class SectionCollection: NSObject, UITableViewDataSource {
     }
     
     class Share: Section, CellFor, SelectRowFor {
-        override var cellCount: Int { 1 + (to != nil).intValue }
+        override var cellCount: Int { 1 }
         
-        var from: BaseAnnotation & Searchable
-        var to: (BaseAnnotation & Searchable)?
+        var annotation: BaseAnnotation & Searchable
         
-        init(from: (BaseAnnotation & Searchable), to: (BaseAnnotation & Searchable)? = nil) {
-            self.from = from
-            self.to = to
+        init(annotation: BaseAnnotation & Searchable) {
+            self.annotation = annotation
         }
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SimpleShareCell.identifire, for: indexPath) as! SimpleShareCell
             
-            if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: SimpleShareCell.identifire, for: indexPath) as! SimpleShareCell
-                
-                cell.configurate()
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: ShareAppClip.identifire, for: indexPath) as! ShareAppClip
-                
-                cell.configurate()
-                
-                return cell
-            }
+            cell.configurate()
+            return cell
         }
         
         func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
-            if indexPath.row == 0 {
-                
-                let textToShare = [ "text" ]
-                let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-                activityViewController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)?.accessoryView
-                
-                if let vc = tableView.delegate as? UIViewController {
-                    vc.present(activityViewController, animated: true, completion: nil)
-                }
-                
-            } else {
-                if let vc = tableView.delegate as? UIViewController,
-                   let to = to {
-                    ShareDialog(from: from, to: to).present(to: vc, animated: true, completion: nil)
-                }
+            let textToShare = [ "text" ]
+            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)?.accessoryView
+            
+            if let vc = tableView.delegate as? UIViewController {
+                vc.present(activityViewController, animated: true, completion: nil)
             }
         }
     }
@@ -138,9 +118,5 @@ class SectionCollection: NSObject, UITableViewDataSource {
         }
         
         return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        UITableView.automaticDimension
     }
 }

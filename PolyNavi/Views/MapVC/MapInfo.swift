@@ -24,7 +24,7 @@ protocol RouteDetail {
 }
 
 protocol ExclusiveRouteDetail {
-    func show(from: MKAnnotation, to: MKAnnotation)
+    func show(from: MKAnnotation, to: MKAnnotation, asphalt: Bool, serviceRoute: Bool, allowParameterChange: Bool)
 }
 
 class MapInfo: BottomSheetViewController {
@@ -272,12 +272,12 @@ extension MapInfo: RouteDetail {
 }
 
 extension MapInfo: ExclusiveRouteDetail {
-    func show(from: MKAnnotation, to: MKAnnotation) {
+    func show(from: MKAnnotation, to: MKAnnotation, asphalt: Bool, serviceRoute: Bool, allowParameterChange: Bool) {
         if pages.last == .annotationInfo {
             mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
         }
         
-        getExclusiveRouteVC(completion: { $0.show(from: from, to: to) })
+        getExclusiveRouteVC(completion: { $0.show(from: from, to: to, asphalt: asphalt, serviceRoute: serviceRoute, allowParameterChange: allowParameterChange) })
     }
     
     func getExclusiveRouteVC(completion: @escaping (ExclusiveRouteDetailVC) -> Void) {

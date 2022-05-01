@@ -17,6 +17,7 @@ class ExclusiveRouteDetailVC: TableBottomSheetPage {
     }
     var pathID: UUID?
     var from, to: MKAnnotation?
+    var asphalt, serviceRoute, allowParameterChange: Bool?
     
     init(closable: Bool = false, mapViewDelegate: MapViewDelegate) {
         self.mapViewDelegate = mapViewDelegate
@@ -42,6 +43,7 @@ class ExclusiveRouteDetailVC: TableBottomSheetPage {
         tableView.register(ExclusiveSearchableCell.self, forCellReuseIdentifier: ExclusiveSearchableCell.identifire)
         tableView.register(ExclusiveCloseCell.self, forCellReuseIdentifier: ExclusiveCloseCell.identifire)
         tableView.register(SearchGroupedHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchGroupedHeaderView.identifier)
+        tableView.register(ToggleCell.self, forCellReuseIdentifier: ToggleCell.identifire)
         tableView.estimatedSectionFooterHeight = 0
         
         
@@ -127,7 +129,25 @@ extension ExclusiveRouteDetailVC {
 }
 
 extension ExclusiveRouteDetailVC {
-    func show(from: MKAnnotation, to: MKAnnotation) {
+    
+    func closeAlert() {
+        let alert = UIAlertController(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.title, message: L10n.MapInfo.ExclRoute.Info.CloseAlert.message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.cancel, style: .cancel))
+        
+        alert.addAction(UIAlertAction(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.end, style: .destructive, handler: { _ in
+            self.close(nil)
+        }))
+        
+        alert.view.tintColor = Asset.accentColor.color
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func show(from: MKAnnotation, to: MKAnnotation, asphalt: Bool, serviceRoute: Bool, allowParameterChange: Bool) {
+        
+        self.asphalt = asphalt
+        self.serviceRoute = serviceRoute
+        self.allowParameterChange = allowParameterChange
         
         [self.to, self.from].compactMap({ $0 }).forEach({
             mapViewDelegate.unpinAnnotation($0, animated: true)
@@ -136,14 +156,19 @@ extension ExclusiveRouteDetailVC {
         self.from = from
         self.to = to
         
-        if let pathID = pathID {
-            mapViewDelegate.removePath(id: pathID)
-        }
-    
-        
         [to, from].forEach({
             mapViewDelegate.pinAnnotation($0, animated: true)
         })
+        
+        drawPath()
+    }
+    
+    func drawPath() {
+        guard let from = from, let to = to else { return }
+        
+        if let pathID = pathID {
+            mapViewDelegate.removePath(id: pathID)
+        }
         
         let result = PathFinder.shared.findPath(from: from, to: to)
         
@@ -153,21 +178,12 @@ extension ExclusiveRouteDetailVC {
             pathID = nil
         }
         
-        if let result = result {
-            routeDetailInfo = ExclusiveRouteDetailInfo(result: result, onExclusiveClose: {
-                
-                let alert = UIAlertController(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.title, message: L10n.MapInfo.ExclRoute.Info.CloseAlert.message, preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.cancel, style: .cancel))
-                
-                alert.addAction(UIAlertAction(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.end, style: .destructive, handler: { _ in
-                    self.close(nil)
-                }))
-                
-                alert.view.tintColor = Asset.accentColor.color
-                self.present(alert, animated: true, completion: nil)
-                
-            })
+        if let routeDetailInfo = routeDetailInfo {
+            routeDetailInfo.configurate(result: result, tableView: tableView)
+        } else {
+            if let result = result {
+                routeDetailInfo = ExclusiveRouteDetailInfo(result: result, asphalt: asphalt ?? false, serviceRoute: serviceRoute ?? false, allowParameterChange: allowParameterChange ?? false, redrawPath: drawPath, onExclusiveClose: closeAlert)
+            }
         }
     }
 }

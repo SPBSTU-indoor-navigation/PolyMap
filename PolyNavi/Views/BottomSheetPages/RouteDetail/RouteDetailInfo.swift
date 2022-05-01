@@ -56,9 +56,9 @@ class RouteDetailInfo: SectionCollection {
         override var title: String? { L10n.MapInfo.Route.Info.parameters }
         override var cellCount: Int { 2 }
         
-        var asphalt: ((Bool)->Void)?, serviceRoute: ((Bool)->Void)?
+        var asphalt, serviceRoute: CustomBinding<Bool>
         
-        init(asphalt: ((Bool)->Void)?, serviceRoute: ((Bool)->Void)?) {
+        init(asphalt: CustomBinding<Bool>, serviceRoute: CustomBinding<Bool>) {
             self.asphalt = asphalt
             self.serviceRoute = serviceRoute
         }
@@ -67,9 +67,9 @@ class RouteDetailInfo: SectionCollection {
             let cell = tableView.dequeueReusableCell(withIdentifier: ToggleCell.identifire) as! ToggleCell
             
             if indexPath.row == 0 {
-                cell.configurate(title: L10n.MapInfo.Route.Info.asphalt, onToggle: asphalt)
+                cell.configurate(title: L10n.MapInfo.Route.Info.asphalt, value: asphalt.get(), onToggle: asphalt.set)
             } else {
-                cell.configurate(title: L10n.MapInfo.Route.Info.serviceRoute, onToggle: serviceRoute)
+                cell.configurate(title: L10n.MapInfo.Route.Info.serviceRoute, value: serviceRoute.get(), onToggle: serviceRoute.set)
             }
             
             return cell
@@ -78,6 +78,56 @@ class RouteDetailInfo: SectionCollection {
         func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
             if let toggle = tableView.cellForRow(at: indexPath) as? ToggleCell {
                 toggle.toggleSwitch()
+            }
+        }
+    }
+    
+    class RouteShare: Section, CellFor, SelectRowFor {
+        override var cellCount: Int { 2 }
+        
+        var from: BaseAnnotation & Searchable
+        var to: BaseAnnotation & Searchable
+        var asphalt: Bool
+        var serviceRoute: Bool
+        
+        init(from: BaseAnnotation & Searchable, to: BaseAnnotation & Searchable, asphalt: Bool, serviceRoute: Bool) {
+            self.from = from
+            self.to = to
+            self.asphalt = asphalt
+            self.serviceRoute = serviceRoute
+        }
+        
+        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: SimpleShareCell.identifire, for: indexPath) as! SimpleShareCell
+                
+                cell.configurate()
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ShareAppClip.identifire, for: indexPath) as! ShareAppClip
+                
+                cell.configurate()
+                
+                return cell
+            }
+        }
+        
+        func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
+            if indexPath.row == 0 {
+                
+                let textToShare = [ "text" ]
+                let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)?.accessoryView
+                
+                if let vc = tableView.delegate as? UIViewController {
+                    vc.present(activityViewController, animated: true, completion: nil)
+                }
+                
+            } else {
+                if let vc = tableView.delegate as? UIViewController {
+                    ShareDialog(from: from, to: to, asphalt: asphalt, serviceRoute: serviceRoute).present(to: vc, animated: true, completion: nil)
+                }
             }
         }
     }
@@ -92,16 +142,20 @@ class RouteDetailInfo: SectionCollection {
     }
     
     var redrawPath: (() -> Void)?
+    
     var asphalt: Bool = false {
         didSet {
             redrawPath?()
+            share?.asphalt = asphalt
         }
     }
     var serviceRoute: Bool = false {
         didSet {
             redrawPath?()
+            share?.serviceRoute = serviceRoute
         }
     }
+    var share: RouteShare?
     
     init(result: PathResult?, redrawPath: (() -> Void)?, asphalt: Bool, serviceRoute: Bool) {
         self.asphalt = asphalt
@@ -118,11 +172,16 @@ class RouteDetailInfo: SectionCollection {
         if let result = result {
             sections.append(PathInfo(result: result))
         }
-        sections.append(Settings(asphalt: { self.asphalt = $0 }, serviceRoute: { self.serviceRoute = $0 }))
+        sections.append(Settings(asphalt: .init(get: { self.asphalt }, set: { self.asphalt = $0 }),
+                                 serviceRoute: .init(get: { self.serviceRoute }, set: { self.serviceRoute = $0 })))
         if let result = result,
            let from = result.from as? (BaseAnnotation & Searchable),
            let to = result.to as? (BaseAnnotation & Searchable) {
-            sections.append(Share(from: from, to: to))
+            let section = RouteShare(from: from, to: to, asphalt: asphalt, serviceRoute: serviceRoute)
+            share = section
+            sections.append(section)
+        } else {
+            share = nil
         }
         
         sections.append(Report(favorite: false, report: true))

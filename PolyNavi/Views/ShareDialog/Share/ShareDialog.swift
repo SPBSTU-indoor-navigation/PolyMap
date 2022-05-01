@@ -66,28 +66,28 @@ struct ShareDialog: View {
                 .blackWhite: .init(background: "000", primary: "fff", secondary: "888", badgeTextColor: "fff"),
                 .whiteBlack: .init(background: "fff", primary: "000", secondary: "888", badgeTextColor: "000"),
                 
-                .grayWhite:  .init(background: "777", primary: "fff", secondary: "aaa", badgeTextColor: "fff"),
+                    .grayWhite:  .init(background: "777", primary: "fff", secondary: "aaa", badgeTextColor: "fff"),
                 .whiteGray:  .init(background: "fff", primary: "777", secondary: "aaa", badgeTextColor: "000"),
                 
-                .redWhite:   .init(background: "ff3b30", primary: "fff", secondary: "f99", badgeTextColor: "fff"),
+                    .redWhite:   .init(background: "ff3b30", primary: "fff", secondary: "f99", badgeTextColor: "fff"),
                 .whiteRed:   .init(background: "fff", primary: "ff3b30", secondary: "f99", badgeTextColor: "000"),
                 
-                .orangeWhite:.init(background: "EE7733", primary: "fff", secondary: "eb8", badgeTextColor: "000"),
+                    .orangeWhite:.init(background: "EE7733", primary: "fff", secondary: "eb8", badgeTextColor: "000"),
                 .whiteOrange:.init(background: "fff", primary: "EE7733", secondary: "eb8", badgeTextColor: "000"),
                 
-                .greenWhite: .init(background: "33AA22", primary: "fff", secondary: "9d9", badgeTextColor: "fff"),
+                    .greenWhite: .init(background: "33AA22", primary: "fff", secondary: "9d9", badgeTextColor: "fff"),
                 .whiteGreen: .init(background: "fff", primary: "33AA22", secondary: "9d9", badgeTextColor: "000"),
                 
-                .tealWhite:  .init(background: "00A6A1", primary: "fff", secondary: "8dc", badgeTextColor: "fff"),
+                    .tealWhite:  .init(background: "00A6A1", primary: "fff", secondary: "8dc", badgeTextColor: "fff"),
                 .whiteTeal:  .init(background: "fff", primary: "00A6A1", secondary: "8dc", badgeTextColor: "000"),
                 
-                .blueWhite:  .init(background: "007AFF", primary: "fff", secondary: "7df", badgeTextColor: "fff"),
+                    .blueWhite:  .init(background: "007AFF", primary: "fff", secondary: "7df", badgeTextColor: "fff"),
                 .whiteBlue:  .init(background: "fff", primary: "007AFF", secondary: "7df", badgeTextColor: "000"),
                 
-                .indigoWhite:.init(background: "5856D6", primary: "fff", secondary: "bbe", badgeTextColor: "fff"),
+                    .indigoWhite:.init(background: "5856D6", primary: "fff", secondary: "bbe", badgeTextColor: "fff"),
                 .whiteIndigo:.init(background: "fff", primary: "5856D6", secondary: "bbe", badgeTextColor: "000"),
                 
-                .purpleWhite:.init(background: "CC73E1", primary: "fff", secondary: "ebe", badgeTextColor: "fff"),
+                    .purpleWhite:.init(background: "CC73E1", primary: "fff", secondary: "ebe", badgeTextColor: "fff"),
                 .whitePurple:.init(background: "fff", primary: "CC73E1", secondary: "ebe", badgeTextColor: "000")
             ]
             
@@ -138,6 +138,14 @@ struct ShareDialog: View {
         let from: UUID
         let to: UUID
         let text: String?
+        
+        let asphalt: Bool
+        let serviceRoute: Bool
+        let allowParameterChange: Bool
+        
+        var routeSettings: CodeGeneratorProvider.RouteSettings {
+            .init(isQR: isQR, from: from, to: to, text: text, asphalt: asphalt, serviceRoute: serviceRoute, allowParameterChange: allowParameterChange)
+        }
     }
     
     @State var isQR: Bool = false
@@ -153,6 +161,8 @@ struct ShareDialog: View {
     
     var from: Searchable & BaseAnnotation
     var to: Searchable & BaseAnnotation
+    var asphalt: Bool
+    var serviceRoute: Bool
     
     var body: some View {
         NavigationView {
@@ -193,7 +203,8 @@ struct ShareDialog: View {
                 }
                 
                 Section {
-                    CreateButton(isQR: $isQR, serverReady: .constant(serverStatus?.data?.appclip == true), helloText: $helloText, colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant, from: from.imdfID, to: to.imdfID)
+                    CreateButton(serverReady: .constant(serverStatus?.data?.appclip == true),
+                                 settings: Settings(color: colorVariant, logo: logoVariant, bage: badgeVariant, isQR: isQR, from: from.imdfID, to: to.imdfID, text: helloText, asphalt: asphalt, serviceRoute: serviceRoute, allowParameterChange: routeParameterChanging))
                 }
             }
             .navigationBarTitle("\(L10n.Share.navigationTitle)", displayMode: .inline)
@@ -219,21 +230,15 @@ struct ShareDialog: View {
     
     
     struct CreateButton: View {
-        @Binding var isQR: Bool
         @Binding var serverReady: Bool
-        @Binding var helloText: String
-        @Binding var colorVariant: ColorVariant
-        @Binding var logoVariant: LogoVariant
-        @Binding var badgeVariant: BadgeVariant
-        var from: UUID
-        var to: UUID
+        var settings: Settings
         
         var body: some View {
             HStack {
                 Spacer()
                 ZStack {
                     if serverReady {
-                        NavigationLink(destination: { ShareResult(settings: Settings(color: colorVariant, logo: logoVariant, bage: badgeVariant, isQR: isQR, from: from, to: to, text: helloText)) }, label: { EmptyView() })
+                        NavigationLink(destination: { ShareResult(settings: settings) }, label: { EmptyView() })
                             .opacity(0.0)
                     }
                     RoundedRectangle(cornerRadius: 10)
@@ -353,9 +358,9 @@ struct ShareDialog: View {
                     }
                     ZStack {
                         ZStack {}
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color(UIColor.systemGroupedBackground))
-                            .edgesIgnoringSafeArea(.all)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color(UIColor.systemGroupedBackground))
+                        .edgesIgnoringSafeArea(.all)
                         
                         AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
                             .frame(maxWidth: 250)
@@ -407,7 +412,7 @@ struct ShareDialog: View {
                             .frame(maxWidth: 250)
                     }
                 }
-
+                
             }, label: {
                 HStack {
                     Text(L10n.Share.LogoVariant.title)
@@ -446,9 +451,9 @@ struct ShareDialog: View {
                     
                     ZStack {
                         ZStack {}
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color(UIColor.systemGroupedBackground))
-                            .edgesIgnoringSafeArea(.all)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color(UIColor.systemGroupedBackground))
+                        .edgesIgnoringSafeArea(.all)
                         
                         AppClipCodePreview(color: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
                             .frame(maxWidth: 250)
@@ -469,7 +474,9 @@ struct ShareDialog_Previews: PreviewProvider {
     
     static var previews: some View {
         ShareDialog(from: EnviromentAmenityAnnotation(coordinate: .init(latitude: 0, longitude: 0), imdfID: UUID(), properties: .init(name: nil, alt_name: nil, category: .banch, detailLevel: 1), detailLevel: 1),
-                    to: EnviromentAmenityAnnotation(coordinate: .init(latitude: 0, longitude: 0), imdfID: UUID(), properties: .init(name: nil, alt_name: nil, category: .banch, detailLevel: 1), detailLevel: 1))
+                    to: EnviromentAmenityAnnotation(coordinate: .init(latitude: 0, longitude: 0), imdfID: UUID(), properties: .init(name: nil, alt_name: nil, category: .banch, detailLevel: 1), detailLevel: 1),
+                    asphalt: false,
+                    serviceRoute: false)
             .preferredColorScheme(.dark)
             .environment(\.colorScheme, .light)
     }

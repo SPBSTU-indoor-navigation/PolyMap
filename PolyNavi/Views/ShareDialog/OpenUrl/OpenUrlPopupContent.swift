@@ -61,7 +61,6 @@ struct OpenUrlPopupContent: View {
                     }
                     .padding(.top)
                 }
-                
             }.frame(maxWidth: 500)
             
             Spacer()
@@ -70,13 +69,13 @@ struct OpenUrlPopupContent: View {
                 .foregroundColor(.secondary)
                 .font(.footnote)
                 .padding(.horizontal, 20)
-                
+            
             
             Button(action: {
                 if let from = from?.annotation,
                    let to = to?.annotation {
-                        MapInfo.exclusiveRouteDetail?.show(from: from, to: to)
-                    }
+                    MapInfo.exclusiveRouteDetail?.show(from: from, to: to, asphalt: data.asphalt, serviceRoute: data.serviceRoute, allowParameterChange: data.allowParameterChange)
+                }
                 
                 DispatchQueue.main.async {
                     dismiss(animated: true)
@@ -106,9 +105,7 @@ struct OpenUrlPopupContent: View {
 
 struct OpenUrlPopupContent_Previews: PreviewProvider {
     static var previews: some View {
-        OpenUrlPopupContent(data: .constant(.init(from: UUID(), to: UUID(), helloText: "hello world\ngg\n\nb\nrtgtg")))
+        OpenUrlPopupContent(data: .constant(.init(from: UUID(), to: UUID(), helloText: "hello world\nggb\n\nb\nb\nb\n\nb\nb\nb\nb\nbb\nrtgtg", asphalt: false, serviceRoute: false, allowParameterChange: false)))
             .preferredColorScheme(.dark)
-            .previewLayout(PreviewLayout.sizeThatFits)
-            .frame(width: 600, height: 900)
     }
 }

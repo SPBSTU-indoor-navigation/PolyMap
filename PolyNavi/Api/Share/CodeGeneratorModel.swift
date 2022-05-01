@@ -23,5 +23,8 @@ struct CodeGeneratorModel {
         let from: UUID
         let to: UUID
         let helloText: String
+        let asphalt: Bool
+        let serviceRoute: Bool
+        let allowParameterChange: Bool
     }
 }
