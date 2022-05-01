@@ -14,7 +14,7 @@ struct CodeGeneratorModel {
     }
     
     struct GenerateResponse: Codable {
-        let appClipID: Int
+        let codeID: String
         let base: String
         let codeUrl: String
     }

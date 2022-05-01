@@ -135,9 +135,9 @@ struct ShareResult: View {
             CodeGeneratorProvider.generateCode(settings: settings.routeSettings, completion: { res in
                 if let res = res.data {
                     response = res
-                    tutorial = CodeGeneratorProvider.tutorialUrl(id: res.appClipID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage)
+                    tutorial = CodeGeneratorProvider.tutorialUrl(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage)
                     
-                    CodeGeneratorProvider.loadAppclip(id: res.appClipID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: false, width: 512, completion: { res in
+                    CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: false, width: 512, completion: { res in
                         if let url = res.data,
                            let data = try? Data(contentsOf: url),
                            let img = UIImage(data: data) {
@@ -147,11 +147,11 @@ struct ShareResult: View {
                         }
                     })
                     
-                    CodeGeneratorProvider.loadAppclip(id: res.appClipID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: true, completion: {
+                    CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: true, completion: {
                         svg = cast($0)
                     })
                     
-                    CodeGeneratorProvider.loadAppclip(id: res.appClipID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: false, width: 2048, completion: {
+                    CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: false, width: 2048, completion: {
                         png = cast($0)
                     })
                 } else {

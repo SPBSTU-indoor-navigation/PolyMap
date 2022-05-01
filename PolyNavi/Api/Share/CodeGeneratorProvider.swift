@@ -49,7 +49,7 @@ class CodeGeneratorProvider {
         load(url: "/generate", metod: .post, params: params, enecodig: JSONEncoding.default, completion: completion)
     }
     
-    static func createParams(id: Int,
+    static func createParams(id: String,
                              colorVariant: ShareDialog.ColorVariant?,
                              logoVariant: ShareDialog.LogoVariant?,
                              badgeVariant: ShareDialog.BadgeVariant?) -> [String : String] {
@@ -69,7 +69,7 @@ class CodeGeneratorProvider {
         return params
     }
     
-    static func tutorialUrl(id: Int,
+    static func tutorialUrl(id: String,
                             colorVariant: ShareDialog.ColorVariant?,
                             logoVariant: ShareDialog.LogoVariant?,
                             badgeVariant: ShareDialog.BadgeVariant?) -> URL {
@@ -80,7 +80,7 @@ class CodeGeneratorProvider {
         return URL(string: Constants.BASE_URL + "/tutorial?" + params.compactMap({ (key, value) in "\(key)=\(value)" }).joined(separator: "&"))!
     }
     
-    static func loadAppclip(id: Int,
+    static func loadAppclip(id: String,
                             colorVariant: ShareDialog.ColorVariant?,
                             logoVariant: ShareDialog.LogoVariant?,
                             badgeVariant: ShareDialog.BadgeVariant?,
