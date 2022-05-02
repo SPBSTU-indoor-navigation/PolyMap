@@ -175,6 +175,8 @@
 		978769A927FBC0FE008138EC /* PathMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978769A727FBC0FE008138EC /* PathMapView.swift */; };
 		97882E5B281E2999001D3F19 /* CustomBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97882E5A281E2999001D3F19 /* CustomBinding.swift */; };
 		97882E5C281E29C6001D3F19 /* CustomBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97882E5A281E2999001D3F19 /* CustomBinding.swift */; };
+		97882E5E281F77BE001D3F19 /* QRCodePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97882E5D281F77BE001D3F19 /* QRCodePreview.swift */; };
+		97882E5F281F77BE001D3F19 /* QRCodePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97882E5D281F77BE001D3F19 /* QRCodePreview.swift */; };
 		978B320827EE630300760B78 /* OccupantSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B320727EE630300760B78 /* OccupantSearchCell.swift */; };
 		978B320927EE630300760B78 /* OccupantSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B320727EE630300760B78 /* OccupantSearchCell.swift */; };
 		978B320C27EE638300760B78 /* AttractionSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B320B27EE638300760B78 /* AttractionSearchCell.swift */; };
@@ -370,6 +372,7 @@
 		978769A327FBB6BD008138EC /* GradientPathRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPathRenderer.swift; sourceTree = "<group>"; };
 		978769A727FBC0FE008138EC /* PathMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathMapView.swift; sourceTree = "<group>"; };
 		97882E5A281E2999001D3F19 /* CustomBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBinding.swift; sourceTree = "<group>"; };
+		97882E5D281F77BE001D3F19 /* QRCodePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodePreview.swift; sourceTree = "<group>"; };
 		978B320727EE630300760B78 /* OccupantSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupantSearchCell.swift; sourceTree = "<group>"; };
 		978B320B27EE638300760B78 /* AttractionSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionSearchCell.swift; sourceTree = "<group>"; };
 		978B320E27EE7C0A00760B78 /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
@@ -753,6 +756,7 @@
 				973962DB280CE4E9000E478F /* CodeVariant.swift */,
 				974D423E280E110A00F05434 /* ShareResult.swift */,
 				974D424F2810E08100F05434 /* AppClipCodePreview.swift */,
+				97882E5D281F77BE001D3F19 /* QRCodePreview.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -1316,6 +1320,7 @@
 				9750153B2793BA1400326B09 /* Animator.swift in Sources */,
 				975015472795B19200326B09 /* Shared.swift in Sources */,
 				979E2C812789DE95008CFA05 /* Models.swift in Sources */,
+				97882E5E281F77BE001D3F19 /* QRCodePreview.swift in Sources */,
 				974D426B2814D62400F05434 /* ExclusiveRouteDetailVC.swift in Sources */,
 				974D424D280F8B0200F05434 /* CodeGeneratorModel.swift in Sources */,
 				9780D8B727B32C7000DBDBF3 /* BottomSheetViewController.swift in Sources */,
@@ -1454,6 +1459,7 @@
 				978B321B27EFF1C500760B78 /* SearchShared.swift in Sources */,
 				974D4247280F894100F05434 /* NetworkShared.swift in Sources */,
 				971F8E0F27BD556B0018F98A /* OccupantAnnotation.swift in Sources */,
+				97882E5F281F77BE001D3F19 /* QRCodePreview.swift in Sources */,
 				973962BF2808DCB4000E478F /* SearchLine.swift in Sources */,
 				978B320927EE630300760B78 /* OccupantSearchCell.swift in Sources */,
 				974D426C2814D62400F05434 /* ExclusiveRouteDetailVC.swift in Sources */,

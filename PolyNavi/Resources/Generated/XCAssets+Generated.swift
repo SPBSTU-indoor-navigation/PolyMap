@@ -121,6 +121,12 @@ internal enum Asset {
     internal static let rotateBuilding = ImageAsset(name: "rotateBuilding")
     internal static let to = ImageAsset(name: "to")
   }
+  internal enum Qr {
+    internal static let qrBackground = ImageAsset(name: "qrBackground")
+    internal static let qrData = ImageAsset(name: "qrData")
+    internal static let qrDataFull = ImageAsset(name: "qrDataFull")
+    internal static let qrLogo = ImageAsset(name: "qrLogo")
+  }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

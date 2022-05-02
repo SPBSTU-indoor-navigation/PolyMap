@@ -163,42 +163,24 @@ internal enum L10n {
       /// Color
       internal static let title = L10n.tr("Localizable", "Share.ColorVariant.Title")
       internal enum Preset {
-        /// Black / White
-        internal static let blackWhite = L10n.tr("Localizable", "Share.ColorVariant.Preset.blackWhite")
-        /// Blue / White
-        internal static let blueWhite = L10n.tr("Localizable", "Share.ColorVariant.Preset.blueWhite")
-        /// Grey / White
-        internal static let grayWhite = L10n.tr("Localizable", "Share.ColorVariant.Preset.grayWhite")
-        /// Green / White
-        internal static let greenWhite = L10n.tr("Localizable", "Share.ColorVariant.Preset.greenWhite")
-        /// Indigo / White
-        internal static let indigoWhite = L10n.tr("Localizable", "Share.ColorVariant.Preset.indigoWhite")
-        /// Orange / White
-        internal static let orangeWhite = L10n.tr("Localizable", "Share.ColorVariant.Preset.orangeWhite")
-        /// Purple / White
-        internal static let purpleWhite = L10n.tr("Localizable", "Share.ColorVariant.Preset.purpleWhite")
-        /// Red / White
-        internal static let redWhite = L10n.tr("Localizable", "Share.ColorVariant.Preset.redWhite")
-        /// Teal / White
-        internal static let tealWhite = L10n.tr("Localizable", "Share.ColorVariant.Preset.tealWhite")
-        /// White / Black
-        internal static let whiteBlack = L10n.tr("Localizable", "Share.ColorVariant.Preset.whiteBlack")
-        /// White / Blue
-        internal static let whiteBlue = L10n.tr("Localizable", "Share.ColorVariant.Preset.whiteBlue")
-        /// White / Grey
-        internal static let whiteGray = L10n.tr("Localizable", "Share.ColorVariant.Preset.whiteGray")
-        /// White / Green
-        internal static let whiteGreen = L10n.tr("Localizable", "Share.ColorVariant.Preset.whiteGreen")
-        /// White / Indigo
-        internal static let whiteIndigo = L10n.tr("Localizable", "Share.ColorVariant.Preset.whiteIndigo")
-        /// White / Orange
-        internal static let whiteOrange = L10n.tr("Localizable", "Share.ColorVariant.Preset.whiteOrange")
-        /// White / Purple
-        internal static let whitePurple = L10n.tr("Localizable", "Share.ColorVariant.Preset.whitePurple")
-        /// White / Red
-        internal static let whiteRed = L10n.tr("Localizable", "Share.ColorVariant.Preset.whiteRed")
-        /// White / Teal
-        internal static let whiteTeal = L10n.tr("Localizable", "Share.ColorVariant.Preset.whiteTeal")
+        /// Black
+        internal static let black = L10n.tr("Localizable", "Share.ColorVariant.Preset.black")
+        /// Blue
+        internal static let blue = L10n.tr("Localizable", "Share.ColorVariant.Preset.blue")
+        /// Grey
+        internal static let gray = L10n.tr("Localizable", "Share.ColorVariant.Preset.gray")
+        /// Green
+        internal static let green = L10n.tr("Localizable", "Share.ColorVariant.Preset.green")
+        /// Indigo
+        internal static let indigo = L10n.tr("Localizable", "Share.ColorVariant.Preset.indigo")
+        /// Orange
+        internal static let orange = L10n.tr("Localizable", "Share.ColorVariant.Preset.orange")
+        /// Purple
+        internal static let purple = L10n.tr("Localizable", "Share.ColorVariant.Preset.purple")
+        /// Red
+        internal static let red = L10n.tr("Localizable", "Share.ColorVariant.Preset.red")
+        /// Teal
+        internal static let teal = L10n.tr("Localizable", "Share.ColorVariant.Preset.teal")
       }
     }
     internal enum ErrorAlert {

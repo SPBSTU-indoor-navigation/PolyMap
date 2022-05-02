@@ -65,7 +65,7 @@ struct AppClipCodePreview: View {
 
 struct AppClipCodePreview_Previews: PreviewProvider {
     static var previews: some View {
-        AppClipCodePreview(color: .init(get: { .greenWhite }, set: { _ in}), logoVariant: .init(get: { .phone }, set: { _ in}), badgeVariant: .init(get: { .circle }, set: { _ in}))
+        AppClipCodePreview(color: .constant(.init(inverted: false, currentVariant: .green)), logoVariant: .constant(.camera), badgeVariant: .constant(.badge))
             .previewLayout(.fixed(width: 900, height: 600))
     }
 }

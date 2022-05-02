@@ -132,28 +132,32 @@ struct ShareResult: View {
                 }
             }
             
+            let loadPreview: (ApiStatus<URL>) -> Void = { res in
+                if let url = res.data,
+                   let data = try? Data(contentsOf: url),
+                   let img = UIImage(data: data) {
+                    result = img
+                } else {
+                    print("Error load image")
+                }
+            }
+            
             CodeGeneratorProvider.generateCode(settings: settings.routeSettings, completion: { res in
                 if let res = res.data {
                     response = res
                     tutorial = CodeGeneratorProvider.tutorialUrl(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage)
                     
-                    CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: false, width: 512, completion: { res in
-                        if let url = res.data,
-                           let data = try? Data(contentsOf: url),
-                           let img = UIImage(data: data) {
-                            result = img
-                        } else {
-                            print("Error load image")
-                        }
-                    })
-                    
-                    CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: true, completion: {
-                        svg = cast($0)
-                    })
-                    
-                    CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: false, width: 2048, completion: {
-                        png = cast($0)
-                    })
+                    if settings.isQR {
+                        CodeGeneratorProvider.loadQR(id: res.codeID, colorVariant: settings.color, logoVariant: settings.qrLogoVariant, svg: false, width: 512, completion: loadPreview)
+                        
+                        CodeGeneratorProvider.loadQR(id: res.codeID, colorVariant: settings.color, logoVariant: settings.qrLogoVariant, svg: true, completion: { svg = cast($0) })
+                        CodeGeneratorProvider.loadQR(id: res.codeID, colorVariant: settings.color, logoVariant: settings.qrLogoVariant, svg: false, width: 2048, completion: { png = cast($0) })
+                    } else {
+                        CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: false, width: 512, completion: loadPreview)
+                        
+                        CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: true, completion: { svg = cast($0) })
+                        CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: false, width: 2048, completion: { png = cast($0) })
+                    }
                 } else {
                     print("Error generate")
                 }
@@ -164,7 +168,7 @@ struct ShareResult: View {
 
 struct ShareResult_Previews: PreviewProvider {
     static var previews: some View {
-        ShareResult(settings: .init(color: .greenWhite, logo: .camera, bage: .circle, isQR: false, from: UUID(), to: UUID(), text: "", asphalt: false, serviceRoute: false, allowParameterChange: false))
+        ShareResult(settings: .init(color: .init(inverted: false, currentVariant: .green), logo: .camera, bage: .circle, qrLogoVariant: nil, isQR: false, from: UUID(), to: UUID(), text: "", asphalt: false, serviceRoute: false, allowParameterChange: false))
             .environment(\.colorScheme, .dark)
     }
 }

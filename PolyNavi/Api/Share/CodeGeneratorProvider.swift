@@ -80,6 +80,28 @@ class CodeGeneratorProvider {
         return URL(string: Constants.BASE_URL + "/tutorial?" + params.compactMap({ (key, value) in "\(key)=\(value)" }).joined(separator: "&"))!
     }
     
+    fileprivate static func processData(_ res: AFDataResponse<Data?>, filePath: String, completion: @escaping (ApiStatus<URL>) -> Void) {
+        if let data = res.data {
+            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            let filePath =  "\(path)/\(filePath)";
+            
+            do {
+                let url = URL(fileURLWithPath: filePath)
+                try data.write(to: url)
+                completion(.successWith(url))
+            } catch {
+                completion(.error)
+            }
+            
+        } else {
+            if res.error?.responseCode == 13 {
+                completion(.errorNoInternet)
+            } else {
+                completion(.error)
+            }
+        }
+    }
+    
     static func loadAppclip(id: String,
                             colorVariant: ShareDialog.ColorVariant?,
                             logoVariant: ShareDialog.LogoVariant?,
@@ -94,25 +116,33 @@ class CodeGeneratorProvider {
         
         AF.request(Constants.BASE_URL + "/api/appclip-code", method: .get, parameters: params)
             .response(completionHandler: { res in
-                if let data = res.data {
-                    let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-                    let filePath =  "\(path)/AppClip.\(svg ? "svg" : "png")";
-                    
-                    do {
-                        let url = URL(fileURLWithPath: filePath)
-                        try data.write(to: url)
-                        completion(.successWith(url))
-                    } catch {
-                        completion(.error)
-                    }
-                    
-                } else {
-                    if res.error?.responseCode == 13 {
-                        completion(.errorNoInternet)
-                    } else {
-                        completion(.error)
-                    }
-                }
+                processData(res, filePath: "AppClip.\(svg ? "svg" : "png")", completion: completion)
+            })
+    }
+                      
+    
+    static func loadQR(id: String,
+                            colorVariant: ShareDialog.ColorVariant?,
+                            logoVariant: ShareDialog.QRLogoVariant?,
+                            svg: Bool,
+                            width: Int = 2048,
+                            completion: @escaping (ApiStatus<URL>) -> Void) {
+
+        var params: [String : String] = [
+            "id": "\(id)",
+            "type": svg ? "svg" : "png"
+        ]
+        
+        let preset = colorVariant?.preset
+        if let color = preset?.background { params["background"] = color }
+        if let color = preset?.primary { params["primary"] = color }
+        
+        if let logo = logoVariant { params["logo"] = String(logo == .use) }
+        
+        
+        AF.request(Constants.BASE_URL + "/api/qr-code", method: .get, parameters: params)
+            .response(completionHandler: { res in
+                processData(res, filePath: "QR.\(svg ? "svg" : "png")", completion: completion)
             })
     }
 }

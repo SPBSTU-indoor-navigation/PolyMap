@@ -86,24 +86,15 @@ Share.OpenURL.Continue = "Continue";
 
 //MARK:- ShareDialog
 Share.ColorVariant.Title = "Color";
-Share.ColorVariant.Preset.whiteBlack = "White / Black";
-Share.ColorVariant.Preset.blackWhite = "Black / White";
-Share.ColorVariant.Preset.grayWhite = "Grey / White";
-Share.ColorVariant.Preset.whiteGray = "White / Grey";
-Share.ColorVariant.Preset.redWhite = "Red / White";
-Share.ColorVariant.Preset.whiteRed = "White / Red";
-Share.ColorVariant.Preset.orangeWhite = "Orange / White";
-Share.ColorVariant.Preset.whiteOrange = "White / Orange";
-Share.ColorVariant.Preset.greenWhite = "Green / White";
-Share.ColorVariant.Preset.whiteGreen = "White / Green";
-Share.ColorVariant.Preset.tealWhite = "Teal / White";
-Share.ColorVariant.Preset.whiteTeal = "White / Teal";
-Share.ColorVariant.Preset.blueWhite = "Blue / White";
-Share.ColorVariant.Preset.whiteBlue = "White / Blue";
-Share.ColorVariant.Preset.indigoWhite = "Indigo / White";
-Share.ColorVariant.Preset.whiteIndigo = "White / Indigo";
-Share.ColorVariant.Preset.purpleWhite = "Purple / White";
-Share.ColorVariant.Preset.whitePurple = "White / Purple";
+Share.ColorVariant.Preset.black = "Black";
+Share.ColorVariant.Preset.gray = "Grey";
+Share.ColorVariant.Preset.red = "Red";
+Share.ColorVariant.Preset.orange = "Orange";
+Share.ColorVariant.Preset.green = "Green";
+Share.ColorVariant.Preset.teal = "Teal";
+Share.ColorVariant.Preset.blue = "Blue";
+Share.ColorVariant.Preset.indigo = "Indigo";
+Share.ColorVariant.Preset.purple = "Purple";
 
 Share.LogoVariant.Title = "Logo";
 Share.LogoVariant.Camera = "Scan Only";

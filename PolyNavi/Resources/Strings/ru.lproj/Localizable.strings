@@ -86,24 +86,15 @@ Share.OpenURL.Continue = "Продолжить";
 
 //MARK:- ShareDialog
 Share.ColorVariant.Title = "Цвет";
-Share.ColorVariant.Preset.whiteBlack = "Белый / Черный";
-Share.ColorVariant.Preset.blackWhite = "Черный / Белый";
-Share.ColorVariant.Preset.grayWhite = "Серый / Белый";
-Share.ColorVariant.Preset.whiteGray = "Белый / Серый";
-Share.ColorVariant.Preset.redWhite = "Красный / Белый";
-Share.ColorVariant.Preset.whiteRed = "Белый / Красный";
-Share.ColorVariant.Preset.orangeWhite = "Оранжевый / Белый";
-Share.ColorVariant.Preset.whiteOrange = "Белый / Оранжевый";
-Share.ColorVariant.Preset.greenWhite = "Зеленый / Белый";
-Share.ColorVariant.Preset.whiteGreen = "Белый / Зеленый";
-Share.ColorVariant.Preset.tealWhite = "Сине-зеленый / Белый";
-Share.ColorVariant.Preset.whiteTeal = "Белый / Сине-зеленый";
-Share.ColorVariant.Preset.blueWhite = "Синий / Белый";
-Share.ColorVariant.Preset.whiteBlue = "Белый / Синий";
-Share.ColorVariant.Preset.indigoWhite = "Индиго / Белый";
-Share.ColorVariant.Preset.whiteIndigo = "Белый / Индиго";
-Share.ColorVariant.Preset.purpleWhite = "Фиолетовый / Белый";
-Share.ColorVariant.Preset.whitePurple = "Белый / Фиолетовый";
+Share.ColorVariant.Preset.black = "Чёрный";
+Share.ColorVariant.Preset.gray = "Серый";
+Share.ColorVariant.Preset.red = "Красный";
+Share.ColorVariant.Preset.orange = "Оранжевый";
+Share.ColorVariant.Preset.green = "Зелёный";
+Share.ColorVariant.Preset.teal = "Сине-зеленый";
+Share.ColorVariant.Preset.blue = "Синий";
+Share.ColorVariant.Preset.indigo = "Индиго";
+Share.ColorVariant.Preset.purple = "Фиолетовый";
 
 Share.LogoVariant.Title = "Тип кода";
 Share.LogoVariant.Camera = "Только сканирование";
