@@ -66,7 +66,7 @@ class CodeGeneratorAppOpen {
             var dict: [String:String] = [:]
             
             for item in queryItems {
-                dict[item.name] = item.value!.lowercased()
+                dict[item.name.lowercased()] = item.value!.lowercased()
             }
             
             return dict
