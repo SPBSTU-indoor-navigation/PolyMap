@@ -127,9 +127,9 @@ struct ShareDialog: View {
         var localizrdName: String {
             switch self {
             case .use:
-                return "Использовать"
+                return L10n.Share.QRLogoVariant.use
             case .none:
-                return "Не использовать"
+                return L10n.Share.QRLogoVariant.none
             }
         }
     }
@@ -168,7 +168,7 @@ struct ShareDialog: View {
         }
     }
     
-    @State var isQR: Bool = false
+    @State var isQR: Bool = true
     @State var showHelloText: Bool = false
     @State var routeParameterChanging: Bool = false
     @State var helloText: String = ""
@@ -210,9 +210,9 @@ struct ShareDialog: View {
                 HelloTextSection(showHelloText: $showHelloText, helloText: $helloText)
                 
                 Section(content: {
-                    Toggle(isOn: $routeParameterChanging, label: { Text("Изменение параметров") })
+                    Toggle(isOn: $routeParameterChanging, label: { Text(L10n.Share.allowParameterChange) })
                 }, footer: {
-                    Text("Разрешить пользователю менять параметры построеня маршрута (служебные маршруты/асфальтированные дороги)")
+                    Text(L10n.Share.AllowParameterChange.description)
                 })
                 
                 CodeVariantSection(isQR: $isQR, warningQR: $warningQR, warningAppClip: $warningAppClip)
@@ -235,7 +235,7 @@ struct ShareDialog: View {
                         QRColorSection(colorVariant: $colorVariant, logoVariant: $qrLogoVariant)
                     }
                     
-                    SettingsLine(title: "Лого", current: .constant(qrLogoVariant.localizrdName)) {
+                    SettingsLine(title: L10n.Share.QRLogoVariant.title, current: .constant(qrLogoVariant.localizrdName)) {
                         QRLogoSection(colorVariant: $colorVariant, logoVariant: $qrLogoVariant)
                     }
                 }
@@ -245,13 +245,13 @@ struct ShareDialog: View {
                         if serverStatus == nil {
                             HStack {
                                 ActivityIndicator(style: .medium)
-                                Text("Проверка соединения...")
+                                Text(L10n.Share.connectionCheck)
                                     .foregroundColor(.secondary)
                             }
                         } else {
                             if case .error = serverStatus,
                                case .errorNoInternet = serverStatus {
-                                Text("Сервер недоступен")
+                                Text(L10n.Share.connectionError)
                                     .foregroundColor(.secondary)
                             }
                         }
@@ -467,7 +467,7 @@ struct ShareDialog: View {
                         }) {
                             HStack {
                                 Image(systemName: "arrow.up.arrow.down")
-                                Text("Поменять цвета")
+                                Text(L10n.Share.ColorVariant.Preview.changeColor)
                             }
                         }
                     }.padding()
@@ -522,7 +522,7 @@ struct ShareDialog: View {
                         }) {
                             HStack {
                                 Image(systemName: "arrow.up.arrow.down")
-                                Text("Поменять цвета")
+                                Text(L10n.Share.ColorVariant.Preview.changeColor)
                             }
                         }
                     }.padding()

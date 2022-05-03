@@ -85,6 +85,9 @@ Share.OpenURL.Continue = "Continue";
 
 
 //MARK:- ShareDialog
+Share.MainInfo = "You can create a QR or AppClip code associated with this route, after scanning, the user will see a welcome message and the route in exclusive mode.\n\nIf the user does not have the PolyMap application installed on the device, then a simplified Clip application with a route will open when scanning";
+Share.NavigationTitle = "Code generation";
+
 Share.ColorVariant.Title = "Color";
 Share.ColorVariant.Preset.black = "Black";
 Share.ColorVariant.Preset.gray = "Grey";
@@ -95,11 +98,16 @@ Share.ColorVariant.Preset.teal = "Teal";
 Share.ColorVariant.Preset.blue = "Blue";
 Share.ColorVariant.Preset.indigo = "Indigo";
 Share.ColorVariant.Preset.purple = "Purple";
+Share.ColorVariant.Preview.ChangeColor = "Change color";
 
 Share.LogoVariant.Title = "Logo";
 Share.LogoVariant.Camera = "Scan Only";
 Share.LogoVariant.Phone = "NFC";
 Share.LogoVariant.Info = "If you combine the code with an NFC tag, please select the NFC design. If you don't insert an NFC tag, please select «Scan Only» design";
+
+Share.QRLogoVariant.Title = "Logo";
+Share.QRLogoVariant.Use = "Use logo";
+Share.QRLogoVariant.None = "No logo";
 
 Share.BadgeVariant.Title = "Badge variant";
 Share.BadgeVariant.Circle = "No logo";
@@ -110,19 +118,21 @@ Share.BadgeVariant.Info = "It is recommended to use the code with the logo, exce
 Share.CodeVariant.Title = "Code variant";
 Share.CodeVariant.QR = "QR";
 Share.CodeVariant.AppClip = "AppClip";
-Share.CodeVariant.Info = "The QR code can contain a route from any one point to any other\n\nAppClip code can contain a route starting only at the main entrance to the campus, but it looks more beautiful";
+Share.CodeVariant.Info = "The QR code can be scanned on any device and is more familiar to users\n\nAppClip code is a new development by Apple, scanned only by the company's devices, but it looks more beautiful than a QR code";
+
+Share.AllowParameterChange = "Allow parameter changes";
+Share.AllowParameterChange.Description = "Allow user to change route building parameters (service routes/paved roads)";
 
 Share.HelloText.Title = "Display welcome message";
 Share.HelloText.Placehodler = "Enter your welcome message";
 Share.HelloText.Info = "Will be shown in a pop-up window after scanning the code";
 
-Share.MainInfo = "You can create a QR code associated with this route";
-Share.NavigationTitle = "Code generation";
-
 Share.ErrorAlert.AppClip.Message = "The AppClip code generation server is temporarily unavailable, try again later or contact the developer directly";
 Share.ErrorAlert.QR.Message = "The QR code generation server is temporarily unavailable, try again later or contact the developer directly";
 Share.ErrorAlert.Message = "The code generation server is temporarily unavailable, try again later or contact the developer directly";
 
+Share.ConnectionCheck = "Check connection...";
+Share.ConnectionError = "Server unavilable";
 Share.Create = "Generate";
 
 

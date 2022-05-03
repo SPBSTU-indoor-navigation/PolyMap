@@ -133,12 +133,22 @@ internal enum L10n {
   }
 
   internal enum Share {
+    /// Allow parameter changes
+    internal static let allowParameterChange = L10n.tr("Localizable", "Share.AllowParameterChange")
+    /// Check connection...
+    internal static let connectionCheck = L10n.tr("Localizable", "Share.ConnectionCheck")
+    /// Server unavilable
+    internal static let connectionError = L10n.tr("Localizable", "Share.ConnectionError")
     /// Generate
     internal static let create = L10n.tr("Localizable", "Share.Create")
-    /// You can create a QR code associated with this route
+    /// You can create a QR or AppClip code associated with this route, after scanning, the user will see a welcome message and the route in exclusive mode.\n\nIf the user does not have the PolyMap application installed on the device, then a simplified shortcut application with a route will open when scanning
     internal static let mainInfo = L10n.tr("Localizable", "Share.MainInfo")
     /// Code generation
     internal static let navigationTitle = L10n.tr("Localizable", "Share.NavigationTitle")
+    internal enum AllowParameterChange {
+      /// Allow user to change route building parameters (service routes/paved roads)
+      internal static let description = L10n.tr("Localizable", "Share.AllowParameterChange.Description")
+    }
     internal enum BadgeVariant {
       /// Use logo
       internal static let badge = L10n.tr("Localizable", "Share.BadgeVariant.Badge")
@@ -152,7 +162,7 @@ internal enum L10n {
     internal enum CodeVariant {
       /// AppClip
       internal static let appClip = L10n.tr("Localizable", "Share.CodeVariant.AppClip")
-      /// The QR code can contain a route from any one point to any other\n\nAppClip code can contain a route starting only at the main entrance to the campus, but it looks more beautiful
+      /// The QR code can be scanned on any device and is more familiar to users\n\nAppClip code is a new development by Apple, scanned only by the company's devices, but it looks more beautiful than a QR code
       internal static let info = L10n.tr("Localizable", "Share.CodeVariant.Info")
       /// QR
       internal static let qr = L10n.tr("Localizable", "Share.CodeVariant.QR")
@@ -181,6 +191,10 @@ internal enum L10n {
         internal static let red = L10n.tr("Localizable", "Share.ColorVariant.Preset.red")
         /// Teal
         internal static let teal = L10n.tr("Localizable", "Share.ColorVariant.Preset.teal")
+      }
+      internal enum Preview {
+        /// Change color
+        internal static let changeColor = L10n.tr("Localizable", "Share.ColorVariant.Preview.ChangeColor")
       }
     }
     internal enum ErrorAlert {
@@ -224,6 +238,14 @@ internal enum L10n {
       internal static let openInfo = L10n.tr("Localizable", "Share.OpenURL.OpenInfo")
       /// Welcome
       internal static let title = L10n.tr("Localizable", "Share.OpenURL.Title")
+    }
+    internal enum QRLogoVariant {
+      /// No logo
+      internal static let `none` = L10n.tr("Localizable", "Share.QRLogoVariant.None")
+      /// Logo
+      internal static let title = L10n.tr("Localizable", "Share.QRLogoVariant.Title")
+      /// Use logo
+      internal static let use = L10n.tr("Localizable", "Share.QRLogoVariant.Use")
     }
     internal enum Result {
       /// Done
