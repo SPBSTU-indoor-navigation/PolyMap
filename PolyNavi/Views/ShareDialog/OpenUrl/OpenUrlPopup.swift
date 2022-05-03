@@ -22,7 +22,11 @@ struct OpenUrlPopup: View {
         }
         .onAppear {
             CodeGeneratorProvider.loadData(id: id, completion: {
-                data = $0.data
+                if case .successWith(let data) = $0 {
+                    self.data = data
+                } else {
+                    dismiss(animated: true)
+                }
             })
         }
     }

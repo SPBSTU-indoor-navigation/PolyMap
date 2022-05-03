@@ -26,11 +26,11 @@ enum ApiStatus<T> {
 }
 
 class NetworkShared {
-    static func load<T:Codable>(url: String, metod: HTTPMethod, params: Dictionary<String, String>, enecodig: ParameterEncoding = URLEncoding.default, completion: @escaping (ApiStatus<T>) -> Void) {
+    static func load<T:Codable>(url: String, metod: HTTPMethod, params: Dictionary<String, String>, enecodig: ParameterEncoding = URLEncoding.default, timeoutInterval: TimeInterval = 30, completion: @escaping (ApiStatus<T>) -> Void) {
         AF.request(url,
                    method: metod,
                    parameters: params,
-                   encoding: enecodig)
+                   encoding: enecodig) { $0.timeoutInterval = timeoutInterval }
             .responseDecodable(of: T.self) { response in
                 if let responseCode = response.response?.statusCode {
                     switch responseCode {

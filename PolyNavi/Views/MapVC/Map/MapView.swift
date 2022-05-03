@@ -540,7 +540,6 @@ extension MapView: MapViewDelegate {
     }
     
     func addPath(path: [PathResultNode]) -> UUID {
-//        mapView.addPath(path: path)
         return venue?.addPath(mapView, path: path) ?? UUID()
     }
     

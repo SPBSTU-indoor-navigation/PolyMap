@@ -248,6 +248,11 @@ extension MapInfo: MapInfoDelegate {
 
 extension MapInfo: RouteDetail {
     func setup(from: MKAnnotation, to: MKAnnotation, routeParams: RouteParameters) {
+        
+        if let annotation = currentSelection {
+            mapViewDelegate?.deselectAnnotation(annotation, animated: true)
+        }
+        
         let vc = getRouteVC()
         vc.setup(from: from, to: to, routeParams: routeParams)
     }

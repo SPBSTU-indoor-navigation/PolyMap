@@ -141,7 +141,7 @@ internal enum L10n {
     internal static let connectionError = L10n.tr("Localizable", "Share.ConnectionError")
     /// Generate
     internal static let create = L10n.tr("Localizable", "Share.Create")
-    /// You can create a QR or AppClip code associated with this route, after scanning, the user will see a welcome message and the route in exclusive mode.\n\nIf the user does not have the PolyMap application installed on the device, then a simplified shortcut application with a route will open when scanning
+    /// You can create a QR or AppClip code associated with this route, after scanning, the user will see a welcome message and the route in exclusive mode.\n\nIf the user does not have the PolyMap application installed on the device, then a simplified Clip application with a route will open when scanning
     internal static let mainInfo = L10n.tr("Localizable", "Share.MainInfo")
     /// Code generation
     internal static let navigationTitle = L10n.tr("Localizable", "Share.NavigationTitle")

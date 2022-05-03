@@ -22,8 +22,8 @@ class CodeGeneratorProvider {
         let allowParameterChange: Bool
     }
     
-    static func load<T:Codable>(url: String, metod: HTTPMethod, params: Dictionary<String, String>, enecodig: ParameterEncoding = URLEncoding.default, completion: @escaping (ApiStatus<T>) -> Void) {
-        NetworkShared.load(url: Constants.BASE_URL + "/api" + url, metod: metod, params: params, enecodig: enecodig, completion: completion)
+    static func load<T:Codable>(url: String, metod: HTTPMethod, params: Dictionary<String, String>, enecodig: ParameterEncoding = URLEncoding.default, timeoutInterval: TimeInterval = 30, completion: @escaping (ApiStatus<T>) -> Void) {
+        NetworkShared.load(url: Constants.BASE_URL + "/api" + url, metod: metod, params: params, enecodig: enecodig, timeoutInterval: timeoutInterval, completion: completion)
     }
     
     static func loadStatus(completion: @escaping (ApiStatus<CodeGeneratorModel.ServerStatus>) -> Void) {
@@ -31,7 +31,7 @@ class CodeGeneratorProvider {
     }
     
     static func loadData(id: String, completion: @escaping (ApiStatus<CodeGeneratorModel.DataResponse>) -> Void) {
-        load(url: "/load/\(id)", metod: .get, params: [:], completion: completion)
+        load(url: "/load/\(id)", metod: .get, params: [:], timeoutInterval: 10, completion: completion)
     }
     
     static func generateCode(settings: RouteSettings, completion: @escaping (ApiStatus<CodeGeneratorModel.GenerateResponse>) -> Void) {
