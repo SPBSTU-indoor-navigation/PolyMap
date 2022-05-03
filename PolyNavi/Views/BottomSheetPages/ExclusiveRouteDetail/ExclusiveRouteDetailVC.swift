@@ -17,7 +17,8 @@ class ExclusiveRouteDetailVC: TableBottomSheetPage {
     }
     var pathID: UUID?
     var from, to: MKAnnotation?
-    var asphalt, serviceRoute, allowParameterChange: Bool?
+    var routeParams: RouteParameters?
+    var allowParameterChange: Bool?
     
     init(closable: Bool = false, mapViewDelegate: MapViewDelegate) {
         self.mapViewDelegate = mapViewDelegate
@@ -143,10 +144,9 @@ extension ExclusiveRouteDetailVC {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func show(from: MKAnnotation, to: MKAnnotation, asphalt: Bool, serviceRoute: Bool, allowParameterChange: Bool) {
+    func show(from: MKAnnotation, to: MKAnnotation, routeParams: RouteParameters, allowParameterChange: Bool) {
         
-        self.asphalt = asphalt
-        self.serviceRoute = serviceRoute
+        self.routeParams = routeParams
         self.allowParameterChange = allowParameterChange
         
         [self.to, self.from].compactMap({ $0 }).forEach({
@@ -160,7 +160,13 @@ extension ExclusiveRouteDetailVC {
             mapViewDelegate.pinAnnotation($0, animated: true)
         })
         
-        drawPath()
+        if let routeDetailInfo = routeDetailInfo {
+            routeDetailInfo.allowParameterChange = allowParameterChange
+            routeDetailInfo.routeParams = routeParams
+            self.tableView.reloadData()
+        } else {
+            drawPath()
+        }
     }
     
     func drawPath() {
@@ -182,7 +188,7 @@ extension ExclusiveRouteDetailVC {
             routeDetailInfo.configurate(result: result, tableView: tableView)
         } else {
             if let result = result {
-                routeDetailInfo = ExclusiveRouteDetailInfo(result: result, asphalt: asphalt ?? false, serviceRoute: serviceRoute ?? false, allowParameterChange: allowParameterChange ?? false, redrawPath: drawPath, onExclusiveClose: closeAlert)
+                routeDetailInfo = ExclusiveRouteDetailInfo(result: result, routeParams: routeParams ?? .init(asphalt: false, serviceRoute: false), allowParameterChange: allowParameterChange ?? false, redrawPath: drawPath, onExclusiveClose: closeAlert)
             }
         }
     }

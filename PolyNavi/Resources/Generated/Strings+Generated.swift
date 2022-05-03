@@ -186,8 +186,14 @@ internal enum L10n {
     internal enum ErrorAlert {
       /// The code generation server is temporarily unavailable, try again later or contact the developer directly
       internal static let message = L10n.tr("Localizable", "Share.ErrorAlert.Message")
-      /// Server is not available
-      internal static let title = L10n.tr("Localizable", "Share.ErrorAlert.Title")
+      internal enum AppClip {
+        /// The AppClip code generation server is temporarily unavailable, try again later or contact the developer directly
+        internal static let message = L10n.tr("Localizable", "Share.ErrorAlert.AppClip.Message")
+      }
+      internal enum Qr {
+        /// The QR code generation server is temporarily unavailable, try again later or contact the developer directly
+        internal static let message = L10n.tr("Localizable", "Share.ErrorAlert.QR.Message")
+      }
     }
     internal enum HelloText {
       /// Will be shown in a pop-up window after scanning the code

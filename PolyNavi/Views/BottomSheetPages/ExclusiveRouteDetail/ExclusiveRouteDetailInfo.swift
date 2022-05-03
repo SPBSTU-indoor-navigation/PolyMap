@@ -54,14 +54,13 @@ class ExclusiveRouteDetailInfo: RouteDetailInfo {
 
     var allowParameterChange: Bool
     var onExclusiveClose: () -> Void
-    init(result: PathResult, asphalt: Bool, serviceRoute: Bool, allowParameterChange: Bool, redrawPath: (() -> Void)?, onExclusiveClose: @escaping () -> Void) {
+    init(result: PathResult, routeParams: RouteParameters, allowParameterChange: Bool, redrawPath: (() -> Void)?, onExclusiveClose: @escaping () -> Void) {
         self.allowParameterChange = allowParameterChange
         self.onExclusiveClose = onExclusiveClose
         
         super.init()
         
-        self.asphalt = asphalt
-        self.serviceRoute = serviceRoute
+        self.routeParams = routeParams
         self.redrawPath = redrawPath
         
         configurate(result: result, tableView: nil)
@@ -79,8 +78,8 @@ class ExclusiveRouteDetailInfo: RouteDetailInfo {
         }
         
         if allowParameterChange {
-            sections.append(Settings(asphalt: .init(get: { self.asphalt }, set: { self.asphalt = $0 }),
-                                     serviceRoute: .init(get: { self.serviceRoute }, set: { self.serviceRoute = $0 })))
+            sections.append(Settings(asphalt: .init(get: { self.routeParams.asphalt }, set: { self.routeParams.asphalt = $0 }),
+                                     serviceRoute: .init(get: { self.routeParams.serviceRoute }, set: { self.routeParams.serviceRoute = $0 })))
         }
         
         sections.append(Close(onClose: onExclusiveClose))

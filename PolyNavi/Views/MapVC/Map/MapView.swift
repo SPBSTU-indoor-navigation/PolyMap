@@ -39,6 +39,8 @@ class MapView: UIView {
         }
     }
     
+    static private(set) var mapViewDelegate: MapViewDelegate? = nil
+    
     var mapContainerView : UIView?
     var lastZoom : Float = 16
     var currentBuilding: Building?
@@ -67,7 +69,7 @@ class MapView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
+        MapView.mapViewDelegate = self
         layoutViews()
     }
     

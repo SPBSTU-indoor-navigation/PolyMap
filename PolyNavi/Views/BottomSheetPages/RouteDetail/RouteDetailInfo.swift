@@ -8,6 +8,11 @@
 import UIKit
 import MapKit
 
+struct RouteParameters {
+    var asphalt: Bool
+    var serviceRoute: Bool
+}
+
 class RouteDetailInfo: SectionCollection {
     class PathInfo: Section, CellFor {
         let result: PathResult
@@ -87,14 +92,13 @@ class RouteDetailInfo: SectionCollection {
         
         var from: BaseAnnotation & Searchable
         var to: BaseAnnotation & Searchable
-        var asphalt: Bool
-        var serviceRoute: Bool
+        var routeParameters: RouteParameters
+
         
-        init(from: BaseAnnotation & Searchable, to: BaseAnnotation & Searchable, asphalt: Bool, serviceRoute: Bool) {
+        init(from: BaseAnnotation & Searchable, to: BaseAnnotation & Searchable, params: RouteParameters) {
             self.from = from
             self.to = to
-            self.asphalt = asphalt
-            self.serviceRoute = serviceRoute
+            self.routeParameters = params
         }
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
@@ -116,7 +120,7 @@ class RouteDetailInfo: SectionCollection {
         func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
             if indexPath.row == 0 {
                 
-                let textToShare = [ "text" ]
+                let textToShare = [ CodeGeneratorProvider.createPermalink(from: from.imdfID, to: to.imdfID, params: routeParameters) ]
                 let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
                 activityViewController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)?.accessoryView
                 
@@ -126,7 +130,7 @@ class RouteDetailInfo: SectionCollection {
                 
             } else {
                 if let vc = tableView.delegate as? UIViewController {
-                    ShareDialog(from: from, to: to, asphalt: asphalt, serviceRoute: serviceRoute).present(to: vc, animated: true, completion: nil)
+                    ShareDialog(from: from, to: to, routeParams: routeParameters).present(to: vc, animated: true, completion: nil)
                 }
             }
         }
@@ -142,24 +146,17 @@ class RouteDetailInfo: SectionCollection {
     }
     
     var redrawPath: (() -> Void)?
+    var routeParams: RouteParameters = .init(asphalt: false, serviceRoute: false) {
+        didSet {
+            redrawPath?()
+            share?.routeParameters = routeParams
+        }
+    }
     
-    var asphalt: Bool = false {
-        didSet {
-            redrawPath?()
-            share?.asphalt = asphalt
-        }
-    }
-    var serviceRoute: Bool = false {
-        didSet {
-            redrawPath?()
-            share?.serviceRoute = serviceRoute
-        }
-    }
     var share: RouteShare?
     
-    init(result: PathResult?, redrawPath: (() -> Void)?, asphalt: Bool, serviceRoute: Bool) {
-        self.asphalt = asphalt
-        self.serviceRoute = serviceRoute
+    init(result: PathResult?, redrawPath: (() -> Void)?, routeParams: RouteParameters) {
+        self.routeParams = routeParams
         self.redrawPath = redrawPath
         
         super.init()
@@ -172,12 +169,13 @@ class RouteDetailInfo: SectionCollection {
         if let result = result {
             sections.append(PathInfo(result: result))
         }
-        sections.append(Settings(asphalt: .init(get: { self.asphalt }, set: { self.asphalt = $0 }),
-                                 serviceRoute: .init(get: { self.serviceRoute }, set: { self.serviceRoute = $0 })))
+        
+        sections.append(Settings(asphalt: .init(get: { self.routeParams.asphalt }, set: { self.routeParams.asphalt = $0 }),
+                                 serviceRoute: .init(get: { self.routeParams.serviceRoute }, set: { self.routeParams.serviceRoute = $0 })))
         if let result = result,
            let from = result.from as? (BaseAnnotation & Searchable),
            let to = result.to as? (BaseAnnotation & Searchable) {
-            let section = RouteShare(from: from, to: to, asphalt: asphalt, serviceRoute: serviceRoute)
+            let section = RouteShare(from: from, to: to, params: self.routeParams)
             share = section
             sections.append(section)
         } else {
@@ -185,7 +183,7 @@ class RouteDetailInfo: SectionCollection {
         }
         
         sections.append(Report(favorite: false, report: true))
-        
+    
         tableView?.reloadSections(IndexSet(0...0), with: .none)
     }
     

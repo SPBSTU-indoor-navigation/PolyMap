@@ -5,67 +5,53 @@
 //  Created by Andrei Soprachev on 03.03.2022.
 //
 
-protocol Castable {
-    func cast() -> MapDetailInfo
+protocol MapDetailInfoCastable {
+    func cast(mapDetailInfo: MapDetailInfo) -> Void
 }
 
-extension OccupantAnnotation: Castable {
-    func cast() -> MapDetailInfo {
+extension OccupantAnnotation: MapDetailInfoCastable {
+    func cast(mapDetailInfo: MapDetailInfo) -> Void {
+        mapDetailInfo.title = properties.name?.bestLocalizedValue ?? title ?? "-"
         
-        let res = MapDetailInfo()
-        res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
+        mapDetailInfo.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false, annotation: self))
+        mapDetailInfo.sections.append(MapDetailInfo.Detail(phone: properties.phone, email: properties.email, website: properties.website, address: address?.addressString()))
+        mapDetailInfo.sections.append(MapDetailInfo.Share(annotation: self))
+        mapDetailInfo.sections.append(MapDetailInfo.Report())
         
-        res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false, annotation: self))
-        res.sections.append(MapDetailInfo.Detail(phone: properties.phone, email: properties.email, website: properties.website, address: address?.addressString()))
-        res.sections.append(MapDetailInfo.Share(annotation: self))
-        res.sections.append(MapDetailInfo.Report())
-        
-        res.annotation = self
-        
-        return res
+        mapDetailInfo.annotation = self
     }
 }
 
-extension AmenityAnnotation: Castable {
-    func cast() -> MapDetailInfo {
-        let res = MapDetailInfo()
+extension AmenityAnnotation: MapDetailInfoCastable {
+    func cast(mapDetailInfo: MapDetailInfo) -> Void {
+        mapDetailInfo.title = properties.name?.bestLocalizedValue ?? title ?? "-"
+        mapDetailInfo.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false, annotation: self))
+        mapDetailInfo.sections.append(MapDetailInfo.Report(favorite: false, report: true))
         
-        res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
-        res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false, annotation: self))
-        res.sections.append(MapDetailInfo.Report(favorite: false, report: true))
-        
-        res.annotation = self
-        
-        return res
+        mapDetailInfo.annotation = self
     }
 }
 
-extension EnviromentAmenityAnnotation: Castable {
-    func cast() -> MapDetailInfo {
-        let res = MapDetailInfo()
+extension EnviromentAmenityAnnotation: MapDetailInfoCastable {
+    func cast(mapDetailInfo: MapDetailInfo) -> Void {
+
+        mapDetailInfo.title = properties.name?.bestLocalizedValue ?? title ?? "-"
+        mapDetailInfo.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false, annotation: self))
+        mapDetailInfo.sections.append(MapDetailInfo.Report(favorite: false, report: true))
         
-        res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
-        res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false, annotation: self))
-        res.sections.append(MapDetailInfo.Report(favorite: false, report: true))
-        
-        res.annotation = self
-        
-        return res
+        mapDetailInfo.annotation = self
     }
 }
 
-extension AttractionAnnotation: Castable {
-    func cast() -> MapDetailInfo {
-        let res = MapDetailInfo()
+extension AttractionAnnotation: MapDetailInfoCastable {
+    func cast(mapDetailInfo: MapDetailInfo) -> Void {
+
+        mapDetailInfo.title = properties.name?.bestLocalizedValue ?? title ?? "-"
+        mapDetailInfo.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: true, annotation: self).with(buildingID: properties.building_id))
+        mapDetailInfo.sections.append(MapDetailInfo.Share(annotation: self))
+        mapDetailInfo.sections.append(MapDetailInfo.Report(favorite: true, report: true))
         
-        res.title = properties.name?.bestLocalizedValue ?? title ?? "-"
-        res.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: true, annotation: self).with(buildingID: properties.building_id))
-        res.sections.append(MapDetailInfo.Share(annotation: self))
-        res.sections.append(MapDetailInfo.Report(favorite: true, report: true))
-        
-        res.annotation = self
-        
-        return res
+        mapDetailInfo.annotation = self
     }
 }
 

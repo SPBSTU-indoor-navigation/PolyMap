@@ -21,10 +21,11 @@ protocol MapInfoDelegate {
 protocol RouteDetail {
     func setFrom(_ annotation: MKAnnotation)
     func setTo(_ annotation: MKAnnotation)
+    func setup(from: MKAnnotation, to: MKAnnotation, routeParams: RouteParameters)
 }
 
 protocol ExclusiveRouteDetail {
-    func show(from: MKAnnotation, to: MKAnnotation, asphalt: Bool, serviceRoute: Bool, allowParameterChange: Bool)
+    func show(from: MKAnnotation, to: MKAnnotation, routeParams: RouteParameters, allowParameterChange: Bool)
 }
 
 class MapInfo: BottomSheetViewController {
@@ -216,15 +217,15 @@ extension MapInfo: MapInfoDelegate {
     }
     
     func select(_ annotation: MKAnnotation?) {
-        guard let annotation = annotation as? Castable else { return }
+        guard let annotation = annotation as? MapDetailInfoCastable else { return }
         
         if pages.last == .annotationInfo {
             if let unitDetail = viewControllers.last as? UnitDetailVC {
-                unitDetail.configurate(mapDetailInfo: annotation.cast(), showRouteButton: !pages.contains(.exclusiveRoute))
+                unitDetail.configurate(mapDetailInfo: MapDetailInfo(castable: annotation), showRouteButton: !pages.contains(.exclusiveRoute))
             }
         } else {
             let vc = UnitDetailVC(closable: true)
-            vc.configurate(mapDetailInfo: annotation.cast(), showRouteButton: !pages.contains(.exclusiveRoute))
+            vc.configurate(mapDetailInfo: MapDetailInfo(castable: annotation), showRouteButton: !pages.contains(.exclusiveRoute))
             pushViewController(vc, animated: true)
         }
         
@@ -246,6 +247,11 @@ extension MapInfo: MapInfoDelegate {
 }
 
 extension MapInfo: RouteDetail {
+    func setup(from: MKAnnotation, to: MKAnnotation, routeParams: RouteParameters) {
+        let vc = getRouteVC()
+        vc.setup(from: from, to: to, routeParams: routeParams)
+    }
+    
     func setFrom(_ annotation: MKAnnotation) {
         let vc = getRouteVC()
         vc.setFrom(annotation)
@@ -272,12 +278,12 @@ extension MapInfo: RouteDetail {
 }
 
 extension MapInfo: ExclusiveRouteDetail {
-    func show(from: MKAnnotation, to: MKAnnotation, asphalt: Bool, serviceRoute: Bool, allowParameterChange: Bool) {
+    func show(from: MKAnnotation, to: MKAnnotation, routeParams: RouteParameters, allowParameterChange: Bool) {
         if pages.last == .annotationInfo {
             mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
         }
         
-        getExclusiveRouteVC(completion: { $0.show(from: from, to: to, asphalt: asphalt, serviceRoute: serviceRoute, allowParameterChange: allowParameterChange) })
+        getExclusiveRouteVC(completion: { $0.show(from: from, to: to, routeParams: routeParams, allowParameterChange: allowParameterChange) })
     }
     
     func getExclusiveRouteVC(completion: @escaping (ExclusiveRouteDetailVC) -> Void) {

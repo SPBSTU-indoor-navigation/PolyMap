@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CodeVariant: View {
     @Binding var enabled: Bool
+    @Binding var warning: Bool
     @State private var isPressed: Bool = false
     
     var title: String
@@ -25,12 +26,21 @@ struct CodeVariant: View {
             Text(title)
             ZStack {
                 
-                Circle()
-                    .stroke(Color.secondary, lineWidth: 2)
-                    .background(Circle().fill(Color.clear))
-                    .frame(width: 23, height: 23)
+
+                if warning {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable(resizingMode: .stretch)
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(.secondary)
+                        .frame(width: 25.0, height: 25.0)
+                } else {
+                    Circle()
+                        .stroke(Color.secondary, lineWidth: 2)
+                        .background(Circle().fill(Color.clear))
+                        .frame(width: 23, height: 23)
+                }
                 
-                if enabled {
+                if !warning && enabled {
                     Image(systemName: "checkmark.circle.fill")
                         .resizable(resizingMode: .stretch)
                         .aspectRatio(contentMode: .fit)
@@ -45,9 +55,9 @@ struct CodeVariant: View {
     }
 }
 
-//struct CodeVariant_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CodeVariant(enabled:$true, title: "QR", image: Image(systemName: "qrcode"))
-//            .frame(width: 200, height: 200)
-//    }
-//}
+struct CodeVariant_Previews: PreviewProvider {
+    static var previews: some View {
+        CodeVariant(enabled: .constant(false), warning: .constant(true), title: "Title", image: Image(systemName: "qrcode"))
+            .previewLayout(.fixed(width: 200, height: 200))
+    }
+}

@@ -87,4 +87,9 @@ class MapDetailInfo: SectionCollection {
     func section(for row: Int, title: Bool) -> Section? {
         sections[safe: row - title.intValue]
     }
+    
+    init(castable: MapDetailInfoCastable) {
+        super.init()
+        castable.cast(mapDetailInfo: self)
+    }
 }

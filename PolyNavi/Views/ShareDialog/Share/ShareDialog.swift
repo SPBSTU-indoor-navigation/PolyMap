@@ -160,12 +160,11 @@ struct ShareDialog: View {
         let to: UUID
         let text: String?
         
-        let asphalt: Bool
-        let serviceRoute: Bool
+        let routeParams: RouteParameters
         let allowParameterChange: Bool
         
         var routeSettings: CodeGeneratorProvider.RouteSettings {
-            .init(isQR: isQR, from: from, to: to, text: text, asphalt: asphalt, serviceRoute: serviceRoute, allowParameterChange: allowParameterChange)
+            .init(isQR: isQR, from: from, to: to, text: text, routeParams: routeParams, allowParameterChange: allowParameterChange)
         }
     }
     
@@ -179,12 +178,12 @@ struct ShareDialog: View {
     @State var qrLogoVariant: QRLogoVariant = .use
     
     @State var serverStatus: ApiStatus<CodeGeneratorModel.ServerStatus>? = nil
-    @State var serverStatusAlert: Bool = false
+    @State var warningQR : Bool = false
+    @State var warningAppClip: Bool = false
     
     var from: Searchable & BaseAnnotation
     var to: Searchable & BaseAnnotation
-    var asphalt: Bool
-    var serviceRoute: Bool
+    var routeParams: RouteParameters
     
     var body: some View {
         NavigationView {
@@ -208,15 +207,15 @@ struct ShareDialog: View {
                     }
                 }
                 
+                HelloTextSection(showHelloText: $showHelloText, helloText: $helloText)
+                
                 Section(content: {
                     Toggle(isOn: $routeParameterChanging, label: { Text("Изменение параметров") })
                 }, footer: {
                     Text("Разрешить пользователю менять параметры построеня маршрута (служебные маршруты/асфальтированные дороги)")
                 })
                 
-                
-                HelloTextSection(showHelloText: $showHelloText, helloText: $helloText)
-                CodeVariantSection(isQR: $isQR)
+                CodeVariantSection(isQR: $isQR, warningQR: $warningQR, warningAppClip: $warningAppClip)
                 
                 if !isQR {
                     SettingsLine(title: L10n.Share.ColorVariant.title, current: .constant(colorVariant.currentVariant.localizrdName)) {
@@ -242,9 +241,25 @@ struct ShareDialog: View {
                 }
                 
                 Section {
-                    CreateButton(serverReady: .constant(serverStatus?.data?.appclip == true),
-                                 settings: Settings(color: colorVariant, logo: logoVariant, bage: badgeVariant, qrLogoVariant: qrLogoVariant, isQR: isQR, from: from.imdfID, to: to.imdfID, text: helloText, asphalt: asphalt, serviceRoute: serviceRoute, allowParameterChange: routeParameterChanging))
-                }
+                    VStack {
+                        if serverStatus == nil {
+                            HStack {
+                                ActivityIndicator(style: .medium)
+                                Text("Проверка соединения...")
+                                    .foregroundColor(.secondary)
+                            }
+                        } else {
+                            if case .error = serverStatus,
+                               case .errorNoInternet = serverStatus {
+                                Text("Сервер недоступен")
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        
+                        CreateButton(serverReady: .constant((serverStatus != nil) && !(warningQR && warningAppClip)), isQR: $isQR,
+                                     settings: Settings(color: colorVariant, logo: logoVariant, bage: badgeVariant, qrLogoVariant: qrLogoVariant, isQR: isQR, from: from.imdfID, to: to.imdfID, text: helloText, routeParams: routeParams, allowParameterChange: routeParameterChanging))
+                    }
+                }.listRowBackground(Color.clear)
             }
             .navigationBarTitle("\(L10n.Share.navigationTitle)", displayMode: .inline)
         }
@@ -253,23 +268,22 @@ struct ShareDialog: View {
             serverStatus = nil
             CodeGeneratorProvider.loadStatus(completion: { res in
                 serverStatus = res
-                serverStatusAlert = res.data?.appclip != true
+                warningQR = !(res.data?.qr ?? true)
+                warningAppClip = !(res.data?.appclip ?? true)
+                
+                if warningAppClip {
+                    isQR = true
+                }
             })
             
             UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = Asset.accentColor.color
         })
-        .alert(isPresented: $serverStatusAlert) {
-            Alert(
-                title: Text(L10n.Share.ErrorAlert.title),
-                message: Text(L10n.Share.ErrorAlert.message)
-            )
-        }
-        
     }
     
     
     struct CreateButton: View {
         @Binding var serverReady: Bool
+        @Binding var isQR: Bool
         var settings: Settings
         
         var body: some View {
@@ -291,36 +305,53 @@ struct ShareDialog: View {
                         .cornerRadius(10)
                 }
                 Spacer()
-            }.listRowBackground(Color.clear)
+            }
         }
     }
     
     struct CodeVariantSection: View {
         @Binding var isQR: Bool
+        @Binding var warningQR: Bool
+        @Binding var warningAppClip: Bool
         
         var body: some View {
             Section(content: {
-                HStack {
-                    Spacer()
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        CodeVariant(enabled: $isQR, warning: $warningQR, title: L10n.Share.CodeVariant.qr, image: Image(systemName: "qrcode"))
+                            .simultaneousGesture(TapGesture().onEnded({
+                                if !warningQR {
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        isQR = true
+                                    }
+                                }
+                            }))
+                        
+                        Spacer()
+                        Spacer()
+                        
+                        CodeVariant(enabled: .constant(!isQR), warning: $warningAppClip, title: L10n.Share.CodeVariant.appClip, image: Image(uiImage: Asset.AppClip.appclipPreview.image))
+                            .simultaneousGesture(TapGesture().onEnded({
+                                if !warningAppClip {
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        isQR = false
+                                    }
+                                }
+                            }))
+                        Spacer()
+                    }.padding()
                     
-                    CodeVariant(enabled: $isQR, title: L10n.Share.CodeVariant.qr, image: Image(systemName: "qrcode"))
-                        .simultaneousGesture(TapGesture().onEnded({
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                isQR = true
-                            }
-                        }))
-                    
-                    Spacer()
-                    Spacer()
-                    
-                    CodeVariant(enabled: .constant(!isQR), title: L10n.Share.CodeVariant.appClip, image: Image(uiImage: Asset.AppClip.appclipPreview.image))
-                        .simultaneousGesture(TapGesture().onEnded({
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                isQR = false
-                            }
-                        }))
-                    Spacer()
-                }.padding()
+                    if warningQR || warningAppClip {
+                        Text((warningQR && warningAppClip) ? L10n.Share.ErrorAlert.message :
+                                (warningQR ? L10n.Share.ErrorAlert.Qr.message : L10n.Share.ErrorAlert.AppClip.message))
+                            .font(.caption)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .foregroundColor(.red)
+                    }
+                }
             }, header: {
                 Text(L10n.Share.CodeVariant.title)
             }, footer: {
@@ -620,9 +651,8 @@ struct ShareDialog_Previews: PreviewProvider {
     static var previews: some View {
         
         ShareDialog(from: EnviromentAmenityAnnotation(coordinate: .init(latitude: 0, longitude: 0), imdfID: UUID(), properties: .init(name: nil, alt_name: nil, category: .banch, detailLevel: 1), detailLevel: 1),
-                    to: EnviromentAmenityAnnotation(coordinate: .init(latitude: 0, longitude: 0), imdfID: UUID(), properties: .init(name: nil, alt_name: nil, category: .banch, detailLevel: 1), detailLevel: 1),
-                    asphalt: false,
-                    serviceRoute: false)
+                    to: EnviromentAmenityAnnotation(coordinate: .init(latitude: 0, longitude: 0), imdfID: UUID(), properties: .init(name: nil, alt_name: nil, category: .banch, detailLevel: 1), detailLevel: 1), routeParams: .init(asphalt: false, serviceRoute: false))
+            .previewDevice("iPad Pro (12.9-inch) (5th generation)")
             .preferredColorScheme(.dark)
         
         ShareDialog.ColorSection(colorVariant: .constant(.init(inverted: true, currentVariant: .green)), logoVariant: .constant(.camera), badgeVariant: .constant(.badge))

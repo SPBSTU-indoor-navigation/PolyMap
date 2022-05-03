@@ -71,7 +71,7 @@ class SectionCollection: NSObject, UITableViewDataSource {
         }
         
         func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
-            let textToShare = [ "text" ]
+            let textToShare = [ CodeGeneratorProvider.createPermalink(annotation: annotation.imdfID) ]
             let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)?.accessoryView
             

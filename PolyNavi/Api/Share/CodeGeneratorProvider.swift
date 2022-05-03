@@ -18,8 +18,7 @@ class CodeGeneratorProvider {
         let from: UUID
         let to: UUID
         let text: String?
-        let asphalt: Bool
-        let serviceRoute: Bool
+        let routeParams: RouteParameters
         let allowParameterChange: Bool
     }
     
@@ -41,8 +40,8 @@ class CodeGeneratorProvider {
             "from": settings.from.uuidString,
             "to": settings.to.uuidString,
             "helloText": settings.text ?? "",
-            "asphalt": String(settings.asphalt),
-            "serviceRoute": String(settings.serviceRoute),
+            "asphalt": String(settings.routeParams.asphalt),
+            "serviceRoute": String(settings.routeParams.serviceRoute),
             "allowParameterChange": String(settings.allowParameterChange)
         ]
         
@@ -69,15 +68,39 @@ class CodeGeneratorProvider {
         return params
     }
     
+    static func createParamsQR(id: String,
+                               colorVariant: ShareDialog.ColorVariant?,
+                               logoVariant: ShareDialog.QRLogoVariant?) -> [String : String] {
+        var params: [String : String] = [
+            "id": "\(id)",
+        ]
+        
+        let preset = colorVariant?.preset
+        if let color = preset?.background { params["background"] = color }
+        if let color = preset?.primary { params["primary"] = color }
+        
+        if let logo = logoVariant { params["logo"] = String(logo == .use) }
+        
+        return params
+    }
+    
     static func tutorialUrl(id: String,
+                            isQR: Bool,
                             colorVariant: ShareDialog.ColorVariant?,
                             logoVariant: ShareDialog.LogoVariant?,
-                            badgeVariant: ShareDialog.BadgeVariant?) -> URL {
+                            badgeVariant: ShareDialog.BadgeVariant?,
+                            QRLogoVariant: ShareDialog.QRLogoVariant?) -> URL {
         
-        let params = createParams(id: id, colorVariant: colorVariant, logoVariant: logoVariant, badgeVariant: badgeVariant)
+        var params: [String : String]
+        
+        if isQR {
+            params = createParamsQR(id: id, colorVariant: colorVariant, logoVariant: QRLogoVariant)
+        } else {
+            params = createParams(id: id, colorVariant: colorVariant, logoVariant: logoVariant, badgeVariant: badgeVariant)
+        }
         
         
-        return URL(string: Constants.BASE_URL + "/tutorial?" + params.compactMap({ (key, value) in "\(key)=\(value)" }).joined(separator: "&"))!
+        return URL(string: Constants.BASE_URL + "/share-code-tutorial?" + params.compactMap({ (key, value) in "\(key)=\(value)" }).joined(separator: "&"))!
     }
     
     fileprivate static func processData(_ res: AFDataResponse<Data?>, filePath: String, completion: @escaping (ApiStatus<URL>) -> Void) {
@@ -128,21 +151,26 @@ class CodeGeneratorProvider {
                             width: Int = 2048,
                             completion: @escaping (ApiStatus<URL>) -> Void) {
 
-        var params: [String : String] = [
-            "id": "\(id)",
-            "type": svg ? "svg" : "png"
-        ]
-        
-        let preset = colorVariant?.preset
-        if let color = preset?.background { params["background"] = color }
-        if let color = preset?.primary { params["primary"] = color }
-        
-        if let logo = logoVariant { params["logo"] = String(logo == .use) }
+        var params = createParamsQR(id: id, colorVariant: colorVariant, logoVariant: logoVariant)
+        params["type"] = svg ? "svg" : "png"
+        params["width"] = "\(width)"
         
         
         AF.request(Constants.BASE_URL + "/api/qr-code", method: .get, parameters: params)
             .response(completionHandler: { res in
                 processData(res, filePath: "QR.\(svg ? "svg" : "png")", completion: completion)
             })
+    }
+    
+    static func createPermalink(from: UUID, to: UUID, params: RouteParameters) -> URL {
+        return URL(string: Constants.BASE_URL + "/share/route?" +
+                   "from=\(from.uuidString)&" +
+                   "to=\(to.uuidString)&" +
+                   "asphalt=\(params.asphalt)&" +
+                   "serviceRoute=\(params.serviceRoute)")!
+    }
+    
+    static func createPermalink(annotation: UUID) -> URL {
+        return URL(string: Constants.BASE_URL + "/share/annotation?annotation=\(annotation.uuidString)")!
     }
 }

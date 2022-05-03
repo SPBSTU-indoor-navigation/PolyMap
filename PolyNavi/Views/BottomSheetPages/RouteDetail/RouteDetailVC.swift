@@ -21,6 +21,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
     var mapViewDelegate: MapViewDelegate
     var from: MKAnnotation? = nil
     var to: MKAnnotation? = nil
+    var routeParams: RouteParameters = .init(asphalt: false, serviceRoute: false) //TODO: Safe to user defaults
     var beforeCloseCompleate = false
     
     var routeDetailInfo: RouteDetailInfo? {
@@ -422,6 +423,27 @@ extension RouteDetailVC {
         drawPath()
     }
     
+    func setup(from: MKAnnotation, to: MKAnnotation, routeParams: RouteParameters) {
+        if let from = RouteDetailVC.fromPoint { mapViewDelegate.unpinAnnotation(from, animated: true) }
+        if let to = RouteDetailVC.toPoint { mapViewDelegate.unpinAnnotation(to, animated: true) }
+        
+        self.from = from
+        self.to = to
+        self.routeParams = routeParams
+        
+        mapViewDelegate.pinAnnotation(from, animated: true)
+        mapViewDelegate.pinAnnotation(to, animated: true)
+        self.mapViewDelegate.deselectAnnotation(from, animated: true)
+        self.mapViewDelegate.deselectAnnotation(to, animated: true)
+        
+        if let routeDetailInfo = routeDetailInfo {
+            routeDetailInfo.routeParams = routeParams
+            self.tableView.reloadData()
+        } else {
+            drawPath()
+        }
+    }
+    
     func drawPath() {
         from = from ?? MapViewController.currentVenue?.defaultPathStartPoint
         
@@ -454,7 +476,7 @@ extension RouteDetailVC {
         if let routeDetailInfo = routeDetailInfo {
             routeDetailInfo.configurate(result: result, tableView: tableView)
         } else {
-            routeDetailInfo = RouteDetailInfo(result: result, redrawPath: self.drawPath, asphalt: false, serviceRoute: false)
+            routeDetailInfo = RouteDetailInfo(result: result, redrawPath: self.drawPath, routeParams: routeParams)
         }
         
                 

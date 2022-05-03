@@ -119,7 +119,8 @@ Share.HelloText.Info = "Will be shown in a pop-up window after scanning the code
 Share.MainInfo = "You can create a QR code associated with this route";
 Share.NavigationTitle = "Code generation";
 
-Share.ErrorAlert.Title = "Server is not available";
+Share.ErrorAlert.AppClip.Message = "The AppClip code generation server is temporarily unavailable, try again later or contact the developer directly";
+Share.ErrorAlert.QR.Message = "The QR code generation server is temporarily unavailable, try again later or contact the developer directly";
 Share.ErrorAlert.Message = "The code generation server is temporarily unavailable, try again later or contact the developer directly";
 
 Share.Create = "Generate";

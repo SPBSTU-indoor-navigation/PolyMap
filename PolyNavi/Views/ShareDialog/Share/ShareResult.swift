@@ -25,7 +25,7 @@ struct ActivityViewController: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) { }
 }
 
-struct SharePngResultLine: View {
+struct ShareLine: View {
     @State var title: String
     @State var show: Bool = false
     @Binding var result: ApiStatus<Any>?
@@ -82,8 +82,8 @@ struct ShareResult: View {
                         }
                         .listRowBackground(Color.clear)
                     }
-                    SharePngResultLine(title: L10n.Share.Result.sharePng, result: $png)
-                    SharePngResultLine(title: L10n.Share.Result.shareSvg, result: $svg)
+                    ShareLine(title: L10n.Share.Result.sharePng, result: $png)
+                    ShareLine(title: L10n.Share.Result.shareSvg, result: $svg)
                     if let tutorial = tutorial {
                         Button(action: {
                             UIApplication.shared.open(tutorial)
@@ -100,7 +100,7 @@ struct ShareResult: View {
                     
                     if let response = response {
                         Section(footer: Text(L10n.Share.Result.ShareUrl.info)) {
-                            SharePngResultLine(title: L10n.Share.Result.shareUrl, result: .constant(ApiStatus.successWith(response.codeUrl)))
+                            ShareLine(title: L10n.Share.Result.shareUrl, result: .constant(ApiStatus.successWith(response.codeUrl)))
                         }
                     }
                     
@@ -145,7 +145,7 @@ struct ShareResult: View {
             CodeGeneratorProvider.generateCode(settings: settings.routeSettings, completion: { res in
                 if let res = res.data {
                     response = res
-                    tutorial = CodeGeneratorProvider.tutorialUrl(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage)
+                    tutorial = CodeGeneratorProvider.tutorialUrl(id: res.codeID, isQR: settings.isQR, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, QRLogoVariant: settings.qrLogoVariant)
                     
                     if settings.isQR {
                         CodeGeneratorProvider.loadQR(id: res.codeID, colorVariant: settings.color, logoVariant: settings.qrLogoVariant, svg: false, width: 512, completion: loadPreview)
@@ -168,7 +168,7 @@ struct ShareResult: View {
 
 struct ShareResult_Previews: PreviewProvider {
     static var previews: some View {
-        ShareResult(settings: .init(color: .init(inverted: false, currentVariant: .green), logo: .camera, bage: .circle, qrLogoVariant: nil, isQR: false, from: UUID(), to: UUID(), text: "", asphalt: false, serviceRoute: false, allowParameterChange: false))
+        ShareResult(settings: .init(color: .init(inverted: false, currentVariant: .green), logo: .camera, bage: .circle, qrLogoVariant: nil, isQR: false, from: UUID(), to: UUID(), text: "", routeParams: .init(asphalt: false, serviceRoute: false), allowParameterChange: false))
             .environment(\.colorScheme, .dark)
     }
 }

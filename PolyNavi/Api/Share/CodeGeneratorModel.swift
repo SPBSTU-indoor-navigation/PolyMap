@@ -11,6 +11,7 @@ struct CodeGeneratorModel {
     struct ServerStatus: Codable {
         let status: String
         let appclip: Bool
+        let qr: Bool
     }
     
     struct GenerateResponse: Codable {
