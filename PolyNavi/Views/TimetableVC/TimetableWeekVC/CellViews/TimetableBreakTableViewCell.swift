@@ -11,7 +11,7 @@ import UIKit
 class TimetableBreakTableViewCell: UITableViewCell {
     
     public static var identifire: String {
-        return String(describing: self)
+        return String(describing: TimetableBreakTableViewCell.self)
     }
     
     private lazy var emptyLabel: UILabel = {

@@ -11,7 +11,11 @@ protocol CellFor {
     func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell
 }
 
-class SectionCollection {
+protocol SelectRowFor {
+    func didSelect(_ tableView: UITableView, _ indexPath: IndexPath)
+}
+
+class SectionCollection: NSObject, UITableViewDataSource {
     class Section {
         var title: String? { return nil }
         var cellCount: Int { return 1 }
@@ -46,15 +50,73 @@ class SectionCollection {
             }
             
             cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
-            cell.selectionStyle = .gray
             return cell
         }
     }
     
+    class Share: Section, CellFor, SelectRowFor {
+        override var cellCount: Int { 1 }
+        
+        var annotation: BaseAnnotation & Searchable
+        
+        init(annotation: BaseAnnotation & Searchable) {
+            self.annotation = annotation
+        }
+        
+        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SimpleShareCell.identifire, for: indexPath) as! SimpleShareCell
+            
+            cell.configurate()
+            return cell
+        }
+        
+        func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
+            let textToShare = [ CodeGeneratorProvider.createPermalink(annotation: annotation.imdfID) ]
+            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)?.accessoryView
+            
+            if let vc = tableView.delegate as? UIViewController {
+                vc.present(activityViewController, animated: true, completion: nil)
+            }
+        }
+    }
     
     var sections: [Section] = []
     
     func section(for row: Int) -> Section? {
-        return sections[row]
+        return sections[safe: row]
+    }
+    
+    
+    //Delegate
+    func delegateTV(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let section = section(for: indexPath.section)
+        {
+            (section as? SelectRowFor)?.didSelect(tableView, indexPath)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func delegateTV(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    //DataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        sections[section].cellCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let section = section(for: indexPath.section),
+           let cellFor = section as? CellFor {
+            return cellFor.cellFor(tableView, indexPath)
+        }
+        
+        return UITableViewCell()
     }
 }

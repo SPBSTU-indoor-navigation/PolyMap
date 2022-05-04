@@ -8,26 +8,12 @@
 import Foundation
 import Alamofire
 
-let BASE_URL = "https://ruz.spbstu.ru/api/v1/ruz"
-
-enum ApiStatus<T> {
-    case successWith(T)
-    case errorNoInternet
-    case error
-    
-    var data: T? {
-        get {
-            switch self {
-            case .successWith(let t):
-                return t
-            case .errorNoInternet, .error:
-                return nil
-            }
-        }
-    }
-}
-
 class TimetableProvider {
+    
+    enum Constants {
+        static let BASE_URL = "https://ruz.spbstu.ru/api/v1/ruz"
+    }
+    
     static let shared = TimetableProvider()
     
     var timetable: Timetable? = nil
@@ -38,34 +24,7 @@ class TimetableProvider {
     var timetableCache: [String: Timetable] = [:]
     
     func load<T:Codable>(url: String, params: Dictionary<String, String>, completion: @escaping (ApiStatus<T>) -> Void) {
-        AF.request(BASE_URL + url,
-                   method: .get,
-                   parameters: params)
-            .responseDecodable(of: T.self) { response in
-                if let responseCode = response.response?.statusCode {
-                    switch responseCode {
-                    case (200...300):
-                        if let data = response.value {
-                            completion(.successWith(data))
-                        }
-                        else {
-                            completion(.error)
-                        }
-                    default:
-                        completion(.error)
-                    }
-                } else {
-                    if let error = response.error as NSError? {
-                        switch error.code {
-                        case 13:
-                            completion(.errorNoInternet)
-                        default:
-                            completion(.error)
-                        }
-                    }
-                    completion(.error)
-                }
-            }
+        NetworkShared.load(url: Constants.BASE_URL + url, metod: .get, params: params, completion: completion)
     }
     
     func loadFaculties(completion: @escaping (ApiStatus<FacultiesList>) -> Void) {
@@ -76,6 +35,7 @@ class TimetableProvider {
         
         load(url: "/faculties", params: [:], completion: t)
     }
+    
     
     func loadGroups(faculty: Faculty, completion: @escaping (ApiStatus<GroupsList>) -> Void) {
         let t: (ApiStatus<GroupsList>) -> Void = { r in

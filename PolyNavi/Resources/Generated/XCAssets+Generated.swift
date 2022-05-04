@@ -61,6 +61,26 @@ internal enum Asset {
       }
     }
   }
+  internal enum AppClip {
+    internal static let appclipPreview = ImageAsset(name: "AppclipPreview")
+    internal enum Badge {
+      internal static let appclipCamera = ImageAsset(name: "appclip.camera")
+      internal static let appclipNfcPrimary = ImageAsset(name: "appclip.nfc.primary")
+      internal static let appclipNfcSecondary = ImageAsset(name: "appclip.nfc.secondary")
+      internal static let appclipPrimary = ImageAsset(name: "appclip.primary")
+      internal static let appclipSecondary = ImageAsset(name: "appclip.secondary")
+      internal static let badge = ImageAsset(name: "badge")
+      internal static let badgeText = ImageAsset(name: "badgeText")
+    }
+    internal enum Circle {
+      internal static let appclipCBackground = ImageAsset(name: "appclip.c.background")
+      internal static let appclipCCamera = ImageAsset(name: "appclip.c.camera")
+      internal static let appclipCNfcPrimary = ImageAsset(name: "appclip.c.nfc.primary")
+      internal static let appclipCNfcSecondary = ImageAsset(name: "appclip.c.nfc.secondary")
+      internal static let appclipCPrimary = ImageAsset(name: "appclip.c.primary")
+      internal static let appclipCSecondary = ImageAsset(name: "appclip.c.secondary")
+    }
+  }
   internal enum Colors {
     internal static let bottomSheetGroupped = ColorAsset(name: "BottomSheetGroupped")
     internal static let bottomSheetPlan = ColorAsset(name: "BottomSheetPlan")
@@ -100,6 +120,12 @@ internal enum Asset {
     internal static let from = ImageAsset(name: "from")
     internal static let rotateBuilding = ImageAsset(name: "rotateBuilding")
     internal static let to = ImageAsset(name: "to")
+  }
+  internal enum Qr {
+    internal static let qrBackground = ImageAsset(name: "qrBackground")
+    internal static let qrData = ImageAsset(name: "qrData")
+    internal static let qrDataFull = ImageAsset(name: "qrDataFull")
+    internal static let qrLogo = ImageAsset(name: "qrLogo")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

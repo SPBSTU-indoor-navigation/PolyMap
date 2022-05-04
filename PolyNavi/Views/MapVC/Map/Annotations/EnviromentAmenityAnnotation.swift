@@ -7,7 +7,7 @@
 
 import MapKit
 
-class EnviromentAmenityAnnotation: BaseAnnotation, MKAnnotation, Identifiable, AmenityDetailLevel {
+class EnviromentAmenityAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, AmenityDetailLevel {
     var identifier: String = identifier
     static var identifier: String = String(describing: EnviromentAmenityAnnotation.self)
     

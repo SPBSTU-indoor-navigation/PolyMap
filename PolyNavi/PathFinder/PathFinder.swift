@@ -102,6 +102,7 @@ class PathFinder {
     
     var nodes: [PathNode] = []
     var associeted: [(MKAnnotation, PathNode)] = []
+    var annotationById: [UUID:MKAnnotation] = [:]
     
     func pathNode(by annotation: MKAnnotation) -> [PathNode] {
         return associeted.filter({ $0.0 === annotation }).map({ $0.1 })
@@ -133,6 +134,7 @@ class PathFinder {
         
         self.associeted = associeted.map({ (annotations[$0.properties.associeted_id]!, converted[$0.properties.pathNode_id]!.1) })
         self.nodes = converted.values.map({ $0.1 })
+        self.annotationById = annotations
         
     }
     

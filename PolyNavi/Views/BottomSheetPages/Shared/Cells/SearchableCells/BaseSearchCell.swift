@@ -30,4 +30,6 @@ class BaseSearchCell: UITableViewCell {
     }
     
     func setViews() { }
+    
+    func configurate(searchable: Searchable) { }
 }

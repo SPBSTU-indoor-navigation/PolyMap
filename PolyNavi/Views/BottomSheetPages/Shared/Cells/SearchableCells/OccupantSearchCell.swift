@@ -57,7 +57,7 @@ class OccupantSearchCell: BaseSearchCell {
         
     }
     
-    func configurate(searchable: Searchable) {
+    override func configurate(searchable: Searchable) {
         titleLabel.text = searchable.mainTitle
         subTitleLabel.text = "\(searchable.place ?? "") • \(searchable.floor ?? "")"
         iconOccuptant.configurate(searchable: searchable)

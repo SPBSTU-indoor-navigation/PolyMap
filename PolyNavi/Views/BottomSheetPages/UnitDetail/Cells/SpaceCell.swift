@@ -7,8 +7,8 @@
 
 import UIKit
 
-class Spacer: UITableViewCell {
-    static var identifire = String(describing: Spacer.self)
+class SpaceCell: UITableViewCell {
+    static var identifire = String(describing: SpaceCell.self)
     
     var navbarHeightConstraint: NSLayoutConstraint?
     

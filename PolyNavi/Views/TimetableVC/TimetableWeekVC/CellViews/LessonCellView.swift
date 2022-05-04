@@ -16,7 +16,7 @@ class LessonCellView: UITableViewCell {
     var dividerAnchor: NSLayoutConstraint?
     
     public static var identifire: String {
-        return String(describing: self)
+        return String(describing: LessonCellView.self)
     }
     
     private var model: LessonModel?

@@ -7,7 +7,7 @@
 
 import MapKit
 
-class AttractionAnnotation: BaseAnnotation, MKAnnotation, Identifiable {
+class AttractionAnnotation: BaseAnnotation, MKAnnotation, ReusableCell {
     var identifier: String = identifier
     static var identifier: String = String(describing: AttractionAnnotation.self)
     

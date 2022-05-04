@@ -9,6 +9,7 @@ import UIKit
 
 class MapViewController: UIViewController {
     var timeTableSmallOffset: NSLayoutConstraint?
+    static var currentVenue: Venue? = nil
     
     private lazy var timeTableButton: RoundButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -113,10 +114,10 @@ class MapViewController: UIViewController {
     
     func loadIMDF() {
         let path = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
-        let venue = IMDFDecoder.decode(path)
+        MapViewController.currentVenue = IMDFDecoder.decode(path)
         
-        mapView.venue = venue
-        mapInfo.searchable = venue?.searchable() ?? []
+        mapView.venue = MapViewController.currentVenue
+        mapInfo.searchable = MapViewController.currentVenue?.searchable() ?? []
     }
     
     @objc

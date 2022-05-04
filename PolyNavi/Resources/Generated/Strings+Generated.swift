@@ -17,6 +17,8 @@ internal enum L10n {
   }
 
   internal enum MapInfo {
+    /// Share
+    internal static let share = L10n.tr("Localizable", "MapInfo.Share")
     internal enum Detail {
       /// Address
       internal static let address = L10n.tr("Localizable", "MapInfo.Detail.Address")
@@ -26,6 +28,22 @@ internal enum L10n {
       internal static let phone = L10n.tr("Localizable", "MapInfo.Detail.Phone")
       /// Website
       internal static let website = L10n.tr("Localizable", "MapInfo.Detail.Website")
+    }
+    internal enum ExclRoute {
+      internal enum Info {
+        /// Finish exclusive mode
+        internal static let close = L10n.tr("Localizable", "MapInfo.ExclRoute.Info.Close")
+        internal enum CloseAlert {
+          /// Cancel
+          internal static let cancel = L10n.tr("Localizable", "MapInfo.ExclRoute.Info.CloseAlert.Cancel")
+          /// Finish
+          internal static let end = L10n.tr("Localizable", "MapInfo.ExclRoute.Info.CloseAlert.End")
+          /// Finish the exclusive mode will erase the route from the map. To re-view you will need to re-open the invitation
+          internal static let message = L10n.tr("Localizable", "MapInfo.ExclRoute.Info.CloseAlert.Message")
+          /// Finish exclusive mode
+          internal static let title = L10n.tr("Localizable", "MapInfo.ExclRoute.Info.CloseAlert.Title")
+        }
+      }
     }
     internal enum Report {
       /// Favorites
@@ -70,6 +88,12 @@ internal enum L10n {
         /// To:
         internal static let to = L10n.tr("Localizable", "MapInfo.Route.Info.To")
       }
+      internal enum Share {
+        /// QR code or AppClip code
+        internal static let appClipQR = L10n.tr("Localizable", "MapInfo.Route.Share.AppClipQR")
+        /// Share
+        internal static let title = L10n.tr("Localizable", "MapInfo.Route.Share.Title")
+      }
     }
     internal enum Search {
       /// Buildings
@@ -106,6 +130,143 @@ internal enum L10n {
     internal static let titleOfTeacherCell = L10n.tr("Localizable", "Settings.titleOfTeacherCell")
     /// Teachers
     internal static let titleOfTeachersView = L10n.tr("Localizable", "Settings.titleOfTeachersView")
+  }
+
+  internal enum Share {
+    /// Allow parameter changes
+    internal static let allowParameterChange = L10n.tr("Localizable", "Share.AllowParameterChange")
+    /// Check connection...
+    internal static let connectionCheck = L10n.tr("Localizable", "Share.ConnectionCheck")
+    /// Server unavilable
+    internal static let connectionError = L10n.tr("Localizable", "Share.ConnectionError")
+    /// Generate
+    internal static let create = L10n.tr("Localizable", "Share.Create")
+    /// You can generate a QR or AppClip code. After scanning the code, an application with a route will open and a welcome message will be displayed.\n\nIf the user does not have the application installed, a simplified blitz version with similar functionality will open
+    internal static let mainInfo = L10n.tr("Localizable", "Share.MainInfo")
+    /// Code generation
+    internal static let navigationTitle = L10n.tr("Localizable", "Share.NavigationTitle")
+    internal enum AllowParameterChange {
+      /// Allow user to change route building parameters (service routes/paved roads)
+      internal static let description = L10n.tr("Localizable", "Share.AllowParameterChange.Description")
+    }
+    internal enum BadgeVariant {
+      /// Use logo
+      internal static let badge = L10n.tr("Localizable", "Share.BadgeVariant.Badge")
+      /// No logo
+      internal static let circle = L10n.tr("Localizable", "Share.BadgeVariant.Circle")
+      /// It is recommended to use the code with the logo, except in cases where it is impossible to meet the requirements for free space or if the code will be placed on disposable products
+      internal static let info = L10n.tr("Localizable", "Share.BadgeVariant.Info")
+      /// Badge variant
+      internal static let title = L10n.tr("Localizable", "Share.BadgeVariant.Title")
+    }
+    internal enum CodeVariant {
+      /// AppClip
+      internal static let appClip = L10n.tr("Localizable", "Share.CodeVariant.AppClip")
+      /// QR code can be scanned on any device\n\nAppClip code can only be scanned by iOS devices
+      internal static let info = L10n.tr("Localizable", "Share.CodeVariant.Info")
+      /// QR
+      internal static let qr = L10n.tr("Localizable", "Share.CodeVariant.QR")
+      /// Code variant
+      internal static let title = L10n.tr("Localizable", "Share.CodeVariant.Title")
+    }
+    internal enum ColorVariant {
+      /// Color
+      internal static let title = L10n.tr("Localizable", "Share.ColorVariant.Title")
+      internal enum Preset {
+        /// Black
+        internal static let black = L10n.tr("Localizable", "Share.ColorVariant.Preset.black")
+        /// Blue
+        internal static let blue = L10n.tr("Localizable", "Share.ColorVariant.Preset.blue")
+        /// Grey
+        internal static let gray = L10n.tr("Localizable", "Share.ColorVariant.Preset.gray")
+        /// Green
+        internal static let green = L10n.tr("Localizable", "Share.ColorVariant.Preset.green")
+        /// Indigo
+        internal static let indigo = L10n.tr("Localizable", "Share.ColorVariant.Preset.indigo")
+        /// Orange
+        internal static let orange = L10n.tr("Localizable", "Share.ColorVariant.Preset.orange")
+        /// Purple
+        internal static let purple = L10n.tr("Localizable", "Share.ColorVariant.Preset.purple")
+        /// Red
+        internal static let red = L10n.tr("Localizable", "Share.ColorVariant.Preset.red")
+        /// Teal
+        internal static let teal = L10n.tr("Localizable", "Share.ColorVariant.Preset.teal")
+      }
+      internal enum Preview {
+        /// Change color
+        internal static let changeColor = L10n.tr("Localizable", "Share.ColorVariant.Preview.ChangeColor")
+      }
+    }
+    internal enum ErrorAlert {
+      /// The code generation server is temporarily unavailable, try again later or contact the developer directly
+      internal static let message = L10n.tr("Localizable", "Share.ErrorAlert.Message")
+      internal enum AppClip {
+        /// The AppClip code generation server is temporarily unavailable, try again later or contact the developer directly
+        internal static let message = L10n.tr("Localizable", "Share.ErrorAlert.AppClip.Message")
+      }
+      internal enum Qr {
+        /// The QR code generation server is temporarily unavailable, try again later or contact the developer directly
+        internal static let message = L10n.tr("Localizable", "Share.ErrorAlert.QR.Message")
+      }
+    }
+    internal enum HelloText {
+      /// Will be shown in a pop-up window after scanning the code
+      internal static let info = L10n.tr("Localizable", "Share.HelloText.Info")
+      /// Enter your welcome message
+      internal static let placehodler = L10n.tr("Localizable", "Share.HelloText.Placehodler")
+      /// Display welcome message
+      internal static let title = L10n.tr("Localizable", "Share.HelloText.Title")
+    }
+    internal enum LogoVariant {
+      /// Scan Only
+      internal static let camera = L10n.tr("Localizable", "Share.LogoVariant.Camera")
+      /// If you combine the code with an NFC tag, please select the NFC design. If you don't insert an NFC tag, please select «Scan Only» design
+      internal static let info = L10n.tr("Localizable", "Share.LogoVariant.Info")
+      /// NFC
+      internal static let phone = L10n.tr("Localizable", "Share.LogoVariant.Phone")
+      /// Logo
+      internal static let title = L10n.tr("Localizable", "Share.LogoVariant.Title")
+    }
+    internal enum OpenURL {
+      /// Continue
+      internal static let `continue` = L10n.tr("Localizable", "Share.OpenURL.Continue")
+      /// Shared with you the route
+      internal static let info = L10n.tr("Localizable", "Share.OpenURL.Info")
+      /// Author's messages
+      internal static let message = L10n.tr("Localizable", "Share.OpenURL.Message")
+      /// The route will be laid in "exclusive" mode, to exit it, swipe the curtain up and click on the "finish" button
+      internal static let openInfo = L10n.tr("Localizable", "Share.OpenURL.OpenInfo")
+      /// Welcome
+      internal static let title = L10n.tr("Localizable", "Share.OpenURL.Title")
+    }
+    internal enum QRLogoVariant {
+      /// No logo
+      internal static let `none` = L10n.tr("Localizable", "Share.QRLogoVariant.None")
+      /// Logo
+      internal static let title = L10n.tr("Localizable", "Share.QRLogoVariant.Title")
+      /// Use logo
+      internal static let use = L10n.tr("Localizable", "Share.QRLogoVariant.Use")
+    }
+    internal enum Result {
+      /// Done
+      internal static let done = L10n.tr("Localizable", "Share.Result.Done")
+      /// Loading...
+      internal static let loading = L10n.tr("Localizable", "Share.Result.Loading")
+      /// Result
+      internal static let navigationTitle = L10n.tr("Localizable", "Share.Result.NavigationTitle")
+      /// Guidelines for using PDF
+      internal static let sharePdf = L10n.tr("Localizable", "Share.Result.SharePdf")
+      /// PNG bitmap image
+      internal static let sharePng = L10n.tr("Localizable", "Share.Result.SharePng")
+      /// SVG vector image
+      internal static let shareSvg = L10n.tr("Localizable", "Share.Result.ShareSvg")
+      /// Permalink
+      internal static let shareUrl = L10n.tr("Localizable", "Share.Result.ShareUrl")
+      internal enum ShareUrl {
+        /// You can embed the link yourself in any type of codes, or simply send it in text form
+        internal static let info = L10n.tr("Localizable", "Share.Result.ShareUrl.Info")
+      }
+    }
   }
 
   internal enum Timetable {

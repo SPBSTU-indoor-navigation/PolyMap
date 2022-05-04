@@ -39,6 +39,8 @@ class MapView: UIView {
         }
     }
     
+    static private(set) var mapViewDelegate: MapViewDelegate? = nil
+    
     var mapContainerView : UIView?
     var lastZoom : Float = 16
     var currentBuilding: Building?
@@ -67,7 +69,7 @@ class MapView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
+        MapView.mapViewDelegate = self
         layoutViews()
     }
     
@@ -110,6 +112,7 @@ class MapView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .callout)
         $0.numberOfLines = 0
+        $0.alpha = 0
         return $0
     }(UILabel())
     
@@ -429,7 +432,7 @@ extension MapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
-        guard let reusable = annotation as? Identifiable else { return nil }
+        guard let reusable = annotation as? ReusableCell else { return nil }
         
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reusable.identifier, for: annotation)
         (annotationView as? AnnotationMapSize)?.update(mapSize: lastZoom, animate: false)
@@ -537,7 +540,6 @@ extension MapView: MapViewDelegate {
     }
     
     func addPath(path: [PathResultNode]) -> UUID {
-//        mapView.addPath(path: path)
         return venue?.addPath(mapView, path: path) ?? UUID()
     }
     

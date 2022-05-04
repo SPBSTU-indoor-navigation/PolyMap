@@ -101,7 +101,7 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
     }
     
     @objc
-    private func close(_ sender: UIButton?) {
+    func close(_ sender: UIButton?) {
         beforeClose()
         navigationController?.popViewController(animated: true)
     }

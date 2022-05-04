@@ -17,6 +17,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = MapViewController()
         window?.makeKeyAndVisible()
+        
+        if let userActivity = connectionOptions.userActivities.first,
+           let vc = window?.rootViewController {
+            CodeGeneratorAppOpen.open(with: userActivity, to: vc)
+        }
+
+    }
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if let vc = window?.rootViewController {
+            CodeGeneratorAppOpen.open(with: userActivity, to: vc)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
