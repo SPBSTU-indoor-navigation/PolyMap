@@ -85,6 +85,8 @@
 		971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		971F8E1627BD55820018F98A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
 		971F8E1727BD558F0018F98A /* (null) in Sources */ = {isa = PBXBuildFile; };
+		9735D1FE2822D6B800F8A08F /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */; };
+		9735D1FF2822D8DE00F8A08F /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */; };
 		973962BE2808DCB4000E478F /* SearchLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962BD2808DCB4000E478F /* SearchLine.swift */; };
 		973962BF2808DCB4000E478F /* SearchLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962BD2808DCB4000E478F /* SearchLine.swift */; };
 		973962C1280A41AB000E478F /* RouteDetailSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962C0280A41AB000E478F /* RouteDetailSearchTableView.swift */; };
@@ -312,6 +314,7 @@
 		971F8DDC27BD52EF0018F98A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		971F8DDE27BD52EF0018F98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNaviClip.entitlements; sourceTree = "<group>"; };
+		9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		973962BD2808DCB4000E478F /* SearchLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLine.swift; sourceTree = "<group>"; };
 		973962C0280A41AB000E478F /* RouteDetailSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailSearchTableView.swift; sourceTree = "<group>"; };
 		973962C4280B609A000E478F /* SectionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCollection.swift; sourceTree = "<group>"; };
@@ -481,6 +484,7 @@
 		054F6786270C7B4C00FCC07C /* PolyNavi */ = {
 			isa = PBXGroup;
 			children = (
+				9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */,
 				9787699927FB3DDB008138EC /* PathFinder */,
 				054F67A5270CD72700FCC07C /* App */,
 				97A484BE2717BAEA00D14997 /* Components */,
@@ -1362,6 +1366,7 @@
 				97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */,
 				97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */,
 				979E5C9B27C0023000A48816 /* MapInfo.swift in Sources */,
+				9735D1FE2822D6B800F8A08F /* UserDefaultsStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1417,6 +1422,7 @@
 				971F8DFF27BD55650018F98A /* LevelSwitcher.swift in Sources */,
 				979F86ED27D6E9720048B486 /* RouteDetailVC.swift in Sources */,
 				973962C6280B609A000E478F /* SectionCollection.swift in Sources */,
+				9735D1FF2822D8DE00F8A08F /* UserDefaultsStorage.swift in Sources */,
 				971F8E1727BD558F0018F98A /* (null) in Sources */,
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
 				978B321027EE7C0A00760B78 /* SearchHeaderView.swift in Sources */,

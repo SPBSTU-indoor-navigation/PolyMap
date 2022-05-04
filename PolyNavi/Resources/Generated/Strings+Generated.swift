@@ -141,7 +141,7 @@ internal enum L10n {
     internal static let connectionError = L10n.tr("Localizable", "Share.ConnectionError")
     /// Generate
     internal static let create = L10n.tr("Localizable", "Share.Create")
-    /// You can create a QR or AppClip code associated with this route, after scanning, the user will see a welcome message and the route in exclusive mode.\n\nIf the user does not have the PolyMap application installed on the device, then a simplified Clip application with a route will open when scanning
+    /// You can generate a QR or AppClip code. After scanning the code, an application with a route will open and a welcome message will be displayed.\n\nIf the user does not have the application installed, a simplified blitz version with similar functionality will open
     internal static let mainInfo = L10n.tr("Localizable", "Share.MainInfo")
     /// Code generation
     internal static let navigationTitle = L10n.tr("Localizable", "Share.NavigationTitle")
@@ -162,7 +162,7 @@ internal enum L10n {
     internal enum CodeVariant {
       /// AppClip
       internal static let appClip = L10n.tr("Localizable", "Share.CodeVariant.AppClip")
-      /// The QR code can be scanned on any device and is more familiar to users\n\nAppClip code is a new development by Apple, scanned only by the company's devices, but it looks more beautiful than a QR code
+      /// QR code can be scanned on any device\n\nAppClip code can only be scanned by iOS devices
       internal static let info = L10n.tr("Localizable", "Share.CodeVariant.Info")
       /// QR
       internal static let qr = L10n.tr("Localizable", "Share.CodeVariant.QR")

@@ -9,7 +9,12 @@ import SwiftUI
 import Alamofire
 import MapKit
 
-struct ShareDialog: View {    
+struct ShareDialog: View {
+    
+    enum Constants {
+        static let isQR = "shareCodeVariant"
+    }
+    
     struct ColorVariant {
         struct Preset {
             let background: String
@@ -102,6 +107,21 @@ struct ShareDialog: View {
             let t = currentVariant.preset
             return inverted ? t.inverted : t.normal
         }
+        
+        static func loadFromStorage() -> ColorVariant? {
+            if let inverted = Storage.value(key: "colorVariant.inverted") as? Bool,
+               let currentVariant = Storage.value(key: "colorVariant.currentVariant") as? String,
+               let variant = Variant(rawValue: currentVariant) {
+                return .init(inverted: inverted, currentVariant: variant)
+            }
+            
+            return nil
+        }
+        
+        func saveToStorage() {
+            Storage.set(value: inverted, forKey: "colorVariant.inverted")
+            Storage.set(value: currentVariant.rawValue, forKey: "colorVariant.currentVariant")
+        }
     }
     
     enum LogoVariant: String, CaseIterable, Identifiable {
@@ -116,6 +136,14 @@ struct ShareDialog: View {
             case .phone:
                 return L10n.Share.LogoVariant.phone
             }
+        }
+        
+        static func loadFromStorage() -> LogoVariant? {
+            return .init(rawValue: Storage.value(key: "logoVariantValue") as? String ?? "") ?? nil
+        }
+        
+        func saveToStorage() {
+            Storage.set(value: self.rawValue, forKey: "logoVariantValue")
         }
     }
     
@@ -132,6 +160,14 @@ struct ShareDialog: View {
                 return L10n.Share.QRLogoVariant.none
             }
         }
+        
+        static func loadFromStorage() -> QRLogoVariant? {
+            return .init(rawValue: Storage.value(key: "QRlogoVariantValue") as? String ?? "") ?? nil
+        }
+        
+        func saveToStorage() {
+            Storage.set(value: self.rawValue, forKey: "QRlogoVariantValue")
+        }
     }
     
     enum BadgeVariant: String, CaseIterable, Identifiable {
@@ -146,6 +182,14 @@ struct ShareDialog: View {
             case .badge:
                 return L10n.Share.BadgeVariant.badge
             }
+        }
+        
+        static func loadFromStorage() -> BadgeVariant? {
+            return .init(rawValue: Storage.value(key: "badgeVariantValue") as? String ?? "") ?? nil
+        }
+        
+        func saveToStorage() {
+            Storage.set(value: self.rawValue, forKey: "badgeVariantValue")
         }
     }
     
@@ -168,22 +212,18 @@ struct ShareDialog: View {
         }
     }
     
-    @State var isQR: Bool = true
+    @State var isQR: Bool = Storage.value(key: Constants.isQR) as? Bool ?? true
     @State var showHelloText: Bool = false
     @State var routeParameterChanging: Bool = false
     @State var helloText: String = ""
-    @State var colorVariant: ColorVariant = .init(inverted: false, currentVariant: .green)
-    @State var logoVariant: LogoVariant = .camera
-    @State var badgeVariant: BadgeVariant = .badge
-    @State var qrLogoVariant: QRLogoVariant = .use
+    @State var colorVariant: ColorVariant = .loadFromStorage() ?? .init(inverted: false, currentVariant: .green)
+    @State var logoVariant: LogoVariant = .loadFromStorage() ?? .camera
+    @State var badgeVariant: BadgeVariant = .loadFromStorage() ?? .badge
+    @State var qrLogoVariant: QRLogoVariant = .loadFromStorage() ?? .use
     
     @State var serverStatus: ApiStatus<CodeGeneratorModel.ServerStatus>? = nil
     @State var warningQR : Bool = false
     @State var warningAppClip: Bool = false
-    
-    
-    @State var onHelloTextBeginEdit: (()->Void)?
-    
     
     var from: Searchable & BaseAnnotation
     var to: Searchable & BaseAnnotation
@@ -218,7 +258,7 @@ struct ShareDialog: View {
                 Text(L10n.Share.AllowParameterChange.description)
             })
             
-            CodeVariantSection(isQR: $isQR, warningQR: $warningQR, warningAppClip: $warningAppClip)
+            CodeVariantSection(isQR: $isQR.onUpdate { Storage.set(value: isQR, forKey: Constants.isQR) }, warningQR: $warningQR, warningAppClip: $warningAppClip)
             
             if !isQR {
                 SettingsLine(title: L10n.Share.ColorVariant.title, current: .constant(colorVariant.currentVariant.localizrdName)) {
@@ -226,11 +266,11 @@ struct ShareDialog: View {
                 }
                 
                 SettingsLine(title: L10n.Share.LogoVariant.title, current: .constant(logoVariant.localizrdName)) {
-                    LogoSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                    LogoSection(colorVariant: $colorVariant, logoVariant: $logoVariant.onUpdate { logoVariant.saveToStorage() }, badgeVariant: $badgeVariant)
                 }
                 
                 SettingsLine(title: L10n.Share.BadgeVariant.title, current: .constant(badgeVariant.localizrdName)) {
-                    BadgeSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                    BadgeSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant.onUpdate { badgeVariant.saveToStorage() })
                 }
                 
             } else {
@@ -239,7 +279,7 @@ struct ShareDialog: View {
                 }
                 
                 SettingsLine(title: L10n.Share.QRLogoVariant.title, current: .constant(qrLogoVariant.localizrdName)) {
-                    QRLogoSection(colorVariant: $colorVariant, logoVariant: $qrLogoVariant)
+                    QRLogoSection(colorVariant: $colorVariant, logoVariant: $qrLogoVariant.onUpdate { qrLogoVariant.saveToStorage() })
                 }
             }
             
@@ -463,6 +503,8 @@ struct ShareDialog: View {
                             withAnimation {
                                 colorVariant.currentVariant = variant
                             }
+                            
+                            colorVariant.saveToStorage()
                         }, label: {
                             HStack {
                                 Circle()
@@ -494,6 +536,7 @@ struct ShareDialog: View {
                             withAnimation {
                                 colorVariant.inverted.toggle()
                             }
+                            colorVariant.saveToStorage()
                         }) {
                             HStack {
                                 Image(systemName: "arrow.up.arrow.down")
@@ -518,6 +561,7 @@ struct ShareDialog: View {
                             withAnimation {
                                 colorVariant.currentVariant = variant
                             }
+                            colorVariant.saveToStorage()
                         }, label: {
                             HStack {
                                 Circle()
@@ -549,6 +593,7 @@ struct ShareDialog: View {
                             withAnimation {
                                 colorVariant.inverted.toggle()
                             }
+                            colorVariant.saveToStorage()
                         }) {
                             HStack {
                                 Image(systemName: "arrow.up.arrow.down")
