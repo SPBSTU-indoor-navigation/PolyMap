@@ -103,15 +103,14 @@ class CodeGeneratorProvider {
         return URL(string: Constants.BASE_URL + "/share-code-tutorial?" + params.compactMap({ (key, value) in "\(key)=\(value)" }).joined(separator: "&"))!
     }
     
-    fileprivate static func processData(_ res: AFDataResponse<Data?>, filePath: String, completion: @escaping (ApiStatus<URL>) -> Void) {
+    fileprivate static func processData(_ res: AFDataResponse<Data?>, fileName: String, completion: @escaping (ApiStatus<URL>) -> Void) {
         if let data = res.data {
-            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-            let filePath =  "\(path)/\(filePath)";
+            var filePath = URL(fileURLWithPath: NSTemporaryDirectory())
+            filePath.appendPathComponent(fileName)
             
             do {
-                let url = URL(fileURLWithPath: filePath)
-                try data.write(to: url)
-                completion(.successWith(url))
+                try data.write(to: filePath)
+                completion(.successWith(filePath))
             } catch {
                 completion(.error)
             }
@@ -139,7 +138,7 @@ class CodeGeneratorProvider {
         
         AF.request(Constants.BASE_URL + "/api/appclip-code", method: .get, parameters: params)
             .response(completionHandler: { res in
-                processData(res, filePath: "AppClip.\(svg ? "svg" : "png")", completion: completion)
+                processData(res, fileName: "AppClip.\(svg ? "svg" : "png")", completion: completion)
             })
     }
                       
@@ -158,7 +157,7 @@ class CodeGeneratorProvider {
         
         AF.request(Constants.BASE_URL + "/api/qr-code", method: .get, parameters: params)
             .response(completionHandler: { res in
-                processData(res, filePath: "QR.\(svg ? "svg" : "png")", completion: completion)
+                processData(res, fileName: "QR.\(svg ? "svg" : "png")", completion: completion)
             })
     }
     

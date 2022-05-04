@@ -181,87 +181,109 @@ struct ShareDialog: View {
     @State var warningQR : Bool = false
     @State var warningAppClip: Bool = false
     
+    
+    @State var onHelloTextBeginEdit: (()->Void)?
+    
+    
     var from: Searchable & BaseAnnotation
     var to: Searchable & BaseAnnotation
     var routeParams: RouteParameters
     
+    func mainView(scroll: ((String) -> Void)? = nil) -> some View {
+        List {
+            Text(L10n.Share.mainInfo)
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .listRowBackground(Color.clear)
+            
+            Section {
+                HStack {
+                    Text(L10n.MapInfo.Route.Info.from)
+                    SearchablePreview(searchable: from)
+                        .padding(.vertical, 5)
+                }
+                
+                HStack {
+                    Text(L10n.MapInfo.Route.Info.to)
+                    SearchablePreview(searchable: to)
+                        .padding(.vertical, 5)
+                }
+            }
+            
+            HelloTextSection(showHelloText: $showHelloText, helloText: $helloText, onEdit: { scroll?("helloTextSection") }).id("helloTextSection")
+            
+            Section(content: {
+                Toggle(isOn: $routeParameterChanging, label: { Text(L10n.Share.allowParameterChange) })
+            }, footer: {
+                Text(L10n.Share.AllowParameterChange.description)
+            })
+            
+            CodeVariantSection(isQR: $isQR, warningQR: $warningQR, warningAppClip: $warningAppClip)
+            
+            if !isQR {
+                SettingsLine(title: L10n.Share.ColorVariant.title, current: .constant(colorVariant.currentVariant.localizrdName)) {
+                    ColorSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                }
+                
+                SettingsLine(title: L10n.Share.LogoVariant.title, current: .constant(logoVariant.localizrdName)) {
+                    LogoSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                }
+                
+                SettingsLine(title: L10n.Share.BadgeVariant.title, current: .constant(badgeVariant.localizrdName)) {
+                    BadgeSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
+                }
+                
+            } else {
+                SettingsLine(title: L10n.Share.ColorVariant.title, current: .constant(colorVariant.currentVariant.localizrdName)) {
+                    QRColorSection(colorVariant: $colorVariant, logoVariant: $qrLogoVariant)
+                }
+                
+                SettingsLine(title: L10n.Share.QRLogoVariant.title, current: .constant(qrLogoVariant.localizrdName)) {
+                    QRLogoSection(colorVariant: $colorVariant, logoVariant: $qrLogoVariant)
+                }
+            }
+            
+            Section {
+                VStack {
+                    if serverStatus == nil {
+                        HStack {
+                            ActivityIndicator(style: .medium)
+                            Text(L10n.Share.connectionCheck)
+                                .foregroundColor(.secondary)
+                        }
+                    } else {
+                        if case .error = serverStatus,
+                           case .errorNoInternet = serverStatus {
+                            Text(L10n.Share.connectionError)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    
+                    CreateButton(serverReady: .constant((serverStatus != nil) && !(warningQR && warningAppClip)), isQR: $isQR,
+                                 settings: Settings(color: colorVariant, logo: logoVariant, bage: badgeVariant, qrLogoVariant: qrLogoVariant, isQR: isQR, from: from.imdfID, to: to.imdfID, text: helloText, routeParams: routeParams, allowParameterChange: routeParameterChanging))
+                }
+            }.listRowBackground(Color.clear)
+        }
+        .navigationBarTitle("\(L10n.Share.navigationTitle)", displayMode: .inline)
+        .onAppear(perform: {
+            UIScrollView.appearance().keyboardDismissMode = .onDrag
+        })
+    }
+    
     var body: some View {
         NavigationView {
-            List {
-                Text(L10n.Share.mainInfo)
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                    .listRowBackground(Color.clear)
-                
-                Section {
-                    HStack {
-                        Text(L10n.MapInfo.Route.Info.from)
-                        SearchablePreview(searchable: from)
-                            .padding(.vertical, 5)
-                    }
-                    
-                    HStack {
-                        Text(L10n.MapInfo.Route.Info.to)
-                        SearchablePreview(searchable: to)
-                            .padding(.vertical, 5)
-                    }
-                }
-                
-                HelloTextSection(showHelloText: $showHelloText, helloText: $helloText)
-                
-                Section(content: {
-                    Toggle(isOn: $routeParameterChanging, label: { Text(L10n.Share.allowParameterChange) })
-                }, footer: {
-                    Text(L10n.Share.AllowParameterChange.description)
-                })
-                
-                CodeVariantSection(isQR: $isQR, warningQR: $warningQR, warningAppClip: $warningAppClip)
-                
-                if !isQR {
-                    SettingsLine(title: L10n.Share.ColorVariant.title, current: .constant(colorVariant.currentVariant.localizrdName)) {
-                        ColorSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
-                    }
-                    
-                    SettingsLine(title: L10n.Share.LogoVariant.title, current: .constant(logoVariant.localizrdName)) {
-                        LogoSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
-                    }
-                    
-                    SettingsLine(title: L10n.Share.BadgeVariant.title, current: .constant(badgeVariant.localizrdName)) {
-                        BadgeSection(colorVariant: $colorVariant, logoVariant: $logoVariant, badgeVariant: $badgeVariant)
-                    }
-                    
-                } else {
-                    SettingsLine(title: L10n.Share.ColorVariant.title, current: .constant(colorVariant.currentVariant.localizrdName)) {
-                        QRColorSection(colorVariant: $colorVariant, logoVariant: $qrLogoVariant)
-                    }
-                    
-                    SettingsLine(title: L10n.Share.QRLogoVariant.title, current: .constant(qrLogoVariant.localizrdName)) {
-                        QRLogoSection(colorVariant: $colorVariant, logoVariant: $qrLogoVariant)
-                    }
-                }
-                
-                Section {
-                    VStack {
-                        if serverStatus == nil {
-                            HStack {
-                                ActivityIndicator(style: .medium)
-                                Text(L10n.Share.connectionCheck)
-                                    .foregroundColor(.secondary)
-                            }
-                        } else {
-                            if case .error = serverStatus,
-                               case .errorNoInternet = serverStatus {
-                                Text(L10n.Share.connectionError)
-                                    .foregroundColor(.secondary)
-                            }
+            
+            if #available(iOS 14.0, *) {
+                ScrollViewReader { proxy in
+                    mainView(scroll: { id in
+                        withAnimation {
+                            proxy.scrollTo(id, anchor: .top)
                         }
-                        
-                        CreateButton(serverReady: .constant((serverStatus != nil) && !(warningQR && warningAppClip)), isQR: $isQR,
-                                     settings: Settings(color: colorVariant, logo: logoVariant, bage: badgeVariant, qrLogoVariant: qrLogoVariant, isQR: isQR, from: from.imdfID, to: to.imdfID, text: helloText, routeParams: routeParams, allowParameterChange: routeParameterChanging))
-                    }
-                }.listRowBackground(Color.clear)
+                    })
+                }
+            } else {
+                mainView()
             }
-            .navigationBarTitle("\(L10n.Share.navigationTitle)", displayMode: .inline)
         }
         .navigationViewStyle(.stack)
         .onAppear(perform: {
@@ -360,13 +382,18 @@ struct ShareDialog: View {
         }
     }
     
+
     struct HelloTextSection: View {
         @Binding var showHelloText: Bool
         @Binding var helloText: String
+        var onEdit: (()->Void)?
         
         var body: some View {
             Section(content: {
-                Toggle(isOn: $showHelloText, label: { Text(L10n.Share.HelloText.title) })
+                Toggle(isOn: .init(get: { showHelloText }, set: { val in
+                    hideKeyboard()
+                    showHelloText = val
+                }), label: { Text(L10n.Share.HelloText.title) })
                 
                 if showHelloText {
                     ZStack {
@@ -389,6 +416,9 @@ struct ShareDialog: View {
                             $0.font = .preferredFont(forTextStyle: .body)
                         }
                         .frame(height: 200)
+                        .onTapGesture {
+                            onEdit?()
+                        }
                     }
                 }
             }, footer: {

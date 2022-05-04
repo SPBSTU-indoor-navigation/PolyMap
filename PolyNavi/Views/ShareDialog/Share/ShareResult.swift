@@ -12,10 +12,12 @@ struct ActivityViewController: UIViewControllerRepresentable {
     
     var activityItems: [Any]
     var applicationActivities: [UIActivity]? = nil
+    var excludedActivityTypes: [UIActivity.ActivityType]? = nil
     @Environment(\.presentationMode) var presentationMode
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
         let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        controller.excludedActivityTypes = excludedActivityTypes
         controller.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
             self.presentationMode.wrappedValue.dismiss()
         }
@@ -29,6 +31,7 @@ struct ShareLine: View {
     @State var title: String
     @State var show: Bool = false
     @Binding var result: ApiStatus<Any>?
+    var excludedActivityTypes: [UIActivity.ActivityType]? = nil
     
     var body: some View {
         Button(action: {
@@ -49,7 +52,7 @@ struct ShareLine: View {
             }
         })
             .sheet(isPresented: $show, onDismiss: nil, content: {
-                ActivityViewController(activityItems: [result!.data!])
+                ActivityViewController(activityItems: [result!.data!], excludedActivityTypes: excludedActivityTypes)
             })
     }
     
@@ -83,7 +86,7 @@ struct ShareResult: View {
                         .listRowBackground(Color.clear)
                     }
                     ShareLine(title: L10n.Share.Result.sharePng, result: $png)
-                    ShareLine(title: L10n.Share.Result.shareSvg, result: $svg)
+                    ShareLine(title: L10n.Share.Result.shareSvg, result: $svg, excludedActivityTypes: [.saveToCameraRoll, .assignToContact])
                     if let tutorial = tutorial {
                         Button(action: {
                             UIApplication.shared.open(tutorial)
