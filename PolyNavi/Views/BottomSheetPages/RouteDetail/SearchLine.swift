@@ -206,8 +206,10 @@ extension SearchLine: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if !isSearch {
             isSearch = true
+        }
+        
+        if !self.isEditing {
             beginEditing?(textField.text ?? "")
-            
             DispatchQueue.main.async { self.isEditing = true }
         }
     }

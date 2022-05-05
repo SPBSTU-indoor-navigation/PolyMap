@@ -137,7 +137,7 @@ extension ExclusiveRouteDetailVC {
         alert.addAction(UIAlertAction(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.cancel, style: .cancel))
         
         alert.addAction(UIAlertAction(title: L10n.MapInfo.ExclRoute.Info.CloseAlert.end, style: .destructive, handler: { _ in
-            self.close(nil)
+            self.close()
         }))
         
         alert.view.tintColor = Asset.accentColor.color
