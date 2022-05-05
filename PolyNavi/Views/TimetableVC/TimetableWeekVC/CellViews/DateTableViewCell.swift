@@ -11,7 +11,7 @@ import UIKit
 class DateTableViewCell: UITableViewHeaderFooterView {
     
     public static var identifire: String {
-        return String(describing: self)
+        return String(describing: DateTableViewCell.self)
     }
     
     private lazy var formmater: DateFormatter = {

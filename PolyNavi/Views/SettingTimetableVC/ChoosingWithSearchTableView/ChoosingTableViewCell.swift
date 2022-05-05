@@ -12,7 +12,7 @@ import M13Checkbox
 class ChoosingTableViewCell: UITableViewCell {
     
     public static var identifire: String {
-        return String(describing: self)
+        return String(describing: ChoosingTableViewCell.self)
     }
     
     private lazy var titleLabel: UILabel = {

@@ -50,7 +50,7 @@ class AttractionSearchCell: BaseSearchCell {
         ].priority(.defaultHigh))
     }
     
-    func configurate(searchable: Searchable) {
+    override func configurate(searchable: Searchable) {
         titleLabel.text = searchable.mainTitle
         iconAttraction.configurate(searchable: searchable)
     }

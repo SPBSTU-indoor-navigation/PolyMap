@@ -20,7 +20,7 @@ protocol MapRenderer {
     func hide(_ mapView: OverlayedMapView)
 }
 
-protocol Identifiable {
+protocol ReusableCell {
     var identifier: String { get }
 }
 

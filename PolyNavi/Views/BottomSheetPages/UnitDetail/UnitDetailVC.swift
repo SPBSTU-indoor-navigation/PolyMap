@@ -49,9 +49,11 @@ class UnitDetailVC: NavbarBottomSheetPage {
     
     lazy var tableView: UITableView = {
         $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableView.UITableViewCellIdentifire)
-        $0.register(Spacer.self, forCellReuseIdentifier: Spacer.identifire)
+        $0.register(SpaceCell.self, forCellReuseIdentifier: SpaceCell.identifire)
         $0.register(RouteInfoCell.self, forCellReuseIdentifier: RouteInfoCell.identifire)
         $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifire)
+        $0.register(ShareAppClip.self, forCellReuseIdentifier: ShareAppClip.identifire)
+        $0.register(SimpleShareCell.self, forCellReuseIdentifier: SimpleShareCell.identifire)
         $0.register(TitleHeader.self, forHeaderFooterViewReuseIdentifier: TitleHeader.identifier)
         $0.delegate = self
         $0.dataSource = self
@@ -96,7 +98,11 @@ class UnitDetailVC: NavbarBottomSheetPage {
         super.onStateChange(horizontalSize: horizontalSize)
     }
     
-    func configurate(mapDetailInfo: MapDetailInfo) {
+    func configurate(mapDetailInfo: MapDetailInfo, showRouteButton: Bool = true) {
+        if !showRouteButton {
+            mapDetailInfo.sections = mapDetailInfo.sections.filter({ !($0 is MapDetailInfo.Route) })
+        }
+        
         self.mapDetailInfo = mapDetailInfo
         titleLabel.text = mapDetailInfo.title
         titleNavbarLabel.text = mapDetailInfo.title
@@ -136,7 +142,7 @@ extension UnitDetailVC: UITableViewDataSource {
         if useTitleTransition && indexPath.row == 0 && indexPath.section == 0 {
             var cell: UITableViewCell?
             UIView.performWithoutAnimation {
-                let spacer = tableView.dequeueReusableCell(withIdentifier: Spacer.identifire, for: indexPath) as! Spacer
+                let spacer = tableView.dequeueReusableCell(withIdentifier: SpaceCell.identifire, for: indexPath) as! SpaceCell
                 spacer.configurate(height: titleLabel.frame.height - navbar.frame.height + titleTopOffset + 3)
                 cell = spacer
             }
@@ -155,16 +161,20 @@ extension UnitDetailVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if section == 0,
+           let mapDetailInfo = mapDetailInfo,
+           let section = mapDetailInfo.section(for: section, title: useTitleTransition),
+           let _ = section.title {
+            return UITableView.automaticDimension
+        }
+        
+        
         if section == 0 {
             return 0
         }
         
         return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if useTitleTransition && indexPath.row == 0 && indexPath.section == 0 { return nil }
-        return indexPath
     }
 
 }
@@ -182,6 +192,11 @@ extension UnitDetailVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if let mapDetailInfo = mapDetailInfo,
+           let section = mapDetailInfo.section(for: indexPath.section, title: useTitleTransition)
+        {
+            (section as? SelectRowFor)?.didSelect(tableView, indexPath)
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -193,18 +208,6 @@ extension UnitDetailVC: UITableViewDelegate {
             let offset = titleLabel.frame.height - navbar.frame.height + titleTopOffset + 3
             let a = max(0, min(1, (scrollView.topContentOffset.y - offset) / 30))
 
-    //        if (1 - a < 0.5 && titleLabel.alpha == 1) {
-    //            UIView.animate(withDuration: 0.3) { [self] in
-    //                self.titleLabel.alpha = 0
-    //                self.titleNavbarLabel.alpha = 1
-    //            }
-    //        } else if (1 - a > 0.5 && titleLabel.alpha != 1){
-    //            UIView.animate(withDuration: 0.3) { [self] in
-    //                self.titleLabel.alpha = 1
-    //                self.titleNavbarLabel.alpha = 0
-    //            }
-    //        }
-            
             titleLabel.alpha = 1 - a
             titleNavbarLabel.alpha = max(0, min(1, (scrollView.topContentOffset.y - offset - 20) / 30))
             update(progress: a)

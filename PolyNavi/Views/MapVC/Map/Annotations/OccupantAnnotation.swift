@@ -7,7 +7,7 @@
 
 import MapKit
 
-class OccupantAnnotation: BaseAnnotation, MKAnnotation, Identifiable, IndoorAnnotation {
+class OccupantAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, IndoorAnnotation {
     enum DetailLevel: Int {
         case circlePrimary = 0
         case circleSecondary = 1

@@ -16,6 +16,7 @@ class Venue: CustomOverlay, Styleble {
     var address: IMDF.Address?
     
     var outdoorPath: [UUID:PathOverlay] = [:]
+    var defaultPathStartPoint: MKAnnotation? = nil
     
     init(geometry: MKShape & MKOverlay, buildings: [Building], enviroments: [EnviromentUnit],
          enviromentDetail: [Detail], address: IMDF.Address?, amenitys: [IMDF.EnviromentAmenity]) {

@@ -9,7 +9,7 @@ import UIKit
 
 class ToggleCell: UITableViewCell {
     
-    static var identifire = String(describing: self)
+    static var identifire = String(describing: ToggleCell.self)
     
     var action: ((Bool)->Void)? = nil
     
@@ -28,12 +28,11 @@ class ToggleCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configurate(title: String, onToggle: ((Bool)->Void)? = nil) {
+    func configurate(title: String, value: Bool, onToggle: ((Bool)->Void)? = nil) {
         
         if #available(iOS 14.0, *) {
             var content = defaultContentConfiguration()
             content.text = title
-            content.imageProperties.tintColor = .purple
             
             contentConfiguration = content
         } else {
@@ -41,6 +40,7 @@ class ToggleCell: UITableViewCell {
         }
         
         accessoryView = switcher
+        switcher.isOn = value
         action = onToggle
     }
     
