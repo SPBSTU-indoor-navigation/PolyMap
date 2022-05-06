@@ -26,7 +26,7 @@ extension AmenityAnnotation: MapDetailInfoCastable {
     func cast(mapDetailInfo: MapDetailInfo) -> Void {
         mapDetailInfo.title = properties.name?.bestLocalizedValue ?? title ?? "-"
         mapDetailInfo.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false, annotation: self))
-        mapDetailInfo.sections.append(MapDetailInfo.Report(favorite: false, report: true))
+        mapDetailInfo.sections.append(MapDetailInfo.Report(favorite: false, report: SectionCollection.Report.ReportAnnotation(annotation: self)))
         
         mapDetailInfo.annotation = self
     }
@@ -37,7 +37,7 @@ extension EnviromentAmenityAnnotation: MapDetailInfoCastable {
 
         mapDetailInfo.title = properties.name?.bestLocalizedValue ?? title ?? "-"
         mapDetailInfo.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false, annotation: self))
-        mapDetailInfo.sections.append(MapDetailInfo.Report(favorite: false, report: true))
+        mapDetailInfo.sections.append(MapDetailInfo.Report(favorite: false, report: SectionCollection.Report.ReportAnnotation(annotation: self)))
         
         mapDetailInfo.annotation = self
     }
@@ -49,7 +49,7 @@ extension AttractionAnnotation: MapDetailInfoCastable {
         mapDetailInfo.title = properties.name?.bestLocalizedValue ?? title ?? "-"
         mapDetailInfo.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: true, annotation: self).with(buildingID: properties.building_id))
         mapDetailInfo.sections.append(MapDetailInfo.Share(annotation: self))
-        mapDetailInfo.sections.append(MapDetailInfo.Report(favorite: true, report: true))
+        mapDetailInfo.sections.append(MapDetailInfo.Report(favorite: true, report: SectionCollection.Report.ReportAnnotation(annotation: self)))
         
         mapDetailInfo.annotation = self
     }
