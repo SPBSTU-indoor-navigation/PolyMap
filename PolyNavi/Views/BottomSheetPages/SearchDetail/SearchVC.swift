@@ -19,6 +19,7 @@ class SearchVC: NavbarBottomSheetPage {
             
         }
     }
+    var verticalSizeBeforeSearch: BottomSheetViewController.VerticalSize?
     
     var mapViewDelegate: MapViewDelegate?
     var mapInfoDelegate: MapInfoDelegate?
@@ -77,6 +78,13 @@ class SearchVC: NavbarBottomSheetPage {
         
         isSearch = false
     
+    }
+    
+    override func nextStateAfterTap(current: BottomSheetViewController.VerticalSize) -> BottomSheetViewController.VerticalSize? {
+        if !isSearch {
+            return super.nextStateAfterTap(current: current)
+        }
+        return nil
     }
     
     func cancelEdit() {
@@ -154,6 +162,7 @@ extension SearchVC: SearchTableViewDelegate, MainSearchTableViewDelegate {
 extension SearchVC: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.setShowsCancelButton(true, animated: true)
+        verticalSizeBeforeSearch = delegate?.verticalSize()
         delegate?.change(verticalSize: .big, animated: true)
         isSearch = true
         return true
@@ -162,7 +171,8 @@ extension SearchVC: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         cancelEdit()
         if delegate?.horizontalSize() == .big && delegate?.verticalSize() == .big {
-            delegate?.change(verticalSize: .medium, animated: true)
+            let size = verticalSizeBeforeSearch ?? .medium
+            delegate?.change(verticalSize: size != .small ? size : .medium, animated: true)
         }
     }
     

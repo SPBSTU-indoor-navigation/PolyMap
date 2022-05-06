@@ -36,15 +36,20 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
     }(UIView())
     
     lazy var closeButton: UIButton = {
-        $0.addTarget(self, action: #selector(close(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(closeButtonTap(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIButton(type: .close))
     
-    init(closable: Bool = false) {
+    init(closable: Bool = false, maximizationByNavbarClick: Bool = true) {
         super.init(nibName: nil, bundle: nil)
         
         self.closable = closable
+        
+        if maximizationByNavbarClick {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(navbarTap))
+            navbar.addGestureRecognizer(tap)
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -100,8 +105,32 @@ class NavbarBottomSheetPage: BluredBackgroundBottomSheetPage {
         navbarSeparator.alpha = lastProgress.clamped(0, 1) * contentView.alpha
     }
     
+    func nextStateAfterTap(current: BottomSheetViewController.VerticalSize) -> BottomSheetViewController.VerticalSize? {
+        switch current {
+        case .small: return .medium
+        case .medium: return .big
+        default: return nil
+        }
+    }
+    
     @objc
-    func close(_ sender: UIButton?) {
+    private func navbarTap(_ sender: UIButton?) {
+        let verticalSize = delegate?.verticalSize() ?? .small
+        
+        let targetSize = nextStateAfterTap(current: verticalSize)
+        
+        if let targetSize = targetSize,
+           targetSize != verticalSize {
+            delegate?.change(verticalSize: targetSize, animated: true)
+        }
+    }
+    
+    @objc
+    private func closeButtonTap(_ sender: UIButton?) {
+        close()
+    }
+    
+    func close() {
         beforeClose()
         navigationController?.popViewController(animated: true)
     }

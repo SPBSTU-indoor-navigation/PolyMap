@@ -117,11 +117,19 @@ class RouteDetailVC: NavbarBottomSheetPage {
         return $0
     }(RouteDetailSearchTableView(frame: .zero, style: .grouped))
     
+    override func nextStateAfterTap(current: BottomSheetViewController.VerticalSize) -> BottomSheetViewController.VerticalSize? {
+        if state == .normal {
+            return super.nextStateAfterTap(current: current)
+        }
+        return nil
+    }
+    
     var openFromConstraints: [NSLayoutConstraint] = []
     var openToConstraints: [NSLayoutConstraint] = []
+    var verticalSizeBeforeSearch: BottomSheetViewController.VerticalSize?
     
     func beginEditing(state: State, text: String) {
-        if self.state != .normal {
+        if self.state != .normal && self.state != state {
             DispatchQueue.main.async { [self] in
                 searchFrom.endSearch()
                 searchTo.endSearch()
@@ -129,6 +137,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
                 changeState(state: .normal)
             }
         } else {
+            verticalSizeBeforeSearch = delegate?.verticalSize()
             delegate?.change(verticalSize: .big, animated: true)
             changeState(state: state)
             searchTableView.proccesSearcheble(searchText: text, force: true)
@@ -138,7 +147,8 @@ class RouteDetailVC: NavbarBottomSheetPage {
     func cancelEditing() {
         self.changeState(state: .normal)
         if delegate?.horizontalSize() == .big && delegate?.verticalSize() == .big {
-            delegate?.change(verticalSize: .medium, animated: true)
+            let size = verticalSizeBeforeSearch ?? .medium
+            delegate?.change(verticalSize: size != .small ? size : .medium, animated: true)
         }
     }
     
@@ -197,6 +207,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
     }
     
     var changeDirectionAnimate = false
+    
     @objc
     func changeDirectionTap(_ sender: UIButton?) {
         if changeDirectionAnimate { return }

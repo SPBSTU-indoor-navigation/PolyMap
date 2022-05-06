@@ -14,11 +14,11 @@ class SearchLine: UIView {
         var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         override open func textRect(forBounds bounds: CGRect) -> CGRect {
-            return super.textRect(forBounds: bounds).inset(by: padding)
+            return super.textRect(forBounds: bounds).intersection(bounds.inset(by: padding))
         }
         
         override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-            return super.placeholderRect(forBounds: bounds).inset(by: padding)
+            return super.placeholderRect(forBounds: bounds).intersection(bounds.inset(by: padding))
         }
         
         override open func editingRect(forBounds bounds: CGRect) -> CGRect {
@@ -85,6 +85,9 @@ class SearchLine: UIView {
         $0.layer.cornerCurve = .continuous
         $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         $0.backgroundColor = Asset.Colors.searchBarBackground.color
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(labelTap))
+        $0.addGestureRecognizer(tap)
         return $0
     }(UIButton())
     
@@ -175,6 +178,11 @@ class SearchLine: UIView {
     }
     
     @objc
+    func labelTap(_ sender: UITapGestureRecognizer?) {
+        textField.becomeFirstResponder()
+    }
+    
+    @objc
     func cancel(_ sender: UIButton?) {
         endSearch()
     }
@@ -196,10 +204,14 @@ class SearchLine: UIView {
 
 extension SearchLine: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        isSearch = true
-        beginEditing?(textField.text ?? "")
+        if !isSearch {
+            isSearch = true
+        }
         
-        DispatchQueue.main.async { self.isEditing = true }
+        if !self.isEditing {
+            beginEditing?(textField.text ?? "")
+            DispatchQueue.main.async { self.isEditing = true }
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
