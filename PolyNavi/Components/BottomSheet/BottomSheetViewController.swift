@@ -365,7 +365,11 @@ class BottomSheetViewController: UINavigationController {
         
         let delta = position(for: state) - currentPosition
         
-        let initialVelocity = velocity / delta
+        var initialVelocity = velocity / delta
+        
+        if currentPosition < position(for: .big) {
+            initialVelocity /= max(1, (position(for: .big) - currentPosition) / 5)
+        }
         
         let timing = UISpringTimingParameters(damping: initialVelocity > 0.01 ? 0.8 : 1, response: 0.35, initialVelocity: CGVector(dx: initialVelocity, dy: initialVelocity))
         anim?.tryStopAnimation(true)
