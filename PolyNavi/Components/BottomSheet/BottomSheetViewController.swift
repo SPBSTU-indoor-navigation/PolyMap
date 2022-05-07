@@ -13,7 +13,7 @@ extension BottomSheetDelegate {
     func onProgressChange(progress: CGFloat) { }
 }
 
-protocol BottomSheetPageDelegate {
+protocol BottomSheetPageDelegate: AnyObject {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)

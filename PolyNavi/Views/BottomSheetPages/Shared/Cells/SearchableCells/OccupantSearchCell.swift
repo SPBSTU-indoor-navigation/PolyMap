@@ -21,25 +21,29 @@ class OccupantSearchCell: BaseSearchCell {
         return $0
     }(UILabel())
     
-    private lazy var iconOccuptant: OccupantSearchIcon = {
+    private lazy var occupantSearchIcon: OccupantSearchIcon = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(OccupantSearchIcon())
+    
+    var icon: UIView & SearchableConfigurate {
+        return occupantSearchIcon
+    }
     
     override func setViews() {
         super.setViews()
         
         contentView.addSubview(titleLabel)
         contentView.addSubview(subTitleLabel)
-        contentView.addSubview(iconOccuptant)
+        contentView.addSubview(icon)
         
         insertSubview(separator, belowSubview: contentView)
         
         NSLayoutConstraint.activate([
-            iconOccuptant.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            iconOccuptant.widthAnchor.constraint(equalToConstant: 35),
-            iconOccuptant.heightAnchor.constraint(equalToConstant: 35),
-            iconOccuptant.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            icon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            icon.widthAnchor.constraint(equalToConstant: 35),
+            icon.heightAnchor.constraint(equalToConstant: 35),
+            icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             separator.heightAnchor.constraint(equalToConstant: 0.5),
             separator.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -47,7 +51,7 @@ class OccupantSearchCell: BaseSearchCell {
             separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: iconOccuptant.trailingAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
             subTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
             subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
@@ -60,6 +64,6 @@ class OccupantSearchCell: BaseSearchCell {
     override func configurate(searchable: Searchable) {
         titleLabel.text = searchable.mainTitle
         subTitleLabel.text = "\(searchable.place ?? "") • \(searchable.floor ?? "")"
-        iconOccuptant.configurate(searchable: searchable)
+        icon.configurate(searchable: searchable)
     }
 }

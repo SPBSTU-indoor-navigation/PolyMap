@@ -181,7 +181,7 @@ class RouteDetailInfo: SectionCollection {
             sections.append(section)
             
             
-            sections.append(Report(favorite: false, report: SectionCollection.Report.ReportRoute(from: from, to: to, params: self.routeParams)))
+            sections.append(Report(report: SectionCollection.Report.ReportRoute(from: from, to: to, params: self.routeParams)))
         }
         
     

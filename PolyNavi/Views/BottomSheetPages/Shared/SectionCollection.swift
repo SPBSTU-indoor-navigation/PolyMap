@@ -43,42 +43,58 @@ class SectionCollection: NSObject, UITableViewDataSource {
             }
         }
         
-        var favorite: Bool = true
+        var favorite: BaseAnnotation? = nil
         var report: ReportBase? = nil
         
-        override var cellCount: Int { return favorite.intValue + (report != nil).intValue }
+        override var cellCount: Int { return (favorite != nil).intValue + (report != nil).intValue }
         
-        init(favorite: Bool = true, report: ReportBase? = nil) {
+        init(favorite: BaseAnnotation? = nil, report: ReportBase? = nil) {
             self.favorite = favorite
             self.report = report
+            
+            super.init()
         }
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableView.UITableViewCellIdentifire, for: indexPath)
-            
-            let image = UIImage(systemName: favorite && indexPath.row == 0 ? "star.fill" : "exclamationmark.bubble.fill")
-            let text = favorite && indexPath.row == 0 ? L10n.MapInfo.Report.favorites : L10n.MapInfo.Report.issue
-            
-            if #available(iOS 14.0, *) {
-                var content = cell.defaultContentConfiguration()
-                content.image = image
-                content.text = text
-                cell.contentConfiguration = content
+            if let favorite = favorite, indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.identifire, for: indexPath) as! FavoriteCell
+                cell.configurate(isFavorite: FavoritesStorage.shared.favorites.contains(favorite), animated: false)
+                return cell
             } else {
-                cell.textLabel?.text = text
-                cell.imageView?.image = image
+                let cell = tableView.dequeueReusableCell(withIdentifier: UITableView.UITableViewCellIdentifire, for: indexPath)
+                
+                let image = UIImage(systemName: "exclamationmark.bubble.fill")
+                let text = L10n.MapInfo.Report.issue
+                
+                if #available(iOS 14.0, *) {
+                    var content = cell.defaultContentConfiguration()
+                    content.image = image
+                    content.text = text
+                    cell.contentConfiguration = content
+                } else {
+                    cell.textLabel?.text = text
+                    cell.imageView?.image = image
+                }
+                
+                cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
+                return cell
             }
-            
-            cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
-            return cell
         }
         
         func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
-            let isFavorite = favorite && indexPath.row == 0
-            
-            if isFavorite {
-                
+            if let favorite = favorite, indexPath.row == 0 {
+                if FavoritesStorage.shared.favorites.contains(favorite) {
+                    FavoritesStorage.shared.removeFavorites(annotation: favorite)
+                    if let cell = tableView.cellForRow(at: indexPath) as? FavoriteCell {
+                        cell.configurate(isFavorite: false, animated: true)
+                    }
+                } else {
+                    FavoritesStorage.shared.addFavorites(annotation: favorite)
+                    if let cell = tableView.cellForRow(at: indexPath) as? FavoriteCell {
+                        cell.configurate(isFavorite: true, animated: true)
+                    }
+                }
             } else {
                 if let vc = tableView.delegate as? UIViewController,
                    let report = report {

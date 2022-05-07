@@ -23,10 +23,12 @@ class MainSearchTableView: UITableView {
         }
     }
     
-    private var data: MainSearchData = MainSearchData()
+    private var data: MainSearchData!
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
+        
+        data = MainSearchData(tableView: self)
         translatesAutoresizingMaskIntoConstraints = false
         dataSource = data
         delegate = self
@@ -107,13 +109,34 @@ class MainSearchData: NSObject {
     var favorites: (SectionType, [Searchable]) = (.favorites,[])
     var recent: (SectionType, [Searchable]) = (.recent,[])
     
+    weak var tableView: UITableView?
+    
     private var compute: [(SectionType, [Any])] = []
     
     func process(searchable: [Searchable]) {
         recent.1 = Array(searchable[2...4])
-        favorites.1 = Array(searchable[52...55])
+        favorites.1 = FavoritesStorage.shared.favorites.compactMap({ $0 as? Searchable })
         today.1 = Array(searchable[87...90]).map({ TodayCellModel(searchable: $0, title: "Высшая математика", timeStart: Date().advanced(by: -300), timeEnd: Date().advanced(by: 500)) })
         reload()
+    }
+    
+    init(tableView: UITableView) {
+        self.tableView = tableView
+        super.init()
+        
+        FavoritesStorage.shared.onAdd.addHandler(handler: { [weak self] annotation in
+            guard let self = self else { return }
+            if let searchable = annotation as? Searchable {
+                self.favorites.1.append(searchable)
+            }
+            self.reload()
+        })
+        
+        FavoritesStorage.shared.onRemove.addHandler(handler: { [weak self] annotation in
+            guard let self = self else { return }
+            self.favorites.1 = self.favorites.1.filter({ $0 as? BaseAnnotation != annotation })
+            self.reload()
+        })
     }
     
     func searchable(for indexPath: IndexPath) -> Searchable? {
@@ -131,6 +154,7 @@ class MainSearchData: NSObject {
     
     func reload() {
         compute = [today as (SectionType, [Any]), recent, favorites].filter({ !$0.1.isEmpty })
+        tableView?.reloadData()
     }
 }
 

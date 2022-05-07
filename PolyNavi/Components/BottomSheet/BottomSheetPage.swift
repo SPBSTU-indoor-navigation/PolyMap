@@ -8,7 +8,7 @@
 import UIKit
 
 class BottomSheetPage: UIViewController {
-    var delegate: BottomSheetPageDelegate?
+    weak var delegate: BottomSheetPageDelegate?
     
     func onStateChange(verticalSize: BottomSheetViewController.VerticalSize) { }
     func onStateChange(horizontalSize: BottomSheetViewController.HorizontalSize) { }

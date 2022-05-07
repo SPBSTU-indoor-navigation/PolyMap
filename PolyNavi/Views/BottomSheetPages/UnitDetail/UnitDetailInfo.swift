@@ -1,5 +1,5 @@
 //
-//  MapDetailInfo.swift
+//  UnitDetailInfo.swift
 //  PolyNavi
 //
 //  Created by Andrei Soprachev on 07.03.2022.
@@ -7,7 +7,7 @@
 import UIKit
 import MapKit
 
-class MapDetailInfo: SectionCollection {
+class UnitDetailInfo: SectionCollection {
     var title: String = ""
     var annotation: MKAnnotation?
 
@@ -88,8 +88,8 @@ class MapDetailInfo: SectionCollection {
         sections[safe: row - title.intValue]
     }
     
-    init(castable: MapDetailInfoCastable) {
+    init(castable: UnitDetailInfoCastable) {
         super.init()
-        castable.cast(mapDetailInfo: self)
+        castable.cast(unitDetailInfo: self)
     }
 }

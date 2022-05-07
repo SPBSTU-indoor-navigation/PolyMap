@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CodeGeneratorAppOpen {
+class ShareAppOpen {
     
     static func open(with userActivity: NSUserActivity, to vc: UIViewController) {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {

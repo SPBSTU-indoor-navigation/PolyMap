@@ -90,7 +90,7 @@ class MapInfo: BottomSheetViewController {
     
     func onPopToVC(_ vc: UIViewController) {
         if let unitDetail = vc as? UnitDetailVC,
-           let annotation = unitDetail.mapDetailInfo?.annotation {
+           let annotation = unitDetail.unitDetailInfo?.annotation {
             skipSelectStateChange = true
             skipSelectStateChange = mapViewDelegate?.focusAndSelect(annotation: annotation, focusVariant: .auto) ?? false
         }
@@ -217,15 +217,15 @@ extension MapInfo: MapInfoDelegate {
     }
     
     func select(_ annotation: MKAnnotation?) {
-        guard let annotation = annotation as? MapDetailInfoCastable else { return }
+        guard let annotation = annotation as? UnitDetailInfoCastable else { return }
         
         if pages.last == .annotationInfo {
             if let unitDetail = viewControllers.last as? UnitDetailVC {
-                unitDetail.configurate(mapDetailInfo: MapDetailInfo(castable: annotation), showRouteButton: !pages.contains(.exclusiveRoute))
+                unitDetail.configurate(unitDetailInfo: UnitDetailInfo(castable: annotation), showRouteButton: !pages.contains(.exclusiveRoute))
             }
         } else {
             let vc = UnitDetailVC(closable: true)
-            vc.configurate(mapDetailInfo: MapDetailInfo(castable: annotation), showRouteButton: !pages.contains(.exclusiveRoute))
+            vc.configurate(unitDetailInfo: UnitDetailInfo(castable: annotation), showRouteButton: !pages.contains(.exclusiveRoute))
             pushViewController(vc, animated: true)
         }
         

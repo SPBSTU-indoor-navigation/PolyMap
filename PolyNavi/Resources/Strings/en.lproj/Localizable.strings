@@ -41,7 +41,8 @@ MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Website";
 MapInfo.Detail.Address = "Address";
 
-MapInfo.Report.Favorites = "Favorites";
+MapInfo.Report.Favorites.Add = "Add to Favorites";
+MapInfo.Report.Favorites.Remove = "Remove from Favorites";
 MapInfo.Report.Issue = "Report an Issue";
 
 MapInfo.Route.Route = "Route";
