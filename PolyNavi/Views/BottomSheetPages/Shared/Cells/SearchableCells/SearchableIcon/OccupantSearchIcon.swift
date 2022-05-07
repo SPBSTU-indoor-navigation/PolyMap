@@ -14,7 +14,7 @@ class OccupantSearchIcon: UIView, SearchableConfigurate {
         return $0
     }(UIImageView())
     
-    private lazy var iconContainer: UIView = {
+    lazy var iconContainer: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .systemBlue
         return $0

@@ -15,6 +15,8 @@ class SearchShared {
     static func registerCells(tableView: UITableView) {
         tableView.register(OccupantSearchCell.self, forCellReuseIdentifier: OccupantAnnotation.identifier)
         tableView.register(AttractionSearchCell.self, forCellReuseIdentifier: AttractionAnnotation.identifier)
+        tableView.register(AmenitySearchCell.self, forCellReuseIdentifier: AmenityAnnotation.identifier)
+        tableView.register(EnviromentAmenitySearchCell.self, forCellReuseIdentifier: EnviromentAmenityAnnotation.identifier)
         tableView.register(SearchHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchHeaderView.identifier)
     }
     
@@ -26,6 +28,10 @@ class SearchShared {
             icon = OccupantSearchIcon()
         case is AttractionAnnotation:
             icon = AttractionSearchIcon()
+        case is AmenityAnnotation:
+            icon = AmenitySearchIcon()
+        case is EnviromentAmenityAnnotation:
+            icon = AmenitySearchIcon()
         default:
             icon = nil
         }
@@ -44,6 +50,10 @@ class SearchShared {
             cell = OccupantSearchCell(style: .default, reuseIdentifier: "")
         case is AttractionAnnotation:
             cell = AttractionSearchCell(style: .default, reuseIdentifier: "")
+        case is AmenityAnnotation:
+            cell = AmenitySearchCell(style: .default, reuseIdentifier: "")
+        case is EnviromentAmenityAnnotation:
+            cell = EnviromentAmenitySearchCell(style: .default, reuseIdentifier: "")
         default:
             cell = nil
         }
@@ -58,11 +68,7 @@ class SearchShared {
     static func cell(_ tableView: UITableView, for searchable: Searchable, indexPath: IndexPath, grouped: Bool = false) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: (searchable as? ReusableCell)?.identifier ?? OccupantAnnotation.identifier, for: indexPath)
         
-        if searchable is OccupantAnnotation {
-            (cell as? OccupantSearchCell)?.configurate(searchable: searchable)
-        } else if searchable is AttractionAnnotation {
-            (cell as? AttractionSearchCell)?.configurate(searchable: searchable)
-        }
+        (cell as? BaseSearchCell)?.configurate(searchable: searchable)
         
         cell.backgroundColor = grouped ? Asset.Colors.bottomSheetGroupped.color : .clear
         

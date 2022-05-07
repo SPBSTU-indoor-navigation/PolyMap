@@ -46,10 +46,14 @@ internal enum L10n {
       }
     }
     internal enum Report {
-      /// Favorites
-      internal static let favorites = L10n.tr("Localizable", "MapInfo.Report.Favorites")
       /// Report an Issue
       internal static let issue = L10n.tr("Localizable", "MapInfo.Report.Issue")
+      internal enum Favorites {
+        /// Add to Favorites
+        internal static let add = L10n.tr("Localizable", "MapInfo.Report.Favorites.Add")
+        /// Remove from Favorites
+        internal static let remove = L10n.tr("Localizable", "MapInfo.Report.Favorites.Remove")
+      }
     }
     internal enum Route {
       /// From

@@ -41,7 +41,8 @@ MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Вебсайт";
 MapInfo.Detail.Address = "Адрес";
 
-MapInfo.Report.Favorites = "Закладки";
+MapInfo.Report.Favorites.Add = "Добавть в Закладки";
+MapInfo.Report.Favorites.Remove = "Удалить из Закладок";
 MapInfo.Report.Issue = "Сообщить об ошибке";
 
 MapInfo.Route.Route = "Маршрут";

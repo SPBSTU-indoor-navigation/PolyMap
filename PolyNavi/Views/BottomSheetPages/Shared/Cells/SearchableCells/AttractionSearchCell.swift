@@ -20,23 +20,27 @@ class AttractionSearchCell: BaseSearchCell {
     }(AttractionSearchIcon())
     
     
+    var icon: UIView & SearchableConfigurate {
+        return iconAttraction
+    }
+    
     override func setViews() {
         super.setViews()
         
         contentView.addSubview(titleLabel)
-        contentView.addSubview(iconAttraction)
+        contentView.addSubview(icon)
         
         insertSubview(separator, belowSubview: contentView)
         
         NSLayoutConstraint.activate([
-            iconAttraction.widthAnchor.constraint(equalToConstant: 35),
-            iconAttraction.heightAnchor.constraint(equalToConstant: 35),
+            icon.widthAnchor.constraint(equalToConstant: 35),
+            icon.heightAnchor.constraint(equalToConstant: 35),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
         ].priority(.required))
         
         NSLayoutConstraint.activate([
-            iconAttraction.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            iconAttraction.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            icon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            icon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             separator.heightAnchor.constraint(equalToConstant: 0.5),
             separator.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -44,14 +48,14 @@ class AttractionSearchCell: BaseSearchCell {
             separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: iconAttraction.trailingAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 10),
     
-            contentView.bottomAnchor.constraint(equalTo: iconAttraction.bottomAnchor, constant: 10)
+            contentView.bottomAnchor.constraint(equalTo: icon.bottomAnchor, constant: 10)
         ].priority(.defaultHigh))
     }
     
     override func configurate(searchable: Searchable) {
         titleLabel.text = searchable.mainTitle
-        iconAttraction.configurate(searchable: searchable)
+        icon.configurate(searchable: searchable)
     }
 }

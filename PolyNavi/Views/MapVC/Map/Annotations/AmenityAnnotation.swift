@@ -36,11 +36,13 @@ class AmenityAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, AmenityDeta
     
     var properties: IMDF.Amenity.Properties
     var detailLevel: DetailLevel
+    var level: Level
     
-    init(coordinate: CLLocationCoordinate2D, imdfID: UUID, properties: IMDF.Amenity.Properties, detailLevel: Int) {
+    init(coordinate: CLLocationCoordinate2D, imdfID: UUID, properties: IMDF.Amenity.Properties, detailLevel: Int, level: Level) {
         self.coordinate = coordinate
         self.properties = properties
         self.detailLevel = .init(rawValue: detailLevel)!
+        self.level = level
         super.init()
         self.imdfID = imdfID
     }
@@ -57,9 +59,11 @@ extension AmenityAnnotation: Searchable {
         properties.alt_name?.bestLocalizedValue
     }
     
-    var place: String? { nil }
+    var place: String? {
+        level.building?.properties.name?.bestLocalizedValue
+    }
     
-    var floor: String? { nil }
+    var floor: String? { level.properties.name?.bestLocalizedValue }
     
     var searchTags: [String] { [] }
 }

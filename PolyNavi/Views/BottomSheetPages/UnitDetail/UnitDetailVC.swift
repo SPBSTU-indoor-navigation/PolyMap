@@ -18,7 +18,7 @@ fileprivate class TitleLabel: UILabel {
 
 class UnitDetailVC: NavbarBottomSheetPage {
     let titleTopOffset = 14.0
-    var mapDetailInfo: MapDetailInfo?
+    var unitDetailInfo: UnitDetailInfo?
     
     private var useTitleTransition = false
     
@@ -36,7 +36,7 @@ class UnitDetailVC: NavbarBottomSheetPage {
         $0.font = .systemFont(ofSize: 29, weight: .bold)
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
-        $0.onHeightChange = { self.titleHeight = $0 }
+        $0.onHeightChange = { [weak self] in self?.titleHeight = $0 }
         return $0
     }(TitleLabel())
     
@@ -54,6 +54,7 @@ class UnitDetailVC: NavbarBottomSheetPage {
         $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifire)
         $0.register(ShareAppClip.self, forCellReuseIdentifier: ShareAppClip.identifire)
         $0.register(SimpleShareCell.self, forCellReuseIdentifier: SimpleShareCell.identifire)
+        $0.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.identifire)
         $0.register(TitleHeader.self, forHeaderFooterViewReuseIdentifier: TitleHeader.identifier)
         $0.delegate = self
         $0.dataSource = self
@@ -98,14 +99,14 @@ class UnitDetailVC: NavbarBottomSheetPage {
         super.onStateChange(horizontalSize: horizontalSize)
     }
     
-    func configurate(mapDetailInfo: MapDetailInfo, showRouteButton: Bool = true) {
+    func configurate(unitDetailInfo: UnitDetailInfo, showRouteButton: Bool = true) {
         if !showRouteButton {
-            mapDetailInfo.sections = mapDetailInfo.sections.filter({ !($0 is MapDetailInfo.Route) })
+            unitDetailInfo.sections = unitDetailInfo.sections.filter({ !($0 is UnitDetailInfo.Route) })
         }
         
-        self.mapDetailInfo = mapDetailInfo
-        titleLabel.text = mapDetailInfo.title
-        titleNavbarLabel.text = mapDetailInfo.title
+        self.unitDetailInfo = unitDetailInfo
+        titleLabel.text = unitDetailInfo.title
+        titleNavbarLabel.text = unitDetailInfo.title
         
         tableView.reloadData()
     }
@@ -114,22 +115,22 @@ class UnitDetailVC: NavbarBottomSheetPage {
 extension UnitDetailVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard let mapDetailInfo = mapDetailInfo else { return 0 }
+        guard let unitDetailInfo = unitDetailInfo else { return 0 }
         
-        return mapDetailInfo.sections.count + useTitleTransition.intValue
+        return unitDetailInfo.sections.count + useTitleTransition.intValue
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let mapDetailInfo = mapDetailInfo else { return 0 }
+        guard let unitDetailInfo = unitDetailInfo else { return 0 }
         
         if useTitleTransition && section == 0 { return 1 }
         
-        return mapDetailInfo.sections[section - useTitleTransition.intValue].cellCount
+        return unitDetailInfo.sections[section - useTitleTransition.intValue].cellCount
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let mapDetailInfo = mapDetailInfo,
-              let section = mapDetailInfo.section(for: section, title: useTitleTransition),
+        guard let unitDetailInfo = unitDetailInfo,
+              let section = unitDetailInfo.section(for: section, title: useTitleTransition),
               let title = section.title else { return nil }
         
         let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleHeader.identifier) as! TitleHeader
@@ -151,8 +152,8 @@ extension UnitDetailVC: UITableViewDataSource {
             return cell!
         }
         
-        if let mapDetailInfo = mapDetailInfo,
-           let section = mapDetailInfo.section(for: indexPath.section, title: useTitleTransition),
+        if let unitDetailInfo = unitDetailInfo,
+           let section = unitDetailInfo.section(for: indexPath.section, title: useTitleTransition),
            let cellFor = section as? CellFor {
             return cellFor.cellFor(tableView, indexPath)
         }
@@ -163,8 +164,8 @@ extension UnitDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         if section == 0,
-           let mapDetailInfo = mapDetailInfo,
-           let section = mapDetailInfo.section(for: section, title: useTitleTransition),
+           let unitDetailInfo = unitDetailInfo,
+           let section = unitDetailInfo.section(for: section, title: useTitleTransition),
            let _ = section.title {
             return UITableView.automaticDimension
         }
@@ -192,8 +193,8 @@ extension UnitDetailVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let mapDetailInfo = mapDetailInfo,
-           let section = mapDetailInfo.section(for: indexPath.section, title: useTitleTransition)
+        if let unitDetailInfo = unitDetailInfo,
+           let section = unitDetailInfo.section(for: indexPath.section, title: useTitleTransition)
         {
             (section as? SelectRowFor)?.didSelect(tableView, indexPath)
         }
