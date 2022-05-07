@@ -16,7 +16,7 @@ extension OccupantAnnotation: MapDetailInfoCastable {
         mapDetailInfo.sections.append(MapDetailInfo.Route(showRoute: true, showIndoor: false, annotation: self))
         mapDetailInfo.sections.append(MapDetailInfo.Detail(phone: properties.phone, email: properties.email, website: properties.website, address: address?.addressString()))
         mapDetailInfo.sections.append(MapDetailInfo.Share(annotation: self))
-        mapDetailInfo.sections.append(MapDetailInfo.Report())
+        mapDetailInfo.sections.append(MapDetailInfo.Report(favorite: true, report: SectionCollection.Report.ReportAnnotation(annotation: self)))
         
         mapDetailInfo.annotation = self
     }
