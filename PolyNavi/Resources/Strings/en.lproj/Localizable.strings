@@ -146,3 +146,18 @@ Share.Result.ShareUrl = "Permalink";
 Share.Result.ShareUrl.Info = "You can embed the link yourself in any type of codes, or simply send it in text form";
 
 Share.Result.Loading = "Loading...";
+
+
+//MARK:- ReportAnIssue
+ReportAnIssue.Enable = "yes";
+ReportAnIssue.Disable = "no";
+
+ReportAnIssue.Succes = "Сообщение об ошибке отправлено успешно";
+ReportAnIssue.ServerError = "К сожалению не удалось подключиться к серверу, попробуйте позже";
+ReportAnIssue.Error.Annotation = "Ошибка в";
+ReportAnIssue.Error.Route = "Ошибка в маршруте";
+ReportAnIssue.Message.Title = "Подробно опишите ошибку";
+ReportAnIssue.Message.Placeholder = "L10n.Share.HelloText.placehodler";
+ReportAnIssue.Message.Footer = "It is recommended to leave a contact for feedback, for example, an email address or a Telegram account";
+ReportAnIssue.Send = "Send";
+ReportAnIssue.Title = "Report";

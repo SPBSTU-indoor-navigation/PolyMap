@@ -10,7 +10,7 @@ import Alamofire
 
 class CodeGeneratorProvider {
     enum Constants {
-        static let BASE_URL = "https://polymap.ru"
+        static let BASE_URL = NetworkShared.Constants.BASE_URL
     }
     
     struct RouteSettings {

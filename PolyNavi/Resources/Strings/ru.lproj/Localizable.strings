@@ -146,3 +146,18 @@ Share.Result.ShareUrl = "Постоянная ссылка";
 Share.Result.ShareUrl.Info = "Ссылку можно самостоятельно встроить в любой вид кодов, либо просто отправить в текстовом виде";
 
 Share.Result.Loading = "Загрузка...";
+
+
+//MARK:- ReportAnIssue
+ReportAnIssue.Enable = "да";
+ReportAnIssue.Disable = "нет";
+
+ReportAnIssue.Succes = "Сообщение об ошибке отправлено успешно";
+ReportAnIssue.ServerError = "К сожалению не удалось подключиться к серверу, попробуйте позже";
+ReportAnIssue.Error.Annotation = "Ошибка в";
+ReportAnIssue.Error.Route = "Ошибка в маршруте";
+ReportAnIssue.Message.Title = "Подробно опишите ошибку";
+ReportAnIssue.Message.Placeholder = "Описание ошибки";
+ReportAnIssue.Message.Footer = "Рекомендуется оставить контакт для обратной связи, например адрес эллектронной почты или аккаунт в Telegram";
+ReportAnIssue.Send = "Отправить";
+ReportAnIssue.Title = "Сообщить об ошибке";

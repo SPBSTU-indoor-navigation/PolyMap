@@ -8,9 +8,14 @@
 import UIKit
 import MapKit
 
-struct RouteParameters {
+class RouteParameters {
     var asphalt: Bool
     var serviceRoute: Bool
+    
+    init(asphalt: Bool, serviceRoute: Bool) {
+        self.asphalt = asphalt
+        self.serviceRoute = serviceRoute
+    }
 }
 
 class RouteDetailInfo: SectionCollection {
@@ -146,14 +151,11 @@ class RouteDetailInfo: SectionCollection {
     }
     
     var redrawPath: (() -> Void)?
-    var routeParams: RouteParameters = .init(asphalt: false, serviceRoute: false) {
-        didSet {
-            redrawPath?()
-            share?.routeParameters = routeParams
-        }
-    }
+    var routeParams: RouteParameters = .init(asphalt: false, serviceRoute: false)
     
-    var share: RouteShare?
+    func onParamsUpdate() {
+        redrawPath?()
+    }
     
     init(result: PathResult?, redrawPath: (() -> Void)?, routeParams: RouteParameters) {
         self.routeParams = routeParams
@@ -170,19 +172,18 @@ class RouteDetailInfo: SectionCollection {
             sections.append(PathInfo(result: result))
         }
         
-        sections.append(Settings(asphalt: .init(get: { self.routeParams.asphalt }, set: { self.routeParams.asphalt = $0 }),
-                                 serviceRoute: .init(get: { self.routeParams.serviceRoute }, set: { self.routeParams.serviceRoute = $0 })))
+        sections.append(Settings(asphalt: .init(get: { self.routeParams.asphalt }, set: { self.routeParams.asphalt = $0; self.onParamsUpdate() }),
+                                 serviceRoute: .init(get: { self.routeParams.serviceRoute }, set: { self.routeParams.serviceRoute = $0; self.onParamsUpdate() })))
         if let result = result,
            let from = result.from as? (BaseAnnotation & Searchable),
            let to = result.to as? (BaseAnnotation & Searchable) {
             let section = RouteShare(from: from, to: to, params: self.routeParams)
-            share = section
             sections.append(section)
-        } else {
-            share = nil
+            
+            
+            sections.append(Report(favorite: false, report: SectionCollection.Report.ReportRoute(from: from, to: to, params: self.routeParams)))
         }
         
-        sections.append(Report(favorite: false, report: true))
     
         tableView?.reloadSections(IndexSet(0...0), with: .none)
     }

@@ -21,13 +21,34 @@ class SectionCollection: NSObject, UITableViewDataSource {
         var cellCount: Int { return 1 }
     }
     
-    class Report: Section, CellFor {
+    class Report: Section, CellFor, SelectRowFor {
+        class ReportBase { }
+        class ReportAnnotation: ReportBase {
+            let annotation: BaseAnnotation & Searchable
+            
+            init(annotation: BaseAnnotation & Searchable) {
+                self.annotation = annotation
+            }
+        }
+        
+        class ReportRoute: ReportBase {
+            let from: BaseAnnotation & Searchable
+            let to: BaseAnnotation & Searchable
+            let params: RouteParameters
+            
+            init(from: BaseAnnotation & Searchable, to: BaseAnnotation & Searchable, params: RouteParameters) {
+                self.from = from
+                self.to = to
+                self.params = params
+            }
+        }
+        
         var favorite: Bool = true
-        var report: Bool = true
+        var report: ReportBase? = nil
         
-        override var cellCount: Int { return favorite.intValue + report.intValue }
+        override var cellCount: Int { return favorite.intValue + (report != nil).intValue }
         
-        init(favorite: Bool = true, report: Bool = true) {
+        init(favorite: Bool = true, report: ReportBase? = nil) {
             self.favorite = favorite
             self.report = report
         }
@@ -52,6 +73,20 @@ class SectionCollection: NSObject, UITableViewDataSource {
             cell.backgroundColor = Asset.Colors.bottomSheetGroupped.color
             return cell
         }
+        
+        func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
+            let isFavorite = favorite && indexPath.row == 0
+            
+            if isFavorite {
+                
+            } else {
+                if let vc = tableView.delegate as? UIViewController,
+                   let report = report {
+                    ReportanIssue(report: report).present(to: vc, animated: true)
+                }
+            }
+        }
+        
     }
     
     class Share: Section, CellFor, SelectRowFor {
