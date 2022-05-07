@@ -24,19 +24,19 @@ class SectionCollection: NSObject, UITableViewDataSource {
     class Report: Section, CellFor, SelectRowFor {
         class ReportBase { }
         class ReportAnnotation: ReportBase {
-            let annotation: BaseAnnotation
+            let annotation: BaseAnnotation & Searchable
             
-            init(annotation: BaseAnnotation) {
+            init(annotation: BaseAnnotation & Searchable) {
                 self.annotation = annotation
             }
         }
         
         class ReportRoute: ReportBase {
-            let from: BaseAnnotation
-            let to: BaseAnnotation
+            let from: BaseAnnotation & Searchable
+            let to: BaseAnnotation & Searchable
             let params: RouteParameters
             
-            init(from: BaseAnnotation, to: BaseAnnotation, params: RouteParameters) {
+            init(from: BaseAnnotation & Searchable, to: BaseAnnotation & Searchable, params: RouteParameters) {
                 self.from = from
                 self.to = to
                 self.params = params

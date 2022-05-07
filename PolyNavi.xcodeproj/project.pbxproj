@@ -89,6 +89,10 @@
 		9735D1FF2822D8DE00F8A08F /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */; };
 		9735D2032824B0C600F8A08F /* ReportanIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D2022824B0C600F8A08F /* ReportanIssue.swift */; };
 		9735D2042824B0C600F8A08F /* ReportanIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D2022824B0C600F8A08F /* ReportanIssue.swift */; };
+		9735D2062825D38300F8A08F /* ReportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D2052825D38300F8A08F /* ReportResult.swift */; };
+		9735D2072825D38300F8A08F /* ReportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D2052825D38300F8A08F /* ReportResult.swift */; };
+		9735D20A2825DC5400F8A08F /* ReportApiProvider.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D2092825DC5400F8A08F /* ReportApiProvider.swift.swift */; };
+		9735D20B2825DC5400F8A08F /* ReportApiProvider.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D2092825DC5400F8A08F /* ReportApiProvider.swift.swift */; };
 		973962BE2808DCB4000E478F /* SearchLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962BD2808DCB4000E478F /* SearchLine.swift */; };
 		973962BF2808DCB4000E478F /* SearchLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962BD2808DCB4000E478F /* SearchLine.swift */; };
 		973962C1280A41AB000E478F /* RouteDetailSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962C0280A41AB000E478F /* RouteDetailSearchTableView.swift */; };
@@ -318,6 +322,8 @@
 		971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNaviClip.entitlements; sourceTree = "<group>"; };
 		9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		9735D2022824B0C600F8A08F /* ReportanIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportanIssue.swift; sourceTree = "<group>"; };
+		9735D2052825D38300F8A08F /* ReportResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportResult.swift; sourceTree = "<group>"; };
+		9735D2092825DC5400F8A08F /* ReportApiProvider.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportApiProvider.swift.swift; sourceTree = "<group>"; };
 		973962BD2808DCB4000E478F /* SearchLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLine.swift; sourceTree = "<group>"; };
 		973962C0280A41AB000E478F /* RouteDetailSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailSearchTableView.swift; sourceTree = "<group>"; };
 		973962C4280B609A000E478F /* SectionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCollection.swift; sourceTree = "<group>"; };
@@ -560,6 +566,7 @@
 			isa = PBXGroup;
 			children = (
 				974D4244280F893500F05434 /* Shared */,
+				9735D2082825DC1900F8A08F /* Report */,
 				974D4248280F895B00F05434 /* Share */,
 				97BBFEC8271226BD0039F3E0 /* Timetable */,
 			);
@@ -703,8 +710,17 @@
 			isa = PBXGroup;
 			children = (
 				9735D2022824B0C600F8A08F /* ReportanIssue.swift */,
+				9735D2052825D38300F8A08F /* ReportResult.swift */,
 			);
 			path = ReportanIssue;
+			sourceTree = "<group>";
+		};
+		9735D2082825DC1900F8A08F /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				9735D2092825DC5400F8A08F /* ReportApiProvider.swift.swift */,
+			);
+			path = Report;
 			sourceTree = "<group>";
 		};
 		973962C3280B6081000E478F /* Shared */ = {
@@ -1322,6 +1338,7 @@
 				9780D8C027B3412A00DBDBF3 /* SearchVC.swift in Sources */,
 				978B321227EF74C300760B78 /* SearchTableView.swift in Sources */,
 				978B320827EE630300760B78 /* OccupantSearchCell.swift in Sources */,
+				9735D20A2825DC5400F8A08F /* ReportApiProvider.swift.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
 				973962D6280C96A8000E478F /* SimpleShareCell.swift in Sources */,
 				974D42632813945E00F05434 /* ActivityIndicator.swift in Sources */,
@@ -1377,6 +1394,7 @@
 				978B322427F0058B00760B78 /* SearchGroupedHeaderView.swift in Sources */,
 				974D4246280F894100F05434 /* NetworkShared.swift in Sources */,
 				97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */,
+				9735D2062825D38300F8A08F /* ReportResult.swift in Sources */,
 				97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */,
 				979E5C9B27C0023000A48816 /* MapInfo.swift in Sources */,
 				9735D1FE2822D6B800F8A08F /* UserDefaultsStorage.swift in Sources */,
@@ -1418,6 +1436,7 @@
 				971F8E1027BD556B0018F98A /* AmenityAnnotation.swift in Sources */,
 				978B321627EFA7CD00760B78 /* MainSearchTableView.swift in Sources */,
 				978B793027D12F8C0003626F /* AnnotationConvert.swift in Sources */,
+				9735D20B2825DC5400F8A08F /* ReportApiProvider.swift.swift in Sources */,
 				979E5C9927BF0B3400A48816 /* SwiftUIExtensions.swift in Sources */,
 				978769A527FBB6BD008138EC /* GradientPathRenderer.swift in Sources */,
 				971F8E0B27BD556B0018F98A /* EnviromentAmenityAnnotation.swift in Sources */,
@@ -1463,6 +1482,7 @@
 				971F8DE627BD54E00018F98A /* MapViewController.swift in Sources */,
 				97A566F927D589FA00A064CC /* MapDetailInfo.swift in Sources */,
 				971F8E0D27BD556B0018F98A /* AttractionAnnotation.swift in Sources */,
+				9735D2072825D38300F8A08F /* ReportResult.swift in Sources */,
 				971F8DF427BD55480018F98A /* Strings+Generated.swift in Sources */,
 				978769A927FBC0FE008138EC /* PathMapView.swift in Sources */,
 				978769A227FBB22B008138EC /* PathOverlay.swift in Sources */,

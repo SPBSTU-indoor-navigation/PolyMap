@@ -43,3 +43,35 @@ struct TextView: UIViewRepresentable {
         }
     }
 }
+
+struct TextViewPlaceholder: View {
+    @Binding var text: String
+    var placehodler: String
+    var beginEdit: (()->Void)?
+    
+    var body: some View {
+        ZStack {
+            if text.isEmpty {
+                VStack{
+                    HStack{
+                        Text(placehodler)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+            }
+            
+            TextView(text: $text) {
+                $0.backgroundColor = .clear
+                $0.clipsToBounds = false
+                $0.textContainerInset = .zero
+                $0.textContainer.lineFragmentPadding = 0
+                $0.font = .preferredFont(forTextStyle: .body)
+            }
+            .onTapGesture {
+                beginEdit?()
+            }
+        }
+    }
+}

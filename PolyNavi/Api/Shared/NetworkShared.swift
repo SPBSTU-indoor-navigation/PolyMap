@@ -23,9 +23,23 @@ enum ApiStatus<T> {
             }
         }
     }
+    
+    var isErrorNoInternet: Bool {
+        if case .errorNoInternet = self { return true }
+        return false
+    }
+    
+    var isGenericError: Bool {
+        if case .error = self { return true }
+        return false
+    }
 }
 
 class NetworkShared {
+    enum Constants {
+        static let BASE_URL = "https://polymap.ru"
+    }
+    
     static func load<T:Codable>(url: String, metod: HTTPMethod, params: Dictionary<String, String>, enecodig: ParameterEncoding = URLEncoding.default, timeoutInterval: TimeInterval = 30, completion: @escaping (ApiStatus<T>) -> Void) {
         AF.request(url,
                    method: metod,
@@ -52,8 +66,9 @@ class NetworkShared {
                         default:
                             completion(.error)
                         }
+                    } else {
+                        completion(.error)
                     }
-                    completion(.error)
                 }
             }
     }

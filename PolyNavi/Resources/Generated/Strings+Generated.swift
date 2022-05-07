@@ -109,6 +109,35 @@ internal enum L10n {
     }
   }
 
+  internal enum ReportAnIssue {
+    /// no
+    internal static let disable = L10n.tr("Localizable", "ReportAnIssue.Disable")
+    /// yes
+    internal static let enable = L10n.tr("Localizable", "ReportAnIssue.Enable")
+    /// Send
+    internal static let send = L10n.tr("Localizable", "ReportAnIssue.Send")
+    /// К сожалению не удалось подключиться к серверу, попробуйте позже
+    internal static let serverError = L10n.tr("Localizable", "ReportAnIssue.ServerError")
+    /// Сообщение об ошибке отправлено успешно
+    internal static let succes = L10n.tr("Localizable", "ReportAnIssue.Succes")
+    /// Report
+    internal static let title = L10n.tr("Localizable", "ReportAnIssue.Title")
+    internal enum Error {
+      /// Ошибка в
+      internal static let annotation = L10n.tr("Localizable", "ReportAnIssue.Error.Annotation")
+      /// Ошибка в маршруте
+      internal static let route = L10n.tr("Localizable", "ReportAnIssue.Error.Route")
+    }
+    internal enum Message {
+      /// It is recommended to leave a contact for feedback, for example, an email address or a Telegram account
+      internal static let footer = L10n.tr("Localizable", "ReportAnIssue.Message.Footer")
+      /// L10n.Share.HelloText.placehodler
+      internal static let placeholder = L10n.tr("Localizable", "ReportAnIssue.Message.Placeholder")
+      /// Подробно опишите ошибку
+      internal static let title = L10n.tr("Localizable", "ReportAnIssue.Message.Title")
+    }
+  }
+
   internal enum Settings {
     /// Select group
     internal static let settingOfGroup = L10n.tr("Localizable", "Settings.settingOfGroup")

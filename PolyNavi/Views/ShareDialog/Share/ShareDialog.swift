@@ -312,7 +312,6 @@ struct ShareDialog: View {
     
     var body: some View {
         NavigationView {
-            
             if #available(iOS 14.0, *) {
                 ScrollViewReader { proxy in
                     mainView(scroll: { id in
@@ -436,30 +435,8 @@ struct ShareDialog: View {
                 }), label: { Text(L10n.Share.HelloText.title) })
                 
                 if showHelloText {
-                    ZStack {
-                        if helloText.isEmpty {
-                            VStack{
-                                HStack{
-                                    Text(L10n.Share.HelloText.placehodler)
-                                        .foregroundColor(.secondary)
-                                    Spacer()
-                                }
-                                Spacer()
-                            }
-                        }
-                        
-                        TextView(text: $helloText) {
-                            $0.backgroundColor = .clear
-                            $0.clipsToBounds = false
-                            $0.textContainerInset = .zero
-                            $0.textContainer.lineFragmentPadding = 0
-                            $0.font = .preferredFont(forTextStyle: .body)
-                        }
+                    TextViewPlaceholder(text: $helloText, placehodler: L10n.Share.HelloText.placehodler, beginEdit: onEdit)
                         .frame(height: 200)
-                        .onTapGesture {
-                            onEdit?()
-                        }
-                    }
                 }
             }, footer: {
                 Text(L10n.Share.HelloText.info)
@@ -730,6 +707,6 @@ struct ShareDialog_Previews: PreviewProvider {
             .previewDevice("iPad Pro (12.9-inch) (5th generation)")
             .preferredColorScheme(.dark)
         
-        ShareDialog.ColorSection(colorVariant: .constant(.init(inverted: true, currentVariant: .green)), logoVariant: .constant(.camera), badgeVariant: .constant(.badge))
+//        ShareDialog.ColorSection(colorVariant: .constant(.init(inverted: true, currentVariant: .green)), logoVariant: .constant(.camera), badgeVariant: .constant(.badge))
     }
 }
