@@ -74,20 +74,20 @@ struct EmptyBuildingPlan: View {
         NavigationView {
             VStack {
                 VStack(spacing: 50) {
-                    Text("Планировка отсутствует")
+                    Text(L10n.MapInfo.Detail.EmptyPlan.title)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.top, 40.0)
                     VStack(alignment: .leading, spacing: 20) {
-                        Text("К сожалению у этого здания отсутствует планировка, если у вас есть поэтажный план этого здания или вы знаете у кого он может быть, пожалуйста свяжитесь с разработчиком")
+                        Text(L10n.MapInfo.Detail.EmptyPlan.message)
                         Text("soprachev@mail.ru")
                             .contextMenu {
                                 Button(action: { UIPasteboard.general.string = "soprachev@mail.ru" }, label: {
-                                    Text("Copy")
+                                    Text(L10n.MapInfo.Detail.EmptyPlan.Email.copy)
                                 })
                                 
                                 Button(action: { self.isShowingMailView.toggle() }, label: {
-                                    Text("Open mail")
+                                    Text(L10n.MapInfo.Detail.EmptyPlan.Email.open)
                                 })
                             }
                     }
@@ -96,7 +96,7 @@ struct EmptyBuildingPlan: View {
                 Button(action: {
                     self.isShowingMailView.toggle()
                 }, label: {
-                    Text("Написать")
+                    Text(L10n.MapInfo.Detail.EmptyPlan.open)
                         .font(.headline)
                         .frame(maxWidth: 300)
                         .frame(height: 46)
@@ -112,14 +112,14 @@ struct EmptyBuildingPlan: View {
             .frame(maxWidth: 500)
             .navigationBarItems(leading: Button(action: {
                 dismiss(animated: true)
-            }, label: { Text("Отменить") } ))
+            }, label: { Text(L10n.Present.cancel) } ))
             .navigationBarTitle("", displayMode: .inline)
         }
         .navigationViewStyle(.stack)
         .sheet(isPresented: $isShowingMailView) {
             MailView(result: self.$result,
-                     message: L10n.MapInfo.Detail.Mail.message.replacingOccurrences(of: "{BUILDING}", with: buildingName),
-                     subject: L10n.MapInfo.Detail.Mail.subject)
+                     message: L10n.MapInfo.Detail.EmptyPlan.Mail.message.replacingOccurrences(of: "{BUILDING}", with: buildingName),
+                     subject: L10n.MapInfo.Detail.EmptyPlan.Mail.subject)
         }
     }
 }
