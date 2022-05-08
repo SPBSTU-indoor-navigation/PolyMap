@@ -10,13 +10,20 @@ import MapKit
 class UnitDetailInfo: SectionCollection {
     var title: String = ""
     var annotation: MKAnnotation?
+    weak var unitDetail: UnitDetailVC?
 
     class Route: Section, CellFor {
         var showRoute = true
         var showIndoor = true
         var annotation: MKAnnotation?
         
-        var building: Building?
+        var building: Building? {
+            if let annotation = annotation as? AttractionAnnotation {
+                return annotation.building
+            }
+            return nil
+        }
+        weak var unitDetail: UnitDetailVC?
         
         init(showRoute: Bool = true, showIndoor: Bool = true, annotation: MKAnnotation? = nil) {
             self.showRoute = showRoute
@@ -58,18 +65,14 @@ class UnitDetailInfo: SectionCollection {
                     if let vc = tableView.delegate as? UIViewController {  
                         EmptyBuildingPlan(buildingName: (self.annotation as? Searchable)?.mainTitle ?? "-").present(to: vc, animated: true)
                     }
-                    print("BUILDING isEmpty")
                 } else {
-                    print("BUILDING")
+                    if let attraction = self.annotation as? AttractionAnnotation {
+                        self.unitDetail?.buildingPlanOpen(attraction: attraction)
+                    }
                 }
                 
             }
             return cell
-        }
-        
-        func with(building: Building) -> Self {
-            self.building = building
-            return self
         }
     }
     
@@ -100,8 +103,15 @@ class UnitDetailInfo: SectionCollection {
         sections[safe: row - title.intValue]
     }
     
-    init(castable: UnitDetailInfoCastable) {
+    init(castable: UnitDetailInfoCastable, unitDetail: UnitDetailVC) {
         super.init()
+        self.unitDetail = unitDetail
         castable.cast(unitDetailInfo: self)
+        
+        for section in sections {
+            if let route = section as? Route {
+                route.unitDetail = unitDetail
+            }
+        }
     }
 }

@@ -50,6 +50,12 @@ class MapInfo: BottomSheetViewController {
     var mapViewDelegate: MapViewDelegate? {
         didSet {
             searchVC.mapViewDelegate = mapViewDelegate
+            
+            for vc in viewControllers {
+                if let unitDetail = vc as? UnitDetailVC {
+                    unitDetail.mapViewDelegate = mapViewDelegate
+                }
+            }
         }
     }
     
@@ -225,11 +231,11 @@ extension MapInfo: MapInfoDelegate {
         
         if pages.last == .annotationInfo {
             if let unitDetail = viewControllers.last as? UnitDetailVC {
-                unitDetail.configurate(unitDetailInfo: UnitDetailInfo(castable: annotation), showRouteButton: !pages.contains(.exclusiveRoute))
+                unitDetail.configurate(unitDetailInfo: UnitDetailInfo(castable: annotation, unitDetail: unitDetail), showRouteButton: !pages.contains(.exclusiveRoute))
             }
         } else {
-            let vc = UnitDetailVC(closable: true)
-            vc.configurate(unitDetailInfo: UnitDetailInfo(castable: annotation), showRouteButton: !pages.contains(.exclusiveRoute))
+            let vc = UnitDetailVC(mapViewDelegate: mapViewDelegate)
+            vc.configurate(unitDetailInfo: UnitDetailInfo(castable: annotation, unitDetail: vc), showRouteButton: !pages.contains(.exclusiveRoute))
             pushViewController(vc, animated: true)
         }
         

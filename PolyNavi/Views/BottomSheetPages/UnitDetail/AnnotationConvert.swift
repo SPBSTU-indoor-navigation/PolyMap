@@ -47,7 +47,7 @@ extension AttractionAnnotation: UnitDetailInfoCastable {
     func cast(unitDetailInfo: UnitDetailInfo) -> Void {
 
         unitDetailInfo.title = properties.name?.bestLocalizedValue ?? title ?? "-"
-        unitDetailInfo.sections.append(UnitDetailInfo.Route(showRoute: true, showIndoor: true, annotation: self).with(building: building))
+        unitDetailInfo.sections.append(UnitDetailInfo.Route(showRoute: true, showIndoor: true, annotation: self))
         unitDetailInfo.sections.append(UnitDetailInfo.Share(annotation: self))
         unitDetailInfo.sections.append(UnitDetailInfo.Report(favorite: self, report: SectionCollection.Report.ReportAnnotation(annotation: self)))
         

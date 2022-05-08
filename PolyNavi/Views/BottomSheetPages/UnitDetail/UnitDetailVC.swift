@@ -19,6 +19,7 @@ fileprivate class TitleLabel: UILabel {
 class UnitDetailVC: NavbarBottomSheetPage {
     let titleTopOffset = 14.0
     var unitDetailInfo: UnitDetailInfo?
+    var mapViewDelegate: MapViewDelegate?
     
     private var useTitleTransition = false
     
@@ -99,6 +100,13 @@ class UnitDetailVC: NavbarBottomSheetPage {
         super.onStateChange(horizontalSize: horizontalSize)
     }
     
+    init(mapViewDelegate: MapViewDelegate?) {
+        super.init(closable: true)
+        self.mapViewDelegate = mapViewDelegate
+    }
+    
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
     func configurate(unitDetailInfo: UnitDetailInfo, showRouteButton: Bool = true) {
         if !showRouteButton {
             unitDetailInfo.sections = unitDetailInfo.sections.filter({ !($0 is UnitDetailInfo.Route) })
@@ -109,6 +117,11 @@ class UnitDetailVC: NavbarBottomSheetPage {
         titleNavbarLabel.text = unitDetailInfo.title
         
         tableView.reloadData()
+    }
+    
+    func buildingPlanOpen(attraction: AttractionAnnotation) {
+        delegate?.change(verticalSize: .small, animated: true)
+        mapViewDelegate?.focus(on: attraction)
     }
 }
 
