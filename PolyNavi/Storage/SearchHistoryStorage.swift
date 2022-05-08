@@ -22,8 +22,6 @@ class SearchHistoryStorage {
                 .compactMap({ UUID(uuidString: $0) })
                 .compactMap({ annotations[$0] })
                 .compactMap({ $0 as? BaseAnnotation })
-            
-//            self.history = []
         }
     }
     

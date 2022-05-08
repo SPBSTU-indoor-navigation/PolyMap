@@ -96,12 +96,14 @@ class MainSearchData: NSObject {
         case today
         case favorites
         case recent
+        case recomendation
         
         var sectionName: String? {
             switch self {
             case .today: return L10n.MapInfo.Search.today
             case .favorites: return L10n.MapInfo.Search.favorites
             case .recent: return L10n.MapInfo.Search.recent
+            case .recomendation: return L10n.MapInfo.Search.recomendation
             }
         }
     }
@@ -109,6 +111,7 @@ class MainSearchData: NSObject {
     var today: (SectionType, [TodayCellModel]) = (.today, [])
     var favorites: (SectionType, [Searchable]) = (.favorites,[])
     var recent: (SectionType, [Searchable]) = (.recent,[])
+    var recomendation: (SectionType, [Searchable]) = (.recomendation,[])
     
     weak var tableView: UITableView?
     
@@ -118,6 +121,12 @@ class MainSearchData: NSObject {
         recent.1 = SearchHistoryStorage.shared.history.compactMap({ $0 as? Searchable })
         favorites.1 = FavoritesStorage.shared.favorites.compactMap({ $0 as? Searchable })
 //        today.1 = Array(searchable[87...90]).map({ TodayCellModel(searchable: $0, title: "Высшая математика", timeStart: Date().advanced(by: -300), timeEnd: Date().advanced(by: 500)) })
+        
+        if recent.1.isEmpty || favorites.1.isEmpty {
+            recomendation.1 = ["главный", "бульвар"].compactMap({ title in
+                searchable.filter({ $0.mainTitle?.lowercased().contains(title) ?? false }).first
+            })
+        }
         reload()
     }
     
@@ -163,7 +172,12 @@ class MainSearchData: NSObject {
     }
     
     func recalculate() {
-        compute = [today as (SectionType, [Any]), recent, favorites].filter({ !$0.1.isEmpty })
+        var sections = [today as (SectionType, [Any]), recent, favorites].filter({ !$0.1.isEmpty })
+        
+        if sections.count < 2 {
+            sections.append(recomendation)
+        }
+        compute = sections
     }
     
     func reload() {

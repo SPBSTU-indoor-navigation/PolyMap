@@ -69,6 +69,7 @@ MapInfo.Route.Share.AppClipQR = "QR код или AppClip код";
 MapInfo.Search.EmptySearchResult = "Ничего не найдено";
 MapInfo.Search.Today = "Сегодня";
 MapInfo.Search.Recent = "Недавние";
+MapInfo.Search.Recomendation = "Рекомендации";
 MapInfo.Search.Favorites = "Избранные";
 MapInfo.Search.Buildings = "Учебные корпуса";
 
