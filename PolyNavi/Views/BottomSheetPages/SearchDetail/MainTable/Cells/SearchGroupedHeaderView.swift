@@ -14,6 +14,7 @@ class SearchGroupedHeaderView: UITableViewHeaderFooterView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 15, weight: .semibold)
         $0.textColor = .secondaryLabel
+        $0.text = "title"
         return $0
     }(UILabel())
     

@@ -108,6 +108,8 @@ internal enum L10n {
       internal static let favorites = L10n.tr("Localizable", "MapInfo.Search.Favorites")
       /// Recent
       internal static let recent = L10n.tr("Localizable", "MapInfo.Search.Recent")
+      /// Recomendation
+      internal static let recomendation = L10n.tr("Localizable", "MapInfo.Search.Recomendation")
       /// Today
       internal static let today = L10n.tr("Localizable", "MapInfo.Search.Today")
     }

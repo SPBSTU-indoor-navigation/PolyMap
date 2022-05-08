@@ -69,6 +69,7 @@ MapInfo.Route.Share.AppClipQR = "QR code or AppClip code";
 MapInfo.Search.EmptySearchResult = "No suggestion found";
 MapInfo.Search.Today = "Today";
 MapInfo.Search.Recent = "Recent";
+MapInfo.Search.Recomendation = "Recomendation";
 MapInfo.Search.Favorites = "Favorites";
 MapInfo.Search.Buildings = "Buildings";
 
