@@ -38,6 +38,7 @@ class MainSearchTableView: UITableView {
         register(TodayCellAttraction.self, forCellReuseIdentifier: TodayCellAttraction.identifier)
         register(TodayCellOccupant.self, forCellReuseIdentifier: TodayCellOccupant.identifier)
 
+        estimatedSectionHeaderHeight = 33
         estimatedSectionFooterHeight = 0
         backgroundColor = .clear
     }
@@ -114,9 +115,9 @@ class MainSearchData: NSObject {
     private var compute: [(SectionType, [Any])] = []
     
     func process(searchable: [Searchable]) {
-        recent.1 = Array(searchable[2...4])
+        recent.1 = SearchHistoryStorage.shared.history.compactMap({ $0 as? Searchable })
         favorites.1 = FavoritesStorage.shared.favorites.compactMap({ $0 as? Searchable })
-        today.1 = Array(searchable[87...90]).map({ TodayCellModel(searchable: $0, title: "Высшая математика", timeStart: Date().advanced(by: -300), timeEnd: Date().advanced(by: 500)) })
+//        today.1 = Array(searchable[87...90]).map({ TodayCellModel(searchable: $0, title: "Высшая математика", timeStart: Date().advanced(by: -300), timeEnd: Date().advanced(by: 500)) })
         reload()
     }
     
@@ -137,6 +138,15 @@ class MainSearchData: NSObject {
             self.favorites.1 = self.favorites.1.filter({ $0 as? BaseAnnotation != annotation })
             self.reload()
         })
+        
+        SearchHistoryStorage.shared.onHistoryChange.addHandler(handler: { [weak self] annotation in
+            guard let self = self else { return }
+            self.recent.1 = annotation.compactMap({ $0 as? Searchable })
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.reload()
+            })
+        })
     }
     
     func searchable(for indexPath: IndexPath) -> Searchable? {
@@ -152,8 +162,12 @@ class MainSearchData: NSObject {
         return nil
     }
     
-    func reload() {
+    func recalculate() {
         compute = [today as (SectionType, [Any]), recent, favorites].filter({ !$0.1.isEmpty })
+    }
+    
+    func reload() {
+        recalculate()
         tableView?.reloadData()
     }
 }

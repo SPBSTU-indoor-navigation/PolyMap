@@ -219,6 +219,10 @@ extension MapInfo: MapInfoDelegate {
     func select(_ annotation: MKAnnotation?) {
         guard let annotation = annotation as? UnitDetailInfoCastable else { return }
         
+        if let annotation = annotation as? BaseAnnotation {
+            SearchHistoryStorage.shared.open(annotation: annotation)
+        }
+        
         if pages.last == .annotationInfo {
             if let unitDetail = viewControllers.last as? UnitDetailVC {
                 unitDetail.configurate(unitDetailInfo: UnitDetailInfo(castable: annotation), showRouteButton: !pages.contains(.exclusiveRoute))

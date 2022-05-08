@@ -122,6 +122,7 @@ class IMDFDecoder {
             
         PathFinder.shared.setup(navPath: navPath, associeted: navPathAssocieted, buildings: builingById, levels: levelById, annotations: annotationIds)
         FavoritesStorage.shared.setup(annotations: annotationIds)
+        SearchHistoryStorage.shared.setup(annotations: annotationIds)
         
         return result
     }
