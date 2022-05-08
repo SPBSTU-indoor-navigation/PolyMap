@@ -150,7 +150,7 @@ class RouteInfoCell: UITableViewCell {
         routeFromToConstraint.activate()
     }
     
-    func configutate(routeVariant: RouteVariant = .to, showIndoor: Bool = true, buildingID: UUID? = nil) {
+    func configutate(routeVariant: RouteVariant = .to, showIndoor: Bool = true) {
         routeButton.isHidden = !(routeVariant == .from || routeVariant == .to)
         currentVariant = routeVariant
         

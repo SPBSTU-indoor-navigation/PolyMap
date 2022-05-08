@@ -25,7 +25,8 @@ class Building: CustomOverlay, Styleble, MapRenderer {
         self.levels = levels
         self.attractions = attractions.map({ AttractionAnnotation(coordinate: ($0.geometry.first as! MKPointAnnotation).coordinate,
                                                                   imdfID: $0.identifier,
-                                                                  properties: $0.properties) })
+                                                                  properties: $0.properties,
+                                                                  building: self) })
         self.ordinal = levels.map({ $0.ordinal }).min() ?? -1
         self.properties = properties
         

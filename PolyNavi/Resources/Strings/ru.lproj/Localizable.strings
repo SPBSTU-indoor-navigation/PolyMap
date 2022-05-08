@@ -40,6 +40,8 @@ MapInfo.Detail.Phone = "Телефон";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Вебсайт";
 MapInfo.Detail.Address = "Адрес";
+MapInfo.Detail.Mail.Subject = "Планировка PolyMap";
+MapInfo.Detail.Mail.Message = "Привет, я хочу помочь с составлением планировки для здания {BUILDING}";
 
 MapInfo.Report.Favorites.Add = "Добавть в Закладки";
 MapInfo.Report.Favorites.Remove = "Удалить из Закладок";

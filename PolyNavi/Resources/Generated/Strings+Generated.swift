@@ -28,6 +28,12 @@ internal enum L10n {
       internal static let phone = L10n.tr("Localizable", "MapInfo.Detail.Phone")
       /// Website
       internal static let website = L10n.tr("Localizable", "MapInfo.Detail.Website")
+      internal enum Mail {
+        /// Hi, I would like to help with the layout of the {BUILDING}
+        internal static let message = L10n.tr("Localizable", "MapInfo.Detail.Mail.Message")
+        /// Indoor for PolyMap
+        internal static let subject = L10n.tr("Localizable", "MapInfo.Detail.Mail.Subject")
+      }
     }
     internal enum ExclRoute {
       internal enum Info {

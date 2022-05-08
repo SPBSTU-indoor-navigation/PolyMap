@@ -40,6 +40,8 @@ MapInfo.Detail.Phone = "Phone";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Website";
 MapInfo.Detail.Address = "Address";
+MapInfo.Detail.Mail.Subject = "Indoor for PolyMap";
+MapInfo.Detail.Mail.Message = "Hi, I would like to help with the layout of the {BUILDING}";
 
 MapInfo.Report.Favorites.Add = "Add to Favorites";
 MapInfo.Report.Favorites.Remove = "Remove from Favorites";

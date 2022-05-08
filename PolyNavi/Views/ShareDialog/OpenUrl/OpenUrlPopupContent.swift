@@ -106,6 +106,7 @@ struct OpenUrlPopupContent: View {
 struct OpenUrlPopupContent_Previews: PreviewProvider {
     static var previews: some View {
         OpenUrlPopupContent(data: .constant(.init(from: UUID(), to: UUID(), helloText: "hello world\nggb\n\nb\nb\nb\n\nb\nb\nb\nb\nbb\nrtgtg", asphalt: false, serviceRoute: false, allowParameterChange: false)))
+            .previewDevice("iPad Pro (11-inch) (3rd generation)")
             .preferredColorScheme(.dark)
     }
 }

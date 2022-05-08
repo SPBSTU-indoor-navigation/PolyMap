@@ -16,7 +16,7 @@ class UnitDetailInfo: SectionCollection {
         var showIndoor = true
         var annotation: MKAnnotation?
         
-        var buildingID: UUID?
+        var building: Building?
         
         init(showRoute: Bool = true, showIndoor: Bool = true, annotation: MKAnnotation? = nil) {
             self.showRoute = showRoute
@@ -40,7 +40,7 @@ class UnitDetailInfo: SectionCollection {
             }
             
             
-            cell.configutate(routeVariant: variant, showIndoor: showIndoor, buildingID: buildingID)
+            cell.configutate(routeVariant: variant, showIndoor: showIndoor)
             cell.selectionStyle = .none
             cell.onRouteClick = { variant in
                 if let annotation = self.annotation {
@@ -51,12 +51,24 @@ class UnitDetailInfo: SectionCollection {
                     }
                 }
             }
-            cell.onBuildingClick = { print("BUILDING") }
+            cell.onBuildingClick = { [weak self] in
+                guard let self = self else { return }
+                
+                if self.building?.levels.isEmpty ?? true {
+                    if let vc = tableView.delegate as? UIViewController {  
+                        EmptyBuildingPlan(buildingName: (self.annotation as? Searchable)?.mainTitle ?? "-").present(to: vc, animated: true)
+                    }
+                    print("BUILDING isEmpty")
+                } else {
+                    print("BUILDING")
+                }
+                
+            }
             return cell
         }
         
-        func with(buildingID: UUID) -> Self {
-            self.buildingID = buildingID
+        func with(building: Building) -> Self {
+            self.building = building
             return self
         }
     }
