@@ -25,7 +25,7 @@ protocol MapViewDelegate {
 class MapView: UIView {
     
     enum Constants {
-        static let minShowZoom: Float = 1.85
+        static let minShowZoom: Float = 18.5
         static let horizontalOffset = -7.0
     }
     
@@ -585,40 +585,57 @@ extension MapView: MapViewDelegate {
         let tempMap = MKMapView(frame: mapView.frame)
         let safeZone = mapView.convert(mapInfoDelegate.getSafeZone().frame, to: mapView)
         
+        let pathRect = pathResult.mapRect
         
-        tempMap.setVisibleMapRect(pathResult.mapRect, edgePadding: .init(top: safeZone.minY + 50,
+        tempMap.setVisibleMapRect(pathRect, edgePadding: .init(top: safeZone.minY + 50,
                                                               left: safeZone.minX + 50,
                                                               bottom: mapView.frame.height - safeZone.maxY + 50,
                                                               right: mapView.frame.width - safeZone.maxX + 50),
                                   animated: false)
         
-        
         if tempMap.camera.centerCoordinateDistance > 500 && pathResult.outdoorDistance < 200 && pathResult.indoorDistance > 50 && pathResult.indoorDistance > pathResult.outdoorDistance {
+            
+            let centerRect = MKMapPoint(x: pathRect.midX, y: pathRect.midY)
+            let centerMap = MKMapPoint(tempMap.centerCoordinate)
+            
+            let centerRectScreen = tempMap.convert(centerRect.coordinate, toPointTo: tempMap)
+            let centerMapScreen = tempMap.convert(centerMap.coordinate, toPointTo: tempMap)
+            
+            tempMap.centerCoordinate = centerRect.coordinate
             tempMap.camera = MKMapCamera(lookingAtCenter: tempMap.centerCoordinate, fromDistance: 500, pitch: tempMap.camera.pitch, heading: tempMap.camera.heading)
+    
+            let screenDelta = CGPoint(x: centerRectScreen.x - centerMapScreen.x, y: centerRectScreen.y - centerMapScreen.y)
+            let targetCenterScreen = CGPoint(x: centerMapScreen.x - screenDelta.x, y: centerMapScreen.y - screenDelta.y)
+            
+            tempMap.centerCoordinate = tempMap.convert(targetCenterScreen, toCoordinateFrom: tempMap)
+
+            
+            
             
             let centerCG = tempMap.convert(tempMap.centerCoordinate, toPointTo: tempMap)
             let annotationCG = tempMap.convert(pathResult.from.coordinate, toPointTo: tempMap)
-            
+
             var dx = 0.0
             var dy = 0.0
-            
-            let target = safeZone//.inset(by: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
-            
+
+            let target = safeZone
+                .inset(by: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
+
             if !target.contains(annotationCG) {
                 if annotationCG.y < target.minY {
                     dy = annotationCG.y - target.minY
                 } else if annotationCG.y > target.maxY {
                     dy = annotationCG.y - target.maxY
                 }
-                
+
                 if annotationCG.x < target.minX {
                     dx = annotationCG.x - target.minX
                 } else if annotationCG.x > target.maxX {
                     dx = annotationCG.x - target.maxX
                 }
-                
+
                 let point = MKMapPoint(tempMap.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: tempMap))
-                
+
                 tempMap.centerCoordinate = point.coordinate
             }
         }

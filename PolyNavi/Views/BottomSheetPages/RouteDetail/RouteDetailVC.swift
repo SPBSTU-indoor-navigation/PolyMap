@@ -379,11 +379,11 @@ extension RouteDetailVC: SearchTableViewDelegate {
         let annotation = searchable as? MKAnnotation
         
         if state == .to {
-            if let annotation = annotation { setTo(annotation) }
             searchTo.endSearch()
+            if let annotation = annotation { setTo(annotation) }
         } else if state == .from {
-            if let annotation = annotation { setFrom(annotation) }
             searchFrom.endSearch()
+            if let annotation = annotation { setFrom(annotation) }
         }
     }
 }
