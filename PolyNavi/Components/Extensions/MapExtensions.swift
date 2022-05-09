@@ -54,6 +54,27 @@ extension MapView {
     }
 }
 
+extension MKMapRect {
+    init(points: [MKMapPoint]) {
+        
+        var minX: Double = Double.greatestFiniteMagnitude
+        var minY: Double = Double.greatestFiniteMagnitude
+        
+        var maxX: Double = -Double.greatestFiniteMagnitude
+        var maxY: Double = -Double.greatestFiniteMagnitude
+        
+        for point in points {
+            minX = min(minX, point.x)
+            minY = min(minY, point.y)
+            
+            maxX = max(maxX, point.x)
+            maxY = max(maxY, point.y)
+        }
+        
+        self.init(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
+    }
+}
+
 extension MKCoordinateRegion {
     func deltaInMeters() -> (Double, Double) {
         let loc1 = CLLocation(latitude: center.latitude - span.latitudeDelta * 0.5, longitude: center.longitude)

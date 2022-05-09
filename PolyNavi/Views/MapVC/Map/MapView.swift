@@ -13,6 +13,7 @@ protocol MapViewDelegate {
     func focusAndSelect(annotation: MKAnnotation, focusVariant: MapView.FocusVariant) -> Bool
     func focus(on annotation: MKAnnotation, focusVariant: MapView.FocusVariant)
     func focus(on attraction: AttractionAnnotation)
+    func focus(on pathResult: PathResult)
     func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool)
     func pinAnnotation(_ annotation: MKAnnotation, animated: Bool)
     func unpinAnnotation(_ annotation: MKAnnotation, animated: Bool)
@@ -24,7 +25,7 @@ protocol MapViewDelegate {
 class MapView: UIView {
     
     enum Constants {
-        static let minShowZoom: Float = 18.5
+        static let minShowZoom: Float = 1.85
         static let horizontalOffset = -7.0
     }
     
@@ -577,6 +578,59 @@ extension MapView: MapViewDelegate {
         })
     }
     
+    func focus(on pathResult: PathResult) {
+        guard let mapInfoDelegate = mapInfoDelegate else { return }
+        
+        
+        let tempMap = MKMapView(frame: mapView.frame)
+        let safeZone = mapView.convert(mapInfoDelegate.getSafeZone().frame, to: mapView)
+        
+        
+        tempMap.setVisibleMapRect(pathResult.mapRect, edgePadding: .init(top: safeZone.minY + 50,
+                                                              left: safeZone.minX + 50,
+                                                              bottom: mapView.frame.height - safeZone.maxY + 50,
+                                                              right: mapView.frame.width - safeZone.maxX + 50),
+                                  animated: false)
+        
+        
+        if tempMap.camera.centerCoordinateDistance > 500 && pathResult.outdoorDistance < 200 && pathResult.indoorDistance > 50 && pathResult.indoorDistance > pathResult.outdoorDistance {
+            tempMap.camera = MKMapCamera(lookingAtCenter: tempMap.centerCoordinate, fromDistance: 500, pitch: tempMap.camera.pitch, heading: tempMap.camera.heading)
+            
+            let centerCG = tempMap.convert(tempMap.centerCoordinate, toPointTo: tempMap)
+            let annotationCG = tempMap.convert(pathResult.from.coordinate, toPointTo: tempMap)
+            
+            var dx = 0.0
+            var dy = 0.0
+            
+            let target = safeZone//.inset(by: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
+            
+            if !target.contains(annotationCG) {
+                if annotationCG.y < target.minY {
+                    dy = annotationCG.y - target.minY
+                } else if annotationCG.y > target.maxY {
+                    dy = annotationCG.y - target.maxY
+                }
+                
+                if annotationCG.x < target.minX {
+                    dx = annotationCG.x - target.minX
+                } else if annotationCG.x > target.maxX {
+                    dx = annotationCG.x - target.maxX
+                }
+                
+                let point = MKMapPoint(tempMap.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: tempMap))
+                
+                tempMap.centerCoordinate = point.coordinate
+            }
+        }
+        
+        self.zoomByAnimation = true
+        MapView.animate(withDuration: 0.5, animations: {
+            self.mapView.camera = tempMap.camera
+        }, completion: { _ in
+            self.zoomByAnimation = false
+        })
+    }
+    
     func addPath(path: [PathResultNode]) -> UUID {
         return venue?.addPath(mapView, path: path) ?? UUID()
     }
@@ -611,22 +665,7 @@ fileprivate func boundingAfterRotation(_ shape: MKShape & MKOverlay, angle: CGFl
                               y: center.y + x * s + y * c)
         })
         
-        
-        var minX: Double = Double.greatestFiniteMagnitude
-        var minY: Double = Double.greatestFiniteMagnitude
-        
-        var maxX: Double = -Double.greatestFiniteMagnitude
-        var maxY: Double = -Double.greatestFiniteMagnitude
-        
-        for point in rotated {
-            minX = min(minX, point.x)
-            minY = min(minY, point.y)
-            
-            maxX = max(maxX, point.x)
-            maxY = max(maxY, point.y)
-        }
-        
-        return MKMapRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
+        return MKMapRect(points: rotated)
     }
     
     return shape.boundingMapRect

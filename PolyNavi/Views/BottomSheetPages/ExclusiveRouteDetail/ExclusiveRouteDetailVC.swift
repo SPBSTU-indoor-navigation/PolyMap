@@ -180,6 +180,7 @@ extension ExclusiveRouteDetailVC {
         
         if let result = result {
             pathID = mapViewDelegate.addPath(path: result.path)
+            mapViewDelegate.focus(on: result)
         } else {
             pathID = nil
         }
