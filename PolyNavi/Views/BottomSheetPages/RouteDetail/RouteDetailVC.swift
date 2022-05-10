@@ -31,6 +31,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
     }
     
     var state: State = .normal
+    var focusAfterChangeSize: PathResult? = nil // В фуллсайзе не фокусирвовать, а только после изменения
     var pathID: UUID?
     
     var searchable: [Searchable] = [] {
@@ -332,6 +333,14 @@ class RouteDetailVC: NavbarBottomSheetPage {
             if searchTo.isSearch { searchTo.isSearch = false }
             changeState(state: .normal)
         }
+        
+        if let result = focusAfterChangeSize,
+           verticalSize != .big {
+            DispatchQueue.main.async {
+                self.mapViewDelegate.focus(on: result)
+            }
+            focusAfterChangeSize = nil
+        }
     }
     
     override func beforeClose() {
@@ -342,6 +351,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
         
         RouteDetailVC.toPoint = nil
         RouteDetailVC.fromPoint = nil
+        focusAfterChangeSize = nil
         
         DispatchQueue.main.async { [self] in
             [to, from].compactMap({ $0 }).forEach({
@@ -493,7 +503,12 @@ extension RouteDetailVC {
                 
         if let result = result {
             pathID = mapViewDelegate.addPath(path: result.path)
-            mapViewDelegate.focus(on: result)
+            
+            if delegate?.horizontalSize() == .big && delegate?.verticalSize() == .big {
+                self.focusAfterChangeSize = result
+            } else {
+                mapViewDelegate.focus(on: result)
+            }
         } else {
             pathID = nil
         }

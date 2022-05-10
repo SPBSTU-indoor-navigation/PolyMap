@@ -642,7 +642,14 @@ extension MapView: MapViewDelegate {
         
         self.zoomByAnimation = true
         MapView.animate(withDuration: 0.5, animations: {
-            self.mapView.camera = tempMap.camera
+            let cam = self.mapView.camera
+            if abs(cam.centerCoordinateDistance - tempMap.camera.centerCoordinateDistance) < 1 &&
+                abs(cam.heading - tempMap.camera.heading) < 0.1 &&
+                abs(cam.centerCoordinate.distance(from: tempMap.camera.centerCoordinate)) < 1 {
+                return
+            } else {
+                self.mapView.camera = tempMap.camera
+            }
         }, completion: { _ in
             self.zoomByAnimation = false
         })

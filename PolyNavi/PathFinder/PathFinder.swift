@@ -30,8 +30,8 @@ class PathResult {
     var mapRect: MKMapRect {
         let rect = MKMapRect(points: path.map({ MKMapPoint($0.location) }))
         
-        return MKMapRect(origin: MKMapPoint(from.coordinate), size: .init(width: 20, height: 20))
-//            .union(.init(origin: MKMapPoint(from.coordinate), size: .init(width: 20, height: 20)))
+        return rect
+            .union(.init(origin: MKMapPoint(from.coordinate), size: .init(width: 20, height: 20)))
             .union(.init(origin: MKMapPoint(to.coordinate), size: .init(width: 20, height: 20)))
     }
     
