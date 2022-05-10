@@ -33,6 +33,9 @@ Settings.titleOfTeacherCell = "Teacher";
 //MARK:- Choosing search controller strings
 ChoosingSearchController.searchPlaceholder = "Search";
 
+//MARK:- Shared
+Present.Cancel = "Cancel";
+
 //MARK:- MapInfo
 MapInfo.Share = "Share";
 
@@ -40,6 +43,14 @@ MapInfo.Detail.Phone = "Phone";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Website";
 MapInfo.Detail.Address = "Address";
+
+MapInfo.Detail.EmptyPlan.Title = "No building plan";
+MapInfo.Detail.EmptyPlan.Message = "Unfortunately, this building does not have a floor plan, if you have a floor plan for this building or know who might have it, please contact the developer";
+MapInfo.Detail.EmptyPlan.Email.Copy = "Copy";
+MapInfo.Detail.EmptyPlan.Email.Open = "Open mail";
+MapInfo.Detail.EmptyPlan.Open = "Write";
+MapInfo.Detail.EmptyPlan.Mail.Subject = "Building plan PolyMap";
+MapInfo.Detail.EmptyPlan.Mail.Message = "Hi, I would like to help with the layout of the {BUILDING}";
 
 MapInfo.Report.Favorites.Add = "Add to Favorites";
 MapInfo.Report.Favorites.Remove = "Remove from Favorites";
@@ -154,12 +165,12 @@ Share.Result.Loading = "Loading...";
 ReportAnIssue.Enable = "yes";
 ReportAnIssue.Disable = "no";
 
-ReportAnIssue.Succes = "Сообщение об ошибке отправлено успешно";
-ReportAnIssue.ServerError = "К сожалению не удалось подключиться к серверу, попробуйте позже";
-ReportAnIssue.Error.Annotation = "Ошибка в";
-ReportAnIssue.Error.Route = "Ошибка в маршруте";
-ReportAnIssue.Message.Title = "Подробно опишите ошибку";
-ReportAnIssue.Message.Placeholder = "L10n.Share.HelloText.placehodler";
+ReportAnIssue.Succes = "Issue report sent successfully";
+ReportAnIssue.ServerError = "Sorry, we couldn't connect to the server, please try again later";
+ReportAnIssue.Error.Annotation = "Issue in the building";
+ReportAnIssue.Error.Route = "Issue in the route";
+ReportAnIssue.Message.Title = "Describe the issue in detail";
+ReportAnIssue.Message.Placeholder = "Describe the issue";
 ReportAnIssue.Message.Footer = "It is recommended to leave a contact for feedback, for example, an email address or a Telegram account";
 ReportAnIssue.Send = "Send";
 ReportAnIssue.Title = "Report";

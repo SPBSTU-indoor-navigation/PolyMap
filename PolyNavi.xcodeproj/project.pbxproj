@@ -107,6 +107,8 @@
 		9735D21F2827218F00F8A08F /* EnviromentAmenitySearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D21D2827218F00F8A08F /* EnviromentAmenitySearchCell.swift */; };
 		9735D2212827272600F8A08F /* SearchHistoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D2202827272600F8A08F /* SearchHistoryStorage.swift */; };
 		9735D2222827272600F8A08F /* SearchHistoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D2202827272600F8A08F /* SearchHistoryStorage.swift */; };
+		9735D22528275A6800F8A08F /* EmptyBuildingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D22428275A6800F8A08F /* EmptyBuildingPlan.swift */; };
+		9735D22628275A6800F8A08F /* EmptyBuildingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D22428275A6800F8A08F /* EmptyBuildingPlan.swift */; };
 		973962BE2808DCB4000E478F /* SearchLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962BD2808DCB4000E478F /* SearchLine.swift */; };
 		973962BF2808DCB4000E478F /* SearchLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962BD2808DCB4000E478F /* SearchLine.swift */; };
 		973962C1280A41AB000E478F /* RouteDetailSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962C0280A41AB000E478F /* RouteDetailSearchTableView.swift */; };
@@ -345,6 +347,7 @@
 		9735D21A28271CD700F8A08F /* AmenitySearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitySearchCell.swift; sourceTree = "<group>"; };
 		9735D21D2827218F00F8A08F /* EnviromentAmenitySearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentAmenitySearchCell.swift; sourceTree = "<group>"; };
 		9735D2202827272600F8A08F /* SearchHistoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryStorage.swift; sourceTree = "<group>"; };
+		9735D22428275A6800F8A08F /* EmptyBuildingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBuildingPlan.swift; sourceTree = "<group>"; };
 		973962BD2808DCB4000E478F /* SearchLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLine.swift; sourceTree = "<group>"; };
 		973962C0280A41AB000E478F /* RouteDetailSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailSearchTableView.swift; sourceTree = "<group>"; };
 		973962C4280B609A000E478F /* SectionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCollection.swift; sourceTree = "<group>"; };
@@ -563,6 +566,7 @@
 		054F67A6270CD73000FCC07C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9735D22328275A0000F8A08F /* EmptyPlan */,
 				9735D2012824B09600F8A08F /* ReportanIssue */,
 				973962CE280C7E9D000E478F /* ShareDialog */,
 				05F0D49227859D9D009CEBA2 /* BottomSheetPages */,
@@ -762,6 +766,14 @@
 				9735D21728271C2800F8A08F /* AmenitySearchIcon.swift */,
 			);
 			path = SearchableIcon;
+			sourceTree = "<group>";
+		};
+		9735D22328275A0000F8A08F /* EmptyPlan */ = {
+			isa = PBXGroup;
+			children = (
+				9735D22428275A6800F8A08F /* EmptyBuildingPlan.swift */,
+			);
+			path = EmptyPlan;
 			sourceTree = "<group>";
 		};
 		973962C3280B6081000E478F /* Shared */ = {
@@ -1352,6 +1364,7 @@
 				97A566FB27D6920100A064CC /* UtilsExtensions.swift in Sources */,
 				9787698927F519DB008138EC /* OccupantSearchIcon.swift in Sources */,
 				054F67A4270CD68900FCC07C /* XCAssets+Generated.swift in Sources */,
+				9735D22528275A6800F8A08F /* EmptyBuildingPlan.swift in Sources */,
 				97BC3D322819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */,
 				9719FBEB2806478A0048C810 /* OpacityHitTest.swift in Sources */,
 				97BC3D37281A017B000734D9 /* ExclusiveSearchableCell.swift in Sources */,
@@ -1567,6 +1580,7 @@
 				979E5C9327BF005800A48816 /* TimeTableError.swift in Sources */,
 				974D425C281390A600F05434 /* ShareAppOpen.swift in Sources */,
 				971F8DEF27BD54FA0018F98A /* BottomSheetViewController.swift in Sources */,
+				9735D22628275A6800F8A08F /* EmptyBuildingPlan.swift in Sources */,
 				974D4240280E110A00F05434 /* ShareResult.swift in Sources */,
 				974D42682814795000F05434 /* SearchablePreview.swift in Sources */,
 				97B8E18827CEDA80003D1EF4 /* RouteInfoCell.swift in Sources */,

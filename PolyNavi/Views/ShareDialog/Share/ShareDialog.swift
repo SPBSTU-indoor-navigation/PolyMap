@@ -302,7 +302,9 @@ struct ShareDialog: View {
                     CreateButton(serverReady: .constant((serverStatus != nil) && !(warningQR && warningAppClip)), isQR: $isQR,
                                  settings: Settings(color: colorVariant, logo: logoVariant, bage: badgeVariant, qrLogoVariant: qrLogoVariant, isQR: isQR, from: from.imdfID, to: to.imdfID, text: helloText, routeParams: routeParams, allowParameterChange: routeParameterChanging))
                 }
-            }.listRowBackground(Color.clear)
+            }
+            .listRowBackground(Color.clear)
+            .listRowInsets(EdgeInsets())
         }
         .navigationBarTitle("\(L10n.Share.navigationTitle)", displayMode: .inline)
         .onAppear(perform: {
@@ -348,24 +350,20 @@ struct ShareDialog: View {
         var settings: Settings
         
         var body: some View {
-            HStack {
-                Spacer()
+            HStack(spacing: 0) {
+                Spacer(minLength: 0)
                 ZStack {
                     if serverReady {
                         NavigationLink(destination: { ShareResult(settings: settings) }, label: { EmptyView() })
                             .opacity(0.0)
                     }
                     RoundedRectangle(cornerRadius: 10)
-                        .frame(width: 200)
                         .foregroundColor(serverReady ? .accentColor : .secondary)
                     Text(L10n.Share.create)
-                        .padding(.vertical, 9.0)
                         .font(.headline)
-                        .frame(minHeight: 46)
                         .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                Spacer()
+                }.frame(maxWidth: 300, minHeight: 46, maxHeight: 46)
+                Spacer(minLength: 0)
             }
         }
     }
@@ -704,7 +702,6 @@ struct ShareDialog_Previews: PreviewProvider {
         
         ShareDialog(from: EnviromentAmenityAnnotation(coordinate: .init(latitude: 0, longitude: 0), imdfID: UUID(), properties: .init(name: nil, alt_name: nil, category: .banch, detailLevel: 1), detailLevel: 1),
                     to: EnviromentAmenityAnnotation(coordinate: .init(latitude: 0, longitude: 0), imdfID: UUID(), properties: .init(name: nil, alt_name: nil, category: .banch, detailLevel: 1), detailLevel: 1), routeParams: .init(asphalt: false, serviceRoute: false))
-            .previewDevice("iPad Pro (12.9-inch) (5th generation)")
             .preferredColorScheme(.dark)
         
 //        ShareDialog.ColorSection(colorVariant: .constant(.init(inverted: true, currentVariant: .green)), logoVariant: .constant(.camera), badgeVariant: .constant(.badge))

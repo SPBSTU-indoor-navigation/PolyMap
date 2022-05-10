@@ -28,6 +28,26 @@ internal enum L10n {
       internal static let phone = L10n.tr("Localizable", "MapInfo.Detail.Phone")
       /// Website
       internal static let website = L10n.tr("Localizable", "MapInfo.Detail.Website")
+      internal enum EmptyPlan {
+        /// Unfortunately, this building does not have a floor plan, if you have a floor plan for this building or know who might have it, please contact the developer
+        internal static let message = L10n.tr("Localizable", "MapInfo.Detail.EmptyPlan.Message")
+        /// Write
+        internal static let `open` = L10n.tr("Localizable", "MapInfo.Detail.EmptyPlan.Open")
+        /// No building plan
+        internal static let title = L10n.tr("Localizable", "MapInfo.Detail.EmptyPlan.Title")
+        internal enum Email {
+          /// Copy
+          internal static let copy = L10n.tr("Localizable", "MapInfo.Detail.EmptyPlan.Email.Copy")
+          /// Open mail
+          internal static let `open` = L10n.tr("Localizable", "MapInfo.Detail.EmptyPlan.Email.Open")
+        }
+        internal enum Mail {
+          /// Hi, I would like to help with the layout of the {BUILDING}
+          internal static let message = L10n.tr("Localizable", "MapInfo.Detail.EmptyPlan.Mail.Message")
+          /// Building plan PolyMap
+          internal static let subject = L10n.tr("Localizable", "MapInfo.Detail.EmptyPlan.Mail.Subject")
+        }
+      }
     }
     internal enum ExclRoute {
       internal enum Info {
@@ -115,6 +135,11 @@ internal enum L10n {
     }
   }
 
+  internal enum Present {
+    /// Cancel
+    internal static let cancel = L10n.tr("Localizable", "Present.Cancel")
+  }
+
   internal enum ReportAnIssue {
     /// no
     internal static let disable = L10n.tr("Localizable", "ReportAnIssue.Disable")
@@ -122,24 +147,24 @@ internal enum L10n {
     internal static let enable = L10n.tr("Localizable", "ReportAnIssue.Enable")
     /// Send
     internal static let send = L10n.tr("Localizable", "ReportAnIssue.Send")
-    /// К сожалению не удалось подключиться к серверу, попробуйте позже
+    /// Sorry, we couldn't connect to the server, please try again later
     internal static let serverError = L10n.tr("Localizable", "ReportAnIssue.ServerError")
-    /// Сообщение об ошибке отправлено успешно
+    /// Issue report sent successfully
     internal static let succes = L10n.tr("Localizable", "ReportAnIssue.Succes")
     /// Report
     internal static let title = L10n.tr("Localizable", "ReportAnIssue.Title")
     internal enum Error {
-      /// Ошибка в
+      /// Issue in the building
       internal static let annotation = L10n.tr("Localizable", "ReportAnIssue.Error.Annotation")
-      /// Ошибка в маршруте
+      /// Issue in the route
       internal static let route = L10n.tr("Localizable", "ReportAnIssue.Error.Route")
     }
     internal enum Message {
       /// It is recommended to leave a contact for feedback, for example, an email address or a Telegram account
       internal static let footer = L10n.tr("Localizable", "ReportAnIssue.Message.Footer")
-      /// L10n.Share.HelloText.placehodler
+      /// Describe the issue
       internal static let placeholder = L10n.tr("Localizable", "ReportAnIssue.Message.Placeholder")
-      /// Подробно опишите ошибку
+      /// Describe the issue in detail
       internal static let title = L10n.tr("Localizable", "ReportAnIssue.Message.Title")
     }
   }

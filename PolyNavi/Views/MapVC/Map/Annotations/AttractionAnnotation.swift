@@ -17,10 +17,12 @@ class AttractionAnnotation: BaseAnnotation, MKAnnotation, ReusableCell {
     }
 
     var properties: IMDF.Attraction.Properties
+    var building: Building
     
-    init(coordinate: CLLocationCoordinate2D, imdfID: UUID, properties: IMDF.Attraction.Properties) {
+    init(coordinate: CLLocationCoordinate2D, imdfID: UUID, properties: IMDF.Attraction.Properties, building: Building) {
         self.coordinate = coordinate
         self.properties = properties
+        self.building = building
         super.init()
         self.imdfID = imdfID
     }

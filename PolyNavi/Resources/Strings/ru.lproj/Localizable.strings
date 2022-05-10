@@ -33,6 +33,9 @@ Settings.titleOfTeacherCell = "Преподаватель";
 //MARK:- Choosing search controller strings
 ChoosingSearchController.searchPlaceholder = "Поиск";
 
+//MARK:- Shared
+Present.Cancel = "Отменить";
+
 //MARK:- MapInfo
 MapInfo.Share = "Поделиться";
 
@@ -40,6 +43,14 @@ MapInfo.Detail.Phone = "Телефон";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Вебсайт";
 MapInfo.Detail.Address = "Адрес";
+
+MapInfo.Detail.EmptyPlan.Title = "Планировка отсутствует";
+MapInfo.Detail.EmptyPlan.Message = "К сожалению у этого здания отсутствует планировка, если у вас есть поэтажный план этого здания или вы знаете у кого он может быть, пожалуйста свяжитесь с разработчиком";
+MapInfo.Detail.EmptyPlan.Email.Copy = "Копировать";
+MapInfo.Detail.EmptyPlan.Email.Open = "Открыть почту";
+MapInfo.Detail.EmptyPlan.Open = "Написать";
+MapInfo.Detail.EmptyPlan.Mail.Subject = "Планировка PolyMap";
+MapInfo.Detail.EmptyPlan.Mail.Message = "Привет, я хочу помочь с составлением планировки для здания {BUILDING}";
 
 MapInfo.Report.Favorites.Add = "Добавть в Закладки";
 MapInfo.Report.Favorites.Remove = "Удалить из Закладок";

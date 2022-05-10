@@ -12,6 +12,8 @@ protocol MapViewDelegate {
     @discardableResult
     func focusAndSelect(annotation: MKAnnotation, focusVariant: MapView.FocusVariant) -> Bool
     func focus(on annotation: MKAnnotation, focusVariant: MapView.FocusVariant)
+    func focus(on attraction: AttractionAnnotation)
+    func focus(on pathResult: PathResult)
     func deselectAnnotation(_ annotation: MKAnnotation?, animated: Bool)
     func pinAnnotation(_ annotation: MKAnnotation, animated: Bool)
     func unpinAnnotation(_ annotation: MKAnnotation, animated: Bool)
@@ -312,7 +314,9 @@ class MapView: UIView {
     }
     
     func mapFocusSafeArea(point: CLLocationCoordinate2D, boundingBox: CGRect, complition: (() -> Void)? = nil) {
-        let mapSafeZone = mapInfoDelegate!.getSafeZone()
+        guard let mapInfoDelegate = mapInfoDelegate else { return }
+
+        let mapSafeZone = mapInfoDelegate.getSafeZone()
         let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: self.mapView)
         
         let centerCG = mapView.convert(mapView.centerCoordinate, toPointTo: mapView)
@@ -413,7 +417,6 @@ extension MapView: MKMapViewDelegate {
         }
         
         if overlay is PathOverlay {
-//            let pathRenderer = GradientPathRenderer(polyline: overlay as! MKPolyline, colors: [.systemBlue], showsBorder: true, borderColor: .white)
             let pathRenderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
             pathRenderer.lineWidth = 7
             pathRenderer.strokeColor = .systemBlue
@@ -539,6 +542,119 @@ extension MapView: MapViewDelegate {
         
     }
     
+    func focus(on attraction: AttractionAnnotation) {
+        
+        let rotation: CGFloat = attraction.building.rotation ?? mapView.camera.heading
+        let bounding = boundingAfterRotation(attraction.building.geometry, angle: -rotation * .pi / 180, around: MKMapPoint(attraction.coordinate))
+        
+        let tempMap = MKMapView(frame: self.mapView.frame)
+        tempMap.setVisibleMapRect(bounding, edgePadding: .init(top: 10, left: 10, bottom: 100, right: 10), animated: false)
+        
+        let pos = MKMapPoint(tempMap.centerCoordinate)
+        
+        tempMap.centerCoordinate = attraction.coordinate
+        tempMap.camera = MKMapCamera(lookingAtCenter: tempMap.centerCoordinate,
+                                     fromDistance: tempMap.camera.centerCoordinateDistance,
+                                     pitch: tempMap.camera.pitch,
+                                     heading: rotation)
+        
+        let pivot = MKMapPoint(attraction.coordinate)
+        let dX = pivot.x - pos.x
+        let dY = pivot.y - pos.y
+        let angle = rotation * .pi / 180
+        
+        let c = cos(angle)
+        let s = sin(angle)
+        
+        tempMap.centerCoordinate = MKMapPoint(x: pivot.x - (dX * c - dY * s),
+                                y: pivot.y - (dX * s + dY * c)).coordinate
+        
+        if tempMap.camera.centerCoordinateDistance > 500 {
+            tempMap.camera = MKMapCamera(lookingAtCenter: tempMap.centerCoordinate, fromDistance: 500, pitch: tempMap.camera.pitch, heading: tempMap.camera.heading)
+        }
+        
+        MapView.animate(withDuration: 0.5, animations: {
+            self.mapView.camera = tempMap.camera
+        })
+    }
+    
+    func focus(on pathResult: PathResult) {
+        guard let mapInfoDelegate = mapInfoDelegate else { return }
+        
+        
+        let tempMap = MKMapView(frame: mapView.frame)
+        let safeZone = mapView.convert(mapInfoDelegate.getSafeZone().frame, to: mapView)
+        
+        let pathRect = pathResult.mapRect
+        
+        tempMap.setVisibleMapRect(pathRect, edgePadding: .init(top: safeZone.minY + 50,
+                                                              left: safeZone.minX + 50,
+                                                              bottom: mapView.frame.height - safeZone.maxY + 50,
+                                                              right: mapView.frame.width - safeZone.maxX + 50),
+                                  animated: false)
+        
+        if tempMap.camera.centerCoordinateDistance > 500 && pathResult.outdoorDistance < 200 && pathResult.indoorDistance > 50 && pathResult.indoorDistance > pathResult.outdoorDistance {
+            
+            let centerRect = MKMapPoint(x: pathRect.midX, y: pathRect.midY)
+            let centerMap = MKMapPoint(tempMap.centerCoordinate)
+            
+            let centerRectScreen = tempMap.convert(centerRect.coordinate, toPointTo: tempMap)
+            let centerMapScreen = tempMap.convert(centerMap.coordinate, toPointTo: tempMap)
+            
+            tempMap.centerCoordinate = centerRect.coordinate
+            tempMap.camera = MKMapCamera(lookingAtCenter: tempMap.centerCoordinate, fromDistance: 500, pitch: tempMap.camera.pitch, heading: tempMap.camera.heading)
+    
+            let screenDelta = CGPoint(x: centerRectScreen.x - centerMapScreen.x, y: centerRectScreen.y - centerMapScreen.y)
+            let targetCenterScreen = CGPoint(x: centerMapScreen.x - screenDelta.x, y: centerMapScreen.y - screenDelta.y)
+            
+            tempMap.centerCoordinate = tempMap.convert(targetCenterScreen, toCoordinateFrom: tempMap)
+
+            
+            
+            
+            let centerCG = tempMap.convert(tempMap.centerCoordinate, toPointTo: tempMap)
+            let annotationCG = tempMap.convert(pathResult.from.coordinate, toPointTo: tempMap)
+
+            var dx = 0.0
+            var dy = 0.0
+
+            let target = safeZone
+                .inset(by: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
+
+            if !target.contains(annotationCG) {
+                if annotationCG.y < target.minY {
+                    dy = annotationCG.y - target.minY
+                } else if annotationCG.y > target.maxY {
+                    dy = annotationCG.y - target.maxY
+                }
+
+                if annotationCG.x < target.minX {
+                    dx = annotationCG.x - target.minX
+                } else if annotationCG.x > target.maxX {
+                    dx = annotationCG.x - target.maxX
+                }
+
+                let point = MKMapPoint(tempMap.convert(CGPoint(x: centerCG.x + dx, y: centerCG.y + dy), toCoordinateFrom: tempMap))
+
+                tempMap.centerCoordinate = point.coordinate
+            }
+        }
+        
+        self.zoomByAnimation = true
+        MapView.animate(withDuration: 0.5, animations: {
+            let cam = self.mapView.camera
+            if abs(cam.centerCoordinateDistance - tempMap.camera.centerCoordinateDistance) < 1 &&
+                abs(cam.heading - tempMap.camera.heading) < 0.1 &&
+                abs(cam.centerCoordinate.distance(from: tempMap.camera.centerCoordinate)) < 1 {
+                return
+            } else {
+                self.mapView.camera = tempMap.camera
+            }
+        }, completion: { _ in
+            self.zoomByAnimation = false
+        })
+    }
+    
     func addPath(path: [PathResultNode]) -> UUID {
         return venue?.addPath(mapView, path: path) ?? UUID()
     }
@@ -548,4 +664,33 @@ extension MapView: MapViewDelegate {
     }
     
     
+}
+
+fileprivate func boundingAfterRotation(_ shape: MKShape & MKOverlay, angle: CGFloat, around point: MKMapPoint? = nil) -> MKMapRect {
+    
+    if let polygon = shape as? MKPolygon {
+        let points = Array(UnsafeBufferPointer(start: polygon.points(), count: polygon.pointCount))
+
+        let sum = points.reduce((0.0, 0.0), { res, e in
+            return (res.0 + e.x,
+                    res.1 + e.y)
+        })
+        
+        let center = point ?? MKMapPoint(x: sum.0 / CGFloat(points.count), y: sum.1 / CGFloat(points.count))
+        
+        let c = cos(angle)
+        let s = sin(angle)
+        
+        let rotated = points.map({ point -> MKMapPoint in
+            let x = (point.x - center.x)
+            let y = (point.y - center.y)
+            
+            return MKMapPoint(x: center.x + x * c - y * s,
+                              y: center.y + x * s + y * c)
+        })
+        
+        return MKMapRect(points: rotated)
+    }
+    
+    return shape.boundingMapRect
 }

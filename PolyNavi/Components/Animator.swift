@@ -35,9 +35,9 @@ class Animator {
             super.execute(animated: animated)
             
             if animated {
-                UIView.animate(withDuration: withDuration, delay: delay, options: options, animations: animations, completion: { [weak self] comp in
-                    self?.completion?(comp)
-                    self?.playing = false
+                UIView.animate(withDuration: withDuration, delay: delay, options: options, animations: animations, completion: { [self] comp in
+                    self.completion?(comp)
+                    self.playing = false
                 })
             } else {
                 animations()
@@ -70,9 +70,9 @@ class Animator {
             super.execute(animated: animated)
             
             if animated {
-                UIView.animate(withDuration: withDuration, delay: delay, usingSpringWithDamping: usingSpringWithDamping, initialSpringVelocity: initialSpringVelocity, options: options, animations: animations, completion: { [weak self] comp in
-                    self?.completion?(comp)
-                    self?.playing = false
+                UIView.animate(withDuration: withDuration, delay: delay, usingSpringWithDamping: usingSpringWithDamping, initialSpringVelocity: initialSpringVelocity, options: options, animations: animations, completion: { [self] comp in
+                    self.completion?(comp)
+                    self.playing = false
                 })
             } else {
                 animations()
