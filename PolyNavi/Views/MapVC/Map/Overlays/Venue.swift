@@ -61,10 +61,14 @@ class Venue: CustomOverlay, Styleble {
         
         let enviromentOrder: [IMDF.EnviromentUnit.Category] = [.forest,
                                                                .grass,
+                                                               .grassStadion,
+                                                               .water,
+                                                               .sand,
                                                                .tree,
                                                                .roadDirt,
                                                                .roadPedestrianSecond,
                                                                .roadPedestrianMain,
+                                                               .roadPedestrianTreadmill,
                                                                .roadMain,
                                                                .fenceMain,
                                                                .fenceSecond]

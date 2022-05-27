@@ -46,6 +46,10 @@ class Detail: CustomOverlay, Styleble {
             renderer.lineWidth = 1
         case .indoorSteps, .indoorStairs:
             renderer.lineWidth = 0.5
+        case .stadionGrassMarking:
+            renderer.lineWidth = 3
+        case .treadmillMarking:
+            renderer.lineWidth = 2
         }
         
     }

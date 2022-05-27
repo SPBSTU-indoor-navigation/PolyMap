@@ -97,12 +97,18 @@ internal enum Asset {
       internal static let fenceMain = ColorAsset(name: "fence.main")
       internal static let forest = ColorAsset(name: "forest")
       internal static let grass = ColorAsset(name: "grass")
+      internal static let grassStadion = ColorAsset(name: "grass.stadion")
       internal static let roadDirt = ColorAsset(name: "road.dirt")
       internal static let roadMain = ColorAsset(name: "road.main")
       internal static let roadPedestrianMain = ColorAsset(name: "road.pedestrian.main")
       internal static let roadPedestrianSecond = ColorAsset(name: "road.pedestrian.second")
+      internal static let roadPedestrianTreadmill = ColorAsset(name: "road.pedestrian.treadmill")
+      internal static let sand = ColorAsset(name: "sand")
+      internal static let stadionGrassMarking = ColorAsset(name: "stadion.grass.marking")
       internal static let steps = ColorAsset(name: "steps")
+      internal static let treadmillMarking = ColorAsset(name: "treadmill.marking")
       internal static let tree = ColorAsset(name: "tree")
+      internal static let water = ColorAsset(name: "water")
     }
     internal static let levelLine = ColorAsset(name: "LevelLine")
     internal enum Units {

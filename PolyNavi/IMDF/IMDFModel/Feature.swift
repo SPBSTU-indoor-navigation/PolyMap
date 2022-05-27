@@ -31,8 +31,7 @@ class Feature<Properties: Decodable>: NSObject, IMDFDecodableFeature {
         geometry = feature.geometry
         
         if let propertiesData = feature.properties {
-            let decoder = JSONDecoder()
-            properties = try decoder.decode(Properties.self, from: propertiesData)
+            properties = try JSONDecoder().decode(Properties.self, from: propertiesData)
         } else {
             throw IMDFError.invalidData
         }

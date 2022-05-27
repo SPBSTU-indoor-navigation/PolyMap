@@ -85,6 +85,7 @@ class MapView: UIView {
         $0.isPitchEnabled = false
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false
+//        $0.mapType = .satellite
         $0.delegate = self
         $0.onAnnotationAdd = onAnnotationAdd
         

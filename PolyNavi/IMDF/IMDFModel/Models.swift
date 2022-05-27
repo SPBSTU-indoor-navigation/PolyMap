@@ -156,11 +156,15 @@ struct IMDF {
             case roadDirt = "road.dirt"
             case roadPedestrianMain = "road.pedestrian.main"
             case roadPedestrianSecond = "road.pedestrian.second"
+            case roadPedestrianTreadmill = "road.pedestrian.treadmill"
             case grass
+            case grassStadion = "grass.stadion"
             case tree
             case forest
             case fenceMain = "fence.main"
             case fenceSecond = "fence.second"
+            case sand
+            case water
         }
         
         struct Properties: Codable {
@@ -273,6 +277,8 @@ struct IMDF {
             case steps = "steps"
             case indoorSteps = "indoor.steps"
             case indoorStairs = "indoor.stairs"
+            case treadmillMarking = "treadmill.marking"
+            case stadionGrassMarking = "stadion.grass.marking"
         }
         
         struct Properties: Codable {
