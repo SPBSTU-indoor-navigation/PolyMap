@@ -89,7 +89,7 @@ class DetailLevelProcessor<T> {
         return nil
     }
 }
-
+    
 enum DetailLevelState {
     case big
     case normal

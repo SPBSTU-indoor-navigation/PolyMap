@@ -413,7 +413,7 @@ extension MapView: MKMapViewDelegate {
 
             let renderer = renderer(for: overlay)
             (customOverlay as! Styleble).configurate(renderer: renderer)
-
+            
             return renderer
         }
         

@@ -49,7 +49,7 @@ class Detail: CustomOverlay, Styleble {
         case .stadionGrassMarking:
             renderer.lineWidth = 3
         case .treadmillMarking:
-            renderer.lineWidth = 2
+            renderer.lineWidth = 0.6
         }
         
     }
