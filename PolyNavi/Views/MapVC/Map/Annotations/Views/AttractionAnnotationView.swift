@@ -15,8 +15,9 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
     static let stateProcessor: DetailLevelProcessor<DetailLevelState> = {
         $0.builder(for: 0)
             .add(mapSize: 0, state: .hide)
-            .add(mapSize: 17.2, state: .min)
-            .add(mapSize: 18, state: .normal)
+            .add(mapSize: 15, state: .min)
+            .add(mapSize: 17.2, state: .normal)
+            .add(mapSize: 18, state: .big)
         return $0
     }(DetailLevelProcessor<DetailLevelState>())
     
@@ -87,8 +88,10 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
     lazy var labelShort: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = Asset.Annotation.Colors.attractionBorder.color
+        $0.textAlignment = .center
         
         $0.font = .systemFont(ofSize: 40, weight: .bold)
+        $0.adjustsFontSizeToFitWidth = true
         return $0
     }(UILabel())
     
@@ -143,6 +146,7 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
             miniPoint.centerYAnchor.constraint(equalTo: centerYAnchor),
             labelShort.centerXAnchor.constraint(equalTo: background.centerXAnchor),
             labelShort.centerYAnchor.constraint(equalTo: background.centerYAnchor),
+            labelShort.widthAnchor.constraint(lessThanOrEqualToConstant: 55),
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
             label.topAnchor.constraint(equalTo: centerYAnchor, constant: 22),
             imageView.topAnchor.constraint(equalTo: background.topAnchor),
@@ -213,8 +217,10 @@ extension AttractionAnnotationView {
     
     private var pointSize : CGFloat {
         switch state {
-        case .big, .normal: return 1
-        case .hide, .min, .undefined: return 0.8
+        case .big: return 1
+        case .normal: return 0.8
+        case .min: return 0.6
+        case .hide, .undefined: return 0.6
         }
     }
 
@@ -245,6 +251,6 @@ extension AttractionAnnotationView {
     
     var labelOpacity: CGFloat {
         if isSelected || isPinned { return 1 }
-        return [.min, .normal, .big].contains(state) ? 1.0 : 0.0
+        return [.normal, .big].contains(state) ? 1.0 : 0.0
     }
 }
