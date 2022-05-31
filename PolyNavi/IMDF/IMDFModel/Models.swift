@@ -197,6 +197,12 @@ struct IMDF {
             case metro = "metro"
             case transportBus = "transport.bus"
             case transportTrum = "transport.trum"
+            case stadium = "stadium"
+            case stadiumFootball = "stadium.football"
+            case stadiumBasketball = "stadium.basketball"
+            case stadiumVolleyball = "stadium.volleyball"
+            case entrance = "entrance"
+            case playground = "playground"
         }
         
         struct Properties: Codable {

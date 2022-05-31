@@ -48,8 +48,8 @@ class PathResult {
         indoorDistance = PathResult.indoorDistance(path: path)
         outdoorDistance = PathResult.outdoorDistance(path: path)
         
-        time = Float(outdoorDistance / 4.0 + indoorDistance / 2.0)
-        fastTime = Float(outdoorDistance / 5.0 + indoorDistance / 3.0)
+        time = Float(outdoorDistance / 4.0 + indoorDistance / 2.0) * 3.6
+        fastTime = Float(outdoorDistance / 5.0 + indoorDistance / 3.0) * 3.6
     }
     
     static func distance(path: [PathResultNode]) -> Double {
@@ -167,6 +167,8 @@ class PathFinder {
         for from in fromAssociated {
             for to in toAssociated {
                 let path = from.findPath(to: to)
+                if path.isEmpty { continue }
+                
                 let cost = path.cost()
                 
                 if cost < shortestCost {
@@ -183,6 +185,8 @@ class PathFinder {
 
 extension Array where Iterator.Element : GKGraphNode {
     func cost() -> Float {
+        if count == 0 { return 0 }
+        
         var result: Float = 0
         for i in 1..<count {
             result += self[i-1].cost(to: self[i])
