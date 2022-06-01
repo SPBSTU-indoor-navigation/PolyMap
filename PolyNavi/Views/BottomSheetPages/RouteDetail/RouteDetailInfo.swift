@@ -110,8 +110,6 @@ class RouteDetailInfo: SectionCollection {
             
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: SimpleShareCell.identifire, for: indexPath) as! SimpleShareCell
-                
-                cell.configurate()
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: ShareAppClip.identifire, for: indexPath) as! ShareAppClip
@@ -127,8 +125,9 @@ class RouteDetailInfo: SectionCollection {
                 
                 let textToShare = [ CodeGeneratorProvider.createPermalink(from: from.imdfID, to: to.imdfID, params: routeParameters) ]
                 let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-                activityViewController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)?.accessoryView
+                guard let cell = tableView.cellForRow(at: indexPath) as? SimpleShareCell else { return }
                 
+                activityViewController.popoverPresentationController?.sourceView = cell.image
                 if let vc = tableView.delegate as? UIViewController {
                     vc.present(activityViewController, animated: true, completion: nil)
                 }
@@ -142,7 +141,6 @@ class RouteDetailInfo: SectionCollection {
     }
     
     static func register(tableView: UITableView) {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableView.UITableViewCellIdentifire)
         tableView.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifire)
         tableView.register(ToggleCell.self, forCellReuseIdentifier: ToggleCell.identifire)
         tableView.register(SimpleShareCell.self, forCellReuseIdentifier: SimpleShareCell.identifire)

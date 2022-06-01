@@ -39,6 +39,7 @@ Present.Cancel = "Отменить";
 //MARK:- MapInfo
 MapInfo.Share = "Поделиться";
 
+MapInfo.Detail.Title = "Информация";
 MapInfo.Detail.Phone = "Телефон";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Вебсайт";

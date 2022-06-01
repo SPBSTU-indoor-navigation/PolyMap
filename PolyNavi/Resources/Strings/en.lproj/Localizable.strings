@@ -39,6 +39,7 @@ Present.Cancel = "Cancel";
 //MARK:- MapInfo
 MapInfo.Share = "Share";
 
+MapInfo.Detail.Title = "Detail";
 MapInfo.Detail.Phone = "Phone";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Website";

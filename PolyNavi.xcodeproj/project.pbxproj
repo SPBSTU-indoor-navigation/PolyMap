@@ -264,6 +264,8 @@
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
 		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
+		97EE6B042846C85D004A5B00 /* BaseCellTitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EE6B032846C85C004A5B00 /* BaseCellTitled.swift */; };
+		97EE6B052846C85D004A5B00 /* BaseCellTitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EE6B032846C85C004A5B00 /* BaseCellTitled.swift */; };
 		97F0F89727EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
 		97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
 		97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
@@ -454,6 +456,7 @@
 		97E15D0D27BC7F2B00E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0E27BC7F2B00E636FC /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0F27BC7F2B00E636FC /* libUIScreenExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIScreenExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97EE6B032846C85C004A5B00 /* BaseCellTitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellTitled.swift; sourceTree = "<group>"; };
 		97F0F89627EAAC1500296DA3 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		97FCC17727C6A313009F3C39 /* ScaledImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledImageView.swift; sourceTree = "<group>"; };
 		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
@@ -794,6 +797,7 @@
 				973962D2280C80AE000E478F /* ShareAppClip.swift */,
 				973962D5280C96A8000E478F /* SimpleShareCell.swift */,
 				9735D2132826FCC900F8A08F /* FavoriteCell.swift */,
+				97EE6B032846C85C004A5B00 /* BaseCellTitled.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1389,6 +1393,7 @@
 				97882E5B281E2999001D3F19 /* CustomBinding.swift in Sources */,
 				978B320C27EE638300760B78 /* AttractionSearchCell.swift in Sources */,
 				978B793227D2DBA70003626F /* DetailCell.swift in Sources */,
+				97EE6B042846C85D004A5B00 /* BaseCellTitled.swift in Sources */,
 				9735D2212827272600F8A08F /* SearchHistoryStorage.swift in Sources */,
 				9750154B2795B2F400326B09 /* Unit.swift in Sources */,
 				974FA70A27B88D51001A4A25 /* Detail.swift in Sources */,
@@ -1569,6 +1574,7 @@
 				971F8E0F27BD556B0018F98A /* OccupantAnnotation.swift in Sources */,
 				97882E5F281F77BE001D3F19 /* QRCodePreview.swift in Sources */,
 				973962BF2808DCB4000E478F /* SearchLine.swift in Sources */,
+				97EE6B052846C85D004A5B00 /* BaseCellTitled.swift in Sources */,
 				9735D2122826E8B700F8A08F /* Event.swift in Sources */,
 				9735D21928271C2800F8A08F /* AmenitySearchIcon.swift in Sources */,
 				978B320927EE630300760B78 /* OccupantSearchCell.swift in Sources */,
@@ -1826,7 +1832,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = PolyNavi;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1862,7 +1867,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = PolyNavi;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

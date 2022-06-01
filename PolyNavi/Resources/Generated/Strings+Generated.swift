@@ -26,6 +26,8 @@ internal enum L10n {
       internal static let email = L10n.tr("Localizable", "MapInfo.Detail.Email")
       /// Phone
       internal static let phone = L10n.tr("Localizable", "MapInfo.Detail.Phone")
+      /// Detail
+      internal static let title = L10n.tr("Localizable", "MapInfo.Detail.Title")
       /// Website
       internal static let website = L10n.tr("Localizable", "MapInfo.Detail.Website")
       internal enum EmptyPlan {
