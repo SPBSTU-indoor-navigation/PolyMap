@@ -1829,7 +1829,7 @@
 				DEVELOPMENT_TEAM = LZP5UN7552;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PolyNaviClip/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = PolyNavi;
+				INFOPLIST_KEY_CFBundleDisplayName = PolyMap;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1864,7 +1864,7 @@
 				DEVELOPMENT_TEAM = LZP5UN7552;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PolyNaviClip/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = PolyNavi;
+				INFOPLIST_KEY_CFBundleDisplayName = PolyMap;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
