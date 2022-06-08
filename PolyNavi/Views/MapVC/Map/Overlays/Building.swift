@@ -61,13 +61,16 @@ class Building: CustomOverlay, Styleble, MapRenderer {
     
     func changeOrdinal(_ ordinal: Int, _ mapView: OverlayedMapView) {
         if self.ordinal == ordinal { return }
+        
         if isShow {
-            hide(mapView)
-            self.ordinal = ordinal
-            show(mapView)
-        } else {
-            self.ordinal = ordinal
+            if let oldLevel = level(byOrdinal: self.ordinal),
+               let newLevel = level(byOrdinal: ordinal) {
+                newLevel.show(mapView)
+                oldLevel.hide(mapView)
+            }
         }
+        
+        self.ordinal = ordinal
         
     }
     
@@ -92,7 +95,6 @@ class Building: CustomOverlay, Styleble, MapRenderer {
         }
         
         mapView.addAnnotations(attractions)
-        
     }
     
     

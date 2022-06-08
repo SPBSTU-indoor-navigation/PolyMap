@@ -151,6 +151,7 @@ class MapView: UIView {
     
     func onLevelChange(ordinal: Int) {
         currentBuilding?.changeOrdinal(ordinal, mapView)
+        updateStylebleMapSizeOverlay(zoomLevel: getZoom())
     }
     
     func onRotate() {
@@ -238,12 +239,8 @@ class MapView: UIView {
             }
         }
         
-        mapView.currentOverlays
-            .compactMap({ $0.value as? CustomOverlay & StylebleMapSize })
-            .forEach({
-                guard let renderer = mapView.renderer(for: $0.geometry) else { return }
-                $0.configurate(renderer: renderer, mapSize: zoomLevel)
-            })
+        updateStylebleMapSizeOverlay(zoomLevel: zoomLevel)
+
     }
     
     func updateMap(nearestBuilding: Building?) {
@@ -272,6 +269,15 @@ class MapView: UIView {
         if nearestBuilding != currentBuilding {
             updateMap(nearestBuilding: nearestBuilding)
         }
+    }
+    
+    func updateStylebleMapSizeOverlay(zoomLevel: Float) {
+        mapView.currentOverlays
+            .compactMap({ $0.value as? CustomOverlay & StylebleMapSize })
+            .forEach({
+                guard let renderer = mapView.renderer(for: $0.geometry) else { return }
+                $0.configurate(renderer: renderer, mapSize: zoomLevel)
+            })
     }
     
     func selectAnnotationAfterAdding(annotation: MKAnnotation?) {

@@ -15,6 +15,10 @@ protocol PathResultNode {
     var level: Level? { get }
 }
 
+extension PathResultNode {
+    var isIndoor: Bool { building != nil }
+}
+
 class PathResult {
     let from: MKAnnotation
     let to: MKAnnotation
