@@ -145,6 +145,7 @@ struct IMDF {
             let level_id: UUID
             let category: String
             let unit_categoty: IMDF.Unit.Category?
+            let unit_restriction: Restriction?
             let door: Door
             let display_point: PointGeometry?
         }
@@ -316,6 +317,8 @@ struct IMDF {
             case restroom = "restroom"
             case restroomFemale = "restroom.female"
             case restroomMale = "restroom.male"
+            case ticket = "ticket"
+            case museum = "museum"
         }
         
         struct Properties: Codable {

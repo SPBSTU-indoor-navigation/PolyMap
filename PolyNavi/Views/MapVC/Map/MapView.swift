@@ -81,7 +81,7 @@ class MapView: UIView {
     
     lazy var mapView: PathMapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 25, maxCenterCoordinateDistance: 5000), animated: false)
+        $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 100, maxCenterCoordinateDistance: 5000), animated: false)
         $0.isPitchEnabled = false
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false

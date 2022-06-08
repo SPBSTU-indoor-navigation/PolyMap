@@ -140,7 +140,9 @@ class PathFinder {
             }
         })
         
-        self.associeted = associeted.map({ (annotations[$0.properties.associeted_id]!, converted[$0.properties.pathNode_id]!.1) })
+        self.associeted = associeted
+            .filter({ annotations[$0.properties.associeted_id] != nil })
+            .map({ (annotations[$0.properties.associeted_id]!, converted[$0.properties.pathNode_id]!.1) })
         self.nodes = converted.values.map({ $0.1 })
         self.annotationById = annotations
         
