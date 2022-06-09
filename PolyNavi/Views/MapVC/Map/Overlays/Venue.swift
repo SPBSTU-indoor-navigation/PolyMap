@@ -33,6 +33,8 @@ class Venue: CustomOverlay, Styleble {
     func addPath(_ mapView: MKMapView, path: [PathResultNode]) -> UUID {
         let id = UUID()
         
+        if path.count <= 1 { return id }
+        
         var outdoor: [[PathResultNode]] = []
         
         var temp: [PathResultNode] = path[0].isIndoor ? [] : [path[0]]

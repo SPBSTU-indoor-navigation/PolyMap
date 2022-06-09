@@ -16,6 +16,8 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
                 imageView.sourceImage = unit.sprite
                 imageView.alpha = imageOpacity
                 
+                point.layer.borderWidth = [.circleWithoutLabel].contains(detailLevel) ? 0.5 : 0.75
+                
                 changePointColor(unit.backgroundSpriteColor)
             }
             
@@ -71,7 +73,7 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
         $0.backgroundColor = .systemOrange
         $0.layer.cornerRadius = 5
         $0.layer.borderColor = UIColor.systemBackground.cgColor
-        $0.layer.borderWidth = 0.5
+        $0.layer.borderWidth = 0.65
         
         $0.addSubview(shape)
         $0.addSubview(imageView)
@@ -90,9 +92,9 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = .label
         
-        $0.font = .systemFont(ofSize: 11, weight: .semibold)
+        $0.font = .systemFont(ofSize: 12, weight: .bold)
         
-        $0.strokeSize = 0.5
+        $0.letterSpacing = -0.75
         $0.strokeColor = Asset.Annotation.Colors.stroke.color
         return $0
     }(THLabel())
@@ -173,6 +175,8 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
         point.backgroundColor = color
         miniPoint.backgroundColor = color
         caShapeLayer.fillColor = color.cgColor
+        
+        label.textColor = color
     }
     
     override var detailLevelProcessor: DetailLevelProcessor<DetailLevelState> { OccupantAnnotation.levelProcessor }
@@ -207,6 +211,9 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
         super.appearanceDidChange()
         point.layer.borderColor = UIColor.systemBackground.withAlphaComponent(point.layer.borderColor?.alpha ?? 0).cgColor
         caShapeLayer.fillColor = point.backgroundColor?.cgColor
+        
+        label.strokeSize = traitCollection.userInterfaceStyle == .dark ? 0.65 : 1
+        label.setNeedsDisplay()
     }
 }
 

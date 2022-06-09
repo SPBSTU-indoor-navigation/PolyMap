@@ -45,13 +45,13 @@ class OccupantAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, IndoorAnno
         case .restroom, .restroomMale, .restroomFemale: colorName = "restroom"
         default: colorName = properties.category.rawValue
         }
-        return UIColor(named: colorName + "-annotation") ?? .systemOrange
+        return UIColor(named: colorName + "-annotation") ?? Asset.Annotation.Colors.Units.defaultAnnotation.color
     }()
     
     var detailLevel: DetailLevel {
         switch properties.category {
         case .restroom, .restroomMale, .restroomFemale, .security: return .circleWithoutLabel
-        case .administration, .wardrobe: return .circleWithoutLabel
+        case .administration, .wardrobe, .ticket: return .circleWithoutLabel
         case .souvenirs, .foodserviceСoffee: return .circleWithoutLabel
         case .auditorium, .classroom: return .pointSecondary
         default: return .pointSecondary

@@ -319,6 +319,10 @@ struct IMDF {
             case restroomMale = "restroom.male"
             case ticket = "ticket"
             case museum = "museum"
+            case concertHall = "concert.hall"
+            case archive = "archive"
+            case readingRoom = "reading.room"
+            case academicCouncil = "academic.council"
         }
         
         struct Properties: Codable {
