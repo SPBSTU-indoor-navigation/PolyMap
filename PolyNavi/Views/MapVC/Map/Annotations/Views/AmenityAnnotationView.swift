@@ -132,6 +132,7 @@ class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
             .animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 isHidden = false
                 label.isHidden = false
+                alpha = viewOpacity
                 
                 imageView.alpha = imageOpacity
                 background.layer.cornerRadius = backgroundCornerRadius
