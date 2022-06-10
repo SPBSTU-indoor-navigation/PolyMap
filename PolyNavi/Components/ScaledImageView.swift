@@ -41,6 +41,7 @@ class ScaledImageView: UIImageView {
         let size = CGSize(width: Int(size.width * UIScreen.main.scale * (aspect < 1 ? aspect : 1)), height: Int(size.width * UIScreen.main.scale / (aspect > 1 ? aspect : 1)))
         UIGraphicsBeginImageContext(size)
         guard let ctx = UIGraphicsGetCurrentContext() else { return nil }
+        ctx.interpolationQuality = .high
         
         let rect = CGRect(origin: .zero, size: size)
         image.draw(in: rect)

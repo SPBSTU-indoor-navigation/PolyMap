@@ -38,14 +38,22 @@ class OccupantAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, IndoorAnno
         }
         return UIImage(named: imageName ?? properties.category.rawValue) ?? Asset.Annotation.Amenity.default.image
     }()
-    
-    lazy var backgroundSpriteColor: UIColor = {
+
+    private var colorAssetName: String {
         var colorName: String
         switch properties.category {
         case .restroom, .restroomMale, .restroomFemale: colorName = "restroom"
         default: colorName = properties.category.rawValue
         }
-        return UIColor(named: colorName + "-annotation") ?? Asset.Annotation.Colors.Units.defaultAnnotation.color
+        return colorName
+    }
+    
+    lazy var backgroundSpriteColor: UIColor = {
+        return UIColor(named: colorAssetName + "-annotation") ?? Asset.Annotation.Colors.Units.defaultAnnotation.color
+    }()
+    
+    lazy var titleLabelColor: UIColor = {
+        return UIColor(named: colorAssetName + "-annotation-label") ?? UIColor(named: colorAssetName + "-annotation") ?? Asset.Annotation.Colors.Units.defaultAnnotationLabel.color
     }()
     
     var detailLevel: DetailLevel {

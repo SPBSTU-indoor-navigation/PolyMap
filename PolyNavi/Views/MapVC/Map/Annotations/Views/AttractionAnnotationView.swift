@@ -95,20 +95,26 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
         return $0
     }(UILabel())
     
-    lazy var label: THLabel = {
+    lazy var label: MapLabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = Asset.Annotation.Colors.attractionTextColor.color
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
         $0.preferredMaxLayoutWidth = 120
-        $0.strokeSize = 0.5
         $0.strokeColor = Asset.Annotation.Colors.attractionTextStroke.color
         
         $0.textAlignment = .center
         
-        $0.font = .systemFont(ofSize: 11, weight: .bold)
         return $0
-    }(THLabel())
+    }(MapLabel())
+    
+    func setupLabel() {
+        let darkmode = traitCollection.userInterfaceStyle == .dark
+        
+        label.strokeSize = darkmode ? 1.5 : 3
+        label.font = .systemFont(ofSize: darkmode ? 12 : 13, weight: .bold)
+        label.setNeedsDisplay()
+    }
     
     lazy var miniPoint: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -128,6 +134,7 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
         addSubview(background)
         addSubview(label)
         miniPoint.isHidden = true
+        setupLabel()
         
         labelShort.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         
@@ -210,6 +217,8 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
     override func appearanceDidChange() {
         (shape.layer.sublayers?[0] as! CAShapeLayer).fillColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
         background.layer.borderColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
+        
+        setupLabel()
     }
 }
 

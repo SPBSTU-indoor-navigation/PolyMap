@@ -8,6 +8,8 @@
 import MapKit
 
 class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
+    var titleLabelColor: UIColor = .clear
+    
     override var annotation: MKAnnotation? {
         didSet {
             if let unit = annotation as? OccupantAnnotation {
@@ -16,9 +18,8 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
                 imageView.sourceImage = unit.sprite
                 imageView.alpha = imageOpacity
                 
-                point.layer.borderWidth = [.circleWithoutLabel].contains(detailLevel) ? 0.5 : 0.75
-                
                 changePointColor(unit.backgroundSpriteColor)
+                titleLabelColor = unit.titleLabelColor
             }
             
             if let title = annotation?.title {
@@ -32,6 +33,8 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
             label.alpha = labelOpacity
             point.transform = pointTransform
             label.transform = labelTransform
+            label.textColor = labelColor
+            point.layer.borderWidth = pointBorderWidth
         }
     }
     
@@ -88,17 +91,23 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
         return $0
     }(UIView())
     
-    lazy var label: THLabel = {
+    lazy var label: MapLabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = .label
+        $0.layer.minificationFilter = .trilinear
         
-        $0.font = .systemFont(ofSize: 12, weight: .bold)
-        
-        $0.letterSpacing = -0.75
         $0.strokeColor = Asset.Annotation.Colors.stroke.color
+        
         return $0
-    }(THLabel())
+    }(MapLabel())
     
+    func setupLabel() {
+        let darkmode = traitCollection.userInterfaceStyle == .dark
+        
+        label.strokeSize = darkmode ? 1.5 : 2.5
+        label.font = .systemFont(ofSize: 12, weight: darkmode ? .bold : .semibold)
+        label.setNeedsDisplay()
+    }
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -166,7 +175,11 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
                 imageView.alpha = imageOpacity
                 
                 point.layer.borderColor = borderColor
+                label.textColor = labelColor
             }, completion: { _ in self.miniPoint.hideIfZeroTransform() })
+        
+        
+        setupLabel()
     }
     
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -175,8 +188,6 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
         point.backgroundColor = color
         miniPoint.backgroundColor = color
         caShapeLayer.fillColor = color.cgColor
-        
-        label.textColor = color
     }
     
     override var detailLevelProcessor: DetailLevelProcessor<DetailLevelState> { OccupantAnnotation.levelProcessor }
@@ -212,8 +223,16 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
         point.layer.borderColor = UIColor.systemBackground.withAlphaComponent(point.layer.borderColor?.alpha ?? 0).cgColor
         caShapeLayer.fillColor = point.backgroundColor?.cgColor
         
-        label.strokeSize = traitCollection.userInterfaceStyle == .dark ? 0.65 : 1
-        label.setNeedsDisplay()
+        setupLabel()
+        point.layer.borderWidth = pointBorderWidth
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        UIView.transition(with: label, duration: 0.2, options: .transitionCrossDissolve) {
+            self.label.textColor = self.labelColor
+        }
     }
 }
 
@@ -284,6 +303,26 @@ extension PointAnnotationView {
             return 1.0
         }
         return 0.0
+    }
+    
+    var labelColor: UIColor {
+        if isSelected || isPinned { return .label }
+        
+        if [.circleWithoutLabel].contains(detailLevel) {
+            return .label
+        }
+        
+        return titleLabelColor
+    }
+    
+    var pointBorderWidth: CGFloat {
+        let darkmode = traitCollection.userInterfaceStyle == .dark
+        
+        if darkmode {
+            return [.circleWithoutLabel].contains(detailLevel) ? 0.3 : 0.8
+        }
+        
+        return [.circleWithoutLabel].contains(detailLevel) ? 0.5 : 1.2
     }
     
 }

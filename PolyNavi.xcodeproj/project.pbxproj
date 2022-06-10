@@ -225,6 +225,8 @@
 		97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941916278BCAF10038CBEF /* PointAnnotationView.swift */; };
 		97941919278BCAF10038CBEF /* AmenityAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */; };
 		97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */; };
+		9795F8D3285251AC002FA5C7 /* MapLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9795F8D2285251AC002FA5C7 /* MapLabel.swift */; };
+		9795F8D4285251AC002FA5C7 /* MapLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9795F8D2285251AC002FA5C7 /* MapLabel.swift */; };
 		979E2C75278763A9008CFA05 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C74278763A9008CFA05 /* Venue.swift */; };
 		979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C762788A7C7008CFA05 /* MapExtensions.swift */; };
 		979E2C792789D1C6008CFA05 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C782789D1C6008CFA05 /* Feature.swift */; };
@@ -425,6 +427,7 @@
 		97941916278BCAF10038CBEF /* PointAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
 		97941917278BCAF10038CBEF /* AmenityAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityAnnotationView.swift; sourceTree = "<group>"; };
 		97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayedMapView.swift; sourceTree = "<group>"; };
+		9795F8D2285251AC002FA5C7 /* MapLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLabel.swift; sourceTree = "<group>"; };
 		979E2C74278763A9008CFA05 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		979E2C762788A7C7008CFA05 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
 		979E2C782789D1C6008CFA05 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
@@ -905,6 +908,7 @@
 			isa = PBXGroup;
 			children = (
 				9750155627976A0A00326B09 /* THLabel.swift */,
+				9795F8D2285251AC002FA5C7 /* MapLabel.swift */,
 			);
 			path = THLabel;
 			sourceTree = "<group>";
@@ -1461,6 +1465,7 @@
 				973962D9280CB720000E478F /* ShareDialog.swift in Sources */,
 				978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */,
 				978B322427F0058B00760B78 /* SearchGroupedHeaderView.swift in Sources */,
+				9795F8D3285251AC002FA5C7 /* MapLabel.swift in Sources */,
 				974D4246280F894100F05434 /* NetworkShared.swift in Sources */,
 				97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */,
 				9735D2062825D38300F8A08F /* ReportResult.swift in Sources */,
@@ -1499,6 +1504,7 @@
 				971F8E0827BD55680018F98A /* Building.swift in Sources */,
 				974D42642813945E00F05434 /* ActivityIndicator.swift in Sources */,
 				978B321E27EFFDD100760B78 /* BaseSearchCell.swift in Sources */,
+				9795F8D4285251AC002FA5C7 /* MapLabel.swift in Sources */,
 				971F8E1627BD55820018F98A /* SearchVC.swift in Sources */,
 				97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */,
 				9735D2152826FCC900F8A08F /* FavoriteCell.swift in Sources */,
