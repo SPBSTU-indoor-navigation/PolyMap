@@ -9,6 +9,16 @@ import UIKit
 import MapKit
 
 class RouteParameters {
+    enum Constants {
+        static let storageAsphalt = "storageAsphalt"
+        static let storageServiceRoute = "storageServiceRoute"
+    }
+    
+    static var fromStorage: RouteParameters {
+        .init(asphalt: (Storage.value(key: Constants.storageAsphalt) as? Bool) ?? true,
+              serviceRoute: (Storage.value(key: Constants.storageServiceRoute) as? Bool) ?? false)
+    }
+    
     var asphalt: Bool
     var serviceRoute: Bool
     
@@ -24,6 +34,11 @@ class RouteParameters {
         if !serviceRoute { result.append(.service) }
         
         return result
+    }
+    
+    func saveToStorage() {
+        Storage.set(value: asphalt, forKey: Constants.storageAsphalt)
+        Storage.set(value: serviceRoute, forKey: Constants.storageServiceRoute)
     }
 }
 
@@ -161,6 +176,7 @@ class RouteDetailInfo: SectionCollection {
     var routeParams: RouteParameters = .init(asphalt: false, serviceRoute: false)
     
     func onParamsUpdate() {
+        routeParams.saveToStorage()
         redrawPath?()
     }
     
