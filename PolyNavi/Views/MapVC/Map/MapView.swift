@@ -378,7 +378,7 @@ extension MapView {
         levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: building.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
                                    selected: building.ordinal)
         
-        self.layoutSubviews()
+//        self.layoutSubviews() //TODO: было возможно чтоб переключать этаж при смене здания
         
         updateLevelSwitcher(Constants.horizontalOffset)
     }
@@ -517,9 +517,8 @@ extension MapView: MapViewDelegate {
         if let indoor = annotation as? IndoorAnnotation {
             if currentBuilding == indoor.building {
                 levelSwitcher.changeLevel(selected: indoor.level.ordinal, animated: true)
-            } else {
-                indoor.building.ordinal = indoor.level.ordinal
             }
+            indoor.building.ordinal = indoor.level.ordinal
         }
         
         self.zoomByAnimation = true
