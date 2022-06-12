@@ -427,6 +427,7 @@ extension MapView: MKMapViewDelegate {
             let pathRenderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
             pathRenderer.lineWidth = 7
             pathRenderer.strokeColor = .systemBlue
+            pathRenderer.lineJoin = .bevel
             return pathRenderer
         }
 

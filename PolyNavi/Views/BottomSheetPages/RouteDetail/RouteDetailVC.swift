@@ -492,7 +492,7 @@ extension RouteDetailVC {
             mapViewDelegate.pinAnnotation($0, animated: true)
         })
         
-        let result = PathFinder.shared.findPath(from: from, to: to)
+        let result = PathFinder.shared.findPath(from: from, to: to, denyTags: routeParams.denyTags)
         
         if let routeDetailInfo = routeDetailInfo {
             routeDetailInfo.configurate(result: result, tableView: tableView)

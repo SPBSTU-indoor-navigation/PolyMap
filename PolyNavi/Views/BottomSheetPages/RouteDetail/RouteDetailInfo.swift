@@ -16,6 +16,15 @@ class RouteParameters {
         self.asphalt = asphalt
         self.serviceRoute = serviceRoute
     }
+    
+    var denyTags: [IMDF.NavPath.Tag] {
+        var result: [IMDF.NavPath.Tag] = []
+        
+        if asphalt { result.append(.dirt) }
+        if !serviceRoute { result.append(.service) }
+        
+        return result
+    }
 }
 
 class RouteDetailInfo: SectionCollection {

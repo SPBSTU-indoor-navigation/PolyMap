@@ -230,7 +230,11 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        UIView.transition(with: label, duration: 0.2, options: .transitionCrossDissolve) {
+        if (animated) {
+            UIView.transition(with: label, duration: 0.2, options: .transitionCrossDissolve) {
+                self.label.textColor = self.labelColor
+            }
+        } else {
             self.label.textColor = self.labelColor
         }
     }

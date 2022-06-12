@@ -340,10 +340,17 @@ struct IMDF {
     }
     
     class NavPath: Feature<NavPath.Properties> {
+        enum Tag: String, Codable {
+            case dirt
+            case service
+        }
+        
         struct Properties: Codable {
             let builing_id: UUID?
             let level_id: UUID?
             let neighbours: [UUID]
+            let weight: Float
+            let tags: [Tag]
         }
     }
     

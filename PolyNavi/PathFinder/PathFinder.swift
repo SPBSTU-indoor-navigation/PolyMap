@@ -88,9 +88,15 @@ class PathNode: GKGraphNode, PathResultNode {
     var location: CLLocationCoordinate2D
     var building: Building?
     var level: Level?
+    var weight: Float
+    var tags: [IMDF.NavPath.Tag]
     
-    init(location: CLLocationCoordinate2D) {
+    private var extraWeight: Float = 0
+    
+    init(location: CLLocationCoordinate2D, weight: Float, tags: [IMDF.NavPath.Tag]) {
         self.location = location
+        self.weight = weight
+        self.tags = tags
         super.init()
     }
     
@@ -101,11 +107,15 @@ class PathNode: GKGraphNode, PathResultNode {
     override func cost(to node: GKGraphNode) -> Float {
         guard let node = node as? PathNode else { return 0}
         
-        return Float(node.location.distance(from: location))
+        return Float(node.location.distance(from: location)) * weight + extraWeight
     }
     
     override func estimatedCost(to node: GKGraphNode) -> Float {
-        return cost(to: node)
+        return 0
+    }
+    
+    func applyDenyTags(tags: [IMDF.NavPath.Tag]) {
+        extraWeight = self.tags.contains(where: { tags.contains($0) }) ? 1000 : 0
     }
 }
 
@@ -127,7 +137,9 @@ class PathFinder {
     func setup(navPath: [IMDF.NavPath], associeted: [IMDF.NavPathAssocieted], buildings: [UUID:Building], levels: [UUID:Level], annotations: [UUID:MKAnnotation]) {
         let converted = navPath.reduce([UUID:(IMDF.NavPath, PathNode)](), { dict, node in
             var dict = dict
-            dict[node.identifier] = (node, PathNode(location: (node.geometry.first as! MKPointAnnotation).coordinate))
+            dict[node.identifier] = (node, PathNode(location: (node.geometry.first as! MKPointAnnotation).coordinate,
+                                                    weight: node.properties.weight,
+                                                    tags: node.properties.tags))
             return dict
         })
         
@@ -152,7 +164,7 @@ class PathFinder {
         
     }
     
-    func findPath(from: MKAnnotation, to: MKAnnotation) -> PathResult? {
+    func findPath(from: MKAnnotation, to: MKAnnotation, denyTags: [IMDF.NavPath.Tag]) -> PathResult? {
         var fromAssociated = pathNode(by: from)
         var toAssociated = pathNode(by: to)
         
@@ -169,6 +181,10 @@ class PathFinder {
         
         var shortestPath: [GKGraphNode] = []
         var shortestCost = Float.greatestFiniteMagnitude
+        
+        nodes.forEach({
+            $0.applyDenyTags(tags: denyTags)
+        })
         
         for from in fromAssociated {
             for to in toAssociated {
