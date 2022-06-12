@@ -110,6 +110,12 @@ class MapViewController: UIViewController {
             timeTableSmallOffset!
         ])
         
+        
+#if APPCLIP
+        timeTableSmallButton.isHidden = true
+        timeTableButtonContainer.isHidden = true
+#endif
+        
     }
     
     func loadIMDF() {
@@ -141,8 +147,6 @@ class MapViewController: UIViewController {
         
         let navSettingVC = UINavigationController(rootViewController: vc)
         self.present(navSettingVC, animated: true)
-#else
-        TimeTableError().present(to: self, animated: true)
 #endif
     }
     
@@ -163,8 +167,14 @@ class MapViewController: UIViewController {
 
 extension MapViewController: BottomSheetDelegate {
     func onSizeChange(from: BottomSheetViewController.HorizontalSize?, to: BottomSheetViewController.HorizontalSize) {
+        
+#if !APPCLIP
         timeTableSmallButton.isHidden = to != .big
         timeTableButtonContainer.isHidden = to == .big
+#else
+        timeTableSmallButton.isHidden = true
+        timeTableButtonContainer.isHidden = true
+#endif
     }
 }
 

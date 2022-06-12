@@ -8,9 +8,12 @@
 import UIKit
 
 class ScaledImageView: UIImageView {
+    var imageChanged = false
+    var lastRenderSize: CGSize = .zero
+    
     var sourceImage: UIImage? {
         didSet {
-            image = sourceImage
+            imageChanged = true
         }
     }
     
@@ -21,19 +24,37 @@ class ScaledImageView: UIImageView {
     }
     
     func renderIfNeed() {
-        if alpha > 0 && !isHidden {
-            renderWithFrame()
+        let size = calculateFrameSize()
+        if alpha > 0 && !isHidden && (imageChanged || !lastRenderSize.equalTo(size)) {
+            renderWithFrame(size: size)
         }
     }
     
-    func renderWithFrame() {
-        guard let sourceImage = sourceImage else { return }
+    func calculateFrameSize() -> CGSize {
         var size = frame.size
         if let presented = layer.presentation() {
             size = presented.convert(frame, to: nil).size
         }
         
+        if size.equalTo(.zero) {
+            size = .init(width: 32, height: 32)
+        }
+        
+        return size
+    }
+    
+    override func layoutSubviews() {
+        renderIfNeed()
+    }
+    
+    func renderWithFrame(size: CGSize? = nil) {
+        guard let sourceImage = sourceImage else { return }
+        
+        let size = size ?? calculateFrameSize()
+        
         image = render(image: sourceImage, size: size, tintColor: tintColor)
+        imageChanged = false
+        lastRenderSize = size
     }
     
     func render(image: UIImage, size: CGSize, tintColor: UIColor) -> UIImage? {
