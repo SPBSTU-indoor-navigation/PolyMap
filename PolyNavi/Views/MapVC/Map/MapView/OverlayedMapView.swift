@@ -13,6 +13,7 @@ class OverlayedMapView: PinnableMapView {
     var onAnnotationAdd: ((_ annotation: MKAnnotation) -> Void)?
     var currentOverlays: [MKShape:CustomOverlay] = [:]
     
+    var waitToAddAnnotations: [MKAnnotation] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,15 +31,38 @@ class OverlayedMapView: PinnableMapView {
     
     
     override func addAnnotation(_ annotation: MKAnnotation) {
+        waitToAddAnnotations.append(annotation)
+        
         super.addAnnotation(annotation)
         onAnnotationAdd?(annotation)
     }
     
     override func addAnnotations(_ annotations: [MKAnnotation]) {
-        super.addAnnotations(annotations)
-        for annotation in annotations {
-            onAnnotationAdd?(annotation)
+        waitToAddAnnotations.append(contentsOf: annotations)
+        
+        for (i, annotations) in annotations.chunked(into: 10).enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) / 50.0)) {
+                
+                let annotations = annotations.filter({ annotation in self.waitToAddAnnotations.contains(where: { $0 === annotation }) })
+                
+                super.addAnnotations(annotations)
+                for annotation in annotations {
+                    self.onAnnotationAdd?(annotation)
+                }
+            }
         }
+    }
+    
+    override func removeAnnotations(_ annotations: [MKAnnotation]) {
+        super.removeAnnotations(annotations)
+        waitToAddAnnotations = waitToAddAnnotations.filter({ annotation in
+            !annotations.contains(where: { $0 === annotation })
+        })
+    }
+    
+    override func removeAnnotation(_ annotation: MKAnnotation) {
+        super.removeAnnotation(annotation)
+        waitToAddAnnotations = waitToAddAnnotations.filter({ annotation !== $0 })
     }
     
     @objc
