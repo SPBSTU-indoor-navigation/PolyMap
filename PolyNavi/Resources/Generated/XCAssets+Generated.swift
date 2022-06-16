@@ -33,6 +33,7 @@ internal enum Asset {
       internal static let `default` = ImageAsset(name: "default")
       internal static let entrance = ImageAsset(name: "entrance")
       internal static let foodserviceCoffee = ImageAsset(name: "foodservice.coffee")
+      internal static let foodservice = ImageAsset(name: "foodservice")
       internal static let laboratorium = ImageAsset(name: "laboratorium")
       internal static let lecture = ImageAsset(name: "lecture")
       internal static let library = ImageAsset(name: "library")
