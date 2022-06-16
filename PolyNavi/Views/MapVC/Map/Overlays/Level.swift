@@ -53,21 +53,18 @@ class Level: CustomOverlay, Styleble, MapRenderer {
             if path[i-1].level != path[i].level {
                 
                 let isUp = path[i-1].level!.ordinal < path[i].level!.ordinal
+
+                //TODO: ADDANNOTATION
                 
-                if !isUp { currentPath.append(path[i]) }
                 splitByLevel.append(currentPath)
+                currentPath = [path[i]]
                 
-                currentPath = []
-                if isUp {
-                    currentPath.append(path[i-1])
-                }
-                currentPath.append(path[i])
             } else {
                 currentPath.append(path[i])
             }
         }
-        
         splitByLevel.append(currentPath)
+        
         
         splitByLevel = splitByLevel.filter({ $0.count >= 2 && $0[1].level == self })
         

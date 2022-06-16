@@ -18,11 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = MapViewController()
         window?.makeKeyAndVisible()
         
-        if let userActivity = connectionOptions.userActivities.first,
-           let vc = window?.rootViewController {
-            ShareAppOpen.open(with: userActivity, to: vc)
+        if let vc = window?.rootViewController {
+            if let userActivity = connectionOptions.userActivities.first {
+                ShareAppOpen.open(with: userActivity, to: vc)
+            } else {
+                HelloMessage.open(to: vc)
+            }
         }
-
     }
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {

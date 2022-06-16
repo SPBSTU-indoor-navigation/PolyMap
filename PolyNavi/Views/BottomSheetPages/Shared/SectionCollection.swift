@@ -62,7 +62,7 @@ class SectionCollection: NSObject, UITableViewDataSource {
                 cell.configurate(isFavorite: FavoritesStorage.shared.favorites.contains(favorite), animated: false)
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: UITableView.UITableViewCellIdentifire, for: indexPath)
+                let cell = UITableViewCell()
                 
                 let image = UIImage(systemName: "exclamationmark.bubble.fill")
                 let text = L10n.MapInfo.Report.issue
@@ -116,16 +116,15 @@ class SectionCollection: NSObject, UITableViewDataSource {
         
         func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: SimpleShareCell.identifire, for: indexPath) as! SimpleShareCell
-            
-            cell.configurate()
             return cell
         }
         
         func didSelect(_ tableView: UITableView, _ indexPath: IndexPath) {
             let textToShare = [ CodeGeneratorProvider.createPermalink(annotation: annotation.imdfID) ]
             let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)?.accessoryView
+            guard let cell = tableView.cellForRow(at: indexPath) as? SimpleShareCell else { return }
             
+            activityViewController.popoverPresentationController?.sourceView = cell.image
             if let vc = tableView.delegate as? UIViewController {
                 vc.present(activityViewController, animated: true, completion: nil)
             }

@@ -34,6 +34,8 @@ struct SearchablePreview: View {
                         Text(searchable.additionalTitle ?? "")
                             .font(.system(size: 20))
                             .fontWeight(.bold)
+                            .minimumScaleFactor(0.01)
+                            .padding(.horizontal, 5)
                             .foregroundColor(Color(Asset.Annotation.Colors.attractionBorder.color))
                     }
                 } else if searchable is AmenityAnnotation || searchable is EnviromentAmenityAnnotation {
@@ -93,13 +95,13 @@ struct SearchablePreview_Previews: PreviewProvider {
         
         var annotation: MKAnnotation { t }
         
-        var annotationSprite: UIImage? { Asset.Annotation.Amenity.administration.image }
+        var annotationSprite: UIImage? { nil }
         
         var backgroundSpriteColor: UIColor { .systemOrange }
         
         var mainTitle: String? { "Главно здание " }
         
-        var additionalTitle: String? { "ГЗ" }
+        var additionalTitle: String? { "1" }
         
         var place: String? { "Place" }
         

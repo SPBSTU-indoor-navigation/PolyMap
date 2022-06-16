@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class RouteDetailVC: NavbarBottomSheetPage {
+class RouteDetailVC: NavbarBottomSheetPage {    
     enum State {
         case normal
         case from
@@ -21,7 +21,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
     var mapViewDelegate: MapViewDelegate
     var from: MKAnnotation? = nil
     var to: MKAnnotation? = nil
-    var routeParams: RouteParameters = .init(asphalt: false, serviceRoute: false) //TODO: Safe to user defaults
+    var routeParams: RouteParameters = .fromStorage
     var beforeCloseCompleate = false
     
     var routeDetailInfo: RouteDetailInfo? {
@@ -492,7 +492,7 @@ extension RouteDetailVC {
             mapViewDelegate.pinAnnotation($0, animated: true)
         })
         
-        let result = PathFinder.shared.findPath(from: from, to: to)
+        let result = PathFinder.shared.findPath(from: from, to: to, denyTags: routeParams.denyTags)
         
         if let routeDetailInfo = routeDetailInfo {
             routeDetailInfo.configurate(result: result, tableView: tableView)

@@ -145,6 +145,7 @@ struct IMDF {
             let level_id: UUID
             let category: String
             let unit_categoty: IMDF.Unit.Category?
+            let unit_restriction: Restriction?
             let door: Door
             let display_point: PointGeometry?
         }
@@ -156,11 +157,15 @@ struct IMDF {
             case roadDirt = "road.dirt"
             case roadPedestrianMain = "road.pedestrian.main"
             case roadPedestrianSecond = "road.pedestrian.second"
+            case roadPedestrianTreadmill = "road.pedestrian.treadmill"
             case grass
+            case grassStadion = "grass.stadion"
             case tree
             case forest
             case fenceMain = "fence.main"
             case fenceSecond = "fence.second"
+            case sand
+            case water
         }
         
         struct Properties: Codable {
@@ -193,6 +198,12 @@ struct IMDF {
             case metro = "metro"
             case transportBus = "transport.bus"
             case transportTrum = "transport.trum"
+            case stadium = "stadium"
+            case stadiumFootball = "stadium.football"
+            case stadiumBasketball = "stadium.basketball"
+            case stadiumVolleyball = "stadium.volleyball"
+            case entrance = "entrance"
+            case playground = "playground"
         }
         
         struct Properties: Codable {
@@ -273,6 +284,8 @@ struct IMDF {
             case steps = "steps"
             case indoorSteps = "indoor.steps"
             case indoorStairs = "indoor.stairs"
+            case treadmillMarking = "treadmill.marking"
+            case stadionGrassMarking = "stadion.grass.marking"
         }
         
         struct Properties: Codable {
@@ -304,6 +317,12 @@ struct IMDF {
             case restroom = "restroom"
             case restroomFemale = "restroom.female"
             case restroomMale = "restroom.male"
+            case ticket = "ticket"
+            case museum = "museum"
+            case concertHall = "concert.hall"
+            case archive = "archive"
+            case readingRoom = "reading.room"
+            case academicCouncil = "academic.council"
         }
         
         struct Properties: Codable {
@@ -321,10 +340,17 @@ struct IMDF {
     }
     
     class NavPath: Feature<NavPath.Properties> {
+        enum Tag: String, Codable {
+            case dirt
+            case service
+        }
+        
         struct Properties: Codable {
             let builing_id: UUID?
             let level_id: UUID?
             let neighbours: [UUID]
+            let weight: Float
+            let tags: [Tag]
         }
     }
     

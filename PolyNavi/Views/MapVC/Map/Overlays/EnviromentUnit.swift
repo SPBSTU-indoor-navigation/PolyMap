@@ -21,11 +21,14 @@ class EnviromentUnit: CustomOverlay, Styleble {
             renderer.lineWidth = 2
             renderer.strokeColor = .systemGray4
         }
+        
         else if let renderer = renderer as? MKOverlayPathRenderer {
             renderer.fillColor = UIColor(named: category.rawValue) ?? Asset.IMDFColors.default.color
             renderer.strokeColor = renderer.fillColor
-            renderer.lineWidth = 1
+            renderer.lineWidth = 0.5
+            renderer.shouldRasterize = true
         }
+        
     }
 }
 

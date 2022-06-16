@@ -11,7 +11,7 @@ protocol AmenityDetailLevel {
     var detailLevel: AmenityAnnotation.DetailLevel { get  }
 }
 
-class AmenityAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, AmenityDetailLevel {
+class AmenityAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, AmenityDetailLevel, IndoorAnnotation {
     enum DetailLevel: Int {
         case alwaysShowBig = 0
         case alwaysShow = 1
@@ -37,6 +37,8 @@ class AmenityAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, AmenityDeta
     var properties: IMDF.Amenity.Properties
     var detailLevel: DetailLevel
     var level: Level
+    
+    var building: Building { level.building }
     
     init(coordinate: CLLocationCoordinate2D, imdfID: UUID, properties: IMDF.Amenity.Properties, detailLevel: Int, level: Level) {
         self.coordinate = coordinate

@@ -7,26 +7,28 @@
 
 import UIKit
 
-class SimpleShareCell: UITableViewCell {
+class SimpleShareCell: BaseCellTitled {
     static var identifire = String(describing: SimpleShareCell.self)
     
-    func configurate() {
-        let image = UIImage(systemName: "square.and.arrow.up")
-        let text = L10n.MapInfo.share
+    lazy var image: UIImageView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.image = UIImage(systemName: "square.and.arrow.up", withConfiguration: UIImage.SymbolConfiguration(scale: .large))
+        return $0
+    }(UIImageView())
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        if #available(iOS 14.0, *) {
-            var content = defaultContentConfiguration()
-            content.text = text
-            contentConfiguration = content
-        } else {
-            textLabel?.text = text
-        }
+        title.text = L10n.MapInfo.share
         
-        let img = UIImageView(image: image)
-        img.contentMode = .scaleAspectFit
+        container.addSubview(image)
         
-        accessoryView = img
-        accessoryView?.frame = .init(x: 0, y: 0, width: 24, height: 28)
-        backgroundColor = Asset.Colors.bottomSheetGroupped.color
+        NSLayoutConstraint.activate([
+            image.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -5),
+            image.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            title.trailingAnchor.constraint(equalTo: image.leadingAnchor, constant: -10)
+        ].priority(.required))
     }
+    
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }

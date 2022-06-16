@@ -9,12 +9,36 @@ import UIKit
 import MapKit
 
 class RouteParameters {
+    enum Constants {
+        static let storageAsphalt = "storageAsphalt"
+        static let storageServiceRoute = "storageServiceRoute"
+    }
+    
+    static var fromStorage: RouteParameters {
+        .init(asphalt: (Storage.value(key: Constants.storageAsphalt) as? Bool) ?? true,
+              serviceRoute: (Storage.value(key: Constants.storageServiceRoute) as? Bool) ?? false)
+    }
+    
     var asphalt: Bool
     var serviceRoute: Bool
     
     init(asphalt: Bool, serviceRoute: Bool) {
         self.asphalt = asphalt
         self.serviceRoute = serviceRoute
+    }
+    
+    var denyTags: [IMDF.NavPath.Tag] {
+        var result: [IMDF.NavPath.Tag] = []
+        
+        if asphalt { result.append(.dirt) }
+        if !serviceRoute { result.append(.service) }
+        
+        return result
+    }
+    
+    func saveToStorage() {
+        Storage.set(value: asphalt, forKey: Constants.storageAsphalt)
+        Storage.set(value: serviceRoute, forKey: Constants.storageServiceRoute)
     }
 }
 
@@ -110,8 +134,6 @@ class RouteDetailInfo: SectionCollection {
             
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: SimpleShareCell.identifire, for: indexPath) as! SimpleShareCell
-                
-                cell.configurate()
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: ShareAppClip.identifire, for: indexPath) as! ShareAppClip
@@ -127,8 +149,9 @@ class RouteDetailInfo: SectionCollection {
                 
                 let textToShare = [ CodeGeneratorProvider.createPermalink(from: from.imdfID, to: to.imdfID, params: routeParameters) ]
                 let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-                activityViewController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)?.accessoryView
+                guard let cell = tableView.cellForRow(at: indexPath) as? SimpleShareCell else { return }
                 
+                activityViewController.popoverPresentationController?.sourceView = cell.image
                 if let vc = tableView.delegate as? UIViewController {
                     vc.present(activityViewController, animated: true, completion: nil)
                 }
@@ -142,7 +165,6 @@ class RouteDetailInfo: SectionCollection {
     }
     
     static func register(tableView: UITableView) {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableView.UITableViewCellIdentifire)
         tableView.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifire)
         tableView.register(ToggleCell.self, forCellReuseIdentifier: ToggleCell.identifire)
         tableView.register(SimpleShareCell.self, forCellReuseIdentifier: SimpleShareCell.identifire)
@@ -154,6 +176,7 @@ class RouteDetailInfo: SectionCollection {
     var routeParams: RouteParameters = .init(asphalt: false, serviceRoute: false)
     
     func onParamsUpdate() {
+        routeParams.saveToStorage()
         redrawPath?()
     }
     

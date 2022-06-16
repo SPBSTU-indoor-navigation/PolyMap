@@ -123,8 +123,8 @@ class MainSearchData: NSObject {
 //        today.1 = Array(searchable[87...90]).map({ TodayCellModel(searchable: $0, title: "Высшая математика", timeStart: Date().advanced(by: -300), timeEnd: Date().advanced(by: 500)) })
         
         if recent.1.isEmpty || favorites.1.isEmpty {
-            recomendation.1 = ["главный", "бульвар"].compactMap({ title in
-                searchable.filter({ $0.mainTitle?.lowercased().contains(title) ?? false }).first
+            recomendation.1 = ["главное учебное", "бульвар", "белый зал", "читальный", "main academic", "bulvar", "white concert", "reading hall"].compactMap({ title in
+                searchable.filter({ $0.mainTitle?.lowercased().contains(title) ?? false }).sorted(by: { $0.floor ?? "" < $1.floor ?? "" }).first
             })
         }
         reload()

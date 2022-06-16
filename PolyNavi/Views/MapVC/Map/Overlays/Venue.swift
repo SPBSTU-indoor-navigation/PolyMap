@@ -15,7 +15,7 @@ class Venue: CustomOverlay, Styleble {
     var amenitys: [EnviromentAmenityAnnotation] = []
     var address: IMDF.Address?
     
-    var outdoorPath: [UUID:PathOverlay] = [:]
+    var outdoorPath: [UUID:[PathOverlay]] = [:]
     var defaultPathStartPoint: MKAnnotation? = nil
     
     init(geometry: MKShape & MKOverlay, buildings: [Building], enviroments: [EnviromentUnit],
@@ -32,23 +32,52 @@ class Venue: CustomOverlay, Styleble {
     
     func addPath(_ mapView: MKMapView, path: [PathResultNode]) -> UUID {
         let id = UUID()
-        let outdoor = path
         
-        let overlay = PathOverlay(coordinates: outdoor.map({ $0.location }), count: outdoor.count)
-        outdoorPath[id] = overlay
+        if path.count <= 1 { return id }
+        
+        var outdoor: [[PathResultNode]] = []
+        
+        var temp: [PathResultNode] = path[0].isIndoor ? [] : [path[0]]
+        for i in 1..<path.count-1 {
+            if path[i-1].isIndoor && path[i].isIndoor && path[i+1].isIndoor {
+                if temp.count > 0 {
+                    outdoor.append(temp)
+                }
+                temp = []
+            } else {
+                temp.append(path[i])
+            }
+        }
+        
+        if path.count >= 2 {
+            if !(path[path.count-2].isIndoor && path[path.count-1].isIndoor) {
+                temp.append(path[path.count-1])
+                outdoor.append(temp)
+            }
+        }
+        
+        
+        let overlays = outdoor.map({
+            PathOverlay(coordinates: $0.map({ $0.location }), count: $0.count)
+        })
+        
+        outdoorPath[id] = overlays
+        
+        for overlay in overlays {
+            mapView.insertOverlay(overlay, below: buildings[0].geometry)
+        }
         
         for building in buildings {
             building.addPath(mapView, path: path, id: id)
         }
 
-        mapView.insertOverlay(overlay, below: buildings[0].geometry)
         
         return id
     }
     
     func removePath(_ mapView: MKMapView, id: UUID) {
         if let path = outdoorPath.removeValue(forKey: id) {
-            mapView.removeOverlay(path)
+            mapView.removeOverlays(path)
             
             for building in buildings {
                 building.removePath(mapView, id: id)
@@ -61,10 +90,14 @@ class Venue: CustomOverlay, Styleble {
         
         let enviromentOrder: [IMDF.EnviromentUnit.Category] = [.forest,
                                                                .grass,
+                                                               .grassStadion,
+                                                               .water,
+                                                               .sand,
                                                                .tree,
                                                                .roadDirt,
                                                                .roadPedestrianSecond,
                                                                .roadPedestrianMain,
+                                                               .roadPedestrianTreadmill,
                                                                .roadMain,
                                                                .fenceMain,
                                                                .fenceSecond]

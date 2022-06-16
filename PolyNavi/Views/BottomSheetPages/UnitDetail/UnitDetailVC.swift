@@ -49,7 +49,6 @@ class UnitDetailVC: NavbarBottomSheetPage {
     }(UILabel())
     
     lazy var tableView: UITableView = {
-        $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableView.UITableViewCellIdentifire)
         $0.register(SpaceCell.self, forCellReuseIdentifier: SpaceCell.identifire)
         $0.register(RouteInfoCell.self, forCellReuseIdentifier: RouteInfoCell.identifire)
         $0.register(DetailCell.self, forCellReuseIdentifier: DetailCell.identifire)

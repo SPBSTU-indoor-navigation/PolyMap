@@ -39,6 +39,7 @@ Present.Cancel = "Отменить";
 //MARK:- MapInfo
 MapInfo.Share = "Поделиться";
 
+MapInfo.Detail.Title = "Информация";
 MapInfo.Detail.Phone = "Телефон";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Вебсайт";
@@ -174,3 +175,14 @@ ReportAnIssue.Message.Placeholder = "Описание ошибки";
 ReportAnIssue.Message.Footer = "Рекомендуется оставить контакт для обратной связи, например адрес эллектронной почты или аккаунт в Telegram";
 ReportAnIssue.Send = "Отправить";
 ReportAnIssue.Title = "Сообщить об ошибке";
+
+
+//MARK:- HelloPopup
+HelloPopup.Title = "Встречайте PolyMap!";
+HelloPopup.Indoor.Title = "Просматривайте планировку";
+HelloPopup.Indoor.Message = "Чтобы посмотреть детализированную планировку помещений, просто приблизте карту к зданию или выделите аннотацию и нажмите кнопку \"Планировка\".";
+HelloPopup.Route.Title = "Стройте маршруты";
+HelloPopup.Route.Message = "Выберете место назначения и нажмине кнопку \"Маршрут\".";
+HelloPopup.Share.Title = "Делитесь";
+HelloPopup.Share.Message = "Чтобы поделиться маршрутом, выберете опцию \"Поделиться\" в контекстом меню построенного маршрута. Есть возможность поделиться в виде QR или AppClip кода.";
+HelloPopup.Continue = "Продолжить";

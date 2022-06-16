@@ -30,10 +30,7 @@ class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
         }
     }
     
-    lazy var shape: UIView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        let t = CAShapeLayer()
-        
+    lazy var caShapeLayer: CAShapeLayer = {
         let path: UIBezierPath = {
             $0.move(to: CGPoint(x: -10, y: -10))
             $0.addCurve(to: CGPoint(x: -1.5, y: -2), controlPoint1: CGPoint(x: -5, y: -8), controlPoint2: CGPoint(x: -3, y: -4))
@@ -45,11 +42,15 @@ class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
             return $0
         }(UIBezierPath())
         
-        t.path = path.cgPath
-        t.fillColor = UIColor.systemBlue.cgColor
+        $0.path = path.cgPath
+        $0.fillColor = UIColor.systemBlue.cgColor
         
-        $0.layer.addSublayer(t)
-        
+        return $0
+    }(CAShapeLayer())
+    
+    lazy var shape: UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.addSublayer(caShapeLayer)
         $0.transform = CGAffineTransform(translationX: 0, y: -1).scaledBy(x: 1, y: 0)
         return $0
     }(UIView())
@@ -70,20 +71,25 @@ class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
         return $0
     }(UIView())
     
-    lazy var label: THLabel = {
+    lazy var label: MapLabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = .label
-
-        $0.font = .systemFont(ofSize: 11, weight: .semibold)
         
         $0.alpha = 0
         $0.isHidden = true
         $0.transform = CGAffineTransform(translationX: 0, y: -10).scaledBy(x: 0.5, y: 0.5)
         
-        $0.strokeSize = 0.5
         $0.strokeColor = Asset.Annotation.Colors.stroke.color
         return $0
-    }(THLabel())
+    }(MapLabel())
+    
+    func setupLabel() {
+        let darkmode = traitCollection.userInterfaceStyle == .dark
+        
+        label.strokeSize = darkmode ? 1.5 : 2.5
+        label.font = .systemFont(ofSize: 12, weight: darkmode ? .bold : .semibold)
+        label.setNeedsDisplay()
+    }
     
     lazy var miniPoint: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -100,6 +106,7 @@ class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
         addSubview(label)
         addSubview(background)
         
+        setupLabel()
         NSLayoutConstraint.activate([
             background.widthAnchor.constraint(equalToConstant: 20),
             background.heightAnchor.constraint(equalToConstant: 20),
@@ -125,6 +132,7 @@ class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
             .animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in
                 isHidden = false
                 label.isHidden = false
+                alpha = viewOpacity
                 
                 imageView.alpha = imageOpacity
                 background.layer.cornerRadius = backgroundCornerRadius
@@ -202,6 +210,13 @@ class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {
             self.hideIfZeroAlpha()
             self.imageView.renderIfNeed()
         }).play(animated: animate)
+    }
+    
+    override func appearanceDidChange() {
+        super.appearanceDidChange()
+        
+        caShapeLayer.fillColor = UIColor.systemBlue.cgColor
+        setupLabel()
     }
 }
 

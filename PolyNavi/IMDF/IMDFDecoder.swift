@@ -178,7 +178,7 @@ extension IMDF.EnviromentUnit {
 
 extension IMDF.Opening {
     func cast() -> Opening {
-        return Opening(geometry: self.geometry.overlay(), unitCategory: self.properties.unit_categoty)
+        return Opening(geometry: self.geometry.overlay(), unitCategory: self.properties.unit_categoty, unitRestriction: self.properties.unit_restriction)
     }
 }
 

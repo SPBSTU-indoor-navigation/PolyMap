@@ -73,8 +73,6 @@ extension UIButton {
 }
 
 extension UITableView {
-    static let UITableViewCellIdentifire = String(describing: UITableViewCell.self)
-    
     var wrapperView: UIView {
         get {
             return self.subviewsByType("UITableViewWrapperView") ?? self
@@ -145,6 +143,14 @@ extension Array where Iterator.Element : NSLayoutConstraint {
     func deactivate() -> Self {
         NSLayoutConstraint.deactivate(self)
         return self
+    }
+}
+
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
     }
 }
 

@@ -7,21 +7,29 @@
 
 import UIKit
 
-class ToggleCell: UITableViewCell {
+class ToggleCell: BaseCellTitled {
     
     static var identifire = String(describing: ToggleCell.self)
     
     var action: ((Bool)->Void)? = nil
     
     lazy var switcher: UISwitch = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.addTarget(self, action: #selector(didToggleSwitch(_:)), for: .valueChanged)
+        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
         return $0
     }(UISwitch())
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = Asset.Colors.bottomSheetGroupped.color
+        container.addSubview(switcher)
+        
+        NSLayoutConstraint.activate([
+            switcher.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            switcher.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -5),
+            title.trailingAnchor.constraint(equalTo: switcher.leadingAnchor, constant: -10)
+        ])
     }
     
     required init?(coder: NSCoder) {
@@ -29,17 +37,7 @@ class ToggleCell: UITableViewCell {
     }
     
     func configurate(title: String, value: Bool, onToggle: ((Bool)->Void)? = nil) {
-        
-        if #available(iOS 14.0, *) {
-            var content = defaultContentConfiguration()
-            content.text = title
-            
-            contentConfiguration = content
-        } else {
-            textLabel?.text = title
-        }
-        
-        accessoryView = switcher
+        self.title.text = title
         switcher.isOn = value
         action = onToggle
     }

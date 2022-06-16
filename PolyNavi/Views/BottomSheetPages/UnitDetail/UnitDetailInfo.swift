@@ -79,7 +79,7 @@ class UnitDetailInfo: SectionCollection {
     class Detail: Section, CellFor  {
         var content: [(String, String)] = []
         
-        override var title: String? { return "Detail" }
+        override var title: String? { return L10n.MapInfo.Detail.title }
         override var cellCount: Int {
             return content.count
         }

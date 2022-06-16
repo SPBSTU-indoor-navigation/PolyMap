@@ -39,6 +39,7 @@ Present.Cancel = "Cancel";
 //MARK:- MapInfo
 MapInfo.Share = "Share";
 
+MapInfo.Detail.Title = "Detail";
 MapInfo.Detail.Phone = "Phone";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Website";
@@ -174,3 +175,14 @@ ReportAnIssue.Message.Placeholder = "Describe the issue";
 ReportAnIssue.Message.Footer = "It is recommended to leave a contact for feedback, for example, an email address or a Telegram account";
 ReportAnIssue.Send = "Send";
 ReportAnIssue.Title = "Report";
+
+
+//MARK:- HelloPopup
+HelloPopup.Title = "Welcome to PolyMap!";
+HelloPopup.Indoor.Title = "Indoor map";
+HelloPopup.Indoor.Message = "Simply zoom in to the building, or select an annotation and click the \"Plan \" button to view detailed indoor map.";
+HelloPopup.Route.Title = "Build routes";
+HelloPopup.Route.Message = "Select your destination and press \"Route\" button";
+HelloPopup.Share.Title = "Share";
+HelloPopup.Share.Message = "To share a route, select the \"Share\" option in the context menu of the route. It is possible to share as a QR or AppClip code.";
+HelloPopup.Continue = "Continue";

@@ -176,7 +176,7 @@ extension ExclusiveRouteDetailVC {
             mapViewDelegate.removePath(id: pathID)
         }
         
-        let result = PathFinder.shared.findPath(from: from, to: to)
+        let result = PathFinder.shared.findPath(from: from, to: to, denyTags: routeParams?.denyTags ?? [])
         
         if let result = result {
             pathID = mapViewDelegate.addPath(path: result.path)

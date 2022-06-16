@@ -16,6 +16,31 @@ internal enum L10n {
     internal static let searchPlaceholder = L10n.tr("Localizable", "ChoosingSearchController.searchPlaceholder")
   }
 
+  internal enum HelloPopup {
+    /// Continue
+    internal static let `continue` = L10n.tr("Localizable", "HelloPopup.Continue")
+    /// Welcome to PolyMap!
+    internal static let title = L10n.tr("Localizable", "HelloPopup.Title")
+    internal enum Indoor {
+      /// Simply zoom in to the building, or select an annotation and click the "Plan " button to view detailed indoor map.
+      internal static let message = L10n.tr("Localizable", "HelloPopup.Indoor.Message")
+      /// Indoor map
+      internal static let title = L10n.tr("Localizable", "HelloPopup.Indoor.Title")
+    }
+    internal enum Route {
+      /// Select your destination and press "Route" button
+      internal static let message = L10n.tr("Localizable", "HelloPopup.Route.Message")
+      /// Build routes
+      internal static let title = L10n.tr("Localizable", "HelloPopup.Route.Title")
+    }
+    internal enum Share {
+      /// To share a route, select the "Share" option in the context menu of the route. It is possible to share as a QR or AppClip code.
+      internal static let message = L10n.tr("Localizable", "HelloPopup.Share.Message")
+      /// Share
+      internal static let title = L10n.tr("Localizable", "HelloPopup.Share.Title")
+    }
+  }
+
   internal enum MapInfo {
     /// Share
     internal static let share = L10n.tr("Localizable", "MapInfo.Share")
@@ -26,6 +51,8 @@ internal enum L10n {
       internal static let email = L10n.tr("Localizable", "MapInfo.Detail.Email")
       /// Phone
       internal static let phone = L10n.tr("Localizable", "MapInfo.Detail.Phone")
+      /// Detail
+      internal static let title = L10n.tr("Localizable", "MapInfo.Detail.Title")
       /// Website
       internal static let website = L10n.tr("Localizable", "MapInfo.Detail.Website")
       internal enum EmptyPlan {

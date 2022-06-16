@@ -81,10 +81,11 @@ class MapView: UIView {
     
     lazy var mapView: PathMapView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 25, maxCenterCoordinateDistance: 5000), animated: false)
+        $0.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 100, maxCenterCoordinateDistance: 5000), animated: false)
         $0.isPitchEnabled = false
         $0.pointOfInterestFilter = .excludingAll
         $0.showsCompass = false
+//        $0.mapType = .satellite
         $0.delegate = self
         $0.onAnnotationAdd = onAnnotationAdd
         
@@ -150,6 +151,7 @@ class MapView: UIView {
     
     func onLevelChange(ordinal: Int) {
         currentBuilding?.changeOrdinal(ordinal, mapView)
+        updateStylebleMapSizeOverlay(zoomLevel: getZoom())
     }
     
     func onRotate() {
@@ -237,12 +239,8 @@ class MapView: UIView {
             }
         }
         
-        mapView.currentOverlays
-            .compactMap({ $0.value as? CustomOverlay & StylebleMapSize })
-            .forEach({
-                guard let renderer = mapView.renderer(for: $0.geometry) else { return }
-                $0.configurate(renderer: renderer, mapSize: zoomLevel)
-            })
+        updateStylebleMapSizeOverlay(zoomLevel: zoomLevel)
+
     }
     
     func updateMap(nearestBuilding: Building?) {
@@ -271,6 +269,15 @@ class MapView: UIView {
         if nearestBuilding != currentBuilding {
             updateMap(nearestBuilding: nearestBuilding)
         }
+    }
+    
+    func updateStylebleMapSizeOverlay(zoomLevel: Float) {
+        mapView.currentOverlays
+            .compactMap({ $0.value as? CustomOverlay & StylebleMapSize })
+            .forEach({
+                guard let renderer = mapView.renderer(for: $0.geometry) else { return }
+                $0.configurate(renderer: renderer, mapSize: zoomLevel)
+            })
     }
     
     func selectAnnotationAfterAdding(annotation: MKAnnotation?) {
@@ -371,7 +378,7 @@ extension MapView {
         levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: building.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
                                    selected: building.ordinal)
         
-        self.layoutSubviews()
+//        self.layoutSubviews() //TODO: было возможно чтоб переключать этаж при смене здания
         
         updateLevelSwitcher(Constants.horizontalOffset)
     }
@@ -412,7 +419,7 @@ extension MapView: MKMapViewDelegate {
 
             let renderer = renderer(for: overlay)
             (customOverlay as! Styleble).configurate(renderer: renderer)
-
+            
             return renderer
         }
         
@@ -420,6 +427,7 @@ extension MapView: MKMapViewDelegate {
             let pathRenderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
             pathRenderer.lineWidth = 7
             pathRenderer.strokeColor = .systemBlue
+            pathRenderer.lineJoin = .bevel
             return pathRenderer
         }
 
@@ -509,9 +517,8 @@ extension MapView: MapViewDelegate {
         if let indoor = annotation as? IndoorAnnotation {
             if currentBuilding == indoor.building {
                 levelSwitcher.changeLevel(selected: indoor.level.ordinal, animated: true)
-            } else {
-                indoor.building.ordinal = indoor.level.ordinal
             }
+            indoor.building.ordinal = indoor.level.ordinal
         }
         
         self.zoomByAnimation = true

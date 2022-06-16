@@ -53,8 +53,8 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCAppClipURL"
-            value = "https://polymap.soprachev.com/path?from=1&amp;to=2"
-            isEnabled = "YES">
+            value = "https://polymap.ru/l/a1"
+            isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
