@@ -15,6 +15,8 @@ class OverlayedMapView: PinnableMapView {
     
     var waitToAddAnnotations: [MKAnnotation] = []
     
+    var waitToAddOverlays: [CustomOverlay] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -68,6 +70,31 @@ class OverlayedMapView: PinnableMapView {
     @objc
     private func panAction(_ sender: UIPanGestureRecognizer) {
         onPan?(sender)
+    }
+    
+    func addOverlaysBatch(_ overlays: [CustomOverlay]) {
+        if waitToAddOverlays.isEmpty {
+            DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+                guard let self = self else { return }
+                
+                print("ADD")
+                
+//                self.addOverlays(self.waitToAddOverlays)
+                
+                for (i, overlays) in self.waitToAddOverlays.chunked(into: 10).enumerated() {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) / 60)) {
+                        
+//                        let annotations = overlays.filter({ overlay in self.waitToAddAnnotations.contains(where: { $0 === annotation }) })
+                        
+                        self.addOverlays(overlays)
+                    }
+                }
+                
+                self.waitToAddOverlays = []
+            }
+        }
+        
+        waitToAddOverlays.append(contentsOf: overlays)
     }
     
     func addOverlays(_ overlays: [CustomOverlay]) {

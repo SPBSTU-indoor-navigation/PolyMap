@@ -84,29 +84,45 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         }
     }
     
+    var added = false
+    
     func show(_ mapView: OverlayedMapView) {
         if isShow { return }
-        mapView.addOverlays(units.filter({ $0.properties.category == .walkway }))
-        mapView.addOverlays(units.filter({ $0.properties.category != .walkway }))
-        mapView.addOverlays(openings)
-        mapView.addOverlays(details)
-        mapView.addOverlay(self)
+        
+        if !added {
+        mapView.addOverlaysBatch(units.filter({ $0.properties.category == .walkway }))
+        mapView.addOverlaysBatch(units.filter({ $0.properties.category != .walkway }))
+        } else {
+            units.forEach({
+                $0.isHidden = false
+            })
+        }
+        mapView.addOverlaysBatch(openings)
+        mapView.addOverlaysBatch(details)
+        mapView.addOverlaysBatch([self])
         
         mapView.addAnnotations(occupants)
         mapView.addAnnotations(amenitys)
         isShow = true
+        added = true
         
         for paths in navPaths {
             mapView.addOverlays(paths.value)
         }
+        
+        
     }
     
     func hide(_ mapView: OverlayedMapView) {
         if !isShow { return }
-        mapView.removeOverlays(units)
-        mapView.removeOverlays(openings)
-        mapView.removeOverlays(details)
-        mapView.removeOverlay(self)
+//        mapView.removeOverlays(units)
+//        mapView.removeOverlays(openings)
+//        mapView.removeOverlays(details)
+//        mapView.removeOverlay(self)
+        
+        units.forEach({
+            $0.isHidden = true
+        })
         
         mapView.removeAnnotations(occupants)
         mapView.removeAnnotations(amenitys)

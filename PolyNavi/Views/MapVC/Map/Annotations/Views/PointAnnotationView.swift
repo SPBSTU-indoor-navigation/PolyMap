@@ -133,7 +133,7 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
             shape.topAnchor.constraint(equalTo: point.bottomAnchor),
             shape.widthAnchor.constraint(equalToConstant: 2),
             shape.heightAnchor.constraint(equalToConstant: 1),
-            
+
             imageView.centerXAnchor.constraint(equalTo: point.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: point.centerYAnchor),
             imageView.widthAnchor.constraint(equalTo: point.widthAnchor, constant: -4),

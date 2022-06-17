@@ -15,6 +15,7 @@ class MapLabel: UILabel {
     var strokeColor: UIColor = .black.withAlphaComponent(0.8)
     
     override func drawText(in rect: CGRect) {
+        return
         let font = self.font
         let textAlignment = self.textAlignment
         

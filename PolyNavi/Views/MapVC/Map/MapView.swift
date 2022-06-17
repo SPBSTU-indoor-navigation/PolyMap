@@ -375,16 +375,16 @@ class MapView: UIView {
 
 extension MapView {
     func showLevelSwitcher(building: Building) {
-        levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: building.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
-                                   selected: building.ordinal)
+//        levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: building.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
+//                                   selected: building.ordinal)
         
 //        self.layoutSubviews() //TODO: было возможно чтоб переключать этаж при смене здания
         
-        updateLevelSwitcher(Constants.horizontalOffset)
+//        updateLevelSwitcher(Constants.horizontalOffset)
     }
     
     func hideLevelSwitcher() {
-        updateLevelSwitcher(50)
+//        updateLevelSwitcher(50)
     }
     
     private func updateLevelSwitcher(_ pos: CGFloat) {
