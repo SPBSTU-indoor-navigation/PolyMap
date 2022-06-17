@@ -50,7 +50,6 @@
 		971F8DF027BD54FA0018F98A /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		971F8DF127BD54FA0018F98A /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		971F8DF227BD54FA0018F98A /* BottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B427B32C7000DBDBF3 /* BottomSheetPage.swift */; };
-		971F8DF327BD55000018F98A /* THLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155627976A0A00326B09 /* THLabel.swift */; };
 		971F8DF427BD55480018F98A /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F2CFF271C5EB60063015B /* Strings+Generated.swift */; };
 		971F8DF527BD55480018F98A /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F67A3270CD68900FCC07C /* XCAssets+Generated.swift */; };
 		971F8DF627BD554B0018F98A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054F6790270C7B4C00FCC07C /* Assets.xcassets */; };
@@ -166,7 +165,6 @@
 		9750154F2795B32100326B09 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750154E2795B32100326B09 /* Building.swift */; };
 		975015512795B33300326B09 /* EnviromentUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015502795B33300326B09 /* EnviromentUnit.swift */; };
 		97501553279631A100326B09 /* AttractionAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97501552279631A100326B09 /* AttractionAnnotationView.swift */; };
-		9750155727976A0A00326B09 /* THLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155627976A0A00326B09 /* THLabel.swift */; };
 		97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */; };
 		975015622799B86F00326B09 /* CustomOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015612799B86F00326B09 /* CustomOverlay.swift */; };
 		976A027827B9846800128EE6 /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027727B9846800128EE6 /* BottomSheetTransition.swift */; };
@@ -392,7 +390,6 @@
 		9750154E2795B32100326B09 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		975015502795B33300326B09 /* EnviromentUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentUnit.swift; sourceTree = "<group>"; };
 		97501552279631A100326B09 /* AttractionAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionAnnotationView.swift; sourceTree = "<group>"; };
-		9750155627976A0A00326B09 /* THLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THLabel.swift; sourceTree = "<group>"; };
 		9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPolygonDetailRenderer.swift; sourceTree = "<group>"; };
 		975015612799B86F00326B09 /* CustomOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlay.swift; sourceTree = "<group>"; };
 		976A027727B9846800128EE6 /* BottomSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetTransition.swift; sourceTree = "<group>"; };
@@ -909,15 +906,6 @@
 			path = Annotations;
 			sourceTree = "<group>";
 		};
-		97501554279769EF00326B09 /* THLabel */ = {
-			isa = PBXGroup;
-			children = (
-				9750155627976A0A00326B09 /* THLabel.swift */,
-				9795F8D2285251AC002FA5C7 /* MapLabel.swift */,
-			);
-			path = THLabel;
-			sourceTree = "<group>";
-		};
 		9750155E2797882500326B09 /* Renderers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1093,7 +1081,6 @@
 			children = (
 				9787697D27F4BF4C008138EC /* CircularProgressBar */,
 				9780D8B827B32DC800DBDBF3 /* Extensions */,
-				97501554279769EF00326B09 /* THLabel */,
 				9780D8B327B32C7000DBDBF3 /* BottomSheet */,
 				9750153A2793BA1400326B09 /* Animator.swift */,
 				9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */,
@@ -1103,6 +1090,7 @@
 				97BC3D2E2819EA3E000734D9 /* TintedUILabel.swift */,
 				97882E5A281E2999001D3F19 /* CustomBinding.swift */,
 				9735D2102826E8B700F8A08F /* Event.swift */,
+				9795F8D2285251AC002FA5C7 /* MapLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1351,7 +1339,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9750155727976A0A00326B09 /* THLabel.swift in Sources */,
 				97B8E18A27CEDA8B003D1EF4 /* SpaceCell.swift in Sources */,
 				97D5E15F28565D3200C65B65 /* HelloMessageLine.swift in Sources */,
 				9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */,
@@ -1523,7 +1510,6 @@
 				971F8E1627BD55820018F98A /* SearchVC.swift in Sources */,
 				97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */,
 				9735D2152826FCC900F8A08F /* FavoriteCell.swift in Sources */,
-				971F8DF327BD55000018F98A /* THLabel.swift in Sources */,
 				971F8E1027BD556B0018F98A /* AmenityAnnotation.swift in Sources */,
 				978B321627EFA7CD00760B78 /* MainSearchTableView.swift in Sources */,
 				9735D21C28271CD700F8A08F /* AmenitySearchCell.swift in Sources */,
@@ -1800,6 +1786,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap";
@@ -1828,6 +1815,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap";
@@ -1862,7 +1850,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap.clip";
@@ -1898,7 +1886,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap.clip";

@@ -31,6 +31,7 @@ internal enum Asset {
       internal static let classroom = ImageAsset(name: "classroom")
       internal static let concertHall = ImageAsset(name: "concert.hall")
       internal static let `default` = ImageAsset(name: "default")
+      internal static let elevator = ImageAsset(name: "elevator")
       internal static let entrance = ImageAsset(name: "entrance")
       internal static let foodserviceCoffee = ImageAsset(name: "foodservice.coffee")
       internal static let foodservice = ImageAsset(name: "foodservice")
@@ -139,12 +140,13 @@ internal enum Asset {
     internal static let levelLine = ColorAsset(name: "LevelLine")
     internal enum Units {
       internal static let defaultLine = ColorAsset(name: "DefaultLine")
+      internal static let elevatorFill = ColorAsset(name: "elevator-fill")
       internal static let indoorStairs = ColorAsset(name: "indoor.stairs")
-      internal static let indoorSteps = ColorAsset(name: "indoor.steps")
-      internal static let restricted = ColorAsset(name: "restricted")
-      internal static let restroom = ColorAsset(name: "restroom")
-      internal static let stairs = ColorAsset(name: "stairs")
-      internal static let walkway = ColorAsset(name: "walkway")
+      internal static let indoorStepsFill = ColorAsset(name: "indoor.steps-fill")
+      internal static let restrictedFill = ColorAsset(name: "restricted-fill")
+      internal static let restroomFill = ColorAsset(name: "restroom-fill")
+      internal static let stairsFill = ColorAsset(name: "stairs-fill")
+      internal static let walkwayFill = ColorAsset(name: "walkway-fill")
     }
     internal static let venueFill = ColorAsset(name: "VenueFill")
   }
