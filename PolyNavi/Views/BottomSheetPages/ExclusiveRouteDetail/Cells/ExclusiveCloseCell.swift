@@ -28,7 +28,7 @@ class ExclusiveCloseCell: UITableViewCell {
             label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             label.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 5),
             label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            contentView.bottomAnchor.constraint(greaterThanOrEqualTo: label.bottomAnchor, constant: 5).withPriority(.defaultLow),
+            contentView.bottomAnchor.constraint(greaterThanOrEqualTo: label.bottomAnchor, constant: 5).with(priority: .defaultLow),
             contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 44.5)
         ])
     }

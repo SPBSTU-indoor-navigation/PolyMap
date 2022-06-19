@@ -40,7 +40,7 @@ class BaseCellTitled: UITableViewCell {
         ].priority(.required))
         
         NSLayoutConstraint.activate([
-            title.trailingAnchor.constraint(equalTo: container.trailingAnchor).withPriority(.defaultHigh)
+            title.trailingAnchor.constraint(equalTo: container.trailingAnchor).with(priority: .defaultHigh)
         ])
         
 

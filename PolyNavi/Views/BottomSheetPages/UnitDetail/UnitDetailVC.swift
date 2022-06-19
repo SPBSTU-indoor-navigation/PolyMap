@@ -90,7 +90,7 @@ class UnitDetailVC: NavbarBottomSheetPage {
             titleNavbarLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             titleNavbarLabel.centerYAnchor.constraint(equalTo: navbar.centerYAnchor),
             
-            closeButton.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor).withPriority(.defaultHigh)
+            closeButton.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor).with(priority: .defaultHigh)
         ])
     }
     

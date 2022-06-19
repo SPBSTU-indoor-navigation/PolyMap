@@ -275,23 +275,23 @@ class RouteDetailVC: NavbarBottomSheetPage {
             titleLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -5),
             titleLabel.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
             
-            searchFrom.heightAnchor.constraint(equalToConstant: 40).withPriority(.defaultHigh),
+            searchFrom.heightAnchor.constraint(equalToConstant: 40).with(priority: .defaultHigh),
             searchFrom.leadingAnchor.constraint(equalTo: tableView.wrapperView.leadingAnchor),
             searchFrom.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor),
-            searchFrom.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 60).withPriority(.defaultHigh),
+            searchFrom.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 60).with(priority: .defaultHigh),
             
-            searchTo.heightAnchor.constraint(equalToConstant: 40).withPriority(.defaultHigh),
+            searchTo.heightAnchor.constraint(equalToConstant: 40).with(priority: .defaultHigh),
             searchTo.leadingAnchor.constraint(equalTo: tableView.wrapperView.leadingAnchor),
             searchTo.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor),
-            searchTo.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 100).withPriority(.defaultHigh),
+            searchTo.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 100).with(priority: .defaultHigh),
             
             separator.centerYAnchor.constraint(equalTo: navbar.topAnchor, constant: 100),
             separator.leadingAnchor.constraint(equalTo: searchFrom.leadingAnchor),
             separator.trailingAnchor.constraint(equalTo: searchFrom.trailingAnchor),
             separator.heightAnchor.constraint(equalToConstant: 1),
             
-            closeButton.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor).withPriority(.defaultHigh),
-            navbar.heightAnchor.constraint(equalToConstant: 155).withPriority(.defaultHigh)
+            closeButton.trailingAnchor.constraint(equalTo: tableView.wrapperView.trailingAnchor).with(priority: .defaultHigh),
+            navbar.heightAnchor.constraint(equalToConstant: 155).with(priority: .defaultHigh)
         ])
         
         NSLayoutConstraint.activate([
@@ -310,7 +310,7 @@ class RouteDetailVC: NavbarBottomSheetPage {
             changeDirection.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -25),
             changeDirection.centerYAnchor.constraint(equalTo: separator.centerYAnchor),
             
-            closeButton.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 15).withPriority(.init(rawValue: 900))
+            closeButton.topAnchor.constraint(equalTo: navbar.topAnchor, constant: 15).with(priority: .init(rawValue: 900))
         ])
         
         closeButton.becomeFirstResponder()

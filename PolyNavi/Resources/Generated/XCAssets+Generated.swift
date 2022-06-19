@@ -151,6 +151,7 @@ internal enum Asset {
     internal static let venueFill = ColorAsset(name: "VenueFill")
   }
   internal enum Images {
+    internal static let appStore = ImageAsset(name: "appStore")
     internal static let from = ImageAsset(name: "from")
     internal static let rotateBuilding = ImageAsset(name: "rotateBuilding")
     internal static let to = ImageAsset(name: "to")

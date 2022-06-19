@@ -83,7 +83,7 @@
 		971F8E1227BD55820018F98A /* TableBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */; };
 		971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		971F8E1627BD55820018F98A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
-		971F8E1727BD558F0018F98A /* (null) in Sources */ = {isa = PBXBuildFile; };
+		971F8E1727BD558F0018F98A /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		9735D1FE2822D6B800F8A08F /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */; };
 		9735D1FF2822D8DE00F8A08F /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */; };
 		9735D2032824B0C600F8A08F /* ReportanIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D2022824B0C600F8A08F /* ReportanIssue.swift */; };
@@ -266,7 +266,7 @@
 		97D5E15F28565D3200C65B65 /* HelloMessageLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */; };
 		97D5E16028565D3200C65B65 /* HelloMessageLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
-		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
+		97E15D2827BC7FB500E636FC /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		97EE6B042846C85D004A5B00 /* BaseCellTitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EE6B032846C85C004A5B00 /* BaseCellTitled.swift */; };
 		97EE6B052846C85D004A5B00 /* BaseCellTitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EE6B032846C85C004A5B00 /* BaseCellTitled.swift */; };
 		97F0F89727EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
@@ -1169,6 +1169,7 @@
 				054F6781270C7B4C00FCC07C /* Frameworks */,
 				054F6782270C7B4C00FCC07C /* Resources */,
 				97C6DA6C27BC7D640082AAC7 /* Embed App Clips */,
+				071BF93F33F3BCB5B5BC50FF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1176,8 +1177,6 @@
 				971F8DE127BD52EF0018F98A /* PBXTargetDependency */,
 			);
 			name = PolyNavi;
-			packageProductDependencies = (
-			);
 			productName = PolyNavi;
 			productReference = 054F6784270C7B4C00FCC07C /* PolyNavi.app */;
 			productType = "com.apple.product-type.application";
@@ -1190,14 +1189,13 @@
 				971F8DCA27BD52EE0018F98A /* Sources */,
 				971F8DCB27BD52EE0018F98A /* Frameworks */,
 				971F8DCC27BD52EE0018F98A /* Resources */,
+				3B39E753DF868F9819A25D75 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PolyNaviClip;
-			packageProductDependencies = (
-			);
 			productName = PolyNaviClip;
 			productReference = 971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */;
 			productType = "com.apple.product-type.application.on-demand-install-capable";
@@ -1229,8 +1227,6 @@
 				ru,
 			);
 			mainGroup = 054F677B270C7B4B00FCC07C;
-			packageReferences = (
-			);
 			productRefGroup = 054F6785270C7B4C00FCC07C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1287,6 +1283,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT\"/SwiftGen/bin/swiftgen\n";
+		};
+		071BF93F33F3BCB5B5BC50FF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolyNavi/Pods-PolyNavi-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolyNavi/Pods-PolyNavi-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PolyNavi/Pods-PolyNavi-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B39E753DF868F9819A25D75 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		815C1176DEC788E6FE62EE8D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1458,7 +1488,7 @@
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */,
-				97E15D2827BC7FB500E636FC /* (null) in Sources */,
+				97E15D2827BC7FB500E636FC /* BuildFile in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 				974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */,
 				978769A127FBB22B008138EC /* PathOverlay.swift in Sources */,
@@ -1534,7 +1564,7 @@
 				979F86ED27D6E9720048B486 /* RouteDetailVC.swift in Sources */,
 				973962C6280B609A000E478F /* SectionCollection.swift in Sources */,
 				9735D1FF2822D8DE00F8A08F /* UserDefaultsStorage.swift in Sources */,
-				971F8E1727BD558F0018F98A /* (null) in Sources */,
+				971F8E1727BD558F0018F98A /* BuildFile in Sources */,
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
 				978B321027EE7C0A00760B78 /* SearchHeaderView.swift in Sources */,
 				973962DD280CE4E9000E478F /* CodeVariant.swift in Sources */,

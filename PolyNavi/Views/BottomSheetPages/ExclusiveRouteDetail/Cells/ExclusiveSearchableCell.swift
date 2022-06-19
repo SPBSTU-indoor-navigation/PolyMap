@@ -38,7 +38,7 @@ class ExclusiveSearchableCell: UITableViewCell {
             
             name.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             name.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            name.leadingAnchor.constraint(equalTo: title.trailingAnchor, constant: 5).withPriority(.defaultHigh)
+            name.leadingAnchor.constraint(equalTo: title.trailingAnchor, constant: 5).with(priority: .defaultHigh)
         ])
         
         backgroundColor = Asset.Colors.bottomSheetGroupped.color

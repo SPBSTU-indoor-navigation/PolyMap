@@ -122,13 +122,13 @@ class RouteInfoCell: UITableViewCell {
         ].priority(.defaultHigh))
         
         singleLine = [
-            contentView.heightAnchor.constraint(equalToConstant: 46).withPriority(.defaultHigh),
+            contentView.heightAnchor.constraint(equalToConstant: 46).with(priority: .defaultHigh),
             buildingButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            buildingButton.widthAnchor.constraint(equalToConstant: 100).withPriority(.defaultLow)
+            buildingButton.widthAnchor.constraint(equalToConstant: 100).with(priority: .defaultLow)
         ]
         
         multyLine = [
-            contentView.heightAnchor.constraint(equalToConstant: 46 * 2 + 8).withPriority(.defaultHigh),
+            contentView.heightAnchor.constraint(equalToConstant: 46 * 2 + 8).with(priority: .defaultHigh),
             routeContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             buildingButton.heightAnchor.constraint(equalToConstant: 46),
             buildingButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
