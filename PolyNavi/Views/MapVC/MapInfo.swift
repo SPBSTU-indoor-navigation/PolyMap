@@ -26,6 +26,7 @@ protocol RouteDetail {
 
 protocol ExclusiveRouteDetail {
     func show(from: MKAnnotation, to: MKAnnotation, routeParams: RouteParameters, allowParameterChange: Bool)
+    func currentRoute() -> (MKAnnotation, MKAnnotation, RouteParameters, Bool)?
 }
 
 class MapInfo: BottomSheetViewController {
@@ -299,6 +300,18 @@ extension MapInfo: ExclusiveRouteDetail {
         }
         
         getExclusiveRouteVC(completion: { $0.show(from: from, to: to, routeParams: routeParams, allowParameterChange: allowParameterChange) })
+    }
+    
+    func currentRoute() -> (MKAnnotation, MKAnnotation, RouteParameters, Bool)? {
+        if let exclusiveRouteDetailVC = exclusiveRouteDetailVC,
+           viewControllers.contains(exclusiveRouteDetailVC),
+           let from = exclusiveRouteDetailVC.from,
+           let to = exclusiveRouteDetailVC.to,
+           let params = exclusiveRouteDetailVC.routeParams,
+           let allowParameterChange = exclusiveRouteDetailVC.allowParameterChange {
+            return (from, to, params, allowParameterChange)
+        }
+        return nil
     }
     
     func getExclusiveRouteVC(completion: @escaping (ExclusiveRouteDetailVC) -> Void) {

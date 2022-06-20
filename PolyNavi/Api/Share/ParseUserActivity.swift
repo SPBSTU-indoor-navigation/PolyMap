@@ -7,11 +7,10 @@
 
 import Foundation
 import UIKit
-import SwiftMessages
+import MapKit
 
-class ShareAppOpen {
-    
-    static func open(with userActivity: NSUserActivity, to vc: UIViewController) {
+class ParseUserActivity {
+    func open(with userActivity: NSUserActivity, to vc: UIViewController) {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
             
             if let url = userActivity.webpageURL {
@@ -29,7 +28,7 @@ class ShareAppOpen {
         }
     }
     
-    static func openRoute(url: URL, vc: UIViewController) {
+    func openRoute(url: URL, vc: UIViewController) {
         let params = parseQueryItems(url: url)
         
         if let fromStr = params["from"],
@@ -46,7 +45,7 @@ class ShareAppOpen {
         }
     }
     
-    static func openAnnotation(url: URL, vc: UIViewController) {
+    func openAnnotation(url: URL, vc: UIViewController) {
         let params = parseQueryItems(url: url)
         if let annotationStr = params["annotation"],
            let annotationID = UUID(uuidString: annotationStr),
@@ -56,13 +55,13 @@ class ShareAppOpen {
         }
     }
     
-    static func openQR(url: URL, vc: UIViewController) {
+    func openQR(url: URL, vc: UIViewController) {
         let path = url.path
         let id = String(path.suffix(from: path.index(path.startIndex, offsetBy: 3)))
         OpenUrlPopup(id: id).present(to: vc, animated: true, completion: nil)
     }
     
-    static func parseQueryItems(url: URL) -> [String:String] {
+    func parseQueryItems(url: URL) -> [String:String] {
         if let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems {
             var dict: [String:String] = [:]
             
@@ -76,7 +75,7 @@ class ShareAppOpen {
         return [:]
     }
     
-    static func parse(_ bool: String?) -> Bool? {
+    func parse(_ bool: String?) -> Bool? {
         guard let bool = bool else { return nil }
 
         if bool.lowercased() == "false" { return false }

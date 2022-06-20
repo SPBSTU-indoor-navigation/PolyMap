@@ -9,24 +9,26 @@ import SwiftUI
 
 struct OpenUrlPopup: View {
     @State var id: String = ""
-    @State var data: CodeGeneratorModel.DataResponse? = nil
+    @State var data: ApiStatus<CodeGeneratorModel.DataResponse>? = nil
     
     var body: some View {
         ZStack {
-            
             if let data = data {
-                OpenUrlPopupContent(data: .init(get: { data }, set: { _ in}))
+                switch data {
+                case .successWith(let data):
+                    OpenUrlPopupContent(data: .constant(data))
+                case .errorNoInternet:
+                    Text("errorNoInternet")
+                case .error:
+                    Text("error")
+                }
             } else {
                 ActivityIndicator(style: .medium)
             }
         }
         .onAppear {
             CodeGeneratorProvider.loadData(id: id, completion: {
-                if case .successWith(let data) = $0 {
-                    self.data = data
-                } else {
-                    dismiss(animated: true)
-                }
+                self.data = $0
             })
         }
     }

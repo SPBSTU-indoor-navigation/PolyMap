@@ -21,6 +21,10 @@ class Storage {
         return userDefaults.value(forKey: key)
     }
     
+    func remove(key: String) {
+        return userDefaults.removeObject(forKey: key)
+    }
+    
     func set(value: Any, forKey key: String) {
         userDefaults.set(value, forKey: key)
     }
@@ -31,5 +35,9 @@ class Storage {
     
     static func set(value: Any, forKey key: String) {
         Storage.shared.set(value: value, forKey: key)
+    }
+    
+    static func remove(key: String) {
+        return Storage.shared.remove(key: key)
     }
 }
