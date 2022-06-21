@@ -7,7 +7,11 @@
 
 import UIKit
 
-class PopupContent: UIView {
+class MessageShowRouteContent: UIView {
+    
+    var createRoute: (()->Void)?
+    var openAppStore: (()->Void)?
+    
     private lazy var blur: UIVisualEffectView = {
         $0.frame = bounds
         $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -15,14 +19,12 @@ class PopupContent: UIView {
     }(UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial)))
     
     private lazy var vibrancyLabel: UIVisualEffectView = {
-        $0.frame = bounds
-        $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: blur.effect! as! UIBlurEffect, style: .label)))
     
     private lazy var vibrancySecondaryLabel: UIVisualEffectView = {
-        $0.frame = bounds
-        $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: blur.effect! as! UIBlurEffect, style: .secondaryLabel)))
     
@@ -31,7 +33,7 @@ class PopupContent: UIView {
     private lazy var title: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         
-        $0.text = "Ассоциированный маршрут"
+        $0.text = L10n.ShareMessagePopup.title
         $0.font = .preferredFont(for: .title3, weight: .bold)
         
         $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -41,7 +43,6 @@ class PopupContent: UIView {
     private lazy var message: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         
-        $0.text = "Эта версия блиц-приложения ассоциированна с маршрутом от м. Политехническая до Белый зал"
         $0.font = .preferredFont(forTextStyle: .footnote)
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
@@ -54,7 +55,7 @@ class PopupContent: UIView {
     private lazy var fullVersionMessage: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         
-        $0.text = "Вы так же можете скачать полную версию"
+        $0.text = L10n.ShareMessagePopup.appStoreMessage
         $0.font = .preferredFont(forTextStyle: .footnote)
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
@@ -65,17 +66,19 @@ class PopupContent: UIView {
     
     private lazy var routeButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        
+        let font = UIFont.preferredFont(forTextStyle: .footnote)
         
         let fullString = NSMutableAttributedString(attachment: .init(image: .init(systemName: "figure.walk")!))
-        fullString.append(.init(string: " Маршрут "))
-        fullString.append(NSAttributedString(attachment: .init(image: .init(systemName: "chevron.right")!)))
+        fullString.append(.init(string: L10n.ShareMessagePopup.routeButton))
+        fullString.append(NSAttributedString(attachment: NSTextAttachment(image: Asset.Images.forward.image)
+            .with(imageHeight: font.pointSize * 0.65)))
         
         $0.setAttributedTitle(fullString, for: .normal)
         
-        $0.titleLabel?.font = .preferredFont(forTextStyle: .footnote)
+        $0.titleLabel?.font = font
         $0.titleLabel?.textColor = .label
-        
+    
+        $0.addTarget(self, action: #selector(routeButtonTap), for: .touchUpInside)
         return $0
     }(UIButton())
     
@@ -87,19 +90,25 @@ class PopupContent: UIView {
         let fullString = NSMutableAttributedString(attachment: NSTextAttachment(image: Asset.Images.appStore.image)
             .with(imageHeight: font.pointSize * 0.9, offset: .init(x: 0, y: -font.pointSize * 0.15)))
         
-        fullString.append(.init(string: " App Store "))
-        fullString.append(NSAttributedString(attachment: .init(image: .init(systemName: "chevron.right")!)))
+        fullString.append(.init(string: L10n.ShareMessagePopup.appStoreButton))
+        fullString.append(NSAttributedString(attachment: NSTextAttachment(image: Asset.Images.forward.image)
+            .with(imageHeight: font.pointSize * 0.65)))
         
         $0.setAttributedTitle(fullString, for: .normal)
         $0.setTitleColor(UIColor.secondaryLabel, for: .normal)
         
         $0.titleLabel?.font = font
         
+        $0.addTarget(self, action: #selector(appStoreButtonTap), for: .touchUpInside)
         return $0
     }(UIButton())
     
-    init() {
+    init(from: Searchable, to: Searchable) {
         super.init(frame: .zero)
+        
+        message.text = L10n.ShareMessagePopup.message
+            .replacingOccurrences(of: "{0}", with: from.mainTitle ?? from.additionalTitle ?? "")
+            .replacingOccurrences(of: "{1}", with: to.mainTitle ?? to.additionalTitle ?? "")
         
         addSubview(blur)
         
@@ -134,6 +143,16 @@ class PopupContent: UIView {
             appStoreButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -insets.right),
             appStoreButton.centerYAnchor.constraint(equalTo: fullVersionMessage.centerYAnchor),
             
+            vibrancyLabel.topAnchor.constraint(equalTo: title.topAnchor),
+            vibrancyLabel.bottomAnchor.constraint(equalTo: message.bottomAnchor),
+            vibrancyLabel.leadingAnchor.constraint(equalTo: blur.leadingAnchor),
+            vibrancyLabel.trailingAnchor.constraint(equalTo: blur.trailingAnchor),
+            
+            vibrancySecondaryLabel.topAnchor.constraint(equalTo: fullVersionMessage.topAnchor),
+            vibrancySecondaryLabel.bottomAnchor.constraint(equalTo: fullVersionMessage.bottomAnchor),
+            vibrancySecondaryLabel.leadingAnchor.constraint(equalTo: blur.leadingAnchor),
+            vibrancySecondaryLabel.trailingAnchor.constraint(equalTo: blur.trailingAnchor),
+            
             bottomAnchor.constraint(equalTo: fullVersionMessage.bottomAnchor, constant: insets.bottom)
         ])
     }
@@ -142,5 +161,11 @@ class PopupContent: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func routeButtonTap(_ sender: UIButton) {
+        createRoute?()
+    }
     
+    @objc func appStoreButtonTap(_ sender: UIButton) {
+        openAppStore?()
+    }
 }

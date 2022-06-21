@@ -186,3 +186,11 @@ HelloPopup.Route.Message = "Выберете место назначения и 
 HelloPopup.Share.Title = "Делитесь";
 HelloPopup.Share.Message = "Чтобы поделиться маршрутом, выберете опцию \"Поделиться\" в контекстом меню построенного маршрута. Есть возможность поделиться в виде QR или AppClip кода.";
 HelloPopup.Continue = "Продолжить";
+
+
+//MARK:- ShareMessagePopup
+ShareMessagePopup.title = "Ассоциированный маршрут";
+ShareMessagePopup.message = "Эта версия блиц-приложения ассоциированна с маршрутом от {0} до {1}";
+ShareMessagePopup.appStoreMessage = "Вы так же можете скачать полную версию";
+ShareMessagePopup.routeButton = " Маршрут ";
+ShareMessagePopup.appStoreButton = " App Store ";

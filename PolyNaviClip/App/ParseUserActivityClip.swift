@@ -13,9 +13,20 @@ class ParseUserActivityClip: ParseUserActivity {
     
     static private var lastRouteIdKey = "lastRouteId"
     
-    static func demoAnyView() -> Void {
-        let content = PopupContent()
+    func showRouteMessage(from: Searchable, to: Searchable, params: RouteParameters, allowChange: Bool) -> Void {
+        let content = MessageShowRouteContent(from: from, to: to)
         
+        content.createRoute = {
+            MapInfo.exclusiveRouteDetail?.show(from: from.annotation, to: to.annotation, routeParams: params, allowParameterChange: allowChange)
+            SwiftMessages.hide()
+        }
+        
+        content.openAppStore = {
+            if let url = URL(string: "itms-apps://apple.com/app/id1589702536") {
+                UIApplication.shared.open(url)
+            }
+        }
+
         let messageView = СustomSwiftMessagesBaseView(frame: .zero)
         messageView.layoutMargins = .zero
         
@@ -34,7 +45,6 @@ class ParseUserActivityClip: ParseUserActivity {
         SwiftMessages.show(config: config, view: messageView)
     }
     
-    
     override func openQR(url: URL, vc: UIViewController) {
         let path = url.path
         let id = String(path.suffix(from: path.index(path.startIndex, offsetBy: 3)))
@@ -50,18 +60,16 @@ class ParseUserActivityClip: ParseUserActivity {
                current.0.isEqual(from as? MKAnnotation),
                current.1.isEqual(to as? MKAnnotation),
                current.2 == data.routeParams,
-               current.3 == data.allowParameterChange {
-                //NONE
-                print("CURRENT OPEN")
-            } else {
-                ParseUserActivityClip.demoAnyView()
-                print("MESSAGE from: \(from.mainTitle); to: \(to.mainTitle)")
+               current.3 == data.allowParameterChange { } else {
+                   showRouteMessage(from: from, to: to, params: data.routeParams, allowChange: data.allowParameterChange)
             }
         } else {
             OpenUrlPopup(id: id).present(to: vc, animated: true, completion: nil)
         }
         
         Storage.set(value: id, forKey: ParseUserActivityClip.lastRouteIdKey)
+        
+        
         
     }
 }

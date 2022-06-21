@@ -265,7 +265,7 @@
 		97D5E15D28565C2E00C65B65 /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15B28565B5700C65B65 /* HelloMessage.swift */; };
 		97D5E15F28565D3200C65B65 /* HelloMessageLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */; };
 		97D5E16028565D3200C65B65 /* HelloMessageLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */; };
-		97DA501F285FD8D500C1243D /* PopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA501E285FD8D500C1243D /* PopupContent.swift */; };
+		97DA501F285FD8D500C1243D /* MessageShowRouteContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA501E285FD8D500C1243D /* MessageShowRouteContent.swift */; };
 		97DA5021285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5020285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift */; };
 		97DA5022285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5020285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift */; };
 		97DA5024285FEE9800C1243D /* ParseUserActivityClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5023285FEE9800C1243D /* ParseUserActivityClip.swift */; };
@@ -459,7 +459,7 @@
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		97D5E15B28565B5700C65B65 /* HelloMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessage.swift; sourceTree = "<group>"; };
 		97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessageLine.swift; sourceTree = "<group>"; };
-		97DA501E285FD8D500C1243D /* PopupContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupContent.swift; sourceTree = "<group>"; };
+		97DA501E285FD8D500C1243D /* MessageShowRouteContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageShowRouteContent.swift; sourceTree = "<group>"; };
 		97DA5020285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СustomSwiftMessagesBaseView.swift"; sourceTree = "<group>"; };
 		97DA5023285FEE9800C1243D /* ParseUserActivityClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseUserActivityClip.swift; sourceTree = "<group>"; };
 		97DA5025285FFA1500C1243D /* ShareRouteCacheStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRouteCacheStorage.swift; sourceTree = "<group>"; };
@@ -1062,7 +1062,7 @@
 		979E5C9127BF002700A48816 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				97DA501E285FD8D500C1243D /* PopupContent.swift */,
+				97DA501E285FD8D500C1243D /* MessageShowRouteContent.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1638,7 +1638,7 @@
 				978B320927EE630300760B78 /* OccupantSearchCell.swift in Sources */,
 				974D426C2814D62400F05434 /* ExclusiveRouteDetailVC.swift in Sources */,
 				971F8DE927BD54F30018F98A /* UIKitExtensions.swift in Sources */,
-				97DA501F285FD8D500C1243D /* PopupContent.swift in Sources */,
+				97DA501F285FD8D500C1243D /* MessageShowRouteContent.swift in Sources */,
 				973962DA280CB720000E478F /* ShareDialog.swift in Sources */,
 				9735D2222827272600F8A08F /* SearchHistoryStorage.swift in Sources */,
 				971F8E0027BD55650018F98A /* Shared.swift in Sources */,

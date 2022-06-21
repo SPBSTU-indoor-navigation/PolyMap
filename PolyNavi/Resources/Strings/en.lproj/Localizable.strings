@@ -186,3 +186,11 @@ HelloPopup.Route.Message = "Select your destination and press \"Route\" button";
 HelloPopup.Share.Title = "Share";
 HelloPopup.Share.Message = "To share a route, select the \"Share\" option in the context menu of the route. It is possible to share as a QR or AppClip code.";
 HelloPopup.Continue = "Continue";
+
+
+//MARK:- ShareMessagePopup
+ShareMessagePopup.title = "Associated Route";
+ShareMessagePopup.message = "This version of the app clip is associated with the route from {0} to {1}";
+ShareMessagePopup.appStoreMessage = "You can also download the full version";
+ShareMessagePopup.routeButton = " Route ";
+ShareMessagePopup.appStoreButton = " App Store ";
