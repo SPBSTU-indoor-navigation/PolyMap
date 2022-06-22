@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -266,8 +266,6 @@
 		97D5E15F28565D3200C65B65 /* HelloMessageLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */; };
 		97D5E16028565D3200C65B65 /* HelloMessageLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */; };
 		97DA501F285FD8D500C1243D /* MessageShowRouteContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA501E285FD8D500C1243D /* MessageShowRouteContent.swift */; };
-		97DA5021285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5020285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift */; };
-		97DA5022285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5020285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift */; };
 		97DA5024285FEE9800C1243D /* ParseUserActivityClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5023285FEE9800C1243D /* ParseUserActivityClip.swift */; };
 		97DA5026285FFA1500C1243D /* ShareRouteCacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5025285FFA1500C1243D /* ShareRouteCacheStorage.swift */; };
 		97DA5027285FFA1500C1243D /* ShareRouteCacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5025285FFA1500C1243D /* ShareRouteCacheStorage.swift */; };
@@ -460,7 +458,6 @@
 		97D5E15B28565B5700C65B65 /* HelloMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessage.swift; sourceTree = "<group>"; };
 		97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessageLine.swift; sourceTree = "<group>"; };
 		97DA501E285FD8D500C1243D /* MessageShowRouteContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageShowRouteContent.swift; sourceTree = "<group>"; };
-		97DA5020285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СustomSwiftMessagesBaseView.swift"; sourceTree = "<group>"; };
 		97DA5023285FEE9800C1243D /* ParseUserActivityClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseUserActivityClip.swift; sourceTree = "<group>"; };
 		97DA5025285FFA1500C1243D /* ShareRouteCacheStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRouteCacheStorage.swift; sourceTree = "<group>"; };
 		97DD22D82772BBCF0083561B /* LevelSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSwitcher.swift; sourceTree = "<group>"; };
@@ -1104,7 +1101,6 @@
 				97882E5A281E2999001D3F19 /* CustomBinding.swift */,
 				9735D2102826E8B700F8A08F /* Event.swift */,
 				9795F8D2285251AC002FA5C7 /* MapLabel.swift */,
-				97DA5020285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1183,7 +1179,6 @@
 				054F6781270C7B4C00FCC07C /* Frameworks */,
 				054F6782270C7B4C00FCC07C /* Resources */,
 				97C6DA6C27BC7D640082AAC7 /* Embed App Clips */,
-				071BF93F33F3BCB5B5BC50FF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1203,7 +1198,6 @@
 				971F8DCA27BD52EE0018F98A /* Sources */,
 				971F8DCB27BD52EE0018F98A /* Frameworks */,
 				971F8DCC27BD52EE0018F98A /* Resources */,
-				3B39E753DF868F9819A25D75 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1297,40 +1291,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT\"/SwiftGen/bin/swiftgen\n";
-		};
-		071BF93F33F3BCB5B5BC50FF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PolyNavi/Pods-PolyNavi-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PolyNavi/Pods-PolyNavi-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PolyNavi/Pods-PolyNavi-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3B39E753DF868F9819A25D75 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		815C1176DEC788E6FE62EE8D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1471,7 +1431,6 @@
 				9750153B2793BA1400326B09 /* Animator.swift in Sources */,
 				975015472795B19200326B09 /* Shared.swift in Sources */,
 				979E2C812789DE95008CFA05 /* Models.swift in Sources */,
-				97DA5021285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift in Sources */,
 				97882E5E281F77BE001D3F19 /* QRCodePreview.swift in Sources */,
 				974D426B2814D62400F05434 /* ExclusiveRouteDetailVC.swift in Sources */,
 				9735D2112826E8B700F8A08F /* Event.swift in Sources */,
@@ -1547,7 +1506,6 @@
 				97A566FC27D6920100A064CC /* UtilsExtensions.swift in Sources */,
 				971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */,
 				971F8DEE27BD54FA0018F98A /* BottomSheetTransition.swift in Sources */,
-				97DA5022285FD9D200C1243D /* СustomSwiftMessagesBaseView.swift in Sources */,
 				97B8E18527CEDA6D003D1EF4 /* TitleHeader.swift in Sources */,
 				9787699E27FB9963008138EC /* BaseAnnotation.swift in Sources */,
 				971F8E0827BD55680018F98A /* Building.swift in Sources */,

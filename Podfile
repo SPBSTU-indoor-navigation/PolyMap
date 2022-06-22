@@ -14,8 +14,6 @@ target 'PolyNavi' do
 
   pod 'UIScreenExtension', :git => 'https://github.com/marchv/UIScreenExtension'
   
-  pod 'SwiftMessages'
-
 end
 
 
@@ -29,7 +27,5 @@ target 'PolyNaviClip' do
 
   pod 'UIScreenExtension', :git => 'https://github.com/marchv/UIScreenExtension'
   
-  pod 'SwiftMessages'
-
 end
 
