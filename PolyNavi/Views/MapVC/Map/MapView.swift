@@ -243,7 +243,7 @@ class MapView: UIView {
 
     }
     
-    func updateMap(nearestBuilding: Building?) {
+    func updateMap(nearestBuilding: Building?, zoomLevel: Float) {
         
         if currentBuilding != nearestBuilding {
             if let currentBuilding = currentBuilding {
@@ -252,7 +252,7 @@ class MapView: UIView {
             
             if let nearestBuilding = nearestBuilding {
                 
-                if getZoom() > Constants.minShowZoom {
+                if zoomLevel > Constants.minShowZoom {
                     nearestBuilding.show(mapView)
                     showLevelSwitcher(building: nearestBuilding)
                 }
@@ -264,10 +264,10 @@ class MapView: UIView {
         }
     }
     
-    func updateMap(centerPosition: CLLocationCoordinate2D) {
+    func updateMap(centerPosition: CLLocationCoordinate2D, zoomLevel: Float) {
         let nearestBuilding = nearestBuilding(position: centerPosition)
         if nearestBuilding != currentBuilding {
-            updateMap(nearestBuilding: nearestBuilding)
+            updateMap(nearestBuilding: nearestBuilding, zoomLevel: zoomLevel)
         }
     }
     
@@ -452,8 +452,9 @@ extension MapView: MKMapViewDelegate {
     }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        updateMap(centerPosition: mapView.centerCoordinate)
-        updateMap(zoomLevel: getZoom())
+        let zoom = getZoom()
+        updateMap(centerPosition: mapView.centerCoordinate, zoomLevel: zoom)
+        updateMap(zoomLevel: zoom)
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
