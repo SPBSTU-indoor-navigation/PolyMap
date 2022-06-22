@@ -48,6 +48,8 @@ class MessageShowRouteContent: UIView {
         $0.lineBreakMode = .byWordWrapping
         $0.textColor = .label
         $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
+//        $0.backgroundColor = .systemBlue
         return $0
     }(UILabel())
     
@@ -123,6 +125,7 @@ class MessageShowRouteContent: UIView {
         vibrancySecondaryLabel.contentView.addSubview(appStoreButton)
         
         let insets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        let offset: CGFloat = -15.0
         
         NSLayoutConstraint.activate([
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: insets.left),
@@ -131,14 +134,16 @@ class MessageShowRouteContent: UIView {
             
             message.leadingAnchor.constraint(equalTo: leadingAnchor, constant: insets.left),
             message.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5),
-            message.trailingAnchor.constraint(lessThanOrEqualTo: routeButton.leadingAnchor, constant: -15),
+            message.trailingAnchor.constraint(lessThanOrEqualTo: routeButton.leadingAnchor, constant: offset),
+            message.trailingAnchor.constraint(lessThanOrEqualTo: appStoreButton.leadingAnchor, constant: offset),
             
             routeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -insets.right),
             routeButton.centerYAnchor.constraint(equalTo: message.centerYAnchor),
             
             fullVersionMessage.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: message.lastBaselineAnchor, multiplier: 1.5),
             fullVersionMessage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: insets.right),
-            fullVersionMessage.trailingAnchor.constraint(lessThanOrEqualTo: appStoreButton.leadingAnchor, constant: -15),
+            fullVersionMessage.trailingAnchor.constraint(lessThanOrEqualTo: routeButton.leadingAnchor, constant: offset),
+            fullVersionMessage.trailingAnchor.constraint(lessThanOrEqualTo: appStoreButton.leadingAnchor, constant: offset),
             
             appStoreButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -insets.right),
             appStoreButton.centerYAnchor.constraint(equalTo: fullVersionMessage.centerYAnchor),

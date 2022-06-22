@@ -33,7 +33,7 @@ class ParseUserActivityClip: ParseUserActivity {
         let backgroundView = CornerRoundingView()
         backgroundView.cornerRadius = 15
         backgroundView.layer.masksToBounds = true
-        messageView.installBackgroundView(backgroundView)
+        messageView.installBackgroundView(backgroundView, insets: .init(top: 0, left: 10, bottom: 0, right: 10))
         messageView.installContentView(content)
         
         backgroundView.heightAnchor.constraint(equalTo: content.heightAnchor).isActive = true
