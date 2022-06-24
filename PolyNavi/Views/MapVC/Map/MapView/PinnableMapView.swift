@@ -42,7 +42,7 @@ class PinnableAnnotationView: MKAnnotationView, Pinnable {
     }
 }
 
-class PinnableMapView: MKMapView {
+class PinnableMapView: QuickSelectMapView {
     var pinnedAnnotations: [MKAnnotation] = []
     
     func pinAnnotation(_ annotation: MKAnnotation, animated: Bool) {
