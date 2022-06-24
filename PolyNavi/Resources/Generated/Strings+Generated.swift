@@ -356,19 +356,6 @@ internal enum L10n {
     }
   }
 
-  internal enum ShareMessagePopup {
-    ///  App Store 
-    internal static let appStoreButton = L10n.tr("Localizable", "ShareMessagePopup.appStoreButton")
-    /// You can also download the full version
-    internal static let appStoreMessage = L10n.tr("Localizable", "ShareMessagePopup.appStoreMessage")
-    /// This version of the app clip is associated with the route from {0} to {1}
-    internal static let message = L10n.tr("Localizable", "ShareMessagePopup.message")
-    ///  Route 
-    internal static let routeButton = L10n.tr("Localizable", "ShareMessagePopup.routeButton")
-    /// Associated Route
-    internal static let title = L10n.tr("Localizable", "ShareMessagePopup.title")
-  }
-
   internal enum Timetable {
     /// Odd
     internal static let dataOddWeek = L10n.tr("Localizable", "Timetable.dataOddWeek")
