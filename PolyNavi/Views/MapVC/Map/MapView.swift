@@ -242,12 +242,20 @@ class MapView: UIView {
         let horizontal = (MKMapPoint(mapView.convert(.init(x: mapFrame.minX, y: mapFrame.midY), toCoordinateFrom: mapView)),
                           MKMapPoint(mapView.convert(.init(x: mapFrame.maxX, y: mapFrame.midY), toCoordinateFrom: mapView)))
         
+        let diag1 = (MKMapPoint(mapView.convert(.init(x: mapFrame.minX, y: mapFrame.minY), toCoordinateFrom: mapView)),
+                     MKMapPoint(mapView.convert(.init(x: mapFrame.maxX, y: mapFrame.maxY), toCoordinateFrom: mapView)))
+        
+        let diag2 = (MKMapPoint(mapView.convert(.init(x: mapFrame.minX, y: mapFrame.maxY), toCoordinateFrom: mapView)),
+                     MKMapPoint(mapView.convert(.init(x: mapFrame.maxX, y: mapFrame.minY), toCoordinateFrom: mapView)))
+        
         for building in buildings {
             guard let polygons = building.polygons else { continue }
             
             for polygon in polygons {
                 if polygon.intersection(p0: vertical.0, p1: vertical.1) { return building }
                 if polygon.intersection(p0: horizontal.0, p1: horizontal.1) { return building }
+                if polygon.intersection(p0: diag1.0, p1: diag1.1) { return building }
+                if polygon.intersection(p0: diag2.0, p1: diag2.1) { return building }
             }
         }
     
