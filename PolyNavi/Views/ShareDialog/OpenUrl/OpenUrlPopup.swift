@@ -18,9 +18,15 @@ struct OpenUrlPopup: View {
                 case .successWith(let data):
                     OpenUrlPopupContent(data: .constant(data))
                 case .errorNoInternet:
-                    Text("errorNoInternet")
+                    VStack {
+                        Image(systemName: "wifi.slash")
+                        Text("errorNoInternet")
+                    }
                 case .error:
-                    Text("error")
+                    VStack {
+                        Image(systemName: "wifi.slash")
+                        Text("errorNoInternet")
+                    }
                 }
             } else {
                 ActivityIndicator(style: .medium)
@@ -29,6 +35,10 @@ struct OpenUrlPopup: View {
         .onAppear {
             CodeGeneratorProvider.loadData(id: id, completion: {
                 self.data = $0
+                
+                if $0.data == nil {
+                    self.dismiss(animated: true)
+                }
             })
         }
     }
