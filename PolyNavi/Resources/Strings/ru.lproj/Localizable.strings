@@ -1,0 +1,189 @@
+/* 
+  Localizable.strings
+  PolyNavi
+
+  Created by Никита Фролов  on 17.10.2021.
+  
+*/
+
+//MARK:- Timetable strings
+Timetable.title = "Расписание";
+Timetable.lessonsBreak = "Окно";
+Timetable.editButton = "Настройки";
+Timetable.emptyWeek = "На этой неделе занятий нет. Можно отдыхать!";
+Timetable.toTodayTimetable = "Сегодня";
+Timetable.notHaveCurrentDay = "Нет пар";
+Timetable.emptyViewRefreshButton = "Обновить";
+Timetable.dataOddWeek = "Нечетная";
+Timetable.dateEvenWeek = "Четная";
+Timetable.iCal = "Скачать";
+
+//MARK:- Setting timetable strings
+Settings.title = "Настройки";
+Settings.titleOfGroupsView = "Группы";
+Settings.settingOfGroup = "Выбор группы";
+Settings.titleOfInstituteCell = "Институт";
+Settings.titleOfGroupCell = "Группа";
+Settings.statusOfInstitute = "Нет";
+Settings.statusOfGroup = "Нет";
+Settings.titleOfTeachersView = "Преподаватели";
+Settings.settingOfTeacher = "Выбор преподавателя";
+Settings.titleOfTeacherCell = "Преподаватель";
+
+//MARK:- Choosing search controller strings
+ChoosingSearchController.searchPlaceholder = "Поиск";
+
+//MARK:- Shared
+Present.Cancel = "Отменить";
+
+//MARK:- MapInfo
+MapInfo.Share = "Поделиться";
+
+MapInfo.Detail.Title = "Информация";
+MapInfo.Detail.Phone = "Телефон";
+MapInfo.Detail.Email = "Электронная почта";
+MapInfo.Detail.Website = "Вебсайт";
+MapInfo.Detail.Address = "Адрес";
+
+MapInfo.Detail.EmptyPlan.Title = "Планировка отсутствует";
+MapInfo.Detail.EmptyPlan.Message = "К сожалению, у этого здания отсутствует планировка. Если у вас есть поэтажный план этого здания, или вы знаете у кого он может быть, пожалуйста, свяжитесь с разработчиком.";
+MapInfo.Detail.EmptyPlan.Email.Copy = "Копировать";
+MapInfo.Detail.EmptyPlan.Email.Open = "Открыть почту";
+MapInfo.Detail.EmptyPlan.Open = "Написать";
+MapInfo.Detail.EmptyPlan.Mail.Subject = "Планировка PolyMap";
+MapInfo.Detail.EmptyPlan.Mail.Message = "Привет, я хочу помочь с составлением планировки здания {BUILDING}";
+
+MapInfo.Report.Favorites.Add = "Добавить в Закладки";
+MapInfo.Report.Favorites.Remove = "Удалить из Закладок";
+MapInfo.Report.Issue = "Сообщить об ошибке";
+
+MapInfo.Route.Route = "Маршрут";
+MapInfo.Route.From = "Отсюда";
+MapInfo.Route.To = "Сюда";
+MapInfo.Route.Plan = "Планировка";
+MapInfo.Route.Info.Title = "Маршрут";
+MapInfo.Route.Info.Search = "Поиск";
+MapInfo.Route.Info.From = "От:";
+MapInfo.Route.Info.To = "К:";
+
+MapInfo.Route.Info.RouteInformation = "Информация о маршрутре";
+MapInfo.Route.Info.Distance = "Дистанция";
+MapInfo.Route.Info.Time = "Время";
+MapInfo.Route.Info.FastTime = "Быстрым шагом";
+MapInfo.Route.Info.Indoor = "Внутри помещения";
+MapInfo.Route.Info.Outdoor = "По улице";
+MapInfo.Route.Info.Parameters = "Параметры";
+MapInfo.Route.Info.Asphalt = "По асфальтированным дорогам";
+MapInfo.Route.Info.ServiceRoute = "Разрешить служебные проходы";
+MapInfo.Route.Share.Title = "Поделиться";
+MapInfo.Route.Share.AppClipQR = "QR код или AppClip код";
+
+MapInfo.Search.EmptySearchResult = "Ничего не найдено";
+MapInfo.Search.Today = "Сегодня";
+MapInfo.Search.Recent = "Недавние";
+MapInfo.Search.Recomendation = "Рекомендации";
+MapInfo.Search.Favorites = "Избранные";
+MapInfo.Search.Buildings = "Учебные корпуса";
+
+MapInfo.ExclRoute.Info.Close = "Завершить эксклюзивный режим";
+MapInfo.ExclRoute.Info.CloseAlert.Title = "Завершить эксклюзивный режим";
+MapInfo.ExclRoute.Info.CloseAlert.Message = "Завершение эксклюзивного режима сотрёт маршрут с карты. Для повторного просмотра необходимо заново открыть приглашение";
+MapInfo.ExclRoute.Info.CloseAlert.Cancel = "Отмена";
+MapInfo.ExclRoute.Info.CloseAlert.End = "Завершить";
+
+Share.OpenURL.Title = "Добро пожаловать";
+Share.OpenURL.Info = "С вами поделились маршрутом";
+Share.OpenURL.Message = "Сообщения автора";
+Share.OpenURL.OpenInfo = "Будет проложен маршрут в \"эксклюзивном\" режиме. Для выхода из него смахните шторку вверх и нажмите на кнопку \"завершить\"";
+Share.OpenURL.Continue = "Продолжить";
+
+
+//MARK:- ShareDialog
+Share.MainInfo = "Вы можете создать QR или AppClip код. После сканирования кода откроется приложение с проложенным маршрутом и отобразится приветственное сообщение.\n\nЕсли у пользователя не установлено приложение, откроется упрощённая блиц-версия с аналогичным функционалом";
+Share.NavigationTitle = "Создание кода";
+
+Share.ColorVariant.Title = "Цвет";
+Share.ColorVariant.Preset.black = "Чёрный";
+Share.ColorVariant.Preset.gray = "Серый";
+Share.ColorVariant.Preset.red = "Красный";
+Share.ColorVariant.Preset.orange = "Оранжевый";
+Share.ColorVariant.Preset.green = "Зелёный";
+Share.ColorVariant.Preset.teal = "Сине-зелёный";
+Share.ColorVariant.Preset.blue = "Синий";
+Share.ColorVariant.Preset.indigo = "Индиго";
+Share.ColorVariant.Preset.purple = "Фиолетовый";
+Share.ColorVariant.Preview.ChangeColor = "Поменять цвета";
+
+Share.LogoVariant.Title = "Тип кода";
+Share.LogoVariant.Camera = "Только сканирование";
+Share.LogoVariant.Phone = "NFC";
+Share.LogoVariant.Info = "Если вы объединяете AppClip код с NFC-меткой, выберите дизайн NFC. Если вы не вставляете NFC-метку, выберите дизайн «Только сканирование»";
+
+Share.QRLogoVariant.Title = "Логотип";
+Share.QRLogoVariant.Use = "Использовать";
+Share.QRLogoVariant.None = "Не использовать";
+
+Share.BadgeVariant.Title = "Форма";
+Share.BadgeVariant.Circle = "Без логотипа";
+Share.BadgeVariant.Badge = "Использовать логотип";
+Share.BadgeVariant.Info = "Рекомендуется использовать код с логотипом, за исключением случаев, когда невозможно удовлетворить требования к свободному пространству или если код будет размещаться на одноразовых товарах";
+
+
+Share.CodeVariant.Title = "Тип кода";
+Share.CodeVariant.QR = "QR";
+Share.CodeVariant.AppClip = "AppClip";
+Share.CodeVariant.Info = "QR код может быть отсканирован на любом устройстве\n\nAppClip код сканируется только устройствами iOS";
+
+Share.AllowParameterChange = "Изменение параметров";
+Share.AllowParameterChange.Description = "Разрешить пользователю менять параметры построения маршрута (служебные маршруты/асфальтированные дороги)";
+
+Share.HelloText.Title = "Отображать приветствие";
+Share.HelloText.Placehodler = "Введите приветсвенное сообщение";
+Share.HelloText.Info = "Будет показываться во всплывающем окне после сканирования кода";
+
+Share.ErrorAlert.AppClip.Message = "Сервер генерации AppClip кодов временно недоступен, попробуйте позже или обратитесь напрямую к разработчику";
+Share.ErrorAlert.QR.Message = "Сервер генерации QR кодов временно недоступен, попробуйте позже или обратитесь напрямую к разработчику";
+Share.ErrorAlert.Message = "Сервер генерации кодов временно недоступен, попробуйте позже или обратитесь напрямую к разработчику";
+
+Share.ConnectionCheck = "Проверка соединения...";
+Share.ConnectionError = "Сервер недоступен";
+Share.Create = "Создать";
+
+
+//MARK:- ShareResult
+Share.Result.NavigationTitle = "Результат";
+Share.Result.Done = "Готово";
+Share.Result.SharePng = "Растровое изображение PNG";
+Share.Result.ShareSvg = "Векторное изображение SVG";
+Share.Result.SharePdf = "Рекомендации по использованию PDF";
+Share.Result.ShareUrl = "Постоянная ссылка";
+Share.Result.ShareUrl.Info = "Ссылку можно самостоятельно встроить в любой вид кодов или просто отправить в текстовом виде";
+
+Share.Result.Loading = "Загрузка...";
+
+
+//MARK:- ReportAnIssue
+ReportAnIssue.Enable = "да";
+ReportAnIssue.Disable = "нет";
+
+ReportAnIssue.Succes = "Сообщение об ошибке отправлено успешно";
+ReportAnIssue.ServerError = "К сожалению, не удалось подключиться к серверу, попробуйте позже";
+ReportAnIssue.Error.Annotation = "Ошибка в";
+ReportAnIssue.Error.Route = "Ошибка в маршруте";
+ReportAnIssue.Message.Title = "Подробно опишите ошибку";
+ReportAnIssue.Message.Placeholder = "Описание ошибки";
+ReportAnIssue.Message.Footer = "Рекомендуется оставить контакт для обратной связи, например адрес электронной почты или аккаунт в Telegram";
+ReportAnIssue.Send = "Отправить";
+ReportAnIssue.Title = "Сообщить об ошибке";
+
+
+//MARK:- HelloPopup
+HelloPopup.Title = "Встречайте PolyMap!";
+HelloPopup.Indoor.Title = "Просматривайте планировку";
+HelloPopup.Indoor.Message = "Чтобы посмотреть детализированную планировку помещений, просто приблизте карту к зданию или выделите аннотацию и нажмите кнопку \"Планировка\".";
+HelloPopup.Route.Title = "Стройте маршруты";
+HelloPopup.Route.Message = "Выберете место назначения и нажмине кнопку \"Маршрут\".";
+HelloPopup.Share.Title = "Делитесь";
+HelloPopup.Share.Message = "Чтобы поделиться маршрутом, выберете опцию \"Поделиться\" в контекстом меню построенного маршрута. Есть возможность поделиться в виде QR или AppClip кода.";
+HelloPopup.Continue = "Продолжить";
+

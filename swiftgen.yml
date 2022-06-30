@@ -1,0 +1,38 @@
+# SwiftGen Build Phases
+# "$PODS_ROOT"/SwiftGen/bin/swiftgen
+
+input_dir: PolyNavi/Resources/
+output_dir: PolyNavi/Resources/
+
+strings:
+  inputs:
+    - Strings/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: Generated/Strings+Generated.swift
+
+xcassets:
+  inputs:
+    - .
+  outputs:
+    - templateName: swift5
+      params:
+        forceProvidesNamespaces: true
+      output: Generated/XCAssets+Generated.swift
+
+#fonts:
+#  inputs:
+#    - Fonts
+#  outputs:
+#    - templateName: swift5
+#      output: Generated/Fonts+Generated.swift
+
+#ib:
+#  inputs:
+#    - ../../.
+#  outputs:
+#    - templateName: scenes-swift5
+#      output: Generated/IB-Scenes+Generated.swift
+#    - templateName: segues-swift5
+#      output: Generated/IB-Segues+Generated.swift
+

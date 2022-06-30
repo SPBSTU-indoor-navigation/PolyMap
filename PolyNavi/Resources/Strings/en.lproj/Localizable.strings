@@ -1,0 +1,188 @@
+/* 
+  Localizable.strings
+  PolyNavi
+
+  Created by Никита Фролов  on 17.10.2021.
+  
+*/
+
+//MARK:- Timetable strings
+Timetable.title = "Timetable";
+Timetable.lessonsBreak = "Break";
+Timetable.editButton = "Settings";
+Timetable.emptyWeek = "No classes this week. You can chill out!";
+Timetable.toTodayTimetable = "Today";
+Timetable.notHaveCurrentDay = "No classes";
+Timetable.emptyViewRefreshButton = "Refresh";
+Timetable.dataOddWeek = "Odd";
+Timetable.dateEvenWeek = "Even";
+Timetable.iCal = "Download";
+
+//MARK:- Setting timetable strings
+Settings.title = "Settings";
+Settings.titleOfGroupsView = "Groups";
+Settings.settingOfGroup = "Select group";
+Settings.titleOfInstituteCell = "Institute";
+Settings.titleOfGroupCell = "Group";
+Settings.statusOfInstitute = "None";
+Settings.statusOfGroup = "None";
+Settings.titleOfTeachersView = "Teachers";
+Settings.settingOfTeacher = "Select teacher";
+Settings.titleOfTeacherCell = "Teacher";
+
+//MARK:- Choosing search controller strings
+ChoosingSearchController.searchPlaceholder = "Search";
+
+//MARK:- Shared
+Present.Cancel = "Cancel";
+
+//MARK:- MapInfo
+MapInfo.Share = "Share";
+
+MapInfo.Detail.Title = "Detail";
+MapInfo.Detail.Phone = "Phone";
+MapInfo.Detail.Email = "Email";
+MapInfo.Detail.Website = "Website";
+MapInfo.Detail.Address = "Address";
+
+MapInfo.Detail.EmptyPlan.Title = "No building plan";
+MapInfo.Detail.EmptyPlan.Message = "Unfortunately, this building does not have a floor plan, if you have a floor plan for this building or know who might have it, please contact the developer";
+MapInfo.Detail.EmptyPlan.Email.Copy = "Copy";
+MapInfo.Detail.EmptyPlan.Email.Open = "Open mail";
+MapInfo.Detail.EmptyPlan.Open = "Write";
+MapInfo.Detail.EmptyPlan.Mail.Subject = "Building plan PolyMap";
+MapInfo.Detail.EmptyPlan.Mail.Message = "Hi, I would like to help with the layout of the {BUILDING}";
+
+MapInfo.Report.Favorites.Add = "Add to Favorites";
+MapInfo.Report.Favorites.Remove = "Remove from Favorites";
+MapInfo.Report.Issue = "Report an Issue";
+
+MapInfo.Route.Route = "Route";
+MapInfo.Route.From = "From";
+MapInfo.Route.To = "To";
+MapInfo.Route.Plan = "Plan";
+MapInfo.Route.Info.Title = "Route";
+MapInfo.Route.Info.Search = "Search";
+MapInfo.Route.Info.From = "From:";
+MapInfo.Route.Info.To = "To:";
+
+MapInfo.Route.Info.RouteInformation = "Route information";
+MapInfo.Route.Info.Distance = "Distance";
+MapInfo.Route.Info.Time = "Time";
+MapInfo.Route.Info.FastTime = "Fast pace";
+MapInfo.Route.Info.Indoor = "Indoor";
+MapInfo.Route.Info.Outdoor = "Outdoor";
+MapInfo.Route.Info.Parameters = "Parameters";
+MapInfo.Route.Info.Asphalt = "On paved roads";
+MapInfo.Route.Info.ServiceRoute = "Allow service routes";
+MapInfo.Route.Share.Title = "Share";
+MapInfo.Route.Share.AppClipQR = "QR code or AppClip code";
+
+MapInfo.Search.EmptySearchResult = "No suggestion found";
+MapInfo.Search.Today = "Today";
+MapInfo.Search.Recent = "Recent";
+MapInfo.Search.Recomendation = "Recomendation";
+MapInfo.Search.Favorites = "Favorites";
+MapInfo.Search.Buildings = "Buildings";
+
+MapInfo.ExclRoute.Info.Close = "Finish exclusive mode";
+MapInfo.ExclRoute.Info.CloseAlert.Title = "Finish exclusive mode";
+MapInfo.ExclRoute.Info.CloseAlert.Message = "Finish the exclusive mode will erase the route from the map. To re-view you will need to re-open the invitation";
+MapInfo.ExclRoute.Info.CloseAlert.Cancel = "Cancel";
+MapInfo.ExclRoute.Info.CloseAlert.End = "Finish";
+
+Share.OpenURL.Title = "Welcome";
+Share.OpenURL.Info = "Shared with you the route";
+Share.OpenURL.Message = "Author's messages";
+Share.OpenURL.OpenInfo = "The route will be laid in \"exclusive\" mode, to exit it, swipe the curtain up and click on the \"finish\" button";
+Share.OpenURL.Continue = "Continue";
+
+
+//MARK:- ShareDialog
+Share.MainInfo = "You can generate a QR or AppClip code. After scanning the code, an application with a route will open and a welcome message will be displayed.\n\nIf the user does not have the application installed, a simplified blitz version with similar functionality will open";
+Share.NavigationTitle = "Code generation";
+
+Share.ColorVariant.Title = "Color";
+Share.ColorVariant.Preset.black = "Black";
+Share.ColorVariant.Preset.gray = "Grey";
+Share.ColorVariant.Preset.red = "Red";
+Share.ColorVariant.Preset.orange = "Orange";
+Share.ColorVariant.Preset.green = "Green";
+Share.ColorVariant.Preset.teal = "Teal";
+Share.ColorVariant.Preset.blue = "Blue";
+Share.ColorVariant.Preset.indigo = "Indigo";
+Share.ColorVariant.Preset.purple = "Purple";
+Share.ColorVariant.Preview.ChangeColor = "Change color";
+
+Share.LogoVariant.Title = "Logo";
+Share.LogoVariant.Camera = "Scan Only";
+Share.LogoVariant.Phone = "NFC";
+Share.LogoVariant.Info = "If you combine the code with an NFC tag, please select the NFC design. If you don't insert an NFC tag, please select «Scan Only» design";
+
+Share.QRLogoVariant.Title = "Logo";
+Share.QRLogoVariant.Use = "Use logo";
+Share.QRLogoVariant.None = "No logo";
+
+Share.BadgeVariant.Title = "Badge variant";
+Share.BadgeVariant.Circle = "No logo";
+Share.BadgeVariant.Badge = "Use logo";
+Share.BadgeVariant.Info = "It is recommended to use the code with the logo, except in cases where it is impossible to meet the requirements for free space or if the code will be placed on disposable products";
+
+
+Share.CodeVariant.Title = "Code variant";
+Share.CodeVariant.QR = "QR";
+Share.CodeVariant.AppClip = "AppClip";
+Share.CodeVariant.Info = "QR code can be scanned on any device\n\nAppClip code can only be scanned by iOS devices";
+
+Share.AllowParameterChange = "Allow parameter changes";
+Share.AllowParameterChange.Description = "Allow user to change route building parameters (service routes/paved roads)";
+
+Share.HelloText.Title = "Display welcome message";
+Share.HelloText.Placehodler = "Enter your welcome message";
+Share.HelloText.Info = "Will be shown in a pop-up window after scanning the code";
+
+Share.ErrorAlert.AppClip.Message = "The AppClip code generation server is temporarily unavailable, try again later or contact the developer directly";
+Share.ErrorAlert.QR.Message = "The QR code generation server is temporarily unavailable, try again later or contact the developer directly";
+Share.ErrorAlert.Message = "The code generation server is temporarily unavailable, try again later or contact the developer directly";
+
+Share.ConnectionCheck = "Check connection...";
+Share.ConnectionError = "Server unavilable";
+Share.Create = "Generate";
+
+
+//MARK:- ShareResult
+Share.Result.NavigationTitle = "Result";
+Share.Result.Done = "Done";
+Share.Result.SharePng = "PNG bitmap image";
+Share.Result.ShareSvg = "SVG vector image";
+Share.Result.SharePdf = "Guidelines for using PDF";
+Share.Result.ShareUrl = "Permalink";
+Share.Result.ShareUrl.Info = "You can embed the link yourself in any type of codes, or simply send it in text form";
+
+Share.Result.Loading = "Loading...";
+
+
+//MARK:- ReportAnIssue
+ReportAnIssue.Enable = "yes";
+ReportAnIssue.Disable = "no";
+
+ReportAnIssue.Succes = "Issue report sent successfully";
+ReportAnIssue.ServerError = "Sorry, we couldn't connect to the server, please try again later";
+ReportAnIssue.Error.Annotation = "Issue in the building";
+ReportAnIssue.Error.Route = "Issue in the route";
+ReportAnIssue.Message.Title = "Describe the issue in detail";
+ReportAnIssue.Message.Placeholder = "Describe the issue";
+ReportAnIssue.Message.Footer = "It is recommended to leave a contact for feedback, for example, an email address or a Telegram account";
+ReportAnIssue.Send = "Send";
+ReportAnIssue.Title = "Report";
+
+
+//MARK:- HelloPopup
+HelloPopup.Title = "Welcome to PolyMap!";
+HelloPopup.Indoor.Title = "Indoor map";
+HelloPopup.Indoor.Message = "Simply zoom in to the building, or select an annotation and click the \"Plan \" button to view detailed indoor map.";
+HelloPopup.Route.Title = "Build routes";
+HelloPopup.Route.Message = "Select your destination and press \"Route\" button";
+HelloPopup.Share.Title = "Share";
+HelloPopup.Share.Message = "To share a route, select the \"Share\" option in the context menu of the route. It is possible to share as a QR or AppClip code.";
+HelloPopup.Continue = "Continue";

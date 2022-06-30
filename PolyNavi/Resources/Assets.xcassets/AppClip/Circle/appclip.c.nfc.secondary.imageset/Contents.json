@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "appclip.nfc.secondary.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

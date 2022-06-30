@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "appclip.secondary.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
