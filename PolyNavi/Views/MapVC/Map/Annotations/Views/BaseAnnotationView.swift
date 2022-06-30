@@ -82,4 +82,15 @@ class BaseAnnotationView<D: RawRepresentable>: PinnableAnnotationView, BoundingB
             }
         }
     }
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if clipsToBounds || isHidden || alpha == 0 {
+            return nil
+        }
+        
+        if bounds.contains(point) {
+            return self
+        }
+        return nil
+    }
 }

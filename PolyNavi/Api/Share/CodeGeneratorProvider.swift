@@ -31,7 +31,23 @@ class CodeGeneratorProvider {
     }
     
     static func loadData(id: String, completion: @escaping (ApiStatus<CodeGeneratorModel.DataResponse>) -> Void) {
-        load(url: "/load/\(id)", metod: .get, params: [:], timeoutInterval: 10, completion: completion)
+        
+        func completionSave(res: ApiStatus<CodeGeneratorModel.DataResponse>) -> Void {
+            if let data = res.data {
+                ShareRouteCacheStorage.save(id: id, route: data)
+            }
+            completion(res)
+        }
+        
+        load(url: "/load/\(id)", metod: .get, params: [:], timeoutInterval: 10, completion: completionSave)
+    }
+    
+    static func loadDataCache(id: String, completion: @escaping (ApiStatus<CodeGeneratorModel.DataResponse>) -> Void) {
+        if let cache = ShareRouteCacheStorage.get(by: id) {
+            completion(.successWith(cache))
+        } else {
+            loadData(id: id, completion: completion)
+        }
     }
     
     static func generateCode(settings: RouteSettings, completion: @escaping (ApiStatus<CodeGeneratorModel.GenerateResponse>) -> Void) {

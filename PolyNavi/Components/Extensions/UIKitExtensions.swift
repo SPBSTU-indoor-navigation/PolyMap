@@ -155,8 +155,28 @@ extension Array {
 }
 
 extension NSLayoutConstraint {
-    func withPriority(_ priority: UILayoutPriority) -> Self {
+    func with(priority: UILayoutPriority) -> Self {
         self.priority = priority
+        return self
+    }
+}
+
+extension UIFont {
+    static func preferredFont(for style: TextStyle, weight: Weight) -> UIFont {
+        let metrics = UIFontMetrics(forTextStyle: style)
+        let desc = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
+        let font = UIFont.systemFont(ofSize: desc.pointSize, weight: weight)
+        return metrics.scaledFont(for: font)
+    }
+}
+
+extension NSTextAttachment {
+    func with(imageHeight height: CGFloat, offset: CGPoint = .zero) -> NSTextAttachment {
+        guard let image = image else { return self }
+        let ratio = image.size.width / image.size.height
+        
+        bounds = CGRect(x: bounds.origin.x + offset.x, y: bounds.origin.y + offset.y, width: ratio * height, height: height)
+        
         return self
     }
 }

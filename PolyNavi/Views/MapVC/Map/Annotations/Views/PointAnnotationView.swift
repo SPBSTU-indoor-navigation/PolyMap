@@ -112,7 +112,7 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
-        self.frame.size = CGSize(width: 10, height: 10)
+        self.frame.size = CGSize(width: 30, height: 30)
         addSubview(miniPoint)
         addSubview(point)
         addSubview(label)

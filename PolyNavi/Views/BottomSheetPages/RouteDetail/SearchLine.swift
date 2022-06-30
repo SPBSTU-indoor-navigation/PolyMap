@@ -148,9 +148,9 @@ class SearchLine: UIView {
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: cancelButton.leadingAnchor, constant: -10),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor).withPriority(.defaultHigh),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor).with(priority: .defaultHigh),
             
-            cancelButton.trailingAnchor.constraint(equalTo: trailingAnchor).withPriority(.defaultLow),
+            cancelButton.trailingAnchor.constraint(equalTo: trailingAnchor).with(priority: .defaultLow),
             cancelButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             textField.topAnchor.constraint(equalTo: topAnchor),

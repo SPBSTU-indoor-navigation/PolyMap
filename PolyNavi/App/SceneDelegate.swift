@@ -20,18 +20,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let vc = window?.rootViewController {
             if let userActivity = connectionOptions.userActivities.first {
-                ShareAppOpen.open(with: userActivity, to: vc)
+                ParseUserActivity().open(with: userActivity, to: vc)
             } else {
                 HelloMessage.open(to: vc)
             }
         }
     }
-    
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+
         if let vc = window?.rootViewController {
-            ShareAppOpen.open(with: userActivity, to: vc)
+            ParseUserActivity().open(with: userActivity, to: vc)
         }
     }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

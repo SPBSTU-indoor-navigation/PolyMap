@@ -35,6 +35,9 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
                     labelShort.isHidden = false
                     imageView.isHidden = true
                 }
+                
+                indoorPlanContent.isHidden = attraction.building.levels.isEmpty
+                indoorPlanView.renderIfNeed()
             }
         }
     }
@@ -67,6 +70,12 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = Asset.Annotation.Colors.attractionBackground.color
         $0.layer.cornerRadius = 20
+        return $0
+    }(UIView())
+    
+    lazy var container: UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 20
         $0.layer.borderColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
         $0.layer.borderWidth = 2
         
@@ -84,6 +93,25 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
         $0.layer.minificationFilterBias = 0.1
         return $0
     }(UIImageView())
+    
+    lazy var indoorPlanContent: UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = Asset.Annotation.Colors.attractionBorder.color
+        $0.layer.cornerRadius = 3
+        
+        $0.addSubview(indoorPlanView)
+        return $0
+    }(UIView())
+    
+    lazy var indoorPlanView: ScaledImageView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.minificationFilter = .trilinear
+        $0.layer.magnificationFilter = .trilinear
+        $0.layer.minificationFilterBias = 0.1
+        $0.sourceImage = Asset.Images.indoorPlan.image
+
+        return $0
+    }(ScaledImageView())
     
     lazy var labelShort: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -132,6 +160,8 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
         
         addSubview(miniPoint)
         addSubview(background)
+        background.addSubview(container)
+        background.addSubview(indoorPlanContent)
         addSubview(label)
         miniPoint.isHidden = true
         setupLabel()
@@ -143,6 +173,22 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
             background.centerYAnchor.constraint(equalTo: centerYAnchor),
             background.widthAnchor.constraint(equalToConstant: 40),
             background.heightAnchor.constraint(equalToConstant: 40),
+            
+            container.leadingAnchor.constraint(equalTo: background.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: background.trailingAnchor),
+            container.topAnchor.constraint(equalTo: background.topAnchor),
+            container.bottomAnchor.constraint(equalTo: background.bottomAnchor),
+            
+            indoorPlanContent.widthAnchor.constraint(equalToConstant: 12),
+            indoorPlanContent.heightAnchor.constraint(equalToConstant: 12),
+            indoorPlanContent.centerXAnchor.constraint(equalTo: background.trailingAnchor, constant: -7),
+            indoorPlanContent.centerYAnchor.constraint(equalTo: background.bottomAnchor, constant: -7),
+            
+            indoorPlanView.centerXAnchor.constraint(equalTo: indoorPlanContent.centerXAnchor),
+            indoorPlanView.centerYAnchor.constraint(equalTo: indoorPlanContent.centerYAnchor),
+            indoorPlanView.widthAnchor.constraint(equalTo: indoorPlanContent.widthAnchor, constant: -3),
+            indoorPlanView.heightAnchor.constraint(equalTo: indoorPlanContent.heightAnchor, constant: -3),
+            
             shape.centerXAnchor.constraint(equalTo: background.centerXAnchor),
             shape.topAnchor.constraint(equalTo: background.bottomAnchor),
             shape.widthAnchor.constraint(equalToConstant: 10),
@@ -167,7 +213,8 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
                 background.transform = pointTransform
                 label.transform = labelTransform
                 label.textColor = .label
-            })
+                indoorPlanView.startAnim()
+            }, completion: { _ in self.indoorPlanView.endAnim() })
             .animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseIn, animations: { [self] in
                 miniPoint.isHidden = false
                 miniPoint.transform = miniPointTransform
@@ -182,7 +229,8 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
                 background.transform = pointTransform
                 label.transform = labelTransform
                 label.textColor = Asset.Annotation.Colors.attractionTextColor.color
-            })
+                indoorPlanView.startAnim()
+            }, completion: { _ in self.indoorPlanView.endAnim() })
             .animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [self] in
                 shape.transform = shapeTransform
                 miniPoint.transform = miniPointTransform
@@ -211,12 +259,15 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
             label.alpha = labelOpacity
             background.transform = pointTransform
             label.transform = labelTransform
+            indoorPlanView.startAnim()
+        }, completion: { _ in
+            self.indoorPlanView.endAnim()
         }).play(animated: animate)
     }
     
     override func appearanceDidChange() {
         (shape.layer.sublayers?[0] as! CAShapeLayer).fillColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
-        background.layer.borderColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
+        container.layer.borderColor = Asset.Annotation.Colors.attractionBorder.color.cgColor
         
         setupLabel()
     }

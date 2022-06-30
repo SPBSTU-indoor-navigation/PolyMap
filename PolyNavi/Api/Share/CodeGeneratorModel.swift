@@ -27,5 +27,9 @@ struct CodeGeneratorModel {
         let asphalt: Bool
         let serviceRoute: Bool
         let allowParameterChange: Bool
+        
+        var routeParams: RouteParameters {
+            return .init(asphalt: asphalt, serviceRoute: serviceRoute)
+        }
     }
 }

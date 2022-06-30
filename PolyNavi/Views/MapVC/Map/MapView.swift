@@ -25,7 +25,7 @@ protocol MapViewDelegate {
 class MapView: UIView {
     
     enum Constants {
-        static let minShowZoom: Float = 18.5
+        static let minShowZoom: Float = 19.01
         static let horizontalOffset = -7.0
     }
     
@@ -169,50 +169,96 @@ class MapView: UIView {
     
     func nearestBuilding(position: CLLocationCoordinate2D) -> Building? {
         
-        let centerPoint = MKMapPoint(position)
-        let centerRect = MKMapRect(origin: centerPoint, size: MKMapSize(width: 0.001, height: 0.001))
-
-        let buildings = venue!.buildings.filter({ $0.levels.count > 0 })
+        let buildings = venue!.buildings
+            .filter({ !$0.levels.isEmpty })
         
-        for builing in buildings {
-            guard let polygons = builing.polygons else { continue }
-            
+        let centerPoint = MKMapPoint(position)
+
+        for building in buildings {
+            guard let polygons = building.polygons else { continue }
+
             for polygon in polygons {
-                if polygon.intersects(centerRect) {
-                    return builing;
+                if polygon.contains(position) {
+                    return building;
                 }
             }
         }
         
+        let topLeftPoint = mapView.convert(.init(x: mapView.frame.minX, y: mapView.frame.minY), toCoordinateFrom: mapView)
+        let maxDistance = topLeftPoint.distance(from: position)
+
         var nearestBuilding: Building? = nil
-        var nearestDistance: Double = Double.infinity
+        var nearestDistance: Double = maxDistance
         
-        for builing in buildings {
-            guard let polygons = builing.polygons else { continue }
+        for building in buildings {
+            guard let polygons = building.polygons else { continue }
 
             for polygon in polygons {
                 let points = polygon.points()
-                
+
                 for i in 0..<polygon.pointCount {
                     let distance = points[i].distance(to: centerPoint)
-                    
+
                     if distance < nearestDistance {
-                        nearestDistance = distance
-                        nearestBuilding = builing
+                        if mapView.frame.contains(mapView.convert(points[i].coordinate, toPointTo: mapView)) {
+                            nearestDistance = distance
+                            nearestBuilding = building
+                        }
                     }
-                    
+
                 }
             }
         }
         
         
-        let delta = mapView.region.deltaInMeters()
-        let min = [delta.1, delta.1].min()! / 3.0
-        
-        if nearestDistance > min {
-            return nil
+        if let _ = nearestBuilding {
+            return nearestBuilding
         }
         
+        let mapFrame = mapView.frame.insetBy(dx: 50, dy: 50)
+        let corners: [CGPoint] = [ .init(x: mapFrame.minX, y: mapFrame.maxY),
+                                   .init(x: mapFrame.maxX, y: mapFrame.maxY),
+                                   .init(x: mapFrame.minX, y: mapFrame.minY),
+                                   .init(x: mapFrame.maxX, y: mapFrame.minY)]
+        
+        for corner in corners {
+            let point = mapView.convert(corner, toCoordinateFrom: mapView)
+            
+            for building in buildings {
+                guard let polygons = building.polygons else { continue }
+                
+                for polygon in polygons {
+                    if polygon.contains(point) {
+                        return building
+                    }
+                }
+            }
+        }
+        
+        
+        let vertical = (MKMapPoint(mapView.convert(.init(x: mapFrame.midX, y: mapFrame.maxY), toCoordinateFrom: mapView)),
+                        MKMapPoint(mapView.convert(.init(x: mapFrame.midX, y: mapFrame.minY), toCoordinateFrom: mapView)))
+        
+        let horizontal = (MKMapPoint(mapView.convert(.init(x: mapFrame.minX, y: mapFrame.midY), toCoordinateFrom: mapView)),
+                          MKMapPoint(mapView.convert(.init(x: mapFrame.maxX, y: mapFrame.midY), toCoordinateFrom: mapView)))
+        
+        let diag1 = (MKMapPoint(mapView.convert(.init(x: mapFrame.minX, y: mapFrame.minY), toCoordinateFrom: mapView)),
+                     MKMapPoint(mapView.convert(.init(x: mapFrame.maxX, y: mapFrame.maxY), toCoordinateFrom: mapView)))
+        
+        let diag2 = (MKMapPoint(mapView.convert(.init(x: mapFrame.minX, y: mapFrame.maxY), toCoordinateFrom: mapView)),
+                     MKMapPoint(mapView.convert(.init(x: mapFrame.maxX, y: mapFrame.minY), toCoordinateFrom: mapView)))
+        
+        for building in buildings {
+            guard let polygons = building.polygons else { continue }
+            
+            for polygon in polygons {
+                if polygon.intersection(p0: vertical.0, p1: vertical.1) { return building }
+                if polygon.intersection(p0: horizontal.0, p1: horizontal.1) { return building }
+                if polygon.intersection(p0: diag1.0, p1: diag1.1) { return building }
+                if polygon.intersection(p0: diag2.0, p1: diag2.1) { return building }
+            }
+        }
+    
         return nearestBuilding
     }
     
@@ -243,7 +289,7 @@ class MapView: UIView {
 
     }
     
-    func updateMap(nearestBuilding: Building?) {
+    func updateMap(nearestBuilding: Building?, zoomLevel: Float) {
         
         if currentBuilding != nearestBuilding {
             if let currentBuilding = currentBuilding {
@@ -252,7 +298,7 @@ class MapView: UIView {
             
             if let nearestBuilding = nearestBuilding {
                 
-                if getZoom() > Constants.minShowZoom {
+                if zoomLevel > Constants.minShowZoom {
                     nearestBuilding.show(mapView)
                     showLevelSwitcher(building: nearestBuilding)
                 }
@@ -264,10 +310,10 @@ class MapView: UIView {
         }
     }
     
-    func updateMap(centerPosition: CLLocationCoordinate2D) {
+    func updateMap(centerPosition: CLLocationCoordinate2D, zoomLevel: Float) {
         let nearestBuilding = nearestBuilding(position: centerPosition)
         if nearestBuilding != currentBuilding {
-            updateMap(nearestBuilding: nearestBuilding)
+            updateMap(nearestBuilding: nearestBuilding, zoomLevel: zoomLevel)
         }
     }
     
@@ -452,8 +498,9 @@ extension MapView: MKMapViewDelegate {
     }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        updateMap(centerPosition: mapView.centerCoordinate)
-        updateMap(zoomLevel: getZoom())
+        let zoom = getZoom()
+        updateMap(centerPosition: mapView.centerCoordinate, zoomLevel: zoom)
+        updateMap(zoomLevel: zoom)
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -576,8 +623,8 @@ extension MapView: MapViewDelegate {
         tempMap.centerCoordinate = MKMapPoint(x: pivot.x - (dX * c - dY * s),
                                 y: pivot.y - (dX * s + dY * c)).coordinate
         
-        if tempMap.camera.centerCoordinateDistance > 500 {
-            tempMap.camera = MKMapCamera(lookingAtCenter: tempMap.centerCoordinate, fromDistance: 500, pitch: tempMap.camera.pitch, heading: tempMap.camera.heading)
+        if tempMap.camera.centerCoordinateDistance > 400 {
+            tempMap.camera = MKMapCamera(lookingAtCenter: tempMap.centerCoordinate, fromDistance: 400, pitch: tempMap.camera.pitch, heading: tempMap.camera.heading)
         }
         
         MapView.animate(withDuration: 0.5, animations: {

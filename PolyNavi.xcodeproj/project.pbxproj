@@ -50,7 +50,6 @@
 		971F8DF027BD54FA0018F98A /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A484BF2717BAF700D14997 /* RoundButton.swift */; };
 		971F8DF127BD54FA0018F98A /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750153A2793BA1400326B09 /* Animator.swift */; };
 		971F8DF227BD54FA0018F98A /* BottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B427B32C7000DBDBF3 /* BottomSheetPage.swift */; };
-		971F8DF327BD55000018F98A /* THLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155627976A0A00326B09 /* THLabel.swift */; };
 		971F8DF427BD55480018F98A /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F2CFF271C5EB60063015B /* Strings+Generated.swift */; };
 		971F8DF527BD55480018F98A /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F67A3270CD68900FCC07C /* XCAssets+Generated.swift */; };
 		971F8DF627BD554B0018F98A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054F6790270C7B4C00FCC07C /* Assets.xcassets */; };
@@ -129,6 +128,8 @@
 		973962DD280CE4E9000E478F /* CodeVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973962DB280CE4E9000E478F /* CodeVariant.swift */; };
 		973E861A280D004A007F4BE2 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E8619280D004A007F4BE2 /* TextView.swift */; };
 		973E861B280D004A007F4BE2 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E8619280D004A007F4BE2 /* TextView.swift */; };
+		97457CD128661E9600E2B86F /* QuickSelectMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97457CD028661E9600E2B86F /* QuickSelectMapView.swift */; };
+		97457CD228661E9600E2B86F /* QuickSelectMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97457CD028661E9600E2B86F /* QuickSelectMapView.swift */; };
 		974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
 		974D423D280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
 		974D423F280E110A00F05434 /* ShareResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423E280E110A00F05434 /* ShareResult.swift */; };
@@ -143,8 +144,8 @@
 		974D42512810E08100F05434 /* AppClipCodePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D424F2810E08100F05434 /* AppClipCodePreview.swift */; };
 		974D42552811E3B700F05434 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 974D42582811E3B700F05434 /* InfoPlist.strings */; };
 		974D42562811E3B700F05434 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 974D42582811E3B700F05434 /* InfoPlist.strings */; };
-		974D425B281390A600F05434 /* ShareAppOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425A281390A500F05434 /* ShareAppOpen.swift */; };
-		974D425C281390A600F05434 /* ShareAppOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425A281390A500F05434 /* ShareAppOpen.swift */; };
+		974D425B281390A600F05434 /* ParseUserActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425A281390A500F05434 /* ParseUserActivity.swift */; };
+		974D425C281390A600F05434 /* ParseUserActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425A281390A500F05434 /* ParseUserActivity.swift */; };
 		974D4260281393BC00F05434 /* OpenUrlPopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425F281393BC00F05434 /* OpenUrlPopupContent.swift */; };
 		974D4261281393BC00F05434 /* OpenUrlPopupContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D425F281393BC00F05434 /* OpenUrlPopupContent.swift */; };
 		974D42632813945E00F05434 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D42622813945E00F05434 /* ActivityIndicator.swift */; };
@@ -166,7 +167,6 @@
 		9750154F2795B32100326B09 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750154E2795B32100326B09 /* Building.swift */; };
 		975015512795B33300326B09 /* EnviromentUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015502795B33300326B09 /* EnviromentUnit.swift */; };
 		97501553279631A100326B09 /* AttractionAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97501552279631A100326B09 /* AttractionAnnotationView.swift */; };
-		9750155727976A0A00326B09 /* THLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155627976A0A00326B09 /* THLabel.swift */; };
 		97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */; };
 		975015622799B86F00326B09 /* CustomOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015612799B86F00326B09 /* CustomOverlay.swift */; };
 		976A027827B9846800128EE6 /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027727B9846800128EE6 /* BottomSheetTransition.swift */; };
@@ -267,6 +267,9 @@
 		97D5E15D28565C2E00C65B65 /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15B28565B5700C65B65 /* HelloMessage.swift */; };
 		97D5E15F28565D3200C65B65 /* HelloMessageLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */; };
 		97D5E16028565D3200C65B65 /* HelloMessageLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */; };
+		97DA5024285FEE9800C1243D /* ParseUserActivityClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5023285FEE9800C1243D /* ParseUserActivityClip.swift */; };
+		97DA5026285FFA1500C1243D /* ShareRouteCacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5025285FFA1500C1243D /* ShareRouteCacheStorage.swift */; };
+		97DA5027285FFA1500C1243D /* ShareRouteCacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5025285FFA1500C1243D /* ShareRouteCacheStorage.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
 		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
 		97EE6B042846C85D004A5B00 /* BaseCellTitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EE6B032846C85C004A5B00 /* BaseCellTitled.swift */; };
@@ -366,6 +369,7 @@
 		973962DB280CE4E9000E478F /* CodeVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVariant.swift; sourceTree = "<group>"; };
 		973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNavi.entitlements; sourceTree = "<group>"; };
 		973E8619280D004A007F4BE2 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		97457CD028661E9600E2B86F /* QuickSelectMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSelectMapView.swift; sourceTree = "<group>"; };
 		974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlPopup.swift; sourceTree = "<group>"; };
 		974D423E280E110A00F05434 /* ShareResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareResult.swift; sourceTree = "<group>"; };
 		974D4245280F894100F05434 /* NetworkShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkShared.swift; sourceTree = "<group>"; };
@@ -374,7 +378,7 @@
 		974D424F2810E08100F05434 /* AppClipCodePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClipCodePreview.swift; sourceTree = "<group>"; };
 		974D42572811E3B700F05434 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		974D42592811E3B900F05434 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		974D425A281390A500F05434 /* ShareAppOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAppOpen.swift; sourceTree = "<group>"; };
+		974D425A281390A500F05434 /* ParseUserActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseUserActivity.swift; sourceTree = "<group>"; };
 		974D425F281393BC00F05434 /* OpenUrlPopupContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlPopupContent.swift; sourceTree = "<group>"; };
 		974D42622813945E00F05434 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		974D42662814795000F05434 /* SearchablePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchablePreview.swift; sourceTree = "<group>"; };
@@ -392,7 +396,6 @@
 		9750154E2795B32100326B09 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		975015502795B33300326B09 /* EnviromentUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentUnit.swift; sourceTree = "<group>"; };
 		97501552279631A100326B09 /* AttractionAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionAnnotationView.swift; sourceTree = "<group>"; };
-		9750155627976A0A00326B09 /* THLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THLabel.swift; sourceTree = "<group>"; };
 		9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPolygonDetailRenderer.swift; sourceTree = "<group>"; };
 		975015612799B86F00326B09 /* CustomOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlay.swift; sourceTree = "<group>"; };
 		976A027727B9846800128EE6 /* BottomSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetTransition.swift; sourceTree = "<group>"; };
@@ -456,6 +459,8 @@
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		97D5E15B28565B5700C65B65 /* HelloMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessage.swift; sourceTree = "<group>"; };
 		97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessageLine.swift; sourceTree = "<group>"; };
+		97DA5023285FEE9800C1243D /* ParseUserActivityClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseUserActivityClip.swift; sourceTree = "<group>"; };
+		97DA5025285FFA1500C1243D /* ShareRouteCacheStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRouteCacheStorage.swift; sourceTree = "<group>"; };
 		97DD22D82772BBCF0083561B /* LevelSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSwitcher.swift; sourceTree = "<group>"; };
 		97E15D0127BC7EF200E636FC /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E15D0227BC7EF200E636FC /* libM13Checkbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libM13Checkbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -765,6 +770,7 @@
 				9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */,
 				9735D20D2826D9E000F8A08F /* FavoritesStorage.swift */,
 				9735D2202827272600F8A08F /* SearchHistoryStorage.swift */,
+				97DA5025285FFA1500C1243D /* ShareRouteCacheStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -833,7 +839,7 @@
 			children = (
 				974D424C280F8B0200F05434 /* CodeGeneratorModel.swift */,
 				974D4249280F897500F05434 /* CodeGeneratorProvider.swift */,
-				974D425A281390A500F05434 /* ShareAppOpen.swift */,
+				974D425A281390A500F05434 /* ParseUserActivity.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -909,15 +915,6 @@
 			path = Annotations;
 			sourceTree = "<group>";
 		};
-		97501554279769EF00326B09 /* THLabel */ = {
-			isa = PBXGroup;
-			children = (
-				9750155627976A0A00326B09 /* THLabel.swift */,
-				9795F8D2285251AC002FA5C7 /* MapLabel.swift */,
-			);
-			path = THLabel;
-			sourceTree = "<group>";
-		};
 		9750155E2797882500326B09 /* Renderers */ = {
 			isa = PBXGroup;
 			children = (
@@ -988,6 +985,7 @@
 				97944DAC279B6C9600FE5787 /* OverlayedMapView.swift */,
 				97196E7D27E6781D00F9E73A /* PinnableMapView.swift */,
 				978769A727FBC0FE008138EC /* PathMapView.swift */,
+				97457CD028661E9600E2B86F /* QuickSelectMapView.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -1055,6 +1053,7 @@
 			children = (
 				971F8DD027BD52EE0018F98A /* AppDelegate.swift */,
 				971F8DD227BD52EE0018F98A /* SceneDelegate.swift */,
+				97DA5023285FEE9800C1243D /* ParseUserActivityClip.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1093,7 +1092,6 @@
 			children = (
 				9787697D27F4BF4C008138EC /* CircularProgressBar */,
 				9780D8B827B32DC800DBDBF3 /* Extensions */,
-				97501554279769EF00326B09 /* THLabel */,
 				9780D8B327B32C7000DBDBF3 /* BottomSheet */,
 				9750153A2793BA1400326B09 /* Animator.swift */,
 				9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */,
@@ -1103,6 +1101,7 @@
 				97BC3D2E2819EA3E000734D9 /* TintedUILabel.swift */,
 				97882E5A281E2999001D3F19 /* CustomBinding.swift */,
 				9735D2102826E8B700F8A08F /* Event.swift */,
+				9795F8D2285251AC002FA5C7 /* MapLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1188,8 +1187,6 @@
 				971F8DE127BD52EF0018F98A /* PBXTargetDependency */,
 			);
 			name = PolyNavi;
-			packageProductDependencies = (
-			);
 			productName = PolyNavi;
 			productReference = 054F6784270C7B4C00FCC07C /* PolyNavi.app */;
 			productType = "com.apple.product-type.application";
@@ -1208,8 +1205,6 @@
 			dependencies = (
 			);
 			name = PolyNaviClip;
-			packageProductDependencies = (
-			);
 			productName = PolyNaviClip;
 			productReference = 971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */;
 			productType = "com.apple.product-type.application.on-demand-install-capable";
@@ -1241,8 +1236,6 @@
 				ru,
 			);
 			mainGroup = 054F677B270C7B4B00FCC07C;
-			packageReferences = (
-			);
 			productRefGroup = 054F6785270C7B4C00FCC07C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1351,7 +1344,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9750155727976A0A00326B09 /* THLabel.swift in Sources */,
 				97B8E18A27CEDA8B003D1EF4 /* SpaceCell.swift in Sources */,
 				97D5E15F28565D3200C65B65 /* HelloMessageLine.swift in Sources */,
 				9750153F2795B11500326B09 /* OccupantAnnotation.swift in Sources */,
@@ -1376,7 +1368,7 @@
 				05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */,
 				97196E8127E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */,
 				978B321527EFA7CD00760B78 /* MainSearchTableView.swift in Sources */,
-				974D425B281390A600F05434 /* ShareAppOpen.swift in Sources */,
+				974D425B281390A600F05434 /* ParseUserActivity.swift in Sources */,
 				9780D8BC27B3334C00DBDBF3 /* NavbarBottomSheetPage.swift in Sources */,
 				9735D2032824B0C600F8A08F /* ReportanIssue.swift in Sources */,
 				973962DC280CE4E9000E478F /* CodeVariant.swift in Sources */,
@@ -1474,6 +1466,7 @@
 				97E15D2827BC7FB500E636FC /* (null) in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 				974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */,
+				97457CD128661E9600E2B86F /* QuickSelectMapView.swift in Sources */,
 				978769A127FBB22B008138EC /* PathOverlay.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
 				97A566F827D589FA00A064CC /* UnitDetailInfo.swift in Sources */,
@@ -1485,6 +1478,7 @@
 				97941918278BCAF10038CBEF /* PointAnnotationView.swift in Sources */,
 				9735D2062825D38300F8A08F /* ReportResult.swift in Sources */,
 				97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */,
+				97DA5026285FFA1500C1243D /* ShareRouteCacheStorage.swift in Sources */,
 				979E5C9B27C0023000A48816 /* MapInfo.swift in Sources */,
 				9735D1FE2822D6B800F8A08F /* UserDefaultsStorage.swift in Sources */,
 			);
@@ -1523,7 +1517,6 @@
 				971F8E1627BD55820018F98A /* SearchVC.swift in Sources */,
 				97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */,
 				9735D2152826FCC900F8A08F /* FavoriteCell.swift in Sources */,
-				971F8DF327BD55000018F98A /* THLabel.swift in Sources */,
 				971F8E1027BD556B0018F98A /* AmenityAnnotation.swift in Sources */,
 				978B321627EFA7CD00760B78 /* MainSearchTableView.swift in Sources */,
 				9735D21C28271CD700F8A08F /* AmenitySearchCell.swift in Sources */,
@@ -1536,6 +1529,7 @@
 				9787698A27F519DB008138EC /* OccupantSearchIcon.swift in Sources */,
 				9735D20F2826D9E000F8A08F /* FavoritesStorage.swift in Sources */,
 				97BC3D38281A017B000734D9 /* ExclusiveSearchableCell.swift in Sources */,
+				97DA5027285FFA1500C1243D /* ShareRouteCacheStorage.swift in Sources */,
 				979E5C9C27C0023000A48816 /* MapInfo.swift in Sources */,
 				971F8DF527BD55480018F98A /* XCAssets+Generated.swift in Sources */,
 				974D424E280F8B0200F05434 /* CodeGeneratorModel.swift in Sources */,
@@ -1543,10 +1537,12 @@
 				971F8DFC27BD555B0018F98A /* Feature.swift in Sources */,
 				9787698D27F51A00008138EC /* AttractionSearchIcon.swift in Sources */,
 				97BC3D2D2819DB59000734D9 /* ExclusiveCloseCell.swift in Sources */,
+				97457CD228661E9600E2B86F /* QuickSelectMapView.swift in Sources */,
 				9787697C27F4BB14008138EC /* TodayCell.swift in Sources */,
 				971F8DFF27BD55650018F98A /* LevelSwitcher.swift in Sources */,
 				979F86ED27D6E9720048B486 /* RouteDetailVC.swift in Sources */,
 				973962C6280B609A000E478F /* SectionCollection.swift in Sources */,
+				97DA5024285FEE9800C1243D /* ParseUserActivityClip.swift in Sources */,
 				9735D1FF2822D8DE00F8A08F /* UserDefaultsStorage.swift in Sources */,
 				971F8E1727BD558F0018F98A /* (null) in Sources */,
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
@@ -1606,7 +1602,7 @@
 				973962DA280CB720000E478F /* ShareDialog.swift in Sources */,
 				9735D2222827272600F8A08F /* SearchHistoryStorage.swift in Sources */,
 				971F8E0027BD55650018F98A /* Shared.swift in Sources */,
-				974D425C281390A600F05434 /* ShareAppOpen.swift in Sources */,
+				974D425C281390A600F05434 /* ParseUserActivity.swift in Sources */,
 				971F8DEF27BD54FA0018F98A /* BottomSheetViewController.swift in Sources */,
 				9735D22628275A6800F8A08F /* EmptyBuildingPlan.swift in Sources */,
 				974D4240280E110A00F05434 /* ShareResult.swift in Sources */,
@@ -1800,6 +1796,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap";
@@ -1828,6 +1825,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap";
@@ -1852,6 +1850,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PolyNaviClip/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PolyMap;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = NSPhotoLibraryAddUsageDescription;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1861,7 +1860,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap.clip";
@@ -1887,6 +1886,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PolyNaviClip/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PolyMap;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = NSPhotoLibraryAddUsageDescription;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1896,7 +1896,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap.clip";

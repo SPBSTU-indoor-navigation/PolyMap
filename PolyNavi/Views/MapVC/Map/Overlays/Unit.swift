@@ -26,15 +26,15 @@ class Unit: CustomOverlay, Styleble, StylebleMapSize {
         guard let renderer = renderer as? MKOverlayPathRenderer else { return }
         
         renderer.strokeColor = Asset.IMDFColors.Units.defaultLine.color
-        renderer.fillColor = UIColor(named: properties.category.rawValue) ?? Asset.IMDFColors.default.color
+        renderer.fillColor = UIColor(named: "\(properties.category.rawValue)-fill") ?? Asset.IMDFColors.default.color
         renderer.lineWidth = 1
         
         if properties.restriction == .employeesonly || properties.restriction == .restricted {
-            renderer.fillColor = Asset.IMDFColors.Units.restricted.color
+            renderer.fillColor = Asset.IMDFColors.Units.restrictedFill.color
         } else {
             switch properties.category {
             case .restroom, .restroomFemale, .restroomMale:
-                renderer.fillColor = Asset.IMDFColors.Units.restroom.color
+                renderer.fillColor = Asset.IMDFColors.Units.restroomFill.color
             default: break
             }
             

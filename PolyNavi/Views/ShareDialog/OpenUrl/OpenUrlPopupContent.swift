@@ -74,7 +74,7 @@ struct OpenUrlPopupContent: View {
             Button(action: {
                 if let from = from?.annotation,
                    let to = to?.annotation {
-                    MapInfo.exclusiveRouteDetail?.show(from: from, to: to, routeParams: .init(asphalt: data.asphalt, serviceRoute: data.serviceRoute), allowParameterChange: data.allowParameterChange)
+                    MapInfo.exclusiveRouteDetail?.show(from: from, to: to, routeParams: data.routeParams, allowParameterChange: data.allowParameterChange)
                 }
                 
                 DispatchQueue.main.async {

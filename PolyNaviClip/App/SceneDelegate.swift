@@ -20,15 +20,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let userActivity = connectionOptions.userActivities.first,
            let vc = window?.rootViewController {
-            ShareAppOpen.open(with: userActivity, to: vc)
+            ParseUserActivityClip().open(with: userActivity, to: vc)
         }
         
     }
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-
         if let vc = window?.rootViewController {
-            ShareAppOpen.open(with: userActivity, to: vc)
+            ParseUserActivityClip().open(with: userActivity, to: vc)
         }
     }
 }

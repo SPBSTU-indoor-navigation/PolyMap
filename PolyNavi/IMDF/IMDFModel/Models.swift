@@ -310,6 +310,7 @@ struct IMDF {
             case laboratory = "laboratory"
             case library = "library"
             case souvenirs = "souvenirs"
+            case foodservice = "foodservice"
             case foodserviceСoffee = "foodservice.coffee"
             case security = "security"
             case wardrobe = "wardrobe"

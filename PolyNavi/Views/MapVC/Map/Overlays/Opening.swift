@@ -25,17 +25,19 @@ class Opening: CustomOverlay, Styleble, StylebleMapSize {
         renderer.lineWidth = 2.25
         
         if unitRestriction == .restricted {
-            renderer.strokeColor = Asset.IMDFColors.Units.restricted.color
+            renderer.strokeColor = Asset.IMDFColors.Units.restrictedFill.color
             return
         }
         
         switch unitCategory {
         case .stairs:
-            renderer.strokeColor = Asset.IMDFColors.Units.stairs.color
+            renderer.strokeColor = Asset.IMDFColors.Units.stairsFill.color
+        case .elevator:
+            renderer.strokeColor = Asset.IMDFColors.Units.elevatorFill.color
         case .walkway:
-            renderer.strokeColor = Asset.IMDFColors.Units.walkway.color
+            renderer.strokeColor = Asset.IMDFColors.Units.walkwayFill.color
         case .restroom, .restroomFemale, .restroomMale:
-            renderer.strokeColor = Asset.IMDFColors.Units.restroom.color
+            renderer.strokeColor = Asset.IMDFColors.Units.restroomFill.color
         default: renderer.strokeColor = Asset.IMDFColors.default.color
         }
     }

@@ -192,7 +192,9 @@ extension LevelSwitcher {
     func updateLevels(levels: [Int:String], selected: Int = 0) {
         self.levels = levels
         changeLevels()
-        currentConstraint?.constant = CGFloat(Array(levels.keys).sorted(by:>).firstIndex(of: selected)!) * 45.0 + 22.5
+        if let level = Array(levels.keys).sorted(by:>).firstIndex(of: selected) {
+            currentConstraint?.constant = CGFloat(level) * 45.0 + 22.5
+        }
         layoutIfNeeded()
     }
     

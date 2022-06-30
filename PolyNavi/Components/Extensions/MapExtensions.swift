@@ -54,6 +54,61 @@ extension MapView {
     }
 }
 
+extension MKPolygon {
+    func contains(_ point: CLLocationCoordinate2D) -> Bool {
+        let polygonRenderer = MKPolygonRenderer(polygon: self)
+        let currentMapPoint: MKMapPoint = MKMapPoint(point)
+        let polygonViewPoint: CGPoint = polygonRenderer.point(for: currentMapPoint)
+        if polygonRenderer.path == nil {
+            return false
+        } else {
+            return polygonRenderer.path.contains(polygonViewPoint)
+        }
+    }
+    
+    func contains(_ points: [CLLocationCoordinate2D]) -> Bool {
+        let polygonRenderer = MKPolygonRenderer(polygon: self)
+        
+        if polygonRenderer.path == nil {
+            return false
+        } else {
+            for point in points {
+                if  polygonRenderer.path.contains(polygonRenderer.point(for: MKMapPoint(point))) {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+    
+    func intersection(p0: MKMapPoint, p1: MKMapPoint) -> Bool {
+        func intersection(_ p0: MKMapPoint, _ p1: MKMapPoint, _ p2: MKMapPoint, _ p3: MKMapPoint) -> Bool {
+            var denominator = (p3.x - p2.x) * (p1.y - p0.y) - (p3.y - p2.y) * (p1.x - p0.x)
+            var ua = (p3.y - p2.y) * (p0.x - p2.x) - (p3.x - p2.x) * (p0.y - p2.y)
+            var ub = (p1.y - p0.y) * (p0.x - p2.x) - (p1.x - p0.x) * (p0.y - p2.y)
+            
+            if (denominator < 0) {
+                ua = -ua; ub = -ub; denominator = -denominator
+            }
+            
+            return ua >= 0.0 && ua <= denominator && ub >= 0.0 && ub <= denominator && denominator != 0
+        }
+        
+        if pointCount <= 2 { return false }
+        
+        let points = points()
+        
+        if intersection(p0, p1, points[0], points[pointCount-1]) { return true }
+        
+        for i in 1..<pointCount {
+            if intersection(p0, p1, points[i-1], points[i]) { return true }
+        }
+        
+        return false
+    }
+}
+
 extension MKMapRect {
     init(points: [MKMapPoint]) {
         

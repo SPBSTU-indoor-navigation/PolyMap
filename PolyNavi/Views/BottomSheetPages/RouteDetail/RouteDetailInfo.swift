@@ -8,7 +8,11 @@
 import UIKit
 import MapKit
 
-class RouteParameters {
+class RouteParameters: Equatable {
+    static func == (lhs: RouteParameters, rhs: RouteParameters) -> Bool {
+        return lhs.asphalt == rhs.asphalt && lhs.serviceRoute == rhs.serviceRoute
+    }
+    
     enum Constants {
         static let storageAsphalt = "storageAsphalt"
         static let storageServiceRoute = "storageServiceRoute"

@@ -60,7 +60,7 @@ class OccupantAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, IndoorAnno
         switch properties.category {
         case .restroom, .restroomMale, .restroomFemale, .security: return .circleWithoutLabel
         case .administration, .wardrobe, .ticket: return .circleWithoutLabel
-        case .souvenirs, .foodserviceСoffee: return .circleWithoutLabel
+        case .souvenirs, .foodserviceСoffee, .foodservice: return .circleWithoutLabel
         case .auditorium, .classroom: return .pointSecondary
         default: return .pointSecondary
         }
