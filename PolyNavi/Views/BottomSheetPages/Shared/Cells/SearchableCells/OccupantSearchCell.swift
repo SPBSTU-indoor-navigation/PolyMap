@@ -52,8 +52,8 @@ class OccupantSearchCell: BaseSearchCell {
             
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             titleLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
-            subTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
+            subTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
             subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
             subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             contentView.bottomAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: 10)

@@ -11,6 +11,7 @@ class AttractionSearchCell: BaseSearchCell {
     private lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .body)
+        $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return $0
     }(UILabel())
     
@@ -35,7 +36,7 @@ class AttractionSearchCell: BaseSearchCell {
         NSLayoutConstraint.activate([
             icon.widthAnchor.constraint(equalToConstant: 35),
             icon.heightAnchor.constraint(equalToConstant: 35),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
         ].priority(.required))
         
         NSLayoutConstraint.activate([
@@ -51,7 +52,7 @@ class AttractionSearchCell: BaseSearchCell {
             titleLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 10),
     
             contentView.bottomAnchor.constraint(equalTo: icon.bottomAnchor, constant: 10)
-        ].priority(.defaultHigh))
+        ].priority(.required))
     }
     
     override func configurate(searchable: Searchable) {
