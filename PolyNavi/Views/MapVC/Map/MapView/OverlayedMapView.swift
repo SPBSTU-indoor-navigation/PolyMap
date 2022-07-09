@@ -15,10 +15,12 @@ class OverlayedMapView: PinnableMapView {
     
     var waitToAddAnnotations: [MKAnnotation] = []
     
+    private var panGR: UIPanGestureRecognizer!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let panGR = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
+        panGR = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
         panGR.delegate = self
         panGR.maximumNumberOfTouches = 1
         addGestureRecognizer(panGR)
@@ -98,6 +100,11 @@ class OverlayedMapView: PinnableMapView {
         }
         
         return nil
+    }
+    
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer == panGR { return true }
+        return super.gestureRecognizerShouldBegin(gestureRecognizer)
     }
 }
 
