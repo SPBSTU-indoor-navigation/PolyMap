@@ -22,7 +22,7 @@ internal enum L10n {
     /// Welcome to PolyMap!
     internal static let title = L10n.tr("Localizable", "HelloPopup.Title")
     internal enum Indoor {
-      /// Simply zoom in to the building, or select an annotation and click the "Plan " button to view detailed indoor map.
+      /// Simply zoom in to the building or select an annotation and click the "Plan " button to view detailed indoor map.
       internal static let message = L10n.tr("Localizable", "HelloPopup.Indoor.Message")
       /// Indoor map
       internal static let title = L10n.tr("Localizable", "HelloPopup.Indoor.Title")
@@ -34,7 +34,7 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "HelloPopup.Route.Title")
     }
     internal enum Share {
-      /// To share a route, select the "Share" option in the context menu of the route. It is possible to share as a QR or AppClip code.
+      /// Select the "Share" option in the context menu of the route to share a route. It is possible to share as a QR or AppClip code.
       internal static let message = L10n.tr("Localizable", "HelloPopup.Share.Message")
       /// Share
       internal static let title = L10n.tr("Localizable", "HelloPopup.Share.Title")
@@ -51,16 +51,16 @@ internal enum L10n {
       internal static let email = L10n.tr("Localizable", "MapInfo.Detail.Email")
       /// Phone
       internal static let phone = L10n.tr("Localizable", "MapInfo.Detail.Phone")
-      /// Detail
+      /// See Details
       internal static let title = L10n.tr("Localizable", "MapInfo.Detail.Title")
       /// Website
       internal static let website = L10n.tr("Localizable", "MapInfo.Detail.Website")
       internal enum EmptyPlan {
-        /// Unfortunately, this building does not have a floor plan, if you have a floor plan for this building or know who might have it, please contact the developer
+        /// Unfortunately this building does not have a floor plan, if you have a floor plan for this building or know who might have it, please contact the developer
         internal static let message = L10n.tr("Localizable", "MapInfo.Detail.EmptyPlan.Message")
         /// Write
         internal static let `open` = L10n.tr("Localizable", "MapInfo.Detail.EmptyPlan.Open")
-        /// No building plan
+        /// No building floor plan
         internal static let title = L10n.tr("Localizable", "MapInfo.Detail.EmptyPlan.Title")
         internal enum Email {
           /// Copy
@@ -85,7 +85,7 @@ internal enum L10n {
           internal static let cancel = L10n.tr("Localizable", "MapInfo.ExclRoute.Info.CloseAlert.Cancel")
           /// Finish
           internal static let end = L10n.tr("Localizable", "MapInfo.ExclRoute.Info.CloseAlert.End")
-          /// Finish the exclusive mode will erase the route from the map. To re-view you will need to re-open the invitation
+          /// Completing the exclusive mode will erase the route from the map. You should reopen the invitation to view again
           internal static let message = L10n.tr("Localizable", "MapInfo.ExclRoute.Info.CloseAlert.Message")
           /// Finish exclusive mode
           internal static let title = L10n.tr("Localizable", "MapInfo.ExclRoute.Info.CloseAlert.Title")
@@ -155,7 +155,7 @@ internal enum L10n {
       internal static let favorites = L10n.tr("Localizable", "MapInfo.Search.Favorites")
       /// Recent
       internal static let recent = L10n.tr("Localizable", "MapInfo.Search.Recent")
-      /// Recomendation
+      /// Recommendation
       internal static let recomendation = L10n.tr("Localizable", "MapInfo.Search.Recomendation")
       /// Today
       internal static let today = L10n.tr("Localizable", "MapInfo.Search.Today")
@@ -199,7 +199,7 @@ internal enum L10n {
   internal enum Settings {
     /// Select group
     internal static let settingOfGroup = L10n.tr("Localizable", "Settings.settingOfGroup")
-    /// Select teacher
+    /// Select professor
     internal static let settingOfTeacher = L10n.tr("Localizable", "Settings.settingOfTeacher")
     /// None
     internal static let statusOfGroup = L10n.tr("Localizable", "Settings.statusOfGroup")
@@ -213,9 +213,9 @@ internal enum L10n {
     internal static let titleOfGroupsView = L10n.tr("Localizable", "Settings.titleOfGroupsView")
     /// Institute
     internal static let titleOfInstituteCell = L10n.tr("Localizable", "Settings.titleOfInstituteCell")
-    /// Teacher
+    /// Professor
     internal static let titleOfTeacherCell = L10n.tr("Localizable", "Settings.titleOfTeacherCell")
-    /// Teachers
+    /// Professors
     internal static let titleOfTeachersView = L10n.tr("Localizable", "Settings.titleOfTeachersView")
   }
 
@@ -224,11 +224,11 @@ internal enum L10n {
     internal static let allowParameterChange = L10n.tr("Localizable", "Share.AllowParameterChange")
     /// Check connection...
     internal static let connectionCheck = L10n.tr("Localizable", "Share.ConnectionCheck")
-    /// Server unavilable
+    /// Server unavailable
     internal static let connectionError = L10n.tr("Localizable", "Share.ConnectionError")
     /// Generate
     internal static let create = L10n.tr("Localizable", "Share.Create")
-    /// You can generate a QR or AppClip code. After scanning the code, an application with a route will open and a welcome message will be displayed.\n\nIf the user does not have the application installed, a simplified blitz version with similar functionality will open
+    /// You can generate a QR or AppClip code. After scanning the code an application with a route will open and a welcome message will be displayed.\n\nIf user has not installed the application yet, a simplified blitz version with similar functionality will open
     internal static let mainInfo = L10n.tr("Localizable", "Share.MainInfo")
     /// Code generation
     internal static let navigationTitle = L10n.tr("Localizable", "Share.NavigationTitle")
@@ -307,7 +307,7 @@ internal enum L10n {
     internal enum LogoVariant {
       /// Scan Only
       internal static let camera = L10n.tr("Localizable", "Share.LogoVariant.Camera")
-      /// If you combine the code with an NFC tag, please select the NFC design. If you don't insert an NFC tag, please select «Scan Only» design
+      /// If you combine the code with an NFC tag, please select the NFC design. If you do not insert an NFC tag, please select «Scan Only» design
       internal static let info = L10n.tr("Localizable", "Share.LogoVariant.Info")
       /// NFC
       internal static let phone = L10n.tr("Localizable", "Share.LogoVariant.Phone")
@@ -317,11 +317,11 @@ internal enum L10n {
     internal enum OpenURL {
       /// Continue
       internal static let `continue` = L10n.tr("Localizable", "Share.OpenURL.Continue")
-      /// Shared with you the route
+      /// The route was shared with you
       internal static let info = L10n.tr("Localizable", "Share.OpenURL.Info")
       /// Author's messages
       internal static let message = L10n.tr("Localizable", "Share.OpenURL.Message")
-      /// The route will be laid in "exclusive" mode, to exit it, swipe the curtain up and click on the "finish" button
+      /// The route will be laid in "exclusive" mode. Swipe the curtain up and click on the "finish" button to exit it
       internal static let openInfo = L10n.tr("Localizable", "Share.OpenURL.OpenInfo")
       /// Welcome
       internal static let title = L10n.tr("Localizable", "Share.OpenURL.Title")
@@ -350,7 +350,7 @@ internal enum L10n {
       /// Permalink
       internal static let shareUrl = L10n.tr("Localizable", "Share.Result.ShareUrl")
       internal enum ShareUrl {
-        /// You can embed the link yourself in any type of codes, or simply send it in text form
+        /// You can embed the link yourself in any type of codes or simply send it in text form
         internal static let info = L10n.tr("Localizable", "Share.Result.ShareUrl.Info")
       }
     }

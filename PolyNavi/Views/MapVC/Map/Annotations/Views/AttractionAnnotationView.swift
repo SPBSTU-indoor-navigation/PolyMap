@@ -109,6 +109,8 @@ class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.Deta
         $0.layer.magnificationFilter = .trilinear
         $0.layer.minificationFilterBias = 0.1
         $0.sourceImage = Asset.Images.indoorPlan.image
+        
+        $0.tintColor = Asset.accentColor.color
 
         return $0
     }(ScaledImageView())

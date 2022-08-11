@@ -26,9 +26,9 @@ Settings.titleOfInstituteCell = "Institute";
 Settings.titleOfGroupCell = "Group";
 Settings.statusOfInstitute = "None";
 Settings.statusOfGroup = "None";
-Settings.titleOfTeachersView = "Teachers";
-Settings.settingOfTeacher = "Select teacher";
-Settings.titleOfTeacherCell = "Teacher";
+Settings.titleOfTeachersView = "Professors";
+Settings.settingOfTeacher = "Select professor";
+Settings.titleOfTeacherCell = "Professor";
 
 //MARK:- Choosing search controller strings
 ChoosingSearchController.searchPlaceholder = "Search";
@@ -39,14 +39,14 @@ Present.Cancel = "Cancel";
 //MARK:- MapInfo
 MapInfo.Share = "Share";
 
-MapInfo.Detail.Title = "Detail";
+MapInfo.Detail.Title = "See Details";
 MapInfo.Detail.Phone = "Phone";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Website";
 MapInfo.Detail.Address = "Address";
 
-MapInfo.Detail.EmptyPlan.Title = "No building plan";
-MapInfo.Detail.EmptyPlan.Message = "Unfortunately, this building does not have a floor plan, if you have a floor plan for this building or know who might have it, please contact the developer";
+MapInfo.Detail.EmptyPlan.Title = "No building floor plan";
+MapInfo.Detail.EmptyPlan.Message = "Unfortunately this building does not have a floor plan, if you have a floor plan for this building or know who might have it, please contact the developer";
 MapInfo.Detail.EmptyPlan.Email.Copy = "Copy";
 MapInfo.Detail.EmptyPlan.Email.Open = "Open mail";
 MapInfo.Detail.EmptyPlan.Open = "Write";
@@ -81,25 +81,25 @@ MapInfo.Route.Share.AppClipQR = "QR code or AppClip code";
 MapInfo.Search.EmptySearchResult = "No suggestion found";
 MapInfo.Search.Today = "Today";
 MapInfo.Search.Recent = "Recent";
-MapInfo.Search.Recomendation = "Recomendation";
+MapInfo.Search.Recomendation = "Recommendation";
 MapInfo.Search.Favorites = "Favorites";
 MapInfo.Search.Buildings = "Buildings";
 
 MapInfo.ExclRoute.Info.Close = "Finish exclusive mode";
 MapInfo.ExclRoute.Info.CloseAlert.Title = "Finish exclusive mode";
-MapInfo.ExclRoute.Info.CloseAlert.Message = "Finish the exclusive mode will erase the route from the map. To re-view you will need to re-open the invitation";
+MapInfo.ExclRoute.Info.CloseAlert.Message = "Completing the exclusive mode will erase the route from the map. You should reopen the invitation to view again";
 MapInfo.ExclRoute.Info.CloseAlert.Cancel = "Cancel";
 MapInfo.ExclRoute.Info.CloseAlert.End = "Finish";
 
 Share.OpenURL.Title = "Welcome";
-Share.OpenURL.Info = "Shared with you the route";
+Share.OpenURL.Info = "The route was shared with you";
 Share.OpenURL.Message = "Author's messages";
-Share.OpenURL.OpenInfo = "The route will be laid in \"exclusive\" mode, to exit it, swipe the curtain up and click on the \"finish\" button";
+Share.OpenURL.OpenInfo = "The route will be laid in \"exclusive\" mode. Swipe the curtain up and click on the \"finish\" button to exit it";
 Share.OpenURL.Continue = "Continue";
 
 
 //MARK:- ShareDialog
-Share.MainInfo = "You can generate a QR or AppClip code. After scanning the code, an application with a route will open and a welcome message will be displayed.\n\nIf the user does not have the application installed, a simplified blitz version with similar functionality will open";
+Share.MainInfo = "You can generate a QR or AppClip code. After scanning the code an application with a route will open and a welcome message will be displayed.\n\nIf user has not installed the application yet, a simplified blitz version with similar functionality will open";
 Share.NavigationTitle = "Code generation";
 
 Share.ColorVariant.Title = "Color";
@@ -117,7 +117,7 @@ Share.ColorVariant.Preview.ChangeColor = "Change color";
 Share.LogoVariant.Title = "Logo";
 Share.LogoVariant.Camera = "Scan Only";
 Share.LogoVariant.Phone = "NFC";
-Share.LogoVariant.Info = "If you combine the code with an NFC tag, please select the NFC design. If you don't insert an NFC tag, please select «Scan Only» design";
+Share.LogoVariant.Info = "If you combine the code with an NFC tag, please select the NFC design. If you do not insert an NFC tag, please select «Scan Only» design";
 
 Share.QRLogoVariant.Title = "Logo";
 Share.QRLogoVariant.Use = "Use logo";
@@ -146,7 +146,7 @@ Share.ErrorAlert.QR.Message = "The QR code generation server is temporarily unav
 Share.ErrorAlert.Message = "The code generation server is temporarily unavailable, try again later or contact the developer directly";
 
 Share.ConnectionCheck = "Check connection...";
-Share.ConnectionError = "Server unavilable";
+Share.ConnectionError = "Server unavailable";
 Share.Create = "Generate";
 
 
@@ -157,7 +157,7 @@ Share.Result.SharePng = "PNG bitmap image";
 Share.Result.ShareSvg = "SVG vector image";
 Share.Result.SharePdf = "Guidelines for using PDF";
 Share.Result.ShareUrl = "Permalink";
-Share.Result.ShareUrl.Info = "You can embed the link yourself in any type of codes, or simply send it in text form";
+Share.Result.ShareUrl.Info = "You can embed the link yourself in any type of codes or simply send it in text form";
 
 Share.Result.Loading = "Loading...";
 
@@ -180,9 +180,9 @@ ReportAnIssue.Title = "Report";
 //MARK:- HelloPopup
 HelloPopup.Title = "Welcome to PolyMap!";
 HelloPopup.Indoor.Title = "Indoor map";
-HelloPopup.Indoor.Message = "Simply zoom in to the building, or select an annotation and click the \"Plan \" button to view detailed indoor map.";
+HelloPopup.Indoor.Message = "Simply zoom in to the building or select an annotation and click the \"Plan \" button to view detailed indoor map.";
 HelloPopup.Route.Title = "Build routes";
 HelloPopup.Route.Message = "Select your destination and press \"Route\" button";
 HelloPopup.Share.Title = "Share";
-HelloPopup.Share.Message = "To share a route, select the \"Share\" option in the context menu of the route. It is possible to share as a QR or AppClip code.";
+HelloPopup.Share.Message = "Select the \"Share\" option in the context menu of the route to share a route. It is possible to share as a QR or AppClip code.";
 HelloPopup.Continue = "Continue";
