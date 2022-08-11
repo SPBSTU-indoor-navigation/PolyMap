@@ -17,16 +17,20 @@ struct OpenUrlPopup: View {
                 switch data {
                 case .successWith(let data):
                     OpenUrlPopupContent(data: .constant(data))
-                case .errorNoInternet:
-                    VStack {
+                case .errorNoInternet, .error:
+                    VStack() {
+                        Spacer()
+                        Text(L10n.Share.OpenURL.internetError)
+                            .multilineTextAlignment(.center)
+                        Spacer()
                         Image(systemName: "wifi.slash")
-                        Text("errorNoInternet")
-                    }
-                case .error:
-                    VStack {
-                        Image(systemName: "wifi.slash")
-                        Text("errorNoInternet")
-                    }
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .font(.largeTitle.weight(.medium))
+                            .frame(maxWidth: 300.0)
+                            .foregroundColor(.accentColor)
+                        Spacer()
+                    }.padding(30)
                 }
             } else {
                 ActivityIndicator(style: .medium)
@@ -35,10 +39,6 @@ struct OpenUrlPopup: View {
         .onAppear {
             CodeGeneratorProvider.loadData(id: id, completion: {
                 self.data = $0
-                
-                if $0.data == nil {
-                    self.dismiss(animated: true)
-                }
             })
         }
     }
@@ -46,6 +46,7 @@ struct OpenUrlPopup: View {
 
 struct OpenUrlPopup_Previews: PreviewProvider {
     static var previews: some View {
-        OpenUrlPopup(id: "234")
+        OpenUrlPopup(id: "234", data: .errorNoInternet)
+//            .previewDevice("iPad Pro (11-inch) (3rd generation)")
     }
 }

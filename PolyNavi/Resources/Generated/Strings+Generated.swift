@@ -319,6 +319,8 @@ internal enum L10n {
       internal static let `continue` = L10n.tr("Localizable", "Share.OpenURL.Continue")
       /// The route was shared with you
       internal static let info = L10n.tr("Localizable", "Share.OpenURL.Info")
+      /// Failed to connect to the server, may not be connected to the internet
+      internal static let internetError = L10n.tr("Localizable", "Share.OpenURL.InternetError")
       /// Author's messages
       internal static let message = L10n.tr("Localizable", "Share.OpenURL.Message")
       /// The route will be laid in "exclusive" mode. Swipe the curtain up and click on the "finish" button to exit it

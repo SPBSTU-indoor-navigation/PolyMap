@@ -96,6 +96,7 @@ Share.OpenURL.Info = "The route was shared with you";
 Share.OpenURL.Message = "Author's messages";
 Share.OpenURL.OpenInfo = "The route will be laid in \"exclusive\" mode. Swipe the curtain up and click on the \"finish\" button to exit it";
 Share.OpenURL.Continue = "Continue";
+Share.OpenURL.InternetError = "Failed to connect to the server, may not be connected to the internet";
 
 
 //MARK:- ShareDialog
