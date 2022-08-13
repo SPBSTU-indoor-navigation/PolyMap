@@ -37,6 +37,8 @@ class UnitDetailVC: NavbarBottomSheetPage {
         $0.font = .systemFont(ofSize: 29, weight: .bold)
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
+        $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        $0.setContentHuggingPriority(.defaultLow, for: .horizontal)
         $0.onHeightChange = { [weak self] in self?.titleHeight = $0 }
         return $0
     }(TitleLabel())
