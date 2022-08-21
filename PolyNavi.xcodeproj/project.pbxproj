@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -130,6 +130,12 @@
 		973E861B280D004A007F4BE2 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E8619280D004A007F4BE2 /* TextView.swift */; };
 		97457CD128661E9600E2B86F /* QuickSelectMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97457CD028661E9600E2B86F /* QuickSelectMapView.swift */; };
 		97457CD228661E9600E2B86F /* QuickSelectMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97457CD028661E9600E2B86F /* QuickSelectMapView.swift */; };
+		9748FB5028B29E7600587318 /* YandexMobileMetrica in Frameworks */ = {isa = PBXBuildFile; productRef = 9748FB4F28B29E7600587318 /* YandexMobileMetrica */; };
+		9748FB5228B29E7600587318 /* YandexMobileMetricaCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 9748FB5128B29E7600587318 /* YandexMobileMetricaCrashes */; };
+		9748FB5428B29EF300587318 /* YandexMobileMetrica in Frameworks */ = {isa = PBXBuildFile; productRef = 9748FB5328B29EF300587318 /* YandexMobileMetrica */; };
+		9748FB5628B29EF300587318 /* YandexMobileMetricaCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 9748FB5528B29EF300587318 /* YandexMobileMetricaCrashes */; };
+		9748FB5928B29FDF00587318 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748FB5828B29FDF00587318 /* Analytics.swift */; };
+		9748FB5A28B29FDF00587318 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748FB5828B29FDF00587318 /* Analytics.swift */; };
 		974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
 		974D423D280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
 		974D423F280E110A00F05434 /* ShareResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423E280E110A00F05434 /* ShareResult.swift */; };
@@ -370,6 +376,7 @@
 		973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNavi.entitlements; sourceTree = "<group>"; };
 		973E8619280D004A007F4BE2 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		97457CD028661E9600E2B86F /* QuickSelectMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSelectMapView.swift; sourceTree = "<group>"; };
+		9748FB5828B29FDF00587318 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlPopup.swift; sourceTree = "<group>"; };
 		974D423E280E110A00F05434 /* ShareResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareResult.swift; sourceTree = "<group>"; };
 		974D4245280F894100F05434 /* NetworkShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkShared.swift; sourceTree = "<group>"; };
@@ -482,6 +489,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9748FB5028B29E7600587318 /* YandexMobileMetrica in Frameworks */,
+				9748FB5228B29E7600587318 /* YandexMobileMetricaCrashes in Frameworks */,
 				CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */,
 				5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */,
 			);
@@ -491,7 +500,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9748FB5628B29EF300587318 /* YandexMobileMetricaCrashes in Frameworks */,
 				7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */,
+				9748FB5428B29EF300587318 /* YandexMobileMetrica in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +543,7 @@
 		054F6786270C7B4C00FCC07C /* PolyNavi */ = {
 			isa = PBXGroup;
 			children = (
+				9748FB5728B29F8700587318 /* Analytics */,
 				9735D20C2826D9C000F8A08F /* Storage */,
 				9787699927FB3DDB008138EC /* PathFinder */,
 				054F67A5270CD72700FCC07C /* App */,
@@ -824,6 +836,14 @@
 				974D425D2813939000F05434 /* OpenUrl */,
 			);
 			path = ShareDialog;
+			sourceTree = "<group>";
+		};
+		9748FB5728B29F8700587318 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				9748FB5828B29FDF00587318 /* Analytics.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		974D4244280F893500F05434 /* Shared */ = {
@@ -1187,6 +1207,10 @@
 				971F8DE127BD52EF0018F98A /* PBXTargetDependency */,
 			);
 			name = PolyNavi;
+			packageProductDependencies = (
+				9748FB4F28B29E7600587318 /* YandexMobileMetrica */,
+				9748FB5128B29E7600587318 /* YandexMobileMetricaCrashes */,
+			);
 			productName = PolyNavi;
 			productReference = 054F6784270C7B4C00FCC07C /* PolyNavi.app */;
 			productType = "com.apple.product-type.application";
@@ -1205,6 +1229,10 @@
 			dependencies = (
 			);
 			name = PolyNaviClip;
+			packageProductDependencies = (
+				9748FB5328B29EF300587318 /* YandexMobileMetrica */,
+				9748FB5528B29EF300587318 /* YandexMobileMetricaCrashes */,
+			);
 			productName = PolyNaviClip;
 			productReference = 971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */;
 			productType = "com.apple.product-type.application.on-demand-install-capable";
@@ -1236,6 +1264,9 @@
 				ru,
 			);
 			mainGroup = 054F677B270C7B4B00FCC07C;
+			packageReferences = (
+				9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */,
+			);
 			productRefGroup = 054F6785270C7B4C00FCC07C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1472,6 +1503,7 @@
 				97A566F827D589FA00A064CC /* UnitDetailInfo.swift in Sources */,
 				973962D9280CB720000E478F /* ShareDialog.swift in Sources */,
 				978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */,
+				9748FB5928B29FDF00587318 /* Analytics.swift in Sources */,
 				978B322427F0058B00760B78 /* SearchGroupedHeaderView.swift in Sources */,
 				9795F8D3285251AC002FA5C7 /* MapLabel.swift in Sources */,
 				974D4246280F894100F05434 /* NetworkShared.swift in Sources */,
@@ -1492,6 +1524,7 @@
 				971F8DF127BD54FA0018F98A /* Animator.swift in Sources */,
 				97BC3D302819EA3E000734D9 /* TintedUILabel.swift in Sources */,
 				97BC3D332819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */,
+				9748FB5A28B29FDF00587318 /* Analytics.swift in Sources */,
 				971F8DF027BD54FA0018F98A /* RoundButton.swift in Sources */,
 				971F8E0227BD55680018F98A /* Detail.swift in Sources */,
 				971F8E0A27BD556B0018F98A /* AmenityAnnotationView.swift in Sources */,
@@ -1796,7 +1829,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap";
@@ -1825,7 +1858,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap";
@@ -1860,7 +1893,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap.clip";
@@ -1896,7 +1929,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap.clip";
@@ -1938,6 +1971,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yandexmobile/metrica-sdk-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9748FB4F28B29E7600587318 /* YandexMobileMetrica */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */;
+			productName = YandexMobileMetrica;
+		};
+		9748FB5128B29E7600587318 /* YandexMobileMetricaCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */;
+			productName = YandexMobileMetricaCrashes;
+		};
+		9748FB5328B29EF300587318 /* YandexMobileMetrica */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */;
+			productName = YandexMobileMetrica;
+		};
+		9748FB5528B29EF300587318 /* YandexMobileMetricaCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */;
+			productName = YandexMobileMetricaCrashes;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 054F677C270C7B4B00FCC07C /* Project object */;
 }

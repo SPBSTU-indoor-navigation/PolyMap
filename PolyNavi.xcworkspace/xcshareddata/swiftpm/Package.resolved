@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "metrica-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yandexmobile/metrica-sdk-ios",
+      "state" : {
+        "revision" : "3994299f8b07efd44a973aff407527ccfa0fa35d",
+        "version" : "4.2.0"
+      }
+    }
+  ],
+  "version" : 2
+}

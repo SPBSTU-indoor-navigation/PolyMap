@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-frameworks.sh
+${PODS_XCFRAMEWORKS_BUILD_DIR}/YandexMobileMetrica/Dynamic/Core/YandexMobileMetrica.framework/YandexMobileMetrica
+${PODS_XCFRAMEWORKS_BUILD_DIR}/YandexMobileMetrica/Dynamic/Crashes/YandexMobileMetricaCrashes.framework/YandexMobileMetricaCrashes

@@ -6,11 +6,19 @@
 //
 
 import UIKit
+import YandexMobileMetrica
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let configuration = YMMYandexMetricaConfiguration.init(apiKey: "5875b583-53b6-438f-831d-deb13f993b45")
+        configuration?.locationTracking = false
+        
+        YMMYandexMetrica.activate(with: configuration!)
+        
+    
         return true
     }
     
