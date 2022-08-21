@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let configuration = YMMYandexMetricaConfiguration.init(apiKey: "5875b583-53b6-438f-831d-deb13f993b45")
         configuration?.locationTracking = false
-        
+
         YMMYandexMetrica.activate(with: configuration!)
         
     

@@ -130,10 +130,6 @@
 		973E861B280D004A007F4BE2 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E8619280D004A007F4BE2 /* TextView.swift */; };
 		97457CD128661E9600E2B86F /* QuickSelectMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97457CD028661E9600E2B86F /* QuickSelectMapView.swift */; };
 		97457CD228661E9600E2B86F /* QuickSelectMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97457CD028661E9600E2B86F /* QuickSelectMapView.swift */; };
-		9748FB5028B29E7600587318 /* YandexMobileMetrica in Frameworks */ = {isa = PBXBuildFile; productRef = 9748FB4F28B29E7600587318 /* YandexMobileMetrica */; };
-		9748FB5228B29E7600587318 /* YandexMobileMetricaCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 9748FB5128B29E7600587318 /* YandexMobileMetricaCrashes */; };
-		9748FB5428B29EF300587318 /* YandexMobileMetrica in Frameworks */ = {isa = PBXBuildFile; productRef = 9748FB5328B29EF300587318 /* YandexMobileMetrica */; };
-		9748FB5628B29EF300587318 /* YandexMobileMetricaCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 9748FB5528B29EF300587318 /* YandexMobileMetricaCrashes */; };
 		9748FB5928B29FDF00587318 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748FB5828B29FDF00587318 /* Analytics.swift */; };
 		9748FB5A28B29FDF00587318 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748FB5828B29FDF00587318 /* Analytics.swift */; };
 		974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
@@ -268,6 +264,10 @@
 		97BC3D332819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D312819FA55000734D9 /* ExclusiveRouteDetailInfo.swift */; };
 		97BC3D37281A017B000734D9 /* ExclusiveSearchableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */; };
 		97BC3D38281A017B000734D9 /* ExclusiveSearchableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */; };
+		97BDD5F528B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; };
+		97BDD5F628B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97BDD5FB28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; };
+		97BDD5FC28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97D5E15C28565B5700C65B65 /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15B28565B5700C65B65 /* HelloMessage.swift */; };
 		97D5E15D28565C2E00C65B65 /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15B28565B5700C65B65 /* HelloMessage.swift */; };
@@ -298,6 +298,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		97BDD5F728B2FAD500AB2350 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				97BDD5F628B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97BDD5FD28B2FAE900AB2350 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				97BDD5FC28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97C6DA6C27BC7D640082AAC7 /* Embed App Clips */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -352,6 +374,7 @@
 		971F8DDC27BD52EF0018F98A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		971F8DDE27BD52EF0018F98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNaviClip.entitlements; sourceTree = "<group>"; };
+		972D7F0B28B2F8000004FA3F /* YandexMobileMetrica.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = YandexMobileMetrica.xcframework; path = "../../../../Downloads/YandexMobileMetrica-4/dynamic/YandexMobileMetrica.xcframework"; sourceTree = "<group>"; };
 		9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		9735D2022824B0C600F8A08F /* ReportanIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportanIssue.swift; sourceTree = "<group>"; };
 		9735D2052825D38300F8A08F /* ReportResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportResult.swift; sourceTree = "<group>"; };
@@ -463,6 +486,7 @@
 		97BC3D2E2819EA3E000734D9 /* TintedUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedUILabel.swift; sourceTree = "<group>"; };
 		97BC3D312819FA55000734D9 /* ExclusiveRouteDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveRouteDetailInfo.swift; sourceTree = "<group>"; };
 		97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveSearchableCell.swift; sourceTree = "<group>"; };
+		97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = YandexMobileMetrica.xcframework; sourceTree = "<group>"; };
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		97D5E15B28565B5700C65B65 /* HelloMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessage.swift; sourceTree = "<group>"; };
 		97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessageLine.swift; sourceTree = "<group>"; };
@@ -489,9 +513,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9748FB5028B29E7600587318 /* YandexMobileMetrica in Frameworks */,
-				9748FB5228B29E7600587318 /* YandexMobileMetricaCrashes in Frameworks */,
 				CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */,
+				97BDD5F528B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Frameworks */,
 				5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,9 +523,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9748FB5628B29EF300587318 /* YandexMobileMetricaCrashes in Frameworks */,
+				97BDD5FB28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Frameworks */,
 				7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */,
-				9748FB5428B29EF300587318 /* YandexMobileMetrica in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +714,8 @@
 		4B73B799F57DEF02F87D3626 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				972D7F0B28B2F8000004FA3F /* YandexMobileMetrica.xcframework */,
+				97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */,
 				97E15D0D27BC7F2B00E636FC /* libAlamofire.a */,
 				97E15D0E27BC7F2B00E636FC /* libM13Checkbox.a */,
 				97E15D0F27BC7F2B00E636FC /* libUIScreenExtension.a */,
@@ -1200,6 +1224,7 @@
 				054F6781270C7B4C00FCC07C /* Frameworks */,
 				054F6782270C7B4C00FCC07C /* Resources */,
 				97C6DA6C27BC7D640082AAC7 /* Embed App Clips */,
+				97BDD5F728B2FAD500AB2350 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1207,10 +1232,6 @@
 				971F8DE127BD52EF0018F98A /* PBXTargetDependency */,
 			);
 			name = PolyNavi;
-			packageProductDependencies = (
-				9748FB4F28B29E7600587318 /* YandexMobileMetrica */,
-				9748FB5128B29E7600587318 /* YandexMobileMetricaCrashes */,
-			);
 			productName = PolyNavi;
 			productReference = 054F6784270C7B4C00FCC07C /* PolyNavi.app */;
 			productType = "com.apple.product-type.application";
@@ -1223,16 +1244,13 @@
 				971F8DCA27BD52EE0018F98A /* Sources */,
 				971F8DCB27BD52EE0018F98A /* Frameworks */,
 				971F8DCC27BD52EE0018F98A /* Resources */,
+				97BDD5FD28B2FAE900AB2350 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PolyNaviClip;
-			packageProductDependencies = (
-				9748FB5328B29EF300587318 /* YandexMobileMetrica */,
-				9748FB5528B29EF300587318 /* YandexMobileMetricaCrashes */,
-			);
 			productName = PolyNaviClip;
 			productReference = 971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */;
 			productType = "com.apple.product-type.application.on-demand-install-capable";
@@ -1264,9 +1282,6 @@
 				ru,
 			);
 			mainGroup = 054F677B270C7B4B00FCC07C;
-			packageReferences = (
-				9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */,
-			);
 			productRefGroup = 054F6785270C7B4C00FCC07C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1971,40 +1986,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/yandexmobile/metrica-sdk-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		9748FB4F28B29E7600587318 /* YandexMobileMetrica */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */;
-			productName = YandexMobileMetrica;
-		};
-		9748FB5128B29E7600587318 /* YandexMobileMetricaCrashes */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */;
-			productName = YandexMobileMetricaCrashes;
-		};
-		9748FB5328B29EF300587318 /* YandexMobileMetrica */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */;
-			productName = YandexMobileMetrica;
-		};
-		9748FB5528B29EF300587318 /* YandexMobileMetricaCrashes */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9748FB4E28B29E7600587318 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */;
-			productName = YandexMobileMetricaCrashes;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 054F677C270C7B4B00FCC07C /* Project object */;
 }
