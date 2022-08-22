@@ -30,7 +30,6 @@
 		5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 		7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F912E21A3F89F0FBB707D3FB /* libPods-PolyNaviClip.a */; };
 		9717E4272742991F00332D29 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4262742991F00332D29 /* MapView.swift */; };
-		9717E46027447A7D00332D29 /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		97196E7E27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
 		97196E7F27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
 		97196E8127E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */; };
@@ -54,7 +53,6 @@
 		971F8DF527BD55480018F98A /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F67A3270CD68900FCC07C /* XCAssets+Generated.swift */; };
 		971F8DF627BD554B0018F98A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054F6790270C7B4C00FCC07C /* Assets.xcassets */; };
 		971F8DF727BD55510018F98A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 056F2D15271C623B0063015B /* Localizable.strings */; };
-		971F8DF827BD55540018F98A /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		971F8DF927BD555B0018F98A /* IMDFDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C7C2789D234008CFA05 /* IMDFDecoder.swift */; };
 		971F8DFA27BD555B0018F98A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C802789DE95008CFA05 /* Models.swift */; };
 		971F8DFB27BD555B0018F98A /* LocalizedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C822789DF39008CFA05 /* LocalizedName.swift */; };
@@ -268,6 +266,8 @@
 		97BDD5F628B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97BDD5FB28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; };
 		97BDD5FC28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97BDD5FF28B3DA6E00AB2350 /* IMDFData.zip in Resources */ = {isa = PBXBuildFile; fileRef = 97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */; };
+		97BDD60028B3DA6E00AB2350 /* IMDFData.zip in Resources */ = {isa = PBXBuildFile; fileRef = 97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97D5E15C28565B5700C65B65 /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15B28565B5700C65B65 /* HelloMessage.swift */; };
 		97D5E15D28565C2E00C65B65 /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15B28565B5700C65B65 /* HelloMessage.swift */; };
@@ -363,7 +363,6 @@
 		764E24D0B031857F17BD56B5 /* libPods-PolyMapAppClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyMapAppClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8CE2653503032042C79524 /* Pods-PolyMapAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyMapAppClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyMapAppClip/Pods-PolyMapAppClip.debug.xcconfig"; sourceTree = "<group>"; };
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		97196E7D27E6781D00F9E73A /* PinnableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnableMapView.swift; sourceTree = "<group>"; };
 		97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnnotationView.swift; sourceTree = "<group>"; };
 		9719FBEA2806478A0048C810 /* OpacityHitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityHitTest.swift; sourceTree = "<group>"; };
@@ -487,6 +486,7 @@
 		97BC3D312819FA55000734D9 /* ExclusiveRouteDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveRouteDetailInfo.swift; sourceTree = "<group>"; };
 		97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveSearchableCell.swift; sourceTree = "<group>"; };
 		97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = YandexMobileMetrica.xcframework; sourceTree = "<group>"; };
+		97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = IMDFData.zip; sourceTree = "<group>"; };
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		97D5E15B28565B5700C65B65 /* HelloMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessage.swift; sourceTree = "<group>"; };
 		97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessageLine.swift; sourceTree = "<group>"; };
@@ -586,7 +586,7 @@
 		054F679B270C7E4C00FCC07C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9717E45F27447A7D00332D29 /* IMDFData */,
+				97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */,
 				056F2D10271C620A0063015B /* Strings */,
 				054F67A2270CD65C00FCC07C /* Generated */,
 				054F6790270C7B4C00FCC07C /* Assets.xcassets */,
@@ -1298,8 +1298,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				054F6794270C7B4C00FCC07C /* LaunchScreen.storyboard in Resources */,
+				97BDD5FF28B3DA6E00AB2350 /* IMDFData.zip in Resources */,
 				056F2D13271C623B0063015B /* Localizable.strings in Resources */,
-				9717E46027447A7D00332D29 /* IMDFData in Resources */,
 				054F6791270C7B4C00FCC07C /* Assets.xcassets in Resources */,
 				974D42552811E3B700F05434 /* InfoPlist.strings in Resources */,
 			);
@@ -1311,10 +1311,10 @@
 			files = (
 				971F8DDD27BD52EF0018F98A /* LaunchScreen.storyboard in Resources */,
 				974D42562811E3B700F05434 /* InfoPlist.strings in Resources */,
-				971F8DF827BD55540018F98A /* IMDFData in Resources */,
 				971F8DF727BD55510018F98A /* Localizable.strings in Resources */,
 				971F8DF627BD554B0018F98A /* Assets.xcassets in Resources */,
 				971F8DDA27BD52EF0018F98A /* Assets.xcassets in Resources */,
+				97BDD60028B3DA6E00AB2350 /* IMDFData.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

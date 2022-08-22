@@ -119,8 +119,8 @@ class MapViewController: UIViewController {
     }
     
     func loadIMDF() {
-        let path = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
-        MapViewController.currentVenue = IMDFDecoder.decode(path)
+        let path = Bundle.main.resourceURL!.appendingPathComponent("IMDFData.zip")
+        MapViewController.currentVenue = IMDFDecoder.decodeFromZip(path)
         
         mapView.venue = MapViewController.currentVenue
         mapInfo.searchable = MapViewController.currentVenue?.searchable() ?? []
