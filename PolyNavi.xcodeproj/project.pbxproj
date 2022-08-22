@@ -129,7 +129,6 @@
 		97457CD128661E9600E2B86F /* QuickSelectMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97457CD028661E9600E2B86F /* QuickSelectMapView.swift */; };
 		97457CD228661E9600E2B86F /* QuickSelectMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97457CD028661E9600E2B86F /* QuickSelectMapView.swift */; };
 		9748FB5928B29FDF00587318 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748FB5828B29FDF00587318 /* Analytics.swift */; };
-		9748FB5A28B29FDF00587318 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748FB5828B29FDF00587318 /* Analytics.swift */; };
 		974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
 		974D423D280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
 		974D423F280E110A00F05434 /* ShareResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423E280E110A00F05434 /* ShareResult.swift */; };
@@ -268,6 +267,9 @@
 		97BDD5FC28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97BDD5FF28B3DA6E00AB2350 /* IMDFData.zip in Resources */ = {isa = PBXBuildFile; fileRef = 97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */; };
 		97BDD60028B3DA6E00AB2350 /* IMDFData.zip in Resources */ = {isa = PBXBuildFile; fileRef = 97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */; };
+		97BDD60228B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD60128B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework */; };
+		97BDD60328B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD60128B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97BDD61128B422C300AB2350 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748FB5828B29FDF00587318 /* Analytics.swift */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97D5E15C28565B5700C65B65 /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15B28565B5700C65B65 /* HelloMessage.swift */; };
 		97D5E15D28565C2E00C65B65 /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15B28565B5700C65B65 /* HelloMessage.swift */; };
@@ -304,6 +306,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				97BDD60328B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework in Embed Frameworks */,
 				97BDD5F628B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -487,6 +490,10 @@
 		97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveSearchableCell.swift; sourceTree = "<group>"; };
 		97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = YandexMobileMetrica.xcframework; sourceTree = "<group>"; };
 		97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = IMDFData.zip; sourceTree = "<group>"; };
+		97BDD60128B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = YandexMobileMetricaCrashes.xcframework; sourceTree = "<group>"; };
+		97BDD60928B41AD800AB2350 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		97BDD60A28B41AD800AB2350 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		97BDD61028B41D4500AB2350 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		97D5E15B28565B5700C65B65 /* HelloMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessage.swift; sourceTree = "<group>"; };
 		97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessageLine.swift; sourceTree = "<group>"; };
@@ -513,6 +520,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BDD60228B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework in Frameworks */,
 				CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */,
 				97BDD5F528B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Frameworks */,
 				5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */,
@@ -579,6 +587,7 @@
 				973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */,
 				054F6795270C7B4C00FCC07C /* Info.plist */,
 				974D42582811E3B700F05434 /* InfoPlist.strings */,
+				97BDD60928B41AD800AB2350 /* Bridging-Header.h */,
 			);
 			path = PolyNavi;
 			sourceTree = "<group>";
@@ -714,6 +723,7 @@
 		4B73B799F57DEF02F87D3626 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97BDD60128B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework */,
 				972D7F0B28B2F8000004FA3F /* YandexMobileMetrica.xcframework */,
 				97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */,
 				97E15D0D27BC7F2B00E636FC /* libAlamofire.a */,
@@ -767,6 +777,7 @@
 				971F8DD927BD52EF0018F98A /* Assets.xcassets */,
 				971F8DDB27BD52EF0018F98A /* LaunchScreen.storyboard */,
 				971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */,
+				97BDD60A28B41AD800AB2350 /* Bridging-Header.h */,
 				971F8DDE27BD52EF0018F98A /* Info.plist */,
 			);
 			path = PolyNaviClip;
@@ -866,6 +877,7 @@
 			isa = PBXGroup;
 			children = (
 				9748FB5828B29FDF00587318 /* Analytics.swift */,
+				97BDD61028B41D4500AB2350 /* Config.h */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -1266,9 +1278,11 @@
 				TargetAttributes = {
 					054F6783270C7B4C00FCC07C = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1340;
 					};
 					971F8DCD27BD52EE0018F98A = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -1539,7 +1553,7 @@
 				971F8DF127BD54FA0018F98A /* Animator.swift in Sources */,
 				97BC3D302819EA3E000734D9 /* TintedUILabel.swift in Sources */,
 				97BC3D332819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */,
-				9748FB5A28B29FDF00587318 /* Analytics.swift in Sources */,
+				97BDD61128B422C300AB2350 /* Analytics.swift in Sources */,
 				971F8DF027BD54FA0018F98A /* RoundButton.swift in Sources */,
 				971F8E0227BD55680018F98A /* Detail.swift in Sources */,
 				971F8E0A27BD556B0018F98A /* AmenityAnnotationView.swift in Sources */,
@@ -1833,6 +1847,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PolyNavi/PolyNavi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -1848,6 +1863,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap";
+				SWIFT_OBJC_BRIDGING_HEADER = "PolyNavi/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1862,6 +1879,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PolyNavi/PolyNavi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1877,6 +1895,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap";
+				SWIFT_OBJC_BRIDGING_HEADER = "PolyNavi/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1890,6 +1909,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PolyNaviClip/PolyNaviClip.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -1914,6 +1934,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap.clip";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APPCLIP";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PolyNaviClip/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1926,6 +1948,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PolyNaviClip/PolyNaviClip.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1950,6 +1973,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap.clip";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPCLIP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PolyNaviClip/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
