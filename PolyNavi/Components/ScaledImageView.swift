@@ -10,6 +10,7 @@ import UIKit
 class ScaledImageView: UIImageView {
     var imageChanged = false
     var lastRenderSize: CGSize = .zero
+    var color: UIColor? = nil
     
     var sourceImage: UIImage? {
         didSet {
@@ -52,7 +53,7 @@ class ScaledImageView: UIImageView {
         
         let size = size ?? calculateFrameSize()
         
-        image = render(image: sourceImage, size: size, tintColor: tintColor)
+        image = render(image: sourceImage, size: size, tintColor: color ?? tintColor)
         imageChanged = false
         lastRenderSize = size
     }

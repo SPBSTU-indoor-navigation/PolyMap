@@ -14,7 +14,6 @@ class Analytics {
     func start() {
         let configuration = YMMYandexMetricaConfiguration.init(apiKey: APP_METRICA_API_KEY)!
         configuration.locationTracking = false
-        configuration.logs = true
         
         YMMYandexMetrica.activate(with: configuration)
     }
