@@ -158,6 +158,7 @@ class RouteDetailInfo: SectionCollection {
                 activityViewController.popoverPresentationController?.sourceView = cell.image
                 if let vc = tableView.delegate as? UIViewController {
                     vc.present(activityViewController, animated: true, completion: nil)
+                    Analytics.shared.shareRoute(from: from.imdfID, to: to.imdfID, params: routeParameters)
                 }
                 
             } else {

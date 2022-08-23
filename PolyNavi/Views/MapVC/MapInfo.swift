@@ -97,7 +97,7 @@ class MapInfo: BottomSheetViewController {
     
     func onPopToVC(_ vc: UIViewController) {
         if let unitDetail = vc as? UnitDetailVC,
-           let annotation = unitDetail.unitDetailInfo?.annotation {
+           let annotation = unitDetail.unitDetailInfo?.annotation as? MKAnnotation {
             skipSelectStateChange = true
             skipSelectStateChange = mapViewDelegate?.focusAndSelect(annotation: annotation, focusVariant: .auto) ?? false
         }

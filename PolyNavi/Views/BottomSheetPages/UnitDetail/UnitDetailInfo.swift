@@ -9,7 +9,7 @@ import MapKit
 
 class UnitDetailInfo: SectionCollection {
     var title: String = ""
-    var annotation: MKAnnotation?
+    var annotation: BaseAnnotation?
     weak var unitDetail: UnitDetailVC?
 
     class Route: Section, CellFor {

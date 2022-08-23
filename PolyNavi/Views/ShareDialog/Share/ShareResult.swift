@@ -161,6 +161,8 @@ struct ShareResult: View {
                         CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: true, completion: { svg = cast($0) })
                         CodeGeneratorProvider.loadAppclip(id: res.codeID, colorVariant: settings.color, logoVariant: settings.logo, badgeVariant: settings.bage, svg: false, width: 2048, completion: { png = cast($0) })
                     }
+                    
+                    Analytics.shared.shareQR(with: res.codeID, settings: settings)
                 } else {
                     print("Error generate")
                 }

@@ -35,13 +35,15 @@ class ParseUserActivity {
            let toStr = params["to"],
            let from = UUID(uuidString: fromStr),
            let to = UUID(uuidString: toStr) {
-            let asphalt = parse(params["asphalt"]) ?? false
-            let serviceRoute = parse(params["serviceroute"]) ?? false
+            let params = RouteParameters(asphalt: parse(params["asphalt"]) ?? false,
+                                         serviceRoute: parse(params["serviceroute"]) ?? false)
 
             if let from = PathFinder.shared.annotationById[from],
                let to =  PathFinder.shared.annotationById[to] {
-                MapInfo.routeDetail?.setup(from: from, to: to, routeParams: .init(asphalt: asphalt, serviceRoute: serviceRoute))
+                MapInfo.routeDetail?.setup(from: from, to: to, routeParams: params)
             }
+            
+            Analytics.shared.openSharedRoute(from: from, to: to, params: params)
         }
     }
     
@@ -52,6 +54,7 @@ class ParseUserActivity {
            let annotation = PathFinder.shared.annotationById[annotationID] {
             
             MapView.mapViewDelegate?.focusAndSelect(annotation: annotation, focusVariant: .center)
+            Analytics.shared.openSharedAnnotation(with: annotationID)
         }
     }
     
@@ -59,6 +62,8 @@ class ParseUserActivity {
         let path = url.path
         let id = String(path.suffix(from: path.index(path.startIndex, offsetBy: 3)))
         OpenUrlPopup(id: id).present(to: vc, animated: true, completion: nil)
+        
+        Analytics.shared.openSharedQR(with: id)
     }
     
     func parseQueryItems(url: URL) -> [String:String] {

@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
     }
+    
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
 
         if let vc = window?.rootViewController {
