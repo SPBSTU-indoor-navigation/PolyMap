@@ -113,6 +113,11 @@ class UnitDetailVC: NavbarBottomSheetPage {
             unitDetailInfo.sections = unitDetailInfo.sections.filter({ !($0 is UnitDetailInfo.Route) })
         }
         
+        if let id = unitDetailInfo.annotation?.imdfID,
+           self.unitDetailInfo?.annotation?.imdfID != id {
+            Analytics.shared.openUnitDetail(with: id)
+        }
+        
         self.unitDetailInfo = unitDetailInfo
         titleLabel.text = unitDetailInfo.title
         titleNavbarLabel.text = unitDetailInfo.title

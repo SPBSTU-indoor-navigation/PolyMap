@@ -509,6 +509,11 @@ extension RouteDetailVC {
             } else {
                 mapViewDelegate.focus(on: result)
             }
+            
+            if let from = result.from as? BaseAnnotation,
+               let to = result.to as? BaseAnnotation {
+                Analytics.shared.createRoute(from: from.imdfID, to: to.imdfID, params: routeParams)
+            }
         } else {
             pathID = nil
         }

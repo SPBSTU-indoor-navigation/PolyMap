@@ -127,6 +127,8 @@ class SectionCollection: NSObject, UITableViewDataSource {
             activityViewController.popoverPresentationController?.sourceView = cell.image
             if let vc = tableView.delegate as? UIViewController {
                 vc.present(activityViewController, animated: true, completion: nil)
+                
+                Analytics.shared.shareAnnotation(with: annotation.imdfID)
             }
         }
     }

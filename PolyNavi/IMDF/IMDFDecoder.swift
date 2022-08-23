@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ZIPFoundation
 import MapKit
 
 protocol IMDFDecodableFeature {
@@ -51,6 +52,27 @@ enum File {
 }
 
 class IMDFDecoder {
+    static func decodeFromZip(_ path: URL) -> Venue? {
+        let fileManager = FileManager()
+        var destinationURL = fileManager.temporaryDirectory
+        destinationURL.appendPathComponent("IMDFData")
+        
+        do {
+            if (fileManager.fileExists(atPath: destinationURL.path)) {
+                try fileManager.removeItem(at: destinationURL)
+            }
+            
+            try fileManager.createDirectory(at: destinationURL, withIntermediateDirectories: true, attributes: nil)
+            try fileManager.unzipItem(at: path, to: destinationURL)
+            
+            return decode(destinationURL.appendingPathComponent(path.deletingPathExtension().lastPathComponent))
+        } catch {
+            print("Extracting entry from venue archive failed with error:\(error)")
+        }
+        
+        return nil
+    }
+    
     static func decode(_ path: URL) -> Venue? {
         
         let addresses = try! decodeFeatures(IMDF.Address.self, path: File.address.fileURL(path))

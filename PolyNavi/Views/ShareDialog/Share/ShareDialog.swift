@@ -340,6 +340,8 @@ struct ShareDialog: View {
             })
             
             UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = Asset.accentColor.color
+            
+            Analytics.shared.openShareQRDialog()
         })
     }
     

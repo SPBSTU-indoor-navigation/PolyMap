@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,7 +30,6 @@
 		5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 		7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F912E21A3F89F0FBB707D3FB /* libPods-PolyNaviClip.a */; };
 		9717E4272742991F00332D29 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4262742991F00332D29 /* MapView.swift */; };
-		9717E46027447A7D00332D29 /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		97196E7E27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
 		97196E7F27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
 		97196E8127E7F15C00F9E73A /* BaseAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */; };
@@ -54,7 +53,6 @@
 		971F8DF527BD55480018F98A /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F67A3270CD68900FCC07C /* XCAssets+Generated.swift */; };
 		971F8DF627BD554B0018F98A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054F6790270C7B4C00FCC07C /* Assets.xcassets */; };
 		971F8DF727BD55510018F98A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 056F2D15271C623B0063015B /* Localizable.strings */; };
-		971F8DF827BD55540018F98A /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 9717E45F27447A7D00332D29 /* IMDFData */; };
 		971F8DF927BD555B0018F98A /* IMDFDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C7C2789D234008CFA05 /* IMDFDecoder.swift */; };
 		971F8DFA27BD555B0018F98A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C802789DE95008CFA05 /* Models.swift */; };
 		971F8DFB27BD555B0018F98A /* LocalizedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E2C822789DF39008CFA05 /* LocalizedName.swift */; };
@@ -130,6 +128,7 @@
 		973E861B280D004A007F4BE2 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E8619280D004A007F4BE2 /* TextView.swift */; };
 		97457CD128661E9600E2B86F /* QuickSelectMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97457CD028661E9600E2B86F /* QuickSelectMapView.swift */; };
 		97457CD228661E9600E2B86F /* QuickSelectMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97457CD028661E9600E2B86F /* QuickSelectMapView.swift */; };
+		9748FB5928B29FDF00587318 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748FB5828B29FDF00587318 /* Analytics.swift */; };
 		974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
 		974D423D280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */; };
 		974D423F280E110A00F05434 /* ShareResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D423E280E110A00F05434 /* ShareResult.swift */; };
@@ -262,6 +261,15 @@
 		97BC3D332819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D312819FA55000734D9 /* ExclusiveRouteDetailInfo.swift */; };
 		97BC3D37281A017B000734D9 /* ExclusiveSearchableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */; };
 		97BC3D38281A017B000734D9 /* ExclusiveSearchableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */; };
+		97BDD5F528B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; };
+		97BDD5F628B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97BDD5FB28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; };
+		97BDD5FC28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97BDD5FF28B3DA6E00AB2350 /* IMDFData.zip in Resources */ = {isa = PBXBuildFile; fileRef = 97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */; };
+		97BDD60028B3DA6E00AB2350 /* IMDFData.zip in Resources */ = {isa = PBXBuildFile; fileRef = 97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */; };
+		97BDD60228B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD60128B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework */; };
+		97BDD60328B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97BDD60128B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97BDD61128B422C300AB2350 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748FB5828B29FDF00587318 /* Analytics.swift */; };
 		97D551D82739D63A002A5BBD /* TimetablePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D551D72739D63A002A5BBD /* TimetablePageVC.swift */; };
 		97D5E15C28565B5700C65B65 /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15B28565B5700C65B65 /* HelloMessage.swift */; };
 		97D5E15D28565C2E00C65B65 /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D5E15B28565B5700C65B65 /* HelloMessage.swift */; };
@@ -292,6 +300,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		97BDD5F728B2FAD500AB2350 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				97BDD60328B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework in Embed Frameworks */,
+				97BDD5F628B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97BDD5FD28B2FAE900AB2350 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				97BDD5FC28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97C6DA6C27BC7D640082AAC7 /* Embed App Clips */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -335,7 +366,6 @@
 		764E24D0B031857F17BD56B5 /* libPods-PolyMapAppClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyMapAppClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8CE2653503032042C79524 /* Pods-PolyMapAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyMapAppClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyMapAppClip/Pods-PolyMapAppClip.debug.xcconfig"; sourceTree = "<group>"; };
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		9717E45F27447A7D00332D29 /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		97196E7D27E6781D00F9E73A /* PinnableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnableMapView.swift; sourceTree = "<group>"; };
 		97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnnotationView.swift; sourceTree = "<group>"; };
 		9719FBEA2806478A0048C810 /* OpacityHitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityHitTest.swift; sourceTree = "<group>"; };
@@ -346,6 +376,7 @@
 		971F8DDC27BD52EF0018F98A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		971F8DDE27BD52EF0018F98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNaviClip.entitlements; sourceTree = "<group>"; };
+		972D7F0B28B2F8000004FA3F /* YandexMobileMetrica.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = YandexMobileMetrica.xcframework; path = "../../../../Downloads/YandexMobileMetrica-4/dynamic/YandexMobileMetrica.xcframework"; sourceTree = "<group>"; };
 		9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		9735D2022824B0C600F8A08F /* ReportanIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportanIssue.swift; sourceTree = "<group>"; };
 		9735D2052825D38300F8A08F /* ReportResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportResult.swift; sourceTree = "<group>"; };
@@ -370,6 +401,7 @@
 		973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyNavi.entitlements; sourceTree = "<group>"; };
 		973E8619280D004A007F4BE2 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		97457CD028661E9600E2B86F /* QuickSelectMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSelectMapView.swift; sourceTree = "<group>"; };
+		9748FB5828B29FDF00587318 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		974D423B280E0E9A00F05434 /* OpenUrlPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlPopup.swift; sourceTree = "<group>"; };
 		974D423E280E110A00F05434 /* ShareResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareResult.swift; sourceTree = "<group>"; };
 		974D4245280F894100F05434 /* NetworkShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkShared.swift; sourceTree = "<group>"; };
@@ -456,6 +488,12 @@
 		97BC3D2E2819EA3E000734D9 /* TintedUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedUILabel.swift; sourceTree = "<group>"; };
 		97BC3D312819FA55000734D9 /* ExclusiveRouteDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveRouteDetailInfo.swift; sourceTree = "<group>"; };
 		97BC3D36281A017B000734D9 /* ExclusiveSearchableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveSearchableCell.swift; sourceTree = "<group>"; };
+		97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = YandexMobileMetrica.xcframework; sourceTree = "<group>"; };
+		97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = IMDFData.zip; sourceTree = "<group>"; };
+		97BDD60128B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = YandexMobileMetricaCrashes.xcframework; sourceTree = "<group>"; };
+		97BDD60928B41AD800AB2350 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		97BDD60A28B41AD800AB2350 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		97BDD61028B41D4500AB2350 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		97D551D72739D63A002A5BBD /* TimetablePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetablePageVC.swift; sourceTree = "<group>"; };
 		97D5E15B28565B5700C65B65 /* HelloMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessage.swift; sourceTree = "<group>"; };
 		97D5E15E28565D3200C65B65 /* HelloMessageLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMessageLine.swift; sourceTree = "<group>"; };
@@ -482,7 +520,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BDD60228B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework in Frameworks */,
 				CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */,
+				97BDD5F528B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Frameworks */,
 				5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +531,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BDD5FB28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Frameworks */,
 				7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,6 +573,7 @@
 		054F6786270C7B4C00FCC07C /* PolyNavi */ = {
 			isa = PBXGroup;
 			children = (
+				9748FB5728B29F8700587318 /* Analytics */,
 				9735D20C2826D9C000F8A08F /* Storage */,
 				9787699927FB3DDB008138EC /* PathFinder */,
 				054F67A5270CD72700FCC07C /* App */,
@@ -545,6 +587,7 @@
 				973DA64E27BD75DC00D501F3 /* PolyNavi.entitlements */,
 				054F6795270C7B4C00FCC07C /* Info.plist */,
 				974D42582811E3B700F05434 /* InfoPlist.strings */,
+				97BDD60928B41AD800AB2350 /* Bridging-Header.h */,
 			);
 			path = PolyNavi;
 			sourceTree = "<group>";
@@ -552,7 +595,7 @@
 		054F679B270C7E4C00FCC07C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9717E45F27447A7D00332D29 /* IMDFData */,
+				97BDD5FE28B3DA6E00AB2350 /* IMDFData.zip */,
 				056F2D10271C620A0063015B /* Strings */,
 				054F67A2270CD65C00FCC07C /* Generated */,
 				054F6790270C7B4C00FCC07C /* Assets.xcassets */,
@@ -680,6 +723,9 @@
 		4B73B799F57DEF02F87D3626 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97BDD60128B411D100AB2350 /* YandexMobileMetricaCrashes.xcframework */,
+				972D7F0B28B2F8000004FA3F /* YandexMobileMetrica.xcframework */,
+				97BDD5F428B2FAD500AB2350 /* YandexMobileMetrica.xcframework */,
 				97E15D0D27BC7F2B00E636FC /* libAlamofire.a */,
 				97E15D0E27BC7F2B00E636FC /* libM13Checkbox.a */,
 				97E15D0F27BC7F2B00E636FC /* libUIScreenExtension.a */,
@@ -731,6 +777,7 @@
 				971F8DD927BD52EF0018F98A /* Assets.xcassets */,
 				971F8DDB27BD52EF0018F98A /* LaunchScreen.storyboard */,
 				971F8DDF27BD52EF0018F98A /* PolyNaviClip.entitlements */,
+				97BDD60A28B41AD800AB2350 /* Bridging-Header.h */,
 				971F8DDE27BD52EF0018F98A /* Info.plist */,
 			);
 			path = PolyNaviClip;
@@ -824,6 +871,15 @@
 				974D425D2813939000F05434 /* OpenUrl */,
 			);
 			path = ShareDialog;
+			sourceTree = "<group>";
+		};
+		9748FB5728B29F8700587318 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				9748FB5828B29FDF00587318 /* Analytics.swift */,
+				97BDD61028B41D4500AB2350 /* Config.h */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		974D4244280F893500F05434 /* Shared */ = {
@@ -1180,6 +1236,7 @@
 				054F6781270C7B4C00FCC07C /* Frameworks */,
 				054F6782270C7B4C00FCC07C /* Resources */,
 				97C6DA6C27BC7D640082AAC7 /* Embed App Clips */,
+				97BDD5F728B2FAD500AB2350 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1199,6 +1256,7 @@
 				971F8DCA27BD52EE0018F98A /* Sources */,
 				971F8DCB27BD52EE0018F98A /* Frameworks */,
 				971F8DCC27BD52EE0018F98A /* Resources */,
+				97BDD5FD28B2FAE900AB2350 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1220,9 +1278,11 @@
 				TargetAttributes = {
 					054F6783270C7B4C00FCC07C = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1340;
 					};
 					971F8DCD27BD52EE0018F98A = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -1252,8 +1312,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				054F6794270C7B4C00FCC07C /* LaunchScreen.storyboard in Resources */,
+				97BDD5FF28B3DA6E00AB2350 /* IMDFData.zip in Resources */,
 				056F2D13271C623B0063015B /* Localizable.strings in Resources */,
-				9717E46027447A7D00332D29 /* IMDFData in Resources */,
 				054F6791270C7B4C00FCC07C /* Assets.xcassets in Resources */,
 				974D42552811E3B700F05434 /* InfoPlist.strings in Resources */,
 			);
@@ -1265,10 +1325,10 @@
 			files = (
 				971F8DDD27BD52EF0018F98A /* LaunchScreen.storyboard in Resources */,
 				974D42562811E3B700F05434 /* InfoPlist.strings in Resources */,
-				971F8DF827BD55540018F98A /* IMDFData in Resources */,
 				971F8DF727BD55510018F98A /* Localizable.strings in Resources */,
 				971F8DF627BD554B0018F98A /* Assets.xcassets in Resources */,
 				971F8DDA27BD52EF0018F98A /* Assets.xcassets in Resources */,
+				97BDD60028B3DA6E00AB2350 /* IMDFData.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,6 +1532,7 @@
 				97A566F827D589FA00A064CC /* UnitDetailInfo.swift in Sources */,
 				973962D9280CB720000E478F /* ShareDialog.swift in Sources */,
 				978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */,
+				9748FB5928B29FDF00587318 /* Analytics.swift in Sources */,
 				978B322427F0058B00760B78 /* SearchGroupedHeaderView.swift in Sources */,
 				9795F8D3285251AC002FA5C7 /* MapLabel.swift in Sources */,
 				974D4246280F894100F05434 /* NetworkShared.swift in Sources */,
@@ -1492,6 +1553,7 @@
 				971F8DF127BD54FA0018F98A /* Animator.swift in Sources */,
 				97BC3D302819EA3E000734D9 /* TintedUILabel.swift in Sources */,
 				97BC3D332819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */,
+				97BDD61128B422C300AB2350 /* Analytics.swift in Sources */,
 				971F8DF027BD54FA0018F98A /* RoundButton.swift in Sources */,
 				971F8E0227BD55680018F98A /* Detail.swift in Sources */,
 				971F8E0A27BD556B0018F98A /* AmenityAnnotationView.swift in Sources */,
@@ -1785,6 +1847,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PolyNavi/PolyNavi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -1796,10 +1859,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap";
+				SWIFT_OBJC_BRIDGING_HEADER = "PolyNavi/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1814,6 +1879,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PolyNavi/PolyNavi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1825,10 +1891,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap";
+				SWIFT_OBJC_BRIDGING_HEADER = "PolyNavi/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1842,6 +1909,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PolyNaviClip/PolyNaviClip.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -1860,12 +1928,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.soprachev.polymap.clip";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APPCLIP";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PolyNaviClip/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1878,6 +1948,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PolyNaviClip/PolyNaviClip.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1896,12 +1967,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soprachev.polymap.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.soprachev.polymap.clip";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPCLIP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PolyNaviClip/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

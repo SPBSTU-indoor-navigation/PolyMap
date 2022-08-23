@@ -13,7 +13,9 @@ target 'PolyNavi' do
   pod 'M13Checkbox'
 
   pod 'UIScreenExtension', :git => 'https://github.com/marchv/UIScreenExtension'
-  
+
+  pod 'ZIPFoundation', '~> 0.9'
+
 end
 
 
@@ -26,6 +28,8 @@ target 'PolyNaviClip' do
   pod 'Alamofire', '~> 5.2'
 
   pod 'UIScreenExtension', :git => 'https://github.com/marchv/UIScreenExtension'
+
+  pod 'ZIPFoundation', '~> 0.9'
   
 end
 
