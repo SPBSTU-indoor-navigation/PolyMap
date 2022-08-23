@@ -20,12 +20,12 @@ class Analytics {
     
     // Пользователь посмотрел инфу об аннотации с id
     func openUnitDetail(with id: UUID) {
-        YMMYandexMetrica.reportEvent("OpenUnitDetail", parameters: ["id": id])
+        YMMYandexMetrica.reportEvent("OpenUnitDetail", parameters: ["id": id.uuidString])
     }
     
     // Пользователь открыл аннотацию по длинной ссылке
     func openSharedAnnotation(with id: UUID) {
-        YMMYandexMetrica.reportEvent("OpenSharedAnnotation", parameters: ["id": id])
+        YMMYandexMetrica.reportEvent("OpenSharedAnnotation", parameters: ["id": id.uuidString])
     }
     
     // Пользователь создал маршрут от from до to с параметрами asphalt и serviceRoute
@@ -60,11 +60,17 @@ class Analytics {
     
     // Пользователь создал приглашение
     func shareQR(with id: String, settings: ShareDialog.Settings) {
+        var color = ""
+        
+        if let variant = settings.color?.currentVariant {
+            color = String(describing: variant.self)
+        }
+        
         YMMYandexMetrica.reportEvent("ShareQR", parameters: [
             "id": id,
             "isQR": settings.isQR,
-            "color": String(describing: settings.color.self),
-            "useLogo": String(describing: settings.qrLogoVariant.self),
+            "color": color,
+            "useLogo": settings.qrLogoVariant == .use,
             "useBadge": settings.bage == .badge,
             "useHelloText": !(settings.text?.isEmpty ?? true)
         ])
