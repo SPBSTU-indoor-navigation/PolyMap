@@ -135,6 +135,12 @@ class MapViewController: UIViewController {
         if GroupsAndTeacherStorage.shared.isReady() {
             vc = TimetablePageVC()
             vc.isModalInPresentation = true
+            
+            if let institute = GroupsAndTeacherStorage.shared.currentInsitute?.title,
+               let group = GroupsAndTeacherStorage.shared.currentGroupNumber?.title {
+                Analytics.shared.openTimeTable(insitute: institute, group: group)
+                Analytics.shared.applyInstitute(insitute: institute, group: group)
+            }
         } else {
             let settings = SettingTimetableVC()
             settings.finishAction = { [weak self] in

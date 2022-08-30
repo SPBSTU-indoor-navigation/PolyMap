@@ -56,23 +56,25 @@ class PathResult {
         fastTime = Float(outdoorDistance / 5.0 + indoorDistance / 3.0) * 3.6
     }
     
-    static func distance(path: [PathResultNode]) -> Double {
+    static func distance(path: [PathResultNode], filter: (PathResultNode, PathResultNode) -> Bool) -> Double {
         if path.isEmpty { return 0 }
         
         var result: Double = 0
         for i in 1..<path.count {
-            result += path[i].location.distance(from: path[i-1].location)
+            if filter(path[i-1], path[i]) {
+                result += path[i].location.distance(from: path[i-1].location)
+            }
         }
         
         return result
     }
     
     static func outdoorDistance(path: [PathResultNode]) -> Double {
-        PathResult.distance(path: path.filter({ $0.building == nil }))
+        return PathResult.distance(path: path, filter: { $1.building == nil })
     }
     
     static func indoorDistance(path: [PathResultNode]) -> Double {
-        PathResult.distance(path: path.filter({ $0.building != nil }))
+        return PathResult.distance(path: path, filter: { $1.building != nil })
     }
 }
 
