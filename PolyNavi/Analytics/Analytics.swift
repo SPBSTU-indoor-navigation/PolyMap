@@ -90,4 +90,27 @@ class Analytics {
     func shareAnnotation(with id: UUID) {
         YMMYandexMetrica.reportEvent("ShareAnnotation", parameters: ["id": id.uuidString])
     }
+    
+    
+    
+    
+    // Timetable
+    func openTimeTable(insitute: String, group: String) {
+        YMMYandexMetrica.reportEvent("OpenTimeTable", parameters: [
+            "insitute": insitute,
+            "group": group
+        ])
+    }
+    
+    func applyInstitute(insitute: String, group: String) {
+        let profile = YMMMutableUserProfile()
+        
+        profile.apply(from: [
+            YMMProfileAttribute.customString("insitute").withValue(insitute),
+            YMMProfileAttribute.customString("group").withValue(group),
+        ])
+        
+        
+        YMMYandexMetrica.report(profile)
+    }
 }
