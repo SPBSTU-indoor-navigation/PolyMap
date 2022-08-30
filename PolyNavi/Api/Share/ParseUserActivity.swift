@@ -40,7 +40,9 @@ class ParseUserActivity {
 
             if let from = PathFinder.shared.annotationById[from],
                let to =  PathFinder.shared.annotationById[to] {
-                MapInfo.routeDetail?.setup(from: from, to: to, routeParams: params)
+                DispatchQueue.main.async {
+                    MapInfo.routeDetail?.setup(from: from, to: to, routeParams: params)
+                }
             }
             
             Analytics.shared.openSharedRoute(from: from, to: to, params: params)
@@ -52,9 +54,10 @@ class ParseUserActivity {
         if let annotationStr = params["annotation"],
            let annotationID = UUID(uuidString: annotationStr),
            let annotation = PathFinder.shared.annotationById[annotationID] {
-            
-            MapView.mapViewDelegate?.focusAndSelect(annotation: annotation, focusVariant: .center)
-            Analytics.shared.openSharedAnnotation(with: annotationID)
+            DispatchQueue.main.async {
+                MapView.mapViewDelegate?.focusAndSelect(annotation: annotation, focusVariant: .center)
+                Analytics.shared.openSharedAnnotation(with: annotationID)
+            }
         }
     }
     
