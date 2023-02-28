@@ -16,6 +16,8 @@ class BottomSheetPage: UIViewController {
 }
 
 class BluredBackgroundBottomSheetPage: BottomSheetPage {
+    
+    var t :String = ""
     lazy var background: UIView = {
         $0.frame = view.frame
         $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -33,7 +35,7 @@ class BluredBackgroundBottomSheetPage: BottomSheetPage {
         
         $0.insertSubview(blur, at: 0)
         return $0
-    
+        
     }(UIView())
     
     lazy var line: UIView = {

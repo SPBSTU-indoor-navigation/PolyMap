@@ -1,6 +1,8 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
+pod 'SwiftLint'
+
 target 'PolyNavi' do
   platform :ios, '13.0'
   # SwiftGen
