@@ -1,3 +1,12 @@
+disabled_rules:
+  - trailing_whitespace # XCode autoformatting add whitespace at empty lines
+  - identifier_name # for temp variables like i, j, k, t, etc.
+
+excluded:
+  - Carthage
+  - Pods
+
 line_length:
+  ignores_comments: true
   warning: 250
   error: 300
