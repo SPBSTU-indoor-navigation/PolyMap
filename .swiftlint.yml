@@ -1,6 +1,15 @@
 disabled_rules:
+  - function_parameter_count
+  - nesting
+  - variable_name
+  - identifier_name
   - trailing_whitespace # XCode autoformatting add whitespace at empty lines
-  - identifier_name # for temp variables like i, j, k, t, etc.
+  - vertical_whitespace
+  - type_body_length
+
+opt_in_rules:
+  - empty_count
+  - private_outlet
 
 excluded:
   - Carthage
@@ -10,3 +19,9 @@ line_length:
   ignores_comments: true
   warning: 250
   error: 300
+
+function_parameter_count:
+  warning: 10
+  error: 15
+
+function_body_length: 1000
