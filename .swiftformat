@@ -1,0 +1,18 @@
+--exclude Pods,**/Generated
+--disable redundantRawValues,blankLinesAtStartOfScope,consecutiveBlankLines,blankLinesAtEndOfScope,wrapMultilineStatementBraces
+
+
+--maxwidth none
+--allman false
+--xcodeindentation disabled
+
+--trimwhitespace nonblank-lines
+--commas inline
+--lineaftermarks false
+--ranges nospace
+--wrapparameters after-first
+
+--modifierorder static,public,private,open,fileprivate,internal
+--nospaceoperators ...,..<
+
+--nevertrailing map,filter,reduce,compactMap,compactMapValues,flatMap
