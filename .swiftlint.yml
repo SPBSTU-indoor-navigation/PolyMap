@@ -1,7 +1,5 @@
 disabled_rules:
-  - function_parameter_count
   - nesting
-  - variable_name
   - identifier_name
   - trailing_whitespace # XCode autoformatting add whitespace at empty lines
   - vertical_whitespace
@@ -21,7 +19,7 @@ line_length:
   error: 300
 
 function_parameter_count:
-  warning: 10
-  error: 15
+  warning: 15
+  error: 20
 
 function_body_length: 1000

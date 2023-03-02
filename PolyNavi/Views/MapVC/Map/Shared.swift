@@ -52,7 +52,7 @@ class DetailLevelProcessor<T> {
         }
     }
     
-    private var sizes: [Int:[Size]] = [:]
+    private var sizes: [Int: [Size]] = [:]
     
     func add(forDetailLevel: Int, mapSize: Float, state: T) {
         let newElement = Size(size: mapSize, state: state)

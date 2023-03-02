@@ -4,11 +4,12 @@
 //
 //  Created by Andrei Soprachev on 15.11.2021.
 //
+// swiftlint:disable file_length
 
 import UIKit
 import MapKit
 
-protocol MapViewDelegate {
+protocol MapViewDelegate: AnyObject {
     @discardableResult
     func focusAndSelect(annotation: MKAnnotation, focusVariant: MapView.FocusVariant) -> Bool
     func focus(on annotation: MKAnnotation, focusVariant: MapView.FocusVariant)
@@ -41,10 +42,10 @@ class MapView: UIView {
         }
     }
     
-    static private(set) var mapViewDelegate: MapViewDelegate? = nil
+    static private(set) var mapViewDelegate: MapViewDelegate?
     
-    var mapContainerView : UIView?
-    var lastZoom : Float = 16
+    var mapContainerView: UIView?
+    var lastZoom: Float = 16
     var currentBuilding: Building?
     
     var venue: Venue? {
@@ -167,6 +168,7 @@ class MapView: UIView {
         }
     }
     
+    // swiftlint:disable cyclomatic_complexity
     func nearestBuilding(position: CLLocationCoordinate2D) -> Building? {
         
         let buildings = venue!.buildings
@@ -177,17 +179,15 @@ class MapView: UIView {
         for building in buildings {
             guard let polygons = building.polygons else { continue }
 
-            for polygon in polygons {
-                if polygon.contains(position) {
-                    return building;
-                }
+            for polygon in polygons where polygon.contains(position) {
+                return building
             }
         }
         
         let topLeftPoint = mapView.convert(.init(x: mapView.frame.minX, y: mapView.frame.minY), toCoordinateFrom: mapView)
         let maxDistance = topLeftPoint.distance(from: position)
 
-        var nearestBuilding: Building? = nil
+        var nearestBuilding: Building?
         var nearestDistance: Double = maxDistance
         
         for building in buildings {
@@ -211,7 +211,7 @@ class MapView: UIView {
         }
         
         
-        if let _ = nearestBuilding {
+        if nearestBuilding != nil {
             return nearestBuilding
         }
         
@@ -227,10 +227,8 @@ class MapView: UIView {
             for building in buildings {
                 guard let polygons = building.polygons else { continue }
                 
-                for polygon in polygons {
-                    if polygon.contains(point) {
-                        return building
-                    }
+                for polygon in polygons where polygon.contains(point) {
+                    return building
                 }
             }
         }
@@ -261,7 +259,7 @@ class MapView: UIView {
     
         return nearestBuilding
     }
-    
+    // swiftlint:enable cyclomatic_complexity
     
     func updateMap(zoomLevel: Float) {
         debug.text = "Zoom: \(roundf(zoomLevel * 100) / 100)\ndist: \(mapView.camera.centerCoordinateDistance)"
@@ -355,7 +353,8 @@ class MapView: UIView {
         
         let safeZone = mapInfoDelegate?.getSafeZone() ?? mapView
         let targetCenter = tempMap.convert(CGPoint(x: mapView.frame.width - safeZone.center.x,
-                                                   y: mapView.frame.height - safeZone.center.y + (mapInfoDelegate?.getHorizontalSize() != .big ? mapView.frame.height / 20 : 0)), //Сдвиг вверх по правилам дизайна. Человеческий глаз склонен завышать точку центра
+                                                   y: mapView.frame.height - safeZone.center.y +
+                                                   (mapInfoDelegate?.getHorizontalSize() != .big ? mapView.frame.height / 20 : 0)), // Сдвиг вверх по правилам дизайна. Человеческий глаз склонен завышать точку центра
                                            toCoordinateFrom: mapView)
         
         MKMapView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
@@ -421,10 +420,10 @@ class MapView: UIView {
 
 extension MapView {
     func showLevelSwitcher(building: Building) {
-        levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: building.levels.map{ ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
+        levelSwitcher.updateLevels(levels: Dictionary(uniqueKeysWithValues: building.levels.map { ($0.ordinal, $0.shortName?.bestLocalizedValue ?? "-") }),
                                    selected: building.ordinal)
         
-//        self.layoutSubviews() //TODO: было возможно чтоб переключать этаж при смене здания
+//        self.layoutSubviews() // TODO: было возможно чтоб переключать этаж при смене здания
         
         updateLevelSwitcher(Constants.horizontalOffset)
     }
@@ -458,19 +457,15 @@ extension MapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let customOverlay = self.mapView.customOverlay(for: overlay) {
 
-            if let renderer = customOverlay.overlayRenderer {
-                (customOverlay as! Styleble).configurate(renderer: renderer)
-                return renderer
-            }
-
-            let renderer = renderer(for: overlay)
-            (customOverlay as! Styleble).configurate(renderer: renderer)
+            let renderer = customOverlay.overlayRenderer ?? renderer(for: overlay)
+            (customOverlay as? Styleble)?.configurate(renderer: renderer)
             
             return renderer
         }
         
-        if overlay is PathOverlay {
-            let pathRenderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        if overlay is PathOverlay,
+            let overlay = overlay as? MKPolyline {
+            let pathRenderer = MKPolylineRenderer(overlay: overlay)
             pathRenderer.lineWidth = 7
             pathRenderer.strokeColor = .systemBlue
             pathRenderer.lineJoin = .bevel
@@ -545,21 +540,27 @@ extension MapView: MapViewDelegate {
     
     func focus(on annotation: MKAnnotation, focusVariant: FocusVariant = .auto) {
         
-        var targetZoom = mapView.camera.centerCoordinateDistance
-        
-        switch annotation {
-        case is OccupantAnnotation: targetZoom = 150
-        case is AmenityAnnotation: targetZoom = 200
-        case is AttractionAnnotation:
-            if targetZoom > 1000 || lastZoom > Constants.minShowZoom {
-                targetZoom = 800
+        func calculateTargetZoom(_ annotation: MKAnnotation) -> CLLocationDistance {
+            var targetZoom = mapView.camera.centerCoordinateDistance
+            
+            switch annotation {
+            case is OccupantAnnotation: targetZoom = 150
+            case is AmenityAnnotation: targetZoom = 200
+            case is AttractionAnnotation:
+                if targetZoom > 1000 || lastZoom > Constants.minShowZoom {
+                    targetZoom = 800
+                }
+            case is EnviromentAmenityAnnotation:
+                if 500 < targetZoom || targetZoom < 200 {
+                    targetZoom = 400
+                }
+            default: break
             }
-        case is EnviromentAmenityAnnotation:
-            if 500 < targetZoom || targetZoom < 200 {
-                targetZoom = 400
-            }
-        default: break
+            
+            return targetZoom
         }
+        
+        let targetZoom = calculateTargetZoom(annotation)
         
         if let indoor = annotation as? IndoorAnnotation {
             if currentBuilding == indoor.building {
@@ -720,7 +721,7 @@ extension MapView: MapViewDelegate {
     
 }
 
-fileprivate func boundingAfterRotation(_ shape: MKShape & MKOverlay, angle: CGFloat, around point: MKMapPoint? = nil) -> MKMapRect {
+private func boundingAfterRotation(_ shape: MKShape & MKOverlay, angle: CGFloat, around point: MKMapPoint? = nil) -> MKMapRect {
     
     if let polygon = shape as? MKPolygon {
         let points = Array(UnsafeBufferPointer(start: polygon.points(), count: polygon.pointCount))
