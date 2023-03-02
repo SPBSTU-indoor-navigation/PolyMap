@@ -6,8 +6,8 @@
 //
 // swiftlint:disable file_length
 
-import UIKit
 import MapKit
+import UIKit
 
 protocol MapViewDelegate: AnyObject {
     @discardableResult
@@ -54,7 +54,7 @@ class MapView: UIView {
         }
         
         didSet {
-            guard let venue = venue else {
+            guard let venue else {
                 return
             }
 
@@ -76,7 +76,8 @@ class MapView: UIView {
         layoutViews()
     }
     
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -104,7 +105,7 @@ class MapView: UIView {
         return $0
     }(MKCompassButton(mapView: mapView))
     
-    private lazy var levelSwitcher: LevelSwitcher = {
+    lazy private var levelSwitcher: LevelSwitcher = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.onChange = onLevelChange
         $0.onRotate = onRotate
@@ -216,10 +217,10 @@ class MapView: UIView {
         }
         
         let mapFrame = mapView.frame.insetBy(dx: 50, dy: 50)
-        let corners: [CGPoint] = [ .init(x: mapFrame.minX, y: mapFrame.maxY),
-                                   .init(x: mapFrame.maxX, y: mapFrame.maxY),
-                                   .init(x: mapFrame.minX, y: mapFrame.minY),
-                                   .init(x: mapFrame.maxX, y: mapFrame.minY)]
+        let corners: [CGPoint] = [.init(x: mapFrame.minX, y: mapFrame.maxY),
+                                  .init(x: mapFrame.maxX, y: mapFrame.maxY),
+                                  .init(x: mapFrame.minX, y: mapFrame.minY),
+                                  .init(x: mapFrame.maxX, y: mapFrame.minY)]
         
         for corner in corners {
             let point = mapView.convert(corner, toCoordinateFrom: mapView)
@@ -259,6 +260,7 @@ class MapView: UIView {
     
         return nearestBuilding
     }
+
     // swiftlint:enable cyclomatic_complexity
     
     func updateMap(zoomLevel: Float) {
@@ -267,7 +269,7 @@ class MapView: UIView {
         mapInfoDelegate?.zoomMap(zoom: zoomLevel, animated: zoomByAnimation)
         lastZoom = zoomLevel
     
-        if let currentBuilding = currentBuilding {
+        if let currentBuilding {
             if zoomLevel > Constants.minShowZoom {
                 currentBuilding.show(mapView)
                 showLevelSwitcher(building: currentBuilding)
@@ -290,11 +292,11 @@ class MapView: UIView {
     func updateMap(nearestBuilding: Building?, zoomLevel: Float) {
         
         if currentBuilding != nearestBuilding {
-            if let currentBuilding = currentBuilding {
+            if let currentBuilding {
                 currentBuilding.hide(mapView)
             }
             
-            if let nearestBuilding = nearestBuilding {
+            if let nearestBuilding {
                 
                 if zoomLevel > Constants.minShowZoom {
                     nearestBuilding.show(mapView)
@@ -318,15 +320,15 @@ class MapView: UIView {
     func updateStylebleMapSizeOverlay(zoomLevel: Float) {
         mapView.currentOverlays
             .compactMap({ $0.value as? CustomOverlay & StylebleMapSize })
-            .forEach({
+            .forEach {
                 guard let renderer = mapView.renderer(for: $0.geometry) else { return }
                 $0.configurate(renderer: renderer, mapSize: zoomLevel)
-            })
+            }
     }
     
     func selectAnnotationAfterAdding(annotation: MKAnnotation?) {
         
-        guard let annotation = annotation else { return }
+        guard let annotation else { return }
         
         if mapView.annotations.contains(where: { annotation.isEqual($0) }) {
             selectAnnotation(annotation, animated: true, preventFocus: true)
@@ -354,7 +356,7 @@ class MapView: UIView {
         let safeZone = mapInfoDelegate?.getSafeZone() ?? mapView
         let targetCenter = tempMap.convert(CGPoint(x: mapView.frame.width - safeZone.center.x,
                                                    y: mapView.frame.height - safeZone.center.y +
-                                                   (mapInfoDelegate?.getHorizontalSize() != .big ? mapView.frame.height / 20 : 0)), // Сдвиг вверх по правилам дизайна. Человеческий глаз склонен завышать точку центра
+                                                       (mapInfoDelegate?.getHorizontalSize() != .big ? mapView.frame.height / 20 : 0)), // Сдвиг вверх по правилам дизайна. Человеческий глаз склонен завышать точку центра
                                            toCoordinateFrom: mapView)
         
         MKMapView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
@@ -366,10 +368,10 @@ class MapView: UIView {
     }
     
     func mapFocusSafeArea(point: CLLocationCoordinate2D, boundingBox: CGRect, complition: (() -> Void)? = nil) {
-        guard let mapInfoDelegate = mapInfoDelegate else { return }
+        guard let mapInfoDelegate else { return }
 
         let mapSafeZone = mapInfoDelegate.getSafeZone()
-        let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: self.mapView)
+        let safeZone = mapSafeZone.convert(mapSafeZone.bounds, to: mapView)
         
         let centerCG = mapView.convert(mapView.centerCoordinate, toPointTo: mapView)
         let annotationCG = mapView.convert(point, toPointTo: mapView)
@@ -411,7 +413,7 @@ class MapView: UIView {
         }
     }
     
-    func selectAnnotation(_ annotation: MKAnnotation, animated: Bool, preventFocus: Bool ) {
+    func selectAnnotation(_ annotation: MKAnnotation, animated: Bool, preventFocus: Bool) {
         self.preventFocus = preventFocus
         mapView.selectAnnotation(annotation, animated: animated)
     }
@@ -433,7 +435,7 @@ extension MapView {
     }
     
     private func updateLevelSwitcher(_ pos: CGFloat) {
-        self.layoutIfNeeded()
+        layoutIfNeeded()
         UIView.animate(withDuration: 0.15) {
             self.levelSwitcherConstraint?.constant = pos
             self.layoutIfNeeded()
@@ -454,8 +456,8 @@ extension MapView: MKMapViewDelegate {
         
     }
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let customOverlay = self.mapView.customOverlay(for: overlay) {
+    func mapView(_: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let customOverlay = mapView.customOverlay(for: overlay) {
 
             let renderer = customOverlay.overlayRenderer ?? renderer(for: overlay)
             (customOverlay as? Styleble)?.configurate(renderer: renderer)
@@ -464,7 +466,7 @@ extension MapView: MKMapViewDelegate {
         }
         
         if overlay is PathOverlay,
-            let overlay = overlay as? MKPolyline {
+           let overlay = overlay as? MKPolyline {
             let pathRenderer = MKPolylineRenderer(overlay: overlay)
             pathRenderer.lineWidth = 7
             pathRenderer.strokeColor = .systemBlue
@@ -498,7 +500,7 @@ extension MapView: MKMapViewDelegate {
         updateMap(zoomLevel: zoom)
     }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    func mapView(_: MKMapView, didSelect view: MKAnnotationView) {
         wantSelect = nil
         mapInfoDelegate?.mkDidSelect(view.annotation)
         
@@ -510,7 +512,7 @@ extension MapView: MKMapViewDelegate {
         }
     }
     
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+    func mapView(_: MKMapView, didDeselect view: MKAnnotationView) {
         mapInfoDelegate?.mkDidDeselect(view.annotation)
     }
 
@@ -551,7 +553,7 @@ extension MapView: MapViewDelegate {
                     targetZoom = 800
                 }
             case is EnviromentAmenityAnnotation:
-                if 500 < targetZoom || targetZoom < 200 {
+                if targetZoom > 500 || targetZoom < 200 {
                     targetZoom = 400
                 }
             default: break
@@ -569,7 +571,7 @@ extension MapView: MapViewDelegate {
             indoor.building.ordinal = indoor.level.ordinal
         }
         
-        self.zoomByAnimation = true
+        zoomByAnimation = true
         
         let view = mapView.view(for: annotation)
         let boundingBox = (view as? BoundingBox)?.boundingBox() ?? .zero
@@ -577,7 +579,7 @@ extension MapView: MapViewDelegate {
         var centering = focusVariant == .center
         
         if focusVariant == .auto {
-            if let view = view,
+            if let view,
                mapView.frame.intersects(view.frame.inset(by: .init(top: boundingBox.maxY, left: boundingBox.minX, bottom: boundingBox.minY, right: boundingBox.maxX))) {
                 centering = false
             } else {
@@ -602,7 +604,7 @@ extension MapView: MapViewDelegate {
         let rotation: CGFloat = attraction.building.rotation ?? mapView.camera.heading
         let bounding = boundingAfterRotation(attraction.building.geometry, angle: -rotation * .pi / 180, around: MKMapPoint(attraction.coordinate))
         
-        let tempMap = MKMapView(frame: self.mapView.frame)
+        let tempMap = MKMapView(frame: mapView.frame)
         tempMap.setVisibleMapRect(bounding, edgePadding: .init(top: 10, left: 10, bottom: 100, right: 10), animated: false)
         
         let pos = MKMapPoint(tempMap.centerCoordinate)
@@ -622,7 +624,7 @@ extension MapView: MapViewDelegate {
         let s = sin(angle)
         
         tempMap.centerCoordinate = MKMapPoint(x: pivot.x - (dX * c - dY * s),
-                                y: pivot.y - (dX * s + dY * c)).coordinate
+                                              y: pivot.y - (dX * s + dY * c)).coordinate
         
         if tempMap.camera.centerCoordinateDistance > 400 {
             tempMap.camera = MKMapCamera(lookingAtCenter: tempMap.centerCoordinate, fromDistance: 400, pitch: tempMap.camera.pitch, heading: tempMap.camera.heading)
@@ -634,7 +636,7 @@ extension MapView: MapViewDelegate {
     }
     
     func focus(on pathResult: PathResult) {
-        guard let mapInfoDelegate = mapInfoDelegate else { return }
+        guard let mapInfoDelegate else { return }
         
         
         let tempMap = MKMapView(frame: mapView.frame)
@@ -643,12 +645,12 @@ extension MapView: MapViewDelegate {
         let pathRect = pathResult.mapRect
         
         tempMap.setVisibleMapRect(pathRect, edgePadding: .init(top: safeZone.minY + 50,
-                                                              left: safeZone.minX + 50,
-                                                              bottom: mapView.frame.height - safeZone.maxY + 50,
-                                                              right: mapView.frame.width - safeZone.maxX + 50),
+                                                               left: safeZone.minX + 50,
+                                                               bottom: mapView.frame.height - safeZone.maxY + 50,
+                                                               right: mapView.frame.width - safeZone.maxX + 50),
                                   animated: false)
         
-        if tempMap.camera.centerCoordinateDistance > 500 && pathResult.outdoorDistance < 200 && pathResult.indoorDistance > 50 && pathResult.indoorDistance > pathResult.outdoorDistance {
+        if tempMap.camera.centerCoordinateDistance > 500, pathResult.outdoorDistance < 200, pathResult.indoorDistance > 50, pathResult.indoorDistance > pathResult.outdoorDistance {
             
             let centerRect = MKMapPoint(x: pathRect.midX, y: pathRect.midY)
             let centerMap = MKMapPoint(tempMap.centerCoordinate)
@@ -695,12 +697,12 @@ extension MapView: MapViewDelegate {
             }
         }
         
-        self.zoomByAnimation = true
+        zoomByAnimation = true
         MapView.animate(withDuration: 0.5, animations: {
             let cam = self.mapView.camera
-            if abs(cam.centerCoordinateDistance - tempMap.camera.centerCoordinateDistance) < 1 &&
-                abs(cam.heading - tempMap.camera.heading) < 0.1 &&
-                abs(cam.centerCoordinate.distance(from: tempMap.camera.centerCoordinate)) < 1 {
+            if abs(cam.centerCoordinateDistance - tempMap.camera.centerCoordinateDistance) < 1,
+               abs(cam.heading - tempMap.camera.heading) < 0.1,
+               abs(cam.centerCoordinate.distance(from: tempMap.camera.centerCoordinate)) < 1 {
                 return
             } else {
                 self.mapView.camera = tempMap.camera

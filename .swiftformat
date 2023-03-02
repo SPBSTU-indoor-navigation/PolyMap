@@ -12,7 +12,7 @@
 --ranges nospace
 --wrapparameters after-first
 
---modifierorder static,public,private,open,fileprivate,internal
+--modifierorder static,public,public(set)private,private(set),open,fileprivate,internal
 --nospaceoperators ...,..<
 
 --nevertrailing map,filter,reduce,compactMap,compactMapValues,flatMap

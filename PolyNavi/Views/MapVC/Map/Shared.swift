@@ -78,7 +78,7 @@ class DetailLevelProcessor<T> {
             if mapSize < lastSize.size { return lastSize.state }
             
             for size in sizes {
-                if lastSize.size < mapSize && mapSize < size.size {
+                if lastSize.size < mapSize, mapSize < size.size {
                     return lastSize.state
                 }
                 lastSize = size
