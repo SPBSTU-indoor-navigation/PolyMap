@@ -110,6 +110,7 @@
 		9780D8C027B3412A00DBDBF3 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
 		9780D8C227B3421800DBDBF3 /* TableBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */; };
 		9784149F27DE59A4003204C5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9784149E27DE59A4003204C5 /* BottomSheet.swift */; };
+		9789118E29CA7B0D00F76A6D /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9789118D29CA7B0D00F76A6D /* Test.swift */; };
 		978B792F27D12F8C0003626F /* AnnotationConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B792E27D12F8C0003626F /* AnnotationConvert.swift */; };
 		978B793027D12F8C0003626F /* AnnotationConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B792E27D12F8C0003626F /* AnnotationConvert.swift */; };
 		978B793227D2DBA70003626F /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978B793127D2DBA70003626F /* DetailCell.swift */; };
@@ -262,6 +263,7 @@
 		9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableBottomSheetPage.swift; sourceTree = "<group>"; };
 		9784149E27DE59A4003204C5 /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		9789118D29CA7B0D00F76A6D /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		978B792E27D12F8C0003626F /* AnnotationConvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationConvert.swift; sourceTree = "<group>"; };
 		978B793127D2DBA70003626F /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		978D9DC7273F56E300293A6C /* TimetableNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavbar.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 		054E980727C81DF300173EF1 /* PolyNaviTests */ = {
 			isa = PBXGroup;
 			children = (
+				9789118D29CA7B0D00F76A6D /* Test.swift */,
 				9754525F27DED14D00E9B0B3 /* ExtensionsTest.swift */,
 				9795440627DEC81900A076E2 /* MapViewTest.swift */,
 				9795440427DEBE2400A076E2 /* MapInfoPagesTest.swift */,
@@ -988,6 +991,7 @@
 			files = (
 				970B3B9527DD7A5F0048DF61 /* AnnotaionUI.swift in Sources */,
 				9795440727DEC81900A076E2 /* MapViewTest.swift in Sources */,
+				9789118E29CA7B0D00F76A6D /* Test.swift in Sources */,
 				9795440527DEBE2400A076E2 /* MapInfoPagesTest.swift in Sources */,
 				9784149F27DE59A4003204C5 /* BottomSheet.swift in Sources */,
 				059A18C527DDEB9200700F61 /* TimetableTest.swift in Sources */,

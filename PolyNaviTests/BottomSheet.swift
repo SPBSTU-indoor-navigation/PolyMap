@@ -60,6 +60,7 @@ class BottomSheet: XCTestCase, BottomSheetDelegate {
     func testPushPopVC() {
         bottomSheet.change(verticalSize: .small, animated: false)
         bottomSheet.pushViewController(UIViewController(), animated: true)
+        XCTAssertEqual(bottomSheet.state, .big)
         
         bottomSheet.popViewController(animated: true)
         XCTAssertEqual(bottomSheet.state, .small)
