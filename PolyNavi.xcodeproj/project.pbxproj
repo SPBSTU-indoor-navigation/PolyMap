@@ -178,6 +178,8 @@
 		9780D8BE27B3404B00DBDBF3 /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		9780D8C027B3412A00DBDBF3 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
 		9780D8C227B3421800DBDBF3 /* TableBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */; };
+		978563712A002843008F3E11 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 978563702A002843008F3E11 /* Logging */; };
+		978563732A00295B008F3E11 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 978563722A00295B008F3E11 /* Logging */; };
 		9787697B27F4BB14008138EC /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787697A27F4BB14008138EC /* TodayCell.swift */; };
 		9787697C27F4BB14008138EC /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787697A27F4BB14008138EC /* TodayCell.swift */; };
 		9787697F27F4BF52008138EC /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787697E27F4BF52008138EC /* CircularProgressBar.swift */; };
@@ -524,6 +526,7 @@
 				CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */,
 				97BDD5F528B2FAD500AB2350 /* YandexMobileMetrica.xcframework in Frameworks */,
 				5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */,
+				978563712A002843008F3E11 /* Logging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +534,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				978563732A00295B008F3E11 /* Logging in Frameworks */,
 				97BDD5FB28B2FAE900AB2350 /* YandexMobileMetrica.xcframework in Frameworks */,
 				7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */,
 			);
@@ -1244,6 +1248,9 @@
 				971F8DE127BD52EF0018F98A /* PBXTargetDependency */,
 			);
 			name = PolyNavi;
+			packageProductDependencies = (
+				978563702A002843008F3E11 /* Logging */,
+			);
 			productName = PolyNavi;
 			productReference = 054F6784270C7B4C00FCC07C /* PolyNavi.app */;
 			productType = "com.apple.product-type.application";
@@ -1263,6 +1270,9 @@
 			dependencies = (
 			);
 			name = PolyNaviClip;
+			packageProductDependencies = (
+				978563722A00295B008F3E11 /* Logging */,
+			);
 			productName = PolyNaviClip;
 			productReference = 971F8DCE27BD52EE0018F98A /* PolyNaviClip.app */;
 			productType = "com.apple.product-type.application.on-demand-install-capable";
@@ -1296,6 +1306,9 @@
 				ru,
 			);
 			mainGroup = 054F677B270C7B4B00FCC07C;
+			packageReferences = (
+				9785636F2A002843008F3E11 /* XCRemoteSwiftPackageReference "swift-log" */,
+			);
 			productRefGroup = 054F6785270C7B4C00FCC07C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2010,6 +2023,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9785636F2A002843008F3E11 /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		978563702A002843008F3E11 /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9785636F2A002843008F3E11 /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
+		};
+		978563722A00295B008F3E11 /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9785636F2A002843008F3E11 /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 054F677C270C7B4B00FCC07C /* Project object */;
 }

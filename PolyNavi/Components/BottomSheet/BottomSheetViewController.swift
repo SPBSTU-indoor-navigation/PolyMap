@@ -1,5 +1,8 @@
 import UIKit
 import UIScreenExtension
+import Logging
+
+var logger = Logger(label: "com.soprachev.polymap")
 
 protocol BottomSheetDelegate {
     func onStateChange(from: BottomSheetViewController.VerticalSize, to: BottomSheetViewController.VerticalSize)
@@ -143,6 +146,9 @@ class BottomSheetViewController: UINavigationController {
 
     public init(parentVC: UIViewController, rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
+//
+        logger.logLevel = .trace
+        logger.info("init")
         
         let gr = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
         view.addGestureRecognizer(gr)
@@ -190,7 +196,7 @@ class BottomSheetViewController: UINavigationController {
     }
     
     func applyProgress(vc: UIViewController?, current: CGFloat, from: CGFloat? = nil, to: CGFloat? = nil) {
-        
+        logger.debug("applyProgress \(current), from \(from), to \(to)")
         let from = from ?? position(for: .small)
         let to = to ?? position(for: .big)
         let fullProgress = progress(for: current, from: from, to: to)
@@ -240,6 +246,7 @@ class BottomSheetViewController: UINavigationController {
     
     
     private func width(for size: HorizontalSize) -> CGFloat {
+        logger.notice("Calculate width for \(size)")
         switch size {
         case .big:
             return containerView.frame.width
@@ -251,6 +258,7 @@ class BottomSheetViewController: UINavigationController {
     }
     
     private func height(for size: HorizontalSize) -> CGFloat {
+        logger.notice("Calculate height for \(size)")
         let safeArea = containerView.safeAreaInsets
         let window = containerView.frame
         
@@ -333,6 +341,7 @@ class BottomSheetViewController: UINavigationController {
             anim?.tryStopAnimation(true)
             currentPosition = view.layer.presentation()!.frame.origin.y
             startPosotion = currentPosition
+            logger.trace("panAction began")
         case.changed:
             let smallerPos = position(for: .small)
             let biggerPos = position(for: .big)
@@ -348,9 +357,11 @@ class BottomSheetViewController: UINavigationController {
                 currentPosition = biggerPos - expLimit(delta, 20)
             }
             
+            logger.trace("panAction changed")
             applyProgress(vc: visibleViewController, current: currentPosition, from: smallerPos, to: biggerPos)
             
         case.ended:
+            logger.trace("panAction ended")
             mooved = false
             endAnimation(sender.velocity(in: view).y)
         default: break
@@ -361,6 +372,7 @@ class BottomSheetViewController: UINavigationController {
     }
     
     private func endAnimation(_ velocity: CGFloat) {
+        logger.info("End animation with velocity: \(velocity)")
         state = nextState(velocity: velocity)
         
         let delta = position(for: state) - currentPosition
@@ -387,6 +399,8 @@ class BottomSheetViewController: UINavigationController {
     func changeState(state: VerticalSize, duration: CGFloat = Constants.transitionDuration, animated: Bool = true, options: UIView.AnimationOptions = .curveEaseInOut) {
         self.state = state
         
+        logger.info("changeState \(state)")
+        
         currentPosition = position(for: state)
         if animated {
             UIView.animate(withDuration: duration, delay: 0, options: [options, .allowUserInteraction], animations: { [self] in
@@ -402,6 +416,8 @@ class BottomSheetViewController: UINavigationController {
     var lastState: VerticalSize = .small
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         stateByViewControllers[viewController] = state
+        
+        logger.debug("pushViewController")
         
         if view.window != nil {
             lastState = state
@@ -424,6 +440,7 @@ class BottomSheetViewController: UINavigationController {
     
     override func popViewController(animated: Bool) -> UIViewController? {
         lastState = state
+        logger.debug("popViewController")
         
         if animated {
             navigationAnimated = true //false
