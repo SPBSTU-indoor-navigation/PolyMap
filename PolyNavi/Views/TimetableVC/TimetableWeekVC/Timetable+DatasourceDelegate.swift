@@ -1,10 +1,3 @@
-//
-//  Timetable+DatasourceDelegate.swift
-//  PolyNavi
-//
-//  Created by Никита Фролов  on 10.10.2021.
-//
-
 import UIKit
 
 extension TimetableViewController: UITableViewDelegate, UITableViewDataSource {

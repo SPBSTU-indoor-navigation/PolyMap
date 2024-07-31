@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  PolyNaviClip
-//
-//  Created by Andrei Soprachev on 16.02.2022.
-//
-
 import UIKit
 import SwiftUI
 

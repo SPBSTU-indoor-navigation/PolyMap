@@ -1,10 +1,3 @@
-//
-//  ExclusiveCloseCell.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 27.04.2022.
-//
-
 import UIKit
 
 class ExclusiveCloseCell: UITableViewCell {

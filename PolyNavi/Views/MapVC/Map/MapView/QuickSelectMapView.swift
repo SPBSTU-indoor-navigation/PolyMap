@@ -1,10 +1,3 @@
-//
-//  FastSelectMapView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 24.06.2022.
-//
-
 import MapKit
 
 class QuickSelectMapView: MKMapView {

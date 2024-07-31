@@ -1,10 +1,3 @@
-//
-//  CircularProgressBar.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 30.03.2022.
-//
-
 import UIKit
 
 class CircularProgressBar: UIView {

@@ -1,10 +1,3 @@
-//
-//  AnimationExtensions.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 15.02.2022.
-//
-
 import UIKit
 
 extension UISpringTimingParameters {

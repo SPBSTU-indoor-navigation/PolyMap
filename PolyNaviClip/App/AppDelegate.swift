@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  PolyNaviClip
-//
-//  Created by Andrei Soprachev on 16.02.2022.
-//
-
 import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

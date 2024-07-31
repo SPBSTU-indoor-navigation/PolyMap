@@ -1,10 +1,3 @@
-//
-//  DetailCell.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 05.03.2022.
-//
-
 import UIKit
 
 class DetailCell: UITableViewCell {

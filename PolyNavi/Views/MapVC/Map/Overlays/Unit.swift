@@ -1,10 +1,3 @@
-//
-//  Unit.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 17.01.2022.
-//
-
 import MapKit
 
 class Unit: CustomOverlay, Styleble, StylebleMapSize {

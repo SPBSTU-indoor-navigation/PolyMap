@@ -1,10 +1,3 @@
-//
-//  AttractionSearchCell.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 25.03.2022.
-//
-
 import UIKit
 
 class AttractionSearchCell: BaseSearchCell {

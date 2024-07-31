@@ -1,10 +1,3 @@
-//
-//  HelloMessage.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 12.06.2022.
-//
-
 import SwiftUI
 
 struct HelloMessage: View {

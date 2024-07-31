@@ -1,10 +1,3 @@
-//
-//  ScaledImageView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 23.02.2022.
-//
-
 import UIKit
 
 class ScaledImageView: UIImageView {

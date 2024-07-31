@@ -1,10 +1,3 @@
-//
-//  FavoriteCell.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 07.05.2022.
-//
-
 import UIKit
 
 class FavoriteCell: UITableViewCell {

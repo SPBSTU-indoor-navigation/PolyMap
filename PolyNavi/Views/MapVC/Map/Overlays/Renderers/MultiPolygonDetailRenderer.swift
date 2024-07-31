@@ -1,10 +1,3 @@
-//
-//  MultyPolygonDetailRenderer.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 19.01.2022.
-//
-
 import MapKit
 
 class MultiPolylineDetailRenderer: MKMultiPolylineRenderer {

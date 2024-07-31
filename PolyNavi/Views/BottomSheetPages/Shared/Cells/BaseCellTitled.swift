@@ -1,10 +1,3 @@
-//
-//  BaseCellTitled.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 01.06.2022.
-//
-
 import UIKit
 
 class BaseCellTitled: UITableViewCell {

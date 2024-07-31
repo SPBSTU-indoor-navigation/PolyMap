@@ -1,10 +1,3 @@
-//
-//  ReportResult.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 07.05.2022.
-//
-
 import SwiftUI
 
 struct ReportResult: View {

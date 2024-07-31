@@ -1,10 +1,3 @@
-//
-//  SearchablePreview.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 23.04.2022.
-//
-
 import SwiftUI
 import MapKit
 

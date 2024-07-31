@@ -1,10 +1,3 @@
-//
-//  AmenityAnnotationView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 10.01.2022.
-//
-
 import MapKit
 
 class AmenityAnnotationView: BaseAnnotationView<AmenityAnnotation.DetailLevel> {

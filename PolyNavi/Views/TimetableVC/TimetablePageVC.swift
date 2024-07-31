@@ -1,10 +1,3 @@
-//
-//  TimetablePageVC.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 09.11.2021.
-//
-
 import UIKit
 
 class TimetablePageVC: UIPageViewController  {

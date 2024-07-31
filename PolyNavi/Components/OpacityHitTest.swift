@@ -1,10 +1,3 @@
-//
-//  OpacityHitTest.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 13.04.2022.
-//
-
 import UIKit
 
 class OpacityHitTest: UIView {

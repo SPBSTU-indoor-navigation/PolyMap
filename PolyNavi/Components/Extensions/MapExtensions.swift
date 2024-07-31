@@ -1,10 +1,3 @@
-//
-//  MapExtensions.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 07.01.2022.
-//
-
 import MapKit
 
 extension CLLocationCoordinate2D {

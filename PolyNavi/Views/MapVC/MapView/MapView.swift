@@ -1,10 +1,3 @@
-//
-//  MapView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 01.11.2021.
-//
-
 import MapKit
 
 class MainMapView: UIView, MKMapViewDelegate {

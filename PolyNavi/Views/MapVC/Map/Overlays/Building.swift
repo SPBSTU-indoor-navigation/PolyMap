@@ -1,10 +1,3 @@
-//
-//  Building.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 17.01.2022.
-//
-
 import MapKit
 
 class Building: CustomOverlay, Styleble, MapRenderer {

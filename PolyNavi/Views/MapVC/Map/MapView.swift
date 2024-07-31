@@ -1,10 +1,3 @@
-//
-//  MapView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 15.11.2021.
-//
-
 import UIKit
 import MapKit
 

@@ -1,10 +1,3 @@
-//
-//  ReportanIssue.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 06.05.2022.
-//
-
 import SwiftUI
 
 struct ReportanIssue: View {

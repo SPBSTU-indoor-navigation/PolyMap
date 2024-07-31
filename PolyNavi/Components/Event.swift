@@ -1,10 +1,3 @@
-//
-//  Event.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 07.05.2022.
-//
-
 import Foundation
 
 class Event<T> {

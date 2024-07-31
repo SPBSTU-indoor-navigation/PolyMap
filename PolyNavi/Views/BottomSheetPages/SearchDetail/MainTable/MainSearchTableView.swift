@@ -1,10 +1,3 @@
-//
-//  MainSearchTableView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 26.03.2022.
-//
-
 import UIKit
 
 protocol MainSearchTableViewDelegate {

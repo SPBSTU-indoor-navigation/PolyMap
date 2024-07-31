@@ -1,10 +1,3 @@
-//
-//  SearchLine.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 15.04.2022.
-//
-
 import UIKit
 
 

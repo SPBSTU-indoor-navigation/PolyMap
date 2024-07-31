@@ -1,10 +1,3 @@
-//
-//  EnviromentAmenitySearchCell.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 08.05.2022.
-//
-
 import UIKit
 
 class EnviromentAmenitySearchCell: AttractionSearchCell {

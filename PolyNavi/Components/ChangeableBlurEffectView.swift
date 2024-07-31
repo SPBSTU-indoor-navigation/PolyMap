@@ -1,10 +1,3 @@
-//
-//  ChangeableBlurEffectView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 08.02.2022.
-//
-
 import UIKit
 
 class ChangeableBlurEffectView: UIView {

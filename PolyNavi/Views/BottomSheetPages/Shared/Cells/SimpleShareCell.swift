@@ -1,10 +1,3 @@
-//
-//  SimpleShareCell.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 17.04.2022.
-//
-
 import UIKit
 
 class SimpleShareCell: BaseCellTitled {

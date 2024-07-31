@@ -1,10 +1,3 @@
-//
-//  MapLabel.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 09.06.2022.
-//
-
 import UIKit
 
 class MapLabel: UILabel {

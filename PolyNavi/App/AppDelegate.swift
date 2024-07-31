@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  PolyNavi
-//
-//  Created by Никита Фролов  on 05.10.2021.
-//
-
 import UIKit
 
 @main

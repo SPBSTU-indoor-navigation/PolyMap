@@ -1,10 +1,3 @@
-//
-//  UserDefaultsStorage.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 04.05.2022.
-//
-
 import Foundation
 
 

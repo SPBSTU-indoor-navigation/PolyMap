@@ -1,10 +1,3 @@
-//
-//  AppClipCodePreview.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 21.04.2022.
-//
-
 import SwiftUI
 
 struct AppClipCodePreview: View {

@@ -1,10 +1,3 @@
-//
-//  PathFinder.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 04.04.2022.
-//
-
 import CoreLocation
 import MapKit
 import GameplayKit

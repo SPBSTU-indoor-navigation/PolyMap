@@ -1,10 +1,3 @@
-//
-//  DateTableViewCell.swift
-//  PolyNavi
-//
-//  Created by Никита Фролов  on 08.10.2021.
-//
-
 import UIKit
 
 

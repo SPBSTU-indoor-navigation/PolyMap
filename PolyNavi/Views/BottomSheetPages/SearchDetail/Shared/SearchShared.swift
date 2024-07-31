@@ -1,10 +1,3 @@
-//
-//  SearchShared.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 27.03.2022.
-//
-
 import UIKit
 
 protocol SearchableConfigurate {

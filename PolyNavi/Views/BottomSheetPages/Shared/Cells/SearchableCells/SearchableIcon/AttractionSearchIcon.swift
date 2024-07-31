@@ -1,10 +1,3 @@
-//
-//  AttractionSearchIcon.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 31.03.2022.
-//
-
 import UIKit
 
 class AttractionSearchIcon: UIView, SearchableConfigurate {

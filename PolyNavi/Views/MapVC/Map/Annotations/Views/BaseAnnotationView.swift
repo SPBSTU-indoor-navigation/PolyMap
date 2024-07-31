@@ -1,10 +1,3 @@
-//
-//  BaseAnnotationView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 21.03.2022.
-//
-
 import MapKit
 
 protocol AnnotationMapSize {

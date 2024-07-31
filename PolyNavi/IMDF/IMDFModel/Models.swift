@@ -1,10 +1,3 @@
-//
-//  Object.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 08.01.2022.
-//
-
 import Foundation
 import MapKit
 

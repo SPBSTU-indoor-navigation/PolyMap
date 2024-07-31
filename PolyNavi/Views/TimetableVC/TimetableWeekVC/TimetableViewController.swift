@@ -1,10 +1,3 @@
-//
-//  TimetableViewController.swift
-//  PolyNavi
-//
-//  Created by Никита Фролов  on 10.10.2021.
-//
-
 import UIKit
 
 class TimetableViewController: UIViewController {

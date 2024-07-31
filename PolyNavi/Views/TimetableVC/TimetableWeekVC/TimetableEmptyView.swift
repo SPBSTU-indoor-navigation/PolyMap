@@ -1,10 +1,3 @@
-//
-//  TimetableEmptyView.swift
-//  PolyNavi
-//
-//  Created by Никита Фролов  on 21.11.2021.
-//
-
 import UIKit
 
 

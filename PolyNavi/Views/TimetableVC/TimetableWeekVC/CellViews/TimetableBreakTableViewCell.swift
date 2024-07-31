@@ -1,10 +1,3 @@
-//
-//  EmptyLessonTableViewCell.swift
-//  PolyNavi
-//
-//  Created by Никита Фролов  on 09.10.2021.
-//
-
 import UIKit
 
 

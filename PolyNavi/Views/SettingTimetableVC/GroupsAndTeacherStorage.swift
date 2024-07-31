@@ -1,10 +1,3 @@
-//
-//  GroupsAndTeacherStorage.swift
-//  PolyNavi
-//
-//  Created by Никита Фролов  on 17.10.2021.
-//
-
 import Foundation
 
 enum TimetableFillter {

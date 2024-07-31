@@ -1,10 +1,3 @@
-//
-//  SearchGroupedHeaderView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 27.03.2022.
-//
-
 import UIKit
 
 class SearchGroupedHeaderView: UITableViewHeaderFooterView {

@@ -1,6 +1,3 @@
-// swiftlint:disable all
-// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
-
 #if os(macOS)
   import AppKit
 #elseif os(iOS)

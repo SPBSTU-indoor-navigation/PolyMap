@@ -1,10 +1,3 @@
-//
-//  TimeTable.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 09.10.2021.
-//
-
 import Foundation
 
 protocol ID {

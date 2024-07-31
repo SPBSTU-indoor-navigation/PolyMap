@@ -1,10 +1,3 @@
-//
-//  NetworkShared.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 20.04.2022.
-//
-
 import Foundation
 import Alamofire
 

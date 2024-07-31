@@ -1,10 +1,3 @@
-//
-//  TimetableNavbar.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 13.11.2021.
-//
-
 import UIKit
 
 class TimetableNavbar: UIView  {

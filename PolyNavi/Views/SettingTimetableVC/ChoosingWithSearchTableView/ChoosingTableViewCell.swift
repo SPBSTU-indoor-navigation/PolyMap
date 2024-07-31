@@ -1,10 +1,3 @@
-//
-//  ChoosingTableViewCell.swift
-//  PolyNavi
-//
-//  Created by Никита Фролов  on 19.10.2021.
-//
-
 import UIKit
 import M13Checkbox
 

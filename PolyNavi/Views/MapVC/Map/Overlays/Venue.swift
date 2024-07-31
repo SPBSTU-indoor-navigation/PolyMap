@@ -1,10 +1,3 @@
-//
-//  Objects.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 06.01.2022.
-//
-
 import MapKit
 
 class Venue: CustomOverlay, Styleble {

@@ -1,10 +1,3 @@
-//
-//  ShareResult.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 19.04.2022.
-//
-
 import SwiftUI
 import Alamofire
 

@@ -1,10 +1,3 @@
-//
-//  ExclusiveRouteDetailVC.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 24.04.2022.
-//
-
 import UIKit
 import MapKit
 

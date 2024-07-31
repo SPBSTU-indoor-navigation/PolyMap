@@ -1,10 +1,3 @@
-//
-//  TextView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 18.04.2022.
-//
-
 import SwiftUI
 
 struct TextView: UIViewRepresentable {

@@ -1,10 +1,3 @@
-//
-//  TableBottomSheetPage.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 09.02.2022.
-//
-
 import UIKit
 
 class TableBottomSheetPage: NavbarBottomSheetPage {

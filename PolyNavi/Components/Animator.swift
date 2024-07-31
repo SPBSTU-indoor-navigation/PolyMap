@@ -1,10 +1,3 @@
-//
-//  Animator.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 16.01.2022.
-//
-
 import UIKit
 
 class Animator {

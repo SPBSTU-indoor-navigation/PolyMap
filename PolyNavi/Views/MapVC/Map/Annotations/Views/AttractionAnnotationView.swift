@@ -1,10 +1,3 @@
-//
-//  AttractionAnnotationView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 18.01.2022.
-//
-
 import MapKit
 
 class AttractionAnnotationView: BaseAnnotationView<AttractionAnnotationView.DetailLevel> {

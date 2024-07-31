@@ -1,10 +1,3 @@
-//
-//  ExclusiveRouteDetailInfo.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 28.04.2022.
-//
-
 import UIKit
 
 class ExclusiveRouteDetailInfo: RouteDetailInfo {

@@ -1,10 +1,3 @@
-//
-//  PathMapView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 05.04.2022.
-//
-
 import Foundation
 
 class PathMapView: OverlayedMapView {

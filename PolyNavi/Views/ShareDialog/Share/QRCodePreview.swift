@@ -1,10 +1,3 @@
-//
-//  QRCodePreview.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 02.05.2022.
-//
-
 import SwiftUI
 
 struct QRCodePreview: View {

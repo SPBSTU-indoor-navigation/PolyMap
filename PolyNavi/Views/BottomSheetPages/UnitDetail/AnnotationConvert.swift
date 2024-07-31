@@ -1,10 +1,3 @@
-//
-//  AnnotationConvert.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 03.03.2022.
-//
-
 protocol UnitDetailInfoCastable {
     func cast(unitDetailInfo: UnitDetailInfo) -> Void
 }

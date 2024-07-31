@@ -1,10 +1,3 @@
-//
-//  SearchModel.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 23.03.2022.
-//
-
 import MapKit
 
 protocol Searchable {

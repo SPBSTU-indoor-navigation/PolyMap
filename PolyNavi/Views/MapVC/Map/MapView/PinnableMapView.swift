@@ -1,10 +1,3 @@
-//
-//  PinnableMapView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 19.03.2022.
-//
-
 import MapKit
 
 

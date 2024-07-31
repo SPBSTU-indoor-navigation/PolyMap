@@ -1,10 +1,3 @@
-//
-//  OverlayedMapView.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 22.01.2022.
-//
-
 import MapKit
 
 class OverlayedMapView: PinnableMapView {

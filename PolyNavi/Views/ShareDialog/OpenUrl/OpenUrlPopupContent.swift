@@ -1,10 +1,3 @@
-//
-//  OpenUrlPopupContent.swift
-//  PolyNavi
-//
-//  Created by Andrei Soprachev on 23.04.2022.
-//
-
 import SwiftUI
 
 struct OpenUrlPopupContent: View {
