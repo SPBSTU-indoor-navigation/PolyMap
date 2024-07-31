@@ -1,1 +1,0 @@
-../../../Target Support Files/Alamofire-iOS15.0/Alamofire-iOS15.0-umbrella.h
