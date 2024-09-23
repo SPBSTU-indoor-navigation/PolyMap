@@ -258,7 +258,7 @@ class BottomSheetViewController: UINavigationController {
         
         switch size {
         case .big:
-            return window.height - currentPosition + safeArea.top - safeAreaOffset
+            return window.height - currentPosition + 1
         case .small, .ultraSmall:
             return max(60, window.height - currentPosition - safeAreaOffset)
         }
@@ -464,7 +464,6 @@ extension BottomSheetViewController: UINavigationControllerDelegate {
         return BottomSheetTransition(operation: operation, fromState: lastState, size: currentSize, duration: Constants.transitionDuration, complition: { self.navigationAnimated = false })
     }
 }
-
 
 extension BottomSheetViewController: BottomSheetPageDelegate {
     func horizontalSize() -> HorizontalSize {
