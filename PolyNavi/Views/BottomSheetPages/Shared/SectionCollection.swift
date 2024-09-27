@@ -14,6 +14,32 @@ class SectionCollection: NSObject, UITableViewDataSource {
         var cellCount: Int { return 1 }
     }
     
+    class CreatedBy: Section, CellFor {
+        override var cellCount: Int { 1 }
+        private let authors: IMDF.Attraction.Author
+        
+        func cellFor(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CreatedByCell.identifier, for: indexPath) as! CreatedByCell
+            cell.configurate(title: authors.short_info, onClick: { [weak self, weak tableView] in
+                guard let vc = tableView?.delegate as? UIViewController else { return }
+                self?.showPopup(viewController: vc)
+            })
+            return cell
+        }
+        
+        func showPopup(viewController: UIViewController) {
+            CreatedByDetail(title: authors.detail.title.bestLocalizedValue ?? "",
+                            description: authors.detail.description.bestLocalizedValue ?? "",
+                            authors: authors.detail.authors.map({ $0.bestLocalizedValue ?? "" }))
+                .present(to: viewController, animated: true)
+        }
+        
+        init(authors: IMDF.Attraction.Author) {
+            self.authors = authors
+            super.init()
+        }
+    }
+    
     class Report: Section, CellFor, SelectRowFor {
         class ReportBase { }
         class ReportAnnotation: ReportBase {

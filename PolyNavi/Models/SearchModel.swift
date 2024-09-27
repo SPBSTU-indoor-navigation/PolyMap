@@ -8,6 +8,7 @@ protocol Searchable {
     var mainTitle: String? { get }
     var additionalTitle: String? { get }
     var place: String? { get }
+    var shortPlace: String? { get }
     var floor: String? { get }
     
     var searchTags: [String] { get }

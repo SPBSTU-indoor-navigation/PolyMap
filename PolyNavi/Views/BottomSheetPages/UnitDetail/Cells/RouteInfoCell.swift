@@ -56,13 +56,9 @@ class RouteInfoCell: UITableViewCell {
         $0.layer.cornerCurve = .continuous
         $0.clipsToBounds = true
         
-        if #available(iOS 15.0, *) {
-            $0.configuration = .gray()
-            $0.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-        } else {
-            $0.setBackgroundColor(color: Asset.Colors.bottomSheetPlan.color, forState: .normal)
-            $0.tintColor = Asset.accentColor.color
-        }
+        $0.configuration = .gray()
+        $0.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        
         $0.addTarget(self, action: #selector(buildingClick(_:)), for: .touchUpInside)
         return $0
     }(UIButton(type: .system))
@@ -75,13 +71,21 @@ class RouteInfoCell: UITableViewCell {
     var singleLine: [NSLayoutConstraint] = []
     var multyLine: [NSLayoutConstraint] = []
     
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        
+        [routeButton, toRouteButton, fromRouteButton].forEach({
+            $0.setBackgroundColor(color: tintColor, forState: .normal)
+        })
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         [routeButton, toRouteButton, fromRouteButton].forEach({
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
-            $0.setBackgroundColor(color: Asset.accentColor.color, forState: .normal)
+            $0.setBackgroundColor(color: tintColor, forState: .normal)
             
             $0.tintColor = .white
             $0.layer.cornerRadius = 10

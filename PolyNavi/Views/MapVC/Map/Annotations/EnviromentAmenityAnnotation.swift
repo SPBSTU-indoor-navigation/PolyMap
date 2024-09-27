@@ -41,6 +41,8 @@ extension EnviromentAmenityAnnotation: Searchable {
     
     var place: String? { nil }
     
+    var shortPlace: String? { nil }
+    
     var floor: String? { nil }
     
     var searchTags: [String] { [] }

@@ -44,6 +44,10 @@ extension AttractionAnnotation: UnitDetailInfoCastable {
         unitDetailInfo.sections.append(UnitDetailInfo.Share(annotation: self))
         unitDetailInfo.sections.append(UnitDetailInfo.Report(favorite: self, report: SectionCollection.Report.ReportAnnotation(annotation: self)))
         
+        if let authors = properties.authors {
+            unitDetailInfo.sections.append(UnitDetailInfo.CreatedBy(authors: authors))
+        }
+        
         unitDetailInfo.annotation = self
     }
 }

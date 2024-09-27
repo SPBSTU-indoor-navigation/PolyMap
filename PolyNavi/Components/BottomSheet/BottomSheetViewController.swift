@@ -132,6 +132,12 @@ class BottomSheetViewController: UINavigationController {
         return .big
     }
     
+    var activePage: BottomSheetPage? {
+        guard let vc = viewControllers.last,
+              let page = vc as? BottomSheetPage else { return nil }
+        return page
+    }
+    
     lazy var background: Background = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -333,6 +339,7 @@ class BottomSheetViewController: UINavigationController {
             anim?.tryStopAnimation(true)
             currentPosition = view.layer.presentation()!.frame.origin.y
             startPosotion = currentPosition
+            activePage?.onPageWillBeginScroll()
         case.changed:
             let smallerPos = position(for: .small)
             let biggerPos = position(for: .big)
@@ -353,6 +360,7 @@ class BottomSheetViewController: UINavigationController {
         case.ended:
             mooved = false
             endAnimation(sender.velocity(in: view).y)
+            activePage?.onPageWillEndScroll()
         default: break
         }
         
@@ -488,6 +496,7 @@ extension BottomSheetViewController: BottomSheetPageDelegate {
             anim?.tryStopAnimation(true)
             currentPosition = startPosotion
             viewDidLayoutSubviews()
+            activePage?.onPageWillBeginScroll()
         }
     }
     
@@ -522,6 +531,8 @@ extension BottomSheetViewController: BottomSheetPageDelegate {
             if startPosotion != position(for: .big) && scrollView.topContentOffset.y <= 0  {
                 targetContentOffset.pointee = CGPoint(x: 0, y: -scrollView.topOffset)
             }
+            
+            activePage?.onPageWillEndScroll()
         }
     }
 }

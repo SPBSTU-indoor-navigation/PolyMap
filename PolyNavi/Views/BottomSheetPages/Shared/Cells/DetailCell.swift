@@ -19,7 +19,8 @@ class DetailCell: UITableViewCell {
         $0.backgroundColor = .clear
         $0.tintColor = Asset.accentColor.color
         $0.clipsToBounds = false
-        $0.textContainerInset = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
+        $0.textContainer.lineFragmentPadding = 0
+        $0.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return $0
     }(UITextView())
     

@@ -167,6 +167,10 @@
 		97501553279631A100326B09 /* AttractionAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97501552279631A100326B09 /* AttractionAnnotationView.swift */; };
 		97501560279788CA00326B09 /* MultiPolygonDetailRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */; };
 		975015622799B86F00326B09 /* CustomOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975015612799B86F00326B09 /* CustomOverlay.swift */; };
+		975E03482CA4F68100A1C132 /* CreatedByCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E03472CA4F67300A1C132 /* CreatedByCell.swift */; };
+		975E03492CA4F68100A1C132 /* CreatedByCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E03472CA4F67300A1C132 /* CreatedByCell.swift */; };
+		975E034C2CA5C2A500A1C132 /* CreatedByDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E034B2CA5C2A500A1C132 /* CreatedByDetail.swift */; };
+		975E034D2CA5C2A500A1C132 /* CreatedByDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E034B2CA5C2A500A1C132 /* CreatedByDetail.swift */; };
 		976A027827B9846800128EE6 /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027727B9846800128EE6 /* BottomSheetTransition.swift */; };
 		976A027A27BB26F000128EE6 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027927BB26F000128EE6 /* AnimationExtensions.swift */; };
 		9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */; };
@@ -429,6 +433,8 @@
 		97501552279631A100326B09 /* AttractionAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionAnnotationView.swift; sourceTree = "<group>"; };
 		9750155F279788CA00326B09 /* MultiPolygonDetailRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPolygonDetailRenderer.swift; sourceTree = "<group>"; };
 		975015612799B86F00326B09 /* CustomOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlay.swift; sourceTree = "<group>"; };
+		975E03472CA4F67300A1C132 /* CreatedByCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedByCell.swift; sourceTree = "<group>"; };
+		975E034B2CA5C2A500A1C132 /* CreatedByDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedByDetail.swift; sourceTree = "<group>"; };
 		976A027727B9846800128EE6 /* BottomSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetTransition.swift; sourceTree = "<group>"; };
 		976A027927BB26F000128EE6 /* AnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtensions.swift; sourceTree = "<group>"; };
 		9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeableBlurEffectView.swift; sourceTree = "<group>"; };
@@ -626,6 +632,7 @@
 				97D5E15A2856584B00C65B65 /* HelloMessage */,
 				9735D22328275A0000F8A08F /* EmptyPlan */,
 				9735D2012824B09600F8A08F /* ReportanIssue */,
+				975E034A2CA5C01800A1C132 /* CreatedBy */,
 				973962CE280C7E9D000E478F /* ShareDialog */,
 				05F0D49227859D9D009CEBA2 /* BottomSheetPages */,
 				97D551D62739D5FD002A5BBD /* TimeTableVC */,
@@ -979,6 +986,14 @@
 			path = Renderers;
 			sourceTree = "<group>";
 		};
+		975E034A2CA5C01800A1C132 /* CreatedBy */ = {
+			isa = PBXGroup;
+			children = (
+				975E034B2CA5C2A500A1C132 /* CreatedByDetail.swift */,
+			);
+			path = CreatedBy;
+			sourceTree = "<group>";
+		};
 		9780D8B327B32C7000DBDBF3 /* BottomSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1164,6 +1179,7 @@
 		97B8E18227CEDA4E003D1EF4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				975E03472CA4F67300A1C132 /* CreatedByCell.swift */,
 				97B8E18327CEDA6D003D1EF4 /* TitleHeader.swift */,
 				97B8E18627CEDA80003D1EF4 /* RouteInfoCell.swift */,
 				97B8E18927CEDA8B003D1EF4 /* SpaceCell.swift */,
@@ -1326,7 +1342,6 @@
 			files = (
 				971F8DDD27BD52EF0018F98A /* LaunchScreen.storyboard in Resources */,
 				974D42562811E3B700F05434 /* InfoPlist.strings in Resources */,
-				971F8DF727BD55510018F98A /* Localizable.strings in Resources */,
 				971F8DF627BD554B0018F98A /* Assets.xcassets in Resources */,
 				971F8DDA27BD52EF0018F98A /* Assets.xcassets in Resources */,
 				97BDD60028B3DA6E00AB2350 /* IMDFData.zip in Resources */,
@@ -1509,6 +1524,7 @@
 				9735D21E2827218F00F8A08F /* EnviromentAmenitySearchCell.swift in Sources */,
 				9780D8C027B3412A00DBDBF3 /* SearchVC.swift in Sources */,
 				978B321227EF74C300760B78 /* SearchTableView.swift in Sources */,
+				975E034C2CA5C2A500A1C132 /* CreatedByDetail.swift in Sources */,
 				978B320827EE630300760B78 /* OccupantSearchCell.swift in Sources */,
 				9735D20A2825DC5400F8A08F /* ReportApiProvider.swift.swift in Sources */,
 				97A484C02717BAF700D14997 /* RoundButton.swift in Sources */,
@@ -1563,6 +1579,7 @@
 				974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */,
 				97457CD128661E9600E2B86F /* QuickSelectMapView.swift in Sources */,
 				978769A127FBB22B008138EC /* PathOverlay.swift in Sources */,
+				975E03492CA4F68100A1C132 /* CreatedByCell.swift in Sources */,
 				97944DAD279B6C9600FE5787 /* OverlayedMapView.swift in Sources */,
 				97A566F827D589FA00A064CC /* UnitDetailInfo.swift in Sources */,
 				973962D9280CB720000E478F /* ShareDialog.swift in Sources */,
@@ -1587,6 +1604,7 @@
 				973962D7280C96A8000E478F /* SimpleShareCell.swift in Sources */,
 				971F8DF127BD54FA0018F98A /* Animator.swift in Sources */,
 				97BC3D302819EA3E000734D9 /* TintedUILabel.swift in Sources */,
+				975E03482CA4F68100A1C132 /* CreatedByCell.swift in Sources */,
 				97BC3D332819FA55000734D9 /* ExclusiveRouteDetailInfo.swift in Sources */,
 				97BDD61128B422C300AB2350 /* Analytics.swift in Sources */,
 				971F8DF027BD54FA0018F98A /* RoundButton.swift in Sources */,
@@ -1659,6 +1677,7 @@
 				971F8E1227BD55820018F98A /* TableBottomSheetPage.swift in Sources */,
 				974D42512810E08100F05434 /* AppClipCodePreview.swift in Sources */,
 				971F8E0627BD55680018F98A /* Venue.swift in Sources */,
+				975E034D2CA5C2A500A1C132 /* CreatedByDetail.swift in Sources */,
 				978B320D27EE638300760B78 /* AttractionSearchCell.swift in Sources */,
 				971F8DD327BD52EE0018F98A /* SceneDelegate.swift in Sources */,
 				9735D2042824B0C600F8A08F /* ReportanIssue.swift in Sources */,

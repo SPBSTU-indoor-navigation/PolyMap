@@ -6,6 +6,9 @@ class BottomSheetPage: UIViewController {
     func onStateChange(verticalSize: BottomSheetViewController.VerticalSize) { }
     func onStateChange(horizontalSize: BottomSheetViewController.HorizontalSize) { }
     func onButtomSheetScroll(progress: CGFloat) { }
+    
+    func onPageWillBeginScroll() { }
+    func onPageWillEndScroll() { }
 }
 
 class BluredBackgroundBottomSheetPage: BottomSheetPage {
