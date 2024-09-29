@@ -15,47 +15,55 @@ struct CreatedByDetail: View {
     var authorsTitle: String
     var authors: [String]
     
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 20) {
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text(title)
-                            .font(.largeTitle)
-                            .bold()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Text(description)
+    func createList() -> some View {
+        return VStack(spacing: 20) {
+            VStack(alignment: .leading, spacing: 20) {
+                Text(title)
+                    .font(.largeTitle)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text(description)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            
+            if !authors.isEmpty {
+                VStack {
+                    if !authorsTitle.isEmpty {
+                        Text(authorsTitle)
+                            .font(.headline)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     
-                    if !authors.isEmpty {
-                        VStack {
-                            if !authorsTitle.isEmpty {
-                                Text(authorsTitle)
-                                    .font(.headline)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            
-                            VStack {
-                                ForEach(authors, id: \.self) { author in
-                                    Text(author)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                    if author != authors.last { Divider() }
-                                }
-                            }
-                            .padding()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background {
-                                Rectangle()
-                                    .cornerRadius(10)
-                                    .foregroundStyle(Color(colorScheme == .dark ? .secondarySystemGroupedBackground : .systemGroupedBackground))
-                            }
+                    VStack {
+                        ForEach(authors, id: \.self) { author in
+                            Text(author)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            if author != authors.last { Divider() }
                         }
                     }
-                    Spacer()
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background {
+                        Rectangle()
+                            .cornerRadius(10)
+                            .foregroundStyle(Color(colorScheme == .dark ? .secondarySystemGroupedBackground : .systemGroupedBackground))
+                    }
                 }
-                .padding()
+            }
+            Spacer()
+        }
+    }
+    
+    var body: some View {
+        NavigationView {
+            if #available(iOS 16.4, *) {
+                ScrollView { createList() }
+                    .scrollBounceBehavior(.basedOnSize)
+                    .padding()
+            } else {
+                ScrollView { createList() }
+                    .padding()
             }
         }
         .navigationViewStyle(.stack)
