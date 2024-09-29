@@ -420,9 +420,7 @@ class BottomSheetViewController: UINavigationController {
             }
         }
         
-        if animated {
-            navigationAnimated = true //false
-        }
+        navigationAnimated = animated
         
         super.pushViewController(viewController, animated: animated)
         if let bottomSheetPage = viewController as? BottomSheetPage {
@@ -432,10 +430,7 @@ class BottomSheetViewController: UINavigationController {
     
     override func popViewController(animated: Bool) -> UIViewController? {
         lastState = state
-        
-        if animated {
-            navigationAnimated = true //false
-        }
+        navigationAnimated = animated
         
         guard let targetVC = super.popViewController(animated: animated) else {
             navigationAnimated = false

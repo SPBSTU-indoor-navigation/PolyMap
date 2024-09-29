@@ -258,6 +258,7 @@ struct IMDF {
             struct Detail: Codable {
                 let title: LocalizedName
                 let description: LocalizedName
+                let authors_title: LocalizedName
                 let authors: [LocalizedName]
             }
             

@@ -4,7 +4,7 @@ class CreatedByCell: UITableViewCell, UnitDetailVC.PageWillBeginScrollDelegate {
     
     static var identifier = String(describing: CreatedByCell.self)
     
-    var clickableRange: NSRange? = nil
+    var clickableRange: UITextRange? = nil
     var onClick: (() -> Void)? = nil
     private var attributedString: NSMutableAttributedString? = nil
     
@@ -15,29 +15,61 @@ class CreatedByCell: UITableViewCell, UnitDetailVC.PageWillBeginScrollDelegate {
         return $0
     }(UILongPressGestureRecognizer(target: self, action: #selector(tapLabel(recognizer:))))
     
-    private lazy var titleLabel: UILabel = {
+    private lazy var view: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.isUserInteractionEnabled = true
-        $0.backgroundColor = .clear
-        $0.numberOfLines = 0
-        $0.textColor = .secondaryLabel
         $0.addGestureRecognizer(longPressGestureRecognizer)
+        return $0
+    }(UIView())
+    
+    private lazy var titleTextView: UITextView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .clear
+        $0.isEditable = false
+        $0.isSelectable = false
+        $0.isScrollEnabled = false
+        
+        $0.textContainerInset = .init(top: 0, left: 0, bottom: 15, right: 0)
+        $0.textContainer.lineFragmentPadding = 0
+        
+        $0.layer.opacity = 0
+        return $0
+    }(UITextView())
+    
+    private lazy var titleLabel: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
     
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(titleLabel)
+        view.addSubview(titleTextView)
+        view.addSubview(titleLabel)
+        contentView.addSubview(view)
         
         NSLayoutConstraint.activate([
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
+            view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            view.topAnchor.constraint(equalTo: contentView.topAnchor),
+            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         
-        backgroundColor = .clear
+        NSLayoutConstraint.activate([
+            titleTextView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            titleTextView.topAnchor.constraint(equalTo: view.topAnchor),
+            titleTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
+            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor)
+        ])
+        
         selectionStyle = .none
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
@@ -47,23 +79,37 @@ class CreatedByCell: UITableViewCell, UnitDetailVC.PageWillBeginScrollDelegate {
     func configurate(title: LocalizedName, onClick: @escaping () -> Void) {
         self.onClick = onClick
         let infoText = title.bestLocalizedValue ?? ""
-        let moreInfoText = "Подробнее."
+        let moreInfoText = L10n.MapInfo.Detail.moreInfo
         attributedString = NSMutableAttributedString(string: infoText + " " + moreInfoText, attributes: [
-            .font: UIFont.preferredFont(forTextStyle: .footnote)
+            .font: UIFont.preferredFont(forTextStyle: .footnote),
+            .foregroundColor: UIColor.secondaryLabel
         ])
+        titleTextView.attributedText = attributedString
+        titleLabel.attributedText = attributedString
         
-        clickableRange = .init(location: infoText.count + 1, length: moreInfoText.count)
+        let beginning = titleTextView.position(from: titleTextView.beginningOfDocument, offset: infoText.count + 1)!
+        clickableRange = titleTextView.textRange(from: beginning, to: titleTextView.position(from: beginning, offset: moreInfoText.count)!)
         updateMoreInfoTextColor()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.clipsToBounds = false
+        layer.masksToBounds = false
+    }
+    
     func updateMoreInfoTextColor() {
-        guard let clickableRange,
+        guard let range = clickableRange,
               let attributedString else { return }
+        
+        let location = titleTextView.offset(from: titleTextView.beginningOfDocument, to: range.start)
+        let length = titleTextView.offset(from: range.start, to: range.end)
         
         attributedString.setAttributes([
             .font: UIFont.preferredFont(forTextStyle: .footnote),
             .foregroundColor: tintColor!
-        ], range: clickableRange)
+        ], range: NSRange(location: location, length: length))
+        titleTextView.attributedText = attributedString
         titleLabel.attributedText = attributedString
         
     }
@@ -91,11 +137,11 @@ class CreatedByCell: UITableViewCell, UnitDetailVC.PageWillBeginScrollDelegate {
         }
         
         guard recognizer.state == .began || recognizer.state == .ended,
-              let clickableRange,
-              let rect = boundingRectForCharacterRange(range: clickableRange, inLabel: titleLabel) else { return }
+              let clickableRange else { return }
         
-        let tapLocation = recognizer.location(in: titleLabel)
-        let offset = 5.0
+        let rect = titleTextView.firstRect(for: clickableRange)
+        let tapLocation = recognizer.location(in: titleTextView)
+        let offset = 15.0
         let clickIndide = rect.inset(by: .init(top: -offset, left: -offset, bottom: -offset, right: -offset)).contains(tapLocation)
         
         if recognizer.state == .began {
@@ -117,31 +163,4 @@ extension CreatedByCell {
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return gestureRecognizer == longPressGestureRecognizer || otherGestureRecognizer == longPressGestureRecognizer
     }
-}
-
-fileprivate func boundingRectForCharacterRange(range: NSRange, inLabel label: UILabel) -> CGRect? {
-    // Ensure the label has attributed text
-    guard let attributedText = label.attributedText else { return nil }
-    
-    // Create an NSTextStorage with the label's attributed text
-    let textStorage = NSTextStorage(attributedString: attributedText)
-    
-    // Create an NSLayoutManager
-    let layoutManager = NSLayoutManager()
-    textStorage.addLayoutManager(layoutManager)
-    
-    // Create an NSTextContainer with the label's dimensions
-    let textContainer = NSTextContainer(size: label.bounds.size)
-    textContainer.lineFragmentPadding = 0.0  // Remove padding for accuracy
-    textContainer.maximumNumberOfLines = label.numberOfLines
-    textContainer.lineBreakMode = label.lineBreakMode
-    layoutManager.addTextContainer(textContainer)
-    
-    // Calculate the glyph range for the character range
-    let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-    
-    // Get the bounding rectangle for the glyph range
-    let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-    
-    return boundingRect
 }

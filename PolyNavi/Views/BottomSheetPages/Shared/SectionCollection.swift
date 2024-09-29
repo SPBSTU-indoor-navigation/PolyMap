@@ -30,6 +30,7 @@ class SectionCollection: NSObject, UITableViewDataSource {
         func showPopup(viewController: UIViewController) {
             CreatedByDetail(title: authors.detail.title.bestLocalizedValue ?? "",
                             description: authors.detail.description.bestLocalizedValue ?? "",
+                            authorsTitle: authors.detail.authors_title.bestLocalizedValue ?? "",
                             authors: authors.detail.authors.map({ $0.bestLocalizedValue ?? "" }))
                 .present(to: viewController, animated: true)
         }

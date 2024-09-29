@@ -44,6 +44,7 @@ MapInfo.Detail.Phone = "Телефон";
 MapInfo.Detail.Email = "Электронная почта";
 MapInfo.Detail.Website = "Вебсайт";
 MapInfo.Detail.Address = "Адрес";
+MapInfo.Detail.MoreInfo = "Подробнее.";
 
 MapInfo.Detail.EmptyPlan.Title = "Планировка отсутствует";
 MapInfo.Detail.EmptyPlan.Message = "К сожалению, у этого здания отсутствует планировка. Если у вас есть поэтажный план этого здания, или вы знаете у кого он может быть, пожалуйста, свяжитесь с разработчиком.";

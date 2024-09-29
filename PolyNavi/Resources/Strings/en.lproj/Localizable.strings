@@ -44,6 +44,7 @@ MapInfo.Detail.Phone = "Phone";
 MapInfo.Detail.Email = "Email";
 MapInfo.Detail.Website = "Website";
 MapInfo.Detail.Address = "Address";
+MapInfo.Detail.MoreInfo = "More.";
 
 MapInfo.Detail.EmptyPlan.Title = "No building floor plan";
 MapInfo.Detail.EmptyPlan.Message = "Unfortunately this building does not have a floor plan, if you have a floor plan for this building or know who might have it, please contact the developer";
