@@ -19,6 +19,11 @@ jobs:
           APP_METRICA_API_KEY: ${{ secrets.APP_METRICA_API_KEY }}
         run: echo \#define APP_METRICA_API_KEY \"$APP_METRICA_API_KEY\" >> PolyNavi/Analytics/Config.h
 
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v3.1.0
         with:
