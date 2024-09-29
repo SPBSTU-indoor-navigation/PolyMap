@@ -121,42 +121,35 @@ class MapInfo: BottomSheetViewController {
     
     @discardableResult
     override func popViewController(animated: Bool) -> UIViewController? {
-        let vc = super.popViewController(animated: animated)
+        guard let vc = super.popViewController(animated: animated) else { return nil }
         
         if pages.last == .annotationInfo {
             mapViewDelegate?.deselectAnnotation(currentSelection, animated: true)
         }
 
-        if let vc = vc {
-            pages.removeLast()
-            if let last = self.viewControllers.last {
-                onPopToVC(last)
-            }
-            onPopVC(vc)
+        pages.removeLast()
+        if let last = self.viewControllers.filter({ $0 != vc }).last {
+            onPopToVC(last)
         }
+        onPopVC(vc)
         
         return vc
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        
-        let count = viewControllers.count
-        
         super.pushViewController(viewController, animated: animated)
         
-        if count != viewControllers.count {
-            switch viewController {
-            case is UnitDetailVC:
-                pages.append(.annotationInfo)
-            case is RouteDetailVC:
-                pages.append(.route)
-            case is ExclusiveRouteDetailVC:
-                pages.append(.exclusiveRoute)
-            case is SearchVC:
-                pages.append(.search)
-            default:
-                pages.append(.unknown)
-            }
+        switch viewController {
+        case is UnitDetailVC:
+            pages.append(.annotationInfo)
+        case is RouteDetailVC:
+            pages.append(.route)
+        case is ExclusiveRouteDetailVC:
+            pages.append(.exclusiveRoute)
+        case is SearchVC:
+            pages.append(.search)
+        default:
+            pages.append(.unknown)
         }
     }
     

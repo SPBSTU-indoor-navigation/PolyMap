@@ -29,6 +29,7 @@ class AttractionAnnotation: BaseAnnotation, MKAnnotation, ReusableCell {
 }
 
 extension AttractionAnnotation: Searchable {
+    
     var annotation: MKAnnotation { self }
     
     var backgroundSpriteColor: UIColor { .clear }
@@ -36,6 +37,8 @@ extension AttractionAnnotation: Searchable {
     var mainTitle: String? { properties.name?.bestLocalizedValue }
     
     var place: String? { nil }
+    
+    var shortPlace: String? { nil }
     
     var floor: String? { nil }
     

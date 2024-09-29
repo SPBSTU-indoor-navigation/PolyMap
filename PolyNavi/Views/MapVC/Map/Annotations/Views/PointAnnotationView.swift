@@ -88,6 +88,9 @@ class PointAnnotationView: BaseAnnotationView<OccupantAnnotation.DetailLevel> {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = .label
         $0.layer.minificationFilter = .trilinear
+        $0.numberOfLines = 0
+        $0.lineBreakMode = .byWordWrapping
+        $0.preferredMaxLayoutWidth = 120
         
         $0.strokeColor = Asset.Annotation.Colors.stroke.color
         

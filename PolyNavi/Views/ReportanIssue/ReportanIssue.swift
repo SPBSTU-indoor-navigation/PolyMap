@@ -74,16 +74,12 @@ struct ReportanIssue: View {
     
     var body: some View {
         NavigationView {
-            if #available(iOS 14.0, *) {
-                ScrollViewReader { proxy in
-                    mainView(scroll: { id in
-                        withAnimation {
-                            proxy.scrollTo(id, anchor: .top)
-                        }
-                    })
-                }
-            } else {
-                mainView()
+            ScrollViewReader { proxy in
+                mainView(scroll: { id in
+                    withAnimation {
+                        proxy.scrollTo(id, anchor: .top)
+                    }
+                })
             }
         }
         .navigationViewStyle(.stack)

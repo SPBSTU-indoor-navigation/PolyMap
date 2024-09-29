@@ -1,3 +1,6 @@
+// swiftlint:disable all
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
+
 #if os(macOS)
   import AppKit
 #elseif os(iOS)
@@ -42,7 +45,9 @@ internal enum Asset {
       internal static let playground = ImageAsset(name: "playground")
       internal static let readingRoom = ImageAsset(name: "reading.room")
       internal static let restroomFemale = ImageAsset(name: "restroom.female")
+      internal static let restroom = ImageAsset(name: "restroom")
       internal static let restroomMale = ImageAsset(name: "restroom.male")
+      internal static let restroomWheelchair = ImageAsset(name: "restroom.wheelchair")
       internal static let security = ImageAsset(name: "security")
       internal static let souvenirs = ImageAsset(name: "souvenirs")
       internal static let stadiumBasketball = ImageAsset(name: "stadium.basketball")
@@ -53,6 +58,7 @@ internal enum Asset {
       internal static let ticket = ImageAsset(name: "ticket")
       internal static let vendingmachine = ImageAsset(name: "vendingmachine")
       internal static let wardrobe = ImageAsset(name: "wardrobe")
+      internal static let warning = ImageAsset(name: "warning")
     }
     internal enum Buildings {
       internal static let gydro = ImageAsset(name: "Gydro")
@@ -64,9 +70,12 @@ internal enum Asset {
       internal static let attractionTextStroke = ColorAsset(name: "AttractionTextStroke")
       internal static let stroke = ColorAsset(name: "Stroke")
       internal enum Units {
+        internal static let academicCouncilAnnotation = ColorAsset(name: "academic.council-annotation")
         internal static let administrationAnnotation = ColorAsset(name: "administration-annotation")
         internal static let archiveAnnotation = ColorAsset(name: "archive-annotation")
         internal static let auditoriumAnnotation = ColorAsset(name: "auditorium-annotation")
+        internal static let classroomAnnotationLabel = ColorAsset(name: "classroom-annotation-label")
+        internal static let classroomAnnotation = ColorAsset(name: "classroom-annotation")
         internal static let concertHallAnnotation = ColorAsset(name: "concert.hall-annotation")
         internal static let defaultAnnotationLabel = ColorAsset(name: "default-annotation-label")
         internal static let defaultAnnotation = ColorAsset(name: "default-annotation")

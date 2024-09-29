@@ -254,6 +254,18 @@ struct IMDF {
             case building
         }
         
+        struct Author: Codable {
+            struct Detail: Codable {
+                let title: LocalizedName
+                let description: LocalizedName
+                let authors_title: LocalizedName
+                let authors: [LocalizedName]
+            }
+            
+            let short_info: LocalizedName
+            let detail: Detail
+        }
+        
         struct Properties: Codable {
             let name: LocalizedName?
             let alt_name: LocalizedName?
@@ -262,6 +274,8 @@ struct IMDF {
             
             let category: Category
             let image: String?
+            
+            let authors: Author?
         }
     }
     
@@ -311,6 +325,7 @@ struct IMDF {
             case restroom = "restroom"
             case restroomFemale = "restroom.female"
             case restroomMale = "restroom.male"
+            case restroomWheelchair = "restroom.wheelchair"
             case ticket = "ticket"
             case museum = "museum"
             case concertHall = "concert.hall"

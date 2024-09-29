@@ -65,6 +65,26 @@ extension UIButton {
     }
 }
 
+extension UIColor {
+
+    var darkerColor: UIColor {
+        return darkerColor(brightness: 0.5)
+    }
+
+    func darkerColor(brightness val: CGFloat, resultAlpha alpha: CGFloat? = nil) -> UIColor {
+        var h: CGFloat = 0, s: CGFloat = 0
+        var b: CGFloat = 0, a: CGFloat = 0
+
+        guard getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+            else {return self}
+
+        return UIColor(hue: h,
+                       saturation: s,
+                       brightness: min(max(0, b - val), 1),
+                       alpha: alpha ?? a)
+    }
+}
+
 extension UITableView {
     var wrapperView: UIView {
         get {
@@ -117,6 +137,11 @@ extension UIGestureRecognizer {
         let y = position.y + factor * velocity.dy
         
         return CGPoint(x: x, y: y)
+    }
+    
+    func cancel() {
+        isEnabled = !isEnabled
+        isEnabled = !isEnabled
     }
 }
 

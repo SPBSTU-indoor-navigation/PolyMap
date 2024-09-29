@@ -94,6 +94,8 @@ struct SearchablePreview_Previews: PreviewProvider {
         
         var mainTitle: String? { "Главно здание " }
         
+        var shortPlace: String? { "ГЗ" }
+        
         var additionalTitle: String? { "1" }
         
         var place: String? { "Place" }

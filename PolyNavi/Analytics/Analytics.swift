@@ -1,29 +1,28 @@
-import YandexMobileMetrica
-
+import AppMetricaCore
 
 class Analytics {
     static let shared = Analytics()
     
     func start() {
-        let configuration = YMMYandexMetricaConfiguration.init(apiKey: APP_METRICA_API_KEY)!
+        let configuration = AppMetricaConfiguration(apiKey: APP_METRICA_API_KEY)!
         configuration.locationTracking = false
         
-        YMMYandexMetrica.activate(with: configuration)
+        AppMetrica.activate(with: configuration)
     }
     
     // Пользователь посмотрел инфу об аннотации с id
     func openUnitDetail(with id: UUID) {
-        YMMYandexMetrica.reportEvent("OpenUnitDetail", parameters: ["id": id.uuidString])
+        AppMetrica.reportEvent(name: "OpenUnitDetail", parameters: ["id": id.uuidString])
     }
     
     // Пользователь открыл аннотацию по длинной ссылке
     func openSharedAnnotation(with id: UUID) {
-        YMMYandexMetrica.reportEvent("OpenSharedAnnotation", parameters: ["id": id.uuidString])
+        AppMetrica.reportEvent(name: "OpenSharedAnnotation", parameters: ["id": id.uuidString])
     }
     
     // Пользователь создал маршрут от from до to с параметрами asphalt и serviceRoute
     func createRoute(from: UUID, to: UUID, params: RouteParameters) {
-        YMMYandexMetrica.reportEvent("CreateRoute", parameters: [
+        AppMetrica.reportEvent(name: "CreateRoute", parameters: [
             "from": from.uuidString,
             "to": to.uuidString,
             "asphalt": params.asphalt,
@@ -33,7 +32,7 @@ class Analytics {
     
     // Пользователь открыл маршрут по ссылке
     func openSharedRoute(from: UUID, to: UUID, params: RouteParameters) {
-        YMMYandexMetrica.reportEvent("OpenSharedRoute", parameters: [
+        AppMetrica.reportEvent(name: "OpenSharedRoute", parameters: [
             "from": from.uuidString,
             "to": to.uuidString,
             "asphalt": params.asphalt,
@@ -43,12 +42,12 @@ class Analytics {
     
     // Пользователь открыл приглашение с id
     func openSharedQR(with id: String) {
-        YMMYandexMetrica.reportEvent("OpenSharedQR", parameters: ["id": id])
+        AppMetrica.reportEvent(name: "OpenSharedQR", parameters: ["id": id])
     }
     
     // Пользователь открыл диалог поделиться, чтоб создать приглашение
     func openShareQRDialog() {
-        YMMYandexMetrica.reportEvent("OpenShareQRDialog")
+        AppMetrica.reportEvent(name: "OpenShareQRDialog")
     }
     
     // Пользователь создал приглашение
@@ -59,7 +58,7 @@ class Analytics {
             color = String(describing: variant.self)
         }
         
-        YMMYandexMetrica.reportEvent("ShareQR", parameters: [
+        AppMetrica.reportEvent(name: "ShareQR", parameters: [
             "id": id,
             "isQR": settings.isQR,
             "color": color,
@@ -71,7 +70,7 @@ class Analytics {
     
     // Пользователь поделился маршрутом по длинной ссылке
     func shareRoute(from: UUID, to: UUID, params: RouteParameters) {
-        YMMYandexMetrica.reportEvent("ShareRoute", parameters: [
+        AppMetrica.reportEvent(name: "ShareRoute", parameters: [
             "from": from.uuidString,
             "to": to.uuidString,
             "asphalt": params.asphalt,
@@ -81,7 +80,7 @@ class Analytics {
     
     // Пользователь поделился аннотацией по длинной ссылке
     func shareAnnotation(with id: UUID) {
-        YMMYandexMetrica.reportEvent("ShareAnnotation", parameters: ["id": id.uuidString])
+        AppMetrica.reportEvent(name: "ShareAnnotation", parameters: ["id": id.uuidString])
     }
     
     
@@ -89,21 +88,20 @@ class Analytics {
     
     // Timetable
     func openTimeTable(insitute: String, group: String) {
-        YMMYandexMetrica.reportEvent("OpenTimeTable", parameters: [
+        AppMetrica.reportEvent(name: "OpenTimeTable", parameters: [
             "insitute": insitute,
             "group": group
         ])
     }
     
     func applyInstitute(insitute: String, group: String) {
-        let profile = YMMMutableUserProfile()
+        let profile = MutableUserProfile()
         
         profile.apply(from: [
-            YMMProfileAttribute.customString("insitute").withValue(insitute),
-            YMMProfileAttribute.customString("group").withValue(group),
+            ProfileAttribute.customString("insitute").withValue(insitute),
+            ProfileAttribute.customString("group").withValue(group)
         ])
         
-        
-        YMMYandexMetrica.report(profile)
+        AppMetrica.reportUserProfile(profile)
     }
 }

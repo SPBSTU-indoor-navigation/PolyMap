@@ -35,7 +35,7 @@ class OccupantAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, IndoorAnno
     private var colorAssetName: String {
         var colorName: String
         switch properties.category {
-        case .restroom, .restroomMale, .restroomFemale: colorName = "restroom"
+        case .restroom, .restroomMale, .restroomFemale, .restroomWheelchair: colorName = "restroom"
         default: colorName = properties.category.rawValue
         }
         return colorName
@@ -51,10 +51,10 @@ class OccupantAnnotation: BaseAnnotation, MKAnnotation, ReusableCell, IndoorAnno
     
     var detailLevel: DetailLevel {
         switch properties.category {
-        case .restroom, .restroomMale, .restroomFemale, .security: return .circleWithoutLabel
-        case .administration, .wardrobe, .ticket: return .circleWithoutLabel
+        case .restroom, .restroomWheelchair, .restroomMale, .restroomFemale, .security: return .circleWithoutLabel
+        case .wardrobe, .ticket: return .circleWithoutLabel
         case .souvenirs, .foodserviceСoffee, .foodservice: return .circleWithoutLabel
-        case .auditorium, .classroom: return .pointSecondary
+        case .auditorium, .classroom, .administration: return .pointSecondary
         default: return .pointSecondary
         }
     }
@@ -80,6 +80,10 @@ extension OccupantAnnotation: Searchable {
     
     var place: String? {
         level.building?.properties.name?.bestLocalizedValue
+    }
+    
+    var shortPlace: String? {
+        level.building?.properties.alt_name?.bestLocalizedValue
     }
     
     var floor: String? { level.properties.name?.bestLocalizedValue }

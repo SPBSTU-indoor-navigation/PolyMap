@@ -1,9 +1,9 @@
 PODS:
-  - Alamofire (5.5.0)
+  - Alamofire (5.9.1)
   - M13Checkbox (3.4.0)
   - SwiftGen (6.4.0)
-  - UIScreenExtension (0.0.10)
-  - ZIPFoundation (0.9.13)
+  - UIScreenExtension (0.0.11)
+  - ZIPFoundation (0.9.19)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
@@ -25,15 +25,15 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   UIScreenExtension:
-    :commit: f0cba4a0a229181705126630cb51551b69e31112
+    :commit: 15db6b6030af7b814be014dc96ec8b876edb2f48
     :git: https://github.com/marchv/UIScreenExtension
 
 SPEC CHECKSUMS:
-  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
-  UIScreenExtension: 2c6ab239077a11fd930f38b3fcf96307709dc2b0
-  ZIPFoundation: ae5b4b813d216d3bf0a148773267fff14bd51d37
+  UIScreenExtension: 32648de7d58896d842a803d70e70665a8d729d3c
+  ZIPFoundation: b8c29ea7ae353b309bc810586181fd073cb3312c
 
 PODFILE CHECKSUM: d1b3af8d827f0e0e8ae578bead6b19787c2e5421
 

@@ -132,6 +132,12 @@ class BottomSheetViewController: UINavigationController {
         return .big
     }
     
+    var activePage: BottomSheetPage? {
+        guard let vc = viewControllers.last,
+              let page = vc as? BottomSheetPage else { return nil }
+        return page
+    }
+    
     lazy var background: Background = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -258,7 +264,7 @@ class BottomSheetViewController: UINavigationController {
         
         switch size {
         case .big:
-            return window.height - currentPosition + safeArea.top - safeAreaOffset
+            return window.height - currentPosition + 1
         case .small, .ultraSmall:
             return max(60, window.height - currentPosition - safeAreaOffset)
         }
@@ -333,6 +339,7 @@ class BottomSheetViewController: UINavigationController {
             anim?.tryStopAnimation(true)
             currentPosition = view.layer.presentation()!.frame.origin.y
             startPosotion = currentPosition
+            activePage?.onPageWillBeginScroll()
         case.changed:
             let smallerPos = position(for: .small)
             let biggerPos = position(for: .big)
@@ -353,6 +360,7 @@ class BottomSheetViewController: UINavigationController {
         case.ended:
             mooved = false
             endAnimation(sender.velocity(in: view).y)
+            activePage?.onPageWillEndScroll()
         default: break
         }
         
@@ -412,9 +420,7 @@ class BottomSheetViewController: UINavigationController {
             }
         }
         
-        if animated {
-            navigationAnimated = true //false
-        }
+        navigationAnimated = animated
         
         super.pushViewController(viewController, animated: animated)
         if let bottomSheetPage = viewController as? BottomSheetPage {
@@ -424,10 +430,7 @@ class BottomSheetViewController: UINavigationController {
     
     override func popViewController(animated: Bool) -> UIViewController? {
         lastState = state
-        
-        if animated {
-            navigationAnimated = true //false
-        }
+        navigationAnimated = animated
         
         guard let targetVC = super.popViewController(animated: animated) else {
             navigationAnimated = false
@@ -465,7 +468,6 @@ extension BottomSheetViewController: UINavigationControllerDelegate {
     }
 }
 
-
 extension BottomSheetViewController: BottomSheetPageDelegate {
     func horizontalSize() -> HorizontalSize {
         return currentSize
@@ -489,6 +491,7 @@ extension BottomSheetViewController: BottomSheetPageDelegate {
             anim?.tryStopAnimation(true)
             currentPosition = startPosotion
             viewDidLayoutSubviews()
+            activePage?.onPageWillBeginScroll()
         }
     }
     
@@ -523,6 +526,8 @@ extension BottomSheetViewController: BottomSheetPageDelegate {
             if startPosotion != position(for: .big) && scrollView.topContentOffset.y <= 0  {
                 targetContentOffset.pointee = CGPoint(x: 0, y: -scrollView.topOffset)
             }
+            
+            activePage?.onPageWillEndScroll()
         }
     }
 }

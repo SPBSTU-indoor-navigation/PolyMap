@@ -10,6 +10,11 @@ fileprivate class TitleLabel: UILabel {
 }
 
 class UnitDetailVC: NavbarBottomSheetPage {
+    
+    protocol PageWillBeginScrollDelegate {
+        func pageWillBeginScroll(_ page: BottomSheetPage)
+    }
+    
     let titleTopOffset = 14.0
     var unitDetailInfo: UnitDetailInfo?
     var mapViewDelegate: MapViewDelegate?
@@ -51,6 +56,7 @@ class UnitDetailVC: NavbarBottomSheetPage {
         $0.register(SimpleShareCell.self, forCellReuseIdentifier: SimpleShareCell.identifire)
         $0.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.identifire)
         $0.register(TitleHeader.self, forHeaderFooterViewReuseIdentifier: TitleHeader.identifier)
+        $0.register(CreatedByCell.self, forCellReuseIdentifier: CreatedByCell.identifier)
         $0.delegate = self
         $0.dataSource = self
         $0.backgroundColor = .clear
@@ -121,6 +127,15 @@ class UnitDetailVC: NavbarBottomSheetPage {
     func buildingPlanOpen(attraction: AttractionAnnotation) {
         delegate?.change(verticalSize: .small, animated: true)
         mapViewDelegate?.focus(on: attraction)
+    }
+    
+    override func onPageWillBeginScroll() {
+        super.onPageWillBeginScroll()
+        for cell in tableView.visibleCells {
+            if let delegate = cell as? PageWillBeginScrollDelegate {
+                delegate.pageWillBeginScroll(self)
+            }
+        }
     }
 }
 
@@ -199,6 +214,7 @@ extension Bool {
 }
 
 extension UnitDetailVC: UITableViewDelegate {
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         delegate?.scrollViewWillBeginDragging(scrollView)
     }

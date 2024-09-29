@@ -58,6 +58,10 @@ extension AmenityAnnotation: Searchable {
         level.building?.properties.name?.bestLocalizedValue
     }
     
+    var shortPlace: String? {
+        level.building?.properties.alt_name?.bestLocalizedValue
+    }
+    
     var floor: String? { level.properties.name?.bestLocalizedValue }
     
     var searchTags: [String] { [] }
