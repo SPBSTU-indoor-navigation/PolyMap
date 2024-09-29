@@ -143,10 +143,12 @@ fileprivate func comparator(_ lhs: Searchable, _ rhs: Searchable, searchText: St
     guard let lhsTitle = lhs.mainTitle else { return false }
     guard let rhsTitle = rhs.mainTitle else { return true }
     
+    func compare(_ lhs: String, _ rhs: String) -> Bool { lhs.compare(rhs, options: [.caseInsensitive, .numeric]) == .orderedAscending }
+    
     guard let lhsIndex = lhsTitle.index(of: searchText),
           let rhsIndex = rhsTitle.index(of: searchText) else {
-              return lhsTitle < rhsTitle
-          }
+        return compare(lhsTitle, rhsTitle)
+    }
     
-    return (lhsIndex, lhsTitle) < (rhsIndex, rhsTitle)
+    return lhsIndex == rhsIndex ? compare(lhsTitle, rhsTitle) : lhsIndex < rhsIndex
 }

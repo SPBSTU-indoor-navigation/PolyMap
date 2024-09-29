@@ -171,6 +171,7 @@
 		975E03492CA4F68100A1C132 /* CreatedByCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E03472CA4F67300A1C132 /* CreatedByCell.swift */; };
 		975E034C2CA5C2A500A1C132 /* CreatedByDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E034B2CA5C2A500A1C132 /* CreatedByDetail.swift */; };
 		975E034D2CA5C2A500A1C132 /* CreatedByDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E034B2CA5C2A500A1C132 /* CreatedByDetail.swift */; };
+		976952AE2CA9B33600F23374 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 056F2D15271C623B0063015B /* Localizable.strings */; };
 		976A027827B9846800128EE6 /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027727B9846800128EE6 /* BottomSheetTransition.swift */; };
 		976A027A27BB26F000128EE6 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976A027927BB26F000128EE6 /* AnimationExtensions.swift */; };
 		9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8B127B32C6700DBDBF3 /* ChangeableBlurEffectView.swift */; };
@@ -1334,6 +1335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				971F8DDD27BD52EF0018F98A /* LaunchScreen.storyboard in Resources */,
+				976952AE2CA9B33600F23374 /* Localizable.strings in Resources */,
 				974D42562811E3B700F05434 /* InfoPlist.strings in Resources */,
 				971F8DF627BD554B0018F98A /* Assets.xcassets in Resources */,
 				971F8DDA27BD52EF0018F98A /* Assets.xcassets in Resources */,
