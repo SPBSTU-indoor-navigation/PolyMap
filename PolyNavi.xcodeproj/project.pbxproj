@@ -27,8 +27,8 @@
 		05C4C82D27134C5100C22D61 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82C27134C5100C22D61 /* TimetableViewController.swift */; };
 		05C4C82F27134CC800C22D61 /* Timetable+DatasourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */; };
 		05C91FD8274AD77500C5DDEB /* TimetableEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */; };
-		5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
-		7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F912E21A3F89F0FBB707D3FB /* libPods-PolyNaviClip.a */; };
+		315E9DC8527E6EC90803475D /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579554014661A9C50C2D6FD4 /* libPods-PolyNavi.a */; };
+		324BBC4C9C7FAB1A97CCE666 /* libPods-PolyNaviClip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3F2ACF69EA72D9E235AA4E /* libPods-PolyNaviClip.a */; };
 		9717E4272742991F00332D29 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717E4262742991F00332D29 /* MapView.swift */; };
 		97196E7E27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
 		97196E7F27E6781D00F9E73A /* PinnableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97196E7D27E6781D00F9E73A /* PinnableMapView.swift */; };
@@ -80,7 +80,7 @@
 		971F8E1227BD55820018F98A /* TableBottomSheetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8C127B3421800DBDBF3 /* TableBottomSheetPage.swift */; };
 		971F8E1527BD55820018F98A /* UnitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BD27B3404B00DBDBF3 /* UnitDetailVC.swift */; };
 		971F8E1627BD55820018F98A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780D8BF27B3412A00DBDBF3 /* SearchVC.swift */; };
-		971F8E1727BD558F0018F98A /* (null) in Sources */ = {isa = PBXBuildFile; };
+		971F8E1727BD558F0018F98A /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		9735D1FE2822D6B800F8A08F /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */; };
 		9735D1FF2822D8DE00F8A08F /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D1FD2822D6B800F8A08F /* UserDefaultsStorage.swift */; };
 		9735D2032824B0C600F8A08F /* ReportanIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9735D2022824B0C600F8A08F /* ReportanIssue.swift */; };
@@ -281,14 +281,13 @@
 		97DA5026285FFA1500C1243D /* ShareRouteCacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5025285FFA1500C1243D /* ShareRouteCacheStorage.swift */; };
 		97DA5027285FFA1500C1243D /* ShareRouteCacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA5025285FFA1500C1243D /* ShareRouteCacheStorage.swift */; };
 		97DD22D92772BBCF0083561B /* LevelSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD22D82772BBCF0083561B /* LevelSwitcher.swift */; };
-		97E15D2827BC7FB500E636FC /* (null) in Sources */ = {isa = PBXBuildFile; };
+		97E15D2827BC7FB500E636FC /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		97EE6B042846C85D004A5B00 /* BaseCellTitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EE6B032846C85C004A5B00 /* BaseCellTitled.swift */; };
 		97EE6B052846C85D004A5B00 /* BaseCellTitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EE6B032846C85C004A5B00 /* BaseCellTitled.swift */; };
 		97F0F89727EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
 		97F0F89827EAAC1500296DA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0F89627EAAC1500296DA3 /* SearchModel.swift */; };
 		97FCC17827C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
 		97FCC17927C6A313009F3C39 /* ScaledImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCC17727C6A313009F3C39 /* ScaledImageView.swift */; };
-		CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -359,11 +358,9 @@
 		05C4C82C27134C5100C22D61 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		05C4C82E27134CC800C22D61 /* Timetable+DatasourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timetable+DatasourceDelegate.swift"; sourceTree = "<group>"; };
 		05C91FD7274AD77500C5DDEB /* TimetableEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimetableEmptyView.swift; path = PolyNavi/Views/TimetableVC/TimetableWeekVC/TimetableEmptyView.swift; sourceTree = SOURCE_ROOT; };
-		16E50C685E2282BC85B0A7D3 /* Pods-PolyNaviClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip.debug.xcconfig"; sourceTree = "<group>"; };
-		378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		55528A932DA8C01C2D2D6568 /* Pods-PolyMapAppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyMapAppClip.release.xcconfig"; path = "Target Support Files/Pods-PolyMapAppClip/Pods-PolyMapAppClip.release.xcconfig"; sourceTree = "<group>"; };
-		764E24D0B031857F17BD56B5 /* libPods-PolyMapAppClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyMapAppClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F8CE2653503032042C79524 /* Pods-PolyMapAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyMapAppClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyMapAppClip/Pods-PolyMapAppClip.debug.xcconfig"; sourceTree = "<group>"; };
+		13928C4E8AE97EB09A36CEDD /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.release.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
+		551518CD9F977A407C7C6501 /* Pods-PolyNaviClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviClip.debug.xcconfig"; path = "Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip.debug.xcconfig"; sourceTree = "<group>"; };
+		579554014661A9C50C2D6FD4 /* libPods-PolyNavi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNavi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9717E4262742991F00332D29 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		97196E7D27E6781D00F9E73A /* PinnableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnableMapView.swift; sourceTree = "<group>"; };
 		97196E8027E7F15C00F9E73A /* BaseAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnnotationView.swift; sourceTree = "<group>"; };
@@ -507,10 +504,9 @@
 		97EE6B032846C85C004A5B00 /* BaseCellTitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellTitled.swift; sourceTree = "<group>"; };
 		97F0F89627EAAC1500296DA3 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		97FCC17727C6A313009F3C39 /* ScaledImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledImageView.swift; sourceTree = "<group>"; };
-		A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
-		B18DDFB614B7A61777B8455A /* Pods-PolyNaviClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviClip.release.xcconfig"; path = "Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip.release.xcconfig"; sourceTree = "<group>"; };
-		E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.release.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.release.xcconfig"; sourceTree = "<group>"; };
-		F912E21A3F89F0FBB707D3FB /* libPods-PolyNaviClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNaviClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		99DB1EFF4D504104076BDB78 /* Pods-PolyNaviClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNaviClip.release.xcconfig"; path = "Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip.release.xcconfig"; sourceTree = "<group>"; };
+		A1CDBDC435B0ED7A23823088 /* Pods-PolyNavi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNavi.debug.xcconfig"; path = "Target Support Files/Pods-PolyNavi/Pods-PolyNavi.debug.xcconfig"; sourceTree = "<group>"; };
+		BE3F2ACF69EA72D9E235AA4E /* libPods-PolyNaviClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PolyNaviClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -520,8 +516,7 @@
 			files = (
 				979BCFC12CA75F03006F325C /* AppMetricaCrashes in Frameworks */,
 				979BCFBF2CA75F03006F325C /* AppMetricaCore in Frameworks */,
-				CC14BD9E95A1118391DF5EB0 /* libPods-PolyNavi.a in Frameworks */,
-				5A37A6B32282BE5AFFB25383 /* libPods-PolyNavi.a in Frameworks */,
+				315E9DC8527E6EC90803475D /* libPods-PolyNavi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,8 +525,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				979BCFC52CA75F90006F325C /* AppMetricaCrashes in Frameworks */,
-				7EA962B601689A7CD99E0AD3 /* libPods-PolyNaviClip.a in Frameworks */,
 				979BCFC32CA75F11006F325C /* AppMetricaCore in Frameworks */,
+				324BBC4C9C7FAB1A97CCE666 /* libPods-PolyNaviClip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,12 +705,10 @@
 		46370B1FDDF5AC7D9755CB89 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */,
-				E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */,
-				8F8CE2653503032042C79524 /* Pods-PolyMapAppClip.debug.xcconfig */,
-				55528A932DA8C01C2D2D6568 /* Pods-PolyMapAppClip.release.xcconfig */,
-				16E50C685E2282BC85B0A7D3 /* Pods-PolyNaviClip.debug.xcconfig */,
-				B18DDFB614B7A61777B8455A /* Pods-PolyNaviClip.release.xcconfig */,
+				A1CDBDC435B0ED7A23823088 /* Pods-PolyNavi.debug.xcconfig */,
+				13928C4E8AE97EB09A36CEDD /* Pods-PolyNavi.release.xcconfig */,
+				551518CD9F977A407C7C6501 /* Pods-PolyNaviClip.debug.xcconfig */,
+				99DB1EFF4D504104076BDB78 /* Pods-PolyNaviClip.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -729,9 +722,8 @@
 				97E15D0127BC7EF200E636FC /* libAlamofire.a */,
 				97E15D0227BC7EF200E636FC /* libM13Checkbox.a */,
 				97E15D0327BC7EF200E636FC /* libUIScreenExtension.a */,
-				378F1042FDA644BE9234BD31 /* libPods-PolyNavi.a */,
-				764E24D0B031857F17BD56B5 /* libPods-PolyMapAppClip.a */,
-				F912E21A3F89F0FBB707D3FB /* libPods-PolyNaviClip.a */,
+				579554014661A9C50C2D6FD4 /* libPods-PolyNavi.a */,
+				BE3F2ACF69EA72D9E235AA4E /* libPods-PolyNaviClip.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1236,14 +1228,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 054F6798270C7B4C00FCC07C /* Build configuration list for PBXNativeTarget "PolyNavi" */;
 			buildPhases = (
-				E6F70D81C67778E7BEE3BC4E /* [CP] Check Pods Manifest.lock */,
+				6E08D9511BCA44C5C5146DFA /* [CP] Check Pods Manifest.lock */,
 				054F679E270C807800FCC07C /* SwiftGen */,
 				054F6780270C7B4C00FCC07C /* Sources */,
 				054F6781270C7B4C00FCC07C /* Frameworks */,
 				054F6782270C7B4C00FCC07C /* Resources */,
 				97C6DA6C27BC7D640082AAC7 /* Embed App Clips */,
 				97BDD5F728B2FAD500AB2350 /* Embed Frameworks */,
-				91BE36F6223257E653C9DCA4 /* [CP] Copy Pods Resources */,
+				2B2AF09CBC2879673357C8FE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1259,12 +1251,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 971F8DE327BD52EF0018F98A /* Build configuration list for PBXNativeTarget "PolyNaviClip" */;
 			buildPhases = (
-				815C1176DEC788E6FE62EE8D /* [CP] Check Pods Manifest.lock */,
+				EA7E82233774E30FF69DC9D0 /* [CP] Check Pods Manifest.lock */,
 				971F8DCA27BD52EE0018F98A /* Sources */,
 				971F8DCB27BD52EE0018F98A /* Frameworks */,
 				971F8DCC27BD52EE0018F98A /* Resources */,
 				97BDD5FD28B2FAE900AB2350 /* Embed Frameworks */,
-				640D65B3B421918118CA931F /* [CP] Copy Pods Resources */,
+				CF5EC45063BD6D8106D7CF29 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1364,46 +1356,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT\"/SwiftGen/bin/swiftgen\n";
 		};
-		640D65B3B421918118CA931F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		815C1176DEC788E6FE62EE8D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PolyNaviClip-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		91BE36F6223257E653C9DCA4 /* [CP] Copy Pods Resources */ = {
+		2B2AF09CBC2879673357C8FE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1420,7 +1373,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PolyNavi/Pods-PolyNavi-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E6F70D81C67778E7BEE3BC4E /* [CP] Check Pods Manifest.lock */ = {
+		6E08D9511BCA44C5C5146DFA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1436,6 +1389,45 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PolyNavi-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF5EC45063BD6D8106D7CF29 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PolyNaviClip/Pods-PolyNaviClip-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA7E82233774E30FF69DC9D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PolyNaviClip-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1569,7 +1561,7 @@
 				979E2C772788A7C7008CFA05 /* MapExtensions.swift in Sources */,
 				97A484BC2717858700D14997 /* MapViewController.swift in Sources */,
 				9780D8B227B32C6700DBDBF3 /* ChangeableBlurEffectView.swift in Sources */,
-				97E15D2827BC7FB500E636FC /* (null) in Sources */,
+				97E15D2827BC7FB500E636FC /* BuildFile in Sources */,
 				05C32AC5271F10BA0033B751 /* ChoosingTableViewCell.swift in Sources */,
 				974D423C280E0E9A00F05434 /* OpenUrlPopup.swift in Sources */,
 				97457CD128661E9600E2B86F /* QuickSelectMapView.swift in Sources */,
@@ -1654,7 +1646,7 @@
 				973962C6280B609A000E478F /* SectionCollection.swift in Sources */,
 				97DA5024285FEE9800C1243D /* ParseUserActivityClip.swift in Sources */,
 				9735D1FF2822D8DE00F8A08F /* UserDefaultsStorage.swift in Sources */,
-				971F8E1727BD558F0018F98A /* (null) in Sources */,
+				971F8E1727BD558F0018F98A /* BuildFile in Sources */,
 				971F8E0427BD55680018F98A /* MultiPolygonDetailRenderer.swift in Sources */,
 				978B321027EE7C0A00760B78 /* SearchHeaderView.swift in Sources */,
 				973962DD280CE4E9000E478F /* CodeVariant.swift in Sources */,
@@ -1892,7 +1884,7 @@
 		};
 		054F6799270C7B4C00FCC07C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A225BCE803314D3CBE23F743 /* Pods-PolyNavi.debug.xcconfig */;
+			baseConfigurationReference = A1CDBDC435B0ED7A23823088 /* Pods-PolyNavi.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1929,7 +1921,7 @@
 		};
 		054F679A270C7B4C00FCC07C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E64FD0279F25D58DA7A94A02 /* Pods-PolyNavi.release.xcconfig */;
+			baseConfigurationReference = 13928C4E8AE97EB09A36CEDD /* Pods-PolyNavi.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1965,7 +1957,7 @@
 		};
 		971F8DE427BD52EF0018F98A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16E50C685E2282BC85B0A7D3 /* Pods-PolyNaviClip.debug.xcconfig */;
+			baseConfigurationReference = 551518CD9F977A407C7C6501 /* Pods-PolyNaviClip.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2008,7 +2000,7 @@
 		};
 		971F8DE527BD52EF0018F98A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B18DDFB614B7A61777B8455A /* Pods-PolyNaviClip.release.xcconfig */;
+			baseConfigurationReference = 99DB1EFF4D504104076BDB78 /* Pods-PolyNaviClip.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
