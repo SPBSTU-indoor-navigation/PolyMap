@@ -41,22 +41,31 @@ class Level: CustomOverlay, Styleble, MapRenderer {
         
         var splitByLevel: [[PathResultNode]] = []
         
-        var currentPath: [PathResultNode] = [path[0]]
+        var currentPath: [PathResultNode] = path[0].isIndoor ? [path[0]] : []
         for i in 1..<path.count {
-            if path[i-1].level != path[i].level {
-                
-                let isUp = path[i-1].level!.ordinal < path[i].level!.ordinal
+            
+            let goToOutdoor = path[i - 1].isIndoor && !path[i].isIndoor
+            let goToNextBuilding = path[i - 1].isIndoor && path[i].isIndoor && path[i - 1].building != path[i].building
+            let goToNextFloor = path[i - 1].isIndoor && path[i].isIndoor && path[i - 1].level!.ordinal != path[i].level!.ordinal
 
-                //TODO: ADDANNOTATION
-                
+            
+            if currentPath.count > 0 && (goToOutdoor || goToNextBuilding || goToNextFloor) {
                 splitByLevel.append(currentPath)
-                currentPath = [path[i]]
-                
-            } else {
+                currentPath = []
+            }
+            
+            if path[i - 1].isIndoor && path[i].isIndoor {
+                currentPath.append(path[i])
+            }
+
+            if !path[i - 1].isIndoor && path[i].isIndoor {
                 currentPath.append(path[i])
             }
         }
-        splitByLevel.append(currentPath)
+        
+        if !currentPath.isEmpty {
+            splitByLevel.append(currentPath)
+        }
         
         
         splitByLevel = splitByLevel.filter({ $0.count >= 2 && $0[1].level == self })

@@ -34,7 +34,7 @@ class Building: CustomOverlay, Styleble, MapRenderer {
         if indoor.isEmpty { return }
         
         for level in levels {
-            level.addPath(mapView, path: indoor, id: id)
+            level.addPath(mapView, path: path, id: id)
         }
     }
     
