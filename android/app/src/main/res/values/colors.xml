@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- iOS system colors (light) -->
+    <color name="system_blue">#FF007AFF</color>
+    <color name="system_green">#FF34C759</color>
+    <color name="system_red">#FFFF3B30</color>
+    <color name="system_orange">#FFFF9500</color>
+    <color name="system_pink">#FFFF2D55</color>
+    <color name="system_gray">#FF8E8E93</color>
+    <color name="system_gray2">#FFAEAEB2</color>
+    <color name="system_gray3">#FFC7C7CC</color>
+    <color name="system_gray4">#FFD1D1D6</color>
+    <color name="system_gray5">#FFE5E5EA</color>
+    <color name="system_gray6">#FFF2F2F7</color>
+    <color name="system_background">#FFFFFFFF</color>
+    <color name="secondary_system_background">#FFF2F2F7</color>
+    <color name="system_grouped_background">#FFF2F2F7</color>
+    <color name="secondary_system_grouped_background">#FFFFFFFF</color>
+    <color name="label">#FF000000</color>
+    <color name="secondary_label">#993C3C43</color>
+    <color name="tertiary_label">#4D3C3C43</color>
+    <color name="separator">#4A3C3C43</color>
+    <color name="thick_material">#F2F7F7F7</color>
+    <color name="chrome_material">#F5FFFFFF</color>
+    <color name="accent">#FF5EB057</color>
+    <color name="sheet_dim">#80000000</color>
+</resources>

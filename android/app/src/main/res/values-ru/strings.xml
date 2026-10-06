@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PolyMap</string>
+    <string name="search_cancel">Отменить</string>
+    <string name="map_loading">Загрузка карты…</string>
+    <string name="ok">ОК</string>
+</resources>

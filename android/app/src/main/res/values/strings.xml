@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PolyMap</string>
+    <string name="search_cancel">Cancel</string>
+    <string name="map_loading">Loading map…</string>
+    <string name="ok">OK</string>
+    <string name="empty_plan_email" translatable="false">soprachev@mail.ru</string>
+</resources>
